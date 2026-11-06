@@ -193,3 +193,304 @@ ain-Kana (24): `string/commons_svg_too_large`, `string/ui_0f_0f_px_1f`, `string/
 ain-Latn (15): `string/commons_svg_too_large`, `string/ui_assembly_png`, `string/ui_colour_blue_range`, `string/ui_colour_component_range`, `string/ui_colour_green_range`, `string/ui_colour_hsl_hue_range`, `string/ui_colour_hsl_lightness_range`, `string/ui_colour_hsl_saturation_range`, `string/ui_colour_hsv_hue_range`, `string/ui_colour_hsv_saturation_range`, `string/ui_colour_hsv_value_range`, `string/ui_colour_red_range`, `string/ui_cursor_help29`, `string/ui_cursor_position26`, `string/ui_gnu_affero_general_public_license`.
 
 **Evidence integrity:** temporary full decisions SHA256 `28eec50f6ac22a41362bf09839d22bcd547b242a86d7bf5c92edcbf9d3253309`; exact twelve-successor map SHA256 `ccf2351b92bed88aa7489363f03b6b0d636dc5df2c508acb7bbd7f7bafcdc8d3`. Full-value copies remain temporary; canonical XML and this finite scope are the durable record.
+
+## Non-Ainu finite existing-value remainder, 6 November 2026
+
+This checkpoint disposes of **589 previously unlinked identities across 48 locales**, not a new all-catalogue certification. The finite input was bound to `257fc635c97c9ac617d743ccdd3265e45a7f734d`; all relevant source, target, attributes and production consumers remained unchanged through parent `0d168fe9cfed73d2eeb5e309f6b736019c316970`. Existing accepted or complete author-reviewed scopes outside these inputs were not reopened. Missing recovered evidence is not proof that a value was never reviewed or was wrong.
+
+The 589 inputs contained 520 meaning candidates and 69 content-classification candidates. Review reclassified some of the former as explicit English or technical names rather than inventing translation credit. Complete-value judgments, repaired successors, shared terms, font names and English fallback are distinguished in the exact scope below. These are bounded source/context reviews, not native certification or device-layout approval.
+
+- European slice, 176: 121 translated values retained; 15 translation/context repairs; 2 English unit-only repairs; 12 explicit-English retains; 6 technical labels; 18 generic font names; 2 shared orientation terms.
+- Eurasian slice, 247: 178 whole-value meanings retained (13 source-only), 1 retained Armenian terminology qualification, 6 supported corrections, 9 context-precision improvements, 21 English/technical-English classifications, 30 generic font names and 2 ASCII format-name classifications.
+- Asian slice, 166: 128 meanings retained (7 source-only), 7 repaired successors, 10 English labels, 14 separate classifications (12 font-family names and 2 ordinary English shapes), and 7 explicit generic-Copy context-precision dispositions (5 localized, 2 English). No unchanged English lower-priority label was translated as a side effect.
+
+### Integrated changes and evidence
+
+**39 existing identities in 21 catalogues change; no resource identity is added.** Seven existing quality captions gain the missing percentage unit and `formatted="false"`. The Norwegian, Romanian and Gujarati quality captions deliberately remain English `Quality (%)`; that unit repair is not new localized prose. Default English, application code, tests, workflows and version remain unchanged.
+
+The supported corrections distinguish Azerbaijani bouquet from fill-bucket and election/empty-selection from selection/free-form selection; correct Georgian Apply and Macedonian Heart; distinguish a colour wheel from a mouse wheel; fix Catalan spelling, Irish spelling/lenition and Galician spelling; use the precise Northern Sami square label; and preserve horizontal direction, monospace, freehand smoothing and pixel-edge antialiasing meanings in the affected Bengali, Basque, Hindi and Ukrainian controls. Terminology-precision changes are not claims that every older descriptive expression was impossible.
+
+Twelve gallery-copy captions explicitly name attribution/author-credit information. The existing copy verbs were not generally wrong: the native credit dialog supplies context, but the same caption is also injected beside an image-use action on an artwork page. The successor distinguishes copying attribution text from copying the image. Five other localized generic-copy captions (`bn`, `fa-IR`, `hi`, `ps`, `sd`) retain this specific object-precision question pending a supported successor. The English `Copy` fallbacks in `gu` and `si` are left untranslated; no universal context-precision pass is claimed for those seven values.
+
+Positive sources include [AZLEKS bucket](https://azleks.az/en/dictionary/bucket), [election](https://azleks.az/en/dictionary/secki), [selection](https://azleks.az/en/dictionary/secim), [Georgian LibreOffice Apply](https://help.libreoffice.org/latest/ka/text/swriter/01/05130100.html?DbPAR=WRITER), [Macedonian heart](https://makedonski.gov.mk/corpus/l/srce-sr), [Irish ard-](https://www.teanglann.ie/en/fgb/ard-), [Irish horizontal](https://www.teanglann.ie/en/fgb/cothrom%C3%A1nach), [Icelandic GTK colour wheel](https://mail.gnome.org/archives/commits-list/2017-February/msg00598.html), [Northern Sami geometry](https://tangenten.no/wp-content/uploads/2021/12/tangenten-4-2018-Siri-ja-Hermansen.pdf), [Basque freehand drawing, printed page 233](https://euskalcurriculuma.eus/sites/default/files/dokumentuak/EUSKARA.pdf#page=235), [Hindi CLDR](https://unicode.org/cldr/charts/49/summary/hi.html), and [Bengali advanced settings](https://support.google.com/accessibility/android/answer/12637487?hl=bn). The Google help pages disclose possible machine translation and provide corroboration, not native certification. The [Ukrainian Blender stroke passage](https://docs.blender.org/manual/uk/3.4/grease_pencil/modes/draw/tools/draw.html) and the pinned Chromium Hindi monospace entry were checked through indexed primary-source excerpts; direct retrieval failed or timed out. The Hindi NIELIT antialiasing PDF was opened by the packet reviewer and its relevant indexed clause checked; later focused retrievals and the integrator's retrieval timed out. These failures are not represented as successful direct reads.
+
+Conservative retentions include established Bosnian/Slovenian dithering terms, Bengali strikethrough, Burmese horizontal/palette terms, concise smoothing labels in drawing settings, and Uzbek four-corner terminology in the round/square choice. Armenian `ui_about_credits23` retains a terminology caveat: its common letters/certificates-of-thanks sense is interpretable as acknowledgments here, without claiming a standardized software term. Sindhi strikethrough retains limited independent attestation. Nine Old Norse clauses were read as whole statements with reconstructed technical-vocabulary limits. Source-only values are reviewed against their stated meaning; absent literal references do not prove dynamic unreachability or approve arbitrary future use.
+
+### Verification
+
+All 589 source/target/attribute bindings were checked. The 39 exact successors preserve placeholders, Android escaping, NFC and all unrelated elements; only the seven percentage captions add the stated attribute. All 21 changed catalogues pass the existing structural validator. Six Eurasian crop plural branches and the Asian crop plural families preserve their complete dimensions, selected-count arguments and movement warning. **856 host tests passed in 173.041 seconds.** **21 actual JDK formatting cases** exercise all seven quality captions through each locale's real slider wrapper at values 1, 87 and 100, retaining the literal percent unit. A temporary harness initially supplied a string to an integer argument; it was corrected and rerun, not treated as an application regression. No permanent wording-freeze tests or duplicated catalogue mirrors were added.
+
+Android compilation, full API 30/35 tests, runtime clipping and upgrade signing are not established by these host checks. Exact-head CI and release qualification remain separate. The current receipt audit also has a distinct historical-U-only evidence gap; this finite 589 result does not assert that every existing string in every locale is now reviewed.
+
+### Exact finite scope and dispositions
+
+Each entry below applies one typed key to each listed locale. This is a compact decision scope, not a second approved-wording catalogue. Canonical XML at this commit owns the text, and the limits above remain. `proposed_exact_repair` in the Asian packet means the exact successor subsequently accepted and integrated here; English unit-only successors retain their separate classification.
+
+**classified no translation change**
+
+- `string/ui_heart`: `gu`.
+- `string/ui_monospace`: `fa-IR`, `gu`, `ps`, `si`.
+- `string/ui_sans_serif`: `fa-IR`, `gu`, `ps`, `si`.
+- `string/ui_serif`: `fa-IR`, `gu`, `ps`, `si`.
+- `string/ui_star`: `gu`.
+
+**classify english not translated prose**
+
+- `string/gallery_use_image`: `gu`, `si`.
+- `string/ui_smooth_freehand_strokes`: `gu`, `sd`, `si`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `fa-IR`, `gu`, `ps`, `sd`, `si`.
+
+**context precision unresolved**
+
+- `string/gallery_copy_credit`: `bn`, `fa-IR`, `hi`, `ps`, `sd`.
+
+**english fallback with context precision unresolved**
+
+- `string/gallery_copy_credit`: `gu`, `si`.
+
+**proposed exact repair**
+
+- `string/ui_advanced`: `bn`.
+- `string/ui_horizontal23`: `hi`.
+- `string/ui_monospace`: `hi`.
+- `string/ui_quality`: `bn`, `gu`, `hi`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `hi`.
+
+**repair context precision**
+
+- `string/gallery_copy_credit`: `az`, `bs`, `hr`, `kk`, `sk`, `sl`, `uk`.
+- `string/ui_quality`: `bs`, `hr`.
+
+**repair english unit only**
+
+- `string/ui_quality`: `no`, `ro`.
+
+**repair existing translation**
+
+- `string/gallery_copy_credit`: `ca`, `da`, `gl`, `no`, `ro`.
+- `string/gallery_use_image`: `ca`, `eu-ES`.
+- `string/ui_advanced`: `ga`, `gl`.
+- `string/ui_horizontal23`: `ga`.
+- `string/ui_smooth_freehand_strokes`: `eu-ES`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `eu-ES`.
+- `string/ui_square`: `se`.
+- `string/ui_wheel`: `ca`, `is`.
+
+**repair supported error**
+
+- `string/ui_apply`: `ka`.
+- `string/ui_bucket_fill`: `az`.
+- `string/ui_category_selection`: `az`.
+- `string/ui_free_form_select`: `az`.
+- `string/ui_heart`: `mk`.
+- `string/ui_smooth_freehand_strokes`: `uk`.
+
+**retain english fallback classification**
+
+- `string/gallery_copy_credit`: `bg`, `ka`, `mk`.
+- `string/gallery_use_image`: `bg`, `ka`, `mk`, `sk`.
+- `string/ui_quality`: `mk`.
+- `string/ui_smooth_freehand_strokes`: `az`, `bg`, `ka`, `mk`, `sk`, `sl`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `az`, `bg`, `ka`, `mk`, `sk`, `sl`.
+- `string/ui_star`: `mk`.
+
+**retain existing meaning**
+
+- `plurals/ui_crop_preview_images`: `fa`, `he`, `ur`.
+- `string/formats22_ascii_label`: `bn`, `gu`, `my`.
+- `string/gallery_use_image`: `bn`, `fa-IR`, `hi`, `ps`, `sd`.
+- `string/save20_dither`: `bn`.
+- `string/save20_file_name`: `ug`.
+- `string/ui_about_credits23`: `fa-IR`.
+- `string/ui_add_palette23`: `hne`.
+- `string/ui_advanced`: `gu`, `my`, `ug`.
+- `string/ui_arrow`: `bn`.
+- `string/ui_bold`: `ckb`, `sd`, `ug`.
+- `string/ui_bottom`: `ckb`, `ug`.
+- `string/ui_brush`: `sd`, `ug`.
+- `string/ui_cancel`: `sd`.
+- `string/ui_category_insert`: `sd`.
+- `string/ui_colour_tab23`: `ckb`, `ug`.
+- `string/ui_copy`: `ckb`, `sd`.
+- `string/ui_curve`: `ckb`.
+- `string/ui_done`: `sd`.
+- `string/ui_ellipse`: `sd`.
+- `string/ui_eraser`: `sd`, `ug`.
+- `string/ui_font`: `ckb`.
+- `string/ui_font_family`: `ug`.
+- `string/ui_heart`: `bn`, `fa-IR`, `hi`, `sd`.
+- `string/ui_horizontal23`: `bn`, `ckb`, `gu`, `my`, `rw`, `si`.
+- `string/ui_image`: `ckb`, `ug`.
+- `string/ui_italic`: `ckb`, `sd`, `ug`.
+- `string/ui_left`: `ckb`, `ug`.
+- `string/ui_line`: `sd`.
+- `string/ui_menu_file`: `ckb`, `ug`.
+- `string/ui_menu_help`: `ckb`, `sd`, `ug`.
+- `string/ui_menu_image`: `ckb`, `ug`.
+- `string/ui_menu_view`: `ckb`, `sd`, `ug`.
+- `string/ui_monospace`: `bn`, `sd`.
+- `string/ui_new`: `ckb`, `ug`.
+- `string/ui_new_image`: `sd`.
+- `string/ui_ok`: `ckb`.
+- `string/ui_palette`: `ug`.
+- `string/ui_paste`: `sd`.
+- `string/ui_pencil`: `ug`.
+- `string/ui_pixels`: `ug`.
+- `string/ui_pixels_6ec9c2`: `ug`.
+- `string/ui_polygon`: `sd`, `ug`.
+- `string/ui_preview`: `ckb`.
+- `string/ui_ready`: `ckb`.
+- `string/ui_rectangle`: `sd`, `ug`.
+- `string/ui_right`: `ckb`, `ug`.
+- `string/ui_sans_serif`: `bn`, `hi`, `sd`.
+- `string/ui_save`: `ckb`, `ug`.
+- `string/ui_search34`: `ug`.
+- `string/ui_select_all`: `ckb`, `sd`.
+- `string/ui_serif`: `bn`, `hi`, `sd`.
+- `string/ui_smallest`: `ug`.
+- `string/ui_smooth_freehand_strokes`: `bn`, `fa-IR`, `hi`, `ps`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `bn`.
+- `string/ui_square`: `hne`, `ug`.
+- `string/ui_star`: `bn`, `fa-IR`, `hi`, `sd`.
+- `string/ui_strikethrough`: `bn`, `sd`, `ug`.
+- `string/ui_text`: `ckb`, `sd`, `ug`.
+- `string/ui_top`: `ckb`.
+- `string/ui_underline`: `ckb`, `ug`.
+- `string/ui_untitled`: `ckb`.
+- `string/ui_wheel`: `bn`, `ckb`.
+
+**retain explicit english**
+
+- `string/gallery_copy_credit`: `eu-ES`.
+- `string/gallery_use_image`: `da`, `gl`, `no`, `ro`.
+- `string/ui_smooth_freehand_strokes`: `ca`, `da`, `gl`, `no`, `ro`.
+- `string/ui_star`: `no`, `ro`.
+
+**retain generic font name**
+
+- `string/ui_monospace`: `ca`, `da`, `eu-ES`, `gl`, `no`, `ro`.
+- `string/ui_sans_serif`: `ca`, `da`, `eu-ES`, `gl`, `no`, `ro`.
+- `string/ui_serif`: `ca`, `da`, `eu-ES`, `gl`, `no`, `ro`.
+
+**retain shared orientation term**
+
+- `string/ui_horizontal23`: `gl`, `nds`.
+
+**retain source only meaning**
+
+- `string/ui_category_brush`: `sd`, `ug`.
+- `string/ui_discard`: `az`, `ka`, `kk`, `ps`.
+- `string/ui_edit_palette23`: `bg`, `bn`, `bs`, `ka`, `kk`, `my`, `sk`, `sl`, `uk`.
+- `string/ui_hide_pixel_grid_800`: `hy`.
+- `string/ui_insert`: `sd`.
+- `string/ui_magnified_preview`: `hy`.
+- `string/ui_menu`: `ug`.
+- `string/ui_show_pixel_grid_800`: `hy`.
+
+**retain technical font classification**
+
+- `string/ui_monospace`: `az`, `bg`, `bs`, `hr`, `ka`, `kk`, `mk`, `sk`, `sl`, `uk`.
+- `string/ui_sans_serif`: `az`, `bg`, `bs`, `hr`, `ka`, `kk`, `mk`, `sk`, `sl`, `uk`.
+- `string/ui_serif`: `az`, `bg`, `bs`, `hr`, `ka`, `kk`, `mk`, `sk`, `sl`, `uk`.
+
+**retain technical format classification**
+
+- `string/formats22_ascii_label`: `sk`, `sl`.
+
+**retain technical label**
+
+- `string/save20_dither`: `no`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `ca`, `da`, `gl`, `no`, `ro`.
+
+**retain translated value**
+
+- `string/formats22_ascii_label`: `ca`, `ca-ES-valencia`, `da`, `eu-ES`, `gl`, `is`, `no`, `ro`.
+- `string/save20_destination_error`: `non`.
+- `string/save20_dither`: `ca`, `da`.
+- `string/ui_about_credits23`: `ca`, `da`, `no`, `ro`.
+- `string/ui_add_palette23`: `ca`, `da`, `eu-ES`, `fy`, `gl`, `is`, `ro`, `se`, `wa`.
+- `string/ui_advanced`: `ca`, `ca-ES-valencia`, `da`, `eu-ES`, `is`, `no`, `ro`, `se`.
+- `string/ui_arrow`: `ca`, `da`, `fr`, `gl`, `is`, `no`, `ro`.
+- `string/ui_autosave_is_paused_to_protect_that_draft_use`: `non`.
+- `string/ui_autosave_paused_use_save`: `non`.
+- `string/ui_cannot_create_the_undo_cache_free_some_device`: `non`.
+- `string/ui_curve`: `ca`, `da`, `fr`, `gl`, `is`, `ro`.
+- `string/ui_discard`: `eu-ES`.
+- `string/ui_drag_between_opposite_corners_to_draw_a_five`: `fr`.
+- `string/ui_edit_palette23`: `ca`, `ca-ES-valencia`, `da`, `eu-ES`, `gd`, `gl`, `is`, `nds`, `no`, `ro`.
+- `string/ui_heart`: `ca`, `da`, `fr`, `gl`, `is`, `no`, `ro`.
+- `string/ui_horizontal23`: `ca`, `ca-ES-valencia`, `da`, `eu-ES`, `gd`, `is`, `no`, `ro`.
+- `string/ui_quality`: `ca`, `da`, `is`.
+- `string/ui_recovered_image`: `non`.
+- `string/ui_round`: `ca`, `da`, `eu-ES`, `is`, `ro`.
+- `string/ui_rounded_rectangle`: `fr`.
+- `string/ui_search34`: `se`.
+- `string/ui_smallest`: `wa`.
+- `string/ui_square`: `ca`, `cy`, `da`, `eu-ES`, `fy`, `is`, `no`, `ro`, `wa`.
+- `string/ui_star`: `ca`, `da`, `fr`, `is`.
+- `string/ui_strikethrough`: `ca`, `ca-ES-valencia`, `cy`, `da`, `eu-ES`, `fy`, `gd`, `gl`, `is`, `no`, `ro`.
+- `string/ui_the_previous_draft_could_not_be_moved_to`: `non`.
+- `string/ui_the_undo_cache_is_damaged`: `non`.
+- `string/ui_unexpected_data_in_the_undo_cache`: `non`.
+- `string/ui_wheel`: `da`, `eu-ES`, `gd`, `gl`, `no`, `ro`.
+- `string/ui_your_current_image_has_unsaved_changes`: `non`.
+
+**retain whole value meaning**
+
+- `plurals/ui_crop_preview_images`: `be`, `sq`.
+- `string/formats22_ascii_label`: `bg`, `bs`, `ka`, `kk`, `mk`, `uk`.
+- `string/gallery_copy_credit`: `hy`.
+- `string/gallery_use_image`: `az`, `bs`, `hr`, `hy`, `kk`, `sl`, `uk`.
+- `string/save20_dither`: `bg`, `bs`, `sk`, `sl`.
+- `string/save20_file_name`: `tt-Cyrl`.
+- `string/ui_about_credits23`: `bg`, `bs`, `hr`, `sk`, `sl`, `uk`.
+- `string/ui_add_palette23`: `bg`, `ka`, `kk`, `sk`, `sl`, `uk`.
+- `string/ui_advanced`: `bg`, `bs`, `hr`, `hy`, `ka`, `kk`, `mk`, `sk`, `sl`, `tt-Cyrl`, `tt-Latn`, `uk`.
+- `string/ui_all`: `tt-Cyrl`.
+- `string/ui_arrow`: `bg`, `bs`, `hr`, `hy`, `ka`, `mk`, `sk`, `sl`, `uk`.
+- `string/ui_bg`: `hy`, `ka`.
+- `string/ui_brush`: `tt-Cyrl`.
+- `string/ui_catrobat_sticker_gallery`: `hy`.
+- `string/ui_cursor_drawing32`: `hy`.
+- `string/ui_cursor_help31`: `hy`.
+- `string/ui_cursor_pan_draw32`: `hy`.
+- `string/ui_cursor_pan_move32`: `hy`.
+- `string/ui_cursor_shape31`: `hy`.
+- `string/ui_cursor_start31`: `hy`.
+- `string/ui_cursor_stop31`: `hy`.
+- `string/ui_cursor_tap_hint37`: `hy`.
+- `string/ui_curve`: `bg`, `bs`, `hy`, `ka`, `sk`, `sl`, `uk`.
+- `string/ui_disable_cursor_drawing33`: `hy`.
+- `string/ui_done`: `tt-Cyrl`.
+- `string/ui_enable_cursor_drawing`: `hy`.
+- `string/ui_fg`: `hy`, `ka`.
+- `string/ui_fullscreen33`: `hy`.
+- `string/ui_gallery_back34`: `hy`.
+- `string/ui_heart`: `az`, `bg`, `bs`, `hr`, `hy`, `ka`, `sk`, `sl`, `uk`.
+- `string/ui_horizontal23`: `az`, `bg`, `bs`, `hr`, `ka`, `kk`, `mk`, `sk`, `sl`, `uk`.
+- `string/ui_how_to_use`: `hy`.
+- `string/ui_keep_editing23`: `tt-Cyrl`.
+- `string/ui_magnifier33`: `hy`.
+- `string/ui_menu_edit`: `tt-Cyrl`.
+- `string/ui_menu_file`: `tt-Cyrl`.
+- `string/ui_menu_help`: `tt-Cyrl`.
+- `string/ui_ok`: `tt-Cyrl`.
+- `string/ui_pixel_grid33`: `hy`.
+- `string/ui_pixel_grid_help33`: `hy`.
+- `string/ui_quality`: `bg`, `sk`, `sl`, `uk`.
+- `string/ui_remove`: `tt-Cyrl`.
+- `string/ui_round`: `bg`, `hy`, `ka`, `kk`, `sk`, `sl`, `uk`.
+- `string/ui_save`: `tt-Cyrl`.
+- `string/ui_search34`: `hy`.
+- `string/ui_search_english34`: `hy`.
+- `string/ui_smooth_freehand_strokes`: `bs`, `hr`, `kk`.
+- `string/ui_smooth_pixel_edges_anti_aliasing`: `bs`, `hr`, `kk`, `uk`.
+- `string/ui_square`: `bg`, `hy`, `ka`, `kk`, `sk`, `sl`, `uk`, `uz-Latn`.
+- `string/ui_star`: `az`, `bg`, `bs`, `hr`, `hy`, `ka`, `sk`, `sl`, `uk`.
+- `string/ui_strikethrough`: `bg`, `bs`, `hr`, `ka`, `kk`, `sk`, `sl`, `uk`, `uz-Latn`.
+- `string/ui_top`: `bg`.
+- `string/ui_wheel`: `bg`, `bs`, `ka`, `kk`, `sk`, `sl`, `uk`.
+
+**retain with terminology uncertainty**
+
+- `string/ui_about_credits23`: `hy`.
