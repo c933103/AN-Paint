@@ -47,7 +47,11 @@ The [whole-priority Tai Nüa review](whole-priority-tdd-review-20261106.md) adds
 
 The [whole-priority Nahuatl review](whole-priority-nahuatl-review-20261106.md) adds **547 priorities (6 P0 + 541 P1)** across Central/Eastern/Western Huasteca Nahuatl and repairs 51 existing entries. Its final 1,031-entry inventory includes all 484 earlier entries and two retained P2 values; this is not 1,031 unique new translations or proof that earlier accepted reviews were absent. Current all-171 totals are **85,049 present entries, 62 missing P0 + 312 missing P1 across 17 options**, with 154 priority-complete options. No missing P2/P3 was added. Independent Cherokee, Tamazight, residual and Navajo work remains excluded until verified integration.
 
-Remaining direct-gap queue (P0/P1): `ain-Kana 2/0`, `ain-Latn 2/0`, `bo 2/0`, `ch 0/3`, `chr 2/96`, `dz 2/0`, `hak-Latn-TW 2/0`, `jje 2/0`, `mn-Mong 2/0`, `mnc-Mong 2/0`, `nv 27/189`, `qug 0/2`, `ryu 2/0`, `shn 2/0`, `vi-Hani 2/0`, `yua 2/1`, `zgh 9/21`.
+The [residual Chamorro/Kichwa/Yucatec cohort](ch-qug-yua-residual-review-20261106.md) adds **8 priorities (2 P0 + 6 P1)** and repairs 19 existing entries. Current totals are **85,057 present, 60 missing P0 + 306 missing P1 across 14 options**, with 157 priority-complete options. No missing P2/P3 was added. Earlier unchanged accepted wording is reused with matching source/consumer scope, not counted as fresh review.
+
+The same publication also includes the [Tamazight priority completion](whole-priority-zgh-review-20261106.md): **30 additions (9 P0 + 21 P1), eight repairs and reuse of 224 exact prior accepted receipts**. Current combined totals: **85,087 present, 51 missing P0 + 285 missing P1 across 13 options; 158 priority-complete options**. The remaining direct gaps are Navajo 216, Cherokee 98 and 22 new recovery warnings across 11 other options. Existing valid evidence is reused, not rescored as new review.
+
+Remaining direct-gap queue (P0/P1): `ain-Kana 2/0`, `ain-Latn 2/0`, `bo 2/0`, `chr 2/96`, `dz 2/0`, `hak-Latn-TW 2/0`, `jje 2/0`, `mn-Mong 2/0`, `mnc-Mong 2/0`, `nv 27/189`, `ryu 2/0`, `shn 2/0`, `vi-Hani 2/0`.
 
 Full direct priority presence does not prove every rendered parameter is translated: the Quechua, Tai Nüa and Nahuatl P0 animation messages can inherit the English at-least count from missing P2 `formats22_at_least_frames`. Record and resolve these dependency/scope questions before declaring release completion, rather than concealing fallback or silently expanding missing-P2 work.
 
