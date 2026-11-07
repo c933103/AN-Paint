@@ -71,7 +71,7 @@ internal object IllustrationPage {
           // displayed image is a thumbnail, not the original file. Only carry
           // the selected File: page to native code, which resolves imageinfo.
           function viewerFilePage() {
-            var match=location.hash.match(/^#(?:mediaviewer\\/|\\/media\\/)(File:[^?#]+)$/);
+            var match=location.hash.match(/^#(?:mediaviewer\/|\/media\/)(File:[^?#]+)$/);
             if(!match)return null;
             var title;
             try {title=decodeURIComponent(match[1]);}catch(e){return null;}
