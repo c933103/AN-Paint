@@ -293,4 +293,24 @@ class DeviceLanguagePickerTest {
         assertFalse(picker.isShowing);assertEquals(2,changed)
         assertEquals("en-001",AppLanguage.selectedTag(activity))
     }
+
+    @Test fun emojiPickerShowsSymbolsWithoutTheFormerEnglishTestLabel()=withActivity(appTag="qaa-Zsye-XV") {activity ->
+        AppLanguage.refresh(activity)
+        val name=AppLanguage.name("qaa-Zsye-XV")
+        assertEquals("😀 [qaa-Zsye-XV]",name)
+        assertFalse(name.contains("English hints"))
+        val picker=AppLanguage.showPicker(activity) {}
+        try {
+            idle()
+            val header=picker.window!!.decorView.findViewWithTag<android.widget.LinearLayout>("app_language_header")
+            assertNotNull(header)
+            val heading=picker.window!!.decorView.findViewWithTag<TextView>("app_language_heading")
+            val explanation=picker.window!!.decorView.findViewWithTag<TextView>("app_language_explanation")
+            assertNotNull(heading);assertNotNull(explanation)
+            assertEquals(activity.getString(R.string.language20_app_language),heading.text.toString())
+            assertFalse(explanation.text.toString().contains("Translations are maintained"))
+            assertEquals(activity.getString(R.string.language20_translation_note)
+                .substringAfter("\n\n"),explanation.text.toString())
+        } finally {picker.dismiss();idle()}
+    }
 }
