@@ -259,6 +259,24 @@ class ResponsiveToolboxTest {
         assertTrue(EditorTestNavigation.buttons(view("panel_File_commands")).none {it is PanelToolButton})
     }
     @Test fun translatedCommandCaptionsFitInPortrait()=checkTranslatedCommands("portrait")
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-mdpi")
+    fun fileCommandsGrowToFitCompleteLocalizedCaptionsAtLargeFont() {
+        val original=AppLanguage.selectedTag(activity)
+        try {
+            AppLanguage.select(activity,"hy");activity.onConfigurationChanged(activity.resources.configuration);settle()
+            click("menu_File")
+            val buttons=EditorTestNavigation.buttons(view("panel_File_commands"))
+            assertTrue(buttons.isNotEmpty())
+            assertTrue("Long captions need more than the ordinary minimum",buttons.any {it.height>56})
+            buttons.forEach {button ->
+                val layout=requireNotNull(button.layout)
+                assertEquals(button.text.length,layout.getLineEnd(layout.lineCount-1))
+                assertTrue("Full caption fits: ${button.text}",
+                    layout.height<=button.height-button.compoundPaddingTop-button.compoundPaddingBottom)
+                for(line in 0 until layout.lineCount) assertEquals(0,layout.getEllipsisCount(line))
+            }
+        } finally {AppLanguage.select(activity,original);AppLanguage.refresh(activity)}
+    }
     @Test fun largerSystemFontsKeepTheOriginalCompactTileHeightAndAccessibleCaption() {
         for(scale in listOf(1f,1.5f,2f)) {
             val config=Configuration(activity.resources.configuration).apply {fontScale=scale}

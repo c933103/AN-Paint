@@ -327,6 +327,7 @@ class ClassicPaintActivity : Activity() {
                 return (action.icon?.let {panelButton(action.first,"command_${name}_$index",it,onClick)}
                     ?: button(action.first,"command_${name}_$index",onClick)).apply {
                     isEnabled=menuActionEnabled();columnHeightDp=112
+                    if(name=="File") {minHeight=dp(56);minimumHeight=dp(56)}
                     if(name=="View" && index==1) {
                         LocaleTooltip.setHelpAction(this) {message(ui(R.string.ui_pixel_grid_help33));true}
                         LocaleTooltip.set(this,ui(R.string.ui_pixel_grid_help33))
@@ -387,7 +388,7 @@ class ClassicPaintActivity : Activity() {
             menuActions(name).forEachIndexed {index,action ->
                 grid.addView(control(index,action),GridLayout.LayoutParams().apply {
                     rowSpec=GridLayout.spec(GridLayout.UNDEFINED,GridLayout.FILL)
-                    width=available/grid.columnCount-dp(4);height=if(name=="File") dp(56) else -2
+                    width=available/grid.columnCount-dp(4);height=-2
                     setMargins(dp(2),dp(2),dp(2),dp(2))
                 })
             }

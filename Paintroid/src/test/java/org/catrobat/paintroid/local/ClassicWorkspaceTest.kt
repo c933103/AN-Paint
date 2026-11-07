@@ -314,6 +314,69 @@ class ClassicWorkspaceTest {
         assertEquals(Color.BLACK,doc.bitmap.getPixel(30,10))
         click("undo"); assertEquals(Color.BLUE, doc.bitmap.getPixel(30, 10))
     }
+
+    @Test fun realLanguagePickerRebuildsVisibleMenusAcrossCantoneseAndEnglish() {
+        val oldTag=AppLanguage.selectedTag(activity)
+        val oldLocale=java.util.Locale.getDefault()
+        val oldResources=PaintApplication.currentResources
+        fun label(tag: String)=activity.window.decorView
+            .findViewWithTag<android.widget.TextView>(tag).text.toString()
+        fun select(tag: String) {
+            menu("View",4)
+            val picker=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            val index=AppLanguage.tags(activity).indexOf(tag)+1
+            assertTrue("Offered language $tag",index>0)
+            val list=picker.listView
+            assertTrue(list.performItemClick(list.adapter.getView(index,null,list),index,index.toLong()))
+            shadowOf(Looper.getMainLooper()).idle()
+            assertFalse(picker.isShowing)
+            assertEquals(tag,AppLanguage.selectedTag(activity))
+        }
+        val top=mapOf("Draw" to org.catrobat.paintroid.R.string.ui_draw26,
+            "File" to org.catrobat.paintroid.R.string.ui_menu_file,
+            "Edit" to org.catrobat.paintroid.R.string.ui_menu_edit,
+            "View" to org.catrobat.paintroid.R.string.ui_menu_view,
+            "Color" to org.catrobat.paintroid.R.string.ui_colour_tab23)
+        val fileIds=listOf(org.catrobat.paintroid.R.string.ui_new,
+            org.catrobat.paintroid.R.string.ui_load_image,org.catrobat.paintroid.R.string.ui_save,
+            org.catrobat.paintroid.R.string.save20_title,org.catrobat.paintroid.R.string.ui_export_as23,
+            org.catrobat.paintroid.R.string.ui_save_and_share,org.catrobat.paintroid.R.string.ui_image_assembly,
+            org.catrobat.paintroid.R.string.ui_how_to_use,org.catrobat.paintroid.R.string.ui_about_credits23)
+        val viewIds=listOf(org.catrobat.paintroid.R.string.ui_pixel_grid33,
+            org.catrobat.paintroid.R.string.ui_cursor_drawing32,org.catrobat.paintroid.R.string.ui_magnifier33,
+            org.catrobat.paintroid.R.string.ui_languages23,org.catrobat.paintroid.R.string.ui_fullscreen33,
+            org.catrobat.paintroid.R.string.ui_how_to_use)
+        try {
+            for(tag in listOf("en-001","yue-Hant","en-001")) {
+                select(tag)
+                // Independent script/routing boundary, not just comparison with the same resolver.
+                assertEquals(if(tag=="yue-Hant") "檔案" else "File",label("menu_File"))
+                for((name,id) in top) assertEquals("$tag/$name",activity.getString(id),label("menu_$name"))
+                click("menu_File")
+                for((index,id) in fileIds.withIndex()) {
+                    val control=activity.window.decorView.findViewWithTag<View>("command_File_$index")
+                    assertTrue("$tag/File/$index mounted",control.isShown)
+                    assertEquals("$tag/File/$index",activity.getString(id),label("command_File_$index"))
+                }
+                assertEquals(if(tag=="yue-Hant") "儲存" else "Save",label("command_File_2"))
+                click("menu_View")
+                assertEquals(PaintTool.ZOOM.label,label("tool_ZOOM"))
+                for((index,id) in viewIds.withIndex())
+                    assertEquals("$tag/View/$index",activity.getString(id),label("command_View_${index+1}"))
+                // Tool labels are dynamic consumers; returning to English must not retain Cantonese.
+                for(type in PaintTool.values()) {
+                    tool(type)
+                    assertEquals("$tag/$type",type.label,label("tool_${type.name}"))
+                }
+            }
+        } finally {
+            AppLanguage.select(activity,oldTag)
+            AppLanguage.refresh(activity)
+            PaintApplication.currentResources=oldResources
+            java.util.Locale.setDefault(oldLocale)
+        }
+    }
+
     @Test fun everyCurrentToolAndMenuHasAnActiveControl() {
         assertEquals(20, PaintTool.values().size)
         PaintTool.values().forEach { tool(it) }
