@@ -1,6 +1,7 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import android.net.Uri
 import org.json.JSONObject
 
 /** Add app actions only to artwork links on a source's detail page. No JS/native bridge. */
@@ -145,4 +146,24 @@ internal object IllustrationPage {
         var button=field.form.querySelector('button[type="submit"]');
         if(button) button.click();else if(field.form.requestSubmit) field.form.requestSubmit();else field.form.submit();return true;})();
     """.trimIndent()
+}
+
+/** Interpret a Commons MediaViewer selection as a File page, not its preview.
+ * No image CDN URL is accepted from the lightbox as evidence of the original.
+ */
+internal object CommonsViewerSelection {
+    fun filePage(url: Uri): String? {
+        if(!IllustrationSource.COMMONS.allowsPage(url)) return null
+        val fragment=url.encodedFragment ?: return null
+        val encoded=when {
+            fragment.startsWith("mediaviewer/") -> fragment.removePrefix("mediaviewer/")
+            fragment.startsWith("/media/") -> fragment.removePrefix("/media/")
+            else -> return null
+        }
+        val title=Uri.decode(encoded)
+        if(!title.startsWith("File:") || title.length !in 6..1024 || '|' in title) return null
+        val page=Uri.parse("https://commons.wikimedia.org").buildUpon()
+            .appendPath("wiki").appendPath(title).build()
+        return page.toString().takeIf {IllustrationSource.COMMONS.isArtworkPage(Uri.parse(it))}
+    }
 }
