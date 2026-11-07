@@ -185,11 +185,11 @@ internal object AppLanguage {
             LocaleTypography.typeface(activity)?.let {typeface=it}
             VerticalUi.caption(this,128)
         }
-        val note=TextView(activity).apply {
+        val note=FlowTextView(activity).apply {
             tag="app_language_explanation";text=explanation
             textSize=14f;setPadding(dp(12),dp(12),dp(16),dp(12))
+            columnHeightDp=160
             LocaleTypography.typeface(activity)?.let {typeface=it}
-            VerticalUi.caption(this,160)
         }
         val header=android.widget.LinearLayout(activity).apply {
             tag="app_language_header"
