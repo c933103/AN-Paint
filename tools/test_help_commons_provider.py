@@ -46,4 +46,4 @@ class HelpCommonsProviderTest(unittest.TestCase):
         editor = (JAVA / 'ClassicPaintActivity.kt').read_text()
         self.assertIn('val sources=listOf(ui(R.string.ui_from_device34))+IllustrationSource.values().map {it.label}', editor)
         self.assertIn('private fun showHelp() = message(ui(R.string.ui_help23))', editor)
-        self.assertIn('ui(R.string.ui_how_to_use) to {showHelp()}', editor)
+        self.assertIn('EditorCommand.HELP to {showHelp()}', editor)

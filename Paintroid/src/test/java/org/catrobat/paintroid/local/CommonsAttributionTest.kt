@@ -85,6 +85,9 @@ class CommonsAttributionTest {
             "Retain the authors",page)) assertTrue("Missing $expected",text.contains(expected))
         assertFalse(text.contains("CC0"));assertFalse(text.contains("by-sa/4.0"));assertFalse(text.contains("<a"))
         assertFalse(text.contains("antiAlias=false"))
+        assertFalse(text.contains(source))
+        assertFalse(text.contains("Copyrighted:"));assertFalse(text.contains("AttributionRequired:"))
+        assertFalse(text.contains(context.getString(org.catrobat.paintroid.R.string.commons_check_file_licence)))
         assertTrue(record.text(true).contains("antiAlias=false"))
     }
     @Test fun rejectsAttributionBelongingToADifferentFile() {

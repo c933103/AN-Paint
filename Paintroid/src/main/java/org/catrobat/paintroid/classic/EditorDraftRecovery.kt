@@ -14,37 +14,35 @@ internal data class RecoveredEditor(
     val document: PaintDocument,
     val metadata: JSONObject?,
     val restored: Boolean,
-    val filename: String,
-    val filenameIsPlaceholder: Boolean,
+    val documentName: DocumentName,
     val textSettings: TextSettings,
     val savedTarget: SavedTarget?,
-    val draftStatus: String,
+    val draftStatus: UiMessage,
     val autosaveBlocked: Boolean,
-    val lastAutosaveError: String?,
-    val recoveryNotice: String?
+    val lastAutosaveError: UiMessage?,
+    val recoveryNotice: UiMessage?
 )
 
 internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveStore.Recovery<RecoveredEditor> = autosave.recover {
     var owner: PaintDocument?=null
     fun checkSize(w: Int,h: Int) {ImageMemoryPolicy.forDevice(context).check(w,h,owner?.residentPixels ?: 0)}
-    var filename=ui(R.string.ui_untitled)
-    var filenameIsPlaceholder=true
+    var documentName: DocumentName=DocumentName.Untitled
     var textSettings=TextSettings()
     var savedTarget: SavedTarget?=null
-    var draftStatus=ui(R.string.ui_draft_not_saved_yet)
+    var draftStatus: UiMessage=UiMessage.Resource(R.string.ui_draft_not_saved_yet)
     var autosaveBlocked=false
-    var lastAutosaveError: String?=null
-    var recoveryNotice: String?=null
-    fun preserveFailedDraft(reason: String) {
+    var lastAutosaveError: UiMessage?=null
+    var recoveryNotice: UiMessage?=null
+    fun preserveFailedDraft(reason: UiMessage) {
         try {
             autosave.preserveForRecovery(retainOriginal=true)
-            recoveryNotice=ui(R.string.ui_recovery_copy_preserved_unverified,reason)
-            draftStatus=ui(R.string.ui_previous_draft_kept_for_recovery)
+            recoveryNotice=UiMessage.Resource(R.string.ui_recovery_copy_preserved_unverified,listOf(reason))
+            draftStatus=UiMessage.Resource(R.string.ui_previous_draft_kept_for_recovery)
         } catch(_: Exception) {
             autosaveBlocked=true
-            lastAutosaveError=ui(R.string.ui_the_previous_draft_could_not_be_preserved_separately)
-            draftStatus=ui(R.string.ui_autosave_paused_use_save)
-            recoveryNotice=ui(R.string.ui_autosave_is_paused_to_protect_that_draft_use,reason)
+            lastAutosaveError=UiMessage.Resource(R.string.ui_the_previous_draft_could_not_be_preserved_separately)
+            draftStatus=UiMessage.Resource(R.string.ui_autosave_paused_use_save)
+            recoveryNotice=UiMessage.Resource(R.string.ui_autosave_is_paused_to_protect_that_draft_use,listOf(reason))
         }
     }
     try {
@@ -63,20 +61,14 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
             draft.history?.let {document.restoreHistory(it)}
             if(draft.historyFailed) {
                 autosave.preserveForRecovery(retainOriginal=true)
-                recoveryNotice=ui(R.string.ui_history_unavailable34)
+                recoveryNotice=UiMessage.Resource(R.string.ui_history_unavailable34)
             }
             draft.floating?.let { image ->
                 val r=recovered!!.getJSONArray("floating_rect")
                 document.restoreFloatingSelection(image,RectF(r.getDouble(0).toFloat(),r.getDouble(1).toFloat(),r.getDouble(2).toFloat(),r.getDouble(3).toFloat()),recovered!!.optDouble("floating_rotation",0.0).toFloat(),SelectionOutline.read(recovered!!.optJSONArray("selection_outline")))
             }
             document.restoreImageCredits(recovered.optJSONObject("image_credits"))
-            filename=recovered.optString("filename",ui(R.string.ui_recovered_image))
-            // Migrate an older unnamed draft in its saved UI language. New
-            // drafts record provenance explicitly, including opened documents
-            // whose real filename happens to match the localized placeholder.
-            filenameIsPlaceholder=recovered.optBoolean("filename_is_placeholder",
-                savedTarget==null && filename==ui(R.string.ui_untitled)) && savedTarget==null
-            if(filenameIsPlaceholder) filename=ui(R.string.ui_untitled)
+            documentName=DocumentName.read(recovered,savedTarget)
             document.foreground=recovered.optInt("foreground",Color.BLACK)
             document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
             document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
@@ -87,9 +79,9 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
             document.antialiasing=recovered.optBoolean("antialiasing",false)
             document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
             if (recovered.optBoolean("dirty")) document.edited()
-            draftStatus=ui(R.string.ui_draft_restored);restored=true
-        } catch (_: Exception) { recovered=null;preserveFailedDraft(ui(R.string.ui_the_previous_draft_could_not_be_restored)) }
-          catch (_: OutOfMemoryError) { recovered=null;preserveFailedDraft(ui(R.string.ui_the_previous_draft_needs_more_memory_to_reopen)) }
+            draftStatus=UiMessage.Resource(R.string.ui_draft_restored);restored=true
+        } catch (_: Exception) { recovered=null;preserveFailedDraft(UiMessage.Resource(R.string.ui_the_previous_draft_could_not_be_restored)) }
+          catch (_: OutOfMemoryError) { recovered=null;preserveFailedDraft(UiMessage.Resource(R.string.ui_the_previous_draft_needs_more_memory_to_reopen)) }
         if (!restored) {
             val recovery=File(context.filesDir,"classic-recovery.png")
             if (recovery.isFile) try {
@@ -98,15 +90,14 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
                 BitmapFactory.decodeFile(recovery.path,BitmapFactory.Options().apply { inMutable=true;inScaled=false })?.let {
                     document.replace(it)
                     val old=context.getSharedPreferences("classic",Context.MODE_PRIVATE)
-                    filename=old.getString("filename",ui(R.string.ui_recovered_image)) ?: ui(R.string.ui_recovered_image)
-                    filenameIsPlaceholder=false
+                    documentName=old.getString("filename",null)?.let {DocumentName.Named(it)} ?: DocumentName.Recovered
                     if (old.getBoolean("dirty",false)) document.edited()
-                    restored=true;draftStatus=ui(R.string.ui_draft_restored)
+                    restored=true;draftStatus=UiMessage.Resource(R.string.ui_draft_restored)
                 }
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
         }
 
-        RecoveredEditor(document,recovered,restored,filename,filenameIsPlaceholder,textSettings,savedTarget,draftStatus,
+        RecoveredEditor(document,recovered,restored,documentName,textSettings,savedTarget,draftStatus,
             autosaveBlocked,lastAutosaveError,recoveryNotice)
     } catch(error: Throwable) {owner?.close();throw error}
 }

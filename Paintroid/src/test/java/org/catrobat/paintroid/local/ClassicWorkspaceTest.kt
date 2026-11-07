@@ -126,8 +126,8 @@ class ClassicWorkspaceTest {
             }
             // A named document may itself be called Untitled. Provenance, not
             // string equality or dirty/saved state, decides whether to translate.
-            org.robolectric.util.ReflectionHelpers.setField(activity,"filename","Untitled")
-            org.robolectric.util.ReflectionHelpers.setField(activity,"filenameIsPlaceholder",false)
+            provider.displayName="Untitled";fixture()
+            menu("File",1);receive()
             AppLanguage.select(activity,"ja");AppLanguage.refresh(activity)
             org.robolectric.util.ReflectionHelpers.callInstanceMethod<Unit>(activity,"buildWorkspace")
             assertEquals("Untitled",activity.window.decorView.findViewWithTag<android.widget.TextView>("document_title").text.toString())
@@ -139,11 +139,12 @@ class ClassicWorkspaceTest {
     @Test @Config(qualifiers="w800dp-h480dp-land-mdpi")
     fun landscapeEditGroupsUseOnlyTwoToolColumnsAndDoNotOverscrollWhenTheyFit() {
         controller.visible()
-        click("tab_Edit");click("edit_category_CANVAS")
+        click("menu_Edit");click("edit_category_CANVAS")
         shadowOf(Looper.getMainLooper()).idle()
         val host=activity.window.decorView.findViewWithTag<View>("edit_group_host")
         val viewport=host.parent as android.widget.ScrollView
-        assertEquals(PanelToolButton.tileSize(activity)*2,viewport.layoutParams.width)
+        assertEquals(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,viewport.layoutParams.width)
+        assertEquals(PanelToolButton.tileSize(activity)*2,viewport.width)
         assertEquals(View.OVER_SCROLL_IF_CONTENT_SCROLLS,viewport.overScrollMode)
         assertFalse(viewport.canScrollVertically(1));assertFalse(viewport.canScrollVertically(-1))
     }
@@ -522,7 +523,7 @@ class ClassicWorkspaceTest {
 
     class DocumentProvider : ContentProvider() {
         lateinit var file: File
-        var reads = 0; var missingName = false; var denyWrite = false
+        var reads = 0; var missingName = false; var denyWrite = false; var displayName="fixture.png"
         override fun onCreate() = true
         override fun getType(uri: Uri) = "application/octet-stream"
         override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor {
@@ -534,7 +535,7 @@ class ClassicWorkspaceTest {
         }
         override fun query(uri: Uri, projection: Array<out String>?, selection: String?, args: Array<out String>?, order: String?): Cursor =
             if (missingName) MatrixCursor(arrayOf("unknown")).apply { addRow(arrayOf("value")) }
-            else MatrixCursor(arrayOf(OpenableColumns.DISPLAY_NAME)).apply { addRow(arrayOf("fixture.png")) }
+            else MatrixCursor(arrayOf(OpenableColumns.DISPLAY_NAME)).apply { addRow(arrayOf(displayName)) }
         override fun insert(uri: Uri, values: ContentValues?): Uri? = null
         override fun update(uri: Uri, values: ContentValues?, selection: String?, args: Array<out String>?) = 0
         override fun delete(uri: Uri, selection: String?, args: Array<out String>?) = 0

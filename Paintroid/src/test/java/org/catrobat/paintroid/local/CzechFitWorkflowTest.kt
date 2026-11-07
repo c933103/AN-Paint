@@ -193,12 +193,12 @@ class CzechFitWorkflowTest {
         val viewport=root.findViewWithTag<ScrollView>("status_viewport")
         assertSame(viewport,status.parent);assertEquals(Int.MAX_VALUE,status.maxLines)
         val geometry=listOf(footer.width,footer.height,canvas.width,canvas.height)
-        val draft=ReflectionHelpers.getField<String>(activity,"draftStatus")
+        val draft=ReflectionHelpers.getField<UiMessage>(activity,"draftStatus")
         val longStatus=("Koncept nebyl uložen. Použijte příkaz Uložit. ").repeat(12)
         try {
             for((index,message) in listOf("Hotovo",longStatus,"Koncept uložen","Pracuje se…",longStatus).withIndex()) {
                 activity.paintCanvas.setCursorMode(index%2==1)
-                ReflectionHelpers.setField(activity,"draftStatus",message)
+                ReflectionHelpers.setField(activity,"draftStatus",UiMessage.Literal(message))
                 ReflectionHelpers.setField(activity,"busy",index==3)
                 ReflectionHelpers.setField(activity,"autosaving",index==3)
                 ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus");settle()
@@ -212,7 +212,8 @@ class CzechFitWorkflowTest {
                 if(viewport.canScrollVertically(1)) {swipe(root,viewport,.5f,.9f,.5f,.1f);settle()}
             }
             assertFalse("Native gestures reach the final status line",viewport.canScrollVertically(1))
-            assertTrue(status.layout.getLineBottom(status.layout.lineCount-1)<=viewport.scrollY+viewport.height)
+            val layout=requireNotNull(status.layout) {"Status lost native layout: ${status.width}×${status.height}; viewport ${viewport.width}×${viewport.height}"}
+            assertTrue(layout.getLineBottom(layout.lineCount-1)<=viewport.scrollY+viewport.height)
             assertEquals(geometry,listOf(footer.width,footer.height,canvas.width,canvas.height))
         } finally {
             ReflectionHelpers.setField(activity,"draftStatus",draft)

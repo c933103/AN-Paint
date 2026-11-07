@@ -90,7 +90,7 @@ class DeviceLanguagePickerTest {
     private fun expectedLabel(activity: Activity,deviceTag: String): String =
         // A raw ko-Kore-KR framework lookup ties with ordinary ko-KR. Keep the
         // intended mixed-script label independent of the production resolver.
-        if(deviceTag=="ko-Kore-KR") "시스템 言語 使用" else activity.createConfigurationContext(Configuration().apply {
+        if(deviceTag=="ko-Kore-KR") "시스템 言語 使用" else if(deviceTag=="qaa-Zsye-XV") "📱🌐" else activity.createConfigurationContext(Configuration().apply {
             fontScale=0f
             val locale=Locale.forLanguageTag(deviceTag);setLocale(locale);setLayoutDirection(locale)
         }).getString(R.string.language20_device_default)
@@ -203,7 +203,7 @@ class DeviceLanguagePickerTest {
         "mn-Mong" to "ᠲᠥᠬᠥᠭᠡᠷᠦᠮᠵᠢ ᠶᠢᠨ ᠬᠡᠯᠡ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠬᠤ",
         "mnc-Mong" to "ᠠᡤᡡᡵᠠ ᡳ ᡤᡳᠰᡠᠨ ᠪᡝ ᠪᠠᡳᡨᠠᠯᠠᡵᠠ",
         "lzh-Hant" to "從系統之語言", "en-XV" to "Use device language",
-        "qaa-Zsye-XV" to "🌐 Use device language"
+        "qaa-Zsye-XV" to "📱🌐"
     )
 
     @Test fun realEditorOverrideSwitchesKeepTheIndependentEnglishDeviceLabel() {

@@ -114,6 +114,13 @@ def validate(manifest: dict, source: set[str] | None = None) -> list[str]:
         errors.append(f"{len(missing)} unclassified translatable keys: {', '.join(sorted(missing))}")
     if stale:
         errors.append(f"{len(stale)} unknown/nontranslatable keys: {', '.join(sorted(stale))}")
+    # Visible navigation must never be excluded from the basic-editing claim by
+    # feature tier. Read the same definitions that build the UI.
+    from navigation_coverage import navigation_keys
+    for name in sorted(navigation_keys(validate_source=False)):
+        key = "string/" + name
+        if key in source and key in seen and seen[key] not in ("P0", "P1"):
+            errors.append(f"{key}: visible navigation must be P0/P1, not {seen[key]}")
     return errors
 
 

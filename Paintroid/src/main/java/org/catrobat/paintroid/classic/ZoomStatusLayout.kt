@@ -12,34 +12,31 @@ import android.widget.TextView
  * scroll inside their own fixed viewport, without resizing the canvas.
  */
 internal class ZoomStatusLayout(context: Context): LinearLayout(context) {
-    var isStatusScrollable=false; private set
+    val isStatusScrollable get()=childCount==2
     private fun dp(value: Int)=(value*resources.displayMetrics.density+.5f).toInt()
+    init {orientation=HORIZONTAL;isBaselineAligned=false}
+
+    /** Build the stable hierarchy before the first measure or status update. */
+    fun bind(status: TextView,zoom: LinearLayout) {
+        check(childCount==0)
+        status.maxLines=Int.MAX_VALUE
+        val viewport=ScrollView(context).apply {
+            tag="status_viewport";isFillViewport=true
+            addView(status,FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT))
+        }
+        addView(viewport,LayoutParams(0,dp(44),1f))
+        addView(zoom,LayoutParams(LayoutParams.WRAP_CONTENT,dp(44)))
+    }
 
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        orientation=HORIZONTAL
         if(childCount==2) {
-            if(!isStatusScrollable) {
-                val status=getChildAt(0) as TextView
-                removeView(status)
-                val viewport=ScrollView(context).apply {
-                    tag="status_viewport";isFillViewport=true
-                    overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS
-                    addView(status,FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT))
-                }
-                status.maxLines=Int.MAX_VALUE
-                addView(viewport,0,LayoutParams(0,dp(44),1f))
-                isStatusScrollable=true
-            }
             val zoom=getChildAt(1) as LinearLayout
             val slider=zoom.findViewWithTag<View>("zoom_slider")
             val available=(MeasureSpec.getSize(widthMeasureSpec)-paddingLeft-paddingRight).coerceAtLeast(0)
-            // 124dp for the three buttons; reserve status space on small screens.
-            // The slider never stretches to fill the footer in either orientation.
+            // Reserve status space beside the three buttons. The slider never
+            // stretches across the footer in either orientation.
             (slider.layoutParams as LayoutParams).apply {
                 width=(available-dp(124+64)).coerceIn(dp(64),dp(108));weight=0f
-            }
-            (zoom.layoutParams as LayoutParams).apply {
-                width=LayoutParams.WRAP_CONTENT;height=dp(44);weight=0f
             }
         }
         super.onMeasure(widthMeasureSpec,heightMeasureSpec)

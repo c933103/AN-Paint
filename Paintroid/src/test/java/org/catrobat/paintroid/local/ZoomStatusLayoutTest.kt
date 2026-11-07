@@ -36,7 +36,7 @@ class ZoomStatusLayoutTest {
             zoom.addView(SeekBar(activity).apply {tag="zoom_slider"},LinearLayout.LayoutParams(108,44))
             zoom.addView(View(activity),LinearLayout.LayoutParams(40,44))
             zoom.addView(TextView(activity).apply {tag="zoom_fit_view";text="Fit";textSize=13f;minimumWidth=44;minimumHeight=44},LinearLayout.LayoutParams(-2,-2))
-            footer.addView(status,LinearLayout.LayoutParams(0,44,1f));footer.addView(zoom)
+            footer.bind(status,zoom)
             holder.addView(footer,FrameLayout.LayoutParams(240,-2));activity.setContentView(holder)
             fun settle() {shadowOf(Looper.getMainLooper()).idle();controller.visible();shadowOf(Looper.getMainLooper()).idle()}
             for(width in listOf(240,400,640,320)) {

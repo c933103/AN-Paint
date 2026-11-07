@@ -169,7 +169,10 @@ internal class RibbonPanel(context: Context,private val maximum: Int,private val
         if(!sideLayout && childCount>=2) {
             val primary=getChildAt(0)
             primary.measure(getChildMeasureSpec(widthMeasureSpec,paddingLeft+paddingRight,primary.layoutParams.width),MeasureSpec.makeMeasureSpec(0,MeasureSpec.UNSPECIFIED))
-            getChildAt(1).layoutParams.height=(maximum-primary.measuredHeight-paddingTop-paddingBottom).coerceAtLeast((44*resources.displayMetrics.density).toInt())
+            val content=getChildAt(1)
+            (content as? LimitedScrollView)?.maximumHeight=(maximum-primary.measuredHeight-paddingTop-paddingBottom)
+                .coerceAtLeast((44*resources.displayMetrics.density).toInt())
+            content.layoutParams.height=android.view.ViewGroup.LayoutParams.WRAP_CONTENT
         }
         super.onMeasure(widthMeasureSpec,heightMeasureSpec)
     }
@@ -250,10 +253,16 @@ internal class ColumnScrollView(context: Context): android.widget.HorizontalScro
     }
 }
 
-internal class LimitedScrollView(context: Context,private val maximum: Int): ScrollView(context) {
-    init { overScrollMode=OVER_SCROLL_IF_CONTENT_SCROLLS }
+internal class LimitedScrollView(context: Context,maximum: Int,private val maximumWidth: Int=Int.MAX_VALUE): ScrollView(context) {
+    var maximumHeight=maximum
+        set(value) {if(field!=value) {field=value;requestLayout()}}
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-        val limit=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) maximum else minOf(maximum,MeasureSpec.getSize(heightMeasureSpec))
-        super.onMeasure(widthMeasureSpec,MeasureSpec.makeMeasureSpec(limit,MeasureSpec.AT_MOST))
+        val limit=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) maximumHeight else minOf(maximumHeight,MeasureSpec.getSize(heightMeasureSpec))
+        val boundedWidth=if(maximumWidth==Int.MAX_VALUE) widthMeasureSpec else {
+            val width=if(MeasureSpec.getMode(widthMeasureSpec)==MeasureSpec.UNSPECIFIED) maximumWidth
+                else minOf(maximumWidth,MeasureSpec.getSize(widthMeasureSpec))
+            MeasureSpec.makeMeasureSpec(width,MeasureSpec.AT_MOST)
+        }
+        super.onMeasure(boundedWidth,MeasureSpec.makeMeasureSpec(limit,MeasureSpec.AT_MOST))
     }
 }

@@ -31,20 +31,13 @@ internal object CommonsAttribution {
 
     data class Record(val source: String, val page: String, val title: String, val metadata: Map<String, String>) {
         fun text(imported: Boolean): String {
-            val lines = mutableListOf(ui(R.string.gallery_credit_title, title), "Wikimedia Commons",
-                ui(R.string.gallery_credit_source, page))
-            // Keep the provider's field identities and values, including custom attribution,
-            // multiple creators, permission/copyright notices, and all embedded credit links.
-            fields.filter { it != "ObjectName" }.forEach { key ->
-                metadata[key]?.takeIf { it.isNotBlank() }?.let { lines.add("$key: $it") }
-            }
-            if (imported) lines.add(if (Uri.parse(source).path.orEmpty().endsWith(".svg", true))
-                ui(R.string.commons_import_svg_changes)
-                else ui(R.string.commons_import_raster_changes))
-            // CommonsMetadata itself warns that machine-readable metadata can be incomplete,
-            // especially for multiple licences. Never invent CC0/CC-BY-SA or call this verified permission.
-            lines.add(ui(R.string.commons_check_file_licence))
-            return lines.joinToString("\n")
+            // Preserve creator and source-mandated legal notices, without
+            // presenting API bookkeeping flags or app guidance as attribution.
+            val noticeFields=fields.filter {it !in setOf("ObjectName","Copyrighted","AttributionRequired")}
+            val notices=noticeFields.mapNotNull {key -> metadata[key]?.takeIf {it.isNotBlank()}?.let {"$key: $it"}}
+            val changes=if(!imported) null else if(Uri.parse(source).path.orEmpty().endsWith(".svg",true))
+                ui(R.string.commons_import_svg_changes) else ui(R.string.commons_import_raster_changes)
+            return PublicationCredit(title,"Wikimedia Commons",page,notices=notices,changes=changes).text()
         }
     }
 

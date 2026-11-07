@@ -24,6 +24,26 @@ class NavigationCoverageTest(unittest.TestCase):
         with patch.object(catalogues, 'read_strings', return_value=values):
             self.assertEqual(['ui_magnifier33'], navigation.coverage('wa')['missing'])
 
+    def test_alias_to_english_fallback_is_not_counted_as_a_localized_label(self):
+        values = catalogues.read_strings(catalogues.catalogue_paths()['wa'])
+        values['ui_magnifier33'] = '@string/untranslated_label'
+        with patch.object(catalogues, 'read_strings', return_value=values):
+            self.assertIn('ui_magnifier33', navigation.coverage('wa')['fallback_aliases'])
+
+    def test_english_copy_is_reported_for_review_in_any_non_english_locale(self):
+        defaults = catalogues.default_resources()[0]
+        values = catalogues.read_strings(catalogues.catalogue_paths()['wa'])
+        values['ui_magnifier33'] = defaults['ui_magnifier33']
+        with patch.object(catalogues, 'read_strings', return_value=values):
+            self.assertIn('ui_magnifier33', navigation.coverage('wa')['english_matches_for_review'])
+
+    def test_emoji_prefix_does_not_hide_copied_english_wording(self):
+        defaults = catalogues.default_resources()[0]
+        values = catalogues.read_strings(catalogues.catalogue_paths()['wa'])
+        values['ui_magnifier33'] = '🔍 ' + defaults['ui_magnifier33']
+        with patch.object(catalogues, 'read_strings', return_value=values):
+            self.assertIn('ui_magnifier33', navigation.coverage('wa')['english_matches_for_review'])
+
 
 if __name__ == '__main__':
     unittest.main()

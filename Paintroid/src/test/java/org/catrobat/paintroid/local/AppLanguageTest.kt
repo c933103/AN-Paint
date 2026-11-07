@@ -481,9 +481,9 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection(selected))
             assertEquals(direction,org.catrobat.paintroid.classic.VerticalText.uiDirection())
-            assertTrue(AppLanguage.name(tag).contains("vertical"))
+            assertTrue(AppLanguage.name(tag).contains("[$tag]"))
             if(tag=="en-XV") assertEquals("Save",selected.getString(R.string.ui_save))
-            else assertEquals("💾 Save",selected.getString(R.string.ui_save))
+            else assertEquals("💾",selected.getString(R.string.ui_save))
         }
     }
 

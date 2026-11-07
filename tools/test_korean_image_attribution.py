@@ -70,7 +70,7 @@ class KoreanImageAttributionTests(unittest.TestCase):
         classic = (CLASSIC / 'ClassicPaintActivity.kt').read_text()
         about = kotlin_block(classic, 'private fun showAboutOptions() {')
         for source, fragment in (
-            (classic, 'ui(R.string.ui_about_credits23) to {showAboutOptions()}'),
+            (classic, 'EditorCommand.ABOUT to {showAboutOptions()}'),
             (about, 'ui(R.string.ui_image_credits) to {showImageCredits()}'),
             (about, 'setScrollableTitle(ui(R.string.ui_about_credits23))'),
             ((CLASSIC / 'GalleryCredits.kt').read_text(),

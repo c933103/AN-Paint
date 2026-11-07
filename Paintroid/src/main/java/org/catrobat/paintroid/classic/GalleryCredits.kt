@@ -15,36 +15,16 @@ internal object GalleryCredits {
     const val CC_BY_SA = "https://creativecommons.org/licenses/by-sa/4.0/"
     fun credit(source: String, title: String = Uri.parse(source).lastPathSegment.orEmpty().substringBeforeLast('.'),
         provider: IllustrationSource=IllustrationSource.CATROBAT,page: String="",author: String="",licence: String="",authorUrl: String=""): String {
-        val lines=mutableListOf(ui(R.string.gallery_credit_title,title.ifBlank {ui(R.string.ui_gallery_image)}))
-        if(provider==IllustrationSource.CATROBAT) {
-            lines.add(ui(R.string.gallery_credit_publisher))
-            lines.add(ui(R.string.gallery_credit_source,source))
-            lines.add(ui(R.string.gallery_credit_gallery,MediaGalleryActivity.GALLERY))
-            lines.add(ui(R.string.gallery_credit_licence,licence.ifBlank {CC_BY_SA}))
-        } else if(provider==IllustrationSource.COMMONS) {
-            // The source file has its own terms; never inherit another provider's default licence.
-            lines.add("Wikimedia Commons")
-            lines.add(ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home))
-            if(licence.isNotBlank()) lines.add(licence)
-            lines.add(ui(R.string.commons_check_file_licence))
-            lines.add(provider.terms)
-        } else {
-            lines.add(when {
-                author.isNotBlank() -> provider.label
-                provider==IllustrationSource.IRASUTOYA -> "Irasutoya — Takashi Mifune"
-                else -> "Openclipart — "+ui(R.string.ui_creator_on_source34)
-            })
-            lines.add(ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home))
-            // Publication credit identifies the artwork page and creator. The
-            // download URL remains internal provenance; source-use guidance is
-            // already visible in the gallery, not pasted into a user's credit.
-            if(provider==IllustrationSource.IRASUTOYA) {
-                if(licence.isNotBlank()) lines.add(licence)
-            } else lines.add(licence.ifBlank {"CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"})
-            lines.add(provider.terms)
+        val sourcePage=page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home
+        val creators=listOf(author.ifBlank {if(provider==IllustrationSource.IRASUTOYA) "Takashi Mifune" else ""},authorUrl)
+        val publicationLicence=licence.takeIf {it.isNotBlank()} ?: when(provider) {
+            IllustrationSource.CATROBAT -> CC_BY_SA
+            IllustrationSource.OPENCLIPART -> "CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"
+            else -> ""
         }
-        lines.addAll(listOf(author,authorUrl).filter {it.isNotBlank()})
-        return lines.joinToString("\n")
+        return PublicationCredit(title.ifBlank {ui(R.string.ui_gallery_image)},
+            if(provider==IllustrationSource.CATROBAT) ui(R.string.gallery_credit_publisher) else provider.label,
+            sourcePage,creators,listOf(publicationLicence),listOf(provider.terms)).text()
     }
     internal var publishClipboard: (Context,ClipData)->Unit = {context,clip ->
         (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)

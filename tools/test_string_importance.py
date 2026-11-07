@@ -45,13 +45,25 @@ class StringImportanceTests(unittest.TestCase):
             self.assertEqual("P0", assigned[key], key)
         for key in (
             "string/ui_menu_file", "string/ui_pencil", "string/ui_undo", "string/ui_rectangle_select",
-            "string/ui_zoom_in", "string/language20_app_language", "string/ui_category_brush",
+            "string/ui_zoom_in", "string/language20_app_language", "string/ui_category_brush", "string/ui_image_assembly",
         ):
             self.assertEqual("P1", assigned[key], key)
-        for key in ("string/ui_image_assembly", "string/formats22_tiff_compression", "plurals/ui_crop_preview_images"):
+        for key in ("string/formats22_tiff_compression", "plurals/ui_crop_preview_images"):
             self.assertEqual("P2", assigned[key], key)
         for key in ("string/ui_the_arrow_on_the_left_directly_below_the", "string/ui_help23"):
             self.assertEqual("P3", assigned[key], key)
+
+    def test_every_live_navigation_caption_has_basic_priority(self):
+        import navigation_coverage
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        for key in navigation_coverage.navigation_keys():
+            self.assertIn(assigned["string/" + key], ("P0", "P1"), key)
+        broken = copy.deepcopy(self.manifest)
+        key = "string/ui_magnifier33"
+        broken["tiers"][1]["keys"].remove(key)
+        broken["tiers"][2]["keys"].append(key)
+        broken["tiers"][2]["keys"].sort()
+        self.assertTrue(any("visible navigation" in error for error in importance.validate(broken, self.source)))
 
     def test_optional_help_and_lossless_reference_have_lower_priority(self):
         assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}

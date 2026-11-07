@@ -39,17 +39,18 @@ temporary migration condition until the applicable catalogue work has been indep
 
 ## Visible navigation coverage
 
-P0/P1 presence does not establish that every visible menu is translated. Some
-File/View actions and tool labels belong to P2/P3. Audit the live navigation
-consumers separately with `python3 tools/navigation_coverage.py`; use
-`--locale wa --locale xh --require-complete` to enforce direct key presence for
-specific catalogues. This report includes root tabs, panel actions, tool captions
-and header accessibility labels, without counting long help as button labels.
-It does not certify wording, runtime routing or rendering. The 7 November UI
-follow-up fills the missing navigation entries for Walloon and Xhosa and adds
-runtime consumer checks for those languages and Cantonese (`yue-Hant`). Other
-language gaps remain visible in the full report; previous priority counts must
-not be presented as complete navigation coverage.
+Every root and second-level caption must be P0/P1, even when it opens an
+extended feature or a help screen. `EditorNavigation.kt` defines commands,
+tabs and Edit groups; the actual editor, coverage audit and tier validation use
+those definitions. A new caption cannot be demoted to P2/P3 without a failing
+priority check.
+
+Run `python3 tools/navigation_coverage.py` for every offered locale. It reports
+missing entries, aliases requiring default fallback, and identical English text
+that needs review (including possible valid loanwords). `--require-complete`
+rejects missing entries and fallback aliases. Presence and English-difference
+are not linguistic or rendering acceptance. Existing priority-completion claims
+must be reassessed against the current manifest, including the promoted captions.
 
 ## Current source coverage and historical registration records
 

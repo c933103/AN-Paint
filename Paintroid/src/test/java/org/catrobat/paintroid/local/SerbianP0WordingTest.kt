@@ -163,10 +163,10 @@ class SerbianP0WordingTest {
             recovered = recoverEditor(recoveryContext(activity, folder), store).value
             assertFalse(recovered.restored)
             assertFalse(recovered.autosaveBlocked)
-            assertEquals(expected(tag, "ui_previous_draft_kept_for_recovery"), recovered.draftStatus)
+            assertEquals(expected(tag, "ui_previous_draft_kept_for_recovery"), recovered.draftStatus.text())
             assertEquals(String.format(Locale.forLanguageTag(tag),
                 activity.getString(org.catrobat.paintroid.R.string.ui_recovery_copy_preserved_unverified),
-                expected(tag, "ui_the_previous_draft_could_not_be_restored")), recovered.recoveryNotice)
+                expected(tag, "ui_the_previous_draft_could_not_be_restored")), recovered.recoveryNotice?.text())
             assertArrayEquals(original, store.file.readBytes())
             val copies = store.recoveryCopies()
             assertEquals(1, copies.size)
@@ -189,8 +189,8 @@ class SerbianP0WordingTest {
             assertTrue("Draft recovery must not mark explicit Save complete", recovered.document.dirty)
             assertNull(recovered.savedTarget)
             assertNull(recovered.recoveryNotice)
-            assertEquals(expected(tag, "ui_draft_restored"), recovered.draftStatus)
-            assertEquals(expected(tag, "ui_recovered_image"), recovered.filename)
+            assertEquals(expected(tag, "ui_draft_restored"), recovered.draftStatus.text())
+            assertEquals(expected(tag, "ui_recovered_image"), recovered.documentName.text())
             assertEquals(8, recovered.document.bitmap.width)
             assertEquals(6, recovered.document.bitmap.height)
             assertEquals(Color.RED, recovered.document.bitmap.getPixel(0, 0))
