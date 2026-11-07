@@ -28,6 +28,7 @@ class GalleryTypographyTests(unittest.TestCase):
             '${JSONObject.quote(copyLabel)}': json.dumps('ᠮᠠᠨᠵᡠ Copy'),
             '${IllustrationPage.USE_SCHEME}': 'anpaint-gallery-use',
             '${USE_SCHEME}': 'anpaint-gallery-use',
+            '${FILE_SCHEME}': 'anpaint-gallery-file',
             '$USE_SCHEME': 'anpaint-gallery-use',
             '${GalleryPage.CREDIT_SCHEME}': 'anpaint-gallery-credit',
             '$CREDIT_SCHEME': 'anpaint-gallery-credit',
@@ -57,8 +58,8 @@ for(const [provider,script] of Object.entries(scripts)) {
   const paths={CATROBAT:['https://catrobat.org/art.png','/figures-download/'],IRASUTOYA:['https://blogger.googleusercontent.com/art.png','/2026/01/art.html'],OPENCLIPART:['https://openclipart.org/image/2000px/123','/detail/123/art'],COMMONS:['https://upload.wikimedia.org/wikipedia/commons/1/12/Map.svg','/wiki/File:Map.svg']};
   anchor.href=paths[provider][0];const originalTitle=title.textContent,originalProse=prose.textContent;
   const originalAnchorText=anchor.textContent,originalAnchorHref=anchor.href;
-  const document={body:{},title:'Original map - Wikimedia Commons',querySelectorAll:()=>[anchor],querySelector:q=>q.startsWith('.fullMedia ')?anchor:title,getElementById:id=>id==='anpaint-commons-actions'?(parent.children.find(x=>x.id===id)||null):title,createElement:()=>new Element()};
-  const window={};const sandbox={document,window,URL,encodeURIComponent,location:{href:'https://publisher.example'+paths[provider][1],pathname:paths[provider][1]},MutationObserver:class {constructor(callback){this.callback=callback;}observe(){}disconnect(){}}};
+  const document={body:{},title:'Original map - Wikimedia Commons',querySelectorAll:()=>[anchor],querySelector:q=>q.startsWith('.fullMedia ')?anchor:title,getElementById:id=>id==='anpaint-commons-viewer-use'?null:id==='anpaint-commons-actions'?(parent.children.find(x=>x.id===id)||null):title,createElement:()=>new Element()};
+  const window={addEventListener(){},removeEventListener(){}};const sandbox={document,window,URL,encodeURIComponent,location:{href:'https://publisher.example'+paths[provider][1],pathname:paths[provider][1],hash:''},MutationObserver:class {constructor(callback){this.callback=callback;}observe(){}disconnect(){}}};
   vm.runInNewContext(script,sandbox);
   let controls=provider==='CATROBAT'?[anchor,parent.children[1]]:anchor.nextElementSibling.children;
   assert.equal(controls.length,2);

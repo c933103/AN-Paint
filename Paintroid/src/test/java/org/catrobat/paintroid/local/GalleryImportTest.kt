@@ -175,6 +175,8 @@ class GalleryImportTest {
             assertEquals("Declared licence https://example.org/terms",result.getStringExtra("gallery_licence"))
             val credit=GalleryCredits.credit(source,"Example artwork",provider,page)
             assertTrue(credit.contains(page));assertTrue(credit.contains(provider.terms));assertFalse(credit.contains("CC BY-SA"))
+            assertFalse("Publication credit omits the direct download URL",credit.contains(source))
+            assertFalse("Publication credit omits negative licence guidance",credit.contains("not a Creative Commons"))
             if(provider==IllustrationSource.IRASUTOYA) assertTrue(credit.contains("Takashi Mifune")) else assertTrue(credit.contains("CC0"))
             File(gallery.cacheDir,result.getStringExtra("gallery_file")!!).delete()
         }

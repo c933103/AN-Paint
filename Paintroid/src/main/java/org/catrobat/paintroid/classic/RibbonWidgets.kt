@@ -251,6 +251,7 @@ internal class ColumnScrollView(context: Context): android.widget.HorizontalScro
 }
 
 internal class LimitedScrollView(context: Context,private val maximum: Int): ScrollView(context) {
+    init { overScrollMode=OVER_SCROLL_IF_CONTENT_SCROLLS }
     override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
         val limit=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) maximum else minOf(maximum,MeasureSpec.getSize(heightMeasureSpec))
         super.onMeasure(widthMeasureSpec,MeasureSpec.makeMeasureSpec(limit,MeasureSpec.AT_MOST))

@@ -37,6 +37,20 @@ The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
+## Visible navigation coverage
+
+P0/P1 presence does not establish that every visible menu is translated. Some
+File/View actions and tool labels belong to P2/P3. Audit the live navigation
+consumers separately with `python3 tools/navigation_coverage.py`; use
+`--locale wa --locale xh --require-complete` to enforce direct key presence for
+specific catalogues. This report includes root tabs, panel actions, tool captions
+and header accessibility labels, without counting long help as button labels.
+It does not certify wording, runtime routing or rendering. The 7 November UI
+follow-up fills the missing navigation entries for Walloon and Xhosa and adds
+runtime consumer checks for those languages and Cantonese (`yue-Hant`). Other
+language gaps remain visible in the full report; previous priority counts must
+not be presented as complete navigation coverage.
+
 ## Current source coverage and historical registration records
 
 At develop `25f678d2a784ffe096a0eeaf92494c02637e6cc7` (31 October 2026),

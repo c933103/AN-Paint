@@ -15,6 +15,7 @@ internal data class RecoveredEditor(
     val metadata: JSONObject?,
     val restored: Boolean,
     val filename: String,
+    val filenameIsPlaceholder: Boolean,
     val textSettings: TextSettings,
     val savedTarget: SavedTarget?,
     val draftStatus: String,
@@ -27,6 +28,7 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
     var owner: PaintDocument?=null
     fun checkSize(w: Int,h: Int) {ImageMemoryPolicy.forDevice(context).check(w,h,owner?.residentPixels ?: 0)}
     var filename=ui(R.string.ui_untitled)
+    var filenameIsPlaceholder=true
     var textSettings=TextSettings()
     var savedTarget: SavedTarget?=null
     var draftStatus=ui(R.string.ui_draft_not_saved_yet)
@@ -69,6 +71,12 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
             }
             document.restoreImageCredits(recovered.optJSONObject("image_credits"))
             filename=recovered.optString("filename",ui(R.string.ui_recovered_image))
+            // Migrate an older unnamed draft in its saved UI language. New
+            // drafts record provenance explicitly, including opened documents
+            // whose real filename happens to match the localized placeholder.
+            filenameIsPlaceholder=recovered.optBoolean("filename_is_placeholder",
+                savedTarget==null && filename==ui(R.string.ui_untitled)) && savedTarget==null
+            if(filenameIsPlaceholder) filename=ui(R.string.ui_untitled)
             document.foreground=recovered.optInt("foreground",Color.BLACK)
             document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
             document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
@@ -91,13 +99,14 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
                     document.replace(it)
                     val old=context.getSharedPreferences("classic",Context.MODE_PRIVATE)
                     filename=old.getString("filename",ui(R.string.ui_recovered_image)) ?: ui(R.string.ui_recovered_image)
+                    filenameIsPlaceholder=false
                     if (old.getBoolean("dirty",false)) document.edited()
                     restored=true;draftStatus=ui(R.string.ui_draft_restored)
                 }
             } catch (_: Exception) { } catch (_: OutOfMemoryError) { }
         }
 
-        RecoveredEditor(document,recovered,restored,filename,textSettings,savedTarget,draftStatus,
+        RecoveredEditor(document,recovered,restored,filename,filenameIsPlaceholder,textSettings,savedTarget,draftStatus,
             autosaveBlocked,lastAutosaveError,recoveryNotice)
     } catch(error: Throwable) {owner?.close();throw error}
 }

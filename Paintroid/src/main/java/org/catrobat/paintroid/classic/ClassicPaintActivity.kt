@@ -79,6 +79,7 @@ class ClassicPaintActivity : Activity() {
     private lateinit var toolDrawer: ScrollView
     private var portraitColours: View? = null
     private var filename = ui(R.string.ui_untitled)
+    private var filenameIsPlaceholder = true
     private var exportOptions=ExportOptions()
     private var savedTarget: SavedTarget? = null
     private var isExporting = false
@@ -135,7 +136,7 @@ class ClassicPaintActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);textSettings=TextSettings()
+        AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);filenameIsPlaceholder=true;textSettings=TextSettings()
         autosave=AutosaveStore(filesDir)
         galleryCreditSessionToken=savedInstanceState?.getString("gallery_credit_session")
         // Adoption receipts belong only to this instance's captured document generation.
@@ -186,7 +187,8 @@ class ClassicPaintActivity : Activity() {
         }
         val recovery=recoveredEditor.value
         document=recovery.document
-        filename=recovery.filename;textSettings=recovery.textSettings;savedTarget=recovery.savedTarget
+        filename=recovery.filename;filenameIsPlaceholder=recovery.filenameIsPlaceholder
+        textSettings=recovery.textSettings;savedTarget=recovery.savedTarget
         draftStatus=recovery.draftStatus;autosaveBlocked=recovery.autosaveBlocked
         lastAutosaveError=recovery.lastAutosaveError;recoveryNotice=recovery.recoveryNotice
         val recovered=recovery.metadata;val restored=recovery.restored
@@ -267,6 +269,7 @@ class ClassicPaintActivity : Activity() {
     private val sidePanelWidth get() = dp(minOf(248,resources.configuration.screenWidthDp / 3))
     private val toolHeight get() = PanelToolButton.tileSize(this)
     private fun buildWorkspace() {
+        if(filenameIsPlaceholder) filename=ui(R.string.ui_untitled)
         paintCanvas.pauseGesture()
         paintCanvas.contentDescription=ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)
         (paintCanvas.parent as? android.view.ViewGroup)?.removeView(paintCanvas)
@@ -295,10 +298,10 @@ class ClassicPaintActivity : Activity() {
         }
         if(landscape) {
             for(i in 0 until primary.childCount) primary.getChildAt(i).layoutParams=LinearLayout.LayoutParams(toolHeight,toolHeight)
-            sidebar.addView(ScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(toolHeight,-1))
-        } else sidebar.addView(HorizontalScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(-1,toolHeight))
+            sidebar.addView(ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(toolHeight,-1))
+        } else sidebar.addView(HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(-1,toolHeight))
         val drawerContent=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(4),0,dp(4),dp(4))}
-        toolDrawer=ScrollView(this).apply {tag="tool_scroll";addView(drawerContent)}
+        toolDrawer=ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;tag="tool_scroll";addView(drawerContent)}
         ToolCategory.values().forEach {category ->
             val group=LinearLayout(this).apply {isBaselineAligned=false;tag="category_tools_${category.name}"}
             category.tools.forEach {group.addView(makeToolButton(it),LinearLayout.LayoutParams(-2,toolHeight))}
@@ -312,12 +315,12 @@ class ClassicPaintActivity : Activity() {
                     width=toolHeight;height=toolHeight
                 })
                 group.orientation=LinearLayout.VERTICAL;group.addView(grid)
-                HorizontalScrollView(this).apply {addView(group)}
-            } else HorizontalScrollView(this).apply {addView(group)}
+                HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(group)}
+            } else HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(group)}
             categoryGroups[category]=rail;drawerContent.addView(rail)
         }
         options=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="tool_options";setPadding(dp(4),dp(4),dp(4),0)}
-        toolOptionsView=if(VerticalText.uiVertical(this@ClassicPaintActivity)) ColumnScrollView(this).apply {addView(options)} else options
+        toolOptionsView=if(VerticalText.uiVertical(this@ClassicPaintActivity)) ColumnScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(options)} else options
         drawingOptionsHost=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;addView(toolOptionsView)}
         drawerContent.addView(drawingOptionsHost)
         sidebar.addView(toolDrawer,LinearLayout.LayoutParams(if(landscape) sidePanelWidth else -1,if(landscape) -1 else -2))
@@ -352,14 +355,14 @@ class ClassicPaintActivity : Activity() {
                     val content: View=if(landscape) {
                         val grid=GridLayout(this).apply {columnCount=2;alignmentMode=GridLayout.ALIGN_BOUNDS}
                         while(rail.childCount>0) grid.addView(VerticalUi.detach(rail.getChildAt(0)),GridLayout.LayoutParams().apply {width=toolHeight;height=toolHeight})
-                        HorizontalScrollView(this).apply {addView(grid)}
-                    } else HorizontalScrollView(this).apply {addView(rail)}
+                        HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(grid)}
+                    } else HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(rail)}
                     content.tag="edit_group_${group.name}";groups.addView(content)
                 }
-                val categoryScroll: View=if(landscape) ScrollView(this).apply {addView(categories)} else HorizontalScrollView(this).apply {addView(categories)}
+                val categoryScroll: View=if(landscape) ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(categories)} else HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(categories)}
                 panel.addView(categoryScroll,LinearLayout.LayoutParams(if(landscape) toolHeight else -1,if(landscape) panelLimit else toolHeight))
-                panel.addView(if(landscape) ScrollView(this).apply {addView(groups)} else groups,
-                    LinearLayout.LayoutParams(if(landscape) sidePanelWidth else -1,if(landscape) panelLimit else -2))
+                panel.addView(if(landscape) ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(groups)} else groups,
+                    LinearLayout.LayoutParams(if(landscape) toolHeight*2 else -1,if(landscape) panelLimit else -2))
                 return panel
             }
             if(name=="View") {
@@ -371,14 +374,14 @@ class ClassicPaintActivity : Activity() {
                 menuActions(name).forEachIndexed {index,action ->
                     rail.addView(control(index,action),LinearLayout.LayoutParams(toolHeight,toolHeight))
                 }
-                return if(landscape) ScrollView(this).apply {addView(rail)} else HorizontalScrollView(this).apply {addView(rail)}
+                return if(landscape) ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(rail)} else HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(rail)}
             }
             if(VerticalText.uiVertical(this@ClassicPaintActivity)) {
                 val columns=EqualHeightRail(this,landscape).apply {tag="panel_${name}_commands";gravity=Gravity.TOP;layoutDirection=if(VerticalText.uiDirection(this@ClassicPaintActivity)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR}
                 menuActions(name).forEachIndexed {index,action ->
                     columns.addView(control(index,action),LinearLayout.LayoutParams(-2,-2).apply {setMargins(dp(3),dp(4),dp(3),dp(4))})
                 }
-                return ColumnScrollView(this).apply {addView(columns)}
+                return ColumnScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(columns)}
             }
             val available=if(landscape) sidePanelWidth else dp(resources.configuration.screenWidthDp)
             val grid=GridLayout(this).apply {columnCount=if(landscape && name=="File") 1 else maxOf(2,available/dp(112));tag="panel_${name}_commands"}
@@ -398,7 +401,7 @@ class ClassicPaintActivity : Activity() {
             if(name=="Edit") {
                 editCommands=grid
                 editDetails=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;visibility=View.GONE;tag="edit_details"}
-                body.addView(if(VerticalText.uiVertical(this@ClassicPaintActivity)) ColumnScrollView(this).apply {addView(editDetails)} else editDetails)
+                body.addView(if(VerticalText.uiVertical(this@ClassicPaintActivity)) ColumnScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(editDetails)} else editDetails)
             }
             if(name=="View") {
                 val details=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL}
@@ -406,7 +409,7 @@ class ClassicPaintActivity : Activity() {
                 details.addView(navigationOptionsHost)
                 cursorOptionsHost=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;tag="cursor_options"}
                 details.addView(cursorOptionsHost)
-                viewDetailsHost=if(landscape) ScrollView(this).apply {addView(details)} else details
+                viewDetailsHost=if(landscape) ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(details)} else details
                 body.addView(viewDetailsHost,LinearLayout.LayoutParams(if(landscape) sidePanelWidth else -1,if(landscape) panelLimit else -2))
                 populateCursorOptions()
             }
@@ -427,7 +430,7 @@ class ClassicPaintActivity : Activity() {
             while(colourHeader.childCount>1) actions.addView(VerticalUi.detach(colourHeader.getChildAt(1)))
             colourHeader.orientation=LinearLayout.VERTICAL;colourHeader.addView(actions,LinearLayout.LayoutParams(-2,-2))
         }
-        colours.addView(HorizontalScrollView(this).apply {addView(colourHeader)})
+        colours.addView(HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(colourHeader)})
         makePalette(colours);makeCustomPalette(colours)
         tabPanels["Color"]=LimitedScrollView(this,panelLimit).apply {tag="panel_Color";addView(colours)}
         tabPanels.forEach {(name,panel) ->tabPanelHost.addView(panel,FrameLayout.LayoutParams(if(landscape) {if(name in listOf("Draw","Edit","View")) -2 else sidePanelWidth} else -1,if(landscape && name=="Draw") -1 else -2))}
@@ -436,7 +439,7 @@ class ClassicPaintActivity : Activity() {
         if(VerticalText.uiVertical(this@ClassicPaintActivity)) {
             val canvasRow=LinearLayout(this).apply {isBaselineAligned=false;tag="vertical_workspace"}
             statusText=FlowTextView(this).apply {tag="status_text";textSize=11f;columnHeightDp=600;setPadding(dp(4),dp(8),dp(4),dp(8))}
-            val statusRail=HorizontalScrollView(this).apply {tag="vertical_status_rail";addView(statusText,android.view.ViewGroup.LayoutParams(-2,-1))}
+            val statusRail=HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;tag="vertical_status_rail";addView(statusText,android.view.ViewGroup.LayoutParams(-2,-1))}
             canvasRow.addView(statusRail,LinearLayout.LayoutParams(dp(52),-1))
             canvasRow.addView(paintCanvas,LinearLayout.LayoutParams(0,-1,1f))
             canvasArea.addView(canvasRow,FrameLayout.LayoutParams(-1,-1))
@@ -592,8 +595,8 @@ class ClassicPaintActivity : Activity() {
             tabButtons[name]=item
             row.addView(item,LinearLayout.LayoutParams(if(landscape) -1 else -2,-2))
         }
-        if(landscape) tabs.addView(ScrollView(this).apply {tag="menu_bar";addView(row)},LinearLayout.LayoutParams(dp(if(VerticalText.uiVertical(this@ClassicPaintActivity)) 76 else 84),0,1f))
-        else tabs.addView(HorizontalScrollView(this).apply {tag="menu_bar";addView(row)},LinearLayout.LayoutParams(0,-2,1f))
+        if(landscape) tabs.addView(ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;tag="menu_bar";addView(row)},LinearLayout.LayoutParams(dp(if(VerticalText.uiVertical(this@ClassicPaintActivity)) 76 else 84),0,1f))
+        else tabs.addView(HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;tag="menu_bar";addView(row)},LinearLayout.LayoutParams(0,-2,1f))
         sidebarToggle=actionIcon(EditIcon.SIDEBAR,"sidebar_toggle") {sidebarExpanded=!sidebarExpanded;syncPanels()}.apply {sideLayout=landscape}
         tabs.addView(sidebarToggle,LinearLayout.LayoutParams(dp(44),dp(44)).apply {gravity=Gravity.END})
         root.addView(tabs,LinearLayout.LayoutParams(if(landscape) -2 else -1,if(landscape) 0 else -2))
@@ -601,7 +604,7 @@ class ClassicPaintActivity : Activity() {
 
     private fun makePalette(editor: LinearLayout) {
         val row = LinearLayout(this).apply { tag="palette_bar"; gravity = Gravity.CENTER_VERTICAL; setPadding(dp(4), dp(2), dp(4), dp(2)) }; paletteBar=row
-        val scroll = HorizontalScrollView(this).apply { contentDescription = ui(R.string.ui_colour_palette_tap_for_foreground_hold_for_background) }
+        val scroll = HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS; contentDescription = ui(R.string.ui_colour_palette_tap_for_foreground_hold_for_background) }
         val palette = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         val colours = arrayOf(
             "000000", "808080", "800000", "808000", "008000", "008080", "000080", "800080", "808040", "004040", "0080FF", "004080", "8000FF", "804000",
@@ -646,6 +649,7 @@ class ClassicPaintActivity : Activity() {
         val vertical=VerticalText.uiVertical(this@ClassicPaintActivity)
         val row = (if(vertical) LinearLayout(this) else ZoomStatusLayout(this)).apply {
             gravity = Gravity.CENTER_VERTICAL; setPadding(dp(7), 0, dp(3), 0); tag="status_bar"
+            layoutDirection=View.LAYOUT_DIRECTION_LTR
         }
         if(!VerticalText.uiVertical(this@ClassicPaintActivity)) {
             statusText = label(ui(R.string.ui_ready), 11f).apply {tag="status_text";maxLines=2}
@@ -665,15 +669,11 @@ class ClassicPaintActivity : Activity() {
         }
         zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))
         zoomRow.addView(actionIcon(EditIcon.PLUS, "zoom_in") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))
-        val fit=if(vertical) actionIcon(EditIcon.FIT,"zoom_fit_view") {paintCanvas.fit()}
-            else button(ui(R.string.ui_fit),"zoom_fit_view") {paintCanvas.fit()}.apply {
-                maxLines=Int.MAX_VALUE; ellipsize=null; minWidth=dp(44); minimumWidth=dp(44)
-                minHeight=dp(44); minimumHeight=dp(44)
-            }
+        val fit=actionIcon(EditIcon.FIT,"zoom_fit_view") {paintCanvas.fit()}
         fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)
-        zoomRow.addView(fit,LinearLayout.LayoutParams(if(vertical) dp(44) else -2,if(vertical) dp(44) else -2))
+        LocaleTooltip.set(fit,fit.contentDescription.toString())
+        zoomRow.addView(fit,LinearLayout.LayoutParams(dp(44),dp(44)))
         row.addView(zoomRow)
-        (row as? ZoomStatusLayout)?.onCompactStatus={updateStatus()}
         root.addView(row)
     }
 
@@ -970,7 +970,7 @@ class ClassicPaintActivity : Activity() {
             }
             customPaletteCells.add(cell);strip.addView(cell,LinearLayout.LayoutParams(dp(40),dp(40)).apply {setMargins(dp(2),dp(2),dp(2),dp(2))})
         }
-        row.addView(HorizontalScrollView(this).apply {addView(strip)},LinearLayout.LayoutParams(0,dp(44),1f))
+        row.addView(HorizontalScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(strip)},LinearLayout.LayoutParams(0,dp(44),1f))
         row.addView(panelButton(ui(R.string.ui_add_colour26),"add_colour",R.drawable.classic_palette) {addColour()},LinearLayout.LayoutParams(-2,toolHeight))
         parent.addView(label(ui(R.string.ui_saved_palette23)));parent.addView(row);refreshCustomPalette()
     }
@@ -1015,13 +1015,13 @@ class ClassicPaintActivity : Activity() {
         column.addView(sizing)
         if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))
         column.addView(label(ui(R.string.ui_current_safe_budget_2f_mp, ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))
-        val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()
+        val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS; addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val size = sizing.dimensions
             if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)
             else editAction {
                 checkImageSize(size.width,size.height); paintCanvas.applyPending()
-                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
+                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filenameIsPlaceholder=true;filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)
                 paintCanvas.fit(); updateStatus(); dialog.dismiss()
             }
         } }; dialog.show()
@@ -1330,7 +1330,7 @@ class ClassicPaintActivity : Activity() {
                             // An assembly result replaces every canvas pixel. Preserve the previous
                             // image and its credits in Undo, but do not attribute the new composite
                             // to unrelated gallery sources from the previous canvas.
-                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit,retainCredits=false);unrestoredCreditSessionToken=null; filename = source.name;savedTarget=null; paintCanvas.fit() }
+                            else { paintCanvas.cancelPending(); document.replace(bitmap,asEdit,retainCredits=false);unrestoredCreditSessionToken=null; filenameIsPlaceholder=false;filename = source.name;savedTarget=null; paintCanvas.fit() }
                             endIo()
                         } catch (error: Exception) {
                             if (document.bitmap !== bitmap && document.selection?.image !== bitmap) bitmap.recycle()
@@ -1367,7 +1367,7 @@ class ClassicPaintActivity : Activity() {
                 val name=displayName(uri)
                 if(sharing) encoded=null
                 runOnUiThread {if(!isDestroyed) {
-                    if(!exporting) {filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();LocaleTypography.showMessage(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT)
+                    if(!exporting) {filenameIsPlaceholder=false;filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();LocaleTypography.showMessage(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT)
                     if(sharing) shareSavedImage(file,options.format)
                     val action=afterSave;afterSave=null
                     if(exporting && action!=null) message(ui(R.string.ui_export_did_not_save23)) else action?.invoke()
@@ -1547,7 +1547,7 @@ class ClassicPaintActivity : Activity() {
         column.addView(NumericSlider(this,ui(R.string.ui_cursor_marker_size31),(paintCanvas.cursorMarkerScale*100).toInt(),100,200) {
             paintCanvas.cursorMarkerScale=it/100f;paintCanvas.invalidate();scheduleAutosave()
         }.apply {tag="cursor_marker_size"})
-        val content=if(VerticalText.uiVertical(this@ClassicPaintActivity)) {VerticalUi.panel(column);ColumnScrollView(this).apply {addView(column)}} else column
+        val content=if(VerticalText.uiVertical(this@ClassicPaintActivity)) {VerticalUi.panel(column);ColumnScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(column)}} else column
         cursorOptionsHost.addView(content)
     }
     private fun showDrawingSettings(preview: Boolean) {
@@ -1569,7 +1569,7 @@ class ClassicPaintActivity : Activity() {
             column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))
         }
         EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))
-            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()
+            .setView(ScrollView(this).apply {overScrollMode=View.OVER_SCROLL_IF_CONTENT_SCROLLS;addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()
     }
     private fun syncFullscreen() {
         if(!::root.isInitialized) return
@@ -1593,7 +1593,7 @@ class ClassicPaintActivity : Activity() {
         autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500)
     }
     private fun draftMetadata(): JSONObject = JSONObject().apply {
-        put("version",1);put("filename",filename);put("dirty",document.dirty)
+        put("version",1);put("filename",filename);put("filename_is_placeholder",filenameIsPlaceholder);put("dirty",document.dirty)
         put("image_credits",document.imageCreditsState())
         savedTarget?.let {put("save_target",it.json())}
         put("foreground",colourPreviewOriginal?.first ?: document.foreground);put("background",colourPreviewOriginal?.second ?: document.background)

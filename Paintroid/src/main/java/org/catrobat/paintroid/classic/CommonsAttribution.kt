@@ -32,7 +32,7 @@ internal object CommonsAttribution {
     data class Record(val source: String, val page: String, val title: String, val metadata: Map<String, String>) {
         fun text(imported: Boolean): String {
             val lines = mutableListOf(ui(R.string.gallery_credit_title, title), "Wikimedia Commons",
-                ui(R.string.gallery_credit_source, page), ui(R.string.gallery_credit_source, source))
+                ui(R.string.gallery_credit_source, page))
             // Keep the provider's field identities and values, including custom attribution,
             // multiple creators, permission/copyright notices, and all embedded credit links.
             fields.filter { it != "ObjectName" }.forEach { key ->

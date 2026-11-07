@@ -28,13 +28,13 @@ object LegalInfo {
             AN Paint $version
             Package: ${activity.packageName}
 
-            AN Paint is an independently maintained modified distribution of Pocket Paint (Paintroid), based on Catrobat/Paintroid v2.14.1, commit 853ce3c346910ea73aa4de5514f2a76ace1396fb.
+            AN Paint is an independently developed image editor with its own drawing workspace, image assembly and editing workflow. It began as a fork of Pocket Paint (Paintroid), using Catrobat/Paintroid v2.14.1, commit 853ce3c346910ea73aa4de5514f2a76ace1396fb, as its starting point. Inherited code and assets retain their original authorship and licences.
 
             Original code: Copyright © 2010–2022 The Catrobat Team and contributors. Original file-level notices are retained in the source.
             https://github.com/Catrobat/Paintroid
             https://developer.catrobat.org/credits
 
-            Modifications: Copyright © 2026 AN Paint contributors. The drawing workspace, image assembly, import and memory handling, autosave, selection transforms, copyleft icon integration, fonts, export and build changes were made 7–13 September 2026. This version consolidates the remaining editing functions in the new workspace and removes the original editor, layers, transparency controls, Smudge, automatic crop and project-file formats. Full dated changes are in the corresponding source.
+            Modifications: Copyright © 2026 AN Paint contributors. The drawing workspace, image assembly, import and memory handling, autosave, selection transforms, copyleft icon integration, fonts, export and build changes have been developed since September 2026. This version consolidates the remaining editing functions in the new workspace and removes the original editor, layers, transparency controls, Smudge, automatic crop and project-file formats. Full dated changes are in the corresponding source.
 
             Application code is licensed under the GNU Affero General Public License version 3 or, at your option, any later version (AGPL-3.0-or-later). You may copy, modify and redistribute it under that licence. It is provided WITHOUT ANY WARRANTY, including merchantability or fitness for a particular purpose.
 

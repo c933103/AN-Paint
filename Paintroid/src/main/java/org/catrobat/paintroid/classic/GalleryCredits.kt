@@ -25,7 +25,6 @@ internal object GalleryCredits {
             // The source file has its own terms; never inherit another provider's default licence.
             lines.add("Wikimedia Commons")
             lines.add(ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home))
-            lines.add(ui(R.string.gallery_credit_source,source))
             if(licence.isNotBlank()) lines.add(licence)
             lines.add(ui(R.string.commons_check_file_licence))
             lines.add(provider.terms)
@@ -36,9 +35,12 @@ internal object GalleryCredits {
                 else -> "Openclipart — "+ui(R.string.ui_creator_on_source34)
             })
             lines.add(ui(R.string.gallery_credit_source,page.takeIf {provider.isArtworkPage(Uri.parse(it))} ?: provider.home))
-            lines.add(ui(R.string.gallery_credit_source,source))
-            lines.add(licence.ifBlank {if(provider==IllustrationSource.IRASUTOYA) ui(R.string.ui_irasutoya_credit34)
-                else "CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"})
+            // Publication credit identifies the artwork page and creator. The
+            // download URL remains internal provenance; source-use guidance is
+            // already visible in the gallery, not pasted into a user's credit.
+            if(provider==IllustrationSource.IRASUTOYA) {
+                if(licence.isNotBlank()) lines.add(licence)
+            } else lines.add(licence.ifBlank {"CC0 1.0 — https://creativecommons.org/publicdomain/zero/1.0/"})
             lines.add(provider.terms)
         }
         lines.addAll(listOf(author,authorUrl).filter {it.isNotBlank()})

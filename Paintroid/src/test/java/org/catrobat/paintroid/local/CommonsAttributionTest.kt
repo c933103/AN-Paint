@@ -82,7 +82,7 @@ class CommonsAttributionTest {
         for(expected in listOf("Mapper A","Mapper B","https://commons.wikimedia.org/wiki/User:Mapper_A",
             "https://example.org/mapper","https://example.org/original-map","CC BY-SA 3.0",
             "https://creativecommons.org/licenses/by-sa/3.0/","Required attribution wording & acknowledgement",
-            "Retain the authors",page,source)) assertTrue("Missing $expected",text.contains(expected))
+            "Retain the authors",page)) assertTrue("Missing $expected",text.contains(expected))
         assertFalse(text.contains("CC0"));assertFalse(text.contains("by-sa/4.0"));assertFalse(text.contains("<a"))
         assertFalse(text.contains("antiAlias=false"))
         assertTrue(record.text(true).contains("antiAlias=false"))
@@ -135,7 +135,7 @@ class CommonsAttributionTest {
     }
     @Test fun commonsFallbackNeverInventsTheLicenceOfAnotherGallery() {
         val text=GalleryCredits.credit(source,"Test map",IllustrationSource.COMMONS,page)
-        assertTrue(text.contains(source));assertTrue(text.contains(page));assertTrue(text.contains("Wikimedia Commons"))
+        assertFalse(text.contains(source));assertTrue(text.contains(page));assertTrue(text.contains("Wikimedia Commons"))
         for(invented in listOf("CC0",GalleryCredits.CC_BY_SA,"Irasutoya","Openclipart"))
             assertFalse("Invented Commons attribution: $invented",text.contains(invented))
     }
