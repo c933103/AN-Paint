@@ -298,6 +298,11 @@ class CommonsBlankMapsTest {
     @Test fun commonsMediaViewerActionResolvesTheOriginalAndReturnsAnImageToTheEditor() {
         val controller=gallery();val activity=controller.get()
         try {
+            val nativeAction=activity.window.decorView
+                .findViewWithTag<android.widget.Button>("gallery_use_selected")
+            assertNotNull("Native Use image must remain available above MediaViewer",nativeAction)
+            assertEquals(activity.getString(org.catrobat.paintroid.R.string.gallery_use_image),
+                nativeAction.text.toString())
             val requested=mutableListOf<String>()
             activity.openConnection={url ->
                 requested.add(url.toString())
