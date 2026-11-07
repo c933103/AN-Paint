@@ -185,7 +185,11 @@ class NumericDisplayLocaleTest {
                 val dialog=ShadowAlertDialog.getLatestAlertDialog()
                 val budget=ImageMemoryPolicy.forDevice(activity).maxPixels(activity.document.residentPixels)/1_000_000.0
                 assertTrue("$tag / $tab $index",texts(dialog.window!!.decorView).contains(expected(R.string.ui_current_safe_budget_2f_mp,budget)))
-                if(tag=="ro") assertTrue(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
+                if(tag=="ro") {
+                    assertFalse(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
+                }
+                // Slovak still has no direct value for this key: keep the fallback check.
+                if(tag=="sk") assertTrue(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
                 val original=activity.document.bitmap
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 assertSame(original,activity.document.bitmap)
