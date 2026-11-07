@@ -163,7 +163,13 @@ class MediaGalleryActivity : Activity() {
         web=WebView(this).apply {
             settings.javaScriptEnabled=true;settings.allowFileAccess=false;settings.allowContentAccess=false
             settings.domStorageEnabled=true;settings.mixedContentMode=WebSettings.MIXED_CONTENT_NEVER_ALLOW
-            setDownloadListener {url,_,_,_,_ -> insert(Uri.parse(url))}
+            setDownloadListener {url,_,_,_,_ ->
+                // MediaViewer's "download" targets a thumbnail while its
+                // original is identified by the selected File page.
+                val page=if(provider==IllustrationSource.COMMONS)
+                    CommonsViewerSelection.filePage(Uri.parse(web.url.orEmpty())) else null
+                if(page!=null) download(null,page,"","","","") else insert(Uri.parse(url))
+            }
             webViewClient=object: WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView,url: String): Boolean {
                     val uri=Uri.parse(url)
@@ -173,6 +179,16 @@ class MediaGalleryActivity : Activity() {
                         val https=uri.buildUpon().scheme("https").build()
                         if(provider.allowsImage(https)) {insert(https);return true}
                         if(provider.allowsPage(https)) {view.loadUrl(https.toString());return true}
+                    }
+                    if(uri.scheme==IllustrationPage.FILE_SCHEME) {
+                        // A File-page action never supplies a CDN image URL.
+                        // Resolve the canonical original through imageinfo.
+                        if(provider==IllustrationSource.COMMONS && uri.isHierarchical && uri.host=="insert") {
+                            val page=uri.getQueryParameter("page")
+                            if(page!=null && provider.isArtworkPage(Uri.parse(page)))
+                                download(null,page.take(4096),"","","","")
+                        }
+                        return true
                     }
                     if(uri.scheme in setOf(GalleryPage.CREDIT_SCHEME,IllustrationPage.USE_SCHEME)) {
                         if(!uri.isHierarchical || uri.host !in setOf("copy","insert")) return true
@@ -317,8 +333,11 @@ class MediaGalleryActivity : Activity() {
         if(provider!=IllustrationSource.CATROBAT && !provider.isArtworkPage(Uri.parse(page))) {showStatus(ui(R.string.ui_open_artwork34));return}
         download(uri,page.take(4096),title.take(512),author,licence,authorUrl)
     }
-    private fun download(uri: Uri,page: String,title: String,author: String,licence: String,authorUrl: String) {
+    private fun download(uri: Uri?,page: String,title: String,author: String,licence: String,authorUrl: String) {
         if(downloading || isFinishing || isDestroyed)return
+        if(uri==null && (provider!=IllustrationSource.COMMONS || !provider.isArtworkPage(Uri.parse(page)))) {
+            showStatus(ui(R.string.ui_open_artwork34));return
+        }
         downloading=true;showStatus(ui(R.string.ui_downloading_image))
         worker.execute {
             var temporary: File?=null
@@ -330,12 +349,21 @@ class MediaGalleryActivity : Activity() {
                 if(!isFinishing && !isDestroyed) showStatus(message)
             }
             try {
-                var url=URL(uri.toString());var connection: HttpURLConnection?=null
+                // Derive an original only from a trusted Commons File-page
+                // imageinfo response, never from a MediaViewer thumbnail.
+                val resolved=if(uri==null) CommonsAttribution.resolve(this@MediaGalleryActivity,
+                    page,openConnection,::checkActive) {activeConnection=it}.also {
+                        CommonsAttribution.cache(this@MediaGalleryActivity,it)
+                    } else null
+                val originalUri=uri ?: Uri.parse(resolved!!.source)
+                val actualPage=resolved?.page ?: page
+                val actualTitle=title.ifBlank {resolved?.title.orEmpty()}
+                var url=URL(originalUri.toString());var connection: HttpURLConnection?=null
                 for(i in 0..5) {
                     checkActive()
                     require(provider.allowsDownload(Uri.parse(url.toString()))) {ui(R.string.ui_the_gallery_redirected_outside_its_supported_hosts)}
                     val current=openConnection(url);activeConnection=current
-                    current.setRequestProperty("Referer",page.takeIf {provider.allowsPage(Uri.parse(it))} ?: provider.home)
+                    current.setRequestProperty("Referer",actualPage.takeIf {provider.allowsPage(Uri.parse(it))} ?: provider.home)
                     if(provider==IllustrationSource.COMMONS) current.setRequestProperty("User-Agent",CommonsAttribution.userAgent(this@MediaGalleryActivity))
                     current.connectTimeout=15000;current.readTimeout=30000;current.instanceFollowRedirects=false
                     if(current.responseCode in 300..399) {
@@ -345,7 +373,7 @@ class MediaGalleryActivity : Activity() {
                 }
                 val source=connection ?: error(ui(R.string.ui_too_many_gallery_redirects))
                 check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}
-                if(provider==IllustrationSource.COMMONS && !CommonsAttribution.sameOriginal(uri.toString(),url.toString()))
+                if(provider==IllustrationSource.COMMONS && !CommonsAttribution.sameOriginal(originalUri.toString(),url.toString()))
                     throw CommonsImportFailure.DownloadOriginalMismatch()
                 val file=File.createTempFile("gallery-",".image",cacheDir);temporary=file
                 source.inputStream.use {input -> file.outputStream().use {out ->
@@ -360,7 +388,7 @@ class MediaGalleryActivity : Activity() {
                 source.disconnect();activeConnection=null
                 checkActive()
                 val resultFile: File
-                if(provider==IllustrationSource.COMMONS && uri.path.orEmpty().endsWith(".svg",true)) {
+                if(provider==IllustrationSource.COMMONS && originalUri.path.orEmpty().endsWith(".svg",true)) {
                     check(file.length()<=32L*1024*1024) {ui(R.string.commons_svg_too_large)}
                     val destination=File.createTempFile("gallery-",".png",cacheDir);rendered=destination
                     // The SVG declares its own original size. No size dialog, canvas-width default or clamp.
@@ -368,15 +396,15 @@ class MediaGalleryActivity : Activity() {
                         intent.getLongExtra("gallery_resident_pixels",0L))
                     resultFile=destination
                 } else {
-                    ImportedImage(file,uri.lastPathSegment ?: ui(R.string.ui_gallery_image)) // Validate before returning.
+                    ImportedImage(file,originalUri.lastPathSegment ?: ui(R.string.ui_gallery_image)) // Validate before returning.
                     resultFile=file
                 }
                 checkActive()
                 // Retain metadata without changing the document ledger. The editor associates
                 // this snapshot with the image only after insertion succeeds.
-                if(provider==IllustrationSource.COMMONS) commonsCredit(uri,page,::checkActive)
+                if(provider==IllustrationSource.COMMONS && resolved==null) commonsCredit(originalUri,actualPage,::checkActive)
                 checkActive()
-                runOnUiThread {returnDownloaded(resultFile,uri,page,title,author,licence,authorUrl)}
+                runOnUiThread {returnDownloaded(resultFile,originalUri,actualPage,actualTitle,author,licence,authorUrl)}
                 // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
                 if(resultFile===file) temporary=null else rendered=null
             } catch(error: Exception) {
