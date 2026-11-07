@@ -382,9 +382,45 @@ class LocalizedDialogDeviceTest {
         val bounds=onMain {assertComplete(view);assertTrue(view.isEnabled);visibleBounds(view)}
         evidence.observe(onMain {JSONObject().put("kind","pointer-before").put("label",label)
             .put("tap",JSONArray().put(bounds.centerX()).put(bounds.centerY())).put("geometry",geometry(view))})
-        assertTrue("Injected native control tap: $label",device.click(bounds.centerX(),bounds.centerY()))
-        instrumentation.waitForIdleSync()
-        evidence.observe(JSONObject().put("kind","pointer-injected").put("label",label))
+        // Injection success is not evidence that Android delivered the event.
+        // Observe the real window callback without replacing any control listener,
+        // consuming input, retrying the tap, or calling performClick directly.
+        val window=onMain {activity.window}
+        val original=onMain {checkNotNull(window.callback)}
+        val observer=object: android.view.Window.Callback by original {
+            override fun dispatchTouchEvent(event: android.view.MotionEvent): Boolean {
+                val attached=view.isAttachedToWindow
+                val focused=window.decorView.hasWindowFocus()
+                val action=event.actionMasked
+                val time=event.eventTime
+                val x=event.rawX.toDouble();val y=event.rawY.toDouble()
+                val handled=original.dispatchTouchEvent(event)
+                evidence.observe(JSONObject().put("kind","native-window-touch").put("label",label)
+                    .put("action",action).put("event_time_ms",time)
+                    .put("raw_x",x).put("raw_y",y)
+                    .put("target_attached_before_dispatch",attached).put("window_focused_before_dispatch",focused)
+                    .put("handled",handled))
+                return handled
+            }
+        }
+        onMain {window.callback=observer}
+        try {
+            assertTrue("Injected native control tap: $label",device.click(bounds.centerX(),bounds.centerY()))
+            instrumentation.waitForIdleSync()
+            evidence.observe(onMain {JSONObject().put("kind","pointer-injected").put("label",label)
+                .put("target_attached_after_idle",view.isAttachedToWindow)
+                .put("windows_after_idle",JSONArray().also {windows ->
+                    WindowInspector.getGlobalWindowViews().forEach {root ->
+                        windows.put(JSONObject().put("shown",root.isShown).put("focused",root.hasWindowFocus())
+                            .put("visible_list_counts",JSONArray().also {counts ->
+                                descendants(root).filterIsInstance<ListView>().filter {it.isShown}
+                                    .forEach {counts.put(it.count)}
+                            }))
+                    }
+                })})
+        } finally {
+            onMain {if(window.callback===observer) window.callback=original}
+        }
     }
 
     /** This characterizes an unchanged-source limitation; it does not accept
