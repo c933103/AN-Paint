@@ -171,15 +171,40 @@ internal object AppLanguage {
         // Use one device-locale snapshot for both the label and its row typography.
         val deviceLanguage=deviceLocale(activity)
         val labels = choices.map { if (it.isEmpty()) deviceDefaultLabel(activity,deviceLanguage) else name(it) }
-        val note = TextView(activity).apply {
-            text = ui(R.string.language20_translation_note)
-            val padding = (20 * resources.displayMetrics.density).toInt()
-            setPadding(padding, padding, padding, padding / 2)
+        val vertical=VerticalText.uiVertical(activity)
+        val density=activity.resources.displayMetrics.density
+        fun dp(value: Int)=(value*density+.5f).toInt()
+        // Each description is a heading and an explanatory paragraph, not a
+        // single multiline vertical ReplacementSpan. Keep the label and prose
+        // as separate measured views, with the list below them.
+        val fullNote=ui(R.string.language20_translation_note)
+        val explanation=fullNote.substringAfter("\n\n",fullNote)
+        val heading=TextView(activity).apply {
+            tag="app_language_heading";text=ui(R.string.language20_app_language)
+            textSize=20f;setPadding(dp(16),dp(12),dp(12),dp(8))
             LocaleTypography.typeface(activity)?.let {typeface=it}
             VerticalUi.caption(this,128)
         }
+        val note=TextView(activity).apply {
+            tag="app_language_explanation";text=explanation
+            textSize=14f;setPadding(dp(12),dp(12),dp(16),dp(12))
+            LocaleTypography.typeface(activity)?.let {typeface=it}
+            VerticalUi.caption(this,160)
+        }
+        val header=android.widget.LinearLayout(activity).apply {
+            tag="app_language_header"
+            orientation=if(vertical) android.widget.LinearLayout.HORIZONTAL else android.widget.LinearLayout.VERTICAL
+            if(vertical) {
+                isBaselineAligned=false
+                layoutDirection=if(VerticalText.uiDirection(activity)==TextDirection.VERTICAL_RL)
+                    android.view.View.LAYOUT_DIRECTION_RTL else android.view.View.LAYOUT_DIRECTION_LTR
+            }
+            val width=if(vertical) android.widget.LinearLayout.LayoutParams.WRAP_CONTENT else android.widget.LinearLayout.LayoutParams.MATCH_PARENT
+            addView(heading,android.widget.LinearLayout.LayoutParams(width,-2))
+            addView(note,android.widget.LinearLayout.LayoutParams(width,-2))
+        }
         return AlertDialog.Builder(activity).setTitle(ui(R.string.language20_app_language))
-            .setCustomTitle(if(VerticalText.uiVertical(activity)) ColumnScrollView(activity).apply {addView(note)} else note)
+            .setCustomTitle(if(vertical) ColumnScrollView(activity).apply {addView(header)} else header)
             .setSingleChoiceItems(object: android.widget.ArrayAdapter<String>(activity,android.R.layout.simple_list_item_single_choice,labels) {
                 override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
                     // Script-specific rows are never recycled as ordinary horizontal rows.
