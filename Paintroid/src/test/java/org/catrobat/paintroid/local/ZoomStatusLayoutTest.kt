@@ -19,12 +19,12 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import android.os.Looper
 
-/** Isolated native layout transition fixture, not an editor user journey. */
+/** Native sizing regression: rotation and caption length never create a second zoom row. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[35],qualifiers="w640dp-h640dp-mdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class ZoomStatusLayoutTest {
-    @Test fun sameViewReturnsToCompactWithResolvedStatusWidthAndThenStacksAgain() {
+    @Test fun sameViewKeepsCornerZoomBesideScrollableStatusAtEveryWidth() {
         val controller=Robolectric.buildActivity(Activity::class.java).setup().visible()
         val activity=controller.get()
         try {
@@ -36,31 +36,24 @@ class ZoomStatusLayoutTest {
             zoom.addView(SeekBar(activity).apply {tag="zoom_slider"},LinearLayout.LayoutParams(108,44))
             zoom.addView(View(activity),LinearLayout.LayoutParams(40,44))
             zoom.addView(TextView(activity).apply {tag="zoom_fit_view";text="Fit";textSize=13f;minimumWidth=44;minimumHeight=44},LinearLayout.LayoutParams(-2,-2))
-            footer.addView(status,LinearLayout.LayoutParams(0,44,1f));footer.addView(zoom)
+            footer.bind(status,zoom)
             holder.addView(footer,FrameLayout.LayoutParams(240,-2));activity.setContentView(holder)
-            var refreshes=0;var compactWidth=0
-            footer.onCompactStatus={
-                refreshes++;compactWidth=status.width
-                assertFalse(footer.isStatusScrollable);assertSame(footer,status.parent)
-                assertTrue(status.layoutParams is LinearLayout.LayoutParams)
-                status.maxLines=2;status.layoutParams=status.layoutParams.apply {height=44}
-            }
             fun settle() {shadowOf(Looper.getMainLooper()).idle();controller.visible();shadowOf(Looper.getMainLooper()).idle()}
-            settle()
-            assertTrue(footer.isStatusScrollable);assertTrue(status.parent is ScrollView)
-            assertEquals(44,(status.parent as View).height);assertEquals(Int.MAX_VALUE,status.maxLines)
-            assertEquals(-1,status.layoutParams.width);assertEquals(-2,status.layoutParams.height)
-            val originalText=status.text
-            footer.layoutParams=footer.layoutParams.apply {width=400};settle()
-            assertFalse(footer.isStatusScrollable);assertSame(footer,status.parent)
-            assertEquals(1,refreshes);assertEquals(status.width,compactWidth)
-            assertTrue("Callback sees narrow compact width, not former 240px viewport",compactWidth in 1 until 240)
-            assertEquals(2,status.maxLines);assertEquals(originalText,status.text)
-            settle();assertEquals("Callback is transition-only",1,refreshes)
-            footer.layoutParams=footer.layoutParams.apply {width=240};settle()
-            assertTrue(footer.isStatusScrollable);assertTrue(status.parent is ScrollView)
-            assertEquals(44,(status.parent as View).height);assertEquals(Int.MAX_VALUE,status.maxLines)
-            assertEquals(1,refreshes);assertEquals(originalText,status.text)
+            for(width in listOf(240,400,640,320)) {
+                footer.layoutParams=footer.layoutParams.apply {this.width=width};settle()
+                val viewport=footer.getChildAt(0) as ScrollView
+                assertTrue(footer.isStatusScrollable)
+                assertEquals(LinearLayout.HORIZONTAL,footer.orientation)
+                assertEquals(44,footer.height)
+                assertEquals(44,viewport.height)
+                assertTrue("Status retains its own width",viewport.width>=20)
+                assertTrue("Zoom stays in a corner",zoom.width<footer.width)
+                assertEquals("Same vertical level",viewport.top,zoom.top)
+                assertTrue("Slider never fills the footer",zoom.findViewWithTag<View>("zoom_slider").width in 64..108)
+                assertSame(viewport,status.parent)
+                assertEquals("Cursor status ".repeat(20),status.text.toString())
+                assertEquals(Int.MAX_VALUE,status.maxLines)
+            }
         } finally {controller.pause().stop().destroy()}
     }
 }

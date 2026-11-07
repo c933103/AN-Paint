@@ -11,9 +11,17 @@ Paintroid/src/main/res/values*/strings.xml; Crowdin continues using those files.
 | Tier | Purpose | Examples |
 | --- | --- | --- |
 | **P0 — Data safety and recovery** | Correctly understand destructive actions, unsaved work, saving/export distinctions, recovery and warnings about discarded content. Translate and validate first. | Save, Discard changes, Save destination failed, Autosave failed, recovery-copy instructions, animated-file flattening warnings. |
-| **P1 — Essential editing** | Navigate the app and accomplish everyday drawing and editing tasks. | File/Edit/View menus, opening images, Pencil, Undo/Redo, selection, colour, canvas, zoom, language picker. |
-| **P2 — Extended functions** | Specialized tools, formats and workflows, including their errors and controls. | Image assembly, TIFF/PDF/ICO options, galleries, advanced colour tools and compression settings. |
+| **P1 — Essential editing** | Navigate the app and accomplish everyday drawing and editing tasks. All root and second-level navigation captions belong here, including entries to extended features. | File/Edit/View menus, opening images, Pencil, Undo/Redo, selection, colour, canvas, zoom, language picker. |
+| **P2 — Extended functions** | Specialized tools, formats and workflows, including their errors and controls. | Image assembly settings, TIFF/PDF/ICO options, gallery details, advanced colour options and compression settings. |
 | **P3 — Reference and detailed help** | Secondary explanations, optional tutorials, reference and licence/credit navigation. | Editor and assembly help, cursor how-to guidance, lossless format reference and font/codec licence headings. |
+
+Navigation takes precedence over feature tier. The command/tab/group definitions in
+`EditorNavigation.kt`, tool-category definitions and header/tool enums supply the
+same resource IDs to the interface and coverage/priority checks. Adding a command
+there automatically enters the audit; assigning its caption P2/P3 fails validation.
+This prevents a "P0/P1 complete" claim from excluding visible navigation. The audit
+also reports aliases that fall back to English and identical English wording that
+needs review; raw key presence alone does not establish translated display.
 
 This ranks **UI localization effort**, not legal obligations. P3 is not
 unnecessary: licence, copyright and creator-attribution obligations still apply

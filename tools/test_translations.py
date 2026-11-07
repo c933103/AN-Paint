@@ -219,15 +219,11 @@ class TranslationCatalogueTests(unittest.TestCase):
             translations.ROOT
             / "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
         ).read_text()
-        commands = source.split("private fun menuActions(", 1)[1].split(
-            "private fun menuActionEnabled", 1
-        )[0]
-        keys = set(re.findall(r"R.string.([a-z_0-9]+)", commands))
-        groups = source.split("private enum class EditGroup(", 1)[1].split(
-            "private lateinit var toolDrawer", 1
-        )[0]
-        keys.update(re.findall(r"R.string.([a-z_0-9]+)", groups))
-        keys -= {"ui_select_an_area_first"}
+        definitions = (translations.ROOT /
+            "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorNavigation.kt").read_text()
+        # Entry definitions drive the real controls. Exclude fallback-only labels
+        # and callbacks' error/help prose from this historical menu-source table.
+        keys = set(re.findall(r'\b[A-Z_]+\((?:"[^"]+",)?R\.string\.([a-z_0-9]+)', definitions))
         keys |= {
             "ui_menu_view", "ui_draw26", "ui_menu_file", "ui_menu_edit",
             "ui_colour_tab23", "ui_drawing23", "ui_category_selection",

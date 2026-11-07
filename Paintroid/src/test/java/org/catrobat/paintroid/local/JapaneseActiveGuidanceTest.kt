@@ -78,7 +78,9 @@ class JapaneseActiveGuidanceTest {
             return own + if (view is ViewGroup)
                 (0 until view.childCount).flatMap { visibleTexts(view.getChildAt(it)) } else emptyList()
         }
-        assertTrue(visibleTexts(dialog.window!!.decorView).contains(expected))
+        val texts=visibleTexts(dialog.window!!.decorView)
+        assertTrue(texts.contains(activity.getString(R.string.language20_app_language)))
+        assertTrue(texts.contains(expected.substringAfter("\n\n",expected)))
         dialog.dismiss()
         assertEquals("ja", AppLanguage.selectedTag(activity))
     }

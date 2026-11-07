@@ -48,8 +48,8 @@ class CzechFitWorkflowTest {
     fun normalLandscapeFitPreservesFullCaptionAndCanvas()=checkFit("landscape-1x",1f,640,320)
     @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
     fun enlargedLandscapeFitPreservesFullCaptionAndCanvas()=checkFit("landscape-2x",2f,640,320)
-    @Test @Config(fontScale=1f) fun compactEnglishFooterRetainsDirectStatus()=withEditor("en-US") {activity,_ ->
-        assertFalse(activity.window.decorView.findViewWithTag<View>("status_text").parent is ScrollView)
+    @Test @Config(fontScale=1f) fun compactEnglishFooterRetainsStatusBesideZoom()=withEditor("en-US") {activity,_ ->
+        assertTrue(activity.window.decorView.findViewWithTag<View>("status_text").parent is ScrollView)
         exerciseZoom(activity)
     }
     @Test @Config(fontScale=1f) fun rtlFooterRetainsReachableZoom()=withEditor("ar") {activity,_ ->
@@ -140,31 +140,19 @@ class CzechFitWorkflowTest {
     }
     private fun checkCaption(activity: ClassicPaintActivity,profile: String) {
         val root=activity.window.decorView
-        val fit=root.findViewWithTag<TextView>("zoom_fit_view")
+        val fit=root.findViewWithTag<View>("zoom_fit_view")
         val caption="Přizpůsobit obrázek oknu"
-        assertEquals(caption,fit.text.toString());assertEquals(caption,fit.contentDescription.toString())
+        assertTrue(fit is ActionButton)
+        assertEquals(caption,fit.contentDescription.toString())
         assertEquals(caption,activity.getString(R.string.ui_fit_entire_canvas_in_view))
-        assertEquals("Never shrink the caption",TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,13f,fit.resources.displayMetrics),fit.textSize,0f)
-        val layout=requireNotNull(fit.layout)
-        val directory=File("build/reports/czech-workflows/fit").apply {mkdirs()}
-        val visible=Rect();val isVisible=fit.getLocalVisibleRect(visible)
-        val receipt=JSONObject().put("profile",profile).put("sdk",RuntimeEnvironment.getApiLevel())
-            .put("locale",Locale.getDefault().toLanguageTag()).put("font_scale",fit.resources.configuration.fontScale)
-            .put("caption",fit.text.toString()).put("accessible",fit.contentDescription.toString())
-            .put("width",fit.width).put("height",fit.height).put("text_size_px",fit.textSize)
-            .put("layout_height",layout.height).put("line_count",layout.lineCount)
-            .put("visible",visible.toShortString()).put("canvas_width",activity.paintCanvas.width).put("canvas_height",activity.paintCanvas.height)
-        File(directory,"$profile.json").writeText(receipt.toString(2)+"\n")
-        val screenshot=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
-        try {root.draw(Canvas(screenshot));File(directory,"$profile.png").outputStream().use {assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {screenshot.recycle()}
-        assertTrue("Fit visible",isVisible);assertTrue("Full hit target",visible.contains(Rect(0,0,fit.width,fit.height)))
-        assertTrue("Caption lines",layout.lineCount>0);assertEquals(caption.length,layout.getLineEnd(layout.lineCount-1))
-        val contentWidth=fit.width-fit.compoundPaddingLeft-fit.compoundPaddingRight
-        for(line in 0 until layout.lineCount) {
-            assertEquals("No ellipsis",0,layout.getEllipsisCount(line))
-            assertTrue("No horizontal clipping",layout.getLineLeft(line)>=-1 && layout.getLineRight(line)<=contentWidth+1)
-        }
-        assertTrue("Full Fit caption height",layout.height<=fit.height-fit.totalPaddingTop-fit.totalPaddingBottom)
+        val visible=Rect()
+        assertTrue("$profile: Fit visible",fit.getLocalVisibleRect(visible))
+        assertTrue("Full hit target",visible.contains(Rect(0,0,fit.width,fit.height)))
+        val footer=root.findViewWithTag<android.widget.LinearLayout>("status_bar")
+        val controls=root.findViewWithTag<View>("zoom_controls")
+        val status=root.findViewWithTag<View>("status_viewport")
+        assertEquals(android.widget.LinearLayout.HORIZONTAL,footer.orientation)
+        assertTrue("Corner zoom shares status row",controls.top==status.top && controls.width<footer.width)
         assertTrue("Canvas remains usable",activity.paintCanvas.width>=100*fit.resources.displayMetrics.density && activity.paintCanvas.height>=80*fit.resources.displayMetrics.density)
     }
     private fun exerciseZoom(activity: ClassicPaintActivity,newImage: Boolean=true) {
@@ -205,12 +193,12 @@ class CzechFitWorkflowTest {
         val viewport=root.findViewWithTag<ScrollView>("status_viewport")
         assertSame(viewport,status.parent);assertEquals(Int.MAX_VALUE,status.maxLines)
         val geometry=listOf(footer.width,footer.height,canvas.width,canvas.height)
-        val draft=ReflectionHelpers.getField<String>(activity,"draftStatus")
+        val draft=ReflectionHelpers.getField<UiMessage>(activity,"draftStatus")
         val longStatus=("Koncept nebyl uložen. Použijte příkaz Uložit. ").repeat(12)
         try {
             for((index,message) in listOf("Hotovo",longStatus,"Koncept uložen","Pracuje se…",longStatus).withIndex()) {
                 activity.paintCanvas.setCursorMode(index%2==1)
-                ReflectionHelpers.setField(activity,"draftStatus",message)
+                ReflectionHelpers.setField(activity,"draftStatus",UiMessage.Literal(message))
                 ReflectionHelpers.setField(activity,"busy",index==3)
                 ReflectionHelpers.setField(activity,"autosaving",index==3)
                 ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus");settle()
@@ -224,7 +212,8 @@ class CzechFitWorkflowTest {
                 if(viewport.canScrollVertically(1)) {swipe(root,viewport,.5f,.9f,.5f,.1f);settle()}
             }
             assertFalse("Native gestures reach the final status line",viewport.canScrollVertically(1))
-            assertTrue(status.layout.getLineBottom(status.layout.lineCount-1)<=viewport.scrollY+viewport.height)
+            val layout=requireNotNull(status.layout) {"Status lost native layout: ${status.width}×${status.height}; viewport ${viewport.width}×${viewport.height}"}
+            assertTrue(layout.getLineBottom(layout.lineCount-1)<=viewport.scrollY+viewport.height)
             assertEquals(geometry,listOf(footer.width,footer.height,canvas.width,canvas.height))
         } finally {
             ReflectionHelpers.setField(activity,"draftStatus",draft)

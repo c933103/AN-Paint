@@ -37,6 +37,21 @@ The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
+## Visible navigation coverage
+
+Every root and second-level caption must be P0/P1, even when it opens an
+extended feature or a help screen. `EditorNavigation.kt` defines commands,
+tabs and Edit groups; the actual editor, coverage audit and tier validation use
+those definitions. A new caption cannot be demoted to P2/P3 without a failing
+priority check.
+
+Run `python3 tools/navigation_coverage.py` for every offered locale. It reports
+missing entries, aliases requiring default fallback, and identical English text
+that needs review (including possible valid loanwords). `--require-complete`
+rejects missing entries and fallback aliases. Presence and English-difference
+are not linguistic or rendering acceptance. Existing priority-completion claims
+must be reassessed against the current manifest, including the promoted captions.
+
 ## Current source coverage and historical registration records
 
 At develop `25f678d2a784ffe096a0eeaf92494c02637e6cc7` (31 October 2026),

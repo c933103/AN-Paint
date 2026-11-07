@@ -45,7 +45,20 @@ internal object VerticalUi {
             if(changing) return
             changing=true
             val value=view.text.toString()
-            view.text=SpannableString(value).apply {if(isNotEmpty()) setSpan(Caption(value,dp(view,heightDp).toFloat(),direction),0,length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)}
+            // A ReplacementSpan spanning several paragraphs is drawn by TextView
+            // once per native line, repeating the entire caption. Give each
+            // non-empty paragraph its own span; retain real newlines and the
+            // complete underlying text for accessibility.
+            view.text=SpannableString(value).apply {
+                var start=0
+                while(start<length) {
+                    val separator=value.indexOf('\n',start)
+                    val end=if(separator<0) length else separator
+                    if(end>start) setSpan(Caption(value.substring(start,end),
+                        dp(view,heightDp).toFloat(),direction),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    start=end+1
+                }
+            }
             changing=false
         }
         view.addTextChangedListener(object: TextWatcher {
@@ -196,6 +209,14 @@ internal class EditorDialogBuilder(context: Context): AlertDialog.Builder(contex
         }
         shell.addView(HorizontalScrollView(context).apply {isFillViewport=true;addView(actions)},LinearLayout.LayoutParams(-1,-2))
         dialog.setContentView(LimitedScrollView(context,dp((context.resources.configuration.screenHeightDp*.85).toInt())).apply {addView(shell)})
-        dialog.window!!.setLayout(dp((context.resources.configuration.screenWidthDp*.94).toInt()),ViewGroup.LayoutParams.WRAP_CONTENT)
+        // A small vertical form must not occupy 94% of a landscape tablet.
+        // Measure the actual title, controls and buttons; cap wide forms to the
+        // viewport, where ColumnScrollView keeps every column reachable.
+        val unspecified=View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED)
+        columns.measure(unspecified,unspecified)
+        actions.measure(unspecified,unspecified)
+        val widthLimit=dp((context.resources.configuration.screenWidthDp*.94f).toInt()).coerceAtLeast(dp(240))
+        val desired=(maxOf(columns.measuredWidth,actions.measuredWidth)+dp(24)).coerceIn(dp(240),widthLimit)
+        dialog.window!!.setLayout(desired,ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 }

@@ -23,6 +23,7 @@ class CommonsGalleryContractTest(unittest.TestCase):
             '${JSONObject.quote(useLabel)}': json.dumps('Use image'),
             '${JSONObject.quote(copyLabel)}': json.dumps('Copy credit'),
             '${USE_SCHEME}': 'anpaint-gallery-use',
+            '${FILE_SCHEME}': 'anpaint-gallery-file',
             '${GalleryPage.CREDIT_SCHEME}': 'anpaint-gallery-credit',
             '${"$"}': '$',
         }
@@ -44,8 +45,8 @@ function fixture(page, source, expected) {
   }
   const original = {href:source,insertAdjacentElement:(_,r)=>{row=r;mutations++;}};
   const document = {title:'File:Test map - Wikimedia Commons',body:{},
-    querySelector:()=>original,getElementById:()=>row,createElement:()=>new Element()};
-  const context = vm.createContext({URL,document,location:{href:page},window:{},
+    querySelector:()=>original,getElementById:id=>id==='anpaint-commons-actions'?row:null,createElement:()=>new Element()};
+  const context = vm.createContext({URL,document,location:{href:page,hash:new URL(page).hash},window:{addEventListener(){},removeEventListener(){}},
     MutationObserver:class {observe() {} disconnect() {}}});
   vm.runInContext(script,context,{timeout:1000});
   assert.equal(!!row,expected); checks++;

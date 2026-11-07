@@ -196,11 +196,11 @@ class AppLanguageResourceRoutingTest {
                         else -> TextDirection.HORIZONTAL
                     }
                     assertEquals(direction,VerticalText.uiDirection(localized))
-                    assertEquals(when {emoji -> "💾 Save";tag=="fr" -> "Enregistrer";else -> "Save"},
+                    assertEquals(when {emoji -> "💾";tag=="fr" -> "Enregistrer";else -> "Save"},
                         resources.getString(R.string.ui_save))
                     if(emoji) {
-                        assertEquals("📁 File",resources.getString(R.string.ui_menu_file))
-                        assertEquals("🌐 Use device language",resources.getString(R.string.language20_device_default))
+                        assertEquals("📁",resources.getString(R.string.ui_menu_file))
+                        assertEquals("📱🌐",resources.getString(R.string.language20_device_default))
                         for(count in 0..20) {
                             val noun=if(count==1) "image" else "images"
                             assertEquals("Emoji English count=$count",
@@ -222,11 +222,11 @@ class AppLanguageResourceRoutingTest {
         val manager=context.getSystemService(LocaleManager::class.java)!!
         manager.applicationLocales=LocaleList.forLanguageTags("qaa-Zsye-XV")
         assertEquals("qaa-Zsye-XV",AppLanguage.selectedTag(context))
-        assertEquals("💾 Save",AppLanguage.wrap(context).getString(R.string.ui_save))
+        assertEquals("💾",AppLanguage.wrap(context).getString(R.string.ui_save))
         assertEquals("qaa-Zsye-XV",manager.applicationLocales.toLanguageTags())
         assertEquals("qaa-Zsye-XV",AppLanguage.locale(context).toLanguageTag())
         AppLanguage.select(context,"fr")
-        assertEquals("🌐 Use device language",
+        assertEquals("📱🌐",
             AppLanguage.deviceDefaultLabel(context,Locale.forLanguageTag("qaa-Zsye-XV")))
         assertEquals("fr",AppLanguage.selectedTag(context))
     }
