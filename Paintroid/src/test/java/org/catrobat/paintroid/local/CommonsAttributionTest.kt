@@ -153,4 +153,20 @@ class CommonsAttributionTest {
         assertEquals("commons.wikimedia.org",uri.host)
         assertTrue(runCatching {CommonsAttribution.requestUrl("https://commons.wikimedia.org/wiki/Category:Blank_maps")}.isFailure)
     }
+
+    @Test fun mediaViewerResolutionUsesOnlyOriginalDeclaredByCanonicalFilePage() {
+        val response=CommonsTestMetadata.response(source,page)
+        val resolved=CommonsAttribution.parseResolved(response)
+        assertEquals(source,resolved.source)
+        assertEquals(page,resolved.page)
+        assertEquals(CommonsAttribution.parse(response,source),resolved)
+        val preview="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Test_map.svg/800px-Test_map.svg.png"
+        assertTrue(runCatching {
+            CommonsAttribution.parseResolved(CommonsTestMetadata.response(preview,page))
+        }.isFailure)
+        val attacker="https://untrusted.example/image.svg"
+        assertTrue(runCatching {
+            CommonsAttribution.parseResolved(CommonsTestMetadata.response(attacker,page))
+        }.isFailure)
+    }
 }
