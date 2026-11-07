@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Paint
 import android.view.View
+import android.widget.TextView
+import android.text.Spanned
+import android.text.style.ReplacementSpan
 import org.catrobat.paintroid.classic.*
 import org.junit.Assert.*
 import org.junit.Test
@@ -106,5 +109,25 @@ class VerticalCaptionSafetyTest {
         assertEquals(tile(context,"漢").apply {paint.textSize=button.paint.textSize}.visibleCaption(),button.visibleCaption())
         button.paint.textSize=button.height*4f
         assertEquals("Even the ellipsis cannot fit at this size","",button.visibleCaption())
+    }
+
+    @Test fun verticalMultilineNativeCaptionsSpanEachParagraphOnlyOnce() {
+        // Previously one ReplacementSpan crossed both native lines, so
+        // TextView painted the complete caption twice as the screenshots show.
+        for(tag in listOf("lzh-Hant","mn-Mong","qaa-Zsye-XV")) {
+            val value="Title\n\nA localized paragraph"
+            val caption=TextView(context(tag)).apply {
+                text=value
+                VerticalUi.caption(this,160)
+            }
+            assertEquals(value,caption.text.toString())
+            val styled=caption.text as Spanned
+            val spans=styled.getSpans(0,styled.length,ReplacementSpan::class.java)
+            assertEquals("$tag: one per nonblank paragraph",2,spans.size)
+            assertEquals(0,styled.getSpanStart(spans[0]))
+            assertEquals(value.indexOf('\n'),styled.getSpanEnd(spans[0]))
+            assertEquals(value.indexOf("A localized"),styled.getSpanStart(spans[1]))
+            assertEquals(value.length,styled.getSpanEnd(spans[1]))
+        }
     }
 }
