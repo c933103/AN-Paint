@@ -158,6 +158,16 @@ class MediaGalleryActivity : Activity() {
             }
         }
         navigation.addView(galleryButton(this,ui(R.string.ui_search34),"gallery_search_go") {searchNow()})
+        // Native entry remains visible even when the publisher's full-screen
+        // MediaViewer covers its own HTML. It is independent of injection.
+        if(provider==IllustrationSource.COMMONS) navigation.addView(galleryButton(
+            this,ui(R.string.gallery_use_image),"gallery_use_selected") {
+            val url=web.url.orEmpty()
+            val page=CommonsViewerSelection.filePage(Uri.parse(url))
+                ?: url.takeIf {provider.isArtworkPage(Uri.parse(it))}
+            if(page==null) showStatus(ui(R.string.ui_open_artwork34))
+            else download(null,page.take(4096),"","","","")
+        })
         search.setOnEditorActionListener {_,_,_->searchNow();true}
         controls.addView(actionRow(navigation))
         web=WebView(this).apply {
