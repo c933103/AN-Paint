@@ -68,8 +68,36 @@ internal object CommonsAttribution {
         return "AN-Paint/$version (https://github.com/c933103/AN-Paint; Android)"
     }
 
+    /** File-page selection is resolved by Commons' imageinfo response, never by
+     * a WebView thumbnail, its preview URL or untrusted title metadata.
+     * Both paths use the same bounded API request and attribution checks.
+     */
     fun fetch(context: Context, source: String, page: String, open: (URL) -> HttpURLConnection,
-        checkActive: () -> Unit, active: (HttpURLConnection?) -> Unit): Record {
+        checkActive: () -> Unit, active: (HttpURLConnection?) -> Unit): Record =
+        parse(query(context,page,open,checkActive,active),source)
+
+    fun resolve(context: Context, page: String, open: (URL) -> HttpURLConnection,
+        checkActive: () -> Unit, active: (HttpURLConnection?) -> Unit): Record =
+        parseResolved(query(context,page,open,checkActive,active))
+
+    internal fun parseResolved(json: String): Record {
+        require(json.length<=MAX_RESPONSE)
+        val root=JSONObject(json)
+        if(root.has("error")) throw QueryFailureException()
+        val pages=root.getJSONObject("query").getJSONArray("pages")
+        if(pages.length()!=1) throw CommonsImportFailure.AmbiguousFile()
+        val entry=pages.getJSONObject(0)
+        if(entry.optBoolean("missing") || entry.optInt("ns",-1)!=6) throw CommonsImportFailure.MetadataUnavailable()
+        val source=entry.getJSONArray("imageinfo").getJSONObject(0).getString("url")
+        if(!IllustrationSource.COMMONS.allowsImage(Uri.parse(source)))
+            throw CommonsImportFailure.MetadataOriginalMismatch()
+        // parse verifies the API's canonical file-page URL and the exact
+        // original identity; retaining its established credit field policy.
+        return parse(json,source)
+    }
+
+    private fun query(context: Context, page: String, open: (URL) -> HttpURLConnection,
+        checkActive: () -> Unit, active: (HttpURLConnection?) -> Unit): String {
         checkActive()
         val connection = open(requestUrl(page)); active(connection)
         try {
@@ -91,7 +119,7 @@ internal object CommonsAttribution {
                 }
             }
             checkActive()
-            return parse(bytes.toString("UTF-8"), source)
+            return bytes.toString("UTF-8")
         } finally { connection.disconnect(); active(null) }
     }
 
