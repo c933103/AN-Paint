@@ -309,7 +309,7 @@ class ClassicWorkspaceTest {
                 }
                 assertEquals(if(tag=="yue-Hant") "儲存" else "Save",label("command_File_2"))
                 click("menu_View")
-                assertEquals(PaintTool.ZOOM.label,label("command_View_0"))
+                assertEquals(PaintTool.ZOOM.label,label("tool_ZOOM"))
                 for((index,id) in viewIds.withIndex())
                     assertEquals("$tag/View/$index",activity.getString(id),label("command_View_${index+1}"))
                 // Tool labels are dynamic consumers; returning to English must not retain Cantonese.
