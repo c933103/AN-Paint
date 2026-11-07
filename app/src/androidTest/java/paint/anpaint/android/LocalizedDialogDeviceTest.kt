@@ -394,12 +394,19 @@ class LocalizedDialogDeviceTest {
                 val action=event.actionMasked
                 val time=event.eventTime
                 val x=event.rawX.toDouble();val y=event.rawY.toDouble()
+                val busyBefore=activity.busy
+                val pressedBefore=view.isPressed
+                val targetBounds=rawBounds(view)
                 val handled=original.dispatchTouchEvent(event)
                 evidence.observe(JSONObject().put("kind","native-window-touch").put("label",label)
                     .put("action",action).put("event_time_ms",time)
                     .put("raw_x",x).put("raw_y",y)
                     .put("target_attached_before_dispatch",attached).put("window_focused_before_dispatch",focused)
-                    .put("handled",handled))
+                    .put("handled",handled).put("activity_busy_before_dispatch",busyBefore)
+                    .put("activity_busy_after_dispatch",activity.busy)
+                    .put("target_pressed_before_dispatch",pressedBefore).put("target_pressed_after_dispatch",view.isPressed)
+                    .put("target_bounds_at_dispatch",rect(targetBounds))
+                    .put("event_inside_target",x>=targetBounds.left && x<targetBounds.right && y>=targetBounds.top && y<targetBounds.bottom))
                 return handled
             }
         }
