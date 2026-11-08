@@ -10,7 +10,9 @@ import json
 import shutil
 import tarfile
 import tempfile
+import urllib.error
 import urllib.request
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'Paintroid/build/tiff-source'
@@ -23,6 +25,23 @@ SOURCES = [
 ]
 
 
+def download_source(url):
+    """Retry only transient gateway/service HTTP errors, at most three attempts."""
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(url, timeout=120) as response:
+                return response.read()
+        except urllib.error.HTTPError as error:
+            # Close error responses too; do not retry permanent errors or hashes.
+            error.close()
+            if error.code not in (502, 503, 504) or attempt == 2:
+                raise
+            delay = 2 ** (attempt + 1)
+            print(f'Transient HTTP {error.code}; retrying source download in {delay}s',
+                  flush=True)
+            time.sleep(delay)
+
+
 def fetch_sources():
     DEST.mkdir(parents=True, exist_ok=True)
     for name, version, url, digest in SOURCES:
@@ -32,8 +51,7 @@ def fetch_sources():
         if marker.exists() and marker.read_text() == identity:
             continue
         print(f'Fetching {name} {version}', flush=True)
-        with urllib.request.urlopen(url, timeout=120) as response:
-            data = response.read()
+        data = download_source(url)
         if hashlib.sha256(data).hexdigest() != digest:
             raise RuntimeError(f'{name} {version}: official source archive hash mismatch')
         with tempfile.TemporaryDirectory(prefix=f'{name}-', dir=DEST) as temporary:
