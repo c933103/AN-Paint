@@ -87,6 +87,13 @@ jobs:
             Paintroid/build/tiff-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-checks
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Restore exact Gradle dependencies independently of native fetch scripts
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+          key: android-resource-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties') }}
       - name: Set native compiler cache directory
         run: echo "CCACHE_DIR=$RUNNER_TEMP/anpaint-ccache" >> "$GITHUB_ENV"
       - name: Restore content-checked native compiler cache
@@ -216,6 +223,13 @@ jobs:
             Paintroid/build/tiff-source
           key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-build
           restore-keys: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-
+      - name: Restore exact Gradle dependencies independently of native fetch scripts
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+          key: android-resource-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties') }}
       - name: Set native compiler cache directory
         run: echo "CCACHE_DIR=$RUNNER_TEMP/anpaint-ccache" >> "$GITHUB_ENV"
       - name: Restore content-checked native compiler cache
