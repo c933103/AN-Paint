@@ -178,6 +178,11 @@ class EditorDeviceTest {
             }
             val apkSha=digest.digest().joinToString("") {"%02x".format(it.toInt() and 255)}
             val version=context.packageManager.getPackageInfo(context.packageName,0)
+            android.util.Log.i("StoppedCantoneseTest",org.json.JSONObject()
+                .put("phase","before_stop").put("package",context.packageName)
+                .put("apk_sha256",apkSha).put("version_name",version.versionName)
+                .put("version_code",version.longVersionCode).put("api",Build.VERSION.SDK_INT)
+                .put("build_fingerprint",Build.FINGERPRINT).toString())
             scenario.moveToState(Lifecycle.State.CREATED)
             awaitState("stopped editor autosave complete") {!it.busy}
             instrumentation.runOnMainSync {
@@ -188,9 +193,10 @@ class EditorDeviceTest {
             // System service command, not AppLanguage.select/refresh or the picker callback.
             // This tests platform delivery, not the Settings app's UI.
             val response=device.executeShellCommand(
-                "cmd locale set-app-locales paint.anpaint.android --user current --locales yue-Hant; echo LOCALE_COMMAND_EXIT=\$?")
-            assertTrue("External locale command succeeded: $response",
-                response.trim().endsWith("LOCALE_COMMAND_EXIT=0"))
+                "cmd locale set-app-locales paint.anpaint.android --user current --locales yue-Hant")
+            // UiDevice executes one command, not shell syntax. The service postcondition
+            // below, rather than empty stdout or an unexecuted echo, proves acceptance.
+            android.util.Log.i("StoppedCantoneseTest","external_command_output=$response")
             assertEquals("Platform accepted exact Cantonese tag","yue-Hant",
                 context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
             scenario.moveToState(Lifecycle.State.RESUMED)
