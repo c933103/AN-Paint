@@ -149,6 +149,102 @@ class EditorDeviceTest {
         }
     }
 
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun stoppedEditorReceivesExternalCantoneseLocaleOnResume() {
+        chooseAppLanguage("en-001")
+        awaitState("English baseline") {
+            it.startupReady && !it.busy &&
+                it.resources.configuration.locales[0].toLanguageTag()=="en-001"
+        }
+        val events=CopyOnWriteArrayList<String>()
+        val observer=ActivityLifecycleCallback { observed,stage ->
+            if(observed is ClassicPaintActivity) events.add(
+                "${SystemClock.uptimeMillis()}:${System.identityHashCode(observed)}:$stage")
+        }
+        instrumentation.runOnMainSync {
+            ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback(observer)
+        }
+        try {
+            val apk=File(context.applicationInfo.sourceDir)
+            val digest=java.security.MessageDigest.getInstance("SHA-256")
+            apk.inputStream().use { input ->
+                val buffer=ByteArray(65536)
+                while(true) {
+                    val count=input.read(buffer)
+                    if(count<0) break
+                    digest.update(buffer,0,count)
+                }
+            }
+            val apkSha=digest.digest().joinToString("") {"%02x".format(it.toInt() and 255)}
+            val version=context.packageManager.getPackageInfo(context.packageName,0)
+            android.util.Log.i("StoppedCantoneseTest",org.json.JSONObject()
+                .put("phase","before_stop").put("package",context.packageName)
+                .put("apk_sha256",apkSha).put("version_name",version.versionName)
+                .put("version_code",version.longVersionCode).put("api",Build.VERSION.SDK_INT)
+                .put("build_fingerprint",Build.FINGERPRINT).toString())
+            scenario.moveToState(Lifecycle.State.CREATED)
+            awaitState("stopped editor autosave complete") {!it.busy}
+            instrumentation.runOnMainSync {
+                assertEquals("Real editor stopped before external change",Stage.STOPPED,
+                    ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(activity))
+            }
+            assertTrue("Stop callback observed",events.any {it.endsWith(":STOPPED")})
+            // System service command, not AppLanguage.select/refresh or the picker callback.
+            // This tests platform delivery, not the Settings app's UI.
+            val response=device.executeShellCommand(
+                "cmd locale set-app-locales paint.anpaint.android --user current --locales yue-Hant")
+            // UiDevice executes one command, not shell syntax. The service postcondition
+            // below, rather than empty stdout or an unexecuted echo, proves acceptance.
+            android.util.Log.i("StoppedCantoneseTest","external_command_output=$response")
+            assertEquals("Platform accepted exact Cantonese tag","yue-Hant",
+                context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+            scenario.moveToState(Lifecycle.State.RESUMED)
+            awaitState("resumed Cantonese resources") {
+                it.startupReady && !it.busy &&
+                    it.resources.configuration.locales[0].toLanguageTag()=="yue-Hant"
+            }
+            click("menu_File")
+            onMain { editor ->
+                assertEquals(Stage.RESUMED,
+                    ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor))
+                // Canonical wording is selected independently of the editor's Resources.
+                // Keep the Cantonese routing boundary without freezing approved prose.
+                fun selectedResources(tag: String)=context.createConfigurationContext(
+                    android.content.res.Configuration().apply {
+                        setLocales(LocaleList.forLanguageTags(tag))
+                    }).resources
+                val cantonese=selectedResources("yue-Hant")
+                val english=selectedResources("en-001")
+                val labels=linkedMapOf("menu_File" to R.string.ui_menu_file,"command_File_2" to R.string.ui_save)
+                val mounted=org.json.JSONObject()
+                for((tag,id) in labels) {
+                    val expected=cantonese.getString(id)
+                    assertNotEquals("Cantonese catalogue differs from English for $tag",
+                        english.getString(id),expected)
+                    val view=editor.window.decorView.findViewWithTag<TextView>(tag)
+                        ?: throw AssertionError("Missing mounted $tag")
+                    assertEquals("Mounted $tag after external locale change",expected,view.text.toString())
+                    assertTrue("Mounted $tag visible",view.isShown &&
+                        view.getGlobalVisibleRect(Rect()))
+                    mounted.put(tag,view.text.toString())
+                }
+                android.util.Log.i("StoppedCantoneseTest",org.json.JSONObject()
+                    .put("package",context.packageName).put("apk_sha256",apkSha)
+                    .put("version_name",version.versionName).put("version_code",version.longVersionCode)
+                    .put("api",Build.VERSION.SDK_INT).put("build_fingerprint",Build.FINGERPRINT)
+                    .put("platform_tag",context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                    .put("activity_tag",editor.resources.configuration.locales[0].toLanguageTag())
+                    .put("lifecycle",org.json.JSONArray(events))
+                    .put("mounted_labels",mounted).toString())
+            }
+        } finally {
+            instrumentation.runOnMainSync {
+                ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(observer)
+            }
+        }
+    }
+
     @Test fun filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas() {
         val file=fixture("device-open.png")
         val image=Bitmap.createBitmap(17,11,Bitmap.Config.ARGB_8888).apply {
