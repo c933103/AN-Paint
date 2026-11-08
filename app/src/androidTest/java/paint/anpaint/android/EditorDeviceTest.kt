@@ -149,6 +149,83 @@ class EditorDeviceTest {
         }
     }
 
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun stoppedEditorReceivesExternalCantoneseLocaleOnResume() {
+        chooseAppLanguage("en-001")
+        awaitState("English baseline") {
+            it.startupReady && !it.busy &&
+                it.resources.configuration.locales[0].toLanguageTag()=="en-001"
+        }
+        val events=CopyOnWriteArrayList<String>()
+        val observer=ActivityLifecycleCallback { observed,stage ->
+            if(observed is ClassicPaintActivity) events.add(
+                "${SystemClock.uptimeMillis()}:${System.identityHashCode(observed)}:$stage")
+        }
+        instrumentation.runOnMainSync {
+            ActivityLifecycleMonitorRegistry.getInstance().addLifecycleCallback(observer)
+        }
+        try {
+            val apk=File(context.applicationInfo.sourceDir)
+            val digest=java.security.MessageDigest.getInstance("SHA-256")
+            apk.inputStream().use { input ->
+                val buffer=ByteArray(65536)
+                while(true) {
+                    val count=input.read(buffer)
+                    if(count<0) break
+                    digest.update(buffer,0,count)
+                }
+            }
+            val apkSha=digest.digest().joinToString("") {"%02x".format(it.toInt() and 255)}
+            val version=context.packageManager.getPackageInfo(context.packageName,0)
+            scenario.moveToState(Lifecycle.State.CREATED)
+            awaitState("stopped editor autosave complete") {!it.busy}
+            instrumentation.runOnMainSync {
+                assertEquals("Real editor stopped before external change",Stage.STOPPED,
+                    ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(activity))
+            }
+            assertTrue("Stop callback observed",events.any {it.endsWith(":STOPPED")})
+            // System service command, not AppLanguage.select/refresh or the picker callback.
+            // This tests platform delivery, not the Settings app's UI.
+            val response=device.executeShellCommand(
+                "cmd locale set-app-locales paint.anpaint.android --user current --locales yue-Hant; echo LOCALE_COMMAND_EXIT=\$?")
+            assertTrue("External locale command succeeded: $response",
+                response.trim().endsWith("LOCALE_COMMAND_EXIT=0"))
+            assertEquals("Platform accepted exact Cantonese tag","yue-Hant",
+                context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+            scenario.moveToState(Lifecycle.State.RESUMED)
+            awaitState("resumed Cantonese resources") {
+                it.startupReady && !it.busy &&
+                    it.resources.configuration.locales[0].toLanguageTag()=="yue-Hant"
+            }
+            click("menu_File")
+            onMain { editor ->
+                assertEquals(Stage.RESUMED,
+                    ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor))
+                val labels=linkedMapOf("menu_File" to "檔案","command_File_2" to "儲存")
+                for((tag,expected) in labels) {
+                    val view=editor.window.decorView.findViewWithTag<TextView>(tag)
+                        ?: throw AssertionError("Missing mounted $tag")
+                    assertEquals("Mounted $tag after external locale change",expected,view.text.toString())
+                    assertTrue("Mounted $tag visible",view.isShown &&
+                        view.getGlobalVisibleRect(Rect()))
+                }
+                android.util.Log.i("StoppedCantoneseTest",org.json.JSONObject()
+                    .put("package",context.packageName).put("apk_sha256",apkSha)
+                    .put("version_name",version.versionName).put("version_code",version.longVersionCode)
+                    .put("api",Build.VERSION.SDK_INT).put("build_fingerprint",Build.FINGERPRINT)
+                    .put("platform_tag",context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                    .put("activity_tag",editor.resources.configuration.locales[0].toLanguageTag())
+                    .put("lifecycle",org.json.JSONArray(events))
+                    .put("file_label","檔案").put("save_label","儲存").toString())
+            }
+        } finally {
+            instrumentation.runOnMainSync {
+                ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(observer)
+            }
+        }
+    }
+
     @Test fun filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas() {
         val file=fixture("device-open.png")
         val image=Bitmap.createBitmap(17,11,Bitmap.Config.ARGB_8888).apply {
