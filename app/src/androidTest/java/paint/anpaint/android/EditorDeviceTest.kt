@@ -202,13 +202,26 @@ class EditorDeviceTest {
             onMain { editor ->
                 assertEquals(Stage.RESUMED,
                     ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor))
-                val labels=linkedMapOf("menu_File" to "檔案","command_File_2" to "儲存")
-                for((tag,expected) in labels) {
+                // Canonical wording is selected independently of the editor's Resources.
+                // Keep the Cantonese routing boundary without freezing approved prose.
+                fun selectedResources(tag: String)=context.createConfigurationContext(
+                    android.content.res.Configuration().apply {
+                        setLocales(LocaleList.forLanguageTags(tag))
+                    }).resources
+                val cantonese=selectedResources("yue-Hant")
+                val english=selectedResources("en-001")
+                val labels=linkedMapOf("menu_File" to R.string.ui_menu_file,"command_File_2" to R.string.ui_save)
+                val mounted=org.json.JSONObject()
+                for((tag,id) in labels) {
+                    val expected=cantonese.getString(id)
+                    assertNotEquals("Cantonese catalogue differs from English for $tag",
+                        english.getString(id),expected)
                     val view=editor.window.decorView.findViewWithTag<TextView>(tag)
                         ?: throw AssertionError("Missing mounted $tag")
                     assertEquals("Mounted $tag after external locale change",expected,view.text.toString())
                     assertTrue("Mounted $tag visible",view.isShown &&
                         view.getGlobalVisibleRect(Rect()))
+                    mounted.put(tag,view.text.toString())
                 }
                 android.util.Log.i("StoppedCantoneseTest",org.json.JSONObject()
                     .put("package",context.packageName).put("apk_sha256",apkSha)
@@ -217,7 +230,7 @@ class EditorDeviceTest {
                     .put("platform_tag",context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
                     .put("activity_tag",editor.resources.configuration.locales[0].toLanguageTag())
                     .put("lifecycle",org.json.JSONArray(events))
-                    .put("file_label","檔案").put("save_label","儲存").toString())
+                    .put("mounted_labels",mounted).toString())
             }
         } finally {
             instrumentation.runOnMainSync {
