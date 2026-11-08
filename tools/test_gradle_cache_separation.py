@@ -15,7 +15,9 @@ class GradleCacheSeparationTest(unittest.TestCase):
             # Job blocks have four-space fields; split at next two-space job.
             self.assertEqual(source.count(NAME), 1)
             self.assertLess(source.index(NAME), source.index('      - name: Prepare build tools and notices'))
-            step = source.split(NAME, 1)[1].split('      - name:', 1)[0]
+            # Restored WebP has build.gradle; evaluating **/*.gradle after restore changes the key.
+            self.assertLess(source.index(NAME), source.index('            Paintroid/build/jxl-source'))
+            step = source.split(NAME, 1)[1].split('      - ', 1)[0]
             self.assertIn('uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9', step)
             self.assertNotIn('restore-keys:', step)
             self.assertNotIn('fetch_', step)
