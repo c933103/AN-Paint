@@ -377,6 +377,32 @@ class LocalizedDialogDeviceTest {
             .put("selected_index",received.get()).put("expected_index",index))
     }
 
+    /**
+     * Read-only state, not a hit-test or proof of target dispatch/click execution.
+     * Preserve all listeners and dispatch exactly once through the original
+     * window callback. Parent-synthesized CANCEL is not visible at this layer.
+     * Getter/serialization overhead can affect timing; do not call this
+     * instrumentation timing-neutral or treat a passing run as a product fix.
+     */
+    private fun controlStateChain(target: View): JSONArray {
+        val states=JSONArray()
+        var current: View?=target
+        while(current!=null) {
+            val node=current
+            states.put(JSONObject().put("identity",System.identityHashCode(node))
+                .put("class",node.javaClass.name).put("tag",node.tag ?: JSONObject.NULL)
+                .put("attached",node.isAttachedToWindow).put("shown",node.isShown)
+                .put("enabled",node.isEnabled).put("clickable",node.isClickable)
+                .put("long_clickable",node.isLongClickable).put("pressed",node.isPressed)
+                .put("focused",node.isFocused).put("window_focused",node.hasWindowFocus())
+                .put("layout_requested",node.isLayoutRequested)
+                .put("scroll_x",node.scrollX).put("scroll_y",node.scrollY)
+                .put("bounds",rect(rawBounds(node))).put("visible_bounds",rect(visibleBounds(node))))
+            current=node.parent as? View
+        }
+        return states
+    }
+
     private fun tapControl(label: String,view: View) {
         settle(view)
         val bounds=onMain {assertComplete(view);assertTrue(view.isEnabled);visibleBounds(view)}
@@ -397,9 +423,12 @@ class LocalizedDialogDeviceTest {
                 val busyBefore=activity.busy
                 val pressedBefore=view.isPressed
                 val targetBounds=rawBounds(view)
+                val stateBefore=controlStateChain(view)
                 val handled=original.dispatchTouchEvent(event)
+                val stateAfter=controlStateChain(view)
                 evidence.observe(JSONObject().put("kind","native-window-touch").put("label",label)
                     .put("action",action).put("event_time_ms",time)
+                    .put("target_ancestor_state_before",stateBefore).put("target_ancestor_state_after",stateAfter)
                     .put("raw_x",x).put("raw_y",y)
                     .put("target_attached_before_dispatch",attached).put("window_focused_before_dispatch",focused)
                     .put("handled",handled).put("activity_busy_before_dispatch",busyBefore)
