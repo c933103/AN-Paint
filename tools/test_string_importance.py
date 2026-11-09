@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -48,10 +49,85 @@ class StringImportanceTests(unittest.TestCase):
             "string/ui_zoom_in", "string/language20_app_language", "string/ui_category_brush",
         ):
             self.assertEqual("P1", assigned[key], key)
-        for key in ("string/ui_image_assembly", "string/formats22_tiff_compression", "plurals/ui_crop_preview_images"):
+        for key in ("string/formats22_tiff_compression", "plurals/ui_crop_preview_images"):
             self.assertEqual("P2", assigned[key], key)
         for key in ("string/ui_the_arrow_on_the_left_directly_below_the", "string/ui_help23"):
             self.assertEqual("P3", assigned[key], key)
+
+    def test_live_main_editor_menu_and_inline_controls_have_a_p1_floor(self):
+        # Read current bindings, not a locale/English wording snapshot. This is a
+        # deliberately bounded source regression, not a general Kotlin parser or
+        # a runtime reachability claim. Refactors of these producers need review.
+        root = importance.ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic"
+        activity = (root / "ClassicPaintActivity.kt").read_text(encoding="utf-8")
+
+        def section(text, start, end):
+            self.assertEqual(1, text.count(start), start)
+            self.assertEqual(1, text.count(end), end)
+            first, last = text.index(start), text.index(end)
+            self.assertLess(first, last)
+            return text[first:last]
+
+        def refs(text):
+            return set(re.findall(r"R\.string\.([a-zA-Z_0-9]+)", text))
+
+        def controls(start, end, excluded=()):
+            found = refs(section(activity, start, end))
+            # A stale exclusion must not silently hide a later control binding.
+            self.assertFalse(set(excluded) - found, (start, set(excluded) - found))
+            return found - set(excluded)
+
+        titles = section(activity, "private fun menuTitle(", "private fun menuActions(")
+        # Only explicit tab arms: ui_menu_help is an unreachable else fallback.
+        names = set(re.findall(r'"[^"]+"\s*->\s*R\.string\.([a-zA-Z_0-9]+)', titles))
+        self.assertTrue(names)
+        names |= controls("private fun menuActions(", "private fun menuActionEnabled",
+                          {"ui_select_an_area_first", "ui_pixel_grid_help33"})  # callback bodies, not captions
+        names |= controls("private fun buildWorkspace(", "private fun selectTab(",
+                          {"ui_drawing_canvas_pinch_and_move_two_fingers_to", "ui_pixel_grid_help33"})
+        names |= controls("private enum class EditGroup(", "private lateinit var toolDrawer")
+        names |= controls("private fun syncPanels(", "private fun dp(")
+        names |= controls("private fun makePalette(", "private fun makeStatus(")
+        names |= controls("private fun makeCustomPalette(", "private fun addColour(")
+        names |= controls("private fun refreshRecentColours(", "private fun showLegacyImageCredits(",
+                          {"ui_display_integer"})  # nontranslatable numeric template
+        names |= controls("private fun makeStatus(", "private fun updateStatus(", {"ui_ready"})
+        names |= controls("private fun populateToolOptions(", "private fun addSlider(", {
+            "ui_corners_and_edges_resize_round_handle_rotates", "ui_pinch_to_zoom_drag_to_pan",
+            "ui_tap_canvas_to_type", "ui_tap_a_pixel", "ui_cursor_help29",
+        })  # teaching/help, rather than the adjacent buttons, choices and sliders
+        names |= controls("private fun populateCursorOptions(", "private fun showDrawingSettings(",
+                          {"ui_cursor_pan_move32", "ui_cursor_tap_hint37"})  # activation toast
+        names |= controls("private fun showBoundsOptions(", "override fun onKeyShortcut(",
+                          {"ui_drag_out_to_expand_in_to_trim_drag"})
+        # Caption/state substitutions in larger methods: bind their actual roles.
+        status = section(activity, "private fun updateStatus(", "private fun updateColours(")
+        names |= refs(section(status, 'root.findViewWithTag<PanelToolButton>("cursor_draw_toggle")',
+                              'root.findViewWithTag<PanelToolButton>("command_View_2")'))
+        names |= refs(next(line for line in status.splitlines() if "zoomSlider.contentDescription" in line))
+        names |= refs(next(line for line in activity.splitlines() if 'workspace.addView(button(' in line
+                          and '"leave_fullscreen"' in line))
+        for filename in ("ToolCategoryButton.kt", "ColourStatusButton.kt"):
+            names |= refs((root / filename).read_text(encoding="utf-8"))
+        icons = (root / "ActionButton.kt").read_text(encoding="utf-8")
+        names |= refs(section(icons, "enum class EditIcon(", "class ActionButton("))
+        tools = (root / "PaintDocument.kt").read_text(encoding="utf-8")
+        tool_enum = section(tools, "enum class PaintTool(", "class PaintDocument(")
+        # First argument is label; second argument is the long-press hint.
+        tool_labels = re.findall(r"\b[A-Z_]+\(R\.string\.([a-zA-Z_0-9]+),", tool_enum)
+        self.assertTrue(tool_labels)
+        names.update(tool_labels)
+        slider = (root / "NumericSlider.kt").read_text(encoding="utf-8")
+        names |= refs(next(line for line in slider.splitlines() if "fun display(n: Int)" in line))
+
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        for name in sorted(names):
+            self.assertIn(assigned.get("string/" + name), {"P0", "P1"}, name)
+        # Explicit boundaries prevent a blanket promotion of help/deeper dialogs.
+        self.assertNotIn("ui_menu_help", names)
+        self.assertNotIn("ui_cursor_help31", names)
+        self.assertNotIn("ui_pixel_grid_help33", names)
+        self.assertNotIn("ui_select_an_area_first", names)
 
     def test_optional_help_and_lossless_reference_have_lower_priority(self):
         assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
