@@ -170,6 +170,19 @@ jobs:
             ~/.gradle/caches/modules-2
             ~/.gradle/wrapper/dists
           key: android-resource-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties') }}
+      - name: Restore exact native-source dependency cache from APK builds
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          # Match the build producer's paths for the same cache archive version.
+          # Dependency/source trees only: no classes, APKs, linked libraries or CMake outputs.
+          path: |
+            ~/.gradle/caches/modules-2
+            ~/.gradle/wrapper/dists
+            Paintroid/build/jxl-source
+            Paintroid/build/webp-source
+            Paintroid/build/heif-source
+            Paintroid/build/tiff-source
+          key: android-deps-v1-${{ runner.os }}-${{ hashFiles('**/*.gradle', 'gradle/wrapper/gradle-wrapper.properties', 'tools/fetch_*_sources.py') }}-build
       - name: Prepare build tools and notices
         timeout-minutes: 8
         run: bash tools/ci_prepare_build.sh
