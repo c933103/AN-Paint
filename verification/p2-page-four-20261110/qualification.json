@@ -1,0 +1,235 @@
+{
+  "pr": 413,
+  "head": "bd0842a4dc2d3848e3a530c358632de8def84707",
+  "base": "10fe8301bbde6040ab5aecfdb209849ed664ede4",
+  "merge": "3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+  "tree": "89c01e0d374a487c82d174ad86b930d023082f69",
+  "tested_checkout": "401ee79f05d838fdb7e30d3ac3a7d84e2dfd0ca6",
+  "merged_at": "2026-11-10T11:16:08Z",
+  "pr_run": {
+    "id": 42801712853,
+    "attempt": 1,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129780626238,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129780711147,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129780711233,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129780711298,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129785603630,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129785603695,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129792616759,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "comment_id": 6765312183,
+    "head": "bd0842a4dc2d3848e3a530c358632de8def84707",
+    "code_review": "completed/no findings or unresolved findings",
+    "security_review": "completed/gate disabled/null finding flags",
+    "REST_app_id": 1144995,
+    "REST_bot_id": 199175422,
+    "postmerge_reuse_provenance_limit": "The stricter postmerge GraphQL last-edit bot/time predicate was not established; no reused-evidence claim."
+  },
+  "postmerge_run": {
+    "id": 42806078345,
+    "attempt": 1,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129795415798,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129795579158,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129795579234,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129795579610,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129799867896,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129799867908,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129806233669,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "reuse": {
+    "reused": false,
+    "reason": "Full fallback: ValueError: Review last edit is not bound to the same bot/time",
+    "reason_limit": "The receipt does not identify which provenance predicate differed. No cause or tampering inference.",
+    "receipt_artifact": 13758018181,
+    "receipt_sha256": "b889105e94b8dfd584e5626ef61feb64f7ca0292690ef76f207a27611fe760e2"
+  },
+  "postmerge_execution": "All six downstream jobs ran and succeeded on the actual merge, rather than being skipped or reused. No manual redispatch or retry.",
+  "postmerge_artifacts": {
+    "build": {
+      "id": 13758344087,
+      "name": "apk-and-source-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:b4669af7954a7b4b41706dce9b85af81db03292e832f8537e0f993af9269985a",
+      "size_in_bytes": 145011501,
+      "created_at": "2026-11-10T11:23:39Z",
+      "updated_at": "2026-11-10T11:23:39Z"
+    },
+    "tests": {
+      "id": 13761005009,
+      "name": "instrumentation-apks-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:bc7024190f0b0ef6368bf9b251f4119b543dbc75850f2fe1b4c6aa471c547f57",
+      "size_in_bytes": 98153849,
+      "created_at": "2026-11-10T11:25:36Z",
+      "updated_at": "2026-11-10T11:25:36Z"
+    },
+    "regression": {
+      "id": 13761846898,
+      "name": "regression-and-lint-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:4d79b13cd06807b03fba129fd9a6af091451361176b6c118426f05cbdf1d32bf",
+      "size_in_bytes": 83377150,
+      "created_at": "2026-11-10T11:41:06Z",
+      "updated_at": "2026-11-10T11:41:06Z"
+    },
+    "exact": {
+      "id": 13758368322,
+      "name": "exact-script-generation-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:d5d5046fd78aeb316a201409966799c20d6cf3323261661c1806bdcec4853729",
+      "size_in_bytes": 19803,
+      "created_at": "2026-11-10T11:21:15Z",
+      "updated_at": "2026-11-10T11:21:15Z"
+    },
+    "core": {
+      "id": 13760203031,
+      "name": "emulator-core-api-35-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:f0b02c154d763c30beaaba01344d59a631504d694747c19b382fc54ffe95255c",
+      "size_in_bytes": 12172280,
+      "created_at": "2026-11-10T11:39:28Z",
+      "updated_at": "2026-11-10T11:39:28Z"
+    },
+    "position": {
+      "id": 13760975936,
+      "name": "emulator-position-api-35-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:f7dd2d9aac49440009991abf461819622edcf1e9fc6b685ce7f40fe56ca909f0",
+      "size_in_bytes": 1875636,
+      "created_at": "2026-11-10T11:30:45Z",
+      "updated_at": "2026-11-10T11:30:45Z"
+    },
+    "composed": {
+      "id": 13761791657,
+      "name": "emulator-api-35-3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "digest": "sha256:4fa50822d7e26ac2bc50af67aff8909fc9622cb8f2c3ea811384403320cf3789",
+      "size_in_bytes": 12184912,
+      "created_at": "2026-11-10T11:39:42Z",
+      "updated_at": "2026-11-10T11:39:42Z"
+    }
+  },
+  "independent_device_validation": {
+    "completed_app_tests": 50,
+    "source_eligible_app_tests": 50,
+    "device_identity": {
+      "commit": "3d3870431b183fc1fc7287d0b4ef8ebb4d0a3521",
+      "run_id": "42806078345",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "91bc75ce8609d70860e1bcc3822709bee402cae286f49c3cf7f0962fc0e03327",
+      "source_sha256": "f727c3c90d48c4436bdc926609360597ee9689bbce806ae348fac2eb2ef91dbc",
+      "test_apk_sha256": "9cf57a785696cd578fa758f448e22731b4ec6ccc9b8275b1b9aaa4f27e1fc8ad",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "method": "Existing all-group report validator independently verified the complete source-bound union against reviewed tree. Core/position/final identities and declared APK/source hashes match. Downloaded composed/position archive digests verified. No local Android execution or redownload of APK binaries claimed.",
+    "selected_source_artifacts_verified_against_fresh_metadata": true
+  },
+  "coverage": {
+    "P0": {
+      "present": 16074,
+      "total": 16074
+    },
+    "P1": {
+      "present": 46301,
+      "total": 48393
+    },
+    "P2": {
+      "present": 21958,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4777,
+      "total": 11799
+    }
+  },
+  "accepted_wording": {
+    "new_values": 78,
+    "accepted_unchanged": 72,
+    "revised": 6,
+    "withheld": {
+      "ku": [
+        "formats22_pdf_file_size",
+        "formats22_pdf_crop"
+      ]
+    },
+    "preserved_old_nodes": 1435,
+    "method": "Independent changed-only AI review, not native-human certification"
+  },
+  "limits": "Fresh hosted required CI qualified the merge. Independent report validation is not fresh local Android execution or separate APK byte verification. No exhaustive new-language caption/layout/font/speech, physical-device, native-human, release or unidentified-installed-APK diagnosis certification. All older holds and #395 merge/#400 retry denials unchanged."
+}
