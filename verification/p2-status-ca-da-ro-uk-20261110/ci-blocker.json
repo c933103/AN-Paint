@@ -1,0 +1,156 @@
+{
+  "status": "Blocked by required exact-script setup; not merged",
+  "pr": 423,
+  "head": "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b",
+  "base": "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+  "source_tree": "e6355998c471d674aa9312f632e597e9617f9245",
+  "tested_checkout": "0b20832e3f36f35dd7b95d5018e9086ac5328d93",
+  "ordered_parents": [
+    "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+    "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b"
+  ],
+  "review": {
+    "comment_id": 6779246660,
+    "node_id": "IC_kwDOUTkwWc8AAAABlBMYRA",
+    "updated_at": "2026-11-10T21:07:17Z",
+    "app_id": 1144995,
+    "bot_id": 199175422,
+    "state": {
+      "code_review": {
+        "commit_sha": "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b",
+        "has_any_findings": false,
+        "has_unresolved_findings": false,
+        "status": "completed"
+      },
+      "security_review": {
+        "commit_sha": "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b",
+        "has_any_findings": null,
+        "has_unresolved_findings": null,
+        "status": "completed"
+      }
+    },
+    "security": {
+      "blockingSeverityThreshold": "P0",
+      "headSha": "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b",
+      "mergeGateEnabled": false,
+      "pullRequestNumber": 423,
+      "repository": "c933103/AN-Paint",
+      "status": "completed"
+    },
+    "threads": {
+      "review_threads": []
+    }
+  },
+  "run": {
+    "id": 42901557524,
+    "event": "pull_request",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "head_sha": "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b"
+  },
+  "jobs": [
+    {
+      "id": 130128539578,
+      "name": "Verify recent same-tree PR evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T21:05:18Z",
+      "completed_at": "2026-11-10T21:05:26Z"
+    },
+    {
+      "id": 130128640128,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-10T21:05:28Z",
+      "completed_at": "2026-11-10T21:08:44Z"
+    },
+    {
+      "id": 130128640147,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T21:05:28Z",
+      "completed_at": "2026-11-10T21:11:50Z"
+    },
+    {
+      "id": 130128640458,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T21:05:28Z",
+      "completed_at": "2026-11-10T21:30:40Z"
+    },
+    {
+      "id": 130132392188,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T21:11:52Z",
+      "completed_at": "2026-11-10T21:26:41Z"
+    },
+    {
+      "id": 130132392218,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T21:11:52Z",
+      "completed_at": "2026-11-10T21:17:34Z"
+    },
+    {
+      "id": 130140915007,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-10T21:26:43Z",
+      "completed_at": "2026-11-10T21:26:52Z"
+    }
+  ],
+  "failure": {
+    "job": 130128640128,
+    "stage": "Prepare build tools and notices, before resource-generation tests",
+    "provider_url": "https://download.osgeo.org/libtiff/tiff-4.7.2.tar.gz",
+    "pinned_sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a",
+    "symptom": "120-second connection timeout reported as urllib.error.URLError. No HTTP status or wider outage cause established.",
+    "excerpt": [
+      "2026-11-10T21:06:41.2573304Z Fetching libtiff 4.7.2",
+      "2026-11-10T21:08:41.5159187Z TimeoutError: timed out",
+      "2026-11-10T21:08:41.5171218Z     raise URLError(err)",
+      "2026-11-10T21:08:41.5171488Z urllib.error.URLError: <urlopen error timed out>",
+      "2026-11-10T21:08:41.5321534Z ##[error]Process completed with exit code 1.",
+      "2026-11-10T21:08:42.2634104Z SHA256 digest of uploaded artifact is 04e4e675904c86637eb11047e6fae822e76b08c87d5a855bd098688f8bcb05fb",
+      "2026-11-10T21:08:42.6827770Z Artifact exact-script-generation-0b20832e3f36f35dd7b95d5018e9086ac5328d93 successfully finalized. Artifact ID 13802748144",
+      "2026-11-10T21:08:42.6828890Z Artifact exact-script-generation-0b20832e3f36f35dd7b95d5018e9086ac5328d93 has been successfully uploaded! Final size is 7898 bytes. Artifact ID is 13802748144"
+    ],
+    "artifact_id": 13802748144,
+    "artifact_sha256": "04e4e675904c86637eb11047e6fae822e76b08c87d5a855bd098688f8bcb05fb"
+  },
+  "cache_observation": {
+    "statement": "Successful build restored an existing dependency cache whose configured paths include Paintroid/build/tiff-source; no fresh libtiff fetch was logged. Exact-script restores only Gradle caches before common setup. Build success therefore does not establish provider recovery.",
+    "evidence": [
+      "2026-11-10T21:05:36.3754784Z Cache hit for: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+      "2026-11-10T21:05:40.1636559Z Cache restored from key: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build"
+    ],
+    "workflow_path": ".github/workflows/android.yml",
+    "inspected_tree": "e6355998c471d674aa9312f632e597e9617f9245"
+  },
+  "change": {
+    "values": 36,
+    "locales": [
+      "ca",
+      "da",
+      "ro",
+      "uk"
+    ],
+    "prior_nodes_preserved": 2646,
+    "pending_422_source_excluded": true
+  },
+  "limits": [
+    "Six CI jobs succeeded in this original attempt. No exact-script pass, postmerge, release or exhaustive installed wording/layout certification.",
+    "No retry requested for423 after existing422 timeout/reset evidence. No422 retry or mutation and all holds/denials unchanged.",
+    "This is a transport-dependent required-gate blocker, not a tool permission denial or evidence of a translation defect."
+  ],
+  "publication_record": "https://github.com/c933103/AN-Paint/blob/509890c4b3ad8ab87ffd0b2baf48e433d220cfc0/verification/p2-status-ca-da-ro-uk-20261110/publication.json",
+  "next": "Preserve source and required gate. Further provider/setup diagnosis may continue within authorization; do not infer approval denial or merge on partial CI."
+}
