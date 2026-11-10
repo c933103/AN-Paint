@@ -1,0 +1,17 @@
+# Six-option Asian page-picker/PDF localization
+
+120 absent active P2 values: Assamese as, Sinhala si, Khmer km, Lao lo, Burmese my and Javanese jv (20 each). Exact offered-tag/canonical-path identities verified among 171 options. Six existing XML files, 120 additions and no old-value/attribute revisions or deletions. All 2,184 prior resource nodes/attributes preserved.
+
+Source head `d57d1719d063255b0ced26a6d564453d303c000b` has single parent `1290ee58e2d5a6f50a530e1d2331de57c3d382bb` and exact tree `3c31c2d9490ab44884b91ab900d3782300ad6eb7`. Every one of 1,283 remote tracked path/type/mode/blob tuples matches the reviewed checkout. The separate evidence snapshot retains that entire source tree and adds only README/ZIP; it is not part of the application PR.
+
+Independent changed-only whole-value AI review accepted 118 original candidates unchanged and two Javanese revisions, zero holds. Revisions clarify edit-as-an-image purpose and width/height nouns. All original candidates, complete final decisions, reasons, confidence and limits preserved. Accepted-map SHA256: `ff4e141320880fdc82e9cf96c1f57dac6cb1eb168f3e30148aefd4fc4f877eca`.
+
+Actual page-picker, PDF admission/rendering/crop, import/resize and shared credit-pagination consumers and applicable existing tests inspected. Six primary terminology source blobs from Mozilla Firefox and MediaWiki independently verified; terms support contextual composition, not automatic full-sentence acceptance. Original copied Mozilla FTL files have an extra trailing blank line; freshly fetched immutable blobs match exactly, and the reconciliation diff is retained. AI review is not native-human certification. Long diagnostic idiom, script shaping, line breaking and speech remain untested on installed UI.
+
+Final integrated source passed 63 existing focused host checks and 108 actual JDK exact-output cases. The latter exercise only changed formatted values, actual independently probed Assamese/Burmese numeric glyphs, numeric boundaries and format-looking literal arguments. Source attributes, typed slots, raw separator [92,110], Android escaping, NFC/XML uniqueness/roundtrip, active P2/live references, additions-only and held/P1 disjointness checks passed. Host decoding/JDK formatting does not independently certify Android compiled resources or installed rendering.
+
+Fresh #299/#306/#308/#395/#396/#397/#398/#400 heads unchanged; complete carried changed-key inventory disjoint. All 48 current target blobs across those heads contain none of the new keys. No held source imported or mutated. Existing #395 merge and #400 retry denials remain intact. No Work-side task created/resumed.
+
+All 171 merged direct presence at base: P0 16,074/16,074; P1 46,301/48,393; P2 21,760/46,683; P3 4,777/11,799. This candidate raises only P2 to 21,880/46,683 if merged. Pending #400's 29 values excluded. Presence, bounded AI wording acceptance and runtime qualification remain distinct. Required exact-head CI/Codex review pending. No native-human, exhaustive installed-caption/layout/bidi/font/speech, physical-device, release or unidentified installed-APK diagnosis claim.
+
+Canonical XML owns current wording. This ZIP is immutable historical evidence, not an active wording fixture or test oracle. No code, workflow, test or permanent wording mirror added. Local files and baseline commit are temporary; verified remote source identities are authoritative.
