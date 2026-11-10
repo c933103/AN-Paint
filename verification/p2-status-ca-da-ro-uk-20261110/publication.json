@@ -1,0 +1,129 @@
+{
+  "base": "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+  "base_tree": "35a183ea36bd720ced85f0c445a1daeddf08dcb9",
+  "tree": "e6355998c471d674aa9312f632e597e9617f9245",
+  "source_entries": 1283,
+  "new_values": 36,
+  "old_nodes_preserved": 2646,
+  "prepared_patch_unchanged": true,
+  "four_target_blobs_unchanged": true,
+  "reviewed_map_sha256": "557edccbcce8bb3d5e1f163d510600b844904e91c7cbdac7e02b23d28aa08547",
+  "review": {
+    "unchanged": 32,
+    "revised": 4,
+    "held": 0,
+    "credit": "Carried unchanged from independent original full-value review, not re-reviewed or double-counted"
+  },
+  "checks": {
+    "fresh_rebased_host": 58,
+    "original_JDK_exact_output": 20,
+    "JDK_reuse_reason": "All four complete target XML blobs/accepted map/source slots unchanged; original exact outputs remain bound to identical tested values. Not rerun or counted anew."
+  },
+  "held": {
+    "eight_prior_head_base_pairs_unchanged": true,
+    "original_hashed_blobs": 14,
+    "target_catalogues": 32,
+    "pending_422_disjoint_paths": true,
+    "pending_422_excluded_from_new_source": true
+  },
+  "proposed_tiers": {
+    "P0": {
+      "present": 16074,
+      "missing": 0,
+      "total": 16074
+    },
+    "P1": {
+      "present": 46301,
+      "missing": 2092,
+      "total": 48393
+    },
+    "P2": {
+      "present": 22470,
+      "missing": 24213,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4777,
+      "missing": 7022,
+      "total": 11799
+    }
+  },
+  "supersedes": "The prior preparation-only wait for #422 integration is not a prerequisite for this disjoint four-file patch. Safe direct-develop rebase avoids importing unqualified #422 changes or blocking unrelated authorized work. No #422 retry or mutation.",
+  "next": "Publish exact direct-develop source and verify current-head required CI/Codex before merge. Preserve all holds, no Work task.",
+  "source_commit": "0e72b70ff0e3f380af6d97a1d3d38d9366305c5b",
+  "source_blobs": [
+    {
+      "path": "Paintroid/src/main/res/values-ca/strings.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5627fe1baabca51bf8933e071e6429ccd186a43"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-da/strings.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e26358e293cb52450a1f3c11643de6ba0cc13a7b"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aebaf89254543cfd73d9285e6f2230b843068ead"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-uk/strings.xml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51214a16300aa5c0d201cf81057a6b2af5de3afe"
+    }
+  ],
+  "original_review_packet": "https://github.com/c933103/AN-Paint/tree/fd6072ebfca8192f47b573f0181e27052c9ba4cb/verification/p2-status-ca-da-ro-uk-preparation-20261110",
+  "fresh_host_log": "..........................................................\n----------------------------------------------------------------------\nRan 58 tests in 13.778s\n\nOK\n",
+  "held_current": [
+    {
+      "pr": 422,
+      "head": "2391add826428c7eb0564890ebb4ec51f81ae6d3",
+      "base": "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad"
+    },
+    {
+      "pr": 400,
+      "head": "fa8195ea283968ed8f5d90252d139d835c5e79d6",
+      "base": "71a27c6e70c78b50d54b2bd7ac629f455d4e5559"
+    },
+    {
+      "pr": 398,
+      "head": "da1f5fbe9398d2a015527430cc99d69218c7f184",
+      "base": "1e1bccca7a9fc2092bcda4caae8878e36c2e8831"
+    },
+    {
+      "pr": 397,
+      "head": "1e1bccca7a9fc2092bcda4caae8878e36c2e8831",
+      "base": "2848a4f56dfeed300a0424b3b7b41ffc286f33de"
+    },
+    {
+      "pr": 396,
+      "head": "2848a4f56dfeed300a0424b3b7b41ffc286f33de",
+      "base": "53589f6a3f7c235dccde06c723fcae0684b1432f"
+    },
+    {
+      "pr": 395,
+      "head": "53589f6a3f7c235dccde06c723fcae0684b1432f",
+      "base": "49d7933ad5a6bbf901d964cf8a5db37b3d064ab0"
+    },
+    {
+      "pr": 308,
+      "head": "c72a4daa1e7e2eb1bc64020f5479998c3ae15185",
+      "base": "095828e06bcec967835b1c953ff836ac4d3d32cb"
+    },
+    {
+      "pr": 306,
+      "head": "c033f112a7fef45e051c2bd592e239fe5e49b784",
+      "base": "f2c6cb456ff3e838d8f2eae0214279b616de4b89"
+    },
+    {
+      "pr": 299,
+      "head": "a7b88878b6b393bbd78ffa2ed4f162b39b89d05f",
+      "base": "095828e06bcec967835b1c953ff836ac4d3d32cb"
+    }
+  ]
+}
