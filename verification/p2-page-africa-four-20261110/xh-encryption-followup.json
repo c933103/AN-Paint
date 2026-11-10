@@ -1,0 +1,72 @@
+{
+  "scope": "Separate follow-up of the sole Xhosa encryption hold in review.json; no prior report, source, PR or external publication modified.",
+  "key": "formats22_pdf_encrypted",
+  "locale": "xh",
+  "prior_decision": "held",
+  "prior_report_sha256": "0b789e0d7680f834a2c81651cf1762ac4912a84b3d5ac152cc58b5b09d1c966c",
+  "original": "I-PDF ifuna igama lokugqitha okanye isebenzisa uguqulelo oluntsonkothileyo olungaxhaswanga. Gcina ikopi engakhuselwanga ngaphambi kokuyingenisa.",
+  "final": "I-PDF ifuna igama lokugqitha okanye isebenzisa uguqulelo oluntsonkothileyo olungaxhaswanga. Gcina ikopi engakhuselwanga ngaphambi kokuyingenisa.",
+  "decision": "accepted_unchanged_after_new_primary_evidence",
+  "confidence": "moderate-high",
+  "accepted": {
+    "xh": {
+      "formats22_pdf_encrypted": "I-PDF ifuna igama lokugqitha okanye isebenzisa uguqulelo oluntsonkothileyo olungaxhaswanga. Gcina ikopi engakhuselwanga ngaphambi kokuyingenisa."
+    }
+  },
+  "sources": [
+    {
+      "language": "xh",
+      "url": "https://www.gcis.gov.za/sites/default/files/GCIS%20PAIA%20Manual-%20isiXhosa%20Final.pdf",
+      "section": "12.5",
+      "physical_page_one_based": 17,
+      "pdf_page_zero_based": 16,
+      "printed_page_label": "16",
+      "bytes": 6950007,
+      "sha256": "a1185525faa28eaba0857b593d9bdbf7325e44971abd6a19d85d504599e5f65d",
+      "inspection": "Downloaded PDF directly from official GCIS host, extracted with pdftotext, rendered page 17 using pdftoppm and visually read section 12.5.",
+      "short_quote": "uguqulelo oluntsonkothileyo",
+      "render_sha256": "c4c7a001a52a30052366f0e06068b4537255d0196dba1eaf0e1cdfbf24f75650",
+      "render_preserved_in_repository": false
+    },
+    {
+      "language": "en",
+      "url": "https://www.gcis.gov.za/sites/default/files/docs/aboutus/gcis-paia-manual2025.pdf",
+      "section": "12.5",
+      "physical_page_one_based": 17,
+      "pdf_page_zero_based": 16,
+      "printed_page_label": "16",
+      "bytes": 7416493,
+      "sha256": "71aab5cef3e5969541c423fa01c12fc78fe940fb816d46729ee758e14a4b1802",
+      "inspection": "Downloaded PDF directly from official GCIS host, extracted with pdftotext, rendered page 17 using pdftoppm and visually read section 12.5.",
+      "short_quote": "firewalls, encryption, logical access control",
+      "render_sha256": "41502c89c5391f17a2fa7c2df7dc26f23f31b462c53352a0f193d0c252baa263",
+      "render_preserved_in_repository": false
+    }
+  ],
+  "observations": [
+    "Both official GCIS manuals have matching information-security section 12.5. The isiXhosa term appears between network/firewall protection and logical access control; English places encryption at the corresponding position.",
+    "Direct PDF rendering confirms the term is printed in the security context, rather than an unrelated translation or a misleading search snippet. The page is physically 17, zero-based 16, and printed 16.",
+    "This establishes a documented technical use of uguqulelo oluntsonkothileyo for encryption and resolves the exact ambiguity that prevented the initial acceptance. It does not certify every translation in either manual."
+  ],
+  "complete_value_review": [
+    "I-PDF ifuna igama lokugqitha communicates that the PDF needs a password.",
+    "okanye preserves OR between the password requirement and unsupported encryption.",
+    "isebenzisa uguqulelo oluntsonkothileyo olungaxhaswanga now has corroborated encryption semantics; the final relative modifier agrees with the encryption noun and means unsupported.",
+    "Gcina ikopi engakhuselwanga instructs saving an unprotected copy, not overwriting or damaging the original.",
+    "ngaphambi kokuyingenisa preserves the required sequence: save the unprotected copy before importing it.",
+    "No typed formatting slots, numeric bounds or newline separators occur in this value. No additional commitments or unsupported recovery promises were introduced."
+  ],
+  "retrieval_notes": [
+    "Initial direct web opens of the Xhosa PDF timed out; indexed source opening then returned its section text. Browser-side screenshots failed. These were retrieval failures, not access denials.",
+    "Direct local downloads of both official PDFs subsequently succeeded. Both relevant pages were locally rendered and inspected.",
+    "No university search snippet or redirected university homepage used."
+  ],
+  "limits": [
+    "Model linguistic/context review with primary terminology evidence, not native-human certification.",
+    "No installed Android layout, glyph, accessibility speech or runtime validation in this follow-up.",
+    "New acceptance is recorded only here; the initial hold and 79/1 historical decision remain unchanged in review.json.",
+    "Original issue/PR and application sources were not edited."
+  ],
+  "application_status": "Accepted for the next consolidated batch; #414 remains unchanged at 79 additions. No new compiled/installed validation claimed.",
+  "preservation": "This compact record preserves source URLs, exact downloaded PDF identities, inspected page/section identity, short terminology excerpts and complete independent decision. Full PDFs and rendered pages remain temporary and are not claimed archived."
+}
