@@ -1,0 +1,506 @@
+{
+  "pr": 419,
+  "head": "04d39debd1a306f2796d33d308473caa3e221418",
+  "base": "2139d451ca30c2caf145d8b7179add07d882b677",
+  "merge": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+  "tree": "10aa574d861e0956af246842a641190596a28e06",
+  "tested_pr_checkout": "b7dd6096644151bd08e95467e8fab451c04a93cc",
+  "merged_at": "2026-11-10T16:45:55Z",
+  "pr_run": {
+    "id": 42853565358,
+    "attempt": 1,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129960426049,
+        "name": "Verify recent same-tree PR evidence",
+        "conclusion": "success"
+      },
+      {
+        "id": 129960525987,
+        "name": "Exact-script resource generation",
+        "conclusion": "success"
+      },
+      {
+        "id": 129960526028,
+        "name": "Regression tests and lint",
+        "conclusion": "success"
+      },
+      {
+        "id": 129960526370,
+        "name": "Build APK and corresponding source",
+        "conclusion": "success"
+      },
+      {
+        "id": 129964150054,
+        "name": "Position dialog API 35",
+        "conclusion": "success"
+      },
+      {
+        "id": 129964150066,
+        "name": "Core emulator API 35",
+        "conclusion": "success"
+      },
+      {
+        "id": 129973886563,
+        "name": "Emulator API 35",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "comment_id": 6772693264,
+    "head": "04d39debd1a306f2796d33d308473caa3e221418",
+    "updated_at": "2026-11-10T16:21:56Z",
+    "app_id": 1144995,
+    "bot_id": 199175422,
+    "code_findings": false,
+    "security_gate_enabled": false
+  },
+  "postmerge_run": {
+    "id": 42857870244,
+    "attempt": 1,
+    "conclusion": "success",
+    "mode": "full execution, not reused",
+    "jobs": [
+      {
+        "id": 129975722375,
+        "name": "Verify recent same-tree PR evidence",
+        "conclusion": "success",
+        "started_at": "2026-11-10T16:46:00Z",
+        "completed_at": "2026-11-10T16:46:28Z",
+        "run_attempt": 1
+      },
+      {
+        "id": 129976028858,
+        "name": "Exact-script resource generation",
+        "conclusion": "success",
+        "started_at": "2026-11-10T16:46:29Z",
+        "completed_at": "2026-11-10T16:50:09Z",
+        "run_attempt": 1
+      },
+      {
+        "id": 129976028986,
+        "name": "Build APK and corresponding source",
+        "conclusion": "success",
+        "started_at": "2026-11-10T16:46:30Z",
+        "completed_at": "2026-11-10T16:55:03Z",
+        "run_attempt": 1
+      },
+      {
+        "id": 129976029073,
+        "name": "Regression tests and lint",
+        "conclusion": "success",
+        "started_at": "2026-11-10T16:46:30Z",
+        "completed_at": "2026-11-10T17:06:48Z",
+        "run_attempt": 1
+      },
+      {
+        "id": 129981425855,
+        "name": "Position dialog API 35",
+        "conclusion": "success",
+        "started_at": "2026-11-10T16:55:15Z",
+        "completed_at": "2026-11-10T17:00:30Z",
+        "run_attempt": 1
+      },
+      {
+        "id": 129981426459,
+        "name": "Core emulator API 35",
+        "conclusion": "success",
+        "started_at": "2026-11-10T16:55:15Z",
+        "completed_at": "2026-11-10T17:10:51Z",
+        "run_attempt": 1
+      },
+      {
+        "id": 129991144872,
+        "name": "Emulator API 35",
+        "conclusion": "success",
+        "started_at": "2026-11-10T17:10:54Z",
+        "completed_at": "2026-11-10T17:11:09Z",
+        "run_attempt": 1
+      }
+    ]
+  },
+  "fallback_receipt": {
+    "artifact_id": 13783856595,
+    "sha256": "sha256:e41927619b3518b0de9fe26ea91d747589157636e4313313fe41fca901c8df98",
+    "record": {
+      "reused": false,
+      "reason": "Full fallback: ValueError: Exact artifact 13781991962 download failed (exit 1)"
+    }
+  },
+  "independent_verification": {
+    "result": {
+      "success": true,
+      "execution_status": "passed",
+      "inventory_validated": true,
+      "device_sdk": 35,
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds_by_phase": {
+        "ordinary": 180,
+        "gallery-draft": 90,
+        "vertical-english-manchu": 180,
+        "vertical-literary-chinese-emoji": 180,
+        "position-ainu-manchu": 180,
+        "position-tibetan-jeju-nom": 180,
+        "dialog": 300,
+        "seed": 60,
+        "verify": 60
+      },
+      "dialog_timeout_seconds": 300,
+      "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; separate native IME/Back/footer lifecycle; simultaneous IME/field/footer fit, whole-dialog and universal 2x not accepted",
+      "ordinary_and_gallery_total_timeout_seconds": 270,
+      "vertical_timeout_seconds_per_shard": 180,
+      "vertical_total_timeout_seconds": 360,
+      "receipt_scope": "complete-composed-app-union",
+      "deferred_tests": [],
+      "all_app_total_timeout_seconds": 1410,
+      "declared_tests": 50,
+      "sdk_eligible_tests": 50,
+      "sdk_suppressed_tests": [],
+      "selected_tests": 50,
+      "explicitly_excluded_tests": [],
+      "completed_tests": 50,
+      "phases": {
+        "ordinary": 20,
+        "gallery-draft": 3,
+        "vertical-english-manchu": 2,
+        "vertical-literary-chinese-emoji": 2,
+        "position-ainu-manchu": 3,
+        "position-tibetan-jeju-nom": 4,
+        "dialog": 14,
+        "seed": 1,
+        "verify": 1
+      },
+      "completed": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuKanaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuLatinPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "dzongkhaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "jejuPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "manchuPositionColumnsAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "nomPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "tibetanPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "hungarianColourCaptionsFitPortraitAndLandscape"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeEnglishColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeEnglishColourImeBackAndFooterLifecycle"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeHungarianColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeHungarianColourImeBackAndFooterLifecycle"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "retainedColourStateSurvivesRotationImeCancelAndReopen"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "stoppedEditorReceivesExternalCantoneseLocaleOnResume"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutArtworkNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "northKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "southKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.PageCountWordingDeviceTest",
+          "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ]
+    },
+    "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+    "archive_metadata": {
+      "composed": {
+        "id": 13785596515,
+        "name": "emulator-api-35-a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+        "size_in_bytes": 12108749,
+        "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/13785596515",
+        "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/13785596515/zip",
+        "expired": false,
+        "created_at": "2026-11-10T17:11:07Z",
+        "expires_at": "2026-11-24T17:11:05Z",
+        "updated_at": "2026-11-10T17:11:07Z",
+        "digest": "sha256:9188e5b9013840c9326058c8d83edcee6d909bc88082b606340f60feb5c0b1a9",
+        "workflow_run": {
+          "id": 42857870244,
+          "repository_id": 1362702425,
+          "head_repository_id": 1362702425,
+          "head_branch": "develop",
+          "head_sha": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c"
+        }
+      },
+      "position": {
+        "id": 13784538484,
+        "name": "emulator-position-api-35-a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+        "size_in_bytes": 1896210,
+        "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/13784538484",
+        "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/13784538484/zip",
+        "expired": false,
+        "created_at": "2026-11-10T17:00:28Z",
+        "expires_at": "2026-11-24T17:00:26Z",
+        "updated_at": "2026-11-10T17:00:28Z",
+        "digest": "sha256:11dfedc374af6485121e30a1c0af99e75c86c54562919fda027a8bc600d6603f",
+        "workflow_run": {
+          "id": 42857870244,
+          "repository_id": 1362702425,
+          "head_repository_id": 1362702425,
+          "head_branch": "develop",
+          "head_sha": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c"
+        }
+      }
+    },
+    "artifact_selection": {
+      "run_id": 42857870244,
+      "current_attempt": 1,
+      "checkout": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+      "workflow_head": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+      "device_sdk": 35,
+      "selected": {
+        "core": {
+          "artifact_id": 13784992908,
+          "name": "emulator-core-api-35-a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+          "digest": "sha256:f477803f8e1b989ab954de99d0d45ea57cea298f5881ecbc37529c92de182222",
+          "created_at": "2026-11-10T17:10:44Z",
+          "updated_at": "2026-11-10T17:10:44Z",
+          "job_id": 129981426459,
+          "job_record_run_attempt": 1,
+          "job_started_at": "2026-11-10T16:55:15Z",
+          "job_completed_at": "2026-11-10T17:10:51Z"
+        },
+        "position": {
+          "artifact_id": 13784538484,
+          "name": "emulator-position-api-35-a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+          "digest": "sha256:11dfedc374af6485121e30a1c0af99e75c86c54562919fda027a8bc600d6603f",
+          "created_at": "2026-11-10T17:00:28Z",
+          "updated_at": "2026-11-10T17:00:28Z",
+          "job_id": 129981425855,
+          "job_record_run_attempt": 1,
+          "job_started_at": "2026-11-10T16:55:15Z",
+          "job_completed_at": "2026-11-10T17:00:30Z"
+        }
+      }
+    },
+    "composed_identity": {
+      "commit": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+      "run_id": "42857870244",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "32708976504a0e7b08042504f494c3ce35689a573c7d214c0aeb4a09a16f26f4",
+      "source_sha256": "adb5c7c5d3d31b9fbd6944a718c577252a08149b2c1fb9076512b6f04f96f959",
+      "test_apk_sha256": "d3a613af627d5ccbe207f2fe7faf13252ff1ddec12e4d1297031d1b32187cb82",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "core_identity": {
+      "group": "core",
+      "commit": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+      "run_id": "42857870244",
+      "run_attempt": "1",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "32708976504a0e7b08042504f494c3ce35689a573c7d214c0aeb4a09a16f26f4",
+      "source_sha256": "adb5c7c5d3d31b9fbd6944a718c577252a08149b2c1fb9076512b6f04f96f959",
+      "test_apk_sha256": "d3a613af627d5ccbe207f2fe7faf13252ff1ddec12e4d1297031d1b32187cb82"
+    },
+    "position_identity": {
+      "group": "position",
+      "commit": "a3e7dc938c21f8dd5699ed9f9f0d03ce1f41058c",
+      "run_id": "42857870244",
+      "run_attempt": "1",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "32708976504a0e7b08042504f494c3ce35689a573c7d214c0aeb4a09a16f26f4",
+      "source_sha256": "adb5c7c5d3d31b9fbd6944a718c577252a08149b2c1fb9076512b6f04f96f959",
+      "test_apk_sha256": "d3a613af627d5ccbe207f2fe7faf13252ff1ddec12e4d1297031d1b32187cb82"
+    },
+    "native_summary": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "errors": [],
+      "missing": [],
+      "unexpected": []
+    },
+    "verification": "Downloaded composed and position ZIP digests and exact source-bound app union independently verified. Selected core/position artifact IDs/names/digests/job intervals and source/SDK/build/declared APK identities match fresh metadata. No local Android execution or separate redownload/byte check of large APK binaries."
+  },
+  "release_claim": false,
+  "next_preparation": {
+    "qualified": 50,
+    "held": 10,
+    "evidence_commit": "a109e6c7292902d4239133ca1eadc8d027122312",
+    "application_pr_published": false
+  }
+}
