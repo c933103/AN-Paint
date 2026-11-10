@@ -1,0 +1,224 @@
+{
+  "pr": 415,
+  "head": "310de8ba001d8f4389308a4893ebf9e9ceec90b9",
+  "base": "089a7ae3e0db778f3891679b9fc60b4df84cd22b",
+  "merge": "fc682496bc91ca74eafd519428ca91d3b270027d",
+  "tree": "4b67a24fa638434269aaada4d2037b6127a9b52a",
+  "tested_pr_checkout": "d0c409d95734431eff3ff918a04a788f53f061c7",
+  "merged_at": "2026-11-10T13:37:49Z",
+  "pr_run": {
+    "id": 42819064830,
+    "attempt": 2,
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129853729909,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129853730228,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129853731359,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129853732079,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129853732420,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129853816610,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129861692005,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "id": 6767775026,
+    "head": "310de8ba001d8f4389308a4893ebf9e9ceec90b9",
+    "code_review": "completed/no findings or unresolved findings",
+    "security_review": "completed/gate disabled/null finding flags",
+    "bot_id": 199175422,
+    "app_id": 1144995
+  },
+  "postmerge_run": {
+    "id": 42826283243,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "execution": "All seven jobs passed through fresh full execution. Six downstream jobs ran, not skipped or reused.",
+    "jobs": [
+      {
+        "id": 129864326505,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129864474050,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129864474165,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129864474200,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129869780255,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129869780499,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129877874114,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "postmerge_linkage": {
+    "artifact_id": 13768433336,
+    "sha256": "ea2bf7693ddf9b878a427bcd8496c05fa394cd657a62af1ee198411fe56b4085",
+    "reused": false,
+    "reason": "Full fallback: ValueError: Only directly executed successful first-attempt PR runs qualify",
+    "independently_downloaded_digest_checked": true
+  },
+  "independent_runtime_verification": {
+    "app_completed": 50,
+    "app_selected": 50,
+    "phases": {
+      "ordinary": 20,
+      "gallery-draft": 3,
+      "vertical-english-manchu": 2,
+      "vertical-literary-chinese-emoji": 2,
+      "position-ainu-manchu": 3,
+      "position-tibetan-jeju-nom": 4,
+      "dialog": 14,
+      "seed": 1,
+      "verify": 1
+    },
+    "native": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "errors": [],
+      "missing": [],
+      "unexpected": []
+    },
+    "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+    "archives": {
+      "composed": {
+        "id": 13771486127,
+        "name": "emulator-api-35-fc682496bc91ca74eafd519428ca91d3b270027d",
+        "size_in_bytes": 12127421,
+        "digest": "sha256:0557b80b07be5838436195445557e6387cbbccf132ddb4258d648c4b8b916a4d"
+      },
+      "position": {
+        "id": 13769244707,
+        "name": "emulator-position-api-35-fc682496bc91ca74eafd519428ca91d3b270027d",
+        "size_in_bytes": 1927643,
+        "digest": "sha256:70340d00faf2440b8bef5ddae1ba8d4c002b48111613273bae42cb3fc8695ffc"
+      }
+    },
+    "scope": "Downloaded composed and position ZIP digests and exact source-bound app union independently verified. Selected core/position artifact IDs/names/digests/job intervals and source/SDK/build/declared APK identities match fresh metadata. No local Android execution or separate redownload/byte check of large APK binaries."
+  },
+  "preserved_failure": {
+    "pr_attempt": 1,
+    "initial_failure": "Unchanged 180-second ordinary suite deadline after 19/20 app methods; final English/French PageCountWording method unfinished, no failed translation assertion",
+    "unrun": "Accepted-credit restart seed and verify; later missing-summary error consequential",
+    "underlying_timing_cause": "Not established",
+    "resolution": "One diagnosed failed-jobs-only retry succeeded without source/test/deadline/workflow changes. Original failure remains preserved.",
+    "receipt": "https://github.com/c933103/AN-Paint/blob/53823c7287b66ce71c4f56e68512a201d598b808/verification/p2-page-ckb-ps-sd-tt-xh-20261110/attempt1-failure.json"
+  },
+  "coverage": {
+    "P0": {
+      "present": 16074,
+      "total": 16074
+    },
+    "P1": {
+      "present": 46301,
+      "total": 48393
+    },
+    "P2": {
+      "present": 22118,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4777,
+      "total": 11799
+    }
+  },
+  "all171_catalogues": {
+    "keys_per_option": 719,
+    "complete": 65,
+    "partial": 106,
+    "empty": 0,
+    "present": 89270,
+    "missing": 33679
+  },
+  "accepted_wording": {
+    "new_values_reviewed": 80,
+    "new_values_accepted": 80,
+    "accepted_unchanged": 79,
+    "accepted_revised": 1,
+    "carried_prior_acceptance": 1,
+    "held": 0,
+    "total_accepted_for_application": 81,
+    "preserved_old_nodes": 1837,
+    "accepted_map_sha256": "8d33722ca272ca0ae40a4644de17646b0a8d55fc8913bcbad412f2a4b4d84b0c"
+  },
+  "local_checks": {
+    "host": 63,
+    "jdk_exact_output": 72
+  },
+  "limits": [
+    "Bounded independently checked model wording is not native-human certification.",
+    "Current-source CI is not exhaustive newly translated caption/layout/bidi/font/speech or physical-device certification.",
+    "No new local Android execution or independent redownload of large APK binaries; original workflow source/APK bindings retained.",
+    "No release or unidentified installed-APK diagnosis claim.",
+    "Historical recheck obligations and held work unchanged; pending PR400 values excluded."
+  ],
+  "temporary_validation_notes": [
+    "The initial independent validation supplied the narrower androidTest/java source root. The path-sensitive source hash correctly rejected it. The exact existing CI root androidTest was then used for both app and native sources; no input bytes or report values changed.",
+    "The second comparison detected the composer-added device_identity field. Every coverage field was compared exactly, and that additional identity was separately compared exactly against the composed identity and source/run/build metadata; no field was silently discarded."
+  ]
+}
