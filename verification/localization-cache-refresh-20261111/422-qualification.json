@@ -1,0 +1,173 @@
+{
+  "pr": 422,
+  "head": "a28e12f2cc44cef45170e56354db52b0eeb118a5",
+  "base": "fa617108ca987d458ec2ac445f8fa0ae7fc375ac",
+  "tree": "a8d7fc9e0d4a4ab93fcfea67d57922559f3d3cd5",
+  "tested_checkout": "39bb368bb56632bb1181989c21c0a87cae2374d2",
+  "merge": "19c9898f28709dce68b92cf66caa1d4f7a601b5d",
+  "merge_parents": [
+    "fa617108ca987d458ec2ac445f8fa0ae7fc375ac",
+    "a28e12f2cc44cef45170e56354db52b0eeb118a5"
+  ],
+  "pr_run": {
+    "id": 42914840044,
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "jobs": [
+    {
+      "id": 130174508186,
+      "name": "Verify recent same-tree PR evidence",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:28:16Z",
+      "completed_at": "2026-11-10T22:28:26Z"
+    },
+    {
+      "id": 130174610910,
+      "name": "Regression tests and lint",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:28:28Z",
+      "completed_at": "2026-11-10T22:53:21Z"
+    },
+    {
+      "id": 130174610938,
+      "name": "Exact-script resource generation",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:28:27Z",
+      "completed_at": "2026-11-10T22:31:31Z"
+    },
+    {
+      "id": 130174611009,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:28:28Z",
+      "completed_at": "2026-11-10T22:38:27Z"
+    },
+    {
+      "id": 130179889170,
+      "name": "Core emulator API 35",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:38:28Z",
+      "completed_at": "2026-11-10T22:52:55Z"
+    },
+    {
+      "id": 130179889214,
+      "name": "Position dialog API 35",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:38:28Z",
+      "completed_at": "2026-11-10T22:43:15Z"
+    },
+    {
+      "id": 130187208693,
+      "name": "Emulator API 35",
+      "conclusion": "success",
+      "started_at": "2026-11-10T22:52:57Z",
+      "completed_at": "2026-11-10T22:53:08Z"
+    }
+  ],
+  "review": {
+    "id": 6778391539,
+    "user_id": 199175422,
+    "app_id": 1144995,
+    "updated_at": "2026-11-10T22:36:34Z",
+    "body": "<!-- codex-pull-request-review-summary -->\n<!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"a28e12f2cc44cef45170e56354db52b0eeb118a5\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"},\"security_review\":{\"commit_sha\":\"2391add826428c7eb0564890ebb4ec51f81ae6d3\",\"has_any_findings\":null,\"has_unresolved_findings\":null,\"status\":\"completed\"}} -->\n<!-- codex-security-review:v1 {\"blockingSeverityThreshold\":\"P0\",\"headSha\":\"2391add826428c7eb0564890ebb4ec51f81ae6d3\",\"mergeGateEnabled\":false,\"pullRequestNumber\":422,\"repository\":\"c933103/AN-Paint\",\"status\":\"completed\"} -->\n<details>\n<summary><strong>Codex Review Summary</strong>: ✅ Completed</summary>\n\nThis comment shows the latest Codex review activity on this pull request.\n\n| Review | Status | Commit | Review trigger |\n| --- | --- | --- | --- |\n| 📝 **Code Review** | ✅ **Completed** <relative-time datetime=\"2026-11-10T22:36:33.957444Z\">2026-11-10T22:36:33.957444Z</relative-time> | `a28e12f` | Manual request |\n| 🔒 **Security Review** | ✅ **Completed** <relative-time datetime=\"2026-11-10T20:27:52.209945Z\">2026-11-10T20:27:52.209945Z</relative-time> | `2391add` | Draft marked ready |\n\n\n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\" or \"@codex security review\".\n\nCodex reacts with 👀 while any review is running, comments if it has suggestions, and reacts with 👍 once all reviews finish with no findings.\n\n</details>\n\n</details>"
+  },
+  "review_threads": [],
+  "artifacts": [
+    {
+      "id": 13810461025,
+      "name": "emulator-position-api-35-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:cf71012dc2ee55ac7f9ad0d72608eaf508a5c7bbd5aa4cf72898803b0696ce9d",
+      "size_in_bytes": 1956579,
+      "expired": false
+    },
+    {
+      "id": 13810350272,
+      "name": "build-diagnostics-39bb368bb56632bb1181989c21c0a87cae2374d2-1",
+      "digest": "sha256:9e274e1104d29065a9bac0eb1c99fd6be11885acc72be3e32a2df1b9c5b1d581",
+      "size_in_bytes": 24180,
+      "expired": false
+    },
+    {
+      "id": 13810338097,
+      "name": "emulator-core-api-35-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:beff8f7cad7d8f3abc9359c1a9c398f78cc72bf23d399c0835862129a6562bcc",
+      "size_in_bytes": 12029974,
+      "expired": false
+    },
+    {
+      "id": 13810303249,
+      "name": "emulator-api-35-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:f14e39d187cd42c3dc754aed5075e8c58bc5e0161f046d653e5f6235a318d4e6",
+      "size_in_bytes": 12042642,
+      "expired": false
+    },
+    {
+      "id": 13809329160,
+      "name": "regression-and-lint-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:649962f22e770889ac1ebaa8815b3438b087bccd1319d1f87009a59558a3e7cc",
+      "size_in_bytes": 83377704,
+      "expired": false
+    },
+    {
+      "id": 13809311769,
+      "name": "apk-and-source-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:845bd0ac6f6122f369d0981f4cba7231690ed60c57989232c35dfd01441a1009",
+      "size_in_bytes": 145055874,
+      "expired": false
+    },
+    {
+      "id": 13808593550,
+      "name": "instrumentation-apks-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:134926757c2399340add99b35f074d0b89841e1a0e8fbbad7c80c81872fba756",
+      "size_in_bytes": 98185310,
+      "expired": false
+    },
+    {
+      "id": 13808547868,
+      "name": "prior-evidence-link-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:964c5483f772401227b69d2596a954220fefa6b8ebe00f28d8eb633ff4cbb32d",
+      "size_in_bytes": 251,
+      "expired": false
+    },
+    {
+      "id": 13807779775,
+      "name": "exact-script-generation-39bb368bb56632bb1181989c21c0a87cae2374d2",
+      "digest": "sha256:a81041008d2a14ce6faff1e26a98aaec4f92a1088909aa2544925a4322f92b44",
+      "size_in_bytes": 20042,
+      "expired": false
+    }
+  ],
+  "verification": {
+    "all_tracked_entries": 1283,
+    "host_checks": 62,
+    "independent_integration_checks": 17,
+    "unchanged_translation_blobs": [
+      {
+        "path": "Paintroid/src/main/res/values-b+mww/strings.xml",
+        "sha": "dd12c0ba860298d835259b7a0a3017d344f8e404"
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "sha": "cb59c2b1a0dbaa3b3c260f2f232902897da527db"
+      }
+    ],
+    "cache_hit_key": "android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+    "exact_probe_outcomes": 13,
+    "python_passes": 865,
+    "python_optional_skips": 2,
+    "jvm_passes": 1392,
+    "native_api35": 74,
+    "app_api35": 50
+  },
+  "postmerge": {
+    "run": 42919306184,
+    "status": "active"
+  },
+  "limits": [
+    "Cold source-cache miss remains subject to unchanged downloader failure.",
+    "Security marker is prior-head and gate disabled; not claimed as fresh.",
+    "No release, exhaustive language/installed layout or native-human acceptance."
+  ],
+  "holds": "All eight held pairs unchanged, no #395/#400 actions."
+}
