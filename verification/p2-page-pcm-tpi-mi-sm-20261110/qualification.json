@@ -1,0 +1,193 @@
+{
+  "pr": 416,
+  "head": "cad61eab67000d2d570a173d01203029811073f1",
+  "base": "fc682496bc91ca74eafd519428ca91d3b270027d",
+  "merge": "ac39cab3267bb2f0c7a98e55427ba72875a646f8",
+  "tree": "800c11d7acd7e7813312a68b72bbcc96d9d93589",
+  "tested_checkout": "9603234d5d198112f6de247cb221984de044764c",
+  "merged_at": "2026-11-10T14:59:12Z",
+  "pr_run": {
+    "id": 42834608058,
+    "attempt": 1,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129893386097,
+        "name": "Verify recent same-tree PR evidence",
+        "conclusion": "success"
+      },
+      {
+        "id": 129893475438,
+        "name": "Regression tests and lint",
+        "conclusion": "success"
+      },
+      {
+        "id": 129893475517,
+        "name": "Build APK and corresponding source",
+        "conclusion": "success"
+      },
+      {
+        "id": 129893475589,
+        "name": "Exact-script resource generation",
+        "conclusion": "success"
+      },
+      {
+        "id": 129899723918,
+        "name": "Core emulator API 35",
+        "conclusion": "success"
+      },
+      {
+        "id": 129899724160,
+        "name": "Position dialog API 35",
+        "conclusion": "success"
+      },
+      {
+        "id": 129908734831,
+        "name": "Emulator API 35",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "comment_id": 6769976563,
+    "node_id": "IC_kwDOUTkwWc8AAAABk4Wk8w",
+    "head": "cad61eab67000d2d570a173d01203029811073f1",
+    "updated_at": "2026-11-10T14:32:15Z",
+    "app_id": 1144995,
+    "bot_id": 199175422,
+    "security_gate_enabled": false
+  },
+  "postmerge_run": {
+    "id": 42839672459,
+    "attempt": 1,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129911220525,
+        "name": "Verify recent same-tree PR evidence",
+        "conclusion": "success"
+      },
+      {
+        "id": 129911636207,
+        "name": "Exact-script resource generation",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129911636836,
+        "name": "Build APK and corresponding source",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129911636926,
+        "name": "Regression tests and lint",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129911637957,
+        "name": "Core emulator API ${{ matrix.api }}",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129911638104,
+        "name": "Position dialog API ${{ matrix.api }}",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129911638967,
+        "name": "Emulator API ${{ matrix.api }}",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "postmerge_receipt": {
+    "artifact_id": 13774409103,
+    "verified": true,
+    "reuse": true,
+    "postmerge_downstream_executed": false,
+    "verified_original_artifacts": 6,
+    "prior_evidence_zip_sha256": "84578b06cd1cb0b56b9887c94dc448d6c2c149bf8cb44298dc5ef34a171b0e43",
+    "statement": "Downloaded linkage archive, digest/source/parents/tree/exact-head review/six original artifact IDs/names/digests/run identities and fresh metadata checked. Workflow independently validated original large artifact bytes; this pass did not redownload those large artifacts or execute Android locally."
+  },
+  "original_artifacts": {
+    "build": {
+      "artifact_id": 13773806725,
+      "name": "apk-and-source-9603234d5d198112f6de247cb221984de044764c",
+      "digest": "sha256:540b3a3e1624fe509b8456c927bf4718ced5d89ca16095bfeecf3aed71991ca7"
+    },
+    "tests": {
+      "artifact_id": 13774111678,
+      "name": "instrumentation-apks-9603234d5d198112f6de247cb221984de044764c",
+      "digest": "sha256:76b67f0a76e143dc3989dda6907ffc324150ad811fc4073c3462dbaddea7c8b1"
+    },
+    "regression": {
+      "artifact_id": 13773534795,
+      "name": "regression-and-lint-9603234d5d198112f6de247cb221984de044764c",
+      "digest": "sha256:08d6479adc22176c00ed2600c3d64ef54d2df447385ffe1d43b75cfb69f7f253"
+    },
+    "exact": {
+      "artifact_id": 13773925901,
+      "name": "exact-script-generation-9603234d5d198112f6de247cb221984de044764c",
+      "digest": "sha256:5b28f7d24cd87170989cd5b2dcc9839cb149285c6ee76606788c2636a14eb4f0"
+    },
+    "core": {
+      "artifact_id": 13774597958,
+      "name": "emulator-core-api-35-9603234d5d198112f6de247cb221984de044764c",
+      "digest": "sha256:40a18b4fcbe55258fe0cc9b4ed64bf4fa5298957fc74d7fe98ae9ade410e488d"
+    },
+    "position": {
+      "artifact_id": 13774551514,
+      "name": "emulator-position-api-35-9603234d5d198112f6de247cb221984de044764c",
+      "digest": "sha256:8981c57339ca42952182b10759db28914ffb7b2e6fed36c7a2736be125b8872b"
+    }
+  },
+  "coverage": {
+    "P0": {
+      "present": 16074,
+      "total": 16074
+    },
+    "P1": {
+      "present": 46301,
+      "total": 48393
+    },
+    "P2": {
+      "present": 22188,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4777,
+      "total": 11799
+    }
+  },
+  "all171_catalogues": {
+    "tracked_keys_per_option": 719,
+    "complete": 65,
+    "partial": 106,
+    "empty": 0,
+    "present": 89340,
+    "missing": 33609
+  },
+  "accepted_wording": {
+    "total_reviewed": 80,
+    "accepted_unchanged": 64,
+    "accepted_revised": 6,
+    "held": 10,
+    "accepted_total": 70,
+    "preserved_old_nodes": 1438,
+    "per_catalogue": {
+      "pcm": 20,
+      "tpi": 19,
+      "mi": 17,
+      "sm": 14
+    },
+    "accepted_map_sha256": "cc681cef5ea35da6035763b3907d21971f0d49becd6c635ce098c8378669bb27"
+  },
+  "remaining_page_cohort": {
+    "missing": 662,
+    "catalogues": 37,
+    "includes_old_latin_kurdish_holds": 2,
+    "new_unintegrated_holds": 10,
+    "next_reviewed_not_published": 37,
+    "next_preparation_commit": "0c2bec633650e1a248e077cb0f05b5969b929e9c"
+  },
+  "limits": "Resource presence, model wording review and bounded exact-source CI remain distinct. No native-human, exhaustive installed-caption/layout/bidi/font/speech, physical-device, release or unidentified installed-APK diagnosis certification. All project holds/recheck obligations and explicit #395 merge/#400 retry denials intact. No Work-side task created/resumed."
+}
