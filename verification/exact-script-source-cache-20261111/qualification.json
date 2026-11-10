@@ -1,0 +1,268 @@
+{
+  "purpose": "Exact-script preparation restores the existing exact-key dependency/source cache; no downloader change.",
+  "status": "Merged after exact-head review and all seven required PR jobs passed; actual-develop run pending.",
+  "pr": 424,
+  "head": "8d0702e65ddc95d4040b42648d31f3700d261224",
+  "base": "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+  "tree": "b2bdf5928da7fe0de7948fa5b0b8e24b7a13f456",
+  "tested_checkout": "1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+  "merge": "fa617108ca987d458ec2ac445f8fa0ae7fc375ac",
+  "ordered_parents": [
+    "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+    "8d0702e65ddc95d4040b42648d31f3700d261224"
+  ],
+  "merged_at": "2026-11-10T21:52:27Z",
+  "pr_run": {
+    "id": 42904324996,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "postmerge_run": {
+    "id": 42909226180,
+    "head": "fa617108ca987d458ec2ac445f8fa0ae7fc375ac",
+    "status": "in_progress",
+    "conclusion": null
+  },
+  "review": {
+    "comment_id": 6779602080,
+    "updated_at": "2026-11-10T21:25:08Z",
+    "bot_id": 199175422,
+    "app_id": 1144995,
+    "state": {
+      "code_review": {
+        "commit_sha": "8d0702e65ddc95d4040b42648d31f3700d261224",
+        "has_any_findings": false,
+        "has_unresolved_findings": false,
+        "status": "completed"
+      },
+      "security_review": {
+        "commit_sha": "8d0702e65ddc95d4040b42648d31f3700d261224",
+        "has_any_findings": null,
+        "has_unresolved_findings": null,
+        "status": "completed"
+      }
+    },
+    "security": {
+      "blockingSeverityThreshold": "P0",
+      "headSha": "8d0702e65ddc95d4040b42648d31f3700d261224",
+      "mergeGateEnabled": false,
+      "pullRequestNumber": 424,
+      "repository": "c933103/AN-Paint",
+      "status": "completed"
+    }
+  },
+  "jobs": [
+    {
+      "id": 130138227162,
+      "name": "Verify recent same-tree PR evidence",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 130138352500,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 130138352526,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 130138352643,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 130144237910,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 130144238025,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 130152417114,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13806735792,
+      "name": "emulator-core-api-35-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:5df02cc809f60c38a507f68d72f63d6c2519eacaf42da0f52ed41c152e2436d6",
+      "size": 12062749,
+      "created_at": "2026-11-10T21:47:26Z",
+      "expires_at": "2026-11-24T21:47:23Z"
+    },
+    {
+      "id": 13805423900,
+      "name": "emulator-api-35-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:deb329590fcbbe2b7958c5341b446aa358b082374041eb7ecf7e3576fd95643e",
+      "size": 12075392,
+      "created_at": "2026-11-10T21:47:42Z",
+      "expires_at": "2026-11-24T21:47:40Z"
+    },
+    {
+      "id": 13804882946,
+      "name": "instrumentation-apks-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:dc7ea1a7aa6b226389eaa6a79ff4de155b88c3d60baabbddf3eecfe7579ff6ff",
+      "size": 98183789,
+      "created_at": "2026-11-10T21:32:32Z",
+      "expires_at": "2026-11-24T21:32:28Z"
+    },
+    {
+      "id": 13804643403,
+      "name": "regression-and-lint-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:ddd57a92c04835537c7f3e8e1c500ed509cffbf488d4e42404e2ec8e029e00b8",
+      "size": 83376443,
+      "created_at": "2026-11-10T21:37:09Z",
+      "expires_at": "2026-11-24T21:37:06Z"
+    },
+    {
+      "id": 13804541427,
+      "name": "prior-evidence-link-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:d41a4ffc7e769eebbe6913efcc19891a7836e38eecad45396fc55ba53155855a",
+      "size": 251,
+      "created_at": "2026-11-10T21:22:09Z",
+      "expires_at": "2026-11-24T21:22:08Z"
+    },
+    {
+      "id": 13804447689,
+      "name": "build-diagnostics-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14-1",
+      "digest": "sha256:a6722db7b3f3bc2a4429164d5fd8f56aec359eb74d20522091e32c35d5c1e2d1",
+      "size": 24163,
+      "created_at": "2026-11-10T21:30:26Z",
+      "expires_at": "2026-11-24T21:30:25Z"
+    },
+    {
+      "id": 13803954466,
+      "name": "emulator-position-api-35-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:1f79d8375046d278cb45955147219441c46ca8cfaaceffb9f3696d7354decce6",
+      "size": 1883776,
+      "created_at": "2026-11-10T21:37:51Z",
+      "expires_at": "2026-11-24T21:37:50Z"
+    },
+    {
+      "id": 13803758989,
+      "name": "apk-and-source-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:9b990de8e4b71297958773abc35abf0a170aa28f8b50503636178c3e7b25ade5",
+      "size": 145054240,
+      "created_at": "2026-11-10T21:30:35Z",
+      "expires_at": "2026-11-24T21:30:27Z"
+    },
+    {
+      "id": 13803709168,
+      "name": "exact-script-generation-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+      "digest": "sha256:06349364c7e38922f2a1900398b7e2afb3539069aa60eab5d6305f94c1f15cd1",
+      "size": 20123,
+      "created_at": "2026-11-10T21:26:52Z",
+      "expires_at": "2026-11-24T21:26:50Z"
+    }
+  ],
+  "exact_cache": {
+    "key": "android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+    "bytes": 485424380,
+    "restore_completed_at": "2026-11-10T21:22:31.5308412Z",
+    "notices_completed_at": "2026-11-10T21:23:36.0495595Z",
+    "source_origin": "Original cache creator/ref unavailable in logs; cache-list API unsupported by connector. No sibling-PR provenance claim.",
+    "excerpt": [
+      "2026-11-10T21:22:24.7763658Z Cache hit for: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+      "2026-11-10T21:22:29.9599790Z Cache Size: ~463 MB (485424380 B)",
+      "2026-11-10T21:22:31.5308412Z Cache restored from key: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+      "2026-11-10T21:23:36.0495595Z Preserved TIFF codec notices and source hashes."
+    ]
+  },
+  "local_checks": {
+    "tests": 26,
+    "structural_negative_controls_rejected": 6,
+    "yaml_path_and_key_equality": true,
+    "py_compile": true,
+    "diff_check": true,
+    "remote_entries_verified": 1283
+  },
+  "coverage": {
+    "exact_probe_outcomes": 13,
+    "expected_success": 12,
+    "expected_rejection": 1,
+    "python_executed": 867,
+    "python_passed": 865,
+    "python_skipped": 2,
+    "jvm_passed": 1392,
+    "jvm_failures": 0,
+    "jvm_errors": 0,
+    "jvm_skips": 0,
+    "native_api35": 74,
+    "app_api35": 50
+  },
+  "limits": [
+    "Original #422/#423 failures unchanged. This run covers #424's exact tested source only.",
+    "No fetcher, source URL/hash, revision marker, extraction, gate, deadline or permission change. No #395 changes integrated.",
+    "Cache miss still uses original official-source transport and can fail. Actual cache restore is not a cold-download fix or an upstream availability test.",
+    "Cached source markers are observed through unchanged policy, not fresh byte-for-byte archive reconstruction.",
+    "No release, exhaustive UI/language/device or security certification. Security review completed with disabled merge gate; null findings field is not a clean finding assertion.",
+    "Legacy status endpoint has zero statuses; all seven check-run entries are completed/success. Branch-protection detail is inaccessible to this integration; merge API accepted and actual merge was independently verified."
+  ],
+  "independent_byte_verification": {
+    "exact.zip": "06349364c7e38922f2a1900398b7e2afb3539069aa60eab5d6305f94c1f15cd1",
+    "regression.zip": "ddd57a92c04835537c7f3e8e1c500ed509cffbf488d4e42404e2ec8e029e00b8",
+    "composition.zip": "deb329590fcbbe2b7958c5341b446aa358b082374041eb7ecf7e3576fd95643e"
+  },
+  "composed_identity": {
+    "commit": "1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+    "run_id": "42904324996",
+    "build_variant": "debug",
+    "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+    "device_sdk": 35,
+    "apk_sha256": "8323201566c01ebbc2564e9063d309cbc5c959b8af99792facc234522ee88ee2",
+    "source_sha256": "9e0b5ccda9debb3337a5b8adb8f989bd4849f76dcba8724be0ebac52d0ef34aa",
+    "test_apk_sha256": "cfb88218d8990ce74fbe380e2c6b8ad2d7bfb4e7eb2dc74423b6c82b0a9d83f7",
+    "group_run_attempts": {
+      "core": 1,
+      "position": 1
+    },
+    "composed_in_run_attempt": 1
+  },
+  "selected_artifact_bindings": {
+    "run_id": 42904324996,
+    "current_attempt": 1,
+    "checkout": "1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+    "workflow_head": "8d0702e65ddc95d4040b42648d31f3700d261224",
+    "device_sdk": 35,
+    "selected": {
+      "core": {
+        "artifact_id": 13806735792,
+        "name": "emulator-core-api-35-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+        "digest": "sha256:5df02cc809f60c38a507f68d72f63d6c2519eacaf42da0f52ed41c152e2436d6",
+        "created_at": "2026-11-10T21:47:26Z",
+        "updated_at": "2026-11-10T21:47:26Z",
+        "job_id": 130144238025,
+        "job_record_run_attempt": 1,
+        "job_started_at": "2026-11-10T21:32:42Z",
+        "job_completed_at": "2026-11-10T21:47:28Z"
+      },
+      "position": {
+        "artifact_id": 13803954466,
+        "name": "emulator-position-api-35-1f2e858937b8e3ad5198ed68b0b2ac1a036ffa14",
+        "digest": "sha256:1f79d8375046d278cb45955147219441c46ca8cfaaceffb9f3696d7354decce6",
+        "created_at": "2026-11-10T21:37:51Z",
+        "updated_at": "2026-11-10T21:37:51Z",
+        "job_id": 130144237910,
+        "job_record_run_attempt": 1,
+        "job_started_at": "2026-11-10T21:32:42Z",
+        "job_completed_at": "2026-11-10T21:37:52Z"
+      }
+    }
+  },
+  "independent_verification_limits": "Downloaded and hashed exact, regression and composition archives; verified exact probe log hashes/identity, JVM XML totals/lifecycle and composed source/test identity plus selected artifact API digests. Large APK/source and test-APK ZIPs were bound and validated by unchanged CI validators, not independently redownloaded here."
+}
