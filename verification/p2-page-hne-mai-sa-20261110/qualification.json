@@ -1,0 +1,142 @@
+{
+  "verified": true,
+  "reuse": true,
+  "postmerge_downstream_executed": false,
+  "verified_original_artifacts": 6,
+  "prior_evidence_zip_sha256": "44862cbbf178f57d1e5b3510c5e4eab9c0914296a8d1ebf2c576bb6cc0cdd5b5",
+  "statement": "Downloaded linkage archive and verified digest, exact source/ordered parents/tree, trusted exact-head review and six original artifact IDs/names/digests/run identities against fresh metadata. The workflow validated original large artifact bytes; this independent pass did not redownload those large artifacts or execute Android locally.",
+  "pr": 421,
+  "head": "1df8a950fbf449d896bc424bce3197c765cdb158",
+  "base": "f1f6cf5d560e288d765b0ae7c38678e05dd4004c",
+  "merge": "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+  "tree": "35a183ea36bd720ced85f0c445a1daeddf08dcb9",
+  "tested_checkout": "dfd289893f05ba952daff029e40235c0f76d1626",
+  "merged_at": "2026-11-10T19:01:49Z",
+  "pr_run": {
+    "id": 42874403833,
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "review": {
+    "comment_id": 6775605892,
+    "node_id": "IC_kwDOUTkwWc8AAAABk9uKhA",
+    "head": "1df8a950fbf449d896bc424bce3197c765cdb158",
+    "updated_at": "2026-11-10T18:23:56Z",
+    "app_id": 1144995,
+    "bot_id": 199175422,
+    "security_gate_enabled": false
+  },
+  "postmerge_run": {
+    "id": 42881137485,
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "receipt_artifact_id": 13793492325,
+  "original_artifacts": {
+    "build": {
+      "artifact_id": 13791556911,
+      "name": "apk-and-source-dfd289893f05ba952daff029e40235c0f76d1626",
+      "digest": "sha256:3743904f377b168786aade50b291c0999881c65ffebd043710247b365c8e698d"
+    },
+    "tests": {
+      "artifact_id": 13790892565,
+      "name": "instrumentation-apks-dfd289893f05ba952daff029e40235c0f76d1626",
+      "digest": "sha256:328794b8490376d3623d3640a83f4d81a211642c2de0860cabe1a07902f76ef2"
+    },
+    "regression": {
+      "artifact_id": 13791449176,
+      "name": "regression-and-lint-dfd289893f05ba952daff029e40235c0f76d1626",
+      "digest": "sha256:70e395178310b420bcf31a8150fe062322cfdc911eab303e4f97c4cb8bd6a483"
+    },
+    "exact": {
+      "artifact_id": 13791441381,
+      "name": "exact-script-generation-dfd289893f05ba952daff029e40235c0f76d1626",
+      "digest": "sha256:a8023b0e81a2ef6fb9424097fa2e48ee78cb3bb7b40d1c822c2d5622c7fe1995"
+    },
+    "core": {
+      "artifact_id": 13791778909,
+      "name": "emulator-core-api-35-dfd289893f05ba952daff029e40235c0f76d1626",
+      "digest": "sha256:6dfef597efbcb3029704dbd7cbab87f15a55d57b79e0c397b11480bd061dd3e3"
+    },
+    "position": {
+      "artifact_id": 13791567860,
+      "name": "emulator-position-api-35-dfd289893f05ba952daff029e40235c0f76d1626",
+      "digest": "sha256:4274666610eb986bafbf73bfedb558137043171466ca3c17b5af94969c7e2213"
+    }
+  },
+  "pr_jobs": [
+    {
+      "name": "Verify recent same-tree PR evidence",
+      "id": 130033765791,
+      "conclusion": "success"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "id": 130033856666,
+      "conclusion": "success"
+    },
+    {
+      "name": "Exact-script resource generation",
+      "id": 130033856757,
+      "conclusion": "success"
+    },
+    {
+      "name": "Regression tests and lint",
+      "id": 130033856982,
+      "conclusion": "success"
+    },
+    {
+      "name": "Position dialog API 35",
+      "id": 130037665777,
+      "conclusion": "success"
+    },
+    {
+      "name": "Core emulator API 35",
+      "id": 130037665880,
+      "conclusion": "success"
+    },
+    {
+      "name": "Emulator API 35",
+      "id": 130045377050,
+      "conclusion": "success"
+    }
+  ],
+  "postmerge_jobs": [
+    {
+      "name": "Verify recent same-tree PR evidence",
+      "id": 130057390112,
+      "conclusion": "success"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "id": 130057834847,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Position dialog API ${{ matrix.api }}",
+      "id": 130057835240,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Exact-script resource generation",
+      "id": 130057835263,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Regression tests and lint",
+      "id": 130057835490,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Core emulator API ${{ matrix.api }}",
+      "id": 130057835556,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Emulator API ${{ matrix.api }}",
+      "id": 130057836517,
+      "conclusion": "skipped"
+    }
+  ],
+  "release_claim": false
+}
