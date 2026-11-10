@@ -1,0 +1,142 @@
+{
+  "verified": true,
+  "reuse": true,
+  "postmerge_downstream_executed": false,
+  "verified_original_artifacts": 6,
+  "prior_evidence_zip_sha256": "01c4d4acd3ca8f3db324ec30a38f8bd997da3c18bd7a6d0b426bad95da8aad6a",
+  "statement": "Downloaded linkage archive and verified digest, exact source/ordered parents/tree, trusted exact-head review and six original artifact IDs/names/digests/run identities against fresh metadata. The workflow validated original large artifact bytes; this independent pass did not redownload those large artifacts or execute Android locally.",
+  "pr": 418,
+  "head": "a09c67253645fb2bf1607727721b5f582be6cc33",
+  "base": "a58d5c8b823f315fe01259d04c7b3a969492c9ec",
+  "merge": "2139d451ca30c2caf145d8b7179add07d882b677",
+  "tree": "d7ab9014095030fddae29c4e090c328712dbf44b",
+  "tested_checkout": "70319a6aca48e132a3d76e493c13fe868b0400ac",
+  "merged_at": "2026-11-10T16:06:56Z",
+  "pr_run": {
+    "id": 42847205672,
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "review": {
+    "comment_id": 6771815326,
+    "node_id": "IC_kwDOUTkwWc8AAAABk6Gzng",
+    "head": "a09c67253645fb2bf1607727721b5f582be6cc33",
+    "updated_at": "2026-11-10T15:46:25Z",
+    "app_id": 1144995,
+    "bot_id": 199175422,
+    "security_gate_enabled": false
+  },
+  "postmerge_run": {
+    "id": 42851315927,
+    "attempt": 1,
+    "conclusion": "success"
+  },
+  "receipt_artifact_id": 13779837741,
+  "original_artifacts": {
+    "build": {
+      "artifact_id": 13779028237,
+      "name": "apk-and-source-70319a6aca48e132a3d76e493c13fe868b0400ac",
+      "digest": "sha256:16b20b8f8e0cd34f9aac6f173d3bcbcb3138700a6700591c5ae6c891e92e8715"
+    },
+    "tests": {
+      "artifact_id": 13779561731,
+      "name": "instrumentation-apks-70319a6aca48e132a3d76e493c13fe868b0400ac",
+      "digest": "sha256:514938a65b42ae304aa9b1205e82a2d2abc98f1d2c8481403b18f8fca43409e4"
+    },
+    "regression": {
+      "artifact_id": 13779902929,
+      "name": "regression-and-lint-70319a6aca48e132a3d76e493c13fe868b0400ac",
+      "digest": "sha256:86b19f137ef3a6a2498241671810091c1c5b492ba8aab2cec7cee2fd31141804"
+    },
+    "exact": {
+      "artifact_id": 13777888963,
+      "name": "exact-script-generation-70319a6aca48e132a3d76e493c13fe868b0400ac",
+      "digest": "sha256:bc81cde9eb2d306dfe1d9a6e5b01e4e4f1c4b816438c6f3a94a3ef9dfb8a020c"
+    },
+    "core": {
+      "artifact_id": 13780531327,
+      "name": "emulator-core-api-35-70319a6aca48e132a3d76e493c13fe868b0400ac",
+      "digest": "sha256:bd1db4c18267c8ae8c2768329c2ec99869a119d0f42cf32c710d1c4b5ea01cc0"
+    },
+    "position": {
+      "artifact_id": 13779866188,
+      "name": "emulator-position-api-35-70319a6aca48e132a3d76e493c13fe868b0400ac",
+      "digest": "sha256:b75448e2a37dd71ec983786a31ced7ee47316ba0778cad28b8b35df52ab7dcde"
+    }
+  },
+  "pr_jobs": [
+    {
+      "name": "Verify recent same-tree PR evidence",
+      "id": 129937793225,
+      "conclusion": "success"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "id": 129937917893,
+      "conclusion": "success"
+    },
+    {
+      "name": "Exact-script resource generation",
+      "id": 129937917953,
+      "conclusion": "success"
+    },
+    {
+      "name": "Regression tests and lint",
+      "id": 129937918215,
+      "conclusion": "success"
+    },
+    {
+      "name": "Core emulator API 35",
+      "id": 129942314804,
+      "conclusion": "success"
+    },
+    {
+      "name": "Position dialog API 35",
+      "id": 129942314823,
+      "conclusion": "success"
+    },
+    {
+      "name": "Emulator API 35",
+      "id": 129951281945,
+      "conclusion": "success"
+    }
+  ],
+  "postmerge_jobs": [
+    {
+      "name": "Verify recent same-tree PR evidence",
+      "id": 129952439734,
+      "conclusion": "success"
+    },
+    {
+      "name": "Exact-script resource generation",
+      "id": 129953326980,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Regression tests and lint",
+      "id": 129953327834,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "id": 129953328132,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Core emulator API ${{ matrix.api }}",
+      "id": 129953328510,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Emulator API ${{ matrix.api }}",
+      "id": 129953328700,
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Position dialog API ${{ matrix.api }}",
+      "id": 129953329529,
+      "conclusion": "skipped"
+    }
+  ],
+  "release_claim": false
+}
