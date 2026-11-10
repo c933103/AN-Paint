@@ -45,6 +45,16 @@ Both the mixed-script Korean and emoji-English mirrors are checked independently
 Only `:Paintroid:bundleCorrespondingSource` is excluded there; the normal build
 verifies that native-source/bundling graph. Production translations are not edited.
 
+Before preparation, the exact-script job restores the APK build's existing
+dependency/source cache using the identical path list and exact Gradle/wrapper/
+native-fetch-script key. It does not save that cache or restore a broader prefix.
+No compiled application outputs or compiler-object cache are restored. Preparation
+and all clean/incremental probes still run on both hits and misses, with unchanged
+deadlines. Source revision markers, official URLs, archive hashes and the notice
+comparison remain unchanged. A missing cache uses the existing downloader and can
+still fail if the official source is unavailable; warm-cache resilience is not a
+cold-download fix or proof of upstream availability.
+
 The same resource probe now verifies the generated canonical fallback catalogue
 and its ordering/clean/incremental behavior. See [translation runtime boundaries](TRANSLATION_RUNTIME.md).
 
