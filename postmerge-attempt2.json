@@ -1,0 +1,1291 @@
+{
+  "repository": "c933103/AN-Paint",
+  "pr": 407,
+  "merge": "eec16b6d440f9f598a10860cadbf83a656c0e119",
+  "run_id": 42746430929,
+  "attempt": 2,
+  "core_job_id": 129610502980,
+  "artifact_id": 13732784409,
+  "artifact_sha256": "6bb00f9cc508fc3d1b4558d249108b8de1a36d78c2066abfb0a26ac861175012",
+  "conclusion": "failure",
+  "scope": "All 43 selected core app methods and 74 native methods passed; required screenshot transport failed. No complete captured-evidence acceptance.",
+  "reports": {
+    "Paintroid/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "apngImportsItsSeparateDefaultPoster",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "gifImportsTheFirstFrame",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "apngImportsTheFirstFrameWhenItIsTheDefaultImage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "webpImportsTheFirstFrame",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "name": "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "name": "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "name": "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "name": "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "name": "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "name": "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "heicExportKeepsLongOddImageDimensionsAcrossTiles",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "colouredHlgUsesActualPrimariesForDisplayLuminance",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "avifTiledRoundTripAndCrossTileCropKeepExactPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "heicAndAvifQualityControlsProduceDecodableOpaqueImages",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "avifIccProfileAndNclxWideGamutAreConvertedToSrgb",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "name": "failedBudgetPreservesExistingDestinationAndSourcePixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "name": "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "name": "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "lossyEncodingHandlesLongPortraitAndLandscapeImages",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "lossyQualityAndReducedDecodeProduceUsableImages",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "everyAdvertisedBundledFontLoadsItsActualFontFile",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "tileRenderingUsesTheSameCoordinatesAsTheWholePage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "descriptorsCloseAfterRepeatedSuccessAndPageFailures",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "selectedPageOpensAsEditablePixelsWithoutChangingThePdf",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "linear16AndPqPngRenderWithTransferAndHighlightDetail",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "jpegAndWebpIccAreConvertedExactlyOnce",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "assemblyCropUsesSameColourConversionAndWhiteBackground",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "constrainedEncodePreservesDestinationAndSourceAndCanRecover",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "jpegCompressedTiffMatchesIndependentHostDecoder",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "sharedImportRecognizesTiffBySignatureAndUsesFirstPage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "uncompressedAndDeflateExportsPreserveAllOpaquePixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "independentLzwPredictorPackBitsAndCcittFixturesImportExactly",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "transparentEncodeRejectsBeforeOverwritingDestination",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.UltraHdrImportTest",
+          "name": "ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "lossyQualityChangesTheFileAndHigherQualityReducesPixelError",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [],
+      "included_tests": [],
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827",
+      "timeout_seconds": 180,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 49.579869581
+    },
+    "app/accepted-credit-restart/seed/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "name": "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "paint.anpaint.android.EditorDeviceTest",
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "paint.anpaint.android.PageCountWordingDeviceTest",
+        "paint.anpaint.android.VerticalLocaleDeviceTest"
+      ],
+      "included_tests": [],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 60,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": true,
+      "target_pid_before_instrumentation": 8301,
+      "elapsed_seconds": 6.145331017999979
+    },
+    "app/accepted-credit-restart/verify/summary.json": {
+      "success": true,
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "name": "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "paint.anpaint.android.EditorDeviceTest",
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "paint.anpaint.android.PageCountWordingDeviceTest",
+        "paint.anpaint.android.VerticalLocaleDeviceTest"
+      ],
+      "included_tests": [],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 60,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 6.491951649000043
+    },
+    "app/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 20,
+      "completed_tests": 20,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "responsiveCategoriesOpenBesideTheToolStripInBothOrientations",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "stoppedEditorReceivesExternalCantoneseLocaleOnResume",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryViewportDeviceTest",
+          "name": "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.PageCountWordingDeviceTest",
+          "name": "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "paint.anpaint.android.ColourViewportDeviceTest"
+      ],
+      "included_tests": [],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 180,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 145.07800026599998
+    },
+    "app-dialog/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 14,
+      "completed_tests": 14,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeEnglishColourCaptionsAndPreviewRemainReachable",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeHungarianColourCaptionsAndPreviewRemainReachable",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeHungarianColourImeBackAndFooterLifecycle",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeEnglishColourImeBackAndFooterLifecycle",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "hungarianColourCaptionsFitPortraitAndLandscape",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "southKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "mixedKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutArtworkNoticeCompletesNativeFooterFlow",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "northKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [],
+      "included_tests": [
+        "paint.anpaint.android.ColourViewportDeviceTest#hungarianColourCaptionsFitPortraitAndLandscape",
+        "paint.anpaint.android.ColourViewportDeviceTest#largeEnglishColourCaptionsAndPreviewRemainReachable",
+        "paint.anpaint.android.ColourViewportDeviceTest#largeEnglishColourImeBackAndFooterLifecycle",
+        "paint.anpaint.android.ColourViewportDeviceTest#largeHungarianColourCaptionsAndPreviewRemainReachable",
+        "paint.anpaint.android.ColourViewportDeviceTest#largeHungarianColourImeBackAndFooterLifecycle",
+        "paint.anpaint.android.ColourViewportDeviceTest#normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+        "paint.anpaint.android.ColourViewportDeviceTest#retainedColourStateSurvivesRotationImeCancelAndReopen",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#aboutArtworkNoticeCompletesNativeFooterFlow",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#mixedKoreanAttributionAndConditionalCropUseRealConsumers",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#northKoreanAttributionAndConditionalCropUseRealConsumers",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+        "paint.anpaint.android.LocalizedDialogDeviceTest#southKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 300,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 196.89863734799997
+    },
+    "app-gallery-draft/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 3,
+      "completed_tests": 3,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [],
+      "included_tests": [
+        "paint.anpaint.android.GalleryDraftDeviceTest#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits",
+        "paint.anpaint.android.GalleryDraftDeviceTest#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor",
+        "paint.anpaint.android.GalleryDraftDeviceTest#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 90,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 46.90387686499997
+    },
+    "app-vertical/english-manchu/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 2,
+      "completed_tests": 2,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [],
+      "included_tests": [
+        "paint.anpaint.android.VerticalLocaleDeviceTest#manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+        "paint.anpaint.android.VerticalLocaleDeviceTest#verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 180,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 108.82061903900001
+    },
+    "app-vertical/literary-chinese-emoji/androidTest-results/summary.json": {
+      "success": true,
+      "expected_tests": 2,
+      "completed_tests": 2,
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "returncode": 0,
+      "timed_out": false,
+      "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+      "excluded_classes": [],
+      "included_tests": [
+        "paint.anpaint.android.VerticalLocaleDeviceTest#literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+        "paint.anpaint.android.VerticalLocaleDeviceTest#verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "timeout_seconds": 180,
+      "device_sdk": 35,
+      "sdk_suppressed_tests": [],
+      "leave_target_running": false,
+      "target_pid_before_instrumentation": null,
+      "elapsed_seconds": 104.28886340000008
+    }
+  },
+  "core_coverage": {
+    "success": true,
+    "execution_status": "passed",
+    "inventory_validated": true,
+    "device_sdk": 35,
+    "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+    "timeout_seconds_by_phase": {
+      "ordinary": 180,
+      "gallery-draft": 90,
+      "vertical-english-manchu": 180,
+      "vertical-literary-chinese-emoji": 180,
+      "dialog": 300,
+      "seed": 60,
+      "verify": 60
+    },
+    "dialog_timeout_seconds": 300,
+    "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; separate native IME/Back/footer lifecycle; simultaneous IME/field/footer fit, whole-dialog and universal 2x not accepted",
+    "ordinary_and_gallery_total_timeout_seconds": 270,
+    "vertical_timeout_seconds_per_shard": 180,
+    "vertical_total_timeout_seconds": 360,
+    "receipt_scope": "partial-core-app-union",
+    "deferred_tests": [
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "ainuKanaPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "ainuLatinPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "dzongkhaPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "jejuPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "manchuPositionColumnsAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "nomPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "tibetanPositionTextAndNativeEditing"
+      ]
+    ],
+    "all_app_total_timeout_seconds": 1050,
+    "declared_tests": 50,
+    "sdk_eligible_tests": 50,
+    "sdk_suppressed_tests": [],
+    "selected_tests": 43,
+    "explicitly_excluded_tests": [],
+    "completed_tests": 43,
+    "phases": {
+      "ordinary": 20,
+      "gallery-draft": 3,
+      "vertical-english-manchu": 2,
+      "vertical-literary-chinese-emoji": 2,
+      "dialog": 14,
+      "seed": 1,
+      "verify": 1
+    },
+    "completed": [
+      [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+      ],
+      [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "hungarianColourCaptionsFitPortraitAndLandscape"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeEnglishColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeEnglishColourImeBackAndFooterLifecycle"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeHungarianColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeHungarianColourImeBackAndFooterLifecycle"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "retainedColourStateSurvivesRotationImeCancelAndReopen"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "stoppedEditorReceivesExternalCantoneseLocaleOnResume"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      [
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutArtworkNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "northKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "southKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.PageCountWordingDeviceTest",
+        "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ]
+    ]
+  },
+  "transport": {
+    "dialog-export-transfer.json": {
+      "transport_complete": false,
+      "budget_seconds": 15,
+      "serial": "emulator-5554",
+      "boot_id": "e7a2a629-d159-42a8-bf15-5c30113498ac",
+      "device_sdk": 35,
+      "abi": "x86_64",
+      "emulator_pid": 2147,
+      "commands": [
+        {
+          "command": "initial-identity",
+          "started_seconds": 0.0004225779999842416,
+          "remaining_seconds": 14.999581819000014,
+          "exit_status": 0,
+          "ended_seconds": 0.038392138000062914
+        },
+        {
+          "command": "pull-1",
+          "started_seconds": 0.038919783999972424,
+          "remaining_seconds": 14.96108101699997,
+          "exit_status": 1,
+          "ended_seconds": 0.10614498400002503
+        },
+        {
+          "command": "passive-wait",
+          "started_seconds": 0.11163983599999483,
+          "remaining_seconds": 14.888361356000019,
+          "exit_status": 0,
+          "ended_seconds": 0.4288415209999812
+        },
+        {
+          "command": "recovered-identity",
+          "started_seconds": 0.4294195030000765,
+          "remaining_seconds": 14.570581188000006,
+          "exit_status": 0,
+          "ended_seconds": 0.4463698580000255
+        },
+        {
+          "command": "pull-2",
+          "started_seconds": 0.4467669770000384,
+          "remaining_seconds": 14.553233783999985,
+          "exit_status": 1,
+          "ended_seconds": 0.5106491520000418
+        }
+      ],
+      "error": "Evidence transfer failed; recovery allowance exhausted"
+    },
+    "vertical-locale-export-transfer.json": {
+      "transport_complete": false,
+      "budget_seconds": 15,
+      "serial": "emulator-5554",
+      "boot_id": "e7a2a629-d159-42a8-bf15-5c30113498ac",
+      "device_sdk": 35,
+      "abi": "x86_64",
+      "emulator_pid": 2147,
+      "commands": [
+        {
+          "command": "initial-identity",
+          "started_seconds": 0.00032606199999918317,
+          "remaining_seconds": 14.999676862000001,
+          "exit_status": 1,
+          "ended_seconds": 0.0016321730000754542
+        },
+        {
+          "command": "passive-wait",
+          "started_seconds": 0.001890233000040098,
+          "remaining_seconds": 14.998110268000005,
+          "exit_status": 0,
+          "ended_seconds": 0.4162265390000357
+        },
+        {
+          "command": "recovered-identity",
+          "started_seconds": 0.4168237500000487,
+          "remaining_seconds": 14.583176970999943,
+          "exit_status": 0,
+          "ended_seconds": 0.430797453000082
+        },
+        {
+          "command": "pull-1",
+          "started_seconds": 0.43114667999998346,
+          "remaining_seconds": 14.568854000999977,
+          "exit_status": 1,
+          "ended_seconds": 0.4950349340000457
+        }
+      ],
+      "error": "Evidence transfer failed; recovery allowance exhausted"
+    }
+  },
+  "collection_status": "dialog_pull_exit=1\nvertical_pull_exit=1\nlogcat_exit=255\nresult=1\n",
+  "adb_server_tail": "--- adb starting (pid 2165) ---\n11-10 03:31:19.868  2165  2165 I adb     : main.cpp:65 Android Debug Bridge version 1.0.41\n11-10 03:31:19.868  2165  2165 I adb     : main.cpp:65 Version 37.0.1-15733141\n11-10 03:31:19.868  2165  2165 I adb     : main.cpp:65 Installed as /usr/local/lib/android/sdk/platform-tools/adb\n11-10 03:31:19.868  2165  2165 I adb     : main.cpp:65 Running on Linux 6.8.0-1070-azure (x86_64)\n11-10 03:31:19.868  2165  2165 I adb     : main.cpp:65 \n11-10 03:42:59.976  2165  2240 I adb     : transport.cpp:1222 emulator-5554: connection terminated: read failed\n11-10 03:43:00.363  2165  3298 I adb     : transport.cpp:1222 emulator-5554: connection terminated: read failed\n11-10 03:43:00.884  2165  3312 I adb     : transport.cpp:1222 emulator-5554: connection terminated: read failed\n11-10 03:43:01.325  2165  3324 I adb     : transport.cpp:1222 emulator-5554: connection terminated: read failed\n",
+  "identity": {
+    "group": "core",
+    "commit": "eec16b6d440f9f598a10860cadbf83a656c0e119",
+    "run_id": "42746430929",
+    "run_attempt": "2",
+    "build_variant": "debug",
+    "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+    "device_sdk": 35,
+    "apk_sha256": "ba0be903ef15c55e866880e60ad032aaa006fe8a02a02b490c682ba70200fc04",
+    "source_sha256": "d7d0019197c9b71c6513b9a630cb4c9dced9b8907c2eb572561b01ec559e9b46",
+    "test_apk_sha256": "0ee2b8d4fd91a72d778d5c8f638a35c486ab6ccb2865a2560816a47a39e69a2f"
+  },
+  "limits": "Transport dropped after successful instrumentation. Exact connection cause unestablished. Missing image captures cannot be accepted as complete. One new-cause failed-jobs-only retry requested; no source/gate/recovery-limit changes."
+}
