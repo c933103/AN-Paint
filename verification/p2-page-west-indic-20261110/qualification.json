@@ -1,0 +1,180 @@
+{
+  "pr": 410,
+  "head": "3d516f140516ba9ba8e1e55edfe6e650d1f218f8",
+  "base": "af4c7d335cf3ba67b2132d25391da2ede7f9c5c3",
+  "merge": "6ad5692bf523ef84ffc2f2a5672153f6dc3ebd2b",
+  "tree": "4c94fcd5af02b3f54583a4bcfb80f5743a249f0e",
+  "tested_checkout": "05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+  "merged_at": "2026-11-10T07:40:51Z",
+  "pr_run": {
+    "id": 42773522512,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129686598795,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129686682152,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129686682182,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129686682189,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129690572810,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129690572839,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129696251031,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "id": 6761375931,
+    "code_review": "completed/no findings",
+    "security_review": "completed/gate disabled",
+    "head": "3d516f140516ba9ba8e1e55edfe6e650d1f218f8"
+  },
+  "postmerge_run": {
+    "id": 42776981255,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129697672615,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129697967410,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129697967622,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129697967650,
+        "name": "Position dialog API ${{ matrix.api }}",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129697967668,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129697968360,
+        "name": "Core emulator API ${{ matrix.api }}",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129697968402,
+        "name": "Emulator API ${{ matrix.api }}",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "postmerge_receipt": {
+    "artifact_id": 13744332130,
+    "sha256": "0bd164e345dd3ddd17f168860dd46c1f03fe41781eea24dd128750a9e06c7dd6",
+    "reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "verification": "Downloaded archive digest checked; exact merge/base/head/checkout/tree/run/attempt/review and all six original artifact identities match fresh metadata. Ordered source/tested/actual merge parents and source tree independently verified. Six downstream postmerge jobs were skipped, not rerun."
+  },
+  "original_artifacts": {
+    "build": {
+      "artifact_id": 13742997775,
+      "name": "apk-and-source-05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+      "digest": "sha256:f298b978f53e4cab10603bd2abe812f33c7381806f1e8ad5f651f26949107f9d"
+    },
+    "tests": {
+      "artifact_id": 13743093057,
+      "name": "instrumentation-apks-05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+      "digest": "sha256:27769629997d5c386ef6fa7669e5945d393c5f175bcd1c6b5c4252e114e27a94"
+    },
+    "regression": {
+      "artifact_id": 13742774910,
+      "name": "regression-and-lint-05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+      "digest": "sha256:3f8ddbbdb4a5cb5ecc983a9b01b4951f5a340895e2e5ef23c066c0eb37797fda"
+    },
+    "exact": {
+      "artifact_id": 13742902503,
+      "name": "exact-script-generation-05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+      "digest": "sha256:ecf1221369cdbc99c7b4103573e4e4718543af94823263d070949e6da3e5fe3a"
+    },
+    "core": {
+      "artifact_id": 13743877859,
+      "name": "emulator-core-api-35-05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+      "digest": "sha256:cb9295e00dbc9ca26fe43a6ce1054d3eaa300c709f1bc8cf9f26695c7d1c2d2d"
+    },
+    "position": {
+      "artifact_id": 13743552181,
+      "name": "emulator-position-api-35-05f42d195fe43c41b1b514a1cb945743bfbe6a68",
+      "digest": "sha256:48100b82f0f593eb78393d3d6d1cb96b72875ad3061afcfa0a629b8389506572"
+    }
+  },
+  "coverage": {
+    "P0": {
+      "present": 16074,
+      "total": 16074
+    },
+    "P1": {
+      "present": 46301,
+      "total": 48393
+    },
+    "P2": {
+      "present": 21652,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4777,
+      "total": 11799
+    }
+  },
+  "accepted_wording": {
+    "new_values": 120,
+    "unchanged_candidates": 117,
+    "revised": 3,
+    "held": 0,
+    "method": "Independent changed-only whole-value AI review; not native-human certification"
+  },
+  "limits": "No release, native-human fluency, exhaustive installed-caption/layout/bidi/font/speech or physical-device certification. Source separator [92,110] preserved, not independently certified as rendered newline. No unidentified installed-APK diagnosis claim. Held work and #395 merge/#400 retry denials unchanged."
+}
