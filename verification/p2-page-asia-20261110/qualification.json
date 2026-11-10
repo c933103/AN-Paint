@@ -1,0 +1,186 @@
+{
+  "pr": 412,
+  "head": "d57d1719d063255b0ced26a6d564453d303c000b",
+  "base": "1290ee58e2d5a6f50a530e1d2331de57c3d382bb",
+  "merge": "10fe8301bbde6040ab5aecfdb209849ed664ede4",
+  "tree": "3c31c2d9490ab44884b91ab900d3782300ad6eb7",
+  "tested_checkout": "c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+  "merged_at": "2026-11-10T10:14:29Z",
+  "pr_run": {
+    "id": 42793784217,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129753592493,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129753678210,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129753678242,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129753678291,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129758472396,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129758472506,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129765035786,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "review": {
+    "id": 6764208459,
+    "head": "d57d1719d063255b0ced26a6d564453d303c000b",
+    "code_review": "completed/no findings or unresolved findings",
+    "security_review": "completed/gate disabled/null finding flags"
+  },
+  "postmerge_run": {
+    "id": 42797461816,
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 129766170914,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 129766444068,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129766444206,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129766444738,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129766444827,
+        "name": "Emulator API ${{ matrix.api }}",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129766445060,
+        "name": "Core emulator API ${{ matrix.api }}",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 129766445560,
+        "name": "Position dialog API ${{ matrix.api }}",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ]
+  },
+  "postmerge_receipt": {
+    "artifact_id": 13755331991,
+    "sha256": "9a8a021caab3a788b29fd210fbddb3cf6621416421fee2b701a44f572f6be87b",
+    "reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "verification": "Downloaded receipt archive digest checked; exact merge/base/head/tested checkout/tree/run/attempt/review provenance and all six original artifact IDs/names/digests/source identities match fresh metadata. Source/tested/merge trees and ordered parents independently verified. Six downstream postmerge jobs skipped, not rerun; original large artifacts were validated by the reuse workflow, not independently downloaded again."
+  },
+  "original_artifacts": {
+    "build": {
+      "artifact_id": 13753363445,
+      "name": "apk-and-source-c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+      "digest": "sha256:43e79b6c28ec9b1a0d151ba2929c6a5ae3a52544f8e1355a8d62f29bd1a9a39b"
+    },
+    "tests": {
+      "artifact_id": 13752324056,
+      "name": "instrumentation-apks-c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+      "digest": "sha256:ad2019795dbcd22e229188d02a9984fbf5cf01c7165da4f1228110baecca5a47"
+    },
+    "regression": {
+      "artifact_id": 13754191934,
+      "name": "regression-and-lint-c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+      "digest": "sha256:e5a1b4f1ecc080535d954774e0eac815ed5863314a278d6ccc628989d493a2d2"
+    },
+    "exact": {
+      "artifact_id": 13752358060,
+      "name": "exact-script-generation-c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+      "digest": "sha256:8dbafe30ea06210ea3e34cf2a115f30e51f4dc6d0a0f2682b7e09ea6548ca736"
+    },
+    "core": {
+      "artifact_id": 13754331338,
+      "name": "emulator-core-api-35-c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+      "digest": "sha256:99ac76a90c72f19cc0e07f61e7574b36e691fe51886047da4f5572ee7baf6c21"
+    },
+    "position": {
+      "artifact_id": 13753740762,
+      "name": "emulator-position-api-35-c9f8ac3cad83661b8173171e1f1e26edf3095c4a",
+      "digest": "sha256:086c0f2f6c1c44b4c40a5cfa2ca82e2bae9a5e76e891060f83631e45e9d280c9"
+    }
+  },
+  "coverage": {
+    "P0": {
+      "present": 16074,
+      "total": 16074
+    },
+    "P1": {
+      "present": 46301,
+      "total": 48393
+    },
+    "P2": {
+      "present": 21880,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4777,
+      "total": 11799
+    }
+  },
+  "all171_catalogues": {
+    "key_complete": 65,
+    "partial": 106,
+    "empty": 0
+  },
+  "accepted_wording": {
+    "new_values": 120,
+    "unchanged_candidates": 118,
+    "revised": 2,
+    "held": 0,
+    "preserved_old_nodes": 2184,
+    "method": "Independent changed-only whole-value AI review, not native-human certification"
+  },
+  "limits": "No release, native-human, exhaustive installed-caption/layout/bidi/font/speech, physical-device or unidentified installed-APK diagnosis certification. Source [92,110] and host/JDK formatting are not separate compiled-resource/installed-rendering proof. Held work and explicit #395 merge/#400 retry denials unchanged."
+}
