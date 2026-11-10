@@ -1,0 +1,200 @@
+{
+  "status": "Blocked by required exact-script setup after one failed-jobs-only retry; not merged",
+  "pr": 422,
+  "head": "2391add826428c7eb0564890ebb4ec51f81ae6d3",
+  "base": "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+  "tree": "8524c03297755ccf5efdbe083a83caf81c7abebe",
+  "tested_checkout": "002fc3d01506eb75a737b0983f00dc4534aa5f32",
+  "ordered_parents": [
+    "f0978e5c2d4e2dfc691450f60b8b82cdba5802ad",
+    "2391add826428c7eb0564890ebb4ec51f81ae6d3"
+  ],
+  "new_values": 25,
+  "unchanged_old_nodes": 719,
+  "review": {
+    "comment_id": 6778391539,
+    "node_id": "IC_kwDOUTkwWc8AAAABlAYL8w",
+    "updated_at": "2026-11-10T20:27:54Z",
+    "app_id": 1144995,
+    "bot_id": 199175422,
+    "state": {
+      "code_review": {
+        "commit_sha": "2391add826428c7eb0564890ebb4ec51f81ae6d3",
+        "has_any_findings": false,
+        "has_unresolved_findings": false,
+        "status": "completed"
+      },
+      "security_review": {
+        "commit_sha": "2391add826428c7eb0564890ebb4ec51f81ae6d3",
+        "has_any_findings": null,
+        "has_unresolved_findings": null,
+        "status": "completed"
+      }
+    },
+    "security": {
+      "blockingSeverityThreshold": "P0",
+      "headSha": "2391add826428c7eb0564890ebb4ec51f81ae6d3",
+      "mergeGateEnabled": false,
+      "pullRequestNumber": 422,
+      "repository": "c933103/AN-Paint",
+      "status": "completed"
+    }
+  },
+  "run": {
+    "id": 42895043799,
+    "status": "completed",
+    "conclusion": "failure",
+    "attempt": 2
+  },
+  "attempt1": {
+    "jobs": [
+      {
+        "id": 130105828859,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:24:56Z",
+        "completed_at": "2026-11-10T20:25:06Z"
+      },
+      {
+        "id": 130105947472,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:25:08Z",
+        "completed_at": "2026-11-10T20:43:30Z"
+      },
+      {
+        "id": 130105947711,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:25:08Z",
+        "completed_at": "2026-11-10T20:35:33Z"
+      },
+      {
+        "id": 130105947888,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "failure",
+        "started_at": "2026-11-10T20:25:08Z",
+        "completed_at": "2026-11-10T20:28:15Z"
+      },
+      {
+        "id": 130111947180,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:35:35Z",
+        "completed_at": "2026-11-10T20:48:44Z"
+      },
+      {
+        "id": 130111947271,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:35:35Z",
+        "completed_at": "2026-11-10T20:40:36Z"
+      },
+      {
+        "id": 130119315951,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:48:47Z",
+        "completed_at": "2026-11-10T20:49:05Z"
+      }
+    ],
+    "failure": "120-second connection timeout fetching pinned libtiff4.7.2 before resource-generation probe",
+    "excerpt": [
+      "2026-11-10T20:26:11.8409849Z Fetching libtiff 4.7.2",
+      "2026-11-10T20:28:12.0095122Z TimeoutError: timed out",
+      "2026-11-10T20:28:12.0142125Z     raise URLError(err)",
+      "2026-11-10T20:28:12.0142437Z urllib.error.URLError: <urlopen error timed out>",
+      "2026-11-10T20:28:12.0228408Z ##[error]Process completed with exit code 1.",
+      "2026-11-10T20:28:12.7529041Z SHA256 digest of uploaded artifact is 063ba21cdb69fff7ae47a860f0732a736e0da0e98a132cea61062a35cb09362c",
+      "2026-11-10T20:28:13.2545709Z Artifact exact-script-generation-002fc3d01506eb75a737b0983f00dc4534aa5f32 successfully finalized. Artifact ID 13801050377",
+      "2026-11-10T20:28:13.2547366Z Artifact exact-script-generation-002fc3d01506eb75a737b0983f00dc4534aa5f32 has been successfully uploaded! Final size is 7896 bytes. Artifact ID is 13801050377"
+    ],
+    "artifact_id": 13801050377,
+    "artifact_sha256": "063ba21cdb69fff7ae47a860f0732a736e0da0e98a132cea61062a35cb09362c"
+  },
+  "attempt2": {
+    "jobs": [
+      {
+        "id": 130121045918,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "failure",
+        "started_at": "2026-11-10T20:51:55Z",
+        "completed_at": "2026-11-10T20:53:05Z"
+      },
+      {
+        "id": 130121045940,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:24:56Z",
+        "completed_at": "2026-11-10T20:25:06Z"
+      },
+      {
+        "id": 130121047629,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:25:08Z",
+        "completed_at": "2026-11-10T20:35:33Z"
+      },
+      {
+        "id": 130121047732,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:25:08Z",
+        "completed_at": "2026-11-10T20:43:30Z"
+      },
+      {
+        "id": 130121049959,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:35:35Z",
+        "completed_at": "2026-11-10T20:48:44Z"
+      },
+      {
+        "id": 130121049994,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:35:35Z",
+        "completed_at": "2026-11-10T20:40:36Z"
+      },
+      {
+        "id": 130121051492,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-10T20:48:47Z",
+        "completed_at": "2026-11-10T20:49:05Z"
+      }
+    ],
+    "failure": "urllib.error.URLError: [Errno104] Connection reset by peer fetching pinned libtiff4.7.2 before resource-generation probe",
+    "excerpt": [
+      "2026-11-10T20:53:01.3740034Z Fetching libtiff 4.7.2",
+      "2026-11-10T20:53:01.5029683Z ConnectionResetError: [Errno 104] Connection reset by peer",
+      "2026-11-10T20:53:01.5038957Z     raise URLError(err)",
+      "2026-11-10T20:53:01.5039294Z urllib.error.URLError: <urlopen error [Errno 104] Connection reset by peer>",
+      "2026-11-10T20:53:01.5157551Z ##[error]Process completed with exit code 1.",
+      "2026-11-10T20:53:02.5137576Z SHA256 digest of uploaded artifact is bf6393524ff16ef276eb86bdd056c38c870e9bcac07336c033ddd2f1338c01c9",
+      "2026-11-10T20:53:03.0817567Z Artifact exact-script-generation-002fc3d01506eb75a737b0983f00dc4534aa5f32 successfully finalized. Artifact ID 13802800716",
+      "2026-11-10T20:53:03.0819060Z Artifact exact-script-generation-002fc3d01506eb75a737b0983f00dc4534aa5f32 has been successfully uploaded! Final size is 7896 bytes. Artifact ID is 13802800716"
+    ],
+    "artifact_id": 13802800716,
+    "artifact_sha256": "bf6393524ff16ef276eb86bdd056c38c870e9bcac07336c033ddd2f1338c01c9"
+  },
+  "provider_url": "https://download.osgeo.org/libtiff/tiff-4.7.2.tar.gz",
+  "source_archive_sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a",
+  "execution_accounting": "Only exact-script job was requested to rerun. The six success entries in attempt2 retain their original attempt1 execution intervals; they are not newly executed passes despite changed GitHub job metadata IDs.",
+  "action": "No third retry, held-PR mutation, source/workflow change, merge or release. Preserve existing holds; exact-script gate must pass before merge.",
+  "next_preparation": "https://github.com/c933103/AN-Paint/tree/fd6072ebfca8192f47b573f0181e27052c9ba4cb/verification/p2-status-ca-da-ro-uk-preparation-20261110"
+}
