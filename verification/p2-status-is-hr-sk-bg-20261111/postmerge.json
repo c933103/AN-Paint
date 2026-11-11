@@ -1,0 +1,131 @@
+{
+  "pr": 425,
+  "merge": "a20c7a2aed4c230fe83e5ce393eeaf96726379cf",
+  "tree": "22dd13e44fca9d0e292fe507830e083d06a4e949",
+  "run": 42929015114,
+  "attempt": 1,
+  "event": "push",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 130222733600,
+      "name": "Verify recent same-tree PR evidence",
+      "conclusion": "success"
+    },
+    {
+      "id": 130222987400,
+      "name": "Regression tests and lint",
+      "conclusion": "success"
+    },
+    {
+      "id": 130222987420,
+      "name": "Exact-script resource generation",
+      "conclusion": "success"
+    },
+    {
+      "id": 130222987438,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success"
+    },
+    {
+      "id": 130225558861,
+      "name": "Position dialog API 35",
+      "conclusion": "success"
+    },
+    {
+      "id": 130225558919,
+      "name": "Core emulator API 35",
+      "conclusion": "success"
+    },
+    {
+      "id": 130232170155,
+      "name": "Emulator API 35",
+      "conclusion": "success"
+    }
+  ],
+  "develop_at_terminal": "a20c7a2aed4c230fe83e5ce393eeaf96726379cf",
+  "postmerge_downstream_executed": true,
+  "verification": {
+    "verified": true,
+    "checkout": "a20c7a2aed4c230fe83e5ce393eeaf96726379cf",
+    "tree": "22dd13e44fca9d0e292fe507830e083d06a4e949",
+    "run": 42929015114,
+    "artifact_digests": {
+      "exact": "sha256:3989439380dfca54974ae70dc1405e3845459d9e5b18cebb36e8d6e500fb7331",
+      "regression": "sha256:0ac681643f7c60703f8835cc42e4dcb77a345ef8501793679a8717be0771bb52",
+      "composition": "sha256:2992e248e3451afe9e36507ea79c1fde970382d9cf4a785d887e12bbdf467de1"
+    },
+    "exact_probes": 13,
+    "python_passes": 865,
+    "python_skips": 2,
+    "jvm": {
+      "tests": 1392,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_xml_files": 155,
+    "native_api35": 74,
+    "app_api35": 50,
+    "identity": {
+      "commit": "a20c7a2aed4c230fe83e5ce393eeaf96726379cf",
+      "run_id": "42929015114",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "e3e352ddb2e1934026c506b9562501299a7831e90626577c54fea6f4de974e4f",
+      "source_sha256": "524d707ab0e63ca9fcb10628735d0983e097f672c825c897665c9fc4870222df",
+      "test_apk_sha256": "79ea9909344576a7108b47083f22119b2ec96779d8da3d385b076efa661e587c",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "limits": "Source-bound report verification, not fresh pixel inspection, exhaustive linguistic acceptance or native-human review."
+  },
+  "exact_cache_observation": {
+    "job": 130222987420,
+    "run": 42929015114,
+    "observations": [
+      "2026-11-11T00:09:27.7632620Z Cache hit for: android-resource-deps-v1-Linux-fe82a0afa02e247b74cb76f37319e14eeb7a77ba6fe64074efd60addd13c182a",
+      "2026-11-11T00:09:41.8203896Z Cache restored successfully",
+      "2026-11-11T00:09:41.8749762Z Cache restored from key: android-resource-deps-v1-Linux-fe82a0afa02e247b74cb76f37319e14eeb7a77ba6fe64074efd60addd13c182a",
+      "Paintroid/build/tiff-source",
+      "2026-11-11T00:09:42.2651808Z Cache hit for: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+      "2026-11-11T00:09:50.9785325Z Cache restored successfully",
+      "2026-11-11T00:09:51.0314027Z Cache restored from key: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build"
+    ]
+  },
+  "fallback": {
+    "reused": false,
+    "reason": "Full fallback: ValueError: Policy, PR, review inventory or execution set changed",
+    "run": 42929015114,
+    "receipt_artifact": 13815227548,
+    "receipt_sha256": "2217147c02e413e483fad8dea360b7078ba8a1207783227c8ec9f10b7e6d7c0a",
+    "observed_pr_comment": {
+      "id": 6782883709,
+      "created_at": "2026-11-11T00:09:14Z"
+    },
+    "preflight_interval": [
+      "2026-11-11T00:08:50Z",
+      "2026-11-11T00:09:18Z"
+    ],
+    "possible_trigger": "The merge-result PR comment was added during the preflight. The source rechecks complete PR/comment inventories. This is a plausible cause; the initial snapshots are unavailable, so the exact differing comparison is not proven.",
+    "next": "Allow the unchanged full fallback run to finish. Avoid mutating the PR/comment inventory while future reuse preflights are running. No retry or gate change."
+  },
+  "raw_verified_results_sha256": "31529100aac48dc333d2a335018b9edf7013c21e6e41495cf2d4e3d6b78d3b98",
+  "next_preparation": {
+    "evidence_commit": "69b8081ff6501048533aee39fe9761e382a7fb3e",
+    "new_values": 35,
+    "state": "No application branch or PR. Fresh develop/owner/hold reconciliation required before publication."
+  },
+  "source_presence": {
+    "P2_present": 22515,
+    "P2_total": 46683
+  },
+  "limits": [
+    "Source-bound automated report verification, not fresh pixel review, native-human language review, exhaustive installed layout/glyph/speech certification or release.",
+    "Warm source-cache hit observed; cold-download availability remains unresolved."
+  ]
+}
