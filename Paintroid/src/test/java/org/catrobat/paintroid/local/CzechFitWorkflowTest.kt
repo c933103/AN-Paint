@@ -141,10 +141,9 @@ class CzechFitWorkflowTest {
     private fun checkCaption(activity: ClassicPaintActivity,profile: String) {
         val root=activity.window.decorView
         val fit=root.findViewWithTag<View>("zoom_fit_view")
-        val caption="Přizpůsobit obrázek oknu"
+        val caption=activity.getString(R.string.ui_fit_entire_canvas_in_view)
         assertTrue(fit is ActionButton)
         assertEquals(caption,fit.contentDescription.toString())
-        assertEquals(caption,activity.getString(R.string.ui_fit_entire_canvas_in_view))
         val visible=Rect()
         assertTrue("$profile: Fit visible",fit.getLocalVisibleRect(visible))
         assertTrue("Full hit target",visible.contains(Rect(0,0,fit.width,fit.height)))
@@ -192,6 +191,7 @@ class CzechFitWorkflowTest {
         val status=root.findViewWithTag<TextView>("status_text")
         val viewport=root.findViewWithTag<ScrollView>("status_viewport")
         assertSame(viewport,status.parent);assertEquals(Int.MAX_VALUE,status.maxLines)
+        awaitStatusLayout(status)
         val geometry=listOf(footer.width,footer.height,canvas.width,canvas.height)
         val draft=ReflectionHelpers.getField<UiMessage>(activity,"draftStatus")
         val longStatus=("Koncept nebyl uložen. Použijte příkaz Uložit. ").repeat(12)
@@ -201,13 +201,25 @@ class CzechFitWorkflowTest {
                 ReflectionHelpers.setField(activity,"draftStatus",UiMessage.Literal(message))
                 ReflectionHelpers.setField(activity,"busy",index==3)
                 ReflectionHelpers.setField(activity,"autosaving",index==3)
-                ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus");settle()
-                if(index==3) assertEquals(activity.getString(R.string.ui_autosaving_draft),status.text.toString())
-                else assertTrue("Intended synthetic status is actually rendered",status.text.toString().contains(message))
+                ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus")
+                val expected=if(index==3) activity.getString(R.string.ui_autosaving_draft)
+                    else activity.getString(R.string.ui_px,canvas.tool.label,canvas.zoomStatusLabel(),
+                        activity.document.bitmap.width,activity.document.bitmap.height,message)
+                assertEquals("Complete selected status resource with fixture values",expected,status.text.toString())
+                awaitStatusLayout(status)
+                val layout=requireNotNull(status.layout)
+                assertEquals(expected,layout.text.toString())
+                assertTrue("Native status has lines",layout.lineCount>0)
+                assertEquals("All UTF-16 status text is laid out",expected.length,layout.getLineEnd(layout.lineCount-1))
+                for(line in 0 until layout.lineCount) assertEquals("Status line $line is not ellipsized",0,layout.getEllipsisCount(line))
+                assertTrue("Complete native status height is retained",
+                    status.height>=status.compoundPaddingTop+layout.height+status.compoundPaddingBottom)
+                val node=status.createAccessibilityNodeInfo()
+                try {assertEquals("Complete accessible status",expected,node.text.toString())} finally {node.recycle()}
                 assertEquals("Status/cursor transitions must not resize canvas",geometry,listOf(footer.width,footer.height,canvas.width,canvas.height))
                 assertEquals(Int.MAX_VALUE,status.maxLines)
             }
-            assertTrue("Long status genuinely exceeds viewport",status.height>viewport.height)
+            assertTrue("Long status genuinely exceeds viewport: ${status.height} > ${viewport.height}",status.height>viewport.height)
             repeat(80) {
                 if(viewport.canScrollVertically(1)) {swipe(root,viewport,.5f,.9f,.5f,.1f);settle()}
             }
@@ -220,6 +232,21 @@ class CzechFitWorkflowTest {
             ReflectionHelpers.setField(activity,"busy",false);ReflectionHelpers.setField(activity,"autosaving",false)
             activity.paintCanvas.setCursorMode(false);ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus");settle()
         }
+    }
+    private fun awaitStatusLayout(status: TextView) {
+        // setText invalidates the native Layout until the mounted window's next
+        // traversal. A fixed sleep can leave old geometry paired with new text.
+        // Do not measure/layout the child or force a window resize to repair it.
+        fun ready()=status.isAttachedToWindow && !status.isLayoutRequested &&
+            status.layout?.text?.toString()==status.text.toString()
+        val deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(3)
+        while(!ready() && System.nanoTime()<deadline) {
+            shadowOf(Looper.getMainLooper()).idleFor(16,TimeUnit.MILLISECONDS)
+            if(!ready()) Thread.sleep(1)
+        }
+        assertTrue("Native status traversal did not finish: ${status.width}×${status.height}; "+
+            "attached=${status.isAttachedToWindow}; layoutRequested=${status.isLayoutRequested}; "+
+            "layout=${status.layout}; rootLayoutRequested=${status.rootView.isLayoutRequested}",ready())
     }
     private fun tap(root: View,view: View)=gesture(root,view,listOf(Triple(MotionEvent.ACTION_DOWN,.5f,.5f),Triple(MotionEvent.ACTION_UP,.5f,.5f)))
     private fun swipe(root: View,view: View,x0: Float,y0: Float,x1: Float,y1: Float) {

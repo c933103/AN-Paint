@@ -52,11 +52,18 @@ class CommonsAttributionTest {
         val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
         val metadataOnly=record.text(false)
         val imported=record.text(true)
-        val expected="AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF."
+        val expected=AppLanguage.wrap(context).getString(R.string.commons_import_svg_changes)
         assertEquals(1,imported.lines().count {it==expected})
         assertEquals(metadataOnly,imported.lines().filterNot {it==expected}.joinToString("\n"))
-        for((key,value) in record.metadata.filterKeys {it!="ObjectName"}.filterValues {it.isNotBlank()}) {
+        // Legal notices belong in the credit. API bookkeeping stays in the
+        // metadata snapshot, not in text intended for publication.
+        val bookkeeping=setOf("Copyrighted","AttributionRequired")
+        for((key,value) in record.metadata.filterKeys {it!="ObjectName" && it !in bookkeeping}.filterValues {it.isNotBlank()}) {
             assertTrue("Provider field $key must remain verbatim",imported.contains("$key: $value"))
+        }
+        for(key in bookkeeping) {
+            assertEquals("Provider bookkeeping remains captured","True",record.metadata[key])
+            assertFalse("Provider bookkeeping is not a publication notice",imported.contains("$key:"))
         }
         assertEquals(source,record.source);assertEquals(page,record.page)
         CommonsAttribution.cache(context,record)
