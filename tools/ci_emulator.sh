@@ -205,6 +205,7 @@ run_gallery_draft_regression() {
 run_dialog_regression() {
   local dialog_class=paint.anpaint.android.LocalizedDialogDeviceTest
   local colour_class=paint.anpaint.android.ColourViewportDeviceTest
+  local page_class=paint.anpaint.android.PageCountWordingDeviceTest
   phase='Installed dialog phase (300s maximum)'
   progress "$phase"
   dialog_started=1
@@ -226,7 +227,8 @@ run_dialog_regression() {
     --include-test "$colour_class#largeEnglishColourCaptionsAndPreviewRemainReachable" \
     --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable" \
     --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
-    --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle"
+    --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle" \
+    --include-test "$page_class#oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
 }
 
 cleanup() {
@@ -428,13 +430,19 @@ main() {
   rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-dialog" "$report/app-vertical"
   editor_failed=0
   if (( TEST_API >= 26 )); then
+    # API35 page-chooser wording runs in the existing dialog budget. API30
+    # keeps it in ordinary; no source test, deadline or process proof is removed.
+    local -a ordinary_extra=()
+    if test "$TEST_API" = 35; then
+      ordinary_extra+=(--exclude-class paint.anpaint.android.PageCountWordingDeviceTest)
+    fi
     phase='Editor instrumentation'
     progress "$phase"
     python3 tools/run_android_instrumentation.py --adb "$adb" \
       --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
       --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
       --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
-      --suite app --timeout-seconds 180 \
+      --suite app --timeout-seconds 180 "${ordinary_extra[@]}" \
       --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
       --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
       --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \

@@ -34,6 +34,8 @@ POSITION_SHARDS = {
 SUPPORTED_SDKS = (21, 24, 30, 35)
 DIALOG = 'paint.anpaint.android.LocalizedDialogDeviceTest'
 COLOUR = 'paint.anpaint.android.ColourViewportDeviceTest'
+PAGE_COUNT = 'paint.anpaint.android.PageCountWordingDeviceTest'
+PAGE_COUNT_METHODS = {'oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench'}
 COLOUR_METHODS = {
     'normalAdvancedColourKeepsFiniteViewportAndFixedControls',
     'retainedColourStateSurvivesRotationImeCancelAndReopen',
@@ -74,7 +76,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
-    dialog = {item for item in expected if item[0] in (DIALOG, COLOUR)}
+    dialog = {item for item in expected if item[0] in (DIALOG, COLOUR) or (sdk == 35 and item[0] == PAGE_COUNT)}
     position = {item for item in expected if item[0] == POSITION}
     ordinary = expected - gallery - dialog - vertical - seed - verify - position
     if position != (set.union(*POSITION_SHARDS.values()) if sdk >= 30 else set()):
@@ -94,8 +96,9 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
-                  {(COLOUR, method) for method in COLOUR_METHODS} if sdk == 35 else set()):
-        raise ValueError('The exact fourteen API35 method/class pairs and lower-SDK suppression are required')
+                  {(COLOUR, method) for method in COLOUR_METHODS} |
+                  {(PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} if sdk == 35 else set()):
+        raise ValueError('The exact fifteen API35 method/class pairs and lower-SDK suppression are required')
     parts = {}
     if sdk >= 30:
         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})

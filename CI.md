@@ -161,6 +161,9 @@ Focused checks do not turn an incomplete aggregate into a pass.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
   shared 120 seconds, each transient probe at most 10 seconds within that budget.
   Main and each test APK installation: 60 seconds; runner discovery: 15 seconds.
+- API35 page-chooser wording runs with the existing dialog phase; API30 retains
+  it in ordinary. The exact disjoint composed inventory still includes every
+  eligible method.
 - Native and ordinary app phases: 180 seconds each; gallery-draft: 90 seconds;
   API35 dialog phase: 300 seconds; each vertical shard: 180 seconds; seed and
   verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,050 seconds on API35.
