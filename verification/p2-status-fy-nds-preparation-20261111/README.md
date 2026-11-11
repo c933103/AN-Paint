@@ -1,0 +1,11 @@
+# West Frisian and Low German status preparation
+
+Preparation only on pending PR #435 head 8bb2418c9539390b73abb1ef4654757a56deb52d, tree f5fd69fc55a3fe7839e82e5056f859de9772e0d5. This evidence ref preserves that application source unchanged; proposed changes appear only in the patch/review packet. No next application PR, added CI, merged-count credit or release.
+
+14 final accepted missing active P2 values: West Frisian (fy) 8 and Low German (nds) 6. Independent complete-value model/source review assessed 16 proposals: nine unchanged accepts, five revised accepts, two Low German gallery/redirect clauses held and excluded. Revisions clarify Frisian working memory and unsupported complete URL, and align Low German app enabling, tapping and editing. No external source gave whole-sentence approval. All older holds remain.
+
+The initial integration was correctly rejected before XML changes or host tests because the revised Frisian relative clause had an unescaped Android apostrophe. The same rendered text was rebound as Android-safe dy\\'t; exact review/hash and correction record are preserved. Final-source integration and 46 affected existing host checks then passed. No format parameters or separate JDK sample. All 777 old nodes/attributes unchanged.
+
+All 378 materialized files match the source baseline and the final proposed files. Six Git-hash-verified historical blobs exclude all candidates across 16 catalogue/head pairs at eight held heads. Eighteen open owner identities reconciled, including #435 as pending source owner. Source qualification and actual develop must finish before any application publication, followed by fresh complete source, owner and held-head reconciliation.
+
+preparation.zip: 81296 bytes, 22 members; SHA-256 a63308cd626189705bae83621a97c4c1712d64d454b46c3858660027c78c315a; Git blob a5ee76424327ba6d646e6d414088b60b1b62ff79. Archive and member digests verified. Contains complete values, decisions/holds, consumer context, patch, check results, serialization correction and immutable held-source evidence. Model/source review is not native-human or exhaustive installed UI/glyph/layout/accessibility/speech/device acceptance. Vendor app labels vary. No held operation or Work-side task.
