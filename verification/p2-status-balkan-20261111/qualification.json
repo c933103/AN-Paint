@@ -1,0 +1,179 @@
+{
+  "pr": 426,
+  "head": "af6d06564463dd1f4f290699a05948fee52eebd7",
+  "base": "a20c7a2aed4c230fe83e5ce393eeaf96726379cf",
+  "tree": "994f29b3ac7fa4064e290c0d759c7ff5a9db10b6",
+  "tested_checkout": "58e67d6ffec7aef7d6120520024518700ecfdb67",
+  "ordered_tested_parents": [
+    "a20c7a2aed4c230fe83e5ce393eeaf96726379cf",
+    "af6d06564463dd1f4f290699a05948fee52eebd7"
+  ],
+  "run": 42932851570,
+  "final_attempt": 2,
+  "conclusion": "success",
+  "review": {
+    "id": 6783387013,
+    "bot_id": 199175422,
+    "app_id": 1144995,
+    "updated_at": "2026-11-11T00:40:00Z",
+    "body": "<!-- codex-pull-request-review-summary -->\n<!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"af6d06564463dd1f4f290699a05948fee52eebd7\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"},\"security_review\":{\"commit_sha\":\"af6d06564463dd1f4f290699a05948fee52eebd7\",\"has_any_findings\":null,\"has_unresolved_findings\":null,\"status\":\"completed\"}} -->\n<!-- codex-security-review:v1 {\"blockingSeverityThreshold\":\"P0\",\"headSha\":\"af6d06564463dd1f4f290699a05948fee52eebd7\",\"mergeGateEnabled\":false,\"pullRequestNumber\":426,\"repository\":\"c933103/AN-Paint\",\"status\":\"completed\"} -->\n<details>\n<summary><strong>Codex Review Summary</strong>: ✅ Completed</summary>\n\nThis comment shows the latest Codex review activity on this pull request.\n\n| Review | Status | Commit | Review trigger |\n| --- | --- | --- | --- |\n| 📝 **Code Review** | ✅ **Completed** <relative-time datetime=\"2026-11-11T00:39:01.432969Z\">2026-11-11T00:39:01.432969Z</relative-time> | `af6d065` | Draft marked ready |\n| 🔒 **Security Review** | ✅ **Completed** <relative-time datetime=\"2026-11-11T00:39:59.462915Z\">2026-11-11T00:39:59.462915Z</relative-time> | `af6d065` | Draft marked ready |\n\n\n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\" or \"@codex security review\".\n\nCodex reacts with 👀 while any review is running, comments if it has suggestions, and reacts with 👍 once all reviews finish with no findings.\n\n</details>\n\n</details>"
+  },
+  "review_threads": [],
+  "verification": {
+    "verified": true,
+    "checkout": "58e67d6ffec7aef7d6120520024518700ecfdb67",
+    "tree": "994f29b3ac7fa4064e290c0d759c7ff5a9db10b6",
+    "run": 42932851570,
+    "attempt": 2,
+    "artifact_digests": {
+      "exact": "sha256:75e7cbbefa9a3848bc2e99489c2d53c5ef60258aa3500c419f993d340668149d",
+      "regression": "sha256:77b41b28a852fc6b25f33c4aeea636cef9f28a84412a00d110aefc425f50b051",
+      "composition": "sha256:67f6638a2e88d9266beffc87343c958dc4d5d3cd5c8a2c22ff67eb1fd74af077",
+      "core": "sha256:dc6ff2338182b9c45891db6f8ec9b2320c262c7b21bbb45286124c229053ec23",
+      "position": "sha256:749a9b35ef1d5c82a113e4c2fa6a7920718ef6ce2ff1482b188bee61f6dc4181"
+    },
+    "exact_probes": 13,
+    "python_passes": 865,
+    "python_skips": 2,
+    "jvm": {
+      "tests": 1392,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_xml_files": 155,
+    "native_api35": 74,
+    "app_api35": 50,
+    "identity": {
+      "commit": "58e67d6ffec7aef7d6120520024518700ecfdb67",
+      "run_id": "42932851570",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "ff9642e4b67135ab9fc55a2287802af887ab981dac0cb5dc095ecadb0d37ae18",
+      "source_sha256": "1ac2f594f89a3db19ac46412ae0035ee8fe0889d8b0eb15982a9da12d690b445",
+      "test_apk_sha256": "6b93d39bd055519799f22b68186303b3b2170e956d7e8a7aa950995bea69c158",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 2
+      },
+      "composed_in_run_attempt": 2
+    },
+    "actual_group_attempts": {
+      "core": 1,
+      "position": 2
+    },
+    "carried_original_successes": 5,
+    "new_successful_executions": [
+      "Position dialog API 35",
+      "Emulator API 35"
+    ],
+    "limits": "Independent source-bound archive/report verification, not a new device run, native-human review or exhaustive pixel/layout certification."
+  },
+  "original_jobs": [
+    {
+      "id": 130235609563,
+      "name": "Verify recent same-tree PR evidence",
+      "started_at": "2026-11-11T00:37:50Z",
+      "completed_at": "2026-11-11T00:37:58Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130235673076,
+      "name": "Exact-script resource generation",
+      "started_at": "2026-11-11T00:37:59Z",
+      "completed_at": "2026-11-11T00:40:45Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130235673137,
+      "name": "Regression tests and lint",
+      "started_at": "2026-11-11T00:38:00Z",
+      "completed_at": "2026-11-11T01:02:39Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130235673254,
+      "name": "Build APK and corresponding source",
+      "started_at": "2026-11-11T00:37:59Z",
+      "completed_at": "2026-11-11T00:45:41Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130238977353,
+      "name": "Core emulator API 35",
+      "started_at": "2026-11-11T00:45:44Z",
+      "completed_at": "2026-11-11T01:00:22Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130238977392,
+      "name": "Position dialog API 35",
+      "started_at": "2026-11-11T00:45:43Z",
+      "completed_at": "2026-11-11T00:46:26Z",
+      "conclusion": "failure"
+    },
+    {
+      "id": 130245137933,
+      "name": "Emulator API 35",
+      "started_at": "2026-11-11T01:00:24Z",
+      "completed_at": "2026-11-11T01:00:27Z",
+      "conclusion": "failure"
+    }
+  ],
+  "latest_jobs": [
+    {
+      "id": 130246898370,
+      "name": "Position dialog API 35",
+      "started_at": "2026-11-11T01:04:38Z",
+      "completed_at": "2026-11-11T01:09:47Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130246898821,
+      "name": "Verify recent same-tree PR evidence",
+      "started_at": "2026-11-11T00:37:50Z",
+      "completed_at": "2026-11-11T00:37:58Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130246899672,
+      "name": "Build APK and corresponding source",
+      "started_at": "2026-11-11T00:37:59Z",
+      "completed_at": "2026-11-11T00:45:41Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130246899732,
+      "name": "Core emulator API 35",
+      "started_at": "2026-11-11T00:45:44Z",
+      "completed_at": "2026-11-11T01:00:22Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130246899892,
+      "name": "Regression tests and lint",
+      "started_at": "2026-11-11T00:38:00Z",
+      "completed_at": "2026-11-11T01:02:39Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130246899960,
+      "name": "Exact-script resource generation",
+      "started_at": "2026-11-11T00:37:59Z",
+      "completed_at": "2026-11-11T00:40:45Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130249045690,
+      "name": "Emulator API 35",
+      "started_at": "2026-11-11T01:09:49Z",
+      "completed_at": "2026-11-11T01:10:08Z",
+      "conclusion": "success"
+    }
+  ],
+  "retry": "One failed-jobs-only retry; only Position and aggregate newly executed. Original setup/aggregate failures retained. Five carried passes are not new runs.",
+  "source_cache": "Exact-script source cache hit and successful preparation observed in job130235673076. Cold-download availability not established.",
+  "verified_results_sha256": "af867fa01d6e51b5af30089daa43ad229f84664d1e7b37550f9462a466d6b6f8",
+  "status": "Qualified for authorized merge. Actual-develop qualification pending; reuse policy excludes this retried PR run."
+}
