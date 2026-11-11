@@ -1,0 +1,15 @@
+# PR #433 delivered on actual develop
+
+Merged as `ecdf4d97c431bc49eb4356f6a6abf8cd2600d466`, with ordered parents `5a39710f8207956671c3248922341d5898326e4e`, `ae3cc888807db6928e5d962fa4fe16860699ba79` and exact tested tree `9705571dba69bacbb7270363cdcc1f3923de790c`. Actual develop and all 1,283 remote source leaves matched, including modes and types. All 378 materialized tracked files matched the final source before a fresh direct-coverage recount.
+
+[Normal develop run 42983467396](https://github.com/c933103/AN-Paint/actions/runs/42983467396) completed successfully under the existing bounded same-tree PR-evidence reuse policy. One preflight executed freshly; all six downstream jobs skipped. They were not rerun or newly passed. No retry, dispatch, source change or release was needed.
+
+Receipt artifact 13838591767 was downloaded and hash-verified: SHA-256 `622a2decc5bb7c4ffd0da4ca164193abbbd24bff1c9ff28aeb60a3ce66016b96`. Merge/head/base/checkout/tree, ordered parents, exact trusted review identity and all six original artifact IDs/names/digests match fresh metadata. The association proof is unique head plus actual merge PR. Original APK/source, instrumentation, exact-script, regression, position and composed-device archives were independently verified before merge. Source-discovered app inventory and native raw-protocol checks confirmed the actual test identities. The workflow also checked original core/position bytes; the original core archive was not separately downloaded in this independent follow-up.
+
+This delivers 31 independently reviewed status/control values: Punjabi 8, Urdu 8, Persian 6 and Iranian Persian 9. Review retained 29 and revised two URL clauses, zero holds; all 1,715 prior complete XML nodes/attributes preserved. Exact-head required CI and clean Codex passed: 13 resource probes, Python 865 passes plus two optional skips, JVM 1,392 passes, native API35 74 and app API35 50. The position subset of seven is included, not extra.
+
+Actual-source direct presence across 171 offered catalogues: P0 16,074/16,074; P1 46,301/48,393; P2 22,752/46,683; P3 4,777/11,799. Total 89,904/122,949 present, 33,045 missing, 65 complete and 106 partial. Presence, model/source review and hosted tests are not native-human or exhaustive installed RTL/layout/glyph/speech/device acceptance. All older holds, withdrawals, rechecks and explicit restrictions remain unchanged. No release.
+
+The separate 32-value Irish/Welsh/Scottish Gaelic/Breton preparation remains unintegrated at [immutable evidence](https://github.com/c933103/AN-Paint/tree/0ba62f37f366ec2a2bf5b2ae7c286eae64a499f8/verification/p2-status-celtic-preparation-20261111). Refresh current develop/owners/holds before application publication; its source equals this tested tree. This report does not count those proposed values as merged.
+
+postmerge-results.zip: 32,220 bytes, 9 members, SHA-256 `26f11de43edfeaac99d6be0da03fbf89a7bd5f8fc08fcc48b260f0d0652b9623`. Contains raw receipt, fresh metadata, merge object, verifier, source verification and full recount. Original qualification and its raw reports are preserved separately on this evidence ref.
