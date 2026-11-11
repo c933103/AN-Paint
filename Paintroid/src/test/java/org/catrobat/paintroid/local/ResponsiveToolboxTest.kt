@@ -93,6 +93,8 @@ class ResponsiveToolboxTest {
         open(ToolCategory.BRUSH)
         val rail=view<View>("primary_tool_scroll");val drawer=view<ScrollView>("tool_scroll")
         assertEquals(bounds(rail).bottom,bounds(drawer).top)
+        assertEquals("Portrait tool options retain the full available width",rail.width,drawer.width)
+        assertEquals(root.width,drawer.width)
         assertEquals(bounds(view<View>("sidebar")).bottom,bounds(activity.paintCanvas).top)
         assertEquals(root.width,activity.paintCanvas.width)
         assertTrue(activity.paintCanvas.height>drawer.height)
@@ -113,6 +115,8 @@ class ResponsiveToolboxTest {
         open(ToolCategory.INSERT);render("tools-landscape-insert.png")
         val rail=bounds(view<View>("primary_tool_scroll"));val panel=bounds(drawer)
         assertEquals(rail.right,panel.left);assertEquals(rail.top,panel.top)
+        val maximumWidth=(minOf(248,activity.resources.configuration.screenWidthDp/3)*activity.resources.displayMetrics.density+.5f).toInt()
+        assertTrue("Landscape tool options stay bounded",drawer.width<=maximumWidth)
         assertEquals(panel.right,bounds(activity.paintCanvas).left)
         assertTrue(activity.paintCanvas.height>root.height/2)
         val width=activity.paintCanvas.width;val height=activity.paintCanvas.height

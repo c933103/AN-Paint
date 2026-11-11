@@ -296,7 +296,7 @@ class ClassicPaintActivity : Activity() {
             sidebar.addView(ScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(toolHeight,-1))
         } else sidebar.addView(HorizontalScrollView(this).apply {tag="primary_tool_scroll";addView(primary)},LinearLayout.LayoutParams(-1,toolHeight))
         val drawerContent=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(4),0,dp(4),dp(4))}
-        toolDrawer=LimitedScrollView(this,panelLimit,sidePanelWidth).apply {tag="tool_scroll";addView(drawerContent)}
+        toolDrawer=LimitedScrollView(this,panelLimit,if(landscape) sidePanelWidth else Int.MAX_VALUE).apply {tag="tool_scroll";addView(drawerContent)}
         ToolCategory.values().forEach {category ->
             val group=LinearLayout(this).apply {isBaselineAligned=false;tag="category_tools_${category.name}"}
             category.tools.forEach {group.addView(makeToolButton(it),LinearLayout.LayoutParams(-2,toolHeight))}
