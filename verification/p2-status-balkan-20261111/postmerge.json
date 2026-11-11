@@ -1,0 +1,130 @@
+{
+  "pr": 426,
+  "merge": "8242b135b6c98536a2c1e2e0f4e3a23b65484e38",
+  "tree": "994f29b3ac7fa4064e290c0d759c7ff5a9db10b6",
+  "run": 42938128795,
+  "attempt": 1,
+  "event": "push",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 130253154646,
+      "name": "Verify recent same-tree PR evidence",
+      "started_at": "2026-11-11T01:19:39Z",
+      "completed_at": "2026-11-11T01:19:57Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130253286725,
+      "name": "Build APK and corresponding source",
+      "started_at": "2026-11-11T01:19:58Z",
+      "completed_at": "2026-11-11T01:29:10Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130253286793,
+      "name": "Exact-script resource generation",
+      "started_at": "2026-11-11T01:19:59Z",
+      "completed_at": "2026-11-11T01:23:53Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130253287194,
+      "name": "Regression tests and lint",
+      "started_at": "2026-11-11T01:19:59Z",
+      "completed_at": "2026-11-11T01:40:05Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130256975031,
+      "name": "Core emulator API 35",
+      "started_at": "2026-11-11T01:29:12Z",
+      "completed_at": "2026-11-11T01:44:11Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130256975164,
+      "name": "Position dialog API 35",
+      "started_at": "2026-11-11T01:29:12Z",
+      "completed_at": "2026-11-11T01:35:09Z",
+      "conclusion": "success"
+    },
+    {
+      "id": 130262805950,
+      "name": "Emulator API 35",
+      "started_at": "2026-11-11T01:44:13Z",
+      "completed_at": "2026-11-11T01:44:31Z",
+      "conclusion": "success"
+    }
+  ],
+  "develop_at_terminal": "8242b135b6c98536a2c1e2e0f4e3a23b65484e38",
+  "all_seven_jobs_freshly_executed": true,
+  "verification": {
+    "verified": true,
+    "checkout": "8242b135b6c98536a2c1e2e0f4e3a23b65484e38",
+    "tree": "994f29b3ac7fa4064e290c0d759c7ff5a9db10b6",
+    "run": 42938128795,
+    "attempt": 1,
+    "artifact_digests": {
+      "exact": "sha256:3259b195ffcb681efaafd57088ed28ae0ab53762a17caf526e65e234940e04b9",
+      "regression": "sha256:257cadf2f2ba8f2e7697f57f48bf0e179fc66d0b68efd4c9ad75397b26f3b631",
+      "composition": "sha256:6d074d852acd14720fcdb4ea5206559f0e8d4d89c8623a021ac235f1f34cd19d"
+    },
+    "exact_probes": 13,
+    "python_passes": 865,
+    "python_skips": 2,
+    "jvm": {
+      "tests": 1392,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_xml_files": 155,
+    "native_api35": 74,
+    "app_api35": 50,
+    "identity": {
+      "commit": "8242b135b6c98536a2c1e2e0f4e3a23b65484e38",
+      "run_id": "42938128795",
+      "build_variant": "debug",
+      "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+      "device_sdk": 35,
+      "apk_sha256": "21023190d3c44035655d2f04d3843aa66d43487d9e1935bee94cb911a79a3865",
+      "source_sha256": "1ac2f594f89a3db19ac46412ae0035ee8fe0889d8b0eb15982a9da12d690b445",
+      "test_apk_sha256": "cc5b40df9e140e4a5641dc616fc2b6e7161ed7b1d1aee1e5e78166f5731c6b85",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "limits": "Independent source-bound archive/report verification, not a new device run, native-human review or exhaustive pixel/layout certification."
+  },
+  "fallback": {
+    "reused": false,
+    "reason": "Full fallback: ValueError: Only directly executed successful first-attempt PR runs qualify"
+  },
+  "exact_cache_observation": {
+    "run": 42938128795,
+    "job": 130253286793,
+    "observations": [
+      "2026-11-11T01:20:03.7660188Z Cache hit for: android-resource-deps-v1-Linux-fe82a0afa02e247b74cb76f37319e14eeb7a77ba6fe64074efd60addd13c182a",
+      "2026-11-11T01:20:07.6215850Z Cache restored successfully",
+      "2026-11-11T01:20:07.7678707Z Cache restored from key: android-resource-deps-v1-Linux-fe82a0afa02e247b74cb76f37319e14eeb7a77ba6fe64074efd60addd13c182a",
+      "Paintroid/build/tiff-source",
+      "2026-11-11T01:20:08.4374355Z Cache hit for: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build",
+      "2026-11-11T01:20:12.7831520Z Cache restored successfully",
+      "2026-11-11T01:20:12.8778969Z Cache restored from key: android-deps-v1-Linux-79a248d44150635ff42d1b4906ff7488510c89d480769af85d51abd0cfff60cb-build"
+    ]
+  },
+  "raw_verified_results_sha256": "cdd357eff06d1ad916ad6041ab86ccbdbe3f5eb9311828ddd354ee25d1ddd414",
+  "original_pr_failure_preserved": "Position SDK package setup failed before tests on PR attempt1. One failed-jobs-only recovery produced core attempt1 +position attempt2; five original jobs were carried. Final develop run here independently executed every job on attempt1.",
+  "source_presence": {
+    "P2_present": 22550,
+    "P2_total": 46683
+  },
+  "limits": [
+    "Source-bound automated report verification, not a new local device run, native-human translation review, exhaustive installed layout/glyph/speech acceptance or release.",
+    "Warm native-source cache hit observed; cold-download availability remains unresolved."
+  ],
+  "status": "Bounded 35-value batch complete through actual-develop qualification. All holds and separate #422 evidence operation untouched."
+}
