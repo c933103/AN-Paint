@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 
 /** Hold message meaning through worker/lifecycle changes; resolve only when displayed. */
 internal sealed class UiMessage {
-    data class Resource(@StringRes val id: Int,val arguments: List<Any?>=emptyList()): UiMessage()
+    data class Resource(@StringRes val id: Int,val arguments: List<Any?> = emptyList()): UiMessage()
     /** External text is data and must never be translated or treated as a format string. */
     data class Literal(val value: String): UiMessage()
     fun text(): String = when(this) {

@@ -45,6 +45,16 @@ Both the mixed-script Korean and emoji-English mirrors are checked independently
 Only `:Paintroid:bundleCorrespondingSource` is excluded there; the normal build
 verifies that native-source/bundling graph. Production translations are not edited.
 
+Before preparation, the exact-script job restores the APK build's existing
+dependency/source cache using the identical path list and exact Gradle/wrapper/
+native-fetch-script key. It does not save that cache or restore a broader prefix.
+No compiled application outputs or compiler-object cache are restored. Preparation
+and all clean/incremental probes still run on both hits and misses, with unchanged
+deadlines. Source revision markers, official URLs, archive hashes and the notice
+comparison remain unchanged. A missing cache uses the existing downloader and can
+still fail if the official source is unavailable; warm-cache resilience is not a
+cold-download fix or proof of upstream availability.
+
 The same resource probe now verifies the generated canonical fallback catalogue
 and its ordering/clean/incremental behavior. See [translation runtime boundaries](TRANSLATION_RUNTIME.md).
 
@@ -492,3 +502,19 @@ unchanged eight-minute job. Report archives are limited to 128 MiB compressed,
 unsupported encodings and attempts to overwrite existing evidence are rejected.
 No downloaded artifact can replace the saved selection receipt. The normal
 content/inventory composer still runs after extraction.
+
+## Pinned native source transport
+
+The libjpeg-turbo 3.2.0 downloader switches from the official GitHub release URL
+to that release's immutable asset API endpoint after a transient 502/503/504 or
+socket timeout. The API requests archive bytes with `Accept: application/octet-stream`;
+it is not the generated tag/codeload archive. Both routes require the unchanged
+pinned SHA-256 before extraction. Permanent HTTP errors, certificate/other transport
+errors and hash mismatches fail closed without trying replacement contents.
+There are at most three requests total, with the existing 120-second socket timeout
+and two/four-second backoffs; workflow preparation caps remain unchanged. Socket
+timeouts are not a whole-transfer wall-clock guarantee. Stable attempted URLs are
+logged, not signed redirect URLs. `sources.json` lists configured download routes,
+not proof that every route was contacted. Existing source-cache markers and staged
+installation remain unchanged. The fallback avoids repeated attempts against one
+release-URL path; it does not claim independence from GitHub's asset hosting.

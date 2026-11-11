@@ -9,8 +9,14 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
 Each translatable source key belongs to exactly one P0–P3 importance tier,
 independent of its language-specific coverage and linguistic-review status.
 P0 prioritizes data loss/recovery and irreversible warnings; P1 covers basic
-editing; P2 covers extended features; P3 covers detailed help and reference.
+editing and all active main-editor menu/tool controls, including inline options
+and accessible names. This floor applies to every offered language, even when
+the command opens a specialist feature or reference dialog. P2 covers deeper
+extended-feature contents; P3 covers detailed help and reference bodies.
 This does not exempt any tier from eventual translation or legal obligations.
+
+The shared navigation definitions also drive `tools/navigation_coverage.py`, which
+reports missing captions, English fallback aliases and English matches for review.
 
 See [the tier policy](translations/STRING_IMPORTANCE.md) and the exact
 [per-key manifest](translations/string-importance.json). Run
@@ -36,21 +42,6 @@ should be corrected directly in the locale's `strings.xml`.
 The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
-
-## Visible navigation coverage
-
-Every root and second-level caption must be P0/P1, even when it opens an
-extended feature or a help screen. `EditorNavigation.kt` defines commands,
-tabs and Edit groups; the actual editor, coverage audit and tier validation use
-those definitions. A new caption cannot be demoted to P2/P3 without a failing
-priority check.
-
-Run `python3 tools/navigation_coverage.py` for every offered locale. It reports
-missing entries, aliases requiring default fallback, and identical English text
-that needs review (including possible valid loanwords). `--require-complete`
-rejects missing entries and fallback aliases. Presence and English-difference
-are not linguistic or rendering acceptance. Existing priority-completion claims
-must be reassessed against the current manifest, including the promoted captions.
 
 ## Current source coverage and historical registration records
 

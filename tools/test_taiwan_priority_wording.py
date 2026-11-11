@@ -50,7 +50,7 @@ class TaiwanPriorityWordingTests(unittest.TestCase):
         # fallback until translated. Real export behavior is in WorkspaceRefinementTest.
         self.assertFalse(code_locations(recovery, 'recoveryNotice=ui(R.string.' + RECOVERY + ',reason)'))
         self.assertFalse(code_locations(self.activity, 'message(ui(R.string.' + EXPORTED + '))'))
-        self.assertTrue(code_locations(recovery, 'recoveryNotice=ui(R.string.ui_recovery_copy_preserved_unverified,reason)'))
+        self.assertTrue(code_locations(recovery, 'recoveryNotice=UiMessage.Resource(R.string.ui_recovery_copy_preserved_unverified,listOf(reason))'))
         self.assertTrue(code_locations(self.activity, 'message(ui(R.string.ui_recovery_copy_exported_unverified))'))
 
     def test_visible_swatch_and_hex_terms_keep_foreground_background_roles(self):

@@ -11,6 +11,7 @@ class NavigationCoverageTest(unittest.TestCase):
         self.assertTrue({'ui_about_credits23', 'ui_pixel_grid33', 'ui_cursor_drawing32',
                          'ui_magnifier33', 'ui_image_assembly', 'ui_toggle_toolbox'} <= keys)
         self.assertNotIn('ui_pixel_grid_help33', keys)
+        self.assertNotIn('ui_menu_help', keys)
         self.assertNotIn('ui_drag_a_line_then_drag_twice_to_set', keys)
 
     def test_reported_locales_have_every_navigation_key(self):

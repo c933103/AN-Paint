@@ -18,7 +18,10 @@ CLASSIC = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
 def navigation_keys(validate_source: bool = True) -> set[str]:
     # EditorCommand/EditorTab/EditGroup are actual UI definitions. New entries
     # automatically enter the audit; no locale or command-key list is maintained here.
-    keys = set(re.findall(r'R\.string\.(\w+)', (CLASSIC / 'EditorNavigation.kt').read_text()))
+    definitions = (CLASSIC / 'EditorNavigation.kt').read_text()
+    # Only enum constructor labels are actual controls. The title() fallback is
+    # not a reachable tab and must not expand the visible-navigation inventory.
+    keys = set(re.findall(r'\b[A-Z_]+\((?:"[^"]+",)?R\.string\.(\w+)', definitions))
     for name in ('ToolCategoryButton.kt', 'PaintDocument.kt'):
         keys.update(re.findall(r'\b[A-Z_]+\(R\.string\.(\w+),', (CLASSIC / name).read_text()))
     actions = (CLASSIC / 'ActionButton.kt').read_text().split('class ActionButton(', 1)[0]

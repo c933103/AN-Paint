@@ -27,8 +27,11 @@ class ItalianPriorityWording(unittest.TestCase):
         self.assertIn('le impostazioni della bozza e l’eventuale selezione flottante.', recovery)
         # Bind labels to inspected production menu commands, without claiming UI execution.
         source = (CLASSIC / 'ClassicPaintActivity.kt').read_text()
-        for call in ('ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}}',
-                     'ui(R.string.save20_title) to {showSaveOptions('):
+        definitions = (CLASSIC / 'EditorNavigation.kt').read_text()
+        for binding in ('OPEN(R.string.ui_load_image)', 'SAVE_AS(R.string.save20_title)'):
+            self.assertIn(binding, definitions)
+        for call in ('EditorCommand.OPEN to {confirmReplacement {launchOpen(false)}}',
+                     'EditorCommand.SAVE_AS to {showSaveOptions('):
             self.assertIn(call, source)
 
     def test_selected_tool_grammar_for_actual_category_tool_labels(self):

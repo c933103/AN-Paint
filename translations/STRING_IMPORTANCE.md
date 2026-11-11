@@ -11,17 +11,9 @@ Paintroid/src/main/res/values*/strings.xml; Crowdin continues using those files.
 | Tier | Purpose | Examples |
 | --- | --- | --- |
 | **P0 — Data safety and recovery** | Correctly understand destructive actions, unsaved work, saving/export distinctions, recovery and warnings about discarded content. Translate and validate first. | Save, Discard changes, Save destination failed, Autosave failed, recovery-copy instructions, animated-file flattening warnings. |
-| **P1 — Essential editing** | Navigate the app and accomplish everyday drawing and editing tasks. All root and second-level navigation captions belong here, including entries to extended features. | File/Edit/View menus, opening images, Pencil, Undo/Redo, selection, colour, canvas, zoom, language picker. |
-| **P2 — Extended functions** | Specialized tools, formats and workflows, including their errors and controls. | Image assembly settings, TIFF/PDF/ICO options, gallery details, advanced colour options and compression settings. |
-| **P3 — Reference and detailed help** | Secondary explanations, optional tutorials, reference and licence/credit navigation. | Editor and assembly help, cursor how-to guidance, lossless format reference and font/codec licence headings. |
-
-Navigation takes precedence over feature tier. The command/tab/group definitions in
-`EditorNavigation.kt`, tool-category definitions and header/tool enums supply the
-same resource IDs to the interface and coverage/priority checks. Adding a command
-there automatically enters the audit; assigning its caption P2/P3 fails validation.
-This prevents a "P0/P1 complete" claim from excluding visible navigation. The audit
-also reports aliases that fall back to English and identical English wording that
-needs review; raw key presence alone does not establish translated display.
+| **P1 — Essential editing** | Navigate the app and use its active main-editor menus, tool choices and inline controls, including accessible names. | Top-level tabs, second-level File/Edit/View commands, every drawing-tool label, colour-panel actions, cursor controls, inline tool options, opening images, Undo/Redo and language picker. |
+| **P2 — Extended functions** | Deeper specialized workflow contents, formats and controls, including their errors; not their main-editor entry points. | Assembly workspace/dialog contents, TIFF/PDF/ICO options, galleries, advanced colour-dialog fields and compression settings. |
+| **P3 — Reference and detailed help** | Secondary explanations, optional tutorial bodies, reference and deeper licence/credit navigation; not main-editor launchers. | Editor and assembly help bodies, cursor how-to guidance, lossless format reference and font/codec licence headings. |
 
 This ranks **UI localization effort**, not legal obligations. P3 is not
 unnecessary: licence, copyright and creator-attribution obligations still apply
@@ -34,6 +26,36 @@ silently change or destroy data. For example, importing an animation discards
 other frames, so that warning is P0 even though the rest of the feature is P2.
 A plural resource counts as **one key** across all quantity forms. Fixed
 nontranslatable identifiers, file names and language-option arrays are excluded.
+
+### Main-editor menu and control floor
+
+All active top-level tabs and second-level command/tool labels are **at least
+P1**, in every offered language. The same floor covers directly rendered inline
+tool/cursor options, colour/palette controls and their accessible names, including
+dynamic selected choices, start/stop labels and expand/collapse states. Existing
+P0 safety commands remain P0. A feature being advanced or optional does not make
+its visible entry point lower priority: Image assembly, Advanced colour,
+How to use and About/credits are P1 launchers.
+
+This does not promote all text reachable through those launchers. Long help
+bodies, deeper dialog fields, assembly-workspace contents and licence documents
+retain their separately assigned priorities. Nor does an identifier containing
+`menu` prove an active menu: `ui_menu_help` is an unused title fallback and
+`ui_menu_image` is a filename fallback in the current editor.
+
+The source-binding host regression checks the current menu producers, tool and
+action enums, inline options and adjacent accessibility bindings. It excludes
+explicit help/toast/callback bodies rather than selecting by text length or
+locale. It is a bounded static guard, not a Kotlin parser, installed UI test or
+proof that every future binding will be discovered. Revisit its boundaries when
+adding or moving controls. Canonical XML, held wording and review receipts are
+unchanged by a priority decision; newly exposed P1 gaps are not new translations.
+
+Navigation captions are also checked from the shared `EditorNavigation.kt`
+command/tab/group definitions that build the UI. Tool and header definitions
+join that audit; new navigation captions must remain P0/P1. The navigation
+coverage report separately identifies missing entries, aliases falling back to
+English and English matches needing review. Presence alone is not acceptance.
 
 ### Explanations versus active instructions
 
@@ -88,7 +110,7 @@ translation/support scope. A priority change cannot close a wording defect or
 revalidate an entry-review receipt; the independent corrections in
 [PR #90](https://github.com/c933103/AN-Paint/pull/90) remain separate.
 
-## Current source partition
+## Earlier source partitions
 
 Current partition (17 October 2026), including the six exact-position controls
 added by PR #67. Before the source-role audit the counts were
@@ -110,13 +132,21 @@ The source denominator therefore increases from 708 to 717 and P2 from 296 to
 any of these nine new P2 keys. Applicability and translation/review progress for
 the new keys remain separate; see [the bounded implementation plan](../verification/commons-import-failures.md).
 
+## Current source partition
+
+The 9 November 2026 main-editor scope correction moves 34 existing identities
+to P1: 32 from P2 and two help/about launchers from P3. It includes 20 main
+menu/tool/adjacent-control labels and 14 directly rendered inline-option labels.
+The preceding 719-key partition was 94/249/305/71. No key is added or removed,
+no P0 key moves, and no localized value or hold changes.
+
 | Tier | Source entries |
 | --- | ---: |
-| P0 | 92 |
-| P1 | 249 |
-| P2 | 305 |
-| P3 | 71 |
-| **Total** | **717** (716 strings and 1 plural) |
+| P0 | 94 |
+| P1 | 283 |
+| P2 | 273 |
+| P3 | 69 |
+| **Total** | **719** (718 strings and 1 plural) |
 
 These are English source-entry counts, **not** completed translations or
 accepted reviews. The validator recomputes totals and fails when an English
@@ -157,6 +187,8 @@ queues without reviving any rejected review claims.
 1. On changing a source resource, deliberately assign its key to exactly one
    tier (remove obsolete keys); keep each tier list alphabetically sorted.
 2. Reconsider importance when functionality changes, even if a key is unchanged.
+   Active main-editor menu and inline control bindings have a P1 floor; keep
+   existing P0 safety roles higher. Apply the same source-key policy to all locales.
 3. Run the new validator, existing translation catalogue checks and host tests.
 4. Translate and review in actual operation context, including placeholders,
    plurals, accessibility labels, RTL, and long-text layouts.
