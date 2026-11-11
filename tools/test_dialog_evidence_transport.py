@@ -14,7 +14,7 @@ import textwrap
 import unittest
 import zipfile
 
-from dialog_evidence_transport import (METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, KOREAN_METHODS, korean_captions, OWNER, TEST_CLASS, PNG,
+from dialog_evidence_transport import (REPORT_IDENTITIES, PAGE_COUNT, PAGE_COUNT_METHODS, METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, KOREAN_METHODS, korean_captions, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
 from synthetic_colour_receipts import geometry, synthetic_colour_receipt, synthetic_colour_endpoint
@@ -24,9 +24,9 @@ DIGEST = 'a' * 64
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=14, completed_tests=14, missing=[], unexpected=[], errors=[],
-                included_tests=sorted(owner + '#' + name for name, owner in METHOD_CLASSES.items()),
-                cases=[dict(classname=owner, name=m, status='passed') for m, owner in METHOD_CLASSES.items()])
+                source_tests_sha256=DIGEST, expected_tests=15, completed_tests=15, missing=[], unexpected=[], errors=[],
+                included_tests=sorted(owner + '#' + name for owner, name in REPORT_IDENTITIES),
+                cases=[dict(classname=owner, name=m, status='passed') for owner, m in sorted(REPORT_IDENTITIES)])
 
 
 
@@ -409,6 +409,24 @@ class DialogEvidenceTransportTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             extract(self.exports, self.output, self.summary)
         self.assertFalse(self.output.exists())
+
+    def test_page_chooser_must_pass_without_replacing_capture_requirements(self):
+        data=summary()
+        self.assertEqual(source_binding(data),DIGEST)
+        self.assertEqual(len(REPORT_IDENTITIES),15)
+        self.assertEqual(len(METHOD_CLASSES),14)
+        page=(PAGE_COUNT,next(iter(PAGE_COUNT_METHODS)))
+        self.assertIn(page,REPORT_IDENTITIES)
+        for status in ('failed','skipped','running'):
+            broken=copy.deepcopy(data)
+            next(c for c in broken['cases'] if c['classname']==PAGE_COUNT)['status']=status
+            with self.subTest(status=status),self.assertRaises(ValueError):source_binding(broken)
+        broken=copy.deepcopy(data)
+        broken['cases']=[c for c in broken['cases'] if c['classname']!=PAGE_COUNT]
+        broken['expected_tests']=broken['completed_tests']=14
+        broken['included_tests']=[c for c in broken['included_tests'] if not c.startswith(PAGE_COUNT+'#')]
+        with self.assertRaises(ValueError):source_binding(broken)
+        with self.assertRaises(ValueError):verify_receipt({},page[1],DIGEST)
 
     def test_source_summary_rejects_failed_wrong_sdk_missing_duplicate_and_unbound(self):
         changes = [lambda d: d.update(success=False), lambda d: d.update(device_sdk=30),
