@@ -1362,9 +1362,8 @@ class EditorDeviceTest {
     fun reportedMenuLocalesReachInstalledControlsThroughRealPickerRows() {
         // These three distinct reported cases exercise an explicit script and two
         // ordinary BCP47 catalogues. English restores the control case after each.
-        val cases=listOf(Triple("yue-Hant","檔案","儲存"),
-            Triple("wa","Fitchî","Schaper"),Triple("xh","Ifayile","Gcina"))
-        for((tag,file,save) in cases) for(selected in listOf(tag,"en-US")) {
+        val cases=listOf("yue-Hant","wa","xh")
+        for(tag in cases) for(selected in listOf(tag,"en-US")) {
             chooseAppLanguage(selected) // Existing native row tap/original callback helper.
             awaitState("reported locale installed controls $selected") {
                 it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
@@ -1374,8 +1373,20 @@ class EditorDeviceTest {
             onMain {editor ->
                 val persisted=editor.getSharedPreferences("app-language",0).getString("language-tag",null)
                 val platform=editor.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
-                val expectedFile=if(selected=="en-US") "File" else file
-                val expectedSave=if(selected=="en-US") "Save" else save
+                fun selectedResources(language: String)=context.createConfigurationContext(
+                    android.content.res.Configuration().apply {
+                        setLocales(LocaleList.forLanguageTags(language))
+                    }).resources
+                val expected=selectedResources(selected)
+                val english=selectedResources("en-US")
+                val expectedFile=expected.getString(R.string.ui_menu_file)
+                val expectedSave=expected.getString(R.string.ui_save)
+                if(selected!="en-US") {
+                    assertNotEquals("File selects a non-English catalogue for $selected",
+                        english.getString(R.string.ui_menu_file),expectedFile)
+                    assertNotEquals("Save selects a non-English catalogue for $selected",
+                        english.getString(R.string.ui_save),expectedSave)
+                }
                 val tab=editor.window.decorView.findViewWithTag<TextView>("menu_File")
                 val command=editor.window.decorView.findViewWithTag<TextView>("command_File_2")
                 assertNotNull("Mounted File tab",tab);assertNotNull("Mounted Save command",command)
@@ -1393,7 +1404,7 @@ class EditorDeviceTest {
                         "View" to R.string.ui_menu_view,"Color" to R.string.ui_colour_tab23)) {
                     val control=editor.window.decorView.findViewWithTag<TextView>("menu_$name")
                     assertEquals("Complete selected-resource binding $selected/$name",
-                        editor.getString(id),control.text.toString())
+                        expected.getString(id),control.text.toString())
                 }
             }
         }
