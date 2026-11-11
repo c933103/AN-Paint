@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.local
 
 import android.content.Context
+import android.net.Uri
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
 import org.json.JSONObject
@@ -16,6 +17,19 @@ import java.util.Locale
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[33])
 class SharedUiStateTest {
+    @Test fun legacyPlaceholderMigrationRequiresExplicitProvenance() {
+        val label=ui(R.string.ui_untitled)
+        val metadata=JSONObject().put("filename",label).put("filename_is_placeholder",true)
+        assertSame(DocumentName.Untitled,DocumentName.read(metadata,null))
+        metadata.put("filename_is_placeholder",false)
+        assertEquals(DocumentName.Named(label),DocumentName.read(metadata,null))
+        metadata.put("filename_is_placeholder",true)
+        val saved=SavedTarget(Uri.parse("content://example.test/drawing"),label,ExportOptions())
+        assertEquals("An explicit save target establishes a real name",
+            DocumentName.Named(label),DocumentName.read(metadata,saved))
+        assertSame(DocumentName.Recovered,DocumentName.read(JSONObject(),null))
+    }
+
     @Test fun generatedNamesAndMessagesResolveInEveryOfferedLocaleWithoutStoringDisplayText() {
         val context=RuntimeEnvironment.getApplication() as Context
         val previous=AppLanguage.selectedTag(context)

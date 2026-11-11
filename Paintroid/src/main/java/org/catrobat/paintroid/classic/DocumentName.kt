@@ -40,12 +40,12 @@ internal sealed class DocumentName {
                     "named" -> if(identity.has("value")) return Named(identity.getString("value"))
                 }
             }
-            // Earlier formats stored UI text without a distinct identity. Migrate
-            // a recognized placeholder, while explicit named-state stays named.
+            // Earlier formats used the same field for generated labels and real
+            // imported names, without a save target or placeholder marker. Text
+            // matching a UI label is ambiguous: retain it unless provenance says
+            // it was generated, so language changes cannot rename a user's file.
             val previous=metadata.optString("filename","")
-            if(metadata.has("filename_is_placeholder")) {
-                if(metadata.optBoolean("filename_is_placeholder")) return Untitled
-            } else if(previous==ui(R.string.ui_untitled)) return Untitled
+            if(metadata.optBoolean("filename_is_placeholder",false)) return Untitled
             return if(previous.isEmpty()) Recovered else Named(previous)
         }
     }

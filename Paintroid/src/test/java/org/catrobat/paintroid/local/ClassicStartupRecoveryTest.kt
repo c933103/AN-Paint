@@ -13,6 +13,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.TextView
+import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -93,6 +95,70 @@ class ClassicStartupRecoveryTest {
     private fun assertDrawing(activity: ClassicPaintActivity,value: ImageCredit=credit,colour: Int=Color.BLUE) {
         assertTrue(activity.startupReady);assertEquals(7,activity.document.bitmap.width);assertEquals(5,activity.document.bitmap.height)
         assertEquals(colour,activity.document.bitmap.getPixel(2,3));assertEquals(listOf(value),activity.document.imageCredits)
+    }
+
+    @Test fun legacyFilenameMatchingPlaceholderSurvivesLanguageChangeAndAutosave() {
+        val previous=AppLanguage.selectedTag(context)
+        val oldResources=PaintApplication.currentResources
+        val oldLocale=Locale.getDefault()
+        val store=AutosaveStore(context.filesDir)
+        var controller: ActivityController<ClassicPaintActivity>?=null
+        try {
+            AppLanguage.select(context,"fr")
+            // This is a real imported filename that happens to match the current
+            // label, not evidence that the old editor generated the name.
+            val originalName=AppLanguage.wrap(context).getString(R.string.ui_untitled)
+            val oldMetadata=metadata().put("filename",originalName)
+            assertFalse(oldMetadata.has("document_name"))
+            assertFalse(oldMetadata.has("filename_is_placeholder"))
+            assertFalse(oldMetadata.has("save_target"))
+            val image=pixels(Color.BLUE)
+            try {store.write(image,null,oldMetadata)} finally {image.recycle()}
+
+            fun assertNamedDrawing(activity: ClassicPaintActivity) {
+                assertDrawing(activity)
+                assertTrue(activity.document.dirty)
+                assertNull(ReflectionHelpers.getField<SavedTarget?>(activity,"savedTarget"))
+                assertEquals(DocumentName.Named(originalName),
+                    ReflectionHelpers.getField<DocumentName>(activity,"documentName"))
+                assertEquals("$originalName *",
+                    activity.window.decorView.findViewWithTag<TextView>("document_title").text.toString())
+            }
+            val first=Robolectric.buildActivity(ClassicPaintActivity::class.java)
+            controller=first
+            val activity=first.setup().get()
+            awaitEditorStartup(activity);assertNamedDrawing(activity)
+            AppLanguage.select(activity,"en-US")
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            shadowOf(Looper.getMainLooper()).idle()
+            assertEquals("en",activity.resources.configuration.locales[0].language)
+            assertNotEquals("The locale change must distinguish a label from the retained name",
+                originalName,activity.getString(R.string.ui_untitled))
+            assertNamedDrawing(activity)
+
+            // Drive production lifecycle autosave, then inspect the actual ZIP.
+            // No test-side serialization of DocumentName can mask a wiring bug.
+            destroy(first);controller=null
+            val draft=store.read {w,h -> assertEquals(7,w);assertEquals(5,h)}
+            try {
+                assertEquals(originalName,draft.metadata.getString("filename"))
+                val identity=draft.metadata.getJSONObject("document_name")
+                assertEquals("named",identity.getString("kind"))
+                assertEquals(originalName,identity.getString("value"))
+                assertFalse(draft.metadata.has("save_target"))
+                assertEquals(Color.BLUE,draft.image.getPixel(2,3))
+            } finally {draft.image.recycle()}
+
+            val second=Robolectric.buildActivity(ClassicPaintActivity::class.java)
+            controller=second
+            val reopened=second.setup().get()
+            awaitEditorStartup(reopened);assertNamedDrawing(reopened)
+        } finally {
+            try {controller?.let {destroy(it)}} finally {
+                AppLanguage.select(context,previous)
+                PaintApplication.currentResources=oldResources;Locale.setDefault(oldLocale)
+            }
+        }
     }
 
     /** A stopped, idle editor can still owe a catch-up save. Drive real worker/main
