@@ -67,6 +67,26 @@ class KoreanConsumerDeviceContracts(unittest.TestCase):
         self.assertEqual(300, PHASE_TIMEOUTS['dialog'])
         self.assertIn('deadline=started+45000', source)
 
+    def test_target_diagnostic_preserves_native_path_and_delegate(self):
+        # Structural harness guard only; installed CI supplies actual dispatch evidence.
+        source = SOURCE.read_text()
+        picker = kotlin_block(source, 'private fun chooseKoreanLanguage(tag: String,resourceTag: String) {')
+        tap = kotlin_block(source, 'private fun tapControl(label: String,view: View,observeTargetDelivery: Boolean=false) {')
+        target = kotlin_block(tap, 'val targetObserver=if(observeTargetDelivery && !touchExploration) object: TouchDelegate(Rect(),view) {')
+        self.assertTrue(code_locations(picker, 'tapControl("korean language command",command,observeTargetDelivery=true)'))
+        self.assertEqual(1, len(code_locations(target, 'originalDelegate?.onTouchEvent(event)')))
+        self.assertTrue(code_locations(target, 'return handled'))
+        self.assertTrue(code_locations(target, 'originalDelegate?.onTouchExplorationHoverEvent(event) ?: false'))
+        self.assertTrue(code_locations(target, 'originalDelegate?.touchDelegateInfo ?: super.getTouchDelegateInfo()'))
+        self.assertTrue(code_locations(target, '.put("action",event.actionMasked)'))
+        self.assertTrue(code_locations(target, '.put("down_time_ms",event.downTime)'))
+        self.assertTrue(code_locations(tap, 'view.touchDelegate=originalDelegate'))
+        self.assertTrue(code_locations(tap, 'finally {'))
+        for forbidden in ('super.onTouchEvent(', 'dispatchTouchEvent(', 'setOnTouchListener(',
+                          'setOnClickListener(', 'performClick(', 'return true'):
+            self.assertFalse(code_locations(target, forbidden), forbidden)
+        self.assertEqual(1, len(code_locations(tap, 'device.click(')))
+
     def test_three_cases_are_required_once_on_api35_and_suppressed_on_api30(self):
         identities = {(DIALOG, method) for method in KOREAN_METHODS}
         for sdk in (30, 35):
