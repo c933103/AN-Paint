@@ -1,0 +1,70 @@
+{
+  "run": 43014684262,
+  "head": "59a6a4a43396c1db402e705cbc3a16b39f564cae",
+  "checkout": "6d4778dbfe5a1e76d52f990bd47ca80935b1ee56",
+  "tree": "5b770dca9d41f84dd73a69d017cb3609809892a6",
+  "verified_artifacts": {
+    "exact": {
+      "id": 13852187061,
+      "digest": "sha256:2ad2eb7fc2333d528c58f1dba558777a15f30dbb116afbe22c0b1632035d256f"
+    },
+    "apk-source": {
+      "id": 13852996313,
+      "digest": "sha256:f0f1b4a55881f0f18955ce97b1c83c86db3538b638b5c31a1d50a610c93feb79"
+    },
+    "regression": {
+      "id": 13852098865,
+      "digest": "sha256:a50aaf1aa6441610b8a82fb635d794ec640b2ad02e10a8989e910f6439598592"
+    },
+    "instrumentation": {
+      "id": 13852003885,
+      "digest": "sha256:4548c18acbd283483f6d31d36dc0dffe36957627e0aef4fa381285e9b5df0c96"
+    },
+    "position": {
+      "id": 13853147112,
+      "digest": "sha256:7d3a92bf7117959b0dc664baff1f0beb3c641e0f24739a3c3516ce15e6defde3"
+    }
+  },
+  "exact_probes": 13,
+  "source": {
+    "matched_tracked_blobs": 1280,
+    "known_gradle_ant_exclusions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "embedded_matches_standalone": true,
+    "apk_sha256": "21e4121cc557e59af879c5fbd736ea05fad72496c391d40991967561c3dff419",
+    "source_sha256": "a54093b06d51d15b9529bffc8ce7299beaae60f8ad1cbf31f11d843d3d8b2e46",
+    "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+  },
+  "test_apks": {
+    "Paintroid/build/outputs/apk/androidTest/debug/Paintroid-debug-androidTest.apk": "d9f1d9d90dd38deab8936f7e1bb98028f03057ef3e0eaf057219bfd665935884",
+    "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk": "54b0dc333178de389ca3c824c36cc45425b6b01ad810bd412abf65e9613104df"
+  },
+  "regression": {
+    "python_passes": 874,
+    "python_skips": 2,
+    "jvm": {
+      "tests": 1392,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_xml_files": 155
+  },
+  "position_identity": {
+    "group": "position",
+    "commit": "6d4778dbfe5a1e76d52f990bd47ca80935b1ee56",
+    "run_id": "43014684262",
+    "run_attempt": "1",
+    "build_variant": "debug",
+    "source_tests_sha256": "5c4c90abd8009a959ddb866d31eb321b9e75b909188b6a6100c60efefcd4212f",
+    "device_sdk": 35,
+    "apk_sha256": "21e4121cc557e59af879c5fbd736ea05fad72496c391d40991967561c3dff419",
+    "source_sha256": "a54093b06d51d15b9529bffc8ce7299beaae60f8ad1cbf31f11d843d3d8b2e46",
+    "test_apk_sha256": "54b0dc333178de389ca3c824c36cc45425b6b01ad810bd412abf65e9613104df"
+  },
+  "position_tests": 7,
+  "limits": "Independent source-bound artifact/report verification only. Not a new execution, native-human review, exhaustive linguistic/UI/glyph/layout/speech acceptance or release."
+}
