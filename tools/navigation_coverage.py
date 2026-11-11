@@ -21,9 +21,9 @@ def navigation_keys(validate_source: bool = True) -> set[str]:
     definitions = (CLASSIC / 'EditorNavigation.kt').read_text()
     # Only enum constructor labels are actual controls. The title() fallback is
     # not a reachable tab and must not expand the visible-navigation inventory.
-    keys = set(re.findall(r'\b[A-Z_]+\((?:"[^"]+",)?R\.string\.(\w+)', definitions))
+    keys = set(re.findall(r'\b[A-Z_][A-Z_0-9]*\((?:"[^"]+",)?R\.string\.(\w+)', definitions))
     for name in ('ToolCategoryButton.kt', 'PaintDocument.kt'):
-        keys.update(re.findall(r'\b[A-Z_]+\(R\.string\.(\w+),', (CLASSIC / name).read_text()))
+        keys.update(re.findall(r'\b[A-Z_][A-Z_0-9]*\(R\.string\.(\w+),', (CLASSIC / name).read_text()))
     actions = (CLASSIC / 'ActionButton.kt').read_text().split('class ActionButton(', 1)[0]
     keys.update(re.findall(r'R\.string\.(\w+)', actions))
     source = catalogues.default_resources()[0]

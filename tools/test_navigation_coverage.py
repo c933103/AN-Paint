@@ -25,6 +25,15 @@ class NavigationCoverageTest(unittest.TestCase):
         with patch.object(catalogues, 'read_strings', return_value=values):
             self.assertEqual(['ui_magnifier33'], navigation.coverage('wa')['missing'])
 
+    def test_numbered_rotation_commands_cannot_disappear_from_navigation_coverage(self):
+        missing = ['ui_rotate_180', 'ui_rotate_90_clockwise']
+        self.assertTrue(set(missing) <= navigation.navigation_keys())
+        values = catalogues.read_strings(catalogues.catalogue_paths()['wa'])
+        for key in missing:
+            del values[key]
+        with patch.object(catalogues, 'read_strings', return_value=values):
+            self.assertEqual(missing, navigation.coverage('wa')['missing'])
+
     def test_alias_to_english_fallback_is_not_counted_as_a_localized_label(self):
         values = catalogues.read_strings(catalogues.catalogue_paths()['wa'])
         values['ui_magnifier33'] = '@string/untranslated_label'
