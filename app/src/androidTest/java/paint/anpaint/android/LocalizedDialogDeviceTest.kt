@@ -20,6 +20,9 @@ import android.os.Looper
 import android.os.SystemClock
 import android.provider.Settings
 import android.view.KeyEvent
+import android.view.accessibility.AccessibilityManager
+import android.view.accessibility.AccessibilityNodeInfo
+import android.view.TouchDelegate
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
@@ -350,7 +353,7 @@ class LocalizedDialogDeviceTest {
             it.tag?.toString()?.startsWith("command_")==true &&
                 it.contentDescription?.toString()==activity.getString(R.string.ui_languages23)
         }}
-        tapControl("korean language command",command)
+        tapControl("korean language command",command,observeTargetDelivery=true)
         await("real language picker") {topList()?.count==activity.resources.getStringArray(R.array.app_language_tags).size+1}
         val list=onMain {topList()!!}
         val index=onMain {activity.resources.getStringArray(R.array.app_language_tags).indexOf(tag).also {assertTrue(it>=0)}+1}
@@ -377,14 +380,124 @@ class LocalizedDialogDeviceTest {
             .put("selected_index",received.get()).put("expected_index",index))
     }
 
-    private fun tapControl(label: String,view: View) {
+    /**
+     * Read-only state, not a hit-test or proof of target dispatch/click execution.
+     * Preserve all listeners and dispatch exactly once through the original
+     * window callback. Parent-synthesized CANCEL is not visible at this layer.
+     * Getter/serialization overhead can affect timing; do not call this
+     * instrumentation timing-neutral or treat a passing run as a product fix.
+     */
+    private fun controlStateChain(target: View): JSONArray {
+        val states=JSONArray()
+        var current: View?=target
+        while(current!=null) {
+            val node=current
+            states.put(JSONObject().put("identity",System.identityHashCode(node))
+                .put("class",node.javaClass.name).put("tag",node.tag ?: JSONObject.NULL)
+                .put("attached",node.isAttachedToWindow).put("shown",node.isShown)
+                .put("enabled",node.isEnabled).put("clickable",node.isClickable)
+                .put("long_clickable",node.isLongClickable).put("pressed",node.isPressed)
+                .put("focused",node.isFocused).put("window_focused",node.hasWindowFocus())
+                .put("layout_requested",node.isLayoutRequested)
+                .put("scroll_x",node.scrollX).put("scroll_y",node.scrollY)
+                .put("bounds",rect(rawBounds(node))).put("visible_bounds",rect(visibleBounds(node))))
+            current=node.parent as? View
+        }
+        return states
+    }
+
+    private fun tapControl(label: String,view: View,observeTargetDelivery: Boolean=false) {
         settle(view)
         val bounds=onMain {assertComplete(view);assertTrue(view.isEnabled);visibleBounds(view)}
         evidence.observe(onMain {JSONObject().put("kind","pointer-before").put("label",label)
             .put("tap",JSONArray().put(bounds.centerX()).put(bounds.centerY())).put("geometry",geometry(view))})
-        assertTrue("Injected native control tap: $label",device.click(bounds.centerX(),bounds.centerY()))
-        instrumentation.waitForIdleSync()
-        evidence.observe(JSONObject().put("kind","pointer-injected").put("label",label))
+        // Injection success is not evidence that Android delivered the event.
+        // Observe the real window callback without replacing any control listener,
+        // consuming input, retrying the tap, or calling performClick directly.
+        val window=onMain {activity.window}
+        val original=onMain {checkNotNull(window.callback)}
+        val observer=object: android.view.Window.Callback by original {
+            override fun dispatchTouchEvent(event: android.view.MotionEvent): Boolean {
+                val attached=view.isAttachedToWindow
+                val focused=window.decorView.hasWindowFocus()
+                val action=event.actionMasked
+                val time=event.eventTime
+                val x=event.rawX.toDouble();val y=event.rawY.toDouble()
+                val busyBefore=activity.busy
+                val pressedBefore=view.isPressed
+                val targetBounds=rawBounds(view)
+                val stateBefore=controlStateChain(view)
+                val handled=original.dispatchTouchEvent(event)
+                val stateAfter=controlStateChain(view)
+                evidence.observe(JSONObject().put("kind","native-window-touch").put("label",label)
+                    .put("action",action).put("event_time_ms",time)
+                    .put("target_ancestor_state_before",stateBefore).put("target_ancestor_state_after",stateAfter)
+                    .put("raw_x",x).put("raw_y",y)
+                    .put("target_attached_before_dispatch",attached).put("window_focused_before_dispatch",focused)
+                    .put("handled",handled).put("activity_busy_before_dispatch",busyBefore)
+                    .put("activity_busy_after_dispatch",activity.busy)
+                    .put("target_pressed_before_dispatch",pressedBefore).put("target_pressed_after_dispatch",view.isPressed)
+                    .put("target_bounds_at_dispatch",rect(targetBounds))
+                    .put("event_inside_target",x>=targetBounds.left && x<targetBounds.right && y>=targetBounds.top && y<targetBounds.bottom))
+                return handled
+            }
+        }
+        // The window trace cannot observe a parent-generated CANCEL or prove
+        // that the target's onTouchEvent ran. A non-consuming TouchDelegate
+        // observes that later boundary without replacing click/touch listeners.
+        // It is NOT a complete dispatch observer: disabled views or consuming
+        // OnTouchListeners can return before this boundary. Preserve any delegate
+        // and its result; never call super here (it would dispatch to the target).
+        val originalDelegate=onMain {view.touchDelegate}
+        val touchExploration=onMain {context.getSystemService(AccessibilityManager::class.java).isTouchExplorationEnabled}
+        // Adding a delegate also temporarily adds accessibility-region metadata.
+        // Do not install this pointer-only probe during touch exploration; with
+        // no original delegate, its empty bounds describe no enlarged hit area.
+        val targetObserver=if(observeTargetDelivery && !touchExploration) object: TouchDelegate(Rect(),view) {
+            override fun onTouchExplorationHoverEvent(event: android.view.MotionEvent): Boolean =
+                originalDelegate?.onTouchExplorationHoverEvent(event) ?: false
+            override fun getTouchDelegateInfo(): AccessibilityNodeInfo.TouchDelegateInfo =
+                originalDelegate?.touchDelegateInfo ?: super.getTouchDelegateInfo()
+            override fun onTouchEvent(event: android.view.MotionEvent): Boolean {
+                val observation=JSONObject().put("kind","native-target-touch").put("label",label)
+                    .put("boundary","View.onTouchEvent/TouchDelegate")
+                    .put("action",event.actionMasked).put("event_time_ms",event.eventTime)
+                    .put("down_time_ms",event.downTime).put("local_x",event.x.toDouble()).put("local_y",event.y.toDouble())
+                    .put("raw_x",event.rawX.toDouble()).put("raw_y",event.rawY.toDouble())
+                    .put("target_identity",System.identityHashCode(view))
+                    .put("enabled",view.isEnabled).put("clickable",view.isClickable)
+                    .put("pressed_before_delegate",view.isPressed).put("original_delegate_present",originalDelegate!=null)
+                val handled=originalDelegate?.onTouchEvent(event) ?: false
+                evidence.observe(observation.put("original_delegate_handled",handled))
+                return handled
+            }
+        } else null
+        try {
+            onMain {
+                window.callback=observer
+                if(targetObserver!=null) view.touchDelegate=targetObserver
+                if(observeTargetDelivery) evidence.observe(JSONObject().put("kind","target-touch-probe")
+                    .put("label",label).put("installed",targetObserver!=null).put("touch_exploration_enabled",touchExploration))
+            }
+            assertTrue("Injected native control tap: $label",device.click(bounds.centerX(),bounds.centerY()))
+            instrumentation.waitForIdleSync()
+            evidence.observe(onMain {JSONObject().put("kind","pointer-injected").put("label",label)
+                .put("target_attached_after_idle",view.isAttachedToWindow)
+                .put("windows_after_idle",JSONArray().also {windows ->
+                    WindowInspector.getGlobalWindowViews().forEach {root ->
+                        windows.put(JSONObject().put("shown",root.isShown).put("focused",root.hasWindowFocus())
+                            .put("visible_list_counts",JSONArray().also {counts ->
+                                descendants(root).filterIsInstance<ListView>().filter {it.isShown}
+                                    .forEach {counts.put(it.count)}
+                            }))
+                    }
+                })})
+        } finally {
+            onMain {
+                if(targetObserver!=null && view.touchDelegate===targetObserver) view.touchDelegate=originalDelegate
+                if(window.callback===observer) window.callback=original
+            }
+        }
     }
 
     /** This characterizes an unchanged-source limitation; it does not accept

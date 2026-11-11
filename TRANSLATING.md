@@ -9,7 +9,10 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
 Each translatable source key belongs to exactly one P0–P3 importance tier,
 independent of its language-specific coverage and linguistic-review status.
 P0 prioritizes data loss/recovery and irreversible warnings; P1 covers basic
-editing; P2 covers extended features; P3 covers detailed help and reference.
+editing and all active main-editor menu/tool controls, including inline options
+and accessible names. This floor applies to every offered language, even when
+the command opens a specialist feature or reference dialog. P2 covers deeper
+extended-feature contents; P3 covers detailed help and reference bodies.
 This does not exempt any tier from eventual translation or legal obligations.
 
 See [the tier policy](translations/STRING_IMPORTANCE.md) and the exact
