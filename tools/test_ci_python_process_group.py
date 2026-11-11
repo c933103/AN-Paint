@@ -142,6 +142,7 @@ class PythonProcessGroupTests(unittest.TestCase):
     def test_clean_failed_python_allows_required_later_phase_with_distinct_owner(self):
         with tempfile.TemporaryDirectory() as root:
             root=Path(root);(root/'tools').mkdir();shutil.copy(OWNER,root/'tools');shutil.copy(ROOT/'tools/ci_run_timed.sh',root/'tools')
+            shutil.copy(ROOT/'tools/ci_observe_jvm_memory.py',root/'tools')
             proc=self.launch(root,'import sys;sys.exit(7)');self.finish(proc);self.assertEqual(7,proc.returncode)
             r=subprocess.run(['bash','tools/ci_run_timed.sh','jvm',sys.executable,'-c','open("launched","w").close()'],cwd=root,capture_output=True,text=True,timeout=5)
             self.assertEqual(0,r.returncode,r.stderr);self.assertTrue((root/'launched').exists())
