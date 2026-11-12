@@ -1371,4 +1371,57 @@ class EditorDeviceTest {
     }
 
 
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun reportedMenuLocalesReachInstalledControlsThroughRealPickerRows() {
+        // These three distinct reported cases exercise an explicit script and two
+        // ordinary BCP47 catalogues. English restores the control case after each.
+        val cases=listOf("yue-Hant","wa","xh")
+        for(tag in cases) for(selected in listOf(tag,"en-US")) {
+            chooseAppLanguage(selected) // Existing native row tap/original callback helper.
+            awaitState("reported locale installed controls $selected") {
+                it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
+                    it.resources.configuration.locales[0].toLanguageTag()==selected
+            }
+            click("menu_File")
+            onMain {editor ->
+                val persisted=editor.getSharedPreferences("app-language",0).getString("language-tag",null)
+                val platform=editor.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags()
+                fun selectedResources(language: String)=context.createConfigurationContext(
+                    android.content.res.Configuration().apply {
+                        setLocales(LocaleList.forLanguageTags(language))
+                    }).resources
+                val expected=selectedResources(selected)
+                val english=selectedResources("en-US")
+                val expectedFile=expected.getString(R.string.ui_menu_file)
+                val expectedSave=expected.getString(R.string.ui_save)
+                if(selected!="en-US") {
+                    assertNotEquals("File selects a non-English catalogue for $selected",
+                        english.getString(R.string.ui_menu_file),expectedFile)
+                    assertNotEquals("Save selects a non-English catalogue for $selected",
+                        english.getString(R.string.ui_save),expectedSave)
+                }
+                val tab=editor.window.decorView.findViewWithTag<TextView>("menu_File")
+                val command=editor.window.decorView.findViewWithTag<TextView>("command_File_2")
+                assertNotNull("Mounted File tab",tab);assertNotNull("Mounted Save command",command)
+                val report=org.json.JSONObject().put("requested_tag",selected)
+                    .put("persisted_tag",persisted).put("platform_tag",platform)
+                    .put("resource_tag",editor.resources.configuration.locales[0].toLanguageTag())
+                    .put("expected_file",expectedFile).put("actual_file",tab.text.toString())
+                    .put("expected_save",expectedSave).put("actual_save",command.text.toString())
+                android.util.Log.i("ReportedMenuLocaleTest",report.toString())
+                assertEquals(selected,persisted);assertEquals(selected,platform)
+                assertEquals("Independent installed File routing",expectedFile,tab.text.toString())
+                assertEquals("Independent installed Save routing",expectedSave,command.text.toString())
+                assertTrue("File command is mounted in selected panel",command.isShown)
+                for((name,id) in listOf("Draw" to R.string.ui_draw26,"Edit" to R.string.ui_menu_edit,
+                        "View" to R.string.ui_menu_view,"Color" to R.string.ui_colour_tab23)) {
+                    val control=editor.window.decorView.findViewWithTag<TextView>("menu_$name")
+                    assertEquals("Complete selected-resource binding $selected/$name",
+                        expected.getString(id),control.text.toString())
+                }
+            }
+        }
+    }
+
+
 }

@@ -261,13 +261,32 @@ class CzechFitWorkflowTest {
                 assertEquals(Int.MAX_VALUE,status.maxLines)
             }
             assertTrue("Long status genuinely exceeds viewport: ${status.height} > ${viewport.height}",status.height>viewport.height)
+            val viewportPoint=IntArray(2);val rootPoint=IntArray(2)
+            viewport.getLocationOnScreen(viewportPoint);root.getLocationOnScreen(rootPoint)
+            // A drag starts in the short status rail, but the captured pointer
+            // can continue up into the canvas. Restricting every swipe to 80%
+            // of 44dp loses touch slop repeatedly and imposes an artificial
+            // travel ceiling on enlarged text. Keep the same 80-gesture bound
+            // and stay inside the actual window, without programmatic scrolling.
+            val endOffset=maxOf(-2f*viewport.height,1f-(viewportPoint[1]-rootPoint[1]))
+            assertTrue("The window has room above the status rail for a native drag",endOffset<0f)
+            var gestures=0
             repeat(80) {
-                if(viewport.canScrollVertically(1)) {swipe(root,viewport,.5f,.9f,.5f,.1f);settle()}
+                if(viewport.canScrollVertically(1)) {
+                    val previous=viewport.scrollY
+                    swipe(root,viewport,.5f,.9f,.5f,endOffset/viewport.height);settle();gestures++
+                    assertTrue("Captured status drag advances: $previous -> ${viewport.scrollY}",
+                        viewport.scrollY>previous || !viewport.canScrollVertically(1))
+                }
             }
-            assertFalse("Native gestures reach the final status line",viewport.canScrollVertically(1))
+            assertFalse("Native gestures reach the final status line: gestures=$gestures, "+
+                "scrollY=${viewport.scrollY}, content=${status.height}, viewport=${viewport.height}",viewport.canScrollVertically(1))
             val layout=requireNotNull(status.layout) {"Status lost native layout: ${status.width}×${status.height}; viewport ${viewport.width}×${viewport.height}"}
             assertTrue(layout.getLineBottom(layout.lineCount-1)<=viewport.scrollY+viewport.height)
             assertEquals(geometry,listOf(footer.width,footer.height,canvas.width,canvas.height))
+            assertEquals("The captured status drag must not draw on the canvas",Color.BLUE,
+                activity.document.bitmap.getPixel(20,30))
+            assertFalse(activity.document.dirty);assertFalse(activity.document.canUndo)
         } finally {
             ReflectionHelpers.setField(activity,"draftStatus",draft)
             ReflectionHelpers.setField(activity,"busy",false);ReflectionHelpers.setField(activity,"autosaving",false)

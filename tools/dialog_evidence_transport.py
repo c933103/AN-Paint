@@ -16,6 +16,7 @@ import tempfile
 import zipfile
 
 from vertical_evidence_transport import bounded_digest, require, strict_object
+from app_instrumentation_matrix import PAGE_COUNT, PAGE_COUNT_METHODS
 
 OWNER = 'paint.anpaint.android'
 TEST_CLASS = OWNER + '.LocalizedDialogDeviceTest'
@@ -84,6 +85,12 @@ MAX_MANIFEST = 64 * 1024
 PNG = b'\x89PNG\r\n\x1a\n'
 
 
+# The page-chooser shares this bounded run but does not produce capture exports.
+# Its exact successful identity is still mandatory in the source report.
+REPORT_IDENTITIES = {(owner, method) for method, owner in METHOD_CLASSES.items()} | {
+    (PAGE_COUNT, method) for method in PAGE_COUNT_METHODS}
+
+
 def source_binding(summary):
     require(isinstance(summary, dict) and summary.get('success') is True
             and type(summary.get('device_sdk')) is int and summary.get('device_sdk') == 35 and summary.get('timed_out') is False
@@ -94,16 +101,16 @@ def source_binding(summary):
     cases = summary.get('cases')
     require(isinstance(cases, list), 'Dialog report cases missing')
     require(all(isinstance(case, dict) for case in cases), 'Malformed dialog report case')
-    expected = {(owner, method) for method, owner in METHOD_CLASSES.items()}
+    expected = REPORT_IDENTITIES
     require(len(cases) == len(expected)
             and {(c.get('classname'), c.get('name')) for c in cases} == expected
             and all(c.get('status') == 'passed' for c in cases),
-            'All fourteen exact method/class pairs must pass in dedicated dialog report')
-    require(type(summary.get('expected_tests')) is int and summary['expected_tests'] == len(METHOD_CLASSES)
-            and type(summary.get('completed_tests')) is int and summary['completed_tests'] == len(METHOD_CLASSES)
+            'Every exact dialog-batch method/class pair must pass in the source report')
+    require(type(summary.get('expected_tests')) is int and summary['expected_tests'] == len(expected)
+            and type(summary.get('completed_tests')) is int and summary['completed_tests'] == len(expected)
             and summary.get('missing') == [] and summary.get('unexpected') == [] and summary.get('errors') == []
-            and summary.get('included_tests') == sorted(owner + '#' + method for method, owner in METHOD_CLASSES.items()),
-            'Exact selected fourteen-method two-class dialog phase required')
+            and summary.get('included_tests') == sorted(owner + '#' + method for owner, method in expected),
+            'Exact selected fifteen-method dialog phase required')
     return digest
 
 
