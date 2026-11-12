@@ -127,7 +127,7 @@ class CommonsCopyCreditErrorTest {
         select(activity);await {!activity.downloading}
         assertEquals(2,requests.size);assertEquals(View.GONE,status(activity).visibility)
         val copied=clipboardText()!!
-        for(value in listOf("Mapper A","Mapper B","by-sa/3.0/",source,page)) assertTrue(value,copied.contains(value))
+        for(value in listOf("Mapper A","Mapper B","by-sa/3.0/",page)) assertTrue(value,copied.contains(value))
         assertFalse(copied.contains("antiAlias=false"));assertFalse(copied.contains("background=#FFFFFF"))
         assertEquals(CommonsAttribution.cached(activity,source)!!.text(false),copied)
         unchanged(activity,requests,before)

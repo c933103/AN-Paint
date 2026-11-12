@@ -276,4 +276,80 @@ class CommonsBlankMapsTest {
             } finally {mainController.pause().stop();await {!main.busy};mainController.destroy()}
         } finally {if(!activity.isDestroyed)controller.pause().stop().destroy()}
     }
+
+    @Test fun commonsMediaViewerOffersAFileIdentityActionInsteadOfImportingAThumbnail() {
+        val script=IllustrationPage.script(IllustrationSource.COMMONS,"Use image","Copy credit")
+        assertTrue(script.contains("anpaint-commons-viewer-use"))
+        assertTrue(script.contains(IllustrationPage.FILE_SCHEME))
+        assertTrue(script.contains("hashchange"))
+        val category="https://commons.wikimedia.org/wiki/Category:Blank_maps"
+        val selected=org.catrobat.paintroid.classic.CommonsViewerSelection.filePage(
+            Uri.parse("$category#mediaviewer/File%3ABlank_test_map.svg"))
+        assertNotNull(selected)
+        assertEquals(Uri.parse(page).path,Uri.parse(selected).path)
+        assertTrue(IllustrationSource.COMMONS.isArtworkPage(Uri.parse(selected)))
+        assertNull(org.catrobat.paintroid.classic.CommonsViewerSelection.filePage(Uri.parse(category)))
+        assertNull(org.catrobat.paintroid.classic.CommonsViewerSelection.filePage(
+            Uri.parse("https://evil.example/wiki/Category:Blank_maps#mediaviewer/File:Blank_test_map.svg")))
+        assertNull(org.catrobat.paintroid.classic.CommonsViewerSelection.filePage(
+            Uri.parse("$category#mediaviewer/Category:Blank_maps")))
+    }
+
+    @Test fun commonsMediaViewerActionResolvesTheOriginalAndReturnsAnImageToTheEditor() {
+        val controller=gallery();val activity=controller.get()
+        try {
+            val nativeAction=activity.window.decorView
+                .findViewWithTag<android.widget.Button>("gallery_use_selected")
+            assertNotNull("Native Use image must remain available above MediaViewer",nativeAction)
+            assertEquals(activity.getString(org.catrobat.paintroid.R.string.gallery_use_image),
+                nativeAction.text.toString())
+            val requested=mutableListOf<String>()
+            activity.openConnection={url ->
+                requested.add(url.toString())
+                val bytes=if(url.host=="commons.wikimedia.org")
+                    CommonsTestMetadata.response(original,page).toByteArray()
+                else svg.toByteArray()
+                Connection(url,ByteArrayInputStream(bytes))
+            }
+            val web=ReflectionHelpers.getField<WebView>(activity,"web")
+            val action=Uri.Builder().scheme(IllustrationPage.FILE_SCHEME).authority("insert")
+                .appendQueryParameter("page",page).build()
+            assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,action.toString()))
+            await {activity.isFinishing && !activity.downloading}
+            assertEquals(Activity.RESULT_OK,shadowOf(activity).resultCode)
+            assertEquals(2,requested.size)
+            assertTrue(requested[0].startsWith("https://commons.wikimedia.org/w/api.php?"))
+            assertEquals(original,requested[1])
+            val result=shadowOf(activity).resultIntent
+            assertEquals(original,result.getStringExtra("gallery_source"))
+            assertEquals(page,result.getStringExtra("gallery_page"))
+            assertTrue(result.getStringExtra("gallery_title").orEmpty().isNotEmpty())
+            assertNotNull(result.getStringExtra(CreditEditSession.EXTRA_SESSION))
+            val image=File(activity.cacheDir,result.getStringExtra("gallery_file")!!)
+            try {
+                assertTrue(image.isFile)
+                val bitmap=BitmapFactory.decodeFile(image.path)
+                assertNotNull(bitmap)
+                try {assertEquals(40,bitmap.width);assertEquals(24,bitmap.height)}
+                finally {bitmap.recycle()}
+            } finally {image.delete()}
+        } finally {if(!activity.isDestroyed)controller.pause().stop().destroy()}
+    }
+
+    @Test fun invalidCommonsMediaViewerActionCannotStartAnImageDownload() {
+        val controller=gallery();val activity=controller.get()
+        try {
+            var connections=0
+            activity.openConnection={connections++;error("Invalid page must be refused before network")}
+            val web=ReflectionHelpers.getField<WebView>(activity,"web")
+            for(pageUrl in listOf("https://evil.example/wiki/File:Map.svg",
+                "https://commons.wikimedia.org/wiki/Category:Blank_maps")) {
+                val action=Uri.Builder().scheme(IllustrationPage.FILE_SCHEME).authority("insert")
+                    .appendQueryParameter("page",pageUrl).build()
+                assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,action.toString()))
+            }
+            assertEquals(0,connections)
+            assertEquals(Activity.RESULT_CANCELED,shadowOf(activity).resultCode)
+        } finally {if(!activity.isDestroyed)controller.pause().stop().destroy()}
+    }
 }

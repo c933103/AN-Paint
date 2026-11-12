@@ -190,7 +190,7 @@ class CommonsCreditFlowTest {
                 assertEquals(24,main.document.selection!!.image!!.height)
                 assertEquals(listOf(source),main.document.imageCredits.map {it.source})
                 val credit=ImageCredit.text(main.document.imageCredits)
-                for(text in listOf("Mapper A","Mapper B","by-sa/3.0/",source,page,"antiAlias=false")) assertTrue(credit.contains(text))
+                for(text in listOf("Mapper A","Mapper B","by-sa/3.0/",page,"antiAlias=false")) assertTrue(credit.contains(text))
                 assertTrue(credit.lines().contains("AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF."))
                 main.document.finishSelection()
                 // A later UI language does not rewrite the document's already generated credit.

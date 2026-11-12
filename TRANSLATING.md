@@ -15,6 +15,9 @@ the command opens a specialist feature or reference dialog. P2 covers deeper
 extended-feature contents; P3 covers detailed help and reference bodies.
 This does not exempt any tier from eventual translation or legal obligations.
 
+The shared navigation definitions also drive `tools/navigation_coverage.py`, which
+reports missing captions, English fallback aliases and English matches for review.
+
 See [the tier policy](translations/STRING_IMPORTANCE.md) and the exact
 [per-key manifest](translations/string-importance.json). Run
 `python3 tools/string_importance.py --locale ceb --missing-keys` for a

@@ -1,11 +1,13 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import android.net.Uri
 import org.json.JSONObject
 
 /** Add app actions only to artwork links on a source's detail page. No JS/native bridge. */
 internal object IllustrationPage {
     const val USE_SCHEME="anpaint-gallery-use"
+    const val FILE_SCHEME="anpaint-gallery-file"
     fun script(provider: IllustrationSource,useLabel: String,copyLabel: String): String {
         if(provider==IllustrationSource.CATROBAT) return GalleryPage.script(useLabel,copyLabel)
         if(provider==IllustrationSource.COMMONS) return commonsScript(useLabel,copyLabel)
@@ -66,7 +68,37 @@ internal object IllustrationPage {
     private fun commonsScript(useLabel: String, copyLabel: String): String = """
         (function() {
           var use=${JSONObject.quote(useLabel)}, copy=${JSONObject.quote(copyLabel)};
+          // Commons Media Viewer opens a lightbox on the category page. Its
+          // displayed image is a thumbnail, not the original file. Only carry
+          // the selected File: page to native code, which resolves imageinfo.
+          function viewerFilePage() {
+            var match=location.hash.match(/^#(?:mediaviewer\/|\/media\/)([^?#]+)$/);
+            if(!match)return null;
+            var title;
+            try {title=decodeURIComponent(match[1]);}catch(e){return null;}
+            if(title.indexOf('File:')!==0 || title.length>1024)return null;
+            return 'https://commons.wikimedia.org/wiki/'+encodeURIComponent(title).replace(/^File%3A/i,'File:');
+          }
+          function viewerAction() {
+            var page=viewerFilePage();
+            var link=document.getElementById('anpaint-commons-viewer-use');
+            if(!page) {if(link)link.remove();return;}
+            if(!link) {
+              link=document.createElement('a');link.id='anpaint-commons-viewer-use';
+              link.setAttribute('data-anpaint-action','true');
+              link.style.cssText='position:fixed;left:16px;bottom:calc(78px + env(safe-area-inset-bottom));'+
+                'z-index:2147483647;display:inline-block;padding:12px 18px;border-radius:6px;'+
+                'background:#e9ddff;color:#21005d;border:2px solid #6750a4;font:16px sans-serif';
+              link.addEventListener('click',function(event){event.stopPropagation();});
+              document.body.appendChild(link);
+            }
+            var target='${FILE_SCHEME}://insert?page='+encodeURIComponent(page);
+            if(link.getAttribute('href')!==target)link.setAttribute('href',target);
+            if(link.textContent!==use)link.textContent=use;
+            link.setAttribute('aria-label',use);
+          }
           function adapt() {
+            viewerAction();
             var page=new URL(location.href), fileTitle;
             try {fileTitle=page.pathname.indexOf('/wiki/')===0?decodeURIComponent(page.pathname.slice(6)):page.searchParams.get('title')}catch(e){return}
             if(!fileTitle || fileTitle.indexOf('File:')!==0) return;
@@ -100,6 +132,9 @@ internal object IllustrationPage {
           if(window.anPaintCommonsObserver)window.anPaintCommonsObserver.disconnect();
           window.anPaintCommonsObserver=new MutationObserver(adapt);
           window.anPaintCommonsObserver.observe(document.body,{childList:true,subtree:true});
+          if(window.anPaintCommonsHashHandler)window.removeEventListener('hashchange',window.anPaintCommonsHashHandler);
+          window.anPaintCommonsHashHandler=adapt;
+          window.addEventListener('hashchange',adapt);
         })();
     """.trimIndent()
 
@@ -111,4 +146,24 @@ internal object IllustrationPage {
         var button=field.form.querySelector('button[type="submit"]');
         if(button) button.click();else if(field.form.requestSubmit) field.form.requestSubmit();else field.form.submit();return true;})();
     """.trimIndent()
+}
+
+/** Interpret a Commons MediaViewer selection as a File page, not its preview.
+ * No image CDN URL is accepted from the lightbox as evidence of the original.
+ */
+internal object CommonsViewerSelection {
+    fun filePage(url: Uri): String? {
+        if(!IllustrationSource.COMMONS.allowsPage(url)) return null
+        val fragment=url.encodedFragment ?: return null
+        val encoded=when {
+            fragment.startsWith("mediaviewer/") -> fragment.removePrefix("mediaviewer/")
+            fragment.startsWith("/media/") -> fragment.removePrefix("/media/")
+            else -> return null
+        }
+        val title=Uri.decode(encoded)
+        if(!title.startsWith("File:") || title.length !in 6..1024 || '|' in title) return null
+        val page=Uri.parse("https://commons.wikimedia.org").buildUpon()
+            .appendPath("wiki").appendPath(title).build()
+        return page.toString().takeIf {IllustrationSource.COMMONS.isArtworkPage(Uri.parse(it))}
+    }
 }

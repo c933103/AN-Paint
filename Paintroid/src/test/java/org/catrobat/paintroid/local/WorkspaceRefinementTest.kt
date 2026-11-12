@@ -92,7 +92,7 @@ class WorkspaceRefinementTest {
         saveIdle();assertTrue(doc.dirty);assertTrue(view<TextView>("document_title").text.endsWith("*"))
         val store=AutosaveStore(activity.filesDir)
         val draft=store.read { w,h -> assertEquals(200,w);assertEquals(120,h) }
-        assertTrue(pixels.sameAs(draft.image));assertEquals("Untitled",draft.metadata.getString("filename"));draft.image.recycle()
+        assertTrue(pixels.sameAs(draft.image));assertEquals("untitled",draft.metadata.getJSONObject("document_name").getString("kind"));assertFalse(draft.metadata.has("filename"));draft.image.recycle()
         reopen();assertTrue(pixels.sameAs(doc.bitmap));pixels.recycle()
         assertEquals(PaintTool.BRUSH,canvas.tool);assertEquals(Color.MAGENTA,doc.foreground);assertEquals(Color.YELLOW,doc.background)
         assertEquals(9f,doc.strokeWidth,0f);assertEquals(13f,doc.tolerance,0f);assertTrue(doc.dirty)

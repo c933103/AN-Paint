@@ -148,11 +148,24 @@ class GalleryImportTest {
         assertTrue(shadowOf(web).webViewClient.shouldOverrideUrlLoading(web,action.toString()))
         val clipboard=gallery.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val credit=clipboard.primaryClip!!.getItemAt(0).text.toString()
-        assertTrue(credit.contains("Needle Yellow"));assertTrue(credit.contains(asset.toString()))
+        assertTrue(credit.contains("Needle Yellow"));assertFalse(credit.contains(asset.toString()));assertTrue(credit.contains(MediaGalleryActivity.GALLERY))
         assertTrue(credit.contains("Publisher: Catrobat project"));assertTrue(credit.contains(GalleryCredits.CC_BY_SA))
         assertFalse(credit.contains("Modified"));assertFalse(gallery.isFinishing)
         assertEquals(Activity.RESULT_CANCELED,shadowOf(gallery).resultCode)
     }
+    @Test fun everyProviderRendersPublicationCreditWithoutDownloadPlumbingOrAppGuidance() {
+        for(provider in IllustrationSource.values()) {
+            val source="https://example.org/internal-download-token.png"
+            val credit=GalleryCredits.credit(source,"Published title",provider,provider.home,
+                "Named creator","Source licence notice","https://example.org/creator")
+            assertTrue(credit.contains("Published title"));assertTrue(credit.contains("Named creator"))
+            assertTrue(credit.contains("Source licence notice"));assertTrue(credit.contains("https://example.org/creator"))
+            assertTrue(credit.contains(provider.home));assertFalse(credit.contains(source))
+            assertFalse(credit.contains("not a Creative Commons"))
+            assertFalse(credit.contains(gallery.getString(org.catrobat.paintroid.R.string.commons_check_file_licence)))
+        }
+    }
+
     @Test fun additionalProvidersImportAnExplicitArtworkAndPreserveTheirOwnTerms() {
         for(provider in listOf(IllustrationSource.IRASUTOYA,IllustrationSource.OPENCLIPART)) {
             controller.pause().stop().destroy();await {!gallery.downloading}
@@ -175,6 +188,8 @@ class GalleryImportTest {
             assertEquals("Declared licence https://example.org/terms",result.getStringExtra("gallery_licence"))
             val credit=GalleryCredits.credit(source,"Example artwork",provider,page)
             assertTrue(credit.contains(page));assertTrue(credit.contains(provider.terms));assertFalse(credit.contains("CC BY-SA"))
+            assertFalse("Publication credit omits the direct download URL",credit.contains(source))
+            assertFalse("Publication credit omits negative licence guidance",credit.contains("not a Creative Commons"))
             if(provider==IllustrationSource.IRASUTOYA) assertTrue(credit.contains("Takashi Mifune")) else assertTrue(credit.contains("CC0"))
             File(gallery.cacheDir,result.getStringExtra("gallery_file")!!).delete()
         }

@@ -1,6 +1,7 @@
 """Shared current-resource checks for Assembly Help semantic regressions."""
 import xml.etree.ElementTree as ET
 import translation_catalogues as catalogues
+from current_localization_contracts import decode_display
 
 KEY = 'ui_add_up_to_20_images_with_android_s'
 
@@ -26,4 +27,4 @@ def check_current_help(test, directory, captions):
     for index, key in captions:
         with test.subTest(caption=key):
             test.assertTrue(values[key])
-            test.assertIn(values[key], text if index is None else paragraphs[index])
+            test.assertIn(decode_display(values[key]), decode_display(text if index is None else paragraphs[index]))

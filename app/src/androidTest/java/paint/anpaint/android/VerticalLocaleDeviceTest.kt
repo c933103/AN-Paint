@@ -394,11 +394,31 @@ class VerticalLocaleDeviceTest {
         if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
             activity.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
         if(tag=="qaa-Zsye-XV") {
-            assertEquals("💾 Save",activity.getString(R.string.ui_save))
-            assertEquals("📁 File",activity.getString(R.string.ui_menu_file))
+            fun selectedResources(localeTag: String)=context.createConfigurationContext(
+                Configuration().apply {setLocales(LocaleList.forLanguageTags(localeTag))}).resources
+            // Select canonical public-tag strings independently of the editor's
+            // private English-plural mirror. Wording belongs to the catalogue.
+            val canonical=selectedResources(tag)
+            for((viewTag,id) in listOf("command_File_2" to R.string.ui_save,"menu_File" to R.string.ui_menu_file)) {
+                val expected=canonical.getString(id)
+                assertEquals("Emoji resource route for $viewTag",expected,activity.getString(id))
+                val control=root().findViewWithTag<TextView>(viewTag)
+                    ?: throw AssertionError("Missing mounted $viewTag")
+                assertEquals("Complete mounted emoji label for $viewTag",expected,control.text.toString())
+                assertEquals("Complete accessible emoji label for $viewTag",expected,control.contentDescription.toString())
+            }
+            // qaa itself has root plural rules. Select the English mirror
+            // independently and require distinct one/other forms, retaining the
+            // routing/formatting regression without copying approved sentences.
+            val englishPlural=selectedResources(resourceTag(tag))
+            val one=englishPlural.getQuantityText(R.plurals.ui_crop_preview_images,1).toString()
+            val other=englishPlural.getQuantityText(R.plurals.ui_crop_preview_images,2).toString()
+            assertNotEquals("Emoji English retains distinct singular and plural forms",one,other)
             for(count in listOf(0,1,2,20)) {
-                val noun=if(count==1) "image" else "images"
-                assertEquals("✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images may move their attached images.",
+                assertEquals("Emoji English plural selection for $count",if(count==1) one else other,
+                    activity.resources.getQuantityText(R.plurals.ui_crop_preview_images,count).toString())
+                assertEquals("Complete formatted emoji preview for $count",
+                    englishPlural.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count),
                     activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
             }
         }

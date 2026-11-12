@@ -30,13 +30,14 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
     def test_only_imported_boundary_uses_the_two_whole_resources(self):
         source = (JAVA / 'CommonsAttribution.kt').read_text()
         self.assertIn('fun text(imported: Boolean): String', source)
-        self.assertIn('if (imported) lines.add(if (Uri.parse(source).path.orEmpty().endsWith(".svg", true))', source)
+        self.assertIn('val changes=if(!imported) null else if(Uri.parse(source).path.orEmpty().endsWith(".svg",true))', source)
         self.assertIn('ui(R.string.commons_import_svg_changes)', source)
-        self.assertIn('else ui(R.string.commons_import_raster_changes))', source)
+        self.assertIn('else ui(R.string.commons_import_raster_changes)', source)
+        self.assertIn('notices=notices,changes=changes).text()', source)
         self.assertNotIn('ui_original_size34', source)
         # Whole provider values still cross this boundary verbatim, not as resources.
-        self.assertIn('lines.add("$key: $it")', source)
-        self.assertIn('metadata[key]?.takeIf { it.isNotBlank() }', source)
+        self.assertIn('?.let {"$key: $it"}', source)
+        self.assertIn('metadata[key]?.takeIf {it.isNotBlank()}', source)
         self.assertIn('CommonsAttribution.cached(this,source)?.text(imported=true)',
                       (JAVA / 'ClassicPaintActivity.kt').read_text())
         self.assertIn('val credit=document.imageCredits.firstOrNull {it.source==source} ?: ImageCredit(',

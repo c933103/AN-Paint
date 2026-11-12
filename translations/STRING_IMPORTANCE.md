@@ -51,6 +51,12 @@ proof that every future binding will be discovered. Revisit its boundaries when
 adding or moving controls. Canonical XML, held wording and review receipts are
 unchanged by a priority decision; newly exposed P1 gaps are not new translations.
 
+Navigation captions are also checked from the shared `EditorNavigation.kt`
+command/tab/group definitions that build the UI. Tool and header definitions
+join that audit; new navigation captions must remain P0/P1. The navigation
+coverage report separately identifies missing entries, aliases falling back to
+English and English matches needing review. Presence alone is not acceptance.
+
 ### Explanations versus active instructions
 
 Classify text by where it is used and the consequence of misunderstanding it,

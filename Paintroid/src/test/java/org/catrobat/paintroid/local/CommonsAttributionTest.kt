@@ -52,11 +52,18 @@ class CommonsAttributionTest {
         val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
         val metadataOnly=record.text(false)
         val imported=record.text(true)
-        val expected="AN Paint: SVG → PNG; taille d’origine; antiAlias=false; strokeDashArray=none; background=#FFFFFF."
+        val expected=AppLanguage.wrap(context).getString(R.string.commons_import_svg_changes)
         assertEquals(1,imported.lines().count {it==expected})
         assertEquals(metadataOnly,imported.lines().filterNot {it==expected}.joinToString("\n"))
-        for((key,value) in record.metadata.filterKeys {it!="ObjectName"}.filterValues {it.isNotBlank()}) {
+        // Legal notices belong in the credit. API bookkeeping stays in the
+        // metadata snapshot, not in text intended for publication.
+        val bookkeeping=setOf("Copyrighted","AttributionRequired")
+        for((key,value) in record.metadata.filterKeys {it!="ObjectName" && it !in bookkeeping}.filterValues {it.isNotBlank()}) {
             assertTrue("Provider field $key must remain verbatim",imported.contains("$key: $value"))
+        }
+        for(key in bookkeeping) {
+            assertEquals("Provider bookkeeping remains captured","True",record.metadata[key])
+            assertFalse("Provider bookkeeping is not a publication notice",imported.contains("$key:"))
         }
         assertEquals(source,record.source);assertEquals(page,record.page)
         CommonsAttribution.cache(context,record)
@@ -82,9 +89,12 @@ class CommonsAttributionTest {
         for(expected in listOf("Mapper A","Mapper B","https://commons.wikimedia.org/wiki/User:Mapper_A",
             "https://example.org/mapper","https://example.org/original-map","CC BY-SA 3.0",
             "https://creativecommons.org/licenses/by-sa/3.0/","Required attribution wording & acknowledgement",
-            "Retain the authors",page,source)) assertTrue("Missing $expected",text.contains(expected))
+            "Retain the authors",page)) assertTrue("Missing $expected",text.contains(expected))
         assertFalse(text.contains("CC0"));assertFalse(text.contains("by-sa/4.0"));assertFalse(text.contains("<a"))
         assertFalse(text.contains("antiAlias=false"))
+        assertFalse(text.contains(source))
+        assertFalse(text.contains("Copyrighted:"));assertFalse(text.contains("AttributionRequired:"))
+        assertFalse(text.contains(context.getString(org.catrobat.paintroid.R.string.commons_check_file_licence)))
         assertTrue(record.text(true).contains("antiAlias=false"))
     }
     @Test fun rejectsAttributionBelongingToADifferentFile() {
@@ -135,7 +145,7 @@ class CommonsAttributionTest {
     }
     @Test fun commonsFallbackNeverInventsTheLicenceOfAnotherGallery() {
         val text=GalleryCredits.credit(source,"Test map",IllustrationSource.COMMONS,page)
-        assertTrue(text.contains(source));assertTrue(text.contains(page));assertTrue(text.contains("Wikimedia Commons"))
+        assertFalse(text.contains(source));assertTrue(text.contains(page));assertTrue(text.contains("Wikimedia Commons"))
         for(invented in listOf("CC0",GalleryCredits.CC_BY_SA,"Irasutoya","Openclipart"))
             assertFalse("Invented Commons attribution: $invented",text.contains(invented))
     }
@@ -152,5 +162,21 @@ class CommonsAttributionTest {
         assertEquals("url|extmetadata",uri.getQueryParameter("iiprop"))
         assertEquals("commons.wikimedia.org",uri.host)
         assertTrue(runCatching {CommonsAttribution.requestUrl("https://commons.wikimedia.org/wiki/Category:Blank_maps")}.isFailure)
+    }
+
+    @Test fun mediaViewerResolutionUsesOnlyOriginalDeclaredByCanonicalFilePage() {
+        val response=CommonsTestMetadata.response(source,page)
+        val resolved=CommonsAttribution.parseResolved(response)
+        assertEquals(source,resolved.source)
+        assertEquals(page,resolved.page)
+        assertEquals(CommonsAttribution.parse(response,source),resolved)
+        val preview="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Test_map.svg/800px-Test_map.svg.png"
+        assertTrue(runCatching {
+            CommonsAttribution.parseResolved(CommonsTestMetadata.response(preview,page))
+        }.isFailure)
+        val attacker="https://untrusted.example/image.svg"
+        assertTrue(runCatching {
+            CommonsAttribution.parseResolved(CommonsTestMetadata.response(attacker,page))
+        }.isFailure)
     }
 }

@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.HorizontalScrollView
 import android.widget.ScrollView
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.test.uiautomator.UiDevice
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
@@ -45,9 +46,12 @@ internal class VerticalControlReachabilityProbe(
     private val receipt=JSONObject().put("case",name).put("success",false)
         .put("device_sdk",android.os.Build.VERSION.SDK_INT)
         .put("observations",observations).put("screenshots",screenshots)
-    private val documentNameField=ClassicPaintActivity::class.java.getDeclaredField("filename").apply {isAccessible=true}
     private val draftName=onMain {saveRoot().findViewWithTag<EditText>("export_filename").text.toString()}
-    private val documentName=onMain {documentNameField.get(activity()) as String}
+    // Observe the mounted document-name consumer, including its dirty marker,
+    // instead of depending on a private filename backing field. Receipt filename
+    // fields continue to hold the Save draft/EXTRA_TITLE, never this UI title.
+    private val documentTitle=onMain {documentTitle()}
+    private val documentDirty=onMain {activity().document.dirty}
     private val canvas: Bitmap=onMain {activity().document.bitmap.copy(Bitmap.Config.ARGB_8888,false)}
     private val tool=onMain {activity().paintCanvas.tool}
     private val rememberedQuality=context.getSharedPreferences("export",0).getInt("quality",95)
@@ -148,6 +152,7 @@ internal class VerticalControlReachabilityProbe(
     }
 
     private fun quality()=saveRoot().findViewWithTag<NumericSlider>("export_quality")
+    private fun documentTitle()=activity().window.decorView.findViewWithTag<TextView>("document_title").text.toString()
     private fun assertDraft()=onMain {
         assertEquals("JPEG still selected", "JPEG",saveRoot().findViewWithTag<Spinner>("export_format").selectedItem.toString())
         assertEquals("Draft filename unchanged",draftName,saveRoot().findViewWithTag<EditText>("export_filename").text.toString())
@@ -155,7 +160,8 @@ internal class VerticalControlReachabilityProbe(
     }
     private fun assertCanvasAndDocument()=onMain {
         assertTrue("All canvas pixels retained",canvas.sameAs(activity().document.bitmap))
-        assertEquals("Document filename retained",documentName,documentNameField.get(activity()))
+        assertEquals("Mounted document title retained",documentTitle,documentTitle())
+        assertEquals("Document dirty state retained",documentDirty,activity().document.dirty)
         assertEquals("Selected tool retained",tool,activity().paintCanvas.tool)
         assertNull(activity().lastIoError)
     }

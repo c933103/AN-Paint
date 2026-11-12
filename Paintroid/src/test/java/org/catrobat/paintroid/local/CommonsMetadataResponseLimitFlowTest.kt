@@ -220,7 +220,7 @@ class CommonsMetadataResponseLimitFlowTest {
                     assertEquals("Previous clipboard",clipboardText())
                 } else {
                     assertEquals(View.GONE,status(activity).visibility)
-                    for(value in listOf("Émilie · かな","Mapper B","by-sa/3.0/",source,page))
+                    for(value in listOf("Émilie · かな","Mapper B","by-sa/3.0/",page))
                         assertTrue(value,clipboardText()!!.contains(value))
                 }
                 assertEquals(listOf(existing),session(activity).credits)

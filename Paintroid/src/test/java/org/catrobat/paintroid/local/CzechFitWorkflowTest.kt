@@ -10,6 +10,8 @@ import android.graphics.Rect
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.Display
@@ -48,8 +50,8 @@ class CzechFitWorkflowTest {
     fun normalLandscapeFitPreservesFullCaptionAndCanvas()=checkFit("landscape-1x",1f,640,320)
     @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-xhdpi")
     fun enlargedLandscapeFitPreservesFullCaptionAndCanvas()=checkFit("landscape-2x",2f,640,320)
-    @Test @Config(fontScale=1f) fun compactEnglishFooterRetainsDirectStatus()=withEditor("en-US") {activity,_ ->
-        assertFalse(activity.window.decorView.findViewWithTag<View>("status_text").parent is ScrollView)
+    @Test @Config(fontScale=1f) fun compactEnglishFooterRetainsStatusBesideZoom()=withEditor("en-US") {activity,_ ->
+        assertTrue(activity.window.decorView.findViewWithTag<View>("status_text").parent is ScrollView)
         exerciseZoom(activity)
     }
     @Test @Config(fontScale=1f) fun rtlFooterRetainsReachableZoom()=withEditor("ar") {activity,_ ->
@@ -62,6 +64,45 @@ class CzechFitWorkflowTest {
         assertNotNull(root.findViewWithTag<View>("vertical_status_rail"))
         assertNull(root.findViewWithTag<View>("status_viewport"))
         exerciseZoom(activity)
+    }
+
+    @Test @Config(fontScale=1f) fun canvasResizeRefreshesStatusAfterTheNativeTraversal()=withEditor("cs") {activity,_ ->
+        val canvas=activity.paintCanvas
+        val status=activity.window.decorView.findViewWithTag<TextView>("status_text")
+        awaitStatusLayout(status)
+        val parent=canvas.parent as View
+        val padding=Rect(parent.paddingLeft,parent.paddingTop,parent.paddingRight,parent.paddingBottom)
+        val originalHeight=canvas.height
+        var resized=false;var updates=0;var updatesDuringLayout=0
+        val resize=View.OnLayoutChangeListener {_,left,top,right,bottom,oldLeft,oldTop,oldRight,oldBottom ->
+            if(right-left!=oldRight-oldLeft || bottom-top!=oldBottom-oldTop) resized=true
+        }
+        val watcher=object: TextWatcher {
+            override fun beforeTextChanged(text: CharSequence?,start: Int,count: Int,after: Int)=Unit
+            override fun onTextChanged(text: CharSequence?,start: Int,before: Int,count: Int) {
+                updates++;if(status.isInLayout) updatesDuringLayout++
+            }
+            override fun afterTextChanged(text: Editable?)=Unit
+        }
+        canvas.addOnLayoutChangeListener(resize);status.addTextChangedListener(watcher)
+        try {
+            // Change an actual parent constraint. Native measure/layout must
+            // resize the canvas and invoke its real onSizeChanged -> fit path.
+            parent.setPadding(padding.left,padding.top,padding.right,padding.bottom+16)
+            settle();awaitStatusLayout(status)
+            assertTrue("Native canvas size callback ran",resized)
+            assertEquals(originalHeight-16,canvas.height)
+            assertTrue("Canvas sizing refreshed the visible status",updates>0)
+            assertEquals("Status text must not change inside native layout",0,updatesDuringLayout)
+            val expected=activity.getString(R.string.ui_px,canvas.tool.label,canvas.zoomStatusLabel(),
+                activity.document.bitmap.width,activity.document.bitmap.height,
+                ReflectionHelpers.getField<UiMessage>(activity,"draftStatus").text())
+            assertEquals(expected,status.text.toString())
+            assertEquals(expected,requireNotNull(status.layout).text.toString())
+        } finally {
+            canvas.removeOnLayoutChangeListener(resize);status.removeTextChangedListener(watcher)
+            parent.setPadding(padding.left,padding.top,padding.right,padding.bottom);settle()
+        }
     }
 
     private fun settle()=shadowOf(Looper.getMainLooper()).idleFor(50,TimeUnit.MILLISECONDS)
@@ -140,31 +181,18 @@ class CzechFitWorkflowTest {
     }
     private fun checkCaption(activity: ClassicPaintActivity,profile: String) {
         val root=activity.window.decorView
-        val fit=root.findViewWithTag<TextView>("zoom_fit_view")
-        val caption="Přizpůsobit obrázek oknu"
-        assertEquals(caption,fit.text.toString());assertEquals(caption,fit.contentDescription.toString())
-        assertEquals(caption,activity.getString(R.string.ui_fit_entire_canvas_in_view))
-        assertEquals("Never shrink the caption",TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,13f,fit.resources.displayMetrics),fit.textSize,0f)
-        val layout=requireNotNull(fit.layout)
-        val directory=File("build/reports/czech-workflows/fit").apply {mkdirs()}
-        val visible=Rect();val isVisible=fit.getLocalVisibleRect(visible)
-        val receipt=JSONObject().put("profile",profile).put("sdk",RuntimeEnvironment.getApiLevel())
-            .put("locale",Locale.getDefault().toLanguageTag()).put("font_scale",fit.resources.configuration.fontScale)
-            .put("caption",fit.text.toString()).put("accessible",fit.contentDescription.toString())
-            .put("width",fit.width).put("height",fit.height).put("text_size_px",fit.textSize)
-            .put("layout_height",layout.height).put("line_count",layout.lineCount)
-            .put("visible",visible.toShortString()).put("canvas_width",activity.paintCanvas.width).put("canvas_height",activity.paintCanvas.height)
-        File(directory,"$profile.json").writeText(receipt.toString(2)+"\n")
-        val screenshot=Bitmap.createBitmap(root.width,root.height,Bitmap.Config.ARGB_8888)
-        try {root.draw(Canvas(screenshot));File(directory,"$profile.png").outputStream().use {assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {screenshot.recycle()}
-        assertTrue("Fit visible",isVisible);assertTrue("Full hit target",visible.contains(Rect(0,0,fit.width,fit.height)))
-        assertTrue("Caption lines",layout.lineCount>0);assertEquals(caption.length,layout.getLineEnd(layout.lineCount-1))
-        val contentWidth=fit.width-fit.compoundPaddingLeft-fit.compoundPaddingRight
-        for(line in 0 until layout.lineCount) {
-            assertEquals("No ellipsis",0,layout.getEllipsisCount(line))
-            assertTrue("No horizontal clipping",layout.getLineLeft(line)>=-1 && layout.getLineRight(line)<=contentWidth+1)
-        }
-        assertTrue("Full Fit caption height",layout.height<=fit.height-fit.totalPaddingTop-fit.totalPaddingBottom)
+        val fit=root.findViewWithTag<View>("zoom_fit_view")
+        val caption=activity.getString(R.string.ui_fit_entire_canvas_in_view)
+        assertTrue(fit is ActionButton)
+        assertEquals(caption,fit.contentDescription.toString())
+        val visible=Rect()
+        assertTrue("$profile: Fit visible",fit.getLocalVisibleRect(visible))
+        assertTrue("Full hit target",visible.contains(Rect(0,0,fit.width,fit.height)))
+        val footer=root.findViewWithTag<android.widget.LinearLayout>("status_bar")
+        val controls=root.findViewWithTag<View>("zoom_controls")
+        val status=root.findViewWithTag<View>("status_viewport")
+        assertEquals(android.widget.LinearLayout.HORIZONTAL,footer.orientation)
+        assertTrue("Corner zoom shares status row",controls.top==status.top && controls.width<footer.width)
         assertTrue("Canvas remains usable",activity.paintCanvas.width>=100*fit.resources.displayMetrics.density && activity.paintCanvas.height>=80*fit.resources.displayMetrics.density)
     }
     private fun exerciseZoom(activity: ClassicPaintActivity,newImage: Boolean=true) {
@@ -204,33 +232,81 @@ class CzechFitWorkflowTest {
         val status=root.findViewWithTag<TextView>("status_text")
         val viewport=root.findViewWithTag<ScrollView>("status_viewport")
         assertSame(viewport,status.parent);assertEquals(Int.MAX_VALUE,status.maxLines)
+        awaitStatusLayout(status)
         val geometry=listOf(footer.width,footer.height,canvas.width,canvas.height)
-        val draft=ReflectionHelpers.getField<String>(activity,"draftStatus")
+        val draft=ReflectionHelpers.getField<UiMessage>(activity,"draftStatus")
         val longStatus=("Koncept nebyl uložen. Použijte příkaz Uložit. ").repeat(12)
         try {
             for((index,message) in listOf("Hotovo",longStatus,"Koncept uložen","Pracuje se…",longStatus).withIndex()) {
                 activity.paintCanvas.setCursorMode(index%2==1)
-                ReflectionHelpers.setField(activity,"draftStatus",message)
+                ReflectionHelpers.setField(activity,"draftStatus",UiMessage.Literal(message))
                 ReflectionHelpers.setField(activity,"busy",index==3)
                 ReflectionHelpers.setField(activity,"autosaving",index==3)
-                ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus");settle()
-                if(index==3) assertEquals(activity.getString(R.string.ui_autosaving_draft),status.text.toString())
-                else assertTrue("Intended synthetic status is actually rendered",status.text.toString().contains(message))
+                ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus")
+                val expected=if(index==3) activity.getString(R.string.ui_autosaving_draft)
+                    else activity.getString(R.string.ui_px,canvas.tool.label,canvas.zoomStatusLabel(),
+                        activity.document.bitmap.width,activity.document.bitmap.height,message)
+                assertEquals("Complete selected status resource with fixture values",expected,status.text.toString())
+                awaitStatusLayout(status)
+                val layout=requireNotNull(status.layout)
+                assertEquals(expected,layout.text.toString())
+                assertTrue("Native status has lines",layout.lineCount>0)
+                assertEquals("All UTF-16 status text is laid out",expected.length,layout.getLineEnd(layout.lineCount-1))
+                for(line in 0 until layout.lineCount) assertEquals("Status line $line is not ellipsized",0,layout.getEllipsisCount(line))
+                assertTrue("Complete native status height is retained",
+                    status.height>=status.compoundPaddingTop+layout.height+status.compoundPaddingBottom)
+                val node=status.createAccessibilityNodeInfo()
+                try {assertEquals("Complete accessible status",expected,node.text.toString())} finally {node.recycle()}
                 assertEquals("Status/cursor transitions must not resize canvas",geometry,listOf(footer.width,footer.height,canvas.width,canvas.height))
                 assertEquals(Int.MAX_VALUE,status.maxLines)
             }
-            assertTrue("Long status genuinely exceeds viewport",status.height>viewport.height)
+            assertTrue("Long status genuinely exceeds viewport: ${status.height} > ${viewport.height}",status.height>viewport.height)
+            val viewportPoint=IntArray(2);val rootPoint=IntArray(2)
+            viewport.getLocationOnScreen(viewportPoint);root.getLocationOnScreen(rootPoint)
+            // A drag starts in the short status rail, but the captured pointer
+            // can continue up into the canvas. Restricting every swipe to 80%
+            // of 44dp loses touch slop repeatedly and imposes an artificial
+            // travel ceiling on enlarged text. Keep the same 80-gesture bound
+            // and stay inside the actual window, without programmatic scrolling.
+            val endOffset=maxOf(-2f*viewport.height,1f-(viewportPoint[1]-rootPoint[1]))
+            assertTrue("The window has room above the status rail for a native drag",endOffset<0f)
+            var gestures=0
             repeat(80) {
-                if(viewport.canScrollVertically(1)) {swipe(root,viewport,.5f,.9f,.5f,.1f);settle()}
+                if(viewport.canScrollVertically(1)) {
+                    val previous=viewport.scrollY
+                    swipe(root,viewport,.5f,.9f,.5f,endOffset/viewport.height);settle();gestures++
+                    assertTrue("Captured status drag advances: $previous -> ${viewport.scrollY}",
+                        viewport.scrollY>previous || !viewport.canScrollVertically(1))
+                }
             }
-            assertFalse("Native gestures reach the final status line",viewport.canScrollVertically(1))
-            assertTrue(status.layout.getLineBottom(status.layout.lineCount-1)<=viewport.scrollY+viewport.height)
+            assertFalse("Native gestures reach the final status line: gestures=$gestures, "+
+                "scrollY=${viewport.scrollY}, content=${status.height}, viewport=${viewport.height}",viewport.canScrollVertically(1))
+            val layout=requireNotNull(status.layout) {"Status lost native layout: ${status.width}×${status.height}; viewport ${viewport.width}×${viewport.height}"}
+            assertTrue(layout.getLineBottom(layout.lineCount-1)<=viewport.scrollY+viewport.height)
             assertEquals(geometry,listOf(footer.width,footer.height,canvas.width,canvas.height))
+            assertEquals("The captured status drag must not draw on the canvas",Color.BLUE,
+                activity.document.bitmap.getPixel(20,30))
+            assertFalse(activity.document.dirty);assertFalse(activity.document.canUndo)
         } finally {
             ReflectionHelpers.setField(activity,"draftStatus",draft)
             ReflectionHelpers.setField(activity,"busy",false);ReflectionHelpers.setField(activity,"autosaving",false)
             activity.paintCanvas.setCursorMode(false);ReflectionHelpers.callInstanceMethod<Unit>(activity,"updateStatus");settle()
         }
+    }
+    private fun awaitStatusLayout(status: TextView) {
+        // setText invalidates the native Layout until the mounted window's next
+        // traversal. A fixed sleep can leave old geometry paired with new text.
+        // Do not measure/layout the child or force a window resize to repair it.
+        fun ready()=status.isAttachedToWindow && !status.isLayoutRequested &&
+            status.layout?.text?.toString()==status.text.toString()
+        val deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(3)
+        while(!ready() && System.nanoTime()<deadline) {
+            shadowOf(Looper.getMainLooper()).idleFor(16,TimeUnit.MILLISECONDS)
+            if(!ready()) Thread.sleep(1)
+        }
+        assertTrue("Native status traversal did not finish: ${status.width}×${status.height}; "+
+            "attached=${status.isAttachedToWindow}; layoutRequested=${status.isLayoutRequested}; "+
+            "layout=${status.layout}; rootLayoutRequested=${status.rootView.isLayoutRequested}",ready())
     }
     private fun tap(root: View,view: View)=gesture(root,view,listOf(Triple(MotionEvent.ACTION_DOWN,.5f,.5f),Triple(MotionEvent.ACTION_UP,.5f,.5f)))
     private fun swipe(root: View,view: View,x0: Float,y0: Float,x1: Float,y1: Float) {

@@ -64,12 +64,17 @@ class PickerFallbackNoticePr6Tests(unittest.TestCase):
         # Variety/orthography identity, not a frozen notice paragraph.
         for tag, identity in (('nan-Hant-TW', '臺灣台語'), ('nan-Latn-TW', 'Pe̍h-ōe-jī'), ('wuu-Hans', '上海闲话')):
             self.assertIn(identity, local_strings(tag)[KEY])
-        note = kotlin_block(self.picker(), 'val note = TextView(activity).apply {')
-        self.assertCode(note, 'LocaleTypography.typeface(activity)?.let { typeface = it }'
-                        'VerticalUi.caption(this, 128)')
-        self.assertCode(note, 'text = ui(R.string.language20_translation_note)')
-        self.assertLess(code_locations(note, 'text = ui(R.string.language20_translation_note)')[0],
-                        code_locations(note, 'VerticalUi.caption(')[0])
+        picker = self.picker()
+        heading = kotlin_block(picker, 'val heading=TextView(activity).apply {')
+        note = kotlin_block(picker, 'val note=FlowTextView(activity).apply {')
+        self.assertCode(heading, 'LocaleTypography.typeface(activity)?.let {typeface=it}')
+        self.assertCode(heading, 'VerticalUi.caption(this,128)')
+        self.assertCode(note, 'LocaleTypography.typeface(activity)?.let {typeface=it}')
+        self.assertCode(note, 'text=explanation')
+        self.assertCode(picker, 'val fullNote=ui(R.string.language20_translation_note)')
+        self.assertCode(picker, 'val explanation=fullNote.substringAfter("\\n\\n",fullNote)')
+        # Complete logical text / per-paragraph spans are exercised by
+        # DeviceLanguagePickerTest and VerticalCaptionSafetyTest.
 
     def test_vertical_notice_caption_keeps_text_and_horizontal_bypass(self):
         caption = kotlin_block(self.classic_source('VerticalUi.kt'),
@@ -80,9 +85,11 @@ class PickerFallbackNoticePr6Tests(unittest.TestCase):
         self.assertCode(caption, 'VerticalText.uiTypeface(view.context)?.let { view.typeface = it }')
         update = kotlin_block(caption, 'fun update() {')
         self.assertCode(update, 'val value = view.text.toString()')
-        self.assertCode(update, 'view.text = SpannableString(value).apply { if (isNotEmpty())'
-                        'setSpan(Caption(value, dp(view, heightDp).toFloat(), direction),'
-                        '0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE) }')
+        paragraphs = kotlin_block(update, 'while(start<length) {')
+        self.assertCode(paragraphs, "val separator=value.indexOf('\\n',start)")
+        self.assertCode(paragraphs, 'if(end>start) setSpan(Caption(value.substring(start,end),'
+                        'dp(view,heightDp).toFloat(),direction),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)')
+        self.assertCode(paragraphs, 'start=end+1')
         self.assertCode(caption, 'override fun afterTextChanged(s: Editable?) = update()')
         self.assertCode(caption, '}); update()')
 

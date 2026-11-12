@@ -98,6 +98,57 @@ class ClassicWorkspaceTest {
         doc.bitmap.getPixels(it, 0, doc.bitmap.width, 0, 0, doc.bitmap.width, doc.bitmap.height)
     }.count { it != Color.WHITE }
 
+    @Test fun unnamedTitleChangesLanguageButSavedAndOpenedNamesKeepTheirIdentity() {
+        val context=RuntimeEnvironment.getApplication() as Context
+        val tag=AppLanguage.selectedTag(context)
+        val locale=java.util.Locale.getDefault()
+        try {
+            doc.bitmap.setPixel(2,3,Color.BLUE)
+            val bitmap=doc.bitmap
+            for(language in listOf("yue-Hant","wa","xh")) {
+                AppLanguage.select(activity,language);AppLanguage.refresh(activity)
+                org.robolectric.util.ReflectionHelpers.callInstanceMethod<Unit>(activity,"buildWorkspace")
+                val title=activity.window.decorView.findViewWithTag<android.widget.TextView>("document_title").text.toString()
+                assertTrue(title.startsWith(activity.getString(org.catrobat.paintroid.R.string.ui_untitled)))
+                assertSame(bitmap,doc.bitmap);assertEquals(Color.BLUE,doc.bitmap.getPixel(2,3))
+                val labels=mapOf(
+                    "command_File_6" to org.catrobat.paintroid.R.string.ui_image_assembly,
+                    "command_File_8" to org.catrobat.paintroid.R.string.ui_about_credits23,
+                    "command_View_1" to org.catrobat.paintroid.R.string.ui_pixel_grid33,
+                    "command_View_2" to org.catrobat.paintroid.R.string.ui_cursor_drawing32,
+                    "command_View_3" to org.catrobat.paintroid.R.string.ui_magnifier33,
+                    "command_View_5" to org.catrobat.paintroid.R.string.ui_fullscreen33)
+                for((control,id) in labels) {
+                    val shown=activity.window.decorView.findViewWithTag<android.widget.TextView>(control)
+                    assertEquals("$language/$control",activity.getString(id),shown.text.toString())
+                    assertNotEquals("$language/$control must not use English fallback",PaintApplication.sourceResources.getString(id),shown.text.toString())
+                }
+            }
+            // A named document may itself be called Untitled. Provenance, not
+            // string equality or dirty/saved state, decides whether to translate.
+            provider.displayName="Untitled";fixture()
+            menu("File",1);receive()
+            AppLanguage.select(activity,"ja");AppLanguage.refresh(activity)
+            org.robolectric.util.ReflectionHelpers.callInstanceMethod<Unit>(activity,"buildWorkspace")
+            assertEquals("Untitled",activity.window.decorView.findViewWithTag<android.widget.TextView>("document_title").text.toString())
+        } finally {
+            AppLanguage.select(context,tag);AppLanguage.refresh(activity);java.util.Locale.setDefault(locale)
+        }
+    }
+
+    @Test @Config(qualifiers="w800dp-h480dp-land-mdpi")
+    fun landscapeEditGroupsUseOnlyTwoToolColumnsAndDoNotOverscrollWhenTheyFit() {
+        controller.visible()
+        click("menu_Edit");click("edit_category_CANVAS")
+        shadowOf(Looper.getMainLooper()).idle()
+        val host=activity.window.decorView.findViewWithTag<View>("edit_group_host")
+        val viewport=host.parent as android.widget.ScrollView
+        assertEquals(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,viewport.layoutParams.width)
+        assertEquals(PanelToolButton.tileSize(activity)*2,viewport.width)
+        assertEquals(View.OVER_SCROLL_IF_CONTENT_SCROLLS,viewport.overScrollMode)
+        assertFalse(viewport.canScrollVertically(1));assertFalse(viewport.canScrollVertically(-1))
+    }
+
     @Test fun fileMenuLaunchesOpenDocumentWithoutAnyPhotoPermission() {
         shadowOf(activity.application).denyPermissions(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_EXTERNAL_STORAGE)
         menu("File", 1)
@@ -510,7 +561,7 @@ class ClassicWorkspaceTest {
     }
     @Test fun legalNoticesAndActualCorrespondingSourceAreAvailableOffline() {
         val text = LegalInfo.aboutText(activity)
-        assertTrue(text.contains("The Catrobat Team")); assertTrue(text.contains("modified distribution")); assertTrue(text.contains("WITHOUT ANY WARRANTY"))
+        assertTrue(text.contains("The Catrobat Team")); assertTrue(text.contains("independently developed image editor")); assertTrue(text.contains("began as a fork")); assertTrue(text.contains("WITHOUT ANY WARRANTY"))
         assertTrue(activity.assets.open("legal/AGPL-3.0.txt").bufferedReader().readText().contains("GNU AFFERO GENERAL PUBLIC LICENSE"))
         assertTrue(activity.assets.open("legal/THIRD_PARTY_NOTICES.txt").bufferedReader().readText().contains("androidx.appcompat"))
         val paths = mutableSetOf<String>()
@@ -535,7 +586,7 @@ class ClassicWorkspaceTest {
 
     class DocumentProvider : ContentProvider() {
         lateinit var file: File
-        var reads = 0; var missingName = false; var denyWrite = false
+        var reads = 0; var missingName = false; var denyWrite = false; var displayName="fixture.png"
         override fun onCreate() = true
         override fun getType(uri: Uri) = "application/octet-stream"
         override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor {
@@ -547,7 +598,7 @@ class ClassicWorkspaceTest {
         }
         override fun query(uri: Uri, projection: Array<out String>?, selection: String?, args: Array<out String>?, order: String?): Cursor =
             if (missingName) MatrixCursor(arrayOf("unknown")).apply { addRow(arrayOf("value")) }
-            else MatrixCursor(arrayOf(OpenableColumns.DISPLAY_NAME)).apply { addRow(arrayOf("fixture.png")) }
+            else MatrixCursor(arrayOf(OpenableColumns.DISPLAY_NAME)).apply { addRow(arrayOf(displayName)) }
         override fun insert(uri: Uri, values: ContentValues?): Uri? = null
         override fun update(uri: Uri, values: ContentValues?, selection: String?, args: Array<out String>?) = 0
         override fun delete(uri: Uri, selection: String?, args: Array<out String>?) = 0

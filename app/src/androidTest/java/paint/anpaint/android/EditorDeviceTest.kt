@@ -660,15 +660,19 @@ class EditorDeviceTest {
         val author="Artist 作者 👩🏽‍🎨"
         val authorUrl="https://example.org/artist"
         val licence="https://creativecommons.org/licenses/by-sa/4.0/"
+        val providerTerms="https://developer.catrobat.org/pages/legal/licenses/catrobat/"
         val file=File(context.cacheDir,"gallery-device-credit.png").also {it.delete();fixtures.add(it)}
         val image=Bitmap.createBitmap(3,2,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.MAGENTA)}
         try {file.outputStream().use {assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))}} finally {image.recycle()}
         var expected=""
         onMain {
+            // Publication credit cites the provider page, not the download URL.
+            // Resolve UI labels now, then retain these exact bytes across later
+            // locale changes, Save/Export rendering and native clipboard copies.
             expected=listOf(it.getString(R.string.gallery_credit_title,title),
-                it.getString(R.string.gallery_credit_publisher),it.getString(R.string.gallery_credit_source,source),
-                it.getString(R.string.gallery_credit_gallery,MediaGalleryActivity.GALLERY),
-                it.getString(R.string.gallery_credit_licence,licence),author,authorUrl).joinToString("\n")
+                it.getString(R.string.gallery_credit_publisher),
+                it.getString(R.string.gallery_credit_source,MediaGalleryActivity.GALLERY),
+                author,authorUrl,licence,providerTerms).joinToString("\n")
         }
         monitor.nextResult.set(Intent().putExtra("gallery_file",file.name).putExtra("gallery_source",source)
             .putExtra("gallery_provider","CATROBAT").putExtra("gallery_title",title)
@@ -681,6 +685,15 @@ class EditorDeviceTest {
             assertEquals(Color.MAGENTA,it.document.selection!!.image.getPixel(0,0))
             assertEquals(listOf(source),it.document.imageCredits.map {credit -> credit.source})
             assertEquals(listOf(expected),it.document.imageCredits.map {credit -> credit.text})
+            val credit=it.document.imageCredits.single().text
+            // Independent provider/legal boundaries complement the full display
+            // binding: preserve creator and licence notices without publishing
+            // download plumbing or substituting another provider's terms.
+            for(notice in listOf(author,authorUrl,licence,providerTerms))
+                assertEquals("Provider notice is retained verbatim once: $notice",1,credit.lines().count {line ->line==notice})
+            assertTrue("Publication cites the provider page",credit.contains(MediaGalleryActivity.GALLERY))
+            assertFalse("Download identity is not publication attribution",credit.contains(source))
+            assertFalse("Catrobat attribution must not acquire another licence",credit.contains("CC0"))
             assertNull(it.lastIoError)
         }
         assertFalse("The decoded temporary gallery file is removed",file.exists())

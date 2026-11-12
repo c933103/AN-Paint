@@ -5,6 +5,7 @@ Shared source-language mode/safety assertions live in test_assembly_help_modes;
 historical per-PR clause tables are not active wording oracles.
 """
 import unittest
+from unittest.mock import patch
 import assembly_help_checks as help_checks
 from current_localization_contracts import current_display
 
@@ -42,6 +43,17 @@ EXTRA_CAPTIONS = {'values-b+ceb': (),
  'values-lt': ('ui_percent', 'ui_pixels')}
 
 class AssemblyHelpFollowonTests(unittest.TestCase):
+    def test_caption_binding_uses_display_text_without_accepting_a_different_caption(self):
+        text = 'Open the Library control. Catrobat AGPL.'
+        with patch.object(help_checks, 'current_help', return_value=(text, [text])):
+            for value in ('Library', '"Library"'):
+                with self.subTest(value=value), patch.object(help_checks.catalogues, 'read_strings',
+                        return_value={'control': value}):
+                    help_checks.check_current_help(self, 'unused', [(None, 'control')])
+            with patch.object(help_checks.catalogues, 'read_strings', return_value={'control': '"Different"'}):
+                with self.assertRaises(AssertionError):
+                    help_checks.check_current_help(unittest.TestCase(), 'unused', [(None, 'control')])
+
     def test_current_help_references_actual_controls_without_freezing_translated_prose(self):
         for directory in DIRECTORIES:
             keys = CAPTIONS + EXTRA_CAPTIONS.get(directory, ())

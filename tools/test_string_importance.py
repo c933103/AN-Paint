@@ -77,15 +77,13 @@ class StringImportanceTests(unittest.TestCase):
             self.assertFalse(set(excluded) - found, (start, set(excluded) - found))
             return found - set(excluded)
 
-        titles = section(activity, "private fun menuTitle(", "private fun menuActions(")
-        # Only explicit tab arms: ui_menu_help is an unreachable else fallback.
-        names = set(re.findall(r'"[^"]+"\s*->\s*R\.string\.([a-zA-Z_0-9]+)', titles))
+        import navigation_coverage
+        names = navigation_coverage.navigation_keys()
         self.assertTrue(names)
         names |= controls("private fun menuActions(", "private fun menuActionEnabled",
                           {"ui_select_an_area_first", "ui_pixel_grid_help33"})  # callback bodies, not captions
         names |= controls("private fun buildWorkspace(", "private fun selectTab(",
                           {"ui_drawing_canvas_pinch_and_move_two_fingers_to", "ui_pixel_grid_help33"})
-        names |= controls("private enum class EditGroup(", "private lateinit var toolDrawer")
         names |= controls("private fun syncPanels(", "private fun dp(")
         names |= controls("private fun makePalette(", "private fun makeStatus(")
         names |= controls("private fun makeCustomPalette(", "private fun addColour(")
@@ -128,6 +126,18 @@ class StringImportanceTests(unittest.TestCase):
         self.assertNotIn("ui_cursor_help31", names)
         self.assertNotIn("ui_pixel_grid_help33", names)
         self.assertNotIn("ui_select_an_area_first", names)
+
+    def test_every_live_navigation_caption_has_basic_priority(self):
+        import navigation_coverage
+        assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}
+        for key in navigation_coverage.navigation_keys():
+            self.assertIn(assigned["string/" + key], ("P0", "P1"), key)
+        broken = copy.deepcopy(self.manifest)
+        key = "string/ui_magnifier33"
+        broken["tiers"][1]["keys"].remove(key)
+        broken["tiers"][2]["keys"].append(key)
+        broken["tiers"][2]["keys"].sort()
+        self.assertTrue(any("visible navigation" in error for error in importance.validate(broken, self.source)))
 
     def test_optional_help_and_lossless_reference_have_lower_priority(self):
         assigned = {key: tier["id"] for tier in self.manifest["tiers"] for key in tier["keys"]}

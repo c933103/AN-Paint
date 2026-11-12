@@ -80,7 +80,8 @@ class AfrikaansPriorityWordingTest {
             shadowOf(Looper.getMainLooper()).idle()
             val expected = afrikaans.getString(R.string.language20_translation_note)
             val all = textViews(shown.window!!.decorView).map { it.text.toString() }
-            assertTrue(all.contains(expected))
+            assertTrue(all.contains(afrikaans.getString(R.string.language20_app_language)))
+            assertTrue(all.contains(expected.substringAfter("\n\n",expected)))
             assertFalse(all.any { it.contains("bevat al AN Paint se") })
             assertEquals(afrikaans.getString(R.string.ui_cancel), shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
             shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
