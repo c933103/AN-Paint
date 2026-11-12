@@ -54,6 +54,15 @@ class NavigationCoverageTest(unittest.TestCase):
         with patch.object(catalogues, 'read_strings', return_value=values):
             self.assertIn('ui_magnifier33', navigation.coverage('wa')['english_matches_for_review'])
 
+    def test_letter_internal_middle_dot_is_not_discarded(self):
+        self.assertFalse(navigation._same_prose('a·bc', 'abc'))
+        self.assertTrue(navigation._same_prose('ABC·DE', 'abc·de'))
+
+    def test_decorative_middle_dots_do_not_hide_english_copy(self):
+        for value in ('· abc', 'abc ·', '🔍 · abc ·'):
+            with self.subTest(value=value):
+                self.assertTrue(navigation._same_prose(value, 'abc'))
+
 
 if __name__ == '__main__':
     unittest.main()
