@@ -49,7 +49,12 @@ def _same_prose(value: str, source: str | None) -> bool:
     if source is None or not re.search('[A-Za-z]{3,}', source) or source.isupper():
         return False
     def letters(text):
-        return ''.join(c for c in text.casefold() if c.isalpha())
+        text = text.casefold()
+        # A middle dot inside a word can be orthographic, not decoration.
+        # Removing it would collapse distinct spellings such as Catalan l·l.
+        return ''.join(c for i, c in enumerate(text) if c.isalpha() or
+                       (c == '·' and 0 < i < len(text) - 1 and
+                        text[i - 1].isalpha() and text[i + 1].isalpha()))
     return letters(value) == letters(source)
 
 
