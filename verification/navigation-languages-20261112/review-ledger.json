@@ -1,0 +1,579 @@
+{
+  "source_commit": "0417bd8af2b411ff800ee27889a02276c0439bdc",
+  "scope": "Complete contextual language review of the 50 navigation candidates remaining after PR437; not a whole-catalogue review.",
+  "summary": {
+    "retained": 47,
+    "navigation_replacements": 3,
+    "dependent_accessibility_updates": 2,
+    "review_level": "Independent AI/contextual review, mainly medium confidence, with targeted published usage support."
+  },
+  "orthography": "Preserve the existing English-spelled technical vocabulary embedded in Nigerian Pidgin grammar. The existence of alternative orthographies does not require respelling this catalogue. Equality with English does not independently prove either quality or a defect.",
+  "sources": [
+    {
+      "url": "https://aclanthology.org/2024.lrec-main.1006/",
+      "use": "Research on orthographic variation and absence of an adopted universal orthographic standard. Supports avoiding mechanical respelling, not individual technical-term approval.",
+      "read_status": "Opened publisher abstract; full PDF not inspected."
+    },
+    {
+      "url": "https://apics-online.info/surveys/17",
+      "use": "Specialist survey of Nigerian Pidgin; English lexifier, variation and language structure. Supports language-level context, not every caption.",
+      "read_status": "Opened survey."
+    },
+    {
+      "url": "https://www.philstar.com/pilipino-star-ngayon/showbiz/2018/12/07/1874836/withintegrity",
+      "use": "Banat interview dated 2018-12-07 contains airbrush in genuine Cebuano artist speech. Supports the technical borrowing, not digital-UI testing.",
+      "read_status": "Opened and read relevant full article passage."
+    },
+    {
+      "url": "https://www.churchofjesuschrist.org/study/manual/come-follow-me-for-home-and-church-book-of-mormon-2024/35?lang=tpi",
+      "use": "Published Tok Pisin uses droim piksa for drawing pictures and muvim for moving an object. Supports those lexical elements; zoom/view computer phrase remains an AI/context/catalogue consistency judgment.",
+      "read_status": "Opened; relevant usages at article paragraphs near lines 139 and 143."
+    }
+  ],
+  "consumer_context": [
+    "EditorNavigation.kt: File/Edit/View tabs and individual commands",
+    "ToolCategoryButton.kt: Drawing group holds pencil, brush, watercolour and spray; Insert group holds shapes/text",
+    "PaintDocument.kt: ZOOM uses ui_navigate and the pan-without-drawing/pinch hint; named tool enumerations inspected",
+    "Canonical values-b+pcm/strings.xml complete values inspected for consistency"
+  ],
+  "limits": [
+    "Retention is a bounded AI/contextual judgment, usually medium confidence, not dictionary attestation of all technical terms.",
+    "Navigate is a justified clarity improvement, not proof that English-derived navigation vocabulary is inherently invalid.",
+    "No installed layout, speech, accessibility runtime, physical-device, whole-catalogue or release acceptance was performed."
+  ],
+  "rows": [
+    {
+      "locale": "pcm",
+      "key": "save20_title",
+      "current_value": "Save as…",
+      "disposition": "retain",
+      "proposed_value": "Save as…",
+      "confidence": "medium",
+      "rationale": "Preserves the Save As destination/settings operation and dialog ellipsis; consistent with save20 and recovery instructions.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_add_colour26",
+      "current_value": "Add colour",
+      "disposition": "retain",
+      "proposed_value": "Add colour",
+      "confidence": "medium",
+      "rationale": "A natural short imperative using the catalogue's shared colour term; adds a palette colour, not a new drawing.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_airbrush",
+      "current_value": "Airbrush",
+      "disposition": "retain",
+      "proposed_value": "Airbrush",
+      "confidence": "medium",
+      "rationale": "Precise technical borrowing for spray paint; a generic brush replacement would collapse distinct tools.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_arrow",
+      "current_value": "Arrow",
+      "disposition": "retain",
+      "proposed_value": "Arrow",
+      "confidence": "medium",
+      "rationale": "Ordinary shared shape noun; correctly labels arrow geometry.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_brush",
+      "current_value": "Brush",
+      "disposition": "retain",
+      "proposed_value": "Brush",
+      "confidence": "medium",
+      "rationale": "Established shared tool noun; consistent with other brush-related catalogue descriptions.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_bucket_fill",
+      "current_value": "Bucket fill",
+      "disposition": "retain",
+      "proposed_value": "Bucket fill",
+      "confidence": "medium",
+      "rationale": "Recognizable technical flood-fill label, distinct from painting brush strokes. No more reliable concise Pidgin alternative established.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_canvas_size",
+      "current_value": "Canvas size…",
+      "disposition": "retain",
+      "proposed_value": "Canvas size…",
+      "confidence": "medium",
+      "rationale": "Technical noun phrase, not an instruction to scale image content; preserves dialog ellipsis.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_category_insert",
+      "current_value": "Insert",
+      "disposition": "retain",
+      "proposed_value": "Insert",
+      "confidence": "medium",
+      "rationale": "Concise shared imperative for the shape/text insertion category; paraphrases about inserting only pictures would narrow it incorrectly.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_category_selection",
+      "current_value": "Selection",
+      "disposition": "retain",
+      "proposed_value": "Selection",
+      "confidence": "medium",
+      "rationale": "Technical category name encompassing rectangle and free-form selection; not a command to delete or move an existing selected region.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_copy",
+      "current_value": "Copy",
+      "disposition": "retain",
+      "proposed_value": "Copy",
+      "confidence": "medium",
+      "rationale": "Shared computer-action verb, distinct from Cut and Paste.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_curve",
+      "current_value": "Curve",
+      "disposition": "retain",
+      "proposed_value": "Curve",
+      "confidence": "medium",
+      "rationale": "Shared geometric term for the curve tool; retained rather than inventing a phonetic spelling.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_cut",
+      "current_value": "Cut",
+      "disposition": "retain",
+      "proposed_value": "Cut",
+      "confidence": "medium",
+      "rationale": "Shared computer-action verb; must remain distinct from Crop and Delete selection.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_delete_selection",
+      "current_value": "Delete selection",
+      "disposition": "retain",
+      "proposed_value": "Delete selection",
+      "confidence": "medium",
+      "rationale": "Clear technical command for selected content; consistent with selection terminology and distinct from deselection.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_draw26",
+      "current_value": "Draw",
+      "disposition": "retain",
+      "proposed_value": "Draw",
+      "confidence": "medium",
+      "rationale": "Ordinary drawing verb in Nigerian Pidgin; concise top-level tab title.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_drawing23",
+      "current_value": "Drawing",
+      "disposition": "retain",
+      "proposed_value": "Drawing",
+      "confidence": "medium",
+      "rationale": "Nominal label for the brush/pencil/watercolour/spray category; does not promise all insert tools are located here.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_edit_canvas33",
+      "current_value": "Canvas",
+      "disposition": "retain",
+      "proposed_value": "Canvas",
+      "confidence": "medium",
+      "rationale": "Precise technical domain noun for the canvas edit group; replacing it with picture alone could conflate canvas bounds and image scaling.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_edit_transform33",
+      "current_value": "Flip / Rotate",
+      "disposition": "retain",
+      "proposed_value": "Flip / Rotate",
+      "confidence": "medium",
+      "rationale": "Preserves the two operations in this edit group; avoid replacing both with a generic turn command.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_ellipse",
+      "current_value": "Ellipse",
+      "disposition": "retain",
+      "proposed_value": "Ellipse",
+      "confidence": "medium",
+      "rationale": "Exact geometric technical term; oval would not preserve the precise mathematical shape distinction in every context.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_eraser",
+      "current_value": "Eraser",
+      "disposition": "retain",
+      "proposed_value": "Eraser",
+      "confidence": "medium",
+      "rationale": "Recognizable tool noun; no basis to replace with a forced nonstandard spelling.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_export_as23",
+      "current_value": "Export as…",
+      "disposition": "retain",
+      "proposed_value": "Export as…",
+      "confidence": "medium",
+      "rationale": "Keeps Export distinct from Save and retains the follow-on dialog ellipsis.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_export_recovery_copy",
+      "current_value": "Export recovery copy…",
+      "disposition": "retain",
+      "proposed_value": "Export recovery copy…",
+      "confidence": "medium",
+      "rationale": "Keeps both export and recovery-copy meaning; matches multiple existing recovery instructions and is not a verified-success guarantee.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_fullscreen33",
+      "current_value": "Full screen",
+      "disposition": "retain",
+      "proposed_value": "Full screen",
+      "confidence": "medium",
+      "rationale": "Standard technical display-state noun phrase; correctly refers to full-screen mode, not zoom-to-fit.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_heart",
+      "current_value": "Heart",
+      "disposition": "retain",
+      "proposed_value": "Heart",
+      "confidence": "medium",
+      "rationale": "Ordinary shared shape noun; context disambiguates the shape from physical organ or emotional uses.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_invert_colours",
+      "current_value": "Invert colours",
+      "disposition": "retain",
+      "proposed_value": "Invert colours",
+      "confidence": "medium",
+      "rationale": "Precise technical colour-inversion operation; generic change or swap wording would be semantically weaker.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_languages23",
+      "current_value": "Languages",
+      "disposition": "retain",
+      "proposed_value": "Languages",
+      "confidence": "medium",
+      "rationale": "Clear shared settings-category noun; neither phonetic respelling nor forced plural dem is needed in this catalogue convention.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_line",
+      "current_value": "Line",
+      "disposition": "retain",
+      "proposed_value": "Line",
+      "confidence": "medium",
+      "rationale": "Ordinary shared geometric noun; correctly names straight-line tool.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_menu_edit",
+      "current_value": "Edit",
+      "disposition": "retain",
+      "proposed_value": "Edit",
+      "confidence": "medium",
+      "rationale": "Shared computer-interface tab label; consistent with the catalogue's editing instructions.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_menu_file",
+      "current_value": "File",
+      "disposition": "retain",
+      "proposed_value": "File",
+      "confidence": "medium",
+      "rationale": "Shared computer-interface noun; important to preserve consistency with explicit File menu paths.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_menu_view",
+      "current_value": "View",
+      "disposition": "retain",
+      "proposed_value": "View",
+      "confidence": "medium",
+      "rationale": "Shared display-settings tab label; replacing it with look can suggest a one-off action rather than a tab.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_navigate",
+      "current_value": "Navigate",
+      "disposition": "replace_for_clarity",
+      "proposed_value": "Move / zoom di view",
+      "confidence": "medium",
+      "rationale": "Replace opaque Navigate with a functional description of the actual mode: pan the view and pinch to zoom without drawing. Existing pcm ui_pinch_and_pan_mode already says zoom and move di view. Do not say move picture, which suggests editing pixel geometry.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_new",
+      "current_value": "New…",
+      "disposition": "retain",
+      "proposed_value": "New…",
+      "confidence": "medium",
+      "rationale": "Concise shared adjective in an established menu convention; the dialog supplies new-picture context. Keep ellipsis.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_paste",
+      "current_value": "Paste",
+      "disposition": "retain",
+      "proposed_value": "Paste",
+      "confidence": "medium",
+      "rationale": "Shared computer-action verb; consistent with Copy/Cut rather than describing unrelated adhesive action.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_pencil",
+      "current_value": "Pencil",
+      "disposition": "retain",
+      "proposed_value": "Pencil",
+      "confidence": "medium",
+      "rationale": "Ordinary shared tool noun; distinguish from Brush and Airbrush.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_pixel_grid33",
+      "current_value": "Pixel grid",
+      "disposition": "retain",
+      "proposed_value": "Pixel grid",
+      "confidence": "medium",
+      "rationale": "Precise technical overlay name; not a grid that changes or resamples pixels.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_polygon",
+      "current_value": "Polygon",
+      "disposition": "retain",
+      "proposed_value": "Polygon",
+      "confidence": "medium",
+      "rationale": "Exact geometric technical term; do not replace with a vague many-sided object without demonstrated clarity benefit.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_rectangle",
+      "current_value": "Rectangle",
+      "disposition": "retain",
+      "proposed_value": "Rectangle",
+      "confidence": "medium",
+      "rationale": "Exact shape term; no translation or geometry defect established by matching English.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_redo",
+      "current_value": "Redo",
+      "disposition": "retain",
+      "proposed_value": "Redo",
+      "confidence": "medium",
+      "rationale": "Standard technical history-action label; consistent with Undo and avoids ambiguous do again wording that could mean duplicating an action.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_reset_bw23",
+      "current_value": "Black / white",
+      "disposition": "retain",
+      "proposed_value": "Black / white",
+      "confidence": "medium",
+      "rationale": "Names the two reset palette colours without reversing foreground/background semantics.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_rotate_180",
+      "current_value": "Rotate 180°",
+      "disposition": "retain",
+      "proposed_value": "Rotate 180°",
+      "confidence": "medium",
+      "rationale": "Preserves physical 180-degree rotation; no left/right or mirror interpretation introduced.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_save",
+      "current_value": "Save",
+      "disposition": "retain",
+      "proposed_value": "Save",
+      "confidence": "medium",
+      "rationale": "Shared technical action already used throughout the Pidgin grammar of status/error/recovery messages.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_save_and_share",
+      "current_value": "Save and share…",
+      "disposition": "retain",
+      "proposed_value": "Save and share…",
+      "confidence": "medium",
+      "rationale": "Preserves both sequential actions and dialog ellipsis; consistent with share explanation, not share-only.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_select_all",
+      "current_value": "Select all",
+      "disposition": "retain",
+      "proposed_value": "Select all",
+      "confidence": "medium",
+      "rationale": "Concise technical imperative selecting all content, distinct from Show all.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_star",
+      "current_value": "Star",
+      "disposition": "retain",
+      "proposed_value": "Star",
+      "confidence": "medium",
+      "rationale": "Ordinary shared shape noun, disambiguated by the icon and five-point-star tool.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_text",
+      "current_value": "Text",
+      "disposition": "retain",
+      "proposed_value": "Text",
+      "confidence": "medium",
+      "rationale": "Shared technical content noun; consistent with the catalogue's text-entry and formatting controls.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_undo",
+      "current_value": "Undo",
+      "disposition": "retain",
+      "proposed_value": "Undo",
+      "confidence": "medium",
+      "rationale": "Standard technical history-action term used throughout recovery messages; do not reduce it to delete or clear.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_zoom_in",
+      "current_value": "Zoom in",
+      "disposition": "retain",
+      "proposed_value": "Zoom in",
+      "confidence": "medium",
+      "rationale": "Standard view-scale action; do not translate as increasing actual picture dimensions.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "pcm",
+      "key": "ui_zoom_out",
+      "current_value": "Zoom out",
+      "disposition": "retain",
+      "proposed_value": "Zoom out",
+      "confidence": "medium",
+      "rationale": "Standard view-scale action; do not translate as decreasing actual picture dimensions.",
+      "evidence_level": "AI contextual language review against actual consumer and whole catalogue; not per-term external attestation or human-native approval"
+    },
+    {
+      "locale": "ceb",
+      "key": "ui_airbrush",
+      "current_value": "Airbrush",
+      "disposition": "retain",
+      "proposed_value": "Airbrush",
+      "confidence": "medium-high",
+      "rationale": "The actual tool sprays colour, and surrounding Cebuano explicitly says mag-spray og kolor. Genuine Cebuano artist speech supports airbrush as a technical borrowing. An adapted alternative such as irbras does not make the existing borrowing incorrect.",
+      "evidence_level": "Independent opened Cebuano usage plus actual SPRAY tool context; not human-native UI approval."
+    },
+    {
+      "locale": "tpi",
+      "key": "ui_drawing23",
+      "current_value": "Drawing",
+      "disposition": "replace",
+      "proposed_value": "Droim",
+      "confidence": "medium-high",
+      "rationale": "Concise action/category label consistent with ui_draw26 and attested droim piksa. Correct for the category holding pencil, brush, watercolour and spray, rather than all image insertion or an already completed picture.",
+      "evidence_level": "AI contextual review, existing catalogue and opened published Tok Pisin usage."
+    },
+    {
+      "locale": "tpi",
+      "key": "ui_navigate",
+      "current_value": "Navigate",
+      "disposition": "replace",
+      "proposed_value": "Zum na muvim viw",
+      "confidence": "medium",
+      "rationale": "Matches the mode's two functions: view magnification and panning. Uses the same technical lexical choices as current ui_pinch_and_pan_mode, without suggesting moving the picture's pixels.",
+      "evidence_level": "AI full-value semantic review and current catalogue consistency; no independent external attestation of this exact computer-interface phrase."
+    }
+  ],
+  "dependent_caption_references": [
+    {
+      "locale": "pcm",
+      "key": "ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "before": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode fit also pan with one finger.",
+      "after": "Canvas for drawing. Pinch and move two fingers to zoom and move di view. For Move / zoom di view mode, you fit also move di view with one finger without drawing.",
+      "confidence": "medium",
+      "meaning_checks": [
+        "drawing canvas remains a drawing surface",
+        "pinch and movement use two fingers for zoom/pan",
+        "one finger is stated only for moving the view in the named mode",
+        "no one-finger zoom or movement of image pixels is implied",
+        "named caption text matches Move / zoom di view",
+        "explicitly states no drawing for that one-finger pan"
+      ],
+      "evidence_level": "Independent AI full-value review against actual ZOOM mode and the existing catalogue; no new direct human or device test."
+    },
+    {
+      "locale": "tpi",
+      "key": "ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "before": "Kenvas bilong drawing. Pinsim na muvim tupela pinga long zum na pan. Navigate mod i save pan long wanpela pinga tu.",
+      "after": "Kenvas bilong droim piksa. Pinsim na muvim tupela pinga long zum na muvim viw. Long mod bilong zum na muvim viw, yu inap muvim viw long wanpela pinga tu.",
+      "confidence": "medium",
+      "meaning_checks": [
+        "category uses attested droim piksa",
+        "two-finger pinch and movement control zoom and pan",
+        "final clause allows one-finger view movement only",
+        "does not say that one finger zooms or moves image pixels",
+        "descriptive mode reference matches Zum na muvim viw"
+      ],
+      "evidence_level": "Independent AI full-value review and catalogue consistency; external published usage supports droim/muvim only, not the complete UI sentence."
+    }
+  ]
+}

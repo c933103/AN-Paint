@@ -1,0 +1,56 @@
+{
+  "locales": 171,
+  "navigation_keys_per_locale": [
+    71
+  ],
+  "missing_navigation": 0,
+  "unresolved_aliases": 0,
+  "english_candidates": 87,
+  "flagged_locales": 24,
+  "coverage": {
+    "P0": {
+      "present": 16074,
+      "total": 16074
+    },
+    "P1": {
+      "present": 48393,
+      "total": 48393
+    },
+    "P2": {
+      "present": 22857,
+      "total": 46683
+    },
+    "P3": {
+      "present": 4781,
+      "total": 11799
+    }
+  },
+  "complete": 65,
+  "source_changes": [
+    {
+      "path": "Paintroid/src/main/res/values-b+pcm/strings.xml",
+      "sha": "89e8822f957d83533ac1ec1a89f459db445bcc08",
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+tpi/strings.xml",
+      "sha": "96100a2f8961b2559123457b04ac4ab9b3dc8020",
+      "mode": "100644"
+    }
+  ],
+  "retained_source_leaves": 1289,
+  "node_validation": "All unedited XML nodes, attributes, ordering and resource identities unchanged.",
+  "tests": {
+    "command": "PYTHONPATH=tools python -m unittest test_pidgin_tok_pisin_option_successors test_navigation_coverage test_string_importance test_translations",
+    "passed": 63,
+    "failures": 0,
+    "errors": 0,
+    "baseline_passed": 63,
+    "initial_setup_failure": "The first post-edit test command was invoked from the workspace parent, so all four modules were not found before any product test ran. Reinvocation from the repository root passed. No product failure was suppressed."
+  },
+  "verification_limits": [
+    "Hosted exact-head Android/JVM/lint/device CI and Codex review pending at publication.",
+    "No installed-layout, speech, native-human, physical-device or release verification.",
+    "Only five values in two existing XML files changed; no new runtime tests or approval mirrors added."
+  ]
+}
