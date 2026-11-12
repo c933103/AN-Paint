@@ -10,6 +10,8 @@ import android.graphics.Rect
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.Display
@@ -62,6 +64,45 @@ class CzechFitWorkflowTest {
         assertNotNull(root.findViewWithTag<View>("vertical_status_rail"))
         assertNull(root.findViewWithTag<View>("status_viewport"))
         exerciseZoom(activity)
+    }
+
+    @Test @Config(fontScale=1f) fun canvasResizeRefreshesStatusAfterTheNativeTraversal()=withEditor("cs") {activity,_ ->
+        val canvas=activity.paintCanvas
+        val status=activity.window.decorView.findViewWithTag<TextView>("status_text")
+        awaitStatusLayout(status)
+        val parent=canvas.parent as View
+        val padding=Rect(parent.paddingLeft,parent.paddingTop,parent.paddingRight,parent.paddingBottom)
+        val originalHeight=canvas.height
+        var resized=false;var updates=0;var updatesDuringLayout=0
+        val resize=View.OnLayoutChangeListener {_,left,top,right,bottom,oldLeft,oldTop,oldRight,oldBottom ->
+            if(right-left!=oldRight-oldLeft || bottom-top!=oldBottom-oldTop) resized=true
+        }
+        val watcher=object: TextWatcher {
+            override fun beforeTextChanged(text: CharSequence?,start: Int,count: Int,after: Int)=Unit
+            override fun onTextChanged(text: CharSequence?,start: Int,before: Int,count: Int) {
+                updates++;if(status.isInLayout) updatesDuringLayout++
+            }
+            override fun afterTextChanged(text: Editable?)=Unit
+        }
+        canvas.addOnLayoutChangeListener(resize);status.addTextChangedListener(watcher)
+        try {
+            // Change an actual parent constraint. Native measure/layout must
+            // resize the canvas and invoke its real onSizeChanged -> fit path.
+            parent.setPadding(padding.left,padding.top,padding.right,padding.bottom+16)
+            settle();awaitStatusLayout(status)
+            assertTrue("Native canvas size callback ran",resized)
+            assertEquals(originalHeight-16,canvas.height)
+            assertTrue("Canvas sizing refreshed the visible status",updates>0)
+            assertEquals("Status text must not change inside native layout",0,updatesDuringLayout)
+            val expected=activity.getString(R.string.ui_px,canvas.tool.label,canvas.zoomStatusLabel(),
+                activity.document.bitmap.width,activity.document.bitmap.height,
+                ReflectionHelpers.getField<UiMessage>(activity,"draftStatus").text())
+            assertEquals(expected,status.text.toString())
+            assertEquals(expected,requireNotNull(status.layout).text.toString())
+        } finally {
+            canvas.removeOnLayoutChangeListener(resize);status.removeTextChangedListener(watcher)
+            parent.setPadding(padding.left,padding.top,padding.right,padding.bottom);settle()
+        }
     }
 
     private fun settle()=shadowOf(Looper.getMainLooper()).idleFor(50,TimeUnit.MILLISECONDS)

@@ -47,6 +47,7 @@ class ClassicPaintActivity : Activity() {
     private lateinit var options: LinearLayout
     private lateinit var titleText: TextView
     private lateinit var statusText: TextView
+    private val statusAfterLayout=Runnable {if(!isDestroyed) updateStatus()}
     private var cursorStatusHeight=0
     private lateinit var undoButton: ActionButton
     private lateinit var redoButton: ActionButton
@@ -681,6 +682,12 @@ class ClassicPaintActivity : Activity() {
 
     private fun updateStatus() {
         if (!::statusText.isInitialized) return
+        // Canvas sizing can call fit()/onStatus while the status sibling is
+        // measured but not yet laid out. setText then clears its native Layout;
+        // finishing that same traversal can consume the new layout request.
+        // Coalesce geometry-triggered refreshes after the traversal instead.
+        root.removeCallbacks(statusAfterLayout)
+        if(root.isInLayout) {root.post(statusAfterLayout);return}
         root.findViewWithTag<PanelToolButton>("cursor_draw_toggle")?.let {
             it.visibility=if(paintCanvas.cursorAvailable) View.VISIBLE else View.GONE
             it.text=ui(if(paintCanvas.cursorDrawing) R.string.ui_cursor_stop31 else R.string.ui_cursor_start31)
@@ -1648,6 +1655,7 @@ class ClassicPaintActivity : Activity() {
     }
     override fun onBackPressed() { if(!startupReady) {finish();return}; if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }
     override fun onDestroy() {
+        if(::root.isInitialized) root.removeCallbacks(statusAfterLayout)
         if(!startupReady) {
             // No placeholder owns the durable draft. The worker releases any unpublished
             // document after it finishes, without writing or waiting on the main thread.
