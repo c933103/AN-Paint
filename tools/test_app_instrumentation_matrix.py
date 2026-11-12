@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
+from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -38,18 +38,18 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'ordinary':20, 'dialog':14, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':20, 'dialog':15, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
-            self.assertEqual(result['declared_tests'], 50)
-            self.assertEqual(result['completed_tests'], 30 if sdk==30 else 50)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 18 if sdk==30 else 0)
+            self.assertEqual(result['declared_tests'], 51)
+            self.assertEqual(result['completed_tests'], 30 if sdk==30 else 51)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 19 if sdk==30 else 0)
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             self.assertIn(('paint.anpaint.android.EditorDeviceTest',
                 'mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation'), app_partition(expected,sdk)['ordinary'])
             self.assertIn(('paint.anpaint.android.PageCountWordingDeviceTest',
-                'oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench'), app_partition(expected,sdk)['ordinary'])
+                'oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench'), app_partition(expected,sdk)['dialog' if sdk==35 else 'ordinary'])
             position = 'paint.anpaint.android.AssemblyPositionDeviceTest'
             position_methods = {
                 'ainuKanaPositionTextAndNativeEditing', 'ainuLatinPositionTextAndNativeEditing',
@@ -83,6 +83,14 @@ class AppPartitionTest(unittest.TestCase):
             else:
                 self.assertNotIn(cantonese,expected)
                 self.assertIn(cantonese,suppressed)
+            reported=('paint.anpaint.android.EditorDeviceTest',
+                'reportedMenuLocalesReachInstalledControlsThroughRealPickerRows')
+            if sdk==35:
+                self.assertIn(reported,expected)
+                self.assertIn(reported,app_partition(expected,sdk)['ordinary'])
+            else:
+                self.assertNotIn(reported,expected)
+                self.assertIn(reported,suppressed)
             self.assertEqual(result['all_app_total_timeout_seconds'],990 if sdk==30 else 1410)
             if sdk == 35:
                 self.assertIn('API35 en-US/hu 2x 640x320 mdpi', result['colour_scope'])
@@ -99,6 +107,8 @@ class AppPartitionTest(unittest.TestCase):
         for changed in (expected|{(POSITION,'newPositionCase')}, expected-{next(iter(POSITION_SHARDS['position-ainu-manchu']))}, expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')}, expected|{(COLOUR,'unknownColour')},
                         expected-{(COLOUR,next(iter(COLOUR_METHODS)))},
                         expected-{(DIALOG,next(iter(DIALOG_METHODS)))},
+                        expected-{(PAGE_COUNT,next(iter(PAGE_COUNT_METHODS)))},
+                        expected|{(PAGE_COUNT,'unknownPageChooserCase')},
                         expected-{(GALLERY_DRAFT,next(iter(GALLERY_METHODS)))},
                         expected|{(RESTART_SEED,'extra')},
                         {item for item in expected if item[0]!=RESTART_VERIFY}):
@@ -176,6 +186,7 @@ class AppPartitionTest(unittest.TestCase):
         dialog=shell.split('run_dialog_regression() {',1)[1].split('\n}\n',1)[0]
         self.assertEqual(set(re.findall(r'--include-test \"\$dialog_class#(\w+)\"',dialog)),DIALOG_METHODS)
         self.assertEqual(set(re.findall(r'--include-test \"\$colour_class#(\w+)\"',dialog)),COLOUR_METHODS)
+        self.assertEqual(set(re.findall(r'--include-test "\$page_class#(\w+)"',dialog)),PAGE_COUNT_METHODS)
         self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
         self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
         self.assertIn('if test \"$TEST_API\" = 35; then run_dialog_regression || editor_failed=1; fi',main)
@@ -212,7 +223,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
         for sdk in (21,24,30,35):
             for fault in ('', 'native', 'ordinary', 'gallery', 'dialog', 'vertical', 'restart', 'verifier'):
                 with self.subTest(sdk=sdk,fault=fault),tempfile.TemporaryDirectory() as directory:
-                    run=subprocess.run(['bash','-c',harness+'\n'+driver],cwd=ROOT,
+                    run=subprocess.run(['bash','-c',harness+'\nrun_driver() {\n'+driver+'\n}; run_driver'],cwd=ROOT,
                         env={**os.environ,'TEST_ROOT':directory,'TEST_API':str(sdk),'TEST_FAULT':fault},
                         text=True,capture_output=True,timeout=10)
                     expected_failure=(fault in ('native','verifier') if sdk<30 else
@@ -230,6 +241,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     self.assertEqual(len(ordinary),int(sdk>=30))
                     if ordinary:
                         self.assertIn('--timeout-seconds 180',ordinary[0])
+                        self.assertEqual('--exclude-class '+PAGE_COUNT in ordinary[0],sdk==35)
                         for owner in (POSITION,GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
                             self.assertIn('--exclude-class '+owner,ordinary[0])
                     if sdk<35:
@@ -270,7 +282,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(len({path.read_bytes() for path in selected}),1)
                         result=json.loads(selected[0].read_text())
                         self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                        self.assertEqual(result['completed_tests'],30 if sdk==30 else 50)
+                        self.assertEqual(result['completed_tests'],30 if sdk==30 else 51)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
                         for subtree in ('app','app-gallery-draft','app-dialog','app-vertical','app-position'):
@@ -314,7 +326,7 @@ class SelectedInvocationTest(unittest.TestCase):
         self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS}, 'gallery_draft', 'app-gallery-draft', 90)
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
-        self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS}, 'dialog', 'app-dialog', 300)
+        self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,PAGE_COUNT:PAGE_COUNT_METHODS}, 'dialog', 'app-dialog', 300)
 
     def check_wrapper(self, classes, function, suite, deadline):
         for fault in ('', 'missing', 'extra', 'skipped', 'truncated'):
