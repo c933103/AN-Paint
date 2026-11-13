@@ -44,7 +44,7 @@ class CommonsImportChangeTranslationTest {
     }
 
     @Test fun selectedLocaleSuppliesWholeMessagesWithExactTechnicalLiterals() {
-        for(tag in listOf("en-US","fr","ja")) withLanguage(tag) {
+        for(tag in listOf("en-US","fr","ja","bn")) withLanguage(tag) {
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
             val notes=PaintApplication.currentResources.getString(R.string.commons_import_svg_changes) to
                 PaintApplication.currentResources.getString(R.string.commons_import_raster_changes)
@@ -79,7 +79,7 @@ class CommonsImportChangeTranslationTest {
         val english=PriorityWordingExpectations.resources("en-GB")
         val englishSvg=english.getString(R.string.commons_import_svg_changes)
         val englishRaster=english.getString(R.string.commons_import_raster_changes)
-        for(tag in listOf("am","bn","cy")) withLanguage(tag) {
+        for(tag in listOf("am","as","cy")) withLanguage(tag) {
             assertEquals(englishSvg,PaintApplication.currentResources.getString(R.string.commons_import_svg_changes))
             assertEquals(englishRaster,PaintApplication.currentResources.getString(R.string.commons_import_raster_changes))
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
