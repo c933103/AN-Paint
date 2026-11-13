@@ -10,6 +10,16 @@ KEYS = {'commons_import_svg_changes', 'commons_import_raster_changes'}
 
 class CommonsImportChangeTranslationsTest(unittest.TestCase):
 
+    def test_fallback_samples_are_offered_and_missing_while_welsh_is_present(self):
+        # Fixture validity: a newly translated sample must not masquerade as fallback.
+        paths = catalogues.catalogue_paths()
+        offered = set(catalogues.offered_tags())
+        for tag in ('am', 'as', 'az'):
+            with self.subTest(tag=tag):
+                self.assertIn(tag, offered)
+                self.assertTrue(KEYS.isdisjoint(catalogues.read_strings(paths[tag])))
+        self.assertTrue(KEYS <= catalogues.read_strings(paths['cy']).keys())
+
     def test_all_published_notes_preserve_literals_and_formatting(self):
         paths = {'default': catalogues.RES / 'values/strings.xml', **catalogues.catalogue_paths()}
         for tag, path in paths.items():
