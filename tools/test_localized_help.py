@@ -120,6 +120,18 @@ class LocalizedHelpTests(unittest.TestCase):
                 with self.subTest(locale=locale, resource=resource):
                     self.assertRegex(displayed(local[resource]), route_pattern(rendered, keys))
 
+    def test_polish_manual_and_quick_help_use_actual_draw_controls(self):
+        # The same misleading route appeared outside the separately tested paste
+        # hint. Resolve current captions rather than freezing translated prose.
+        local = self.locales["values-pl"]
+        rendered = {**self.locales["values"], **local}
+        keys = ("ui_draw26", "ui_category_insert", "ui_other_images34")
+        for resource in (MANUAL, "ui_help23"):
+            with self.subTest(resource=resource):
+                self.assertRegex(displayed(local[resource]), route_pattern(rendered, keys))
+                opening = re.split(r"\\n\\n|\n\s*\n", local[resource])[0]
+                self.assertIn(caption(rendered["ui_drawing23"]), displayed(opening))
+
     def test_cursor_help_includes_the_actual_settings_route(self):
         keys = ("ui_draw26", "ui_drawing23")
         for locale, local in self.locales.items():
