@@ -1,0 +1,141 @@
+{
+  "pr": 448,
+  "head": "3c32ce4938eb7daf3248358ed6a69be471320ad4",
+  "tree": "e592b393d313000678ce90441bb4dad68e7812da",
+  "summary": {
+    "resources_added": 1191,
+    "strings_added": 1189,
+    "plurals_added": 2,
+    "existing_preserved": 1685,
+    "direct_Kotlin_references": 1013,
+    "without_direct_Kotlin_reference": 178
+  },
+  "review_records": {
+    "verified.json": {
+      "base": "6b0d36feaf76133e887d2fe91fc7d2fbcd4bcdf5",
+      "rows": [
+        {
+          "tag": "nn",
+          "old": 419,
+          "new": 719,
+          "added": 300,
+          "canonical": 719,
+          "direct_kotlin_refs": 256,
+          "no_direct_kotlin_refs": 44,
+          "blob": "e16eb2cfa2fc1331290ad3031a77e2596643409d"
+        },
+        {
+          "tag": "ca-ES-valencia",
+          "old": 419,
+          "new": 719,
+          "added": 300,
+          "canonical": 719,
+          "direct_kotlin_refs": 256,
+          "no_direct_kotlin_refs": 44,
+          "blob": "01269ec327f62d9214886709b18ba955bae0d8b4"
+        },
+        {
+          "tag": "mk",
+          "old": 422,
+          "new": 719,
+          "added": 297,
+          "canonical": 719,
+          "direct_kotlin_refs": 252,
+          "no_direct_kotlin_refs": 45,
+          "blob": "89d972a6a35507d9da0bb8bfb73fda454bb33667"
+        },
+        {
+          "tag": "sq",
+          "old": 425,
+          "new": 719,
+          "added": 294,
+          "canonical": 719,
+          "direct_kotlin_refs": 249,
+          "no_direct_kotlin_refs": 45,
+          "blob": "e2a45b55d76dffbaa51deaa06906f770dd1d50f7"
+        }
+      ],
+      "changed_files": [
+        "Paintroid/src/main/res/values-b+ca+ES+valencia/strings.xml",
+        "Paintroid/src/main/res/values-b+nn/strings.xml",
+        "Paintroid/src/main/res/values-mk/strings.xml",
+        "Paintroid/src/main/res/values-sq/strings.xml"
+      ]
+    },
+    "independent-nn-valencia.json": {
+      "valencia": {
+        "added": 300,
+        "preserved": 419,
+        "sha256": "e65028a843069fa3cec4c1ccd2d0d041cfcd161e481e2ab0db7ef398ef823c7c",
+        "review": "Full added text compared with English and actual resource labels. No blocking findings.",
+        "canonical_attributes": "all new entries match source",
+        "validation": "complete passed"
+      },
+      "limits": "AI/source-context review, not native speaker or device-layout acceptance",
+      "status": "Both reviewed with stated limits",
+      "nn": {
+        "added": 300,
+        "preserved": 419,
+        "sha256": "1bab7c7ab3723ed10ab1c66a4f291f4f144e4e9301bbca30f105650ecc525295",
+        "blob": "e16eb2cfa2fc1331290ad3031a77e2596643409d",
+        "review": "Every added value read against English and actual controls; no blocking findings.",
+        "canonical_attributes": "all new entries match source",
+        "validation": "complete passed"
+      },
+      "sq_narrow_review": {
+        "key": "ui_catrobat_s_own_artwork_uses_cc_by_sa",
+        "assessment": "Final sentence uses correct Albanian atribuim in çdo atribuim të veçantë. Credit/share-alike/source route obligations retained. Key absent from baseline, so correction is new-text only; no independent whole-Albanian review claimed.",
+        "sha256": "bb753674040452587cc1b84f4d8a6026e73197b4d33061f72705bfc6c9323fa6"
+      }
+    },
+    "independent-mk-sq.json": {
+      "reviewer": "Independent coordinator, not language author",
+      "rows": [
+        {
+          "locale": "mk",
+          "added": 297,
+          "preserved": 422,
+          "blob": "89d972a6a35507d9da0bb8bfb73fda454bb33667",
+          "review": "All new complete values and all three manuals independently read against canonical English and live controls. No remaining concrete semantic defect identified. Canonical attributes, placeholder absence and important live controls independently checked."
+        },
+        {
+          "locale": "sq",
+          "added": 294,
+          "preserved": 425,
+          "blob": "e2a45b55d76dffbaa51deaa06906f770dd1d50f7",
+          "review": "All new complete values and all three manuals independently read against canonical English and live controls. No remaining concrete semantic defect identified. Canonical attributes, placeholder absence and important live controls independently checked."
+        }
+      ],
+      "resolved_findings": [
+        {
+          "locale": "sq",
+          "key": "ui_catrobat_s_own_artwork_uses_cc_by_sa",
+          "change": "Corrected new attribution spelling atribim to atribuim; old wording unchanged."
+        }
+      ],
+      "limits": [
+        "AI linguistic/source-context acceptance, not native-speaker or owner acceptance",
+        "No exhaustive physical-device/layout/accessibility/speech certification"
+      ],
+      "boundaries": [
+        "Opaque canvas versus floating transparency versus white-backed Commons imports",
+        "Conditional attached-image movement versus absolute-position overlap allowance",
+        "Memory warning alternative to size selection",
+        "License/attribution/provider distinctions and preservation of source files",
+        "Actual Navigate return and reset captions, complete Commons ellipsis"
+      ]
+    }
+  },
+  "host_tests": {
+    "full_suite": "890 tests passed in260.622 seconds",
+    "final_affected": ".......................\n----------------------------------------------------------------------\nRan 23 tests in 2.436s\n\nOK\n",
+    "note": "No test/source/workflow changes; final affected checks rerun after one Albanian spelling correction."
+  },
+  "remote_verification": "1291 remote leaves and complete path/type/mode inventory matched final reviewed checkout",
+  "limits": [
+    "AI/source-context review only; not native-speaker or owner wording acceptance",
+    "Not exhaustive device/layout/speech certification or whole-language completion",
+    "Hosted Android/JVM/lint and exact-head review pending",
+    "No release or paused Manchu changes"
+  ]
+}
