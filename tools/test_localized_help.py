@@ -120,6 +120,17 @@ class LocalizedHelpTests(unittest.TestCase):
                 with self.subTest(locale=locale, resource=resource):
                     self.assertRegex(displayed(local[resource]), route_pattern(rendered, keys))
 
+    def test_slovenian_croatian_help_uses_live_reset_caption(self):
+        # The colour header dispatches RESET_COLOURS/ui_reset_bw23, not the
+        # similarly named unused ui_reset_to_black_white resource.
+        for locale in ("values-sl", "values-hr"):
+            local = self.locales[locale]
+            rendered = {**self.locales["values"], **local}
+            for resource in (MANUAL, "ui_help23"):
+                with self.subTest(locale=locale, resource=resource):
+                    self.assertIn(caption(rendered["ui_reset_bw23"]), displayed(local[resource]))
+                    self.assertNotIn(caption(rendered["ui_reset_to_black_white"]), displayed(local[resource]))
+
     def test_polish_manual_and_quick_help_use_actual_draw_controls(self):
         # The same misleading route appeared outside the separately tested paste
         # hint. Resolve current captions rather than freezing translated prose.
