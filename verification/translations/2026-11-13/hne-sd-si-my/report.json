@@ -1,0 +1,212 @@
+{
+  "base": "1c27d68c092eafa5517b3a3bd5fa8507d17f04d0",
+  "rows": [
+    {
+      "tag": "hne",
+      "old": 399,
+      "new": 719,
+      "added": 320,
+      "canonical": 719,
+      "direct_kotlin_refs": 275,
+      "no_direct_kotlin_refs": 45,
+      "blob": "2ca7553a3dab548df03a5f3c953d18cd14c28ce0"
+    },
+    {
+      "tag": "sd",
+      "old": 415,
+      "new": 719,
+      "added": 304,
+      "canonical": 719,
+      "direct_kotlin_refs": 259,
+      "no_direct_kotlin_refs": 45,
+      "blob": "c2f17d6a580dcd9c6ce5b27f311e2ba5452654cb"
+    },
+    {
+      "tag": "si",
+      "old": 415,
+      "new": 719,
+      "added": 304,
+      "canonical": 719,
+      "direct_kotlin_refs": 259,
+      "no_direct_kotlin_refs": 45,
+      "blob": "c7d6856f4df6764ebd03a80e48749725585dec8a"
+    },
+    {
+      "tag": "my",
+      "old": 410,
+      "new": 719,
+      "added": 309,
+      "canonical": 719,
+      "direct_kotlin_refs": 265,
+      "no_direct_kotlin_refs": 44,
+      "blob": "d0e069c827fc1c9fc5a24245f8e31f0268398008"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+hne/strings.xml",
+    "Paintroid/src/main/res/values-b+my/strings.xml",
+    "Paintroid/src/main/res/values-sd/strings.xml",
+    "Paintroid/src/main/res/values-si/strings.xml"
+  ],
+  "tree": "0f6b3a4cdb978e08a0d8bcd27a0829968cdc84ea",
+  "head": "bfcb4ed10035610ad43ff86e1ed29c9cca18a41b",
+  "independent_reviews": [
+    {
+      "status": "accepted-after-correction",
+      "scope": "All624 added values independently read against canonical English, including six full manuals; live captions, legal limits, source preservation, placeholders and complete catalogues checked",
+      "rows": [
+        {
+          "tag": "hne",
+          "additions": 320,
+          "originals_preserved": 399,
+          "total": 719,
+          "git_blob": "2ca7553a3dab548df03a5f3c953d18cd14c28ce0",
+          "sha256": "3cc938f4e8c26b90539a7fb3d969a9125047360b085ac6739a7042d37213ac73"
+        },
+        {
+          "tag": "sd",
+          "additions": 304,
+          "originals_preserved": 415,
+          "total": 719,
+          "git_blob": "c2f17d6a580dcd9c6ce5b27f311e2ba5452654cb",
+          "sha256": "f6de556e5e2336d6949695d518d95c47b4230bcf5e060c29d7d78053612b10e1"
+        }
+      ],
+      "findings": [
+        {
+          "locale": "sd",
+          "key": "ui_honeycomb_colour_swatches_with_a_greyscale_row",
+          "issue": "Grayscale row rendered with brown term ڀوري",
+          "resolution": "New value corrected to explicit achromatic black-to-white shades and independently verified; originals unchanged"
+        }
+      ],
+      "limits": "AI/static linguistic and source review; no native/owner wording acceptance or device/layout certification",
+      "tests": "Final53 existing localized-help15/translations34/provider4 passed10.055s, independent-hne-sd-final-tests.log"
+    },
+    {
+      "review": "Independent full-value AI/source review",
+      "status": "accepted",
+      "scope": [
+        {
+          "tag": "si",
+          "additions_read": 304,
+          "originals_preserved": 415,
+          "canonical_total": 719,
+          "blob": "c7d6856f4df6764ebd03a80e48749725585dec8a"
+        },
+        {
+          "tag": "my",
+          "additions_read": 309,
+          "originals_preserved": 410,
+          "canonical_total": 719,
+          "blob": "d0e069c827fc1c9fc5a24245f8e31f0268398008"
+        }
+      ],
+      "method": "Read every613 new value against current English, including all6 complete assembly/main/quick-help manuals. Reviewed negative error semantics, legal scope, source attribution, memory estimates, exact position vs snapping, parent/child movement, colour and autosave/export distinctions. Checked actual caption resources and current provider/help contracts; Sinhala Import image and Copy are retained existing visible captions, not untranslated additions. Checked AssemblyPlacementDialog direct consumer. All reviewed candidates unchanged at final hash read.",
+      "findings": [],
+      "checks": {
+        "original_values": "825 original XML elements and attributes/text preserved exactly",
+        "complete_catalogue_validation": "both pass",
+        "existing_tests": "53 passed in12.154s: provider4 + localized help15 + translations34",
+        "log": "independent-si-my-tests.log"
+      },
+      "limits": [
+        "AI/source acceptance only; no native-speaker or owner wording acceptance",
+        "No device glyph/layout/rendering verification",
+        "Complete-key resource presence does not imply all entries directly used",
+        "No CI/release/deployment qualification claimed"
+      ],
+      "review_preflight": "Initial reviewer path assumption values-b+si failed read-only; corrected using canonical catalogue_paths mapping to actual values-si. No source mutation."
+    }
+  ],
+  "author_reports": [
+    {
+      "locale": "hne",
+      "added": 320,
+      "preserved": 399,
+      "total": 719,
+      "blob": "2ca7553a3dab548df03a5f3c953d18cd14c28ce0",
+      "review": "Author AI language/source review; independent review pending; not native or device acceptance",
+      "checks": [
+        "15 localized-help tests passed",
+        "52 final affected tests passed in12.223s, including translation,provider,boundaries,language options,Commons and TIFF",
+        "Exact original element preservation",
+        "719 canonical entries full validation"
+      ],
+      "history": [
+        "Initial affected command used3 nonexistent module names;44reported tests included3 import errors, not acceptance. Corrected names then52 passed."
+      ],
+      "notes": [
+        "All3 complete manuals translated",
+        "Existing Chhattisgarhi captions used in routes",
+        "Commons caption added without raw quote wrapper, occurs once in short help",
+        "CC BY-SA4.0 creator/adaptation duties, Irasutoya21-item commercial threshold and non-CC notice preserved",
+        "PDF limits and crop restrictions preserved",
+        "Cancel restores previous not foreground colour",
+        "Exact whole-pixel position and later-image overlap retained"
+      ]
+    },
+    {
+      "locale": "sd",
+      "original_entries_preserved": 415,
+      "additions": 304,
+      "total": 719,
+      "blob": "c2f17d6a580dcd9c6ce5b27f311e2ba5452654cb",
+      "author_review": "All304 additions translated against canonical English, including full three manuals. Existing live captions and original entries preserved. Provider licensing and attribution, opacity, memory, save/export state, assembly positioning reviewed.",
+      "tests": [
+        "Provider4 passed0.326s",
+        "Localized help15 passed0.741s",
+        "Translations34 passed8.239s",
+        "After grayscale correction: translations34 passed7.320s; prior provider/help runs cover unchanged manual/provider wording."
+      ],
+      "notes": [
+        "Initial apply used nonexistent b+sd path and failed without write; corrected actual values-sd path. Earlier tests before successful application are not acceptance evidence."
+      ],
+      "limits": "AI/source review only; independent review pending; no native-speaker/owner/device acceptance.",
+      "independent_corrections": [
+        "New honeycomb accessibility description changed brown wording to explicit colourless black-to-white shades for grayscale."
+      ]
+    },
+    {
+      "locale": "si",
+      "additions": 304,
+      "original_entries_preserved_exactly": 415,
+      "total_entries": 719,
+      "blob": "c7d6856f4df6764ebd03a80e48749725585dec8a",
+      "tests": {
+        "complete_catalogue_validation": "pass",
+        "help_commons_provider": "4 passed 0.437s",
+        "localized_help": "15 passed 0.885s",
+        "translations": "34 passed 8.458s",
+        "log": "si-final-tests.log"
+      },
+      "review_scope": "All304 additions authored including assembly8-paragraph manual, main10-paragraph manual and quick help. Existing Import image/Copy gallery button captions retained exactly in help. Source formatting attrs, placeholders, legal conditions and all415 original elements preserved. No unnecessary outer caption quote wrappers.",
+      "limits": "AI/source author review only; not native-speaker/owner/device layout certification. Independent review pending.",
+      "preflight_error": "Initial temporary apply script assumed nonexistent values-b+si path; failed before writing, corrected to actual values-si. Earlier tests not final evidence."
+    },
+    {
+      "locale": "my",
+      "added": 309,
+      "original_entries_preserved": 410,
+      "final": 719,
+      "blob": "d0e069c827fc1c9fc5a24245f8e31f0268398008",
+      "tests": {
+        "combined": "53 passed before last assembly wording fluency refinement",
+        "final_localized_help": "15 passed after last refinement",
+        "logs": [
+          "my-tests-final.log",
+          "my-help-final.log"
+        ]
+      },
+      "qualification": "Author AI translation and structural/source checks only; independent full reading pending; not native or device acceptance",
+      "self_corrections": [
+        "Aligned Drawing/Commit selection/Lock proportions/New image captions to visible existing labels",
+        "Clarified fluent same-credits assembly wording without altering legal scope"
+      ],
+      "originals": "Every original parsed element/attributes/text equal to base; base bytes retained as prefix/suffix around appended new entries"
+    }
+  ],
+  "remote_verification": "All1291 leaves and path/type/mode inventory match.",
+  "tests": "Full892 passed328.997s; final53 affected passed. No test changes.",
+  "limits": "AI/source review not native/owner/device acceptance. No release. Holds unchanged."
+}
