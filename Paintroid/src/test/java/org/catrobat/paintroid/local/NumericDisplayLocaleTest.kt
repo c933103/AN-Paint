@@ -134,8 +134,8 @@ class NumericDisplayLocaleTest {
                 "Current safe editing budget: 17.2 MiB · up to 1.50 MP before decoder overhead"),
             "ar" to ("حد التحرير الآمن الحالي: ٢٥٫٧ MiB · حتى ٢٫٢٥ ميغابكسل قبل الحمل الإضافي لفك الترميز" to
                 "حد التحرير الآمن الحالي: ١٧٫٢ MiB · حتى ١٫٥٠ ميغابكسل قبل الحمل الإضافي لفك الترميز"),
-            "ro" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "ro" to ("Limita sigură actuală pentru editare: 25,7 MiB · până la 2,25 MP înainte de memoria suplimentară a decodorului" to
+                "Limita sigură actuală pentru editare: 17,2 MiB · până la 1,50 MP înainte de memoria suplimentară a decodorului"),
             "sk" to ("Aktuálny bezpečný limit pamäte na úpravy: 25,7 MiB · najviac 2,25 MP pred započítaním réžie dekodéra" to
                 "Aktuálny bezpečný limit pamäte na úpravy: 17,2 MiB · najviac 1,50 MP pred započítaním réžie dekodéra"),
             "sl" to ("Trenutna varna pomnilniška omejitev za urejanje: 25,7 MiB · do 2,25 MP pred dodatno porabo dekodirnika" to
@@ -164,7 +164,7 @@ class NumericDisplayLocaleTest {
             val label=root.findViewWithTag<TextView>("resize_budget")
             assertEquals(tag,initialCaption,label.text.toString())
             if(tag=="pt-BR") assertTrue(label.text.toString().contains("2,25 MP"))
-            if(tag=="ro") assertTrue(label.text.toString().startsWith("Current safe editing budget:"))
+            if(tag=="ro") assertFalse(label.text.toString().startsWith("Current safe editing budget:"))
             limit=policy(1_500_000)
             root.findViewWithTag<EditText>("resize_width").setText("1000")
             assertEquals(tag,updatedCaption,label.text.toString())
