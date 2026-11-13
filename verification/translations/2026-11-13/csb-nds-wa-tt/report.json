@@ -1,0 +1,182 @@
+{
+  "base": "d0ade14c61f484989dfc3889b02c367170613aa2",
+  "rows": [
+    {
+      "tag": "csb",
+      "old": 400,
+      "new": 719,
+      "added": 319,
+      "canonical": 719,
+      "direct_kotlin_refs": 274,
+      "no_direct_kotlin_refs": 45,
+      "blob": "f4966d6890b449898b7bb38ef35464fa297d7fe4"
+    },
+    {
+      "tag": "nds",
+      "old": 412,
+      "new": 719,
+      "added": 307,
+      "canonical": 719,
+      "direct_kotlin_refs": 263,
+      "no_direct_kotlin_refs": 44,
+      "blob": "e9aafbb93bd01e6b86df3c10ca6590b2e5b7c1a4"
+    },
+    {
+      "tag": "wa",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "c179f41b9659c1048ea1f3888afada82ca45cd20"
+    },
+    {
+      "tag": "tt-Latn",
+      "old": 409,
+      "new": 719,
+      "added": 310,
+      "canonical": 719,
+      "direct_kotlin_refs": 265,
+      "no_direct_kotlin_refs": 45,
+      "blob": "e50bcffa04bdd7c2f83bbf1fc8c26688a9d56330"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+csb/strings.xml",
+    "Paintroid/src/main/res/values-b+nds/strings.xml",
+    "Paintroid/src/main/res/values-b+tt+Latn/strings.xml",
+    "Paintroid/src/main/res/values-b+wa/strings.xml"
+  ],
+  "tree": "2e0a23b771fe8a2ff19b5c864caeeaab32c4a7fc",
+  "head": "8a1a98d4fb3817ccf0ff6106cb2efccc3c6e6f3d",
+  "independent_reviews": [
+    {
+      "status": "accepted after one narrow new-value correction",
+      "rows": [
+        {
+          "locale": "csb",
+          "originals_preserved": 400,
+          "additions": 319,
+          "total": 719,
+          "blob": "f4966d6890b449898b7bb38ef35464fa297d7fe4"
+        },
+        {
+          "locale": "nds",
+          "originals_preserved": 412,
+          "additions": 307,
+          "total": 719,
+          "blob": "e9aafbb93bd01e6b86df3c10ca6590b2e5b7c1a4"
+        }
+      ],
+      "method": "Read all626 new values and all6 full manuals against canonical English; verified draft-to-XML equality, current live captions including Navigate Draw again, Drawing category and cursor drawing, attribution and legal bounds, import/export/crop/memory semantics. Recompared every812 original XML element unchanged. Complete validators clean. Only one post-reading change independently inspected.",
+      "findings": [
+        {
+          "locale": "csb",
+          "key": "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+          "issue": "clipboard mistranslated as tray",
+          "resolution": "New value corrected tacã to schòwk; originals unchanged.",
+          "status": "verified fixed"
+        }
+      ],
+      "tests": {
+        "command": "PYTHONPATH=tools python -m unittest test_localized_help test_translations test_help_commons_provider",
+        "passed": 53,
+        "seconds": 16.829,
+        "log": "independent-csb-nds-final-tests.log",
+        "hashes_unchanged_after_run": true,
+        "earlier_run": "Initial process disappeared with partial log; no pass claimed. Recovered after no active process, final exact-candidate run passed."
+      },
+      "limits": "AI/source review acceptance only, not owner/native-speaker acceptance or device/layout certification. No source/test edits or publication by reviewer."
+    },
+    {
+      "reviewer": "independent creole_review",
+      "reviewed_at_utc": "2026-11-13T22:24:00.765069+00:00",
+      "status": "accepted_with_verification_limits",
+      "catalogues": [
+        {
+          "tag": "wa",
+          "additions_read": 312,
+          "originals_preserved": 407,
+          "canonical_total": 719,
+          "blob": "c179f41b9659c1048ea1f3888afada82ca45cd20"
+        },
+        {
+          "tag": "tt-Latn",
+          "additions_read": 310,
+          "originals_preserved": 409,
+          "canonical_total": 719,
+          "blob": "e50bcffa04bdd7c2f83bbf1fc8c26688a9d56330"
+        }
+      ],
+      "method": "Read every one of the 622 added values against current English, including all six complete assembly/short-help/full-editor manuals. Checked current Android resource captions and consumers for navigation return, strength, radius, cursor, exact placement and Help. Compared every original resource element/attributes/text to frozen base; all 816 originals unchanged. Validated complete catalogues. No source edits.",
+      "findings": [],
+      "caption_checks": "Walloon Foice (%), Reyon (px), Continouwer a dessiner, Dessiner avou l’ cursoer and Tatar Latin Tös köçe (%), Radius (px), Räsem yasawnı däwam itü, Kürsätkeç belän räsem yasaw correspond to current captions. Tatar cursor manual correctly uses separate View caption, not drawing-button wording.",
+      "semantic_checks": "Checked directional snap alignment vs explicit overlapping position, crop/normalization preservation, local assembly persistence, memory fallback, save/export/share destination distinctions, opaque canvas versus inserted transparency, provider/attribution/licence constraints, numerical thresholds and formatting placeholders. No substantive actionable defect found.",
+      "tests": {
+        "command": "PYTHONPATH=tools python -m unittest test_translations test_localized_help test_help_commons_provider",
+        "count": 53,
+        "seconds": 9.588,
+        "result": "pass",
+        "log": "independent-wa-tt-tests.log"
+      },
+      "limits": "Independent AI/source wording acceptance only. Not native-speaker certification, device/rendering acceptance, or proof all 171 offered languages are complete. No change to holds or authorization."
+    }
+  ],
+  "author_reports": [
+    {
+      "tag": "csb",
+      "added": 319,
+      "originals": 400,
+      "total": 719,
+      "blob": "f4966d6890b449898b7bb38ef35464fa297d7fe4",
+      "tests": "53 provider/help/translation tests passed in 8.700s",
+      "review": "Independent reviewer read all 319 additions and three manuals; corrected clipboard schòwk in new memory estimate only. Original 400 values unchanged. Final reviewer confirmation pending.",
+      "limits": "AI/source work, not owner/native/device certification",
+      "changed_files": [
+        "Paintroid/src/main/res/values-b+csb/strings.xml"
+      ]
+    },
+    {
+      "tag": "nds",
+      "added": 307,
+      "originals_preserved": 412,
+      "total": 719,
+      "blob": "e9aafbb93bd01e6b86df3c10ca6590b2e5b7c1a4",
+      "method": "Translated all missing values including3 complete manuals against current source and live captions. Exact original XML elements/attributes preserved; source attrs copied for additions. Only nds source XML edited.",
+      "tests": "53 existing provider/help/translation tests passed34.027s; complete validator clean.",
+      "limits": "AI author candidate pending independent full-value review; no native/device/owner certification."
+    },
+    {
+      "tag": "wa",
+      "status": "author candidate ready for independent review",
+      "added": 312,
+      "originals_preserved": 407,
+      "canonical_total": 719,
+      "blob": "c179f41b9659c1048ea1f3888afada82ca45cd20",
+      "scope": "Only values-b+wa/strings.xml. All three manuals fully translated; legal, memory, opaque/floating selection, source preservation and assembly placement clauses retained. Existing live Walloon captions used in routes.",
+      "verification": "Exact original XML elements/attrs/text preserved; complete validator clean; final53 provider/help/translation tests passed16.929s.",
+      "method": "Read AGENTS and current English missing set plus old Walloon wording. Append-only construction. Copied source formatting attrs; literal-percent new hints formatted=false.",
+      "limitations": "AI authoring, not independent/native/device acceptance. No publication.",
+      "failures": []
+    },
+    {
+      "tag": "tt-Latn",
+      "additions": 310,
+      "preserved_originals": 409,
+      "total": 719,
+      "blob": "e50bcffa04bdd7c2f83bbf1fc8c26688a9d56330",
+      "method": "Used independently reviewed Tatar Cyrillic semantics as a reference, then read all310 Latin additions incl3 full manuals against current English; corrected loanword Latin spelling, front/back vowel transliteration and Latin live captions. Original Latin values preserved. No blind transliteration acceptance.",
+      "corrections": "Loanword and vowel spelling harmonized to existing Latin catalogue; live Tös köçe (%) strength caption and navigate return Räsem yasawnı däwam itü. Source attrs retained.",
+      "tests": "Final53 provider/help/translation tests passed16.873s; complete catalogue validator clean.",
+      "limits": "AI/source authoring, independent review pending. Not native or device acceptance."
+    }
+  ],
+  "remote_verification": "All1291 leaves and path/type/mode inventory match.",
+  "tests": {
+    "full": "892 ran313.150s, one unchanged composed-report CLI10s timeout SDK30/environment/missing vertical literary-chinese-emoji. Not fullsuite pass; final wording correction occurred during run.",
+    "isolated": "Exact failed test all SDK/mode/CLI/receipt scenarios passed69.984s unchanged",
+    "affected": "Final53 passed after correction"
+  },
+  "limits": "AI/source not native/owner/device acceptance. No release; holds unchanged."
+}
