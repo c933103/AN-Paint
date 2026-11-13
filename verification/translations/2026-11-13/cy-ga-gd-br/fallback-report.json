@@ -1,0 +1,147 @@
+{
+  "base": "d990f1e618cbe09f2d65b3edae611a8aedfdbc69",
+  "rows": [
+    {
+      "tag": "cy",
+      "old": 416,
+      "new": 719,
+      "added": 303,
+      "canonical": 719,
+      "direct_kotlin_refs": 258,
+      "no_direct_kotlin_refs": 45,
+      "blob": "443ea56d27c57baba633f1254dfbcecdc7461961"
+    },
+    {
+      "tag": "ga",
+      "old": 416,
+      "new": 719,
+      "added": 303,
+      "canonical": 719,
+      "direct_kotlin_refs": 258,
+      "no_direct_kotlin_refs": 45,
+      "blob": "b162efa60cb2fdfa5d6c828e4f18fd8cec108cae"
+    },
+    {
+      "tag": "gd",
+      "old": 419,
+      "new": 719,
+      "added": 300,
+      "canonical": 719,
+      "direct_kotlin_refs": 256,
+      "no_direct_kotlin_refs": 44,
+      "blob": "12e8f0d1477f6c21712613cc873af6cea1344a5b"
+    },
+    {
+      "tag": "br",
+      "old": 422,
+      "new": 719,
+      "added": 297,
+      "canonical": 719,
+      "direct_kotlin_refs": 253,
+      "no_direct_kotlin_refs": 44,
+      "blob": "d2139eab2dcc3508cf49e907ac1b5d499feb38e1"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+br/strings.xml",
+    "Paintroid/src/main/res/values-b+cy/strings.xml",
+    "Paintroid/src/main/res/values-b+ga/strings.xml",
+    "Paintroid/src/main/res/values-b+gd/strings.xml",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportChangeTranslationTest.kt",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt",
+    "tools/test_commons_import_change_translations.py",
+    "tools/test_tiff_description_wording.py"
+  ],
+  "head": "6ad84efe759786ced32401d18e5fdee6505a7be3",
+  "tree": "b90de105ee1104d53a15f5d8e17ec4efbecb6ad5",
+  "previous_head": "42d14cc2e6873c64d1e17ac4c353428fd0329a3a",
+  "pr": 454,
+  "created_at": "2026-11-13T14:57:52.685157+00:00",
+  "diagnosis": {
+    "run": 43441725130,
+    "job": 131940873069,
+    "jvm_tests": 1409,
+    "failures": [
+      "CommonsImportChangeTranslationTest.absentUnscopedCatalogueUsesRealEnglishFallback default and SDK30",
+      "TiffDescriptionDialogTest.welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices"
+    ],
+    "cause": "Tests assumed missing Welsh resources now supplied by completed catalogue. Other six hosted jobs passed.",
+    "repair": "Still-missing am/as/az Commons samples and am TIFF sample preserve English fallback. Welsh retained in localized Commons consumer and existing TIFF toggle coverage; no added TIFF dialog cases. Two compact host fixture-validity checks. No production/resources/deadlines/gates changed."
+  },
+  "tests": {
+    "full_host_final": {
+      "tests": 892,
+      "seconds": 266.371,
+      "result": "pass"
+    },
+    "affected": {
+      "tests": 6,
+      "result": "pass"
+    },
+    "previous_full_host": {
+      "tests": 890,
+      "result": "one fake-adb 1s timeout simulation failure; exact isolated test all8 combinations passed unchanged; not erased by new run"
+    },
+    "new_head_JVM_Android_lint": "pending hosted run; no local Android SDK/Gradle cache"
+  },
+  "independent_review": {
+    "status": "accepted final scoped fallback fixture repair; no outstanding findings",
+    "reviewed_files": [
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportChangeTranslationTest.kt",
+        "sha256": "076be0e54f126449e810de501e9862d64341fd0dcf00d8d88c0e8050045294e2",
+        "git_blob": "f73b03c99b3b438867b8b501fe715e4b7243dced"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt",
+        "sha256": "11f818bb57a86f3d75d7b2106c00286949ef5f9c71ca3735385d7b9c95b6be0b",
+        "git_blob": "47832bfb2267f94049bae7683622eab5deacadde"
+      },
+      {
+        "path": "tools/test_commons_import_change_translations.py",
+        "sha256": "da9898057268a6c29f52b2944ebf92872e53d167e0e3ecda0c30483501cb034b",
+        "git_blob": "f124aec7646df6985251b378803950f0cf8ab22a"
+      },
+      {
+        "path": "tools/test_tiff_description_wording.py",
+        "sha256": "2b112f318e2e0565c89d3817fcfcd3f0e4373a6bf49d0864a57f61da64002162",
+        "git_blob": "56664fa8e5c4a64bbe11697b58acbb0a0433e8f8"
+      }
+    ],
+    "host_tests": {
+      "modules": [
+        "test_commons_import_change_translations",
+        "test_tiff_description_wording"
+      ],
+      "passed": 6,
+      "final_independent_rerun": "6 passed"
+    },
+    "preserved_obligations": [
+      "Commons API30/API35 selection/fallback, exact technical literals, false-note exclusion and byte-exact persisted/generated/user credit handling",
+      "TIFF real SaveOptionsDialog display and option submission, compression toggle, format switch, cancellation, vertical paths, Cebuano layout/accessibility",
+      "No frozen translated sentences, weakened assertions, timeout changes or removed coverage"
+    ],
+    "limits": [
+      "JVM compile/runtime not executed by reviewer; final exact-head hosted tests still required",
+      "Host sample-eligibility tests are structural fixture checks, not linguistic acceptance",
+      "Paused Manchu source and script tests unchanged"
+    ],
+    "failure_scope": "Welsh now supplies Commons notes and TIFF description; old tests incorrectly expected English fallback. Replacement am/as/az Commons and am TIFF are offered catalogues with those keys absent.",
+    "resolved_findings": [
+      {
+        "file": "TiffDescriptionDialogTest.kt",
+        "issue": "New am/cy × compression loop adds two redundant Welsh dialog opens. Existing toggling test already checks full Welsh text before and after toggling for both initial states and confirms both resultant flags.",
+        "requested_fix": "Retain renamed Amharic-only fallback loop; place Welsh-not-English assertion in existing toggling test to prove translated path without extra cases.",
+        "resolution": "Verified final diff: Amharic-only fallback retains original two dialog opens; single Welsh-not-English assertion added before existing toggle loop. No added TIFF dialog Cartesian cases."
+      }
+    ],
+    "findings": [],
+    "test_economy": "Commons adds one Welsh positive routing iteration per configured SDK while preserving the three actual fallback samples; TIFF dialog iteration count unchanged. Host additions check fixture validity without copied wording."
+  },
+  "remote_verification": "All 1291 leaves plus complete path/type/mode inventory matched reviewed checkout",
+  "limits": [
+    "No native-speaker/owner acceptance or exhaustive layout verification",
+    "No merge or release",
+    "Manchu/Czech holds unchanged"
+  ]
+}
