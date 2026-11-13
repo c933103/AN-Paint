@@ -140,14 +140,14 @@ class NumericDisplayLocaleTest {
                 "Aktuálny bezpečný limit pamäte na úpravy: 17,2 MiB · najviac 1,50 MP pred započítaním réžie dekodéra"),
             "sl" to ("Trenutna varna pomnilniška omejitev za urejanje: 25,7 MiB · do 2,25 MP pred dodatno porabo dekodirnika" to
                 "Trenutna varna pomnilniška omejitev za urejanje: 17,2 MiB · do 1,50 MP pred dodatno porabo dekodirnika"),
-            "sr-Cyrl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
-            "sr-Latn" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "sr-Cyrl" to ("Тренутни безбедни лимит за уређивање: 25,7 MiB · до 2,25 MP пре додатне меморије декодера" to
+                "Тренутни безбедни лимит за уређивање: 17,2 MiB · до 1,50 MP пре додатне меморије декодера"),
+            "sr-Latn" to ("Trenutni bezbedni limit za uređivanje: 25,7 MiB · do 2,25 MP pre dodatne memorije dekodera" to
+                "Trenutni bezbedni limit za uređivanje: 17,2 MiB · do 1,50 MP pre dodatne memorije dekodera"),
             "hr" to ("Trenutačno sigurno ograničenje za uređivanje: 25,7 MiB · do 2,25 MP prije dodatne memorije za dekoder" to
                 "Trenutačno sigurno ograničenje za uređivanje: 17,2 MiB · do 1,50 MP prije dodatne memorije za dekoder"),
-            "bs" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead")
+            "bs" to ("Trenutno sigurno ograničenje za uređivanje: 25,7 MiB · do 2,25 MP prije dodatne memorije za dekoder" to
+                "Trenutno sigurno ograničenje za uređivanje: 17,2 MiB · do 1,50 MP prije dodatne memorije za dekoder")
         )
         assertEquals(tags.toSet(), captions.keys)
         for(tag in tags) {
@@ -189,7 +189,7 @@ class NumericDisplayLocaleTest {
                     assertFalse(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
                 }
                 // These completed catalogues must no longer fall back to the English caption.
-                if(tag in setOf("sk","sl","hr")) {
+                if(tag in setOf("sk","sl","hr","sr-Cyrl","sr-Latn","bs")) {
                     assertFalse(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
                 }
                 val original=activity.document.bitmap
