@@ -1,0 +1,257 @@
+{
+  "base": "cf412b6ec3459f9d21916f3c417e2f639e794e88",
+  "rows": [
+    {
+      "tag": "ky",
+      "old": 409,
+      "new": 719,
+      "added": 310,
+      "canonical": 719,
+      "direct_kotlin_refs": 265,
+      "no_direct_kotlin_refs": 45,
+      "blob": "0d6e6e83888454f9a10cd9d09be7a9f170bb4c7d"
+    },
+    {
+      "tag": "tg",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "013a95961583c90a64a73a7e714dacfa4c6b8c50"
+    },
+    {
+      "tag": "uz-Latn",
+      "old": 414,
+      "new": 719,
+      "added": 305,
+      "canonical": 719,
+      "direct_kotlin_refs": 260,
+      "no_direct_kotlin_refs": 45,
+      "blob": "ec15bde58d18839e6e81785b197c2477baa723e9"
+    },
+    {
+      "tag": "tt-Cyrl",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "a7f3c8ece6a9ca375a7340e253df0862e4fd0975"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+ky/strings.xml",
+    "Paintroid/src/main/res/values-b+tg/strings.xml",
+    "Paintroid/src/main/res/values-b+tt+Cyrl/strings.xml",
+    "Paintroid/src/main/res/values-b+uz+Latn/strings.xml"
+  ],
+  "tree": "1f7b933eac14fdc5676ee3daffdf73462bab9c5c",
+  "head": "6c474283b2f0b2df8b734236967c6b37a035fa1c",
+  "pr": 458,
+  "independent_reviews": [
+    {
+      "status": "accepted-after-corrections",
+      "scope": "All 622 added values read against current canonical English, including six full manuals and live captions/routes; independently checked originals, complete catalogue, tokens and final blobs",
+      "rows": [
+        {
+          "tag": "ky",
+          "added": 310,
+          "originals_preserved": 409,
+          "total": 719,
+          "git_blob": "0d6e6e83888454f9a10cd9d09be7a9f170bb4c7d",
+          "sha256": "5edca175174db857f665b8c2a228087178f57138cc3e934e635941c21574e061"
+        },
+        {
+          "tag": "tg",
+          "added": 312,
+          "originals_preserved": 407,
+          "total": 719,
+          "git_blob": "013a95961583c90a64a73a7e714dacfa4c6b8c50",
+          "sha256": "f4ea4443b39ec1d30338d550019761d71c3b2ab4902b166d5716d9ec3109462e"
+        }
+      ],
+      "findings": [
+        {
+          "locale": "tg",
+          "keys": [
+            "ui_pixel_grid_help33",
+            "ui_help23"
+          ],
+          "issue": "Pixel rulers called tables",
+          "resolution": "New values corrected to rulers terminology and verified"
+        },
+        {
+          "locale": "tg",
+          "keys": [
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "issue": "Two quoted Cut captions differed from actual existing ui_cut",
+          "resolution": "Both changed to actual Бурида гирифтан caption; originals untouched"
+        },
+        {
+          "locale": "tg",
+          "keys": [
+            "commons_blank_maps"
+          ],
+          "issue": "Host provider test compares raw XML; redundant Android outer quote wrapper prevents substring match although displayed caption matches",
+          "resolution": "Removed redundant quote wrapper from new caption only; displayed wording/help unchanged; original407 values preserved; exact single caption occurrence independently checked"
+        }
+      ],
+      "limits": "AI/static source review, not native speaker, owner wording acceptance, on-device layout or glyph certification",
+      "tests": "Final existing localized-help15 + translations34: all49 passed in8.590s; independent-ky-tg-final-tests.log",
+      "tests_after_wrapper_correction": "49 localized-help/translations passed8.270s; provider4 passed0.422s. Logs independent-ky-tg-wrapper-tests.log and independent-provider-final.log"
+    },
+    {
+      "review": "Independent AI full-value/source review",
+      "status": "accepted after narrow corrections",
+      "scope": [
+        {
+          "tag": "uz-Latn",
+          "additions_read": 305,
+          "originals_preserved": 414,
+          "canonical_total": 719,
+          "blob": "ec15bde58d18839e6e81785b197c2477baa723e9"
+        },
+        {
+          "tag": "tt-Cyrl",
+          "additions_read": 312,
+          "originals_preserved": 407,
+          "canonical_total": 719,
+          "blob": "a7f3c8ece6a9ca375a7340e253df0862e4fd0975"
+        }
+      ],
+      "method": "Read all 617 added values against current English, including six full assembly/main/quick-help manuals. Inspected actual caption values, route assertions and AssemblyPlacementDialog consumer. Verified exact XML original preservation and complete-catalogue validators. Final diff against fully read candidates consists only of the two reviewed corrections below.",
+      "findings": [
+        {
+          "tag": "uz-Latn",
+          "key": "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+          "issue": "namunaviy dekodlash described model/example decoding rather than downsampled decoding",
+          "resolution": "Author replaced with kichraytirib dekodlash; corrected full value reread, other additions unchanged."
+        },
+        {
+          "tag": "tt-Cyrl",
+          "key": "ui_the_arrow_on_the_left_directly_below_the",
+          "issue": "Original resolution rendered as original clarity/openness, insufficient pixel-resolution precision.",
+          "resolution": "Author replaced with баштагы пиксель үлчәмнәрендә; full affected paragraph reread, memory budget conditional preserved; other additions unchanged."
+        },
+        {
+          "tag": "uz-Latn",
+          "key": "commons_blank_maps",
+          "issue": "Full-suite provider check compared raw Android-quoted label against help. The correct displayed caption already appeared once; this was serialization mismatch, not missing provider wording.",
+          "resolution": "Author removed redundant outer Android quote delimiters from new label only. Displayed caption unchanged; help unchanged. Independently verified diff limited to this correction plus previously reviewed decoding correction; all414 originals remain exact."
+        }
+      ],
+      "checks": {
+        "original_values": "821 preserved exactly including attributes/content",
+        "complete_catalogue_validation": "both pass",
+        "existing_tests": "Final53 passed in12.611s (provider4 + localized help15 + translations34); earlier49 pass remains historical",
+        "log": "independent-uz-tt-final-tests.log"
+      },
+      "limits": [
+        "AI/source acceptance only, not native speaker or owner wording acceptance",
+        "No device/rendering/layout certification",
+        "Resource presence does not imply direct active use",
+        "No CI/release claim"
+      ]
+    }
+  ],
+  "author_reports": [
+    {
+      "locale": "ky",
+      "added": 310,
+      "preserved": 409,
+      "total": 719,
+      "blob": "0d6e6e83888454f9a10cd9d09be7a9f170bb4c7d",
+      "review": "Author AI language/source review; independent review pending; not native or device acceptance",
+      "checks": [
+        "All15 localized help tests passed",
+        "All34 translations tests passed",
+        "Exact original element preservation",
+        "719 canonical entries; full validation passed"
+      ],
+      "notes": [
+        "Three complete manuals translated",
+        "Live Kyrgyz captions retained in route descriptions",
+        "CC BY-SA4.0 creator and adaptation obligations retained",
+        "Irasutoya commercial21-item threshold and non-CC notice retained",
+        "Previous colour on cancel distinguished from foreground colour",
+        "Exact whole-pixel position and later-image overlap order retained"
+      ],
+      "history": [
+        "First34-test run failed new Strength (%) caption literal percent missing formatted=false. Added formatted=false only to new resource; final34 tests passed."
+      ]
+    },
+    {
+      "locale": "tg",
+      "original_entries_preserved": 407,
+      "additions": 312,
+      "total": 719,
+      "blob": "013a95961583c90a64a73a7e714dacfa4c6b8c50",
+      "author_review": "Every 312 addition translated against canonical English, including three full help texts. Actual localized captions retained, preserved licensing distinctions, import opacity distinctions, selected source attribution, memory limits, exact whole-pixel coordinates, non-destructive source behavior. No original values changed.",
+      "tests": [
+        "Final test_localized_help:15 passed 0.857s",
+        "Final test_translations:34 passed 25.885s",
+        "Provider4 run: tg passes; suite fails only concurrent uz-Latn. Final reruns in tg-*-corrected.log."
+      ],
+      "limits": "AI/source review only; no native-speaker, owner or device layout acceptance. Independent review pending.",
+      "independent_corrections": [
+        "New ruler help terminology changed from tables to rulers in short and quick help.",
+        "Both quoted Cut mentions in new full manual now match existing ui_cut caption Бурида гирифтан.",
+        "Removed redundant Android outer quotes from newly added commons_blank_maps; displayed caption unchanged, raw-resource provider check now matches. Trial help quote segmentation reverted."
+      ]
+    },
+    {
+      "locale": "uz-Latn",
+      "added": 305,
+      "preserved": 414,
+      "total": 719,
+      "blob": "ec15bde58d18839e6e81785b197c2477baa723e9",
+      "tests": {
+        "translations": "Initial 34-test suite failed on Uzbek formatted attributes, corrected by copying source attributes. Final run 34 tests had one failure solely on concurrently edited Kyrgyz ui_draw_soft_watercolor_strokes_strength_controls_how_strongly literal percent; Uzbek require_complete validator passes independently.",
+        "localized_help": "15 passed",
+        "post_review_logs": [
+          "uz-tests-review-final.log",
+          "uz-help-review-final.log"
+        ],
+        "post_review": "34 translation tests passed 6.541s; 15 localized-help tests passed 0.744s",
+        "final_caption_correction": "53 affected passed: provider4 0.391s, localized-help15 0.805s, translations34 8.956s; uz-caption-final.log"
+      },
+      "limits": "AI author/source review, not native-speaker or device-layout acceptance",
+      "scope": "Only missing values; all original XML elements exact-preserved; 3 full manuals translated, live labels and legal/source routes retained.",
+      "independent_correction": "New memory-estimate value: namunaviy dekodlash corrected to kichraytirib dekodlash to accurately mean sampled/downsampled decoding, not model/example decoding. All originals preserved.",
+      "caption_serialization_correction": "Removed unnecessary outer Android quote delimiters from NEW commons_blank_maps only. Displayed caption unchanged and already occurs once in help. All 414 original entries unchanged. Raw read_strings test no longer compares quote syntax as text."
+    },
+    {
+      "locale": "tt-Cyrl",
+      "original_entries_preserved": 407,
+      "added": 312,
+      "final": 719,
+      "blob": "a7f3c8ece6a9ca375a7340e253df0862e4fd0975",
+      "tests": {
+        "localized_help_and_translations": "49 passed",
+        "log": "tt-tests-final.log",
+        "seconds": 8.383
+      },
+      "qualification": "Author AI translation and source/structural checks; independent full-value review completed with one corrected precision finding, final reviewer acceptance pending; not native-speaker or device acceptance",
+      "self_corrections": [
+        "Paste quick-action caption aligned to existing Кертеп кую",
+        "Lock proportions reference aligned to existing Пропорцияләрне үзгәрешсез тоту"
+      ],
+      "initial_test_invocation": "15 localized-help tests passed but translation test module import failed because PYTHONPATH was omitted; corrected invocation passed",
+      "independent_corrections": [
+        "Original resolution in full manual clarified as original pixel dimensions, preserving memory-budget condition"
+      ]
+    }
+  ],
+  "remote_verification": "All1291 leaves and inventory/modes match. Initial check included .git metadata, corrected exclusion then passed.",
+  "tests": {
+    "initial": "Interrupted without terminal summary; two failure markers; no pass claimed",
+    "recovery": "892 tests285.924s, two raw provider-caption failures tg/uz-Latn; redundant Android wrappers on NEW labels, display already correct",
+    "final": "892 passed278.754s;53 affected passed",
+    "changes": "No tests modified"
+  },
+  "limits": "AI/source review not native/owner/device acceptance. No release. Holds unchanged."
+}
