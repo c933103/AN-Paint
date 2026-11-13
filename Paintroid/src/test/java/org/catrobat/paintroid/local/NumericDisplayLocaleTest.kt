@@ -136,16 +136,16 @@ class NumericDisplayLocaleTest {
                 "حد التحرير الآمن الحالي: ١٧٫٢ MiB · حتى ١٫٥٠ ميغابكسل قبل الحمل الإضافي لفك الترميز"),
             "ro" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
-            "sk" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
-            "sl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "sk" to ("Aktuálny bezpečný limit pamäte na úpravy: 25,7 MiB · najviac 2,25 MP pred započítaním réžie dekodéra" to
+                "Aktuálny bezpečný limit pamäte na úpravy: 17,2 MiB · najviac 1,50 MP pred započítaním réžie dekodéra"),
+            "sl" to ("Trenutna varna pomnilniška omejitev za urejanje: 25,7 MiB · do 2,25 MP pred dodatno porabo dekodirnika" to
+                "Trenutna varna pomnilniška omejitev za urejanje: 17,2 MiB · do 1,50 MP pred dodatno porabo dekodirnika"),
             "sr-Cyrl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
             "sr-Latn" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
-            "hr" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
-                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "hr" to ("Trenutačno sigurno ograničenje za uređivanje: 25,7 MiB · do 2,25 MP prije dodatne memorije za dekoder" to
+                "Trenutačno sigurno ograničenje za uređivanje: 17,2 MiB · do 1,50 MP prije dodatne memorije za dekoder"),
             "bs" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead")
         )
@@ -188,8 +188,10 @@ class NumericDisplayLocaleTest {
                 if(tag=="ro") {
                     assertFalse(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
                 }
-                // Slovak still has no direct value for this key: keep the fallback check.
-                if(tag=="sk") assertTrue(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
+                // These completed catalogues must no longer fall back to the English caption.
+                if(tag in setOf("sk","sl","hr")) {
+                    assertFalse(texts(dialog.window!!.decorView).any {it.startsWith("Current safe budget:")})
+                }
                 val original=activity.document.bitmap
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 assertSame(original,activity.document.bitmap)
