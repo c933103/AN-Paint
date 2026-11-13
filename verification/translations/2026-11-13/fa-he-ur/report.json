@@ -1,0 +1,288 @@
+{
+  "pr": 449,
+  "head": "0c13a5c793501254be74a01e983ad6a1c6be5e7a",
+  "tree": "d3c65c6e52f193a83e95dc7a4f6db00862ed6ffe",
+  "summary": {
+    "resources_added": 1075,
+    "strings_added": 1074,
+    "plurals_added": 1,
+    "existing_preserved": 1801,
+    "direct_Kotlin_references": 931,
+    "without_direct_Kotlin_reference": 144
+  },
+  "review_records": {
+    "verified.json": {
+      "base": "19297434658c0151c2c6fc405675cdd358d06fe8",
+      "rows": [
+        {
+          "tag": "fa",
+          "old": 469,
+          "new": 719,
+          "added": 250,
+          "canonical": 719,
+          "direct_kotlin_refs": 222,
+          "no_direct_kotlin_refs": 28,
+          "blob": "a19eff9b7293573e5f8e81b05f219caaa93633bf"
+        },
+        {
+          "tag": "fa-IR",
+          "old": 464,
+          "new": 719,
+          "added": 255,
+          "canonical": 719,
+          "direct_kotlin_refs": 226,
+          "no_direct_kotlin_refs": 29,
+          "blob": "bf988edbf76b62275dcadcb6efe276e5ea7e2f31"
+        },
+        {
+          "tag": "he",
+          "old": 441,
+          "new": 719,
+          "added": 278,
+          "canonical": 719,
+          "direct_kotlin_refs": 236,
+          "no_direct_kotlin_refs": 42,
+          "blob": "dcfe1204f22f3d1f5d11828db08b9a508cf513c4"
+        },
+        {
+          "tag": "ur",
+          "old": 427,
+          "new": 719,
+          "added": 292,
+          "canonical": 719,
+          "direct_kotlin_refs": 247,
+          "no_direct_kotlin_refs": 45,
+          "blob": "e6b058f34193f6cad9ded1e342703c5dc069f053"
+        }
+      ],
+      "changed_files": [
+        "Paintroid/src/main/res/values-fa-rIR/strings.xml",
+        "Paintroid/src/main/res/values-fa/strings.xml",
+        "Paintroid/src/main/res/values-iw/strings.xml",
+        "Paintroid/src/main/res/values-ur/strings.xml"
+      ]
+    },
+    "independent-persian.json": {
+      "base": "19297434658c0151c2c6fc405675cdd358d06fe8",
+      "reviewed_at": "2026-11-13T08:15:39.098236+00:00",
+      "reviewer": "independent-persian",
+      "rows": [
+        {
+          "locale": "fa",
+          "added_full_values_reviewed": 250,
+          "preexisting_preserved": 469,
+          "final_resources": 719,
+          "sha256": "968dd8f7cd046d0e357ba534e5f4b634889d4e90cfcdfff5a6dc422c702f1d9b",
+          "git_blob": "a19eff9b7293573e5f8e81b05f219caaa93633bf",
+          "canonical_attributes": "all additions match",
+          "catalogue_validation": "pass",
+          "full_value_semantic_review": "accepted with stated limits"
+        },
+        {
+          "locale": "fa-IR",
+          "added_full_values_reviewed": 255,
+          "preexisting_preserved": 464,
+          "final_resources": 719,
+          "sha256": "a84f020e6c627944a041771530798e0e24df3964416ac50a1eaa76e48063da8f",
+          "git_blob": "bf988edbf76b62275dcadcb6efe276e5ea7e2f31",
+          "canonical_attributes": "all additions match",
+          "catalogue_validation": "pass",
+          "full_value_semantic_review": "accepted with stated limits"
+        }
+      ],
+      "corrections_verified": [
+        "fa new clipboard estimate corrected temporary-memory term to clipboard",
+        "fa and fa-IR new full editor manuals corrected hexadecimal wording to six-digit code in base sixteen"
+      ],
+      "consumer_checks": [
+        "Navigate return is ui_draw_again: fa طراحی دوباره, fa-IR بازگشت به طراحی",
+        "Reset is ui_reset_bw23: سیاه / سفید",
+        "Commons provider caption ellipsis and menu labels matched local catalogues",
+        "Recursive ImageAssembly layout cycle detection supports direct and indirect attachment restriction"
+      ],
+      "semantic_scope": [
+        "all 505 newly added full resource values including editor and assembly manuals",
+        "legal and attribution clauses, opaque document versus imported transparency, source-file preservation",
+        "conditional unplace movement, exact positions and overlap ordering, memory warning and smaller-image detail loss",
+        "runtime permissions, formats, crop semantics and actual control labels"
+      ],
+      "tests": {
+        "help_and_provider_host_tests": "19 passed before terminology-only corrections; final canonical validator rerun passes"
+      },
+      "limits": [
+        "AI linguistic/source-context review, not native-speaker approval",
+        "No device rendering, bidi visual-layout, accessibility or end-to-end Android validation",
+        "Catalog completeness and direct source coverage do not imply acceptance across all 171 offered languages",
+        "Existing wording preserved and not granted fresh linguistic acceptance"
+      ]
+    },
+    "independent-he-ur.json": {
+      "reviewer": "Independent coordinator, not author",
+      "rows": [
+        {
+          "locale": "he",
+          "added": 278,
+          "preserved": 441,
+          "blob": "dcfe1204f22f3d1f5d11828db08b9a508cf513c4",
+          "review": "All complete new values including manuals independently read against canonical English and live controls. No remaining concrete semantic blocker identified."
+        },
+        {
+          "locale": "ur",
+          "added": 292,
+          "preserved": 427,
+          "blob": "e6b058f34193f6cad9ded1e342703c5dc069f053",
+          "review": "All complete new values including manuals independently read against canonical English and live controls. No remaining concrete semantic blocker identified."
+        }
+      ],
+      "resolved_findings": [
+        "Four new Hebrew codec licence labels clarified encoding and decoding",
+        "Two new Urdu polygon instructions explicitly disable the quoted Close polygon option"
+      ],
+      "limits": [
+        "Bounded AI/source-context review, not native-speaker or owner acceptance",
+        "No exhaustive physical-device, RTL rendering, layout or speech certification"
+      ],
+      "boundaries": [
+        "Canvas opacity versus floating transparency versus Commons white backdrop",
+        "Memory warning alternative and original source preservation",
+        "Actual Navigate return and reset controls, exact provider caption",
+        "Conditional attachment movement, exact-position overlaps, licence and attribution distinctions"
+      ]
+    },
+    "fa-review.json": {
+      "locale": "fa",
+      "base": "19297434",
+      "existing_preserved": 469,
+      "new_count": 719,
+      "added": 250,
+      "added_strings": 250,
+      "added_plurals": 0,
+      "direct_kotlin_references": 222,
+      "without_direct_kotlin_reference": 28,
+      "validation": "Complete catalogue validation and original-entry preservation pass. All new attributes inherited exactly from canonical source.",
+      "tests": {
+        "test_help_commons_provider": 4,
+        "test_localized_help": 15,
+        "test_locale_tooltips": 2
+      },
+      "review": "Author source-context/Persian review; two independent-review corrections applied; final peer acceptance pending",
+      "limits": [
+        "Not native-speaker acceptance",
+        "No exhaustive RTL device/layout verification",
+        "Key completeness is not every live UI path"
+      ],
+      "notes": [
+        "Existing entries unchanged",
+        "Full manuals use exact ui_draw_again طراحی دوباره, ui_reset_bw23 سیاه / سفید and Commons caption with ellipsis",
+        "Copyright, memory and attachment conditions preserved; no blanket formatted=false"
+      ],
+      "sha256": "968dd8f7cd046d0e357ba534e5f4b634889d4e90cfcdfff5a6dc422c702f1d9b",
+      "git_blob": "a19eff9b7293573e5f8e81b05f219caaa93633bf",
+      "independent_corrections": [
+        "Clipboard named explicitly as تخته‌گیره, not temporary memory",
+        "Hexadecimal controls described as six-digit base-16 code"
+      ]
+    },
+    "fa-IR-review.json": {
+      "locale": "fa-IR",
+      "base": "19297434",
+      "added": 255,
+      "added_strings": 254,
+      "added_plurals": 1,
+      "existing_entries_preserved": 464,
+      "final_typed_entries": 719,
+      "direct_Kotlin_resource_references": 226,
+      "no_direct_Kotlin_reference": 29,
+      "xml_git_blob": "bf988edbf76b62275dcadcb6efe276e5ea7e2f31",
+      "verification": {
+        "complete_catalogue_validator": "pass",
+        "existing_entry_XML_content_equality": "pass",
+        "new_entry_attributes_match_canonical": "pass",
+        "localized_help_provider_current_contract_tests": 23
+      },
+      "review": "AI author/source-context translation pass; three new complete manuals. Navigate return uses ui_draw_again (بازگشت به طراحی); reset uses ui_reset_bw23 (سیاه / سفید). Logical parent-child caption order preserved in RTL arrow routes. Exact Commons provider punctuation, licence identifiers, placeholders, memory/attachment constraints and source-file preservation retained. Existing values including old alternate Arabic letter forms and presentation-form Done caption remain untouched.",
+      "limits": [
+        "Independent peer review pending",
+        "No native-speaker acceptance",
+        "No Android RTL rendering, font shaping or device interaction performed in this worker",
+        "Direct references identify static consumers, not exhaustive runtime coverage",
+        "Resource completeness is not whole-language linguistic acceptance"
+      ],
+      "independent_review_correction": "Corrected malformed hexadecimal term in newly added full manual to کنترل‌های کد شش‌رقمی در مبنای شانزده; only this new value changed."
+    },
+    "he-review.json": {
+      "locale": "he",
+      "base": "19297434",
+      "added_strings": 278,
+      "added_plurals": 0,
+      "prior_entries_preserved": 441,
+      "complete_entries": 719,
+      "direct_Kotlin_reference_additions": 236,
+      "without_direct_Kotlin_reference": 42,
+      "canonical_attributes": "All 278 added resource attributes exactly match canonical values/strings.xml. All 441 original resource elements preserved; original XML prefix byte-equivalent.",
+      "context_review": "All additions translated from current English. Full manual, short help and assembly text retain actual Hebrew controls: Navigate return ציור מחדש, reset שחור / לבן, import שימוש בתמונה, assembly חיבור תמונות, edit עריכה ב־Paint. Logical menu route order follows existing Hebrew ← convention. Full Commons provider caption with ellipsis occurs once in each help. Copyright/licence conditions, 21-item Irasutoya commercial threshold, CC BY-SA 4.0 and adaptation obligations preserved. Assembly distinguishes snap/exact coordinates, overlap rules, movable attachments, non-destructive crop, per-image aspect ratio, viewport-only Show all, memory budget and chooser limit.",
+      "limits": "AI-authored contextual Hebrew, not native-speaker certification. No Android build or device/RTL visual-layout execution by this worker. Existing wording unchanged even where English remains. Complete-key counts are not complete language or UI acceptance. Peer review pending.",
+      "draft_corrections": "Missing indexed rendering-progress draft entry caught by exact key-set assertion before XML was written; inserted correct placeholder-preserving translation, validated final mapping.",
+      "tests": {
+        "canonical_complete": "pass",
+        "focused_log": "/tmp/locale-sixth/he-tests.log",
+        "focused_host_passed": 69
+      },
+      "sha256": "8b11570825800921f38714660de9f6aaba40d74432721dc31f3a8a23184259b1",
+      "peer_review_correction": {
+        "keys": [
+          "ui_heic_avif_codec_licences",
+          "ui_image_codec_licences",
+          "ui_jpeg_xl_codec_licences",
+          "ui_webp_codec_licences"
+        ],
+        "reason": "Explicit codec labels now cover encoding and decoding, not encoding only. Only four new values changed; all other resources unchanged."
+      }
+    },
+    "ur-review.json": {
+      "locale": "ur",
+      "base_prefix": "19297434",
+      "added_strings": 292,
+      "added_plurals": 0,
+      "prior_resources_exact_preserved": 427,
+      "canonical_resources": 719,
+      "direct_kotlin_references": 247,
+      "without_direct_reference": 45,
+      "validation": {
+        "catalogue_complete": true,
+        "source_attributes_inherited_for_new_strings": true,
+        "help_provider_current_contract_tests_passed": 23
+      },
+      "context": "Full editor/assembly manuals and short help use rendered current controls. Navigate return binds ui_draw_again; reset binds ui_reset_bw23; Commons provider caption preserves ellipsis. Source-preserving imports, assembly attachment movement, exact position/overlap distinction, image credit obligations, memory conditions and save/export distinctions retained.",
+      "limits": "AI source/context review only, awaiting peer review; not native-speaker acceptance, hosted Android/device/RTL shaping/layout or exhaustive runtime verification. Technical tokens, placeholders and hex/URL values preserved without injecting bidi controls.",
+      "sha256": "eb6925e743937d0c49e5a92114ba2585053515cd9235100ed0db5ebc84edb716",
+      "peer_review_correction": "In two new resources, explicitly disable the quoted Close polygon option, avoiding repeated ambiguous بند کریں wording; actual current label preserved."
+    }
+  },
+  "tests": {
+    "full_host": {
+      "tests": 890,
+      "seconds": 314.074,
+      "result": "FAILED(errors=1)",
+      "error": "Existing ComposedDriverTest optimized CLI SDK35 environment subcase exceeded unchanged 10-second subprocess timeout"
+    },
+    "isolated_retry": {
+      "tests": 1,
+      "seconds": 61.961,
+      "result": "OK"
+    },
+    "final_focused": {
+      "tests": 23,
+      "seconds": 2.937,
+      "result": "OK"
+    }
+  },
+  "remote_verification": "All 1291 blob leaves and complete path/type/mode inventory equal reviewed final checkout",
+  "limits": [
+    "No blanket full-host-suite pass claimed",
+    "Hosted CI and exact-head Codex pending at publication",
+    "Bounded AI/source-context review, not native-speaker or owner acceptance",
+    "RTL layout, device and speech not exhaustively certified",
+    "No old values changed, no Manchu work, no release"
+  ]
+}
