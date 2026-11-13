@@ -1,0 +1,255 @@
+{
+  "pr": 450,
+  "head": "392c793f98a8c060d76b3d7d65449646e0c456db",
+  "tree": "43d6a260bab24ff3899c70f476204ed51682f0ba",
+  "summary": {
+    "resources_added": 1178,
+    "strings_added": 1178,
+    "plurals_added": 0,
+    "existing_preserved": 1698,
+    "direct_Kotlin_references": 1000,
+    "without_direct_Kotlin_reference": 178
+  },
+  "review_records": {
+    "verified.json": {
+      "base": "cb7f863e0059cc303acc6f456309a17be75dc59f",
+      "rows": [
+        {
+          "tag": "ta",
+          "old": 426,
+          "new": 719,
+          "added": 293,
+          "canonical": 719,
+          "direct_kotlin_refs": 249,
+          "no_direct_kotlin_refs": 44,
+          "blob": "6e5d51ad6073230c398e7a5ba19c1386330aa230"
+        },
+        {
+          "tag": "te",
+          "old": 426,
+          "new": 719,
+          "added": 293,
+          "canonical": 719,
+          "direct_kotlin_refs": 249,
+          "no_direct_kotlin_refs": 44,
+          "blob": "7ac2251d7c4534d418c4cd0a26b5bfdd38b73cdb"
+        },
+        {
+          "tag": "kn",
+          "old": 423,
+          "new": 719,
+          "added": 296,
+          "canonical": 719,
+          "direct_kotlin_refs": 251,
+          "no_direct_kotlin_refs": 45,
+          "blob": "56d24f5bd3d6ae0c22d552ac1ba320fb7510bb99"
+        },
+        {
+          "tag": "ml-IN",
+          "old": 423,
+          "new": 719,
+          "added": 296,
+          "canonical": 719,
+          "direct_kotlin_refs": 251,
+          "no_direct_kotlin_refs": 45,
+          "blob": "ae1d31b7accdefe4d23470c7293fa36c845a33f8"
+        }
+      ],
+      "changed_files": [
+        "Paintroid/src/main/res/values-kn/strings.xml",
+        "Paintroid/src/main/res/values-ml-rIN/strings.xml",
+        "Paintroid/src/main/res/values-ta/strings.xml",
+        "Paintroid/src/main/res/values-te/strings.xml"
+      ]
+    },
+    "independent-ta-te.json": {
+      "reviewed_at": "2026-11-13T09:20:35.038037+00:00",
+      "reviewer": "independent-ta-te",
+      "rows": [
+        {
+          "locale": "ta",
+          "full_new_values_reviewed": 293,
+          "preexisting_preserved": 426,
+          "complete_resource_count": 719,
+          "canonical_attributes": "all additions match",
+          "complete_catalogue_validation": "pass",
+          "git_blob": "6e5d51ad6073230c398e7a5ba19c1386330aa230",
+          "sha256": "8b8963957ab99f40d4869d9e8b8251ff0f8df4e1617035898232940c46b0ff75"
+        },
+        {
+          "locale": "te",
+          "full_new_values_reviewed": 293,
+          "preexisting_preserved": 426,
+          "complete_resource_count": 719,
+          "canonical_attributes": "all additions match",
+          "complete_catalogue_validation": "pass",
+          "git_blob": "7ac2251d7c4534d418c4cd0a26b5bfdd38b73cdb",
+          "sha256": "d591d742a744e6571fd6c8ac54b9d10bb1dfaf19c5bcc2faf2dc06dbca7d40be"
+        }
+      ],
+      "status": "accepted within stated limits",
+      "corrections_verified": [
+        "Telugu new unsupported colour-profile warning changed has-not-converted wording to cannot-convert capability wording; remainder unchanged"
+      ],
+      "semantic_scope": [
+        "All 586 new full values including all six long/short/editor/assembly help resources",
+        "Actual Navigate return and reset labels, explicit polygon-option disabling, provider captions and ellipsis",
+        "Codec versus encoder, clipboard and hexadecimal terminology",
+        "Legal and creator attribution clauses, opaque documents versus floating transparency and Commons white backing",
+        "Conditional attached-image movement, exact overlaps and stacking, memory chooser versus warning alternatives, source-file preservation"
+      ],
+      "tests": {
+        "independent_help_provider_tests": "19 passed",
+        "final_post_correction_completeness_preservation_and_attribute_checks": "passed for both locales",
+        "author_reported_final_telugu_focused_tests": "23 passed; not independently rerun after one wording-only correction"
+      },
+      "limits": [
+        "AI linguistic and source-context review; not native-speaker approval",
+        "No device rendering, Indic shaping or layout verification performed",
+        "Protected baseline wording is preserved, not newly certified; Telugu existing Import image label remains English",
+        "719-resource coverage is not acceptance across all 171 offered languages"
+      ]
+    },
+    "independent-kn.json": {
+      "locale": "kn",
+      "added": 296,
+      "preserved": 423,
+      "blob": "56d24f5bd3d6ae0c22d552ac1ba320fb7510bb99",
+      "review": "All 296 complete new values and three manuals independently read against canonical English and current controls; final correction diff independently reviewed. No remaining concrete semantic blocker.",
+      "resolved_findings": [
+        "Two new manuals now bind named tab/action captions and routes to exact displayed local controls rather than generic paraphrases"
+      ],
+      "notes": [
+        "Existing English Import image preserved",
+        "Copyright/provider/transparent-opaque distinctions, conditional attachment motion, exact overlap and memory-warning alternative retained"
+      ],
+      "limits": [
+        "AI/source-context review not native-speaker or owner acceptance",
+        "No exhaustive Indic shaping, device/layout or speech certification"
+      ]
+    },
+    "independent-ml.json": {
+      "locale": "ml-IN",
+      "added": 296,
+      "preserved": 423,
+      "blob": "ae1d31b7accdefe4d23470c7293fa36c845a33f8",
+      "review": "All 296 complete new values and all three manuals independently read against canonical English and live controls. No concrete semantic blocker found. Canonical attributes, placeholders, completeness and old-entry preservation verified.",
+      "notes": [
+        "Pre-existing English Import image caption preserved and accurately quoted",
+        "Canvas opacity, floating transparency, white Commons backing, conditional attachment movement and exact-position overlap distinguished",
+        "Memory warning alternative, copyright and provider licence boundaries retained"
+      ],
+      "limits": [
+        "AI/source-context acceptance not native-speaker or owner acceptance",
+        "No exhaustive physical-device, layout or speech certification"
+      ]
+    },
+    "ta-review.json": {
+      "locale": "ta",
+      "base": "cb7f863e",
+      "existing_preserved": 426,
+      "new_count": 719,
+      "added": 293,
+      "added_strings": 293,
+      "added_plurals": 0,
+      "direct_kotlin_references": 249,
+      "without_direct_kotlin_reference": 44,
+      "validation": "Complete catalogue validation and original-entry preservation passed; every new attribute matches canonical source.",
+      "tests": {
+        "test_help_commons_provider": 4,
+        "test_localized_help": 15,
+        "test_locale_tooltips": 2
+      },
+      "review": "Author source-context/Tamil review; independent review pending",
+      "limits": [
+        "Not native-speaker acceptance",
+        "No exhaustive device/layout verification",
+        "Key completeness is not every live UI path"
+      ],
+      "notes": [
+        "426 existing entries unchanged including pre-existing control wording",
+        "Full manuals use ui_draw_again தொடர்ந்து வரை, ui_reset_bw23 கருப்பு / வெள்ளை and exact Commons caption with ellipsis",
+        "Copyright, memory and attachment conditions preserved; no blanket formatted=false"
+      ],
+      "sha256": "8b8963957ab99f40d4869d9e8b8251ff0f8df4e1617035898232940c46b0ff75",
+      "git_blob": "6e5d51ad6073230c398e7a5ba19c1386330aa230"
+    },
+    "te-review.json": {
+      "locale": "te",
+      "added": 293,
+      "strings_added": 293,
+      "old_preserved": 426,
+      "canonical_total": 719,
+      "blob": "7ac2251d7c4534d418c4cd0a26b5bfdd38b73cdb",
+      "sha256": "d591d742a744e6571fd6c8ac54b9d10bb1dfaf19c5bcc2faf2dc06dbca7d40be",
+      "direct_kotlin_references": 249,
+      "without_direct_kotlin_reference": 44,
+      "validation": "Complete canonical validator and all new canonical attributes pass; all old elements preserved",
+      "review": "Author translated all missing complete values including three manuals from canonical source; actual labels substituted including existing English Import image, Navigate return and reset",
+      "limits": [
+        "Author AI linguistic/source-context review, independent review pending",
+        "Not native-speaker/owner acceptance",
+        "No exhaustive device/layout/script-shaping/speech verification"
+      ],
+      "independent_correction": "New unsupported-profile error explicitly says AN Paint cannot convert yet, rather than has not converted yet"
+    },
+    "kn-review.json": {
+      "locale": "kn",
+      "added": 296,
+      "preserved": 423,
+      "total": 719,
+      "direct_kotlin_refs": 251,
+      "no_direct_kotlin_refs": 45,
+      "blob": "56d24f5bd3d6ae0c22d552ac1ba320fb7510bb99",
+      "validation": [],
+      "review": "Author full-value translation/context review; independent review pending",
+      "limits": [
+        "No native-speaker acceptance or device/layout/speech certification"
+      ],
+      "reviewer_correction": {
+        "changed_new_values": [
+          "ui_the_arrow_on_the_left_directly_below_the",
+          "ui_help23"
+        ],
+        "detail": "Bind named tabs/actions and routes to current local captions: View, Draw, Navigate, cursor, magnifier, load, assembly, Fit, Save/Export/Share and assembly controls. All old and all other new values unchanged. Short help also uses actual Navigate and save/export/share labels."
+      }
+    },
+    "ml-IN-review.json": {
+      "locale": "ml-IN",
+      "base_prefix": "cb7f863e",
+      "added_strings": 296,
+      "added_plurals": 0,
+      "prior_resources_exact_preserved": 423,
+      "canonical_resources": 719,
+      "direct_kotlin_references": 251,
+      "without_direct_reference": 45,
+      "validation": {
+        "catalogue_complete": true,
+        "source_attributes_inherited_for_new_strings": true,
+        "help_provider_current_contract_tests_passed": 23
+      },
+      "context": "Full editor/assembly manuals and short help use rendered current controls. Navigate return binds ui_draw_again; reset binds ui_reset_bw23; Commons provider caption preserves ellipsis; polygon tooltip/manual explicitly disable quoted Close polygon option. Source-preserving imports, assembly attachment movement, exact position/overlap distinction, legal credit obligations, memory conditions and save/export distinctions retained.",
+      "limits": "AI source/context review only, awaiting independent review; not native-speaker acceptance, hosted Android/device/script-shaping/layout or exhaustive runtime verification. Technical tokens and placeholders preserved. No old resources, code, tests or held work changed.",
+      "sha256": "6c733d6a75b07254d7360d02027ee1ad564f0567846fe1750f30047408d2b8ac"
+    }
+  },
+  "tests": {
+    "full_host": {
+      "tests": 890,
+      "seconds": 254.558,
+      "result": "OK"
+    },
+    "final_focused": {
+      "tests": 23,
+      "seconds": 2.806,
+      "result": "OK"
+    }
+  },
+  "remote_verification": "All 1291 blob leaves and complete path/type/mode inventory equal reviewed final checkout",
+  "limits": [
+    "Hosted CI and exact-head Codex pending at publication",
+    "Bounded AI/source-context review, not native-speaker or owner acceptance",
+    "Indic shaping, layout, device and speech not exhaustively certified",
+    "No old values changed, no Manchu work or Czech hold changes, no release"
+  ]
+}
