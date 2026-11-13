@@ -1,0 +1,159 @@
+{
+  "head": "34df98646079432521ca6fa93ce8f74827a0d2e7",
+  "tree": "1807ae137aea01c910848692a4d18fc37d483e34",
+  "pr": 447,
+  "scope": "937 resources (935 strings and 2 plurals); four catalogue completion; 1939 pre-existing entries preserved",
+  "reviews": {
+    "verified.json": {
+      "base": "facfec0aff0fa2eaa0d119c4b383d794db9c02d6",
+      "rows": [
+        {
+          "tag": "gl",
+          "old": 488,
+          "new": 719,
+          "added": 231,
+          "canonical": 719,
+          "direct_kotlin_refs": 187,
+          "no_direct_kotlin_refs": 44,
+          "blob": "b4c5987187fbbe2444ed8379750e9689a4f158b7"
+        },
+        {
+          "tag": "hi",
+          "old": 479,
+          "new": 719,
+          "added": 240,
+          "canonical": 719,
+          "direct_kotlin_refs": 195,
+          "no_direct_kotlin_refs": 45,
+          "blob": "69b8a04097d8c4c6cdce76582b70c66ce7cb1bd9"
+        },
+        {
+          "tag": "bn",
+          "old": 479,
+          "new": 719,
+          "added": 240,
+          "canonical": 719,
+          "direct_kotlin_refs": 196,
+          "no_direct_kotlin_refs": 44,
+          "blob": "965f48c6a72616c3352640c854185abe7ab0b622"
+        },
+        {
+          "tag": "th",
+          "old": 493,
+          "new": 719,
+          "added": 226,
+          "canonical": 719,
+          "direct_kotlin_refs": 185,
+          "no_direct_kotlin_refs": 41,
+          "blob": "c7d55b6d6ab4fa6e39858369420f4996f1609ffb"
+        }
+      ],
+      "changed_files": [
+        "Paintroid/src/main/res/values-bn/strings.xml",
+        "Paintroid/src/main/res/values-gl/strings.xml",
+        "Paintroid/src/main/res/values-hi/strings.xml",
+        "Paintroid/src/main/res/values-th/strings.xml",
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportChangeTranslationTest.kt"
+      ]
+    },
+    "independent-gl-hi.json": {
+      "gl_sha256": "f455e7a1c9f937581d3a2a2a658b4f7fa3bb09e6b77f4ad543fb8b881489a967",
+      "gl_added": 231,
+      "gl_preserved": 488,
+      "gl_review": "All added complete values independently compared against English and current control labels; no blocking findings.",
+      "limits": "AI/source-context review, not native-speaker, device rendering or exhaustive layout acceptance.",
+      "hi_reviewed_added": 240,
+      "hi_preserved": 479,
+      "hi_open_findings": [],
+      "commons_test_review": "Bengali moved from English fallback sample to whole-message selected-locale sample; Assamese replaces absent sample with both notes actually absent. All assertions and byte-exact persistence coverage retained.",
+      "provider_tests": "4 passed",
+      "status": "Accepted with stated limits",
+      "hi_sha256": "bbb14dad0e6f33719041654a6d66f75c1e43fc3a5051be5da26a95b5dc3652af",
+      "hi_resolved_findings": [
+        "Quoted Close polygon option and explicit disabling in tooltip/manual, preserving open-segment meaning.",
+        "Navigate return action now uses actual ui_draw_again caption, bound by ClassicPaintActivity.kt:779."
+      ],
+      "hi_review": "All 240 added resource values independently read and compared against source; final corrections reread; no remaining blocking findings.",
+      "bn_th_narrow_review": "Independently verified exact ui_draw_again label substitution once in each new full manual: Bengali আবার আঁকুন; Thai วาดอีกครั้ง. No broader language review claimed.",
+      "commons_test_sha256": "7b5b67af1165773f2e902fcb85277d32d1bdc6a8d86caef003253e4aa017c711"
+    },
+    "independent-bn-th.json": {
+      "reviewer": "independent coordinator, not translation author",
+      "rows": [
+        {
+          "locale": "bn",
+          "blob": "965f48c6a72616c3352640c854185abe7ab0b622",
+          "review": "Full newly added short/medium entries and all three long help/manual values read independently against canonical English and actual current control captions. No unresolved concrete semantic defect identified.",
+          "limits": [
+            "AI linguistic/source-context review only",
+            "No native-speaker or owner wording acceptance",
+            "No physical-device/layout/accessibility/speech certification"
+          ]
+        },
+        {
+          "locale": "th",
+          "blob": "4863c9a58c5d00e4b0c45487249b775d72c47347",
+          "review": "Full newly added short/medium entries and all three long help/manual values read independently against canonical English and actual current control captions. No unresolved concrete semantic defect identified.",
+          "limits": [
+            "AI linguistic/source-context review only",
+            "No native-speaker or owner wording acceptance",
+            "No physical-device/layout/accessibility/speech certification"
+          ]
+        }
+      ],
+      "resolved_findings": [
+        {
+          "locale": "th",
+          "keys": [
+            "ui_webp_codec_licences",
+            "ui_jpeg_xl_codec_licences",
+            "ui_heic_avif_codec_licences",
+            "ui_image_codec_licences"
+          ],
+          "finding": "Encoder-only rendering narrowed codec meaning.",
+          "resolution": "Changed four new captions to โคเดก; existing entries untouched."
+        },
+        {
+          "locales": [
+            "bn",
+            "th"
+          ],
+          "key": "ui_the_arrow_on_the_left_directly_below_the",
+          "finding": "Navigate return action must name ui_draw_again rather than Draw tab.",
+          "resolution": "New manual action text aligned to exact existing আবার আঁকুন and วาดอีกครั้ง; source ClassicPaintActivity.kt navigate_draw binding. Existing labels unchanged."
+        }
+      ],
+      "semantic_boundaries": [
+        "Main opaque canvas versus floating-selection transparency versus white-backed Commons import",
+        "Conditional movement of attached images, fixed exact-position coordinates and overlap allowance",
+        "Memory warning instead of size picker when tiny outputs remain over budget",
+        "Saved originals and existing persisted credits retained; attribution/ShareAlike/source-terms distinctions",
+        "Current live reset label, Draw/Insert/provider path with ellipsis, cursor Drawing path"
+      ]
+    },
+    "independent-thai-attribute-fix.json": {
+      "interim_blob": "4863c9a58c5d00e4b0c45487249b775d72c47347",
+      "final_blob": "c7d55b6d6ab4fa6e39858369420f4996f1609ffb",
+      "final_sha256": "b47bc535f73619a8e225a50126676e14d5999d12705ac1e53f91cd9ac0c997bc",
+      "changed_attribute_sets": 215,
+      "changed_texts": 0,
+      "preexisting_preserved": 493,
+      "canonical_validation": "passed, complete",
+      "status": "Independent attribute-only correction verified"
+    }
+  },
+  "tests": {
+    "final_focused": "..........................................................\n----------------------------------------------------------------------\nRan 58 tests in 16.559s\n\nOK\n",
+    "final_contracts": "....\n----------------------------------------------------------------------\nRan 4 tests in 1.456s\n\nOK\n",
+    "initial_broad": "890 tests, 15 Thai new-attribute contract failures subsequently corrected, 4 legacy CLI 10-second timeouts. Not a pass.",
+    "legacy_diagnostic": "Isolated retry: 11 tests, 1 legacy CLI 10-second timeout at another case. Scripts/test deadlines unchanged; cause not established. Hosted required CI pending.",
+    "remote_verification": "All1291 tracked leaves and all path/type/mode identities matched final reviewed checkout."
+  },
+  "limits": [
+    "AI/source-context wording review, not native-speaker or owner acceptance",
+    "No exhaustive device/layout/speech certification",
+    "No local full-suite pass",
+    "Hosted CI and exact-head Codex pending",
+    "No release or paused Manchu work"
+  ]
+}
