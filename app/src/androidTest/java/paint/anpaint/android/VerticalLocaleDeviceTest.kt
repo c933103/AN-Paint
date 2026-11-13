@@ -335,6 +335,10 @@ class VerticalLocaleDeviceTest {
     }
 
     private fun openSave() {
+        // Tool changes can leave a delayed autosave pending even when !busy.
+        // Drain that real write before native reveal/tap so it cannot disable
+        // Save between ACTION_DOWN and ACTION_UP; leave input and saving intact.
+        awaitAutosave("Pending autosave finished before Save input")
         val save=onMain {command("File",R.string.save20_title)}
         onMain {
             save.setOnTouchListener {view,event ->
@@ -345,7 +349,15 @@ class VerticalLocaleDeviceTest {
             logSaveState("before",save)
         }
         try {
-            tap("Save as command") {command("File",R.string.save20_title)}
+            tap("Save as command") {
+                // The supplier is checked on main again for the final tap bounds,
+                // after any native reveal swipes, not just before revealing.
+                val target=command("File",R.string.save20_title)
+                assertTrue("Save command enabled before native input",target.isEnabled)
+                assertEquals("Autosave drained before native Save input",
+                    draftGenerationField.getLong(activity),savedDraftGenerationField.getLong(activity))
+                target
+            }
             awaitState("native vertical Save layout") {
                 saveRoot()?.findViewWithTag<View>("vertical_save_form")?.height?.let {it>0}==true &&
                     saveRoot()?.findViewWithTag<View>("vertical_dialog_columns")?.width?.let {it>0}==true
