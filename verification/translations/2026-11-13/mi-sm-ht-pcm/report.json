@@ -1,0 +1,197 @@
+{
+  "base": "1e60832237de62c61601c24fe4c5c28a664b2e62",
+  "rows": [
+    {
+      "tag": "mi",
+      "old": 404,
+      "new": 719,
+      "added": 315,
+      "canonical": 719,
+      "direct_kotlin_refs": 270,
+      "no_direct_kotlin_refs": 45,
+      "blob": "1a86b186a1e7d789b925be76f85eb0d289de33c4"
+    },
+    {
+      "tag": "sm",
+      "old": 401,
+      "new": 719,
+      "added": 318,
+      "canonical": 719,
+      "direct_kotlin_refs": 273,
+      "no_direct_kotlin_refs": 45,
+      "blob": "d2b52082b88d240f463b935e48e1f667041d7580"
+    },
+    {
+      "tag": "ht",
+      "old": 415,
+      "new": 719,
+      "added": 304,
+      "canonical": 719,
+      "direct_kotlin_refs": 259,
+      "no_direct_kotlin_refs": 45,
+      "blob": "9970720bb5a170a211d542328f2bad69f06b5318"
+    },
+    {
+      "tag": "pcm",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "6bf88e43d6c3321e8a5e007aeb69b92f1b38aad7"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+ht/strings.xml",
+    "Paintroid/src/main/res/values-b+mi/strings.xml",
+    "Paintroid/src/main/res/values-b+pcm/strings.xml",
+    "Paintroid/src/main/res/values-b+sm/strings.xml"
+  ],
+  "tree": "8c7d2438ef298bfd37dabc53048f8724e2452406",
+  "head": "0889f3eabc12fe378fce570a443e78d878c9b0dd",
+  "independent_reviews": [
+    {
+      "status": "accepted after three narrow new-value Maori corrections",
+      "scope": [
+        {
+          "tag": "mi",
+          "originals_preserved": 404,
+          "additions_read": 315,
+          "canonical_total": 719,
+          "blob": "1a86b186a1e7d789b925be76f85eb0d289de33c4"
+        },
+        {
+          "tag": "sm",
+          "originals_preserved": 401,
+          "additions_read": 318,
+          "canonical_total": 719,
+          "blob": "d2b52082b88d240f463b935e48e1f667041d7580"
+        }
+      ],
+      "method": "Read every633 added values including all6 full manuals against English and current live captions/consumers. Independent original-element comparison and complete validators; final diff only grayscale meaning, colour tolerance meaning and Navigate return button caption.",
+      "findings": [
+        {
+          "tag": "mi",
+          "key": "ui_honeycomb_colour_swatches_with_a_greyscale_row",
+          "correction": "kiritea pale/fair-skin term replaced with explicit shades from black to white"
+        },
+        {
+          "tag": "mi",
+          "key": "ui_tap_an_enclosed_area_adjust_tolerance_for_similar",
+          "correction": "patience replaced with actual allowed-colour-difference caption/meaning"
+        },
+        {
+          "tag": "mi",
+          "key": "ui_the_arrow_on_the_left_directly_below_the",
+          "correction": "Navigate return button uses actual ui_draw_again Tā tonu, verified ClassicPaintActivity.kt779 rather than Draw tab Tā"
+        }
+      ],
+      "tests": "Independent existing test_localized_help + test_translations + test_help_commons_provider,53 tests; log independent-mi-sm-tests.log",
+      "limits": "AI/source review only; no native speaker, owner acceptance or device/layout certification. No originals, tests or source edited by reviewer."
+    },
+    {
+      "review": "Independent AI full-value and static-source review",
+      "status": "accepted",
+      "scope": [
+        {
+          "tag": "ht",
+          "additions_read": 304,
+          "originals_preserved": 415,
+          "canonical_total": 719,
+          "blob": "9970720bb5a170a211d542328f2bad69f06b5318"
+        },
+        {
+          "tag": "pcm",
+          "additions_read": 312,
+          "originals_preserved": 407,
+          "canonical_total": 719,
+          "blob": "6bf88e43d6c3321e8a5e007aeb69b92f1b38aad7"
+        }
+      ],
+      "method": "Read every 304 Haitian Creole and 312 Nigerian Pidgin added value against current English, including all six complete assembly/main/quick-help manuals. Read live locale captions for navigation, load, crop, commit, curve and polygon; inspected AssemblyPlacementDialog binding and Help consumer. Reviewed legal attribution/adaptation and provider restrictions, original-file preservation, memory estimates, source resolution, normalization/reflow/overlap, selection and autosave distinctions. Exact XML element/attribute/text preservation verified for all original entries; canonical validators clean.",
+      "findings": [],
+      "tests": {
+        "command": "PYTHONPATH=tools python -m unittest test_translations test_localized_help test_help_commons_provider",
+        "count": 53,
+        "seconds": 8.505,
+        "result": "passed",
+        "log": "independent-ht-pcm-tests.log"
+      },
+      "limits": "AI linguistic/static-source acceptance only, not owner/native-speaker/device/layout certification. English-identical technical terms in Nigerian Pidgin are not counted as evidence of native validation. No source modifications or publication by reviewer."
+    }
+  ],
+  "author_reports": [
+    {
+      "locale": "mi",
+      "added": 315,
+      "preserved": 404,
+      "total": 719,
+      "blob": "1a86b186a1e7d789b925be76f85eb0d289de33c4",
+      "review": "Author AI language/source review; independent review pending; not native or device acceptance",
+      "checks": [
+        "Final53 localized-help,translations,Commons-provider tests passed9.587s after3 review fixes",
+        "Exact original element preservation",
+        "719 canonical entries full validation"
+      ],
+      "history": [
+        "Initial53 tests passed; author then clarified PDF nonempty wording to must contain data; final53 rerun passed.",
+        "Independent reviewer corrected3 new values: grayscale row explicitly black-to-white shades; fill tolerance matches accepted-colour-difference meaning/live caption; Navigate return uses actual Tā tonu caption verified at ClassicPaintActivity.kt779. All404 originals still exact; final53 reviewed-head tests passed9.587s."
+      ],
+      "notes": [
+        "Full3 manuals translated",
+        "Live Māori captions used including long Close polygon and Radius labels",
+        "CC BY-SA duties and Irasutoya21-item commercial threshold retained",
+        "Whole-pixel coordinates, overlap order and unchanged other-image positions retained",
+        "Cancel restores previous colour",
+        "No raw quote wrapper on new Commons caption; exactly once in short help"
+      ]
+    },
+    {
+      "tag": "sm",
+      "added": 318,
+      "originals_preserved": 401,
+      "total": 719,
+      "blob": "d2b52082b88d240f463b935e48e1f667041d7580",
+      "method": "All missing values translated, including complete assembly/main/quick-help manuals against English source; current caption routes preserved, including old About label. Exact XML originals and attributes verified unchanged; source attributes copied for new values. No other source files edited.",
+      "tests": "53 existing provider/help/translations tests passed14.127s; complete catalogue validator clean.",
+      "limits": "AI author candidate pending independent full-value review; not native/device/owner acceptance."
+    },
+    {
+      "locale": "ht",
+      "added": 304,
+      "preserved_originals": 415,
+      "total": 719,
+      "blob": "9970720bb5a170a211d542328f2bad69f06b5318",
+      "validation": "require_complete passed; all415 original XML elements exact preserved",
+      "tests": {
+        "provider": "4 passed0.348s",
+        "localized_help": "15 passed0.941s",
+        "translations": "34 passed8.325s",
+        "log": "ht-tests.log"
+      },
+      "scope": "All304 missing strings including8-paragraph assembly manual,10-paragraph main manual and quick help authored. Source attrs/placeholder/newline/legal semantics retained. Live existing captions including expanded polygon-close/radius captions preserved in help. No other repository edits or publication.",
+      "limits": "AI/source author review, not native-speaker/owner/device layout acceptance. Independent review pending."
+    },
+    {
+      "tag": "pcm",
+      "status": "author candidate ready for independent review",
+      "added": 312,
+      "originals_preserved": 407,
+      "canonical_total": 719,
+      "blob": "6bf88e43d6c3321e8a5e007aeb69b92f1b38aad7",
+      "scope": "Only values-b+pcm/strings.xml; all three manuals fully translated, source/legal/memory/assembly clauses retained. Existing English-derived live UI labels preserved and used in routes.",
+      "verification": "Exact XML element/attribute/text preservation for all407 originals; complete catalogue validator clean. Final provider4+localized-help15+translations34=53 passed8.442s.",
+      "method": "Read current English additions and prior pcm catalogue; append-only assembly script preserves source attrs and marks new literal-percent hints formatted=false. No tests or production logic changed.",
+      "limitations": "AI authoring only, not independent/native/device acceptance.",
+      "failures": []
+    }
+  ],
+  "remote_verification": "All1291 leaves and path/type/mode inventory match via connector after direct API403.",
+  "tests": {
+    "full": "892 ran423.363s, one unchanged fake-ADB matrix harness error: SDK30 assertion simulation exceeded15s watchdog. Not fullsuite pass.",
+    "isolated": "Exact failed test rerun all8 SDK/failure scenarios passed11.570s, no test/deadline/source changes",
+    "affected": "53 passed final values"
+  },
+  "limits": "AI/source not native/owner/device acceptance. No release; holds unchanged."
+}
