@@ -1,0 +1,157 @@
+{
+  "base": "bccbe801f02db11b6777f0956e52a07189541115",
+  "rows": [
+    {
+      "tag": "am",
+      "old": 411,
+      "new": 719,
+      "added": 308,
+      "canonical": 719,
+      "direct_kotlin_refs": 263,
+      "no_direct_kotlin_refs": 45,
+      "blob": "8f730d63025d30a2bd6ba26fac99818be094f645"
+    },
+    {
+      "tag": "as",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "d9957d4852f107503e2fb0f6277b6567a42ff547"
+    },
+    {
+      "tag": "az",
+      "old": 418,
+      "new": 719,
+      "added": 301,
+      "canonical": 719,
+      "direct_kotlin_refs": 256,
+      "no_direct_kotlin_refs": 45,
+      "blob": "39e8a3a2422a2a4ce7e27cca394dc4035a239457"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-az/strings.xml",
+    "Paintroid/src/main/res/values-b+am/strings.xml",
+    "Paintroid/src/main/res/values-b+as/strings.xml",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportChangeTranslationTest.kt",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt",
+    "tools/test_commons_import_change_translations.py",
+    "tools/test_tiff_description_wording.py"
+  ],
+  "pr": 466,
+  "head": "1752478e07cbe49e293f7ba2bb5c173121df9765",
+  "tree": "5f8f89bf63685741cad8ce831a76baaf66e108d5",
+  "tests": {
+    "affected": "59passed6.067s",
+    "host": "892passed160.643s",
+    "fixture_changes": "4existingtestfiles missingam/as/az -> wo/zgh/se, TIFFam->wo; assertions/loopcounts/positiveconsumers unchanged; independentreviewaccepted",
+    "jvm": "required hostedCI pending",
+    "postmerge": "testchangesineligibleforreuse;verifyfreshpostmerge"
+  },
+  "reviews": {
+    "am-review.json": {
+      "locale": "am",
+      "status": "accepted_with_limits",
+      "reviewed_new_resources": 308,
+      "reviewed_full_manuals": 3,
+      "original_elements_preserved": 411,
+      "total_resources": 719,
+      "catalogue_validation": [],
+      "findings": [],
+      "scope": [
+        "Read all 307 new string/plural-adjacent entries and the new plural, including complete assembly, main and compact manuals against canonical English",
+        "Checked actual current captions for navigation return, color tab, radius, polygon closure/finish, crop reset, normalisation, selection and image fit",
+        "Checked all placeholders, machine-facing Commons literals, licence distinctions and source preservation, transparent versus opaque import behavior, original pixel dimensions versus placement, memory estimates and exact-position overlap rules"
+      ],
+      "limits": [
+        "Moderate AI/source linguistic acceptance, not native-speaker certification",
+        "No physical-device glyph, layout or accessibility execution",
+        "Structural validation is not independent proof of linguistic fluency"
+      ],
+      "verification_notes": [
+        "All 411 original XML elements compared exactly, excluding insignificant element tails",
+        "Complete-catalogue validation returned no errors",
+        "No new actionable semantic or caption findings; no edits made"
+      ]
+    },
+    "as-review.json": {
+      "locale": "as",
+      "status": "accepted within moderate-high AI/source review limits",
+      "new_resources_read": 312,
+      "full_manuals_read": 3,
+      "total_resources": 719,
+      "original_elements_preserved": 407,
+      "catalogue_validation": [],
+      "findings": [],
+      "review_scope": [
+        "Every new resource compared with canonical English",
+        "Full main, compact and assembly manuals read without truncation",
+        "Existing captions checked including Draw again, Fit, Color, radius, polygon, reset crop and About route",
+        "Commons machine-facing literals background=#FFFFFF, SVG → PNG, antiAlias=false, strokeDashArray=none preserved",
+        "Technical dimensions, memory/decoding, transparency, overlap, non-destructive crop and original-file boundaries preserved",
+        "Licence, attribution, adaptation and separate-source terms preserved"
+      ],
+      "limits": [
+        "Independent AI/source linguistic review, not native-speaker certification",
+        "No installed-device, glyph or layout validation performed",
+        "Full hosted CI remains separate"
+      ]
+    },
+    "az-review.json": {
+      "locale": "az",
+      "reviewed_new_resources": 301,
+      "reviewed_full_manuals": 3,
+      "original_resources_verified_unchanged": 418,
+      "status": "accepted_after_correction",
+      "findings": [
+        {
+          "keys": [
+            "commons_import_svg_changes",
+            "commons_import_raster_changes"
+          ],
+          "issue": "Machine-facing literal background=#FFFFFF translated as fon=#FFFFFF. Semantic format boundary and existing host/JVM consumer tests require exact literal.",
+          "correction": "Replace fon=#FFFFFF with background=#FFFFFF in both new values only.",
+          "resolution": "Verified both new values restore exact background=#FFFFFF. All418originals remain unchanged and complete-catalogue validation clean."
+        }
+      ],
+      "review": "Every new value compared with canonical English; manuals read in full, major captions checked against actual current resource values. No further actionable semantic, legal, technical or caption findings.",
+      "limits": [
+        "AI/source review only, moderate-high confidence",
+        "Not native speaker certification",
+        "No device or layout validation"
+      ],
+      "validation": "Per-catalogue complete validator clean; all418old elements exact; global tests remain parent responsibility."
+    },
+    "fallback-review.json": {
+      "scope": "Independent review of four fallback-fixture test file diffs only",
+      "status": "accepted",
+      "findings": [],
+      "changes": {
+        "CommonsImportChangeTranslationTest.kt": "Three missing-resource samples am/as/az replaced by wo/zgh/se, same loop cardinality and unchanged resource/attribution assertions. Both SDK30/35 remain configured.",
+        "TiffDescriptionDialogTest.kt": "Missing-description sample am replaced by wo; method renamed accordingly. Both compression choices and actual dialog/SaveRequest assertions unchanged.",
+        "test_commons_import_change_translations.py": "Corresponding offered-and-key-absent samples updated; positive Welsh resource presence assertion retained.",
+        "test_tiff_description_wording.py": "Corresponding offered-and-key-absent sample updated; Welsh positive assertion and semantic boundary tests retained."
+      },
+      "verification": {
+        "offered_and_absent": "Independently confirmed wo,zgh,se are offered and lack both Commons import change keys and TIFF description.",
+        "host_tests": "6 tests passed in0.430s: test_commons_import_change_translations and test_tiff_description_wording",
+        "coverage": "No assertion deletion, test removal, new loop or relaxed criterion. Existing positive selected-resource consumers unchanged. Fallback samples continue using real selection/wrapping and actual attribution/dialog controls."
+      },
+      "limits": [
+        "Static Kotlin review, not local JVM execution",
+        "Concurrent language XML authoring outside this review",
+        "Hosted exact-head CI still required"
+      ]
+    }
+  },
+  "limits": [
+    "AI/sourceacceptance notnative/device/layoutcertification",
+    "TokiPona329missing remainsuntouched duefulltechnical/legalconfidence limit",
+    "PriorWolof/Tamazight unchanged",
+    "Holdsunchanged",
+    "CI/Codex pending notmerged"
+  ]
+}
