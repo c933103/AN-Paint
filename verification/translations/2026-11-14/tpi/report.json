@@ -1,0 +1,75 @@
+{
+  "base": "72d9c790c309fd6b47a430aa2db91fce723eff6b",
+  "rows": [
+    {
+      "tag": "tpi",
+      "old": 406,
+      "new": 719,
+      "added": 313,
+      "canonical": 719,
+      "direct_kotlin_refs": 268,
+      "no_direct_kotlin_refs": 45,
+      "blob": "a7bd19b1249f6c46b750ab89f291b475d9782642"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+tpi/strings.xml"
+  ],
+  "pr": 467,
+  "head": "4c60dba4ad2fcf038a2e52e66ab351a1fd91512f",
+  "tree": "c3fc843edd9b570c11b93d9e8240a346bf33d0aa",
+  "tests": {
+    "affected": "53passed",
+    "host": "892passed164.739s",
+    "remote_tree": "complete stagedGit tree matchesremoteallpaths/modes/content"
+  },
+  "review": {
+    "language": "tpi",
+    "reviewed_additions": 313,
+    "full_manuals_read": 3,
+    "originals_preserved": 406,
+    "validation": "complete catalogue validation clean",
+    "acceptance": "accepted within moderate AI/source-review limits after both corrections",
+    "findings": [
+      {
+        "key": "ui_smooth_pixel_edges_anti_aliasing",
+        "issue": "New value is only Antialiasing, omitting the plain-language effect Smooth pixel edges. This needlessly removes the explanatory UI instruction.",
+        "proposed": "Mekim ol arere bilong piksel i smut (antialiasing)",
+        "status": "corrected and verified"
+      },
+      {
+        "keys": [
+          "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+          "ui_the_arrow_on_the_left_directly_below_the"
+        ],
+        "issue": "Opaque is expressed as no klia inap long lukim samting bihain, which can read as insufficiently clear/blurry rather than fully blocking what is behind. Preserve categorical opacity.",
+        "proposed": "Use i blokim olgeta samting bihain long en for opaque background/document/image-editor statements; leave transparent/translucent descriptions unchanged.",
+        "status": "corrected and verified"
+      }
+    ],
+    "checks": [
+      "Every new short value, reference and full three manuals compared with canonical English",
+      "Caption matching checked against actual Draw again, Color, Radius, Use color, Close polygon, Commit selection and Navigate values",
+      "Memory, pixel dimensions, original-source preservation, assembly overlap placement, autosave and licensing distinctions reviewed",
+      "406 original elements compared exactly unchanged"
+    ],
+    "limits": [
+      "Moderate AI/source linguistic acceptance only",
+      "Technical loanwords remain and may benefit from native-speaker refinement",
+      "No native-speaker or physical device/layout certification"
+    ],
+    "final_verification": {
+      "anti_alias_explanation": "verified restored plain-language pixel-edge effect",
+      "opaque_semantics": "verified categorical blocks-everything-behind wording in new memory guidance and all three main-manual opaque statements",
+      "originals_preserved": 406,
+      "validation": "complete catalogue validation clean"
+    }
+  },
+  "limits": [
+    "ModerateAI/source acceptance notnative/device/layout",
+    "NorthernSami/Zhuang/Shan untouchedafterconfidenceassessment",
+    "PriorWolof/Tamazight/TokiPona untouched",
+    "CI/Codex pending notmerged",
+    "Base466freshpostmerge separate"
+  ]
+}
