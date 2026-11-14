@@ -84,7 +84,7 @@ class CommonsImportChangeTranslationTest {
         val english=PriorityWordingExpectations.resources("en-GB")
         val englishSvg=english.getString(R.string.commons_import_svg_changes)
         val englishRaster=english.getString(R.string.commons_import_raster_changes)
-        for(tag in listOf("am","as","az")) withLanguage(tag) {
+        for(tag in listOf("wo","zgh","se")) withLanguage(tag) {
             assertEquals(englishSvg,PaintApplication.currentResources.getString(R.string.commons_import_svg_changes))
             assertEquals(englishRaster,PaintApplication.currentResources.getString(R.string.commons_import_raster_changes))
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
