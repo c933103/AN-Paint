@@ -7,8 +7,8 @@ KEY = 'formats22_tiff_description'
 class TiffDescriptionWordingTests(unittest.TestCase):
     def test_dialog_fallback_sample_is_offered_and_missing_while_welsh_is_present(self):
         paths = catalogues.catalogue_paths()
-        self.assertIn('am', catalogues.offered_tags())
-        self.assertNotIn(KEY, catalogues.read_strings(paths['am']))
+        self.assertIn('wo', catalogues.offered_tags())
+        self.assertNotIn(KEY, catalogues.read_strings(paths['wo']))
         self.assertIn(KEY, catalogues.read_strings(paths['cy']))
 
     def test_default_source_qualifies_size_but_keeps_pixels_and_unchecked_instruction(self):
