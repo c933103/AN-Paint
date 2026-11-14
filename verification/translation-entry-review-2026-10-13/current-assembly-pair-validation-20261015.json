@@ -1,0 +1,223 @@
+{
+  "status": "PASS",
+  "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+  "preceding_tracker_revision": "f507f4c4d8fde2731434ad5ee2b122d747ec6d6d",
+  "parent_crosscheck_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6195806297",
+  "review_archive_commit": "1422e223df2c9a06dc3c959fb326abdc9e0ac8d7",
+  "tests": [
+    {
+      "command": "python validate_entry_review.py",
+      "result": {
+        "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "languages": 171,
+        "entries": 700,
+        "active_pairs": 3002,
+        "present": 47200,
+        "reviewed_current": 2978,
+        "needs_rereview": 24,
+        "unreviewed_or_unknown": 44198,
+        "missing": 72500
+      }
+    },
+    {
+      "command": "python -O validate_entry_review.py",
+      "result": {
+        "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "languages": 171,
+        "entries": 700,
+        "active_pairs": 3002,
+        "present": 47200,
+        "reviewed_current": 2978,
+        "needs_rereview": 24,
+        "unreviewed_or_unknown": 44198,
+        "missing": 72500
+      }
+    },
+    {
+      "command": "python validate_merged_assembly_reconciliation.py SOURCE PREVIOUS_TRACKER_DATA",
+      "result": {
+        "status": "PASS",
+        "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "preceding_tracker_revision": "f507f4c4d8fde2731434ad5ee2b122d747ec6d6d",
+        "source_identity_files": 182,
+        "fresh_review_source_context_files": 13,
+        "active_english_hashes": 3002,
+        "active_localized_hashes": 3002,
+        "catalogue_partitions": 171,
+        "table_files": 3,
+        "resolved_french_pairs": 3,
+        "resolved_crop_pairs": 4,
+        "accepted_crop_quantity_forms": 14,
+        "fresh_unchanged_current_pairs": 3,
+        "fresh_complete_help_elements": 2,
+        "fresh_help_paragraphs": 14,
+        "fresh_hk_plural_target_forms": 1,
+        "fresh_hk_plural_english_forms": 2,
+        "source_stale_pairs": 0,
+        "unaffected_active_pairs_since_preceding_tracker": 2999,
+        "superseded_history": 59,
+        "partial_records": 56,
+        "processing_holds": 4,
+        "previous_checkpoint_compared": true,
+        "strict_validator": {
+          "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+          "languages": 171,
+          "entries": 700,
+          "active_pairs": 3002,
+          "present": 47200,
+          "reviewed_current": 2978,
+          "needs_rereview": 24,
+          "unreviewed_or_unknown": 44198,
+          "missing": 72500
+        },
+        "verification_kind": "Fresh mechanical recomputation; independent complete linguistic/static review evidence is separately bound. No application tests or device/native-speaker certification."
+      }
+    },
+    {
+      "command": "python -O validate_merged_assembly_reconciliation.py SOURCE PREVIOUS_TRACKER_DATA",
+      "result": {
+        "status": "PASS",
+        "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+        "preceding_tracker_revision": "f507f4c4d8fde2731434ad5ee2b122d747ec6d6d",
+        "source_identity_files": 182,
+        "fresh_review_source_context_files": 13,
+        "active_english_hashes": 3002,
+        "active_localized_hashes": 3002,
+        "catalogue_partitions": 171,
+        "table_files": 3,
+        "resolved_french_pairs": 3,
+        "resolved_crop_pairs": 4,
+        "accepted_crop_quantity_forms": 14,
+        "fresh_unchanged_current_pairs": 3,
+        "fresh_complete_help_elements": 2,
+        "fresh_help_paragraphs": 14,
+        "fresh_hk_plural_target_forms": 1,
+        "fresh_hk_plural_english_forms": 2,
+        "source_stale_pairs": 0,
+        "unaffected_active_pairs_since_preceding_tracker": 2999,
+        "superseded_history": 59,
+        "partial_records": 56,
+        "processing_holds": 4,
+        "previous_checkpoint_compared": true,
+        "strict_validator": {
+          "source_revision": "e53b2e6aaaa9ac231cfdd38485e28ee9d638e870",
+          "languages": 171,
+          "entries": 700,
+          "active_pairs": 3002,
+          "present": 47200,
+          "reviewed_current": 2978,
+          "needs_rereview": 24,
+          "unreviewed_or_unknown": 44198,
+          "missing": 72500
+        },
+        "verification_kind": "Fresh mechanical recomputation; independent complete linguistic/static review evidence is separately bound. No application tests or device/native-speaker certification."
+      }
+    },
+    {
+      "command": "AN_PAINT_SOURCE=SOURCE python -m unittest -v test_merged_assembly_reconciliation.py",
+      "status": "PASS",
+      "test_methods": 29,
+      "skipped": 0
+    },
+    {
+      "command": "AN_PAINT_SOURCE=SOURCE python -O -m unittest -v test_merged_assembly_reconciliation.py",
+      "status": "PASS",
+      "test_methods": 29,
+      "skipped": 0
+    }
+  ],
+  "test_method_names": [
+    "test_complete_manifest",
+    "test_removed_unreviewed_catalogue_identity",
+    "test_duplicate_identity",
+    "test_substituted_identity_same_count",
+    "test_uncovered_catalogue",
+    "test_all_seven_historical_complete_successors",
+    "test_historical_metadata_gates_not_relaxed",
+    "test_three_complete_current_successors",
+    "test_every_current_metadata_field_required_and_exact",
+    "test_current_cannot_keep_open_finding_or_stale_metadata",
+    "test_current_requires_final_complete_pair_proof",
+    "test_exact_final_artifacts",
+    "test_unfinal_missing_or_wrong_artifact_bindings",
+    "test_report_content_must_match_accepted_full_value",
+    "test_japanese_all_clauses_required",
+    "test_japanese_partial_or_unaccepted_clause_rejected",
+    "test_hk_every_help_paragraph_required",
+    "test_hk_full_paragraph_text_required",
+    "test_hk_both_source_and_all_target_plural_forms_required",
+    "test_hk_plural_full_form_text_required",
+    "test_historical_preservation",
+    "test_prior_history_and_partial_tampering_rejected",
+    "test_added_predecessor_must_be_exact",
+    "test_all_four_paused_records_preserved",
+    "test_unrelated_active_receipt_and_cohort_unchanged",
+    "test_new_fixture_requires_exact_three_distinct_pairs",
+    "test_bad_active_hash_rejected",
+    "test_all_171_table_rows_and_exact_counts",
+    "test_duplicate_plural_quantity_rejected"
+  ],
+  "summary": {
+    "total": 119700,
+    "present": 47200,
+    "reviewed_current": 2978,
+    "needs_rereview": 24,
+    "unreviewed_or_unknown": 44198,
+    "missing": 72500,
+    "language_status_counts": {
+      "broad-re-review-required": 57,
+      "review-not-established": 75,
+      "translation-not-started": 31,
+      "test-mode": 2,
+      "bounded-partial-review": 6
+    },
+    "full_catalogues": 59,
+    "partial_nonempty_catalogues": 81,
+    "empty_catalogues": 31,
+    "fully_reviewed_languages": 0,
+    "test_mode_current_convention_receipts": 6
+  },
+  "per_language": {
+    "fr": {
+      "reviewed_current": 692,
+      "needs_rereview": 8,
+      "unreviewed_or_unknown": 0,
+      "missing": 0,
+      "total": 700
+    },
+    "ja": {
+      "reviewed_current": 691,
+      "needs_rereview": 9,
+      "unreviewed_or_unknown": 0,
+      "missing": 0,
+      "total": 700
+    },
+    "zh-HK": {
+      "reviewed_current": 267,
+      "needs_rereview": 5,
+      "unreviewed_or_unknown": 428,
+      "missing": 0,
+      "total": 700
+    }
+  },
+  "preservation": {
+    "active_pair_count": 3002,
+    "changed_active_pairs": 3,
+    "unchanged_active_pairs": 2999,
+    "previous_superseded_records_preserved": 56,
+    "added_exact_stale_predecessors": 3,
+    "total_superseded_records": 59,
+    "partial_records_unchanged": 56,
+    "paused_processing_records_unchanged": 4,
+    "language_rows": 171,
+    "denominator": 700,
+    "source_resource_files_changed": 0,
+    "application_code_changes": 0
+  },
+  "limits": [
+    "No application tests, emulator/device runs, native-speaker attestation, accessibility, font/layout, whole-language or release certification.",
+    "No PR67 credit or new six-key denominator change.",
+    "Mechanical checks bind separately completed independent model/source-assisted review reports; they do not themselves grant linguistic acceptance.",
+    "PR56 remains an intentional tracking draft and must not be merged."
+  ]
+}
