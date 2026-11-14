@@ -1,0 +1,106 @@
+{
+  "pr": 471,
+  "head": "ceb785f7a6820a11912141732e69dde96c9c39ac",
+  "tree": "22341dc358a51288e94bad6bec62fac88d7f1c5d",
+  "verification": {
+    "base": "dca7ca343f57eff7258e56e8593221ed3122272f",
+    "rows": [
+      {
+        "tag": "tok",
+        "old": 443,
+        "new": 449,
+        "added": 6,
+        "canonical": 449,
+        "direct_kotlin_refs": 6,
+        "no_direct_kotlin_refs": 0,
+        "blob": "eaf3ba3644346a8cab03b810f9823f9284f77d1b"
+      }
+    ],
+    "changed_files": [
+      "Paintroid/src/main/res/values-b+tok/strings.xml"
+    ]
+  },
+  "review": {
+    "scope": "Fourth narrow active Toki Pona gallery UI subset",
+    "reviewed_candidates": 7,
+    "prior_rejections_reviewed": 2,
+    "accepted": {
+      "ui_could_not_load_gallery_image": "ilo li ken ala open e sitelen tan ma pi sitelen mute: %1$s",
+      "ui_gallery_image": "sitelen tan ma pi sitelen mute",
+      "ui_not_enough_memory_to_inspect_the_gallery_image": "poki sona pali (RAM) li lili tawa lukin sona pi sitelen tan ma pi sitelen mute.",
+      "ui_the_gallery_image_is_unavailable": "sina ken ala kepeken sitelen tan ma pi sitelen mute.",
+      "ui_search_english34": "o alasa kepeken toki Inli anu toki Nijon",
+      "ui_open_artwork34": "o open e lipu sitelen lon tenpo open. ni la o luka e nena «o kepeken e sitelen»."
+    },
+    "corrections": {},
+    "rejections": {
+      "ui_the_online_gallery_could_not_be_loaded_check": {
+        "proposed": "ilo li ken ala open e ma pi sitelen mute lon linja sona. o lukin e linja sona sina. o pali sin.",
+        "reason": "linja sona (information cord/line) is not sufficiently clear for the user’s network connection in this error/instruction. The gallery noun phrase is acceptable contextually, but does not resolve this separately consequential troubleshooting ambiguity. No independently supported precise correction established in this pass; retain fallback."
+      },
+      "ui_the_gallery_download_is_too_large": {
+        "proposed": "sitelen pi kama jo tan ma pi sitelen mute li suli mute.",
+        "reason": "Proposed suli mute insufficiently distinguishes byte download limit from physical image dimensions; reject pending precise data-size wording.",
+        "status": "prior rejection retained"
+      },
+      "gallery_external_link_no_handler": {
+        "proposed": "ilo Android li kama jo ala e ilo pi open linja ni.",
+        "reason": "Proposed linja alone does not reliably communicate hyperlink; no exact existing validated term found.",
+        "status": "prior rejection retained"
+      }
+    },
+    "final_values": {
+      "ui_could_not_load_gallery_image": "ilo li ken ala open e sitelen tan ma pi sitelen mute: %1$s",
+      "ui_gallery_image": "sitelen tan ma pi sitelen mute",
+      "ui_not_enough_memory_to_inspect_the_gallery_image": "poki sona pali (RAM) li lili tawa lukin sona pi sitelen tan ma pi sitelen mute.",
+      "ui_the_gallery_image_is_unavailable": "sina ken ala kepeken sitelen tan ma pi sitelen mute.",
+      "ui_search_english34": "o alasa kepeken toki Inli anu toki Nijon",
+      "ui_open_artwork34": "o open e lipu sitelen lon tenpo open. ni la o luka e nena «o kepeken e sitelen»."
+    },
+    "final_count": 6,
+    "basis": {
+      "source": "Read actual English catalogue and checked direct Kotlin R.string consumers in merged470 base /tmp/locale-twentyseventh/source; all seven proposals absent from443 original Toki Pona entries. No original changed.",
+      "gallery_expression": "ma pi sitelen mute is a new compositional description, literally a place of many images, not an established or externally authenticated technical term. In the gallery/source-image workflow it is intelligible and distinguishes the source picture collection from the assembly kulupu sitelen. Accept it consistently in the four source-image labels/errors; do not infer suitability as a universal gallery term outside this context.",
+      "ui_gallery_image": "Fallback title/source-image description, also used in credit output when a title is empty. It names the image only, does not alter author, licence or attribution requirements. Spaces are acceptable in this descriptive fallback label.",
+      "memory": "RAM parenthetical explicitly retains the technical referent. Insufficient-memory inspection phrasing is directly parallel to existing ui_not_enough_memory_to_inspect_this_image, with source qualifier added. No new memory-budget or decoding claim.",
+      "unavailable": "sina ken ala kepeken conveys inability to use, not that the file or source never exists; appropriate for file/provider/source validation failure.",
+      "language_names": "toki Inli and toki Nijon are recognizable conventional language-name forms; anu preserves English-or-Japanese alternatives. Search action uses o alasa consistent with current caption. This is not certification of artwork/search-result translation.",
+      "artwork_instruction": "lipu sitelen is the picture/artwork page in this explicit gallery navigation context, rather than the raw downloaded image. lon tenpo open plus ni la preserves first/then sequence. luka e nena is a contextual button-press instruction; the quoted o kepeken e sitelen exactly matches current gallery_use_image. Existing nena elsewhere means corner/projection and is not evidence by itself for this button meaning.",
+      "prior_rejections": "Download-too-large does not specify bytes/data rather than dimensions. External link draft does not establish hyperlink meaning of bare linja. Both remain fallback."
+    },
+    "limits": [
+      "AI linguistic review at moderate context-specific confidence; no native-speaker acceptance claimed.",
+      "No external primary linguistic terminology source authenticated in this review; compositional wording is explicitly distinguished from established terms.",
+      "No device/layout test or full-language/manual/legal certification.",
+      "No source files edited.",
+      "Only six accepted missing active UI entries may be added; keep other entries/fallbacks/holds unchanged."
+    ]
+  },
+  "applied_review": {
+    "result": "accepted",
+    "original_count": 443,
+    "original_elements_unchanged": true,
+    "addition_count": 6,
+    "total_direct_keys": 449,
+    "exact_reviewed_final_values": true,
+    "unexpected_additions": [],
+    "rejected_keys_absent": [
+      "ui_the_online_gallery_could_not_be_loaded_check",
+      "ui_the_gallery_download_is_too_large",
+      "gallery_external_link_no_handler"
+    ],
+    "catalogue_validation_errors": [],
+    "review_source": "/tmp/narrow-ui/fourth/reviewed.json",
+    "limits": [
+      "Moderate context-specific linguistic acceptance, not native-speaker certification.",
+      "No device/layout or full-manual verification.",
+      "No application source edits performed.",
+      "Hosted CI and broader test results remain separate gates."
+    ]
+  },
+  "tests": {
+    "affected": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 5.849s\n\nOK\n",
+    "full_host": "Not duplicated locally; required exact-head hosted CI pending"
+  },
+  "scope": "Six active UI values,443originals preserved; three rejected candidates remain fallback; no native or device/layout certification"
+}
