@@ -1,0 +1,133 @@
+{
+  "base": "1edee7f091206238986a8064e561a89baee8468d",
+  "rows": [
+    {
+      "tag": "kab",
+      "old": 413,
+      "new": 719,
+      "added": 306,
+      "canonical": 719,
+      "direct_kotlin_refs": 262,
+      "no_direct_kotlin_refs": 44,
+      "blob": "6735137c55d3e991fb5b151368d8b9e64020d473"
+    },
+    {
+      "tag": "ary",
+      "old": 409,
+      "new": 719,
+      "added": 310,
+      "canonical": 719,
+      "direct_kotlin_refs": 265,
+      "no_direct_kotlin_refs": 45,
+      "blob": "a7a22859150408eee8272ea797ad6562bb9a1286"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+ary/strings.xml",
+    "Paintroid/src/main/res/values-kab/strings.xml"
+  ],
+  "pr": 465,
+  "head": "eb81140f8986118637daf91182864462260d8e86",
+  "tree": "1952879226aa344147f7e84c8ae42e4ec8b7723b",
+  "verification": {
+    "affected": "53 passed5.553s",
+    "full_host": "892 passed162.374s",
+    "integration": "Tests final resources on894f9793; fastforward1edee7f09 changesonlydocs/PROJECT_KANBAN.md. No code/test/resource change; fullsuite notduplicated. Exacthead hostedgatespending.",
+    "remote_tree": "Complete stagedcheckoutGit tree equalsremotetree includingallpaths/modes/content"
+  },
+  "reviews": {
+    "kabyle-review.json": {
+      "language": "Kabyle",
+      "new_values_read": 306,
+      "full_manuals_read": 3,
+      "original_elements_verified_unchanged": 413,
+      "validation": [],
+      "status": "accepted_after_corrections",
+      "findings": [
+        {
+          "keys": [
+            "commons_blank_maps",
+            "ui_help23",
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "old": "Tikarḍiwin tilemmas",
+          "proposed": "Tikarḍiwin tilemmin",
+          "reason": "Blank/empty maps, not middle/order terminology; use plural of existing tilemt.",
+          "resolution": "applied and verified"
+        },
+        {
+          "keys": [
+            "ui_spectrum",
+            "ui_hue_and_saturation_spectrum_lightness_slider_on_the",
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "old": "Amizzwer n yiniten / Amizzwer n teɣmi d tawant",
+          "proposed": "Tagrumma n yiniten / Tagrumma n teɣmi d tawant",
+          "reason": "Amizzwer denotes ordering/collation rather than spectrum; descriptive color range avoids wrong technical sense.",
+          "resolution": "applied and verified"
+        },
+        {
+          "keys": [
+            "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+            "formats22_ico_description",
+            "ui_the_arrow_on_the_left_directly_below_the",
+            "ui_add_up_to_20_images_with_android_s"
+          ],
+          "proposed_replacements": {
+            "aransif": "imḍulles",
+            "taransift": "timḍullest",
+            "tansift": "tafrawant",
+            "tinsifin": "tifrawanin",
+            "ansif": "afrawan",
+            "tazgen-tansift": "tazgen-tafrawant"
+          },
+          "reason": "Prefer established GNOME Kabyle transparent/opaque terminology to unverified ansif/aransif. Replace longest forms first, only new strings.",
+          "resolution": "applied and verified"
+        }
+      ],
+      "confirmed_terms": {
+        "tawant": "Saturation supported by GIMP Kabyle catalogue"
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/GNOME/gimp/master/po/kab.po",
+        "https://cr.openjdk.org/~naoto/8239480/webrev.00/make/data/cldr/common/main/kab.xml.html"
+      ],
+      "limits": [
+        "Moderate AI/source assessment, not native-speaker certification",
+        "No physical-device/font/layout testing",
+        "Long-manual fluency still not native-certified"
+      ],
+      "edits_made": false,
+      "final_verification": "All three requested correction groups checked in final new values; captions consistent; 413 original elements unchanged; complete catalogue validation passes."
+    },
+    "darija-review.json": {
+      "locale": "ary",
+      "status": "accepted_with_limits",
+      "reviewed_additions": 310,
+      "full_manuals_reviewed": 3,
+      "catalogue_total": 719,
+      "preserved_original_elements": 409,
+      "findings": [],
+      "checks": [
+        "Read every new value against canonical English, including three full manuals",
+        "Checked existing UI captions for navigation, color, drawing categories, radius, curve/polygon completion, assembly crop/placement and About route",
+        "Checked distinction between non-destructive crop, resizing, normalization and viewport zoom",
+        "Checked opaque canvas versus transparent floating selection and white Commons backing",
+        "Checked source attribution, CC BY-SA/CC0 and provider-specific conditions without broadening licences",
+        "Checked placeholders, literal-percent validation and original element equality"
+      ],
+      "language_assessment": "Darija wording is coherent and consistent with existing catalogue; moderate-high AI/source-review confidence. Technical terms use intelligible Arabic terminology within Darija syntax. No actionable semantic or caption mismatch found.",
+      "limits": [
+        "Not native-speaker certification",
+        "No physical-device, RTL layout or font/glyph verification",
+        "Review compares supplied canonical source, not independent legal advice or runtime execution"
+      ],
+      "sha256": "522ee215e20774e8aa70bb5d61d85c59b4929709f0ed0d0f51c8c8baa47b4e05"
+    }
+  },
+  "limits": [
+    "Moderate source/AI review notnative/device/layout certification",
+    "Wolof325missing andStandardMoroccanTamazight334missing remainuntouched; authorscouldnotreliablytranslate fulltechnical/manualscope",
+    "CI/Codex pending, notmerged"
+  ]
+}
