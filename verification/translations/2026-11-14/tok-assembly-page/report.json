@@ -1,0 +1,159 @@
+{
+  "pr": 470,
+  "head": "9fb744daaeda84dba114d3ed3c34d1c95e2f46f9",
+  "tree": "698b80e5f3abf04670fa97ce8e445b2ddd88eac3",
+  "verification": {
+    "base": "6e6eab6d6bf7e05b4a37e9aecee56f158e80f785",
+    "rows": [
+      {
+        "tag": "tok",
+        "old": 432,
+        "new": 443,
+        "added": 11,
+        "canonical": 443,
+        "direct_kotlin_refs": 11,
+        "no_direct_kotlin_refs": 0,
+        "blob": "dbc6926475ec6a797bb931bde8bb09e7ec0fd913"
+      }
+    ],
+    "changed_files": [
+      "Paintroid/src/main/res/values-b+tok/strings.xml"
+    ]
+  },
+  "review": {
+    "scope": "Third narrow active Toki Pona UI subset",
+    "initial_candidates_read": 16,
+    "final_scope_reviewed": 12,
+    "accepted_unchanged": {
+      "ui_place_at_least_one_image_in_the_workspace": "o pana e sitelen wan anu mute lon ma pali lon tenpo open.",
+      "ui_placed": "sitelen li lon ma pali",
+      "ui_not_placed": "sitelen li lon ala ma pali",
+      "ui_unplace": "o weka e sitelen tan ma pali",
+      "formats22_page_range": "o pana e nanpa lipu tan 1 tawa %1$d."
+    },
+    "accepted": {
+      "ui_place_at_least_one_image_in_the_workspace": "o pana e sitelen wan anu mute lon ma pali lon tenpo open.",
+      "ui_placed": "sitelen li lon ma pali",
+      "ui_not_placed": "sitelen li lon ala ma pali",
+      "ui_unplace": "o weka e sitelen tan ma pali",
+      "formats22_page_range": "o pana e nanpa lipu tan 1 tawa %1$d."
+    },
+    "corrected": {
+      "ui_an_assembly_can_contain_up_to_20_images_86d995": {
+        "proposed": "kulupu sitelen li ken jo e sitelen 20 anu sitelen pi mute lili.",
+        "accepted": "kulupu sitelen li ken jo e sitelen pi mute ni: 0–20.",
+        "reason": "Use explicit numeric capacity range instead of twenty or vaguely few. Empty assembly is allowed; 0–20 is exactly the source upper bound over nonnegative image counts."
+      },
+      "ui_an_assembly_can_contain_up_to_20_images": {
+        "proposed": "kulupu sitelen li ken jo e sitelen 20 anu sitelen pi mute lili. o weka e sitelen wan. ni la sina ken pana e sitelen ante.",
+        "accepted": "kulupu sitelen li ken jo e sitelen pi mute ni: 0–20. o weka e sitelen wan. ni la sina ken pana e sitelen ante.",
+        "reason": "Same exact capacity range, retaining remove-one-before-add-another guidance. This is assembly removal, not unplace."
+      },
+      "ui_assembly_unknown_image": {
+        "proposed": "sitelen pi wile sina li lon ala kulupu sitelen ni lon tenpo ni.",
+        "accepted": "sitelen ni li lon ala kulupu sitelen ni lon tenpo ni.",
+        "reason": "Use this image in the selected-ID context rather than image desired by you, which is not a reliable rendering of selection."
+      },
+      "ui_the_assembly_output_is_unavailable_reopen_image_assembly": {
+        "proposed": "sitelen pana pi kulupu sitelen li lon ala. o open sin e kulupu sitelen. o pali sin.",
+        "accepted": "sina ken ala kepeken sitelen pana pi kulupu sitelen. o open sin e kulupu sitelen. o pali sin.",
+        "reason": "Unavailable does not always mean nonexistent. State inability to use output; retain existing Image assembly caption and reopen/retry action."
+      },
+      "formats22_loading_page": {
+        "proposed": "lipu %1$d tan lipu %2$d · ilo li open e lukin open…",
+        "accepted": "lipu nanpa %1$d (mute lipu: %2$d) · ilo li open e lukin open…",
+        "reason": "Original page1 from page2 confuses page index with total. Explicit page number and page quantity preserve index/total and loading preview."
+      },
+      "formats22_page_dimensions": {
+        "proposed": "lipu %1$d tan lipu %2$d · %3$d × %4$d leko sitelen",
+        "accepted": "lipu nanpa %1$d (mute lipu: %2$d) · %3$d × %4$d leko sitelen",
+        "reason": "Same explicit index/total distinction, with unchanged pixel dimensions/placeholders."
+      }
+    },
+    "rejected": {
+      "ui_you_can_add_more_images_select_fewer_files": {
+        "proposed": "sina ken pana e sitelen %1$s. o wile e lipu pi mute lili.",
+        "reason": "Candidate does not clearly mark remaining/additional capacity and asks user to want few files rather than reduce the selected set. I cannot substantiate a natural precise correction here without risking delete-files or changed-intent guidance; retain fallback."
+      },
+      "ui_the_attachment_image_is_missing": {
+        "proposed": "sitelen pi wile wan li weka.",
+        "reason": "Attachment anchor relationship not sufficiently conveyed by tentative wile wan; reject rather than invent technical term.",
+        "independent_disposition": "Prior per-key rejection retained; no sufficiently strong correction established in this review."
+      },
+      "ui_the_attachment_image_is_not_placed": {
+        "proposed": "sitelen pi wile wan li lon ala ma pali.",
+        "reason": "Same anchor-relation ambiguity.",
+        "independent_disposition": "Prior per-key rejection retained; no sufficiently strong correction established in this review."
+      },
+      "ui_could_not_decode_the_cropped_region_of": {
+        "proposed": "ilo li ken ala open e sona pi ma kipisi lon sitelen %1$s.",
+        "reason": "Region-versus-crop-result relationship insufficiently substantiated; preserve English fallback.",
+        "independent_disposition": "Prior per-key rejection retained; no sufficiently strong correction established in this review."
+      },
+      "formats22_pdf_page_count": {
+        "proposed": "lipu PDF li wile jo e lipu 1 tawa lipu %1$d.",
+        "reason": "Nested document/page use of lipu and numeric range needs stronger evidence; preserve fallback.",
+        "independent_disposition": "Prior per-key rejection retained; no sufficiently strong correction established in this review."
+      }
+    },
+    "final_values": {
+      "ui_place_at_least_one_image_in_the_workspace": "o pana e sitelen wan anu mute lon ma pali lon tenpo open.",
+      "ui_placed": "sitelen li lon ma pali",
+      "ui_not_placed": "sitelen li lon ala ma pali",
+      "ui_unplace": "o weka e sitelen tan ma pali",
+      "formats22_page_range": "o pana e nanpa lipu tan 1 tawa %1$d.",
+      "ui_an_assembly_can_contain_up_to_20_images_86d995": "kulupu sitelen li ken jo e sitelen pi mute ni: 0–20.",
+      "ui_an_assembly_can_contain_up_to_20_images": "kulupu sitelen li ken jo e sitelen pi mute ni: 0–20. o weka e sitelen wan. ni la sina ken pana e sitelen ante.",
+      "ui_assembly_unknown_image": "sitelen ni li lon ala kulupu sitelen ni lon tenpo ni.",
+      "ui_the_assembly_output_is_unavailable_reopen_image_assembly": "sina ken ala kepeken sitelen pana pi kulupu sitelen. o open sin e kulupu sitelen. o pali sin.",
+      "formats22_loading_page": "lipu nanpa %1$d (mute lipu: %2$d) · ilo li open e lukin open…",
+      "formats22_page_dimensions": "lipu nanpa %1$d (mute lipu: %2$d) · %3$d × %4$d leko sitelen"
+    },
+    "final_count": 11,
+    "direct_refs_verified": 12,
+    "existing_keys_preserved_scope": 432,
+    "context_basis": [
+      "Read all initial16 and final12 proposals with English/source context; checked actual current XML absence and Kotlin references.",
+      "Assembly add bounds state.size+items.size<=20; empty state is allowed. Symbolic0–20 count avoids unsubstantiated relative-quantity vocabulary.",
+      "Placement wording locates image on workspace; unplace says remove from workspace only, distinct from deleting assembly item or source file.",
+      "Page index and count are separate values. Corrected display labels explicitly distinguish nanpa (index) and mute (total count). Range prompt keeps numeric endpoints1..maximum.",
+      "Attachment anchor and crop decoder distinctions remain unaccepted individually, not by blanket language exclusion.",
+      "Reopen label uses established kulupu sitelen caption; unavailable corrected to inability to use rather than nonexistence."
+    ],
+    "limits": [
+      "Moderate independent AI/source acceptance for11UIvalues only",
+      "No full manuals or technical-language-wide certification",
+      "No native-speaker or device/layout certification",
+      "No repository edits by reviewer"
+    ]
+  },
+  "applied_review": {
+    "result": "accepted",
+    "original_count": 432,
+    "original_elements_unchanged": true,
+    "addition_count": 11,
+    "total_direct_keys": 443,
+    "exact_reviewed_final_values": true,
+    "unexpected_additions": [],
+    "rejected_keys_absent": [
+      "ui_you_can_add_more_images_select_fewer_files",
+      "ui_the_attachment_image_is_missing",
+      "ui_the_attachment_image_is_not_placed",
+      "ui_could_not_decode_the_cropped_region_of",
+      "formats22_pdf_page_count"
+    ],
+    "catalogue_validation_errors": [],
+    "review_source": "/tmp/narrow-ui/third/reviewed.json",
+    "limits": [
+      "Independent applied-resource verification, not native-speaker certification.",
+      "No device/layout or full-manual verification.",
+      "No application source edits performed.",
+      "Hosted CI and broader test results are separate gates."
+    ]
+  },
+  "tests": {
+    "affected": ".....................................................\n----------------------------------------------------------------------\nRan 53 tests in 5.932s\n\nOK\n",
+    "full_host": "Not duplicated locally; required exact-head hosted CI pending"
+  },
+  "scope": "11 active UI values; all432originals preserved; no held language changes; no native or device/layout certification"
+}
