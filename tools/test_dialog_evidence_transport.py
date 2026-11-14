@@ -506,8 +506,11 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
     2891e328738baa1719c9780f4b42d99cc3f96ca8640de9abf5515ad86d2ba356
     Original aboutRowsOpenThreeNoticesWithReachableNativeFooters receipt SHA256:
     289adcf0ca7ce11cdc6814ffd2cbe16b81909ea2a582ac9d40b706f26836ff74
-    The normalized original loop-body SHA below excludes only common indentation
-    and its outer for-loop wrapper. It retains every original assertion verbatim.
+    The current complete-flow SHA below excludes only common indentation and
+    the outer loop wrapper. It binds the independent original-plus-supplement
+    expected-text composition; every interaction and assertion is unchanged.
+    Historical original loop-body SHA256 (evidence, not the current gate):
+    a04a779411a0bfbefaaa37e8af1ffabb2d5235895becb43bc24d15b299c4bc04
     """
     @classmethod
     def setUpClass(cls):
@@ -549,7 +552,7 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
         body = self.flow.split('        openAbout()', 1)[1].rsplit('\n    }', 1)[0]
         normalized = textwrap.dedent('        openAbout()' + body) + '\n'
         self.assertEqual(hashlib.sha256(normalized.encode()).hexdigest(),
-            'a04a779411a0bfbefaaa37e8af1ffabb2d5235895becb43bc24d15b299c4bc04')
+            'b5a87e07dffa1e7e64bc95b5b032a3bc7a4a5d1b00454f0987d350359c6e9749')
         # Cases 1/2 formerly inherited landscape from case 0. Each new independent
         # fixture establishes the same orientation before opening its real menu.
         self.assertLess(self.flow.index('if(index!=0) orient(true,scenario)'), self.flow.index('openAbout()'))
