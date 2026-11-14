@@ -1,0 +1,269 @@
+{
+  "base": "2945ebf4df81f17b35e6df161431f43b3725c466",
+  "rows": [
+    {
+      "tag": "tok",
+      "old": 390,
+      "new": 414,
+      "added": 24,
+      "canonical": 414,
+      "direct_kotlin_refs": 24,
+      "no_direct_kotlin_refs": 0,
+      "blob": "8b97b44836c137eeeeee5ae7e3c9e042c8f841f5"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+tok/strings.xml"
+  ],
+  "pr": 468,
+  "head": "4ae3de973f50780b4304c14dd0a775d685dd5223",
+  "tree": "bf29b99d94714e050147b15ba65ddb848468e2d7",
+  "tests": {
+    "affected": "53passed",
+    "host": "892passed166.928s",
+    "remote_tree": "complete stagedGit tree matchesremoteallpaths/modes/content"
+  },
+  "review": {
+    "status": "accepted within moderate independent AI/source limits",
+    "reviewed_additions": 24,
+    "originals_preserved": 390,
+    "total": 414,
+    "remaining_missing": 305,
+    "exact_reviewed_values": true,
+    "only_expected_additions": true,
+    "per_locale_validation_errors": [],
+    "prior_review": {
+      "scope": "24 basic UI keys with direct Kotlin R.string references, not full manuals",
+      "read_candidates": 32,
+      "active_reviewed": 24,
+      "accepted": {
+        "ui_add_images": "o pana e sitelen",
+        "ui_assembly_output_size": "suli pana pi kulupu sitelen",
+        "ui_could_not_create_the_assembly": "ilo li ken ala pali e kulupu sitelen: %1$s",
+        "ui_custom_colour": "kule sina %1$s",
+        "ui_downloading_image": "ilo li kama jo e sitelen…",
+        "ui_largest": "suli nanpa wan",
+        "ui_magnified_preview_ea9209": "lukin open suli",
+        "ui_same_height": "suli sewi sama",
+        "ui_same_width": "suli poka sama",
+        "ui_smallest": "lili nanpa wan",
+        "ui_tap_a_pixel": "o luka e leko sitelen",
+        "ui_the_image_could_not_be_downloaded": "ilo li ken ala kama jo e sitelen.",
+        "ui_time_unavailable": "sona tenpo li lon ala",
+        "ui_top23": "lon poka sewi",
+        "ui_bottom23": "lon poka anpa",
+        "gallery_use_image": "o kepeken e sitelen",
+        "ui_gallery_back34": "o tawa monsi"
+      },
+      "corrected": {
+        "ui_add_images_first": {
+          "proposed": "o pana e sitelen. ni la o pali.",
+          "accepted": "o pana e sitelen lon tenpo open.",
+          "rationale": "Keep first-step instruction without adding an unspecified subsequent action."
+        },
+        "ui_apply_to_all": {
+          "proposed": "o kepeken tawa ale",
+          "accepted": "o kepeken nasin ni tawa sitelen ale",
+          "rationale": "Specify the current operation and image scope; bare kepeken tawa ale is elliptical and potentially direction-only."
+        },
+        "ui_apply_to_these_images": {
+          "proposed": "o kepeken tawa sitelen ni",
+          "accepted": "o kepeken nasin ni tawa sitelen ni",
+          "rationale": "Specify current operation applied to these images, rather than bare use towards images."
+        },
+        "ui_edit_in_paint": {
+          "proposed": "o ante lon Paint",
+          "accepted": "o ante lon ilo Paint",
+          "rationale": "Treat Paint as the named editor/tool, not a standalone grammatical noun."
+        },
+        "ui_add_palette23": {
+          "proposed": "o pana tawa kulupu kule",
+          "accepted": "o pana e kule ni tawa kulupu kule",
+          "rationale": "Actual consumer adds the current colour; provide explicit object."
+        },
+        "ui_added_palette23": {
+          "proposed": "li kama lon kulupu kule",
+          "accepted": "kule li kama lon kulupu kule",
+          "rationale": "Original candidate begins with li without a subject. Supply colour subject for the saved-colour toast."
+        },
+        "ui_remove_palette23": {
+          "proposed": "o weka tan kulupu kule",
+          "accepted": "o weka e kule ni tan kulupu kule",
+          "rationale": "Actual consumer removes selected stored colour; provide explicit object."
+        }
+      },
+      "rejected": {},
+      "excluded_no_direct_reference": {
+        "ui_magnified_preview": "lukin open suli…",
+        "ui_widths": "suli poka",
+        "ui_edit_palette23": "o ante e kulupu kule",
+        "ui_replace_with_active23": "o pana e kule anu lon ma ona",
+        "ui_add_active23": "o pana e kule anu",
+        "ui_save_as_webp": "o awen sona kepeken nasin WebP…",
+        "ui_save_as_heic": "o awen sona kepeken nasin HEIC…",
+        "ui_save_as_avif": "o awen sona kepeken nasin AVIF…"
+      },
+      "final_values": {
+        "ui_add_images": "o pana e sitelen",
+        "ui_assembly_output_size": "suli pana pi kulupu sitelen",
+        "ui_could_not_create_the_assembly": "ilo li ken ala pali e kulupu sitelen: %1$s",
+        "ui_custom_colour": "kule sina %1$s",
+        "ui_downloading_image": "ilo li kama jo e sitelen…",
+        "ui_largest": "suli nanpa wan",
+        "ui_magnified_preview_ea9209": "lukin open suli",
+        "ui_same_height": "suli sewi sama",
+        "ui_same_width": "suli poka sama",
+        "ui_smallest": "lili nanpa wan",
+        "ui_tap_a_pixel": "o luka e leko sitelen",
+        "ui_the_image_could_not_be_downloaded": "ilo li ken ala kama jo e sitelen.",
+        "ui_time_unavailable": "sona tenpo li lon ala",
+        "ui_top23": "lon poka sewi",
+        "ui_bottom23": "lon poka anpa",
+        "gallery_use_image": "o kepeken e sitelen",
+        "ui_gallery_back34": "o tawa monsi",
+        "ui_add_images_first": "o pana e sitelen lon tenpo open.",
+        "ui_apply_to_all": "o kepeken nasin ni tawa sitelen ale",
+        "ui_apply_to_these_images": "o kepeken nasin ni tawa sitelen ni",
+        "ui_edit_in_paint": "o ante lon ilo Paint",
+        "ui_add_palette23": "o pana e kule ni tawa kulupu kule",
+        "ui_added_palette23": "kule li kama lon kulupu kule",
+        "ui_remove_palette23": "o weka e kule ni tan kulupu kule"
+      },
+      "special_findings": [
+        "kule anu occurs only in excluded dormant candidates; anu normally expresses alternatives, so those phrases must not be promoted from existing usage without separate justification.",
+        "suli poka/suli sewi match existing dimension terminology and express width/height in the actual normalize-images context.",
+        "suli nanpa wan/lili nanpa wan are readable comparative-ranking labels in the smallest/largest size choice.",
+        "No full-manual, licensing or memory-budget translation is accepted by this narrow review."
+      ],
+      "basis": [
+        "Read current English values, existing Toki Pona catalogue lexicon, and actual consumers in assembly, crop/normalize, colour palette, text style and gallery code.",
+        "Existing wording is context, not independent proof of correctness. Seven candidates corrected for grammatical or action clarity."
+      ],
+      "confidence": "Moderate independent AI/source review for these basic UI phrases only; not native-speaker or device/layout certification",
+      "files_modified": "Only this review report; application source untouched"
+    },
+    "limits": [
+      "24 basic active UI resources only",
+      "305 missing keys remain on fallback including full manuals",
+      "No native-speaker, physical-device or layout certification"
+    ],
+    "application_edits": "none by reviewer"
+  },
+  "candidate_review": {
+    "scope": "24 basic UI keys with direct Kotlin R.string references, not full manuals",
+    "read_candidates": 32,
+    "active_reviewed": 24,
+    "accepted": {
+      "ui_add_images": "o pana e sitelen",
+      "ui_assembly_output_size": "suli pana pi kulupu sitelen",
+      "ui_could_not_create_the_assembly": "ilo li ken ala pali e kulupu sitelen: %1$s",
+      "ui_custom_colour": "kule sina %1$s",
+      "ui_downloading_image": "ilo li kama jo e sitelen…",
+      "ui_largest": "suli nanpa wan",
+      "ui_magnified_preview_ea9209": "lukin open suli",
+      "ui_same_height": "suli sewi sama",
+      "ui_same_width": "suli poka sama",
+      "ui_smallest": "lili nanpa wan",
+      "ui_tap_a_pixel": "o luka e leko sitelen",
+      "ui_the_image_could_not_be_downloaded": "ilo li ken ala kama jo e sitelen.",
+      "ui_time_unavailable": "sona tenpo li lon ala",
+      "ui_top23": "lon poka sewi",
+      "ui_bottom23": "lon poka anpa",
+      "gallery_use_image": "o kepeken e sitelen",
+      "ui_gallery_back34": "o tawa monsi"
+    },
+    "corrected": {
+      "ui_add_images_first": {
+        "proposed": "o pana e sitelen. ni la o pali.",
+        "accepted": "o pana e sitelen lon tenpo open.",
+        "rationale": "Keep first-step instruction without adding an unspecified subsequent action."
+      },
+      "ui_apply_to_all": {
+        "proposed": "o kepeken tawa ale",
+        "accepted": "o kepeken nasin ni tawa sitelen ale",
+        "rationale": "Specify the current operation and image scope; bare kepeken tawa ale is elliptical and potentially direction-only."
+      },
+      "ui_apply_to_these_images": {
+        "proposed": "o kepeken tawa sitelen ni",
+        "accepted": "o kepeken nasin ni tawa sitelen ni",
+        "rationale": "Specify current operation applied to these images, rather than bare use towards images."
+      },
+      "ui_edit_in_paint": {
+        "proposed": "o ante lon Paint",
+        "accepted": "o ante lon ilo Paint",
+        "rationale": "Treat Paint as the named editor/tool, not a standalone grammatical noun."
+      },
+      "ui_add_palette23": {
+        "proposed": "o pana tawa kulupu kule",
+        "accepted": "o pana e kule ni tawa kulupu kule",
+        "rationale": "Actual consumer adds the current colour; provide explicit object."
+      },
+      "ui_added_palette23": {
+        "proposed": "li kama lon kulupu kule",
+        "accepted": "kule li kama lon kulupu kule",
+        "rationale": "Original candidate begins with li without a subject. Supply colour subject for the saved-colour toast."
+      },
+      "ui_remove_palette23": {
+        "proposed": "o weka tan kulupu kule",
+        "accepted": "o weka e kule ni tan kulupu kule",
+        "rationale": "Actual consumer removes selected stored colour; provide explicit object."
+      }
+    },
+    "rejected": {},
+    "excluded_no_direct_reference": {
+      "ui_magnified_preview": "lukin open suli…",
+      "ui_widths": "suli poka",
+      "ui_edit_palette23": "o ante e kulupu kule",
+      "ui_replace_with_active23": "o pana e kule anu lon ma ona",
+      "ui_add_active23": "o pana e kule anu",
+      "ui_save_as_webp": "o awen sona kepeken nasin WebP…",
+      "ui_save_as_heic": "o awen sona kepeken nasin HEIC…",
+      "ui_save_as_avif": "o awen sona kepeken nasin AVIF…"
+    },
+    "final_values": {
+      "ui_add_images": "o pana e sitelen",
+      "ui_assembly_output_size": "suli pana pi kulupu sitelen",
+      "ui_could_not_create_the_assembly": "ilo li ken ala pali e kulupu sitelen: %1$s",
+      "ui_custom_colour": "kule sina %1$s",
+      "ui_downloading_image": "ilo li kama jo e sitelen…",
+      "ui_largest": "suli nanpa wan",
+      "ui_magnified_preview_ea9209": "lukin open suli",
+      "ui_same_height": "suli sewi sama",
+      "ui_same_width": "suli poka sama",
+      "ui_smallest": "lili nanpa wan",
+      "ui_tap_a_pixel": "o luka e leko sitelen",
+      "ui_the_image_could_not_be_downloaded": "ilo li ken ala kama jo e sitelen.",
+      "ui_time_unavailable": "sona tenpo li lon ala",
+      "ui_top23": "lon poka sewi",
+      "ui_bottom23": "lon poka anpa",
+      "gallery_use_image": "o kepeken e sitelen",
+      "ui_gallery_back34": "o tawa monsi",
+      "ui_add_images_first": "o pana e sitelen lon tenpo open.",
+      "ui_apply_to_all": "o kepeken nasin ni tawa sitelen ale",
+      "ui_apply_to_these_images": "o kepeken nasin ni tawa sitelen ni",
+      "ui_edit_in_paint": "o ante lon ilo Paint",
+      "ui_add_palette23": "o pana e kule ni tawa kulupu kule",
+      "ui_added_palette23": "kule li kama lon kulupu kule",
+      "ui_remove_palette23": "o weka e kule ni tan kulupu kule"
+    },
+    "special_findings": [
+      "kule anu occurs only in excluded dormant candidates; anu normally expresses alternatives, so those phrases must not be promoted from existing usage without separate justification.",
+      "suli poka/suli sewi match existing dimension terminology and express width/height in the actual normalize-images context.",
+      "suli nanpa wan/lili nanpa wan are readable comparative-ranking labels in the smallest/largest size choice.",
+      "No full-manual, licensing or memory-budget translation is accepted by this narrow review."
+    ],
+    "basis": [
+      "Read current English values, existing Toki Pona catalogue lexicon, and actual consumers in assembly, crop/normalize, colour palette, text style and gallery code.",
+      "Existing wording is context, not independent proof of correctness. Seven candidates corrected for grammatical or action clarity."
+    ],
+    "confidence": "Moderate independent AI/source review for these basic UI phrases only; not native-speaker or device/layout certification",
+    "files_modified": "Only this review report; application source untouched"
+  },
+  "limits": [
+    "Moderate narrowAI/source acceptance notnative/device/fullmanual",
+    "305missingretainfallback",
+    "54dormantformattemplates notadded",
+    "CI/Codex pending notmerged",
+    "Holds unchanged"
+  ]
+}
