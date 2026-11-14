@@ -1,7 +1,7 @@
 {
   "purpose": "Current source attribution for the listed canonical UI labels, not an acceptance mirror or generated catalogue. Edit canonical resources directly.",
   "integration_date": "2026-11-14",
-  "scope": "24 independently source/context-reviewed additions across 10 exact locale catalogues; no native-speaker or whole-language certification. Existing wording is preserved.",
+  "scope": "The listed source-derived UI labels have bounded independent source/context review. This is not native-speaker or whole-language certification. Existing wording is preserved.",
   "license_notices": "See Paintroid/src/main/assets/legal/SOURCE_SUPPORTED_TRANSLATIONS.txt and translations/source-supported-licences/ for applicable notices and license texts. Upstream rights remain preserved; integration elections are documented there.",
   "sources": {
     "MediaWiki/ch": {
@@ -238,6 +238,85 @@
         "ⵕⴰⵊⵉ"
       ],
       "license": "GPL-2.0-or-later"
+    },
+    "VisualEditor/yua": {
+      "url": "https://github.com/wikimedia/VisualEditor/blob/4d12cd4ed69480fcf0ebc7aa0627716e39ab93af/i18n/yua.json",
+      "sha256": "66caa55035cb05e532b5661659f68f4d76dee8254415713abb9626373ff4068c",
+      "authors": [
+        "Anettechan03",
+        "Cohuoucan",
+        "Coolchan",
+        "Kikis14",
+        "Shadow.666"
+      ],
+      "license": "MIT"
+    },
+    "VisualEditor/shn": {
+      "url": "https://github.com/wikimedia/VisualEditor/blob/4d12cd4ed69480fcf0ebc7aa0627716e39ab93af/i18n/shn.json",
+      "sha256": "a149a872c6a44baa307956b00699e5c690c13f0aee3543d22aefd8b61da382ef",
+      "authors": [
+        "Saimawnkham",
+        "Saosukham"
+      ],
+      "license": "MIT"
+    },
+    "VisualEditor/tdd": {
+      "url": "https://github.com/wikimedia/VisualEditor/blob/4d12cd4ed69480fcf0ebc7aa0627716e39ab93af/i18n/tdd.json",
+      "sha256": "1d30c7ffcf8618cf53ad3e920567216931818467319c357899f7233e9fb4e162",
+      "authors": [
+        "Aey Tai Nuea",
+        "AeyTaiNuea",
+        "Dai Meng Mao Long",
+        "咽頭べさ"
+      ],
+      "license": "MIT"
+    },
+    "OOUI/yua": {
+      "url": "https://github.com/wikimedia/oojs-ui/blob/035011633aaee50423a42c8e9ff3673cc944c587/i18n/yua.json",
+      "sha256": "e2f005d90a592f7d3027011b7abe7e3dff36b3bd220f90b2df069059019daaa8",
+      "authors": [
+        "26agcp",
+        "Coala23",
+        "Cohuoucan",
+        "DeBolsillo",
+        "Elsa Flores",
+        "Miguelos1976"
+      ],
+      "license": "MIT"
+    },
+    "Sugar-write/quz": {
+      "url": "https://raw.githubusercontent.com/sugarlabs/write-activity/bb4417e3a42c62fab4ff86cf5b12c65267d55912/po/quz.po",
+      "sha256": "0c688af946df26cd3527b2d5be849b3f1d80934dc34bd49e380d0285c25b6995",
+      "license": "GPL-2.0-or-later (version3 elected for incorporated copy)",
+      "package_license": {
+        "path": "activity/activity.info",
+        "exact_value": "GPLv2+",
+        "basis": "Application bundle metadata, not merely an isolated source header. PO assigns same package licence; COPYING supplies GPL v2 text."
+      },
+      "notices": {
+        "original_header": "#  SOME DESCRIPTIVE TITLE.\n#  Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER\n#  This file is distributed under the same license as the PACKAGE package.\n#  FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.\nmsgid \"\"\nmsgstr \"\"\n\"Project-Id-Version: PACKAGE VERSION\\n\"\n\"Report-Msgid-Bugs-To: \\n\"\n\"POT-Creation-Date: 2017-03-24 17:39+1100\\n\"\n\"PO-Revision-Date: 2015-12-01 21:52+0000\\n\"\n\"Last-Translator: Roger <contacto@somosazucar.org>\\n\"\n\"Language-Team: LANGUAGE <LL@li.org>\\n\"\n\"Language: quz\\n\"\n\"MIME-Version: 1.0\\n\"\n\"Content-Type: text/plain; charset=UTF-8\\n\"\n\"Content-Transfer-Encoding: 8bit\\n\"\n\"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\\n\"\n\"X-Generator: Pootle 2.5.1.1\\n\"\n\"X-POOTLE-MTIME: 1449006726.000000\\n\"",
+        "interpretation": "Last-Translator identifies recorded editor, not proof of sole authorship. Placeholder copyright/author/team fields must not be filled with invented names."
+      }
+    },
+    "Sugar-read/quz": {
+      "url": "https://raw.githubusercontent.com/sugarlabs/read-activity/b50843ef4be13778b33308c753e9510e375ff509/po/quz.po",
+      "sha256": "69c3f0cda46ee48c5760e0b1c8f795b7292ebe8f69031ac329554b6fd28357e8",
+      "license": "GPL-2.0-or-later (version3 elected for incorporated copy)",
+      "package_license": {
+        "path": "activity/activity.info",
+        "exact_value": "GPLv2+;LGPLv2+",
+        "basis": "Application metadata explicitly lists both GPL v2-or-later and LGPL v2-or-later. PO assigns same package licence; COPYING supplies GPL v2 text. Do not falsely report the entire bundle as uniformly GPL-only. Corresponding main Read application context file explicitly uses GPL v2-or-later. Preserve actual mixed package notice for final compliance review."
+      },
+      "notices": {
+        "original_header": "# SOME DESCRIPTIVE TITLE.\n# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER\n# This file is distributed under the same license as the PACKAGE package.\n# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.\nmsgid \"\"\nmsgstr \"\"\n\"Project-Id-Version: PACKAGE VERSION\\n\"\n\"Report-Msgid-Bugs-To: \\n\"\n\"POT-Creation-Date: 2017-03-24 17:39+1100\\n\"\n\"PO-Revision-Date: 2017-04-17 06:14+0000\\n\"\n\"Last-Translator: Chris <cjl@sugarlabs.org>\\n\"\n\"Language-Team: Voluntarios Quechua Sugar Camp\\n\"\n\"Language: quz\\n\"\n\"MIME-Version: 1.0\\n\"\n\"Content-Type: text/plain; charset=UTF-8\\n\"\n\"Content-Transfer-Encoding: 8bit\\n\"\n\"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\\n\"\n\"X-Generator: Pootle 2.5.1.1\\n\"\n\"X-POOTLE-MTIME: 1492409673.000000\\n\"",
+        "interpretation": "Last-Translator identifies recorded editor, not proof of sole authorship. Placeholder copyright/author/team fields must not be filled with invented names."
+      }
+    },
+    "Sugar-browse/quz": {
+      "url": "https://raw.githubusercontent.com/sugarlabs/browse-activity/1770f7c7de2b0d9bb7f03459c57fe76b224ff1ce/po/quz.po",
+      "sha256": "787edb79d497c9ff923ac25e07b3779a33dcc9de10bf7e12b1f91c5a02b18b71",
+      "license": "GPL-2.0-or-later (version3 elected for incorporated copy)",
+      "notices": "# SOME DESCRIPTIVE TITLE.\n# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER\n# This file is distributed under the same license as the PACKAGE package.\n# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.\nmsgid \"\"\nmsgstr \"\"\n\"Project-Id-Version: PACKAGE VERSION\\n\"\n\"Report-Msgid-Bugs-To: \\n\"\n\"POT-Creation-Date: 2017-03-24 17:39+1100\\n\"\n\"PO-Revision-Date: 2017-06-04 02:10+0000\\n\"\n\"Last-Translator: Chris <cjl@sugarlabs.org>\\n\"\n\"Language-Team: Voluntarios Quechua Sugar Camp\\n\"\n\"Language: quz\\n\"\n\"MIME-Version: 1.0\\n\"\n\"Content-Type: text/plain; charset=UTF-8\\n\"\n\"Content-Transfer-Encoding: 8bit\\n\"\n\"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\\n\"\n\"X-Generator: Pootle 2.5.1.1\\n\"\n\"X-POOTLE-MTIME: 1496542228.000000\\n\""
     }
   },
   "entries": [
@@ -432,6 +511,118 @@
       "adaptation": "Extract explicitly marked browser Back button label; Wolof capitalization is corroborated by returnto. No surrounding instruction or markup imported.",
       "source_key": "newarticletext",
       "source": "MediaWiki/zgh"
+    },
+    {
+      "locale": "yua",
+      "key": "ui_strikethrough",
+      "value": "k'aatakts'íib",
+      "source": "VisualEditor/yua",
+      "source_key": "visualeditor-annotationbutton-strikethrough-tooltip",
+      "adaptation": "Android apostrophe escaping only"
+    },
+    {
+      "locale": "shn",
+      "key": "ui_strikethrough",
+      "value": "ထတ်းတူဝ်လိၵ်ႈ",
+      "source": "VisualEditor/shn",
+      "source_key": "visualeditor-annotationbutton-strikethrough-tooltip",
+      "adaptation": "none"
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_strikethrough",
+      "value": "ᥗᥖᥴ ᥖᥨᥝ ᥘᥤᥐ",
+      "source": "VisualEditor/tdd",
+      "source_key": "visualeditor-annotationbutton-strikethrough-tooltip",
+      "adaptation": "none"
+    },
+    {
+      "locale": "yua",
+      "key": "ui_gallery_back34",
+      "value": "Páchil",
+      "source": "OOUI/yua",
+      "source_key": "ooui-dialog-process-back",
+      "adaptation": "none"
+    },
+    {
+      "locale": "quz",
+      "key": "ui_search34",
+      "value": "Maskay",
+      "source": "Sugar-write/quz",
+      "source_key": "Search",
+      "adaptation": "none"
+    },
+    {
+      "locale": "quz",
+      "key": "formats22_previous_page",
+      "value": "Ñawpa raphi",
+      "source": "Sugar-read/quz",
+      "source_key": "Previous page",
+      "adaptation": "none"
+    },
+    {
+      "locale": "quz",
+      "key": "ui_gallery_back34",
+      "value": "Kutiy",
+      "source": "Sugar-browse/quz",
+      "source_key": "Back",
+      "adaptation": "none"
+    },
+    {
+      "locale": "quh",
+      "key": "ui_strikethrough",
+      "value": "Ukhunpi siqiy",
+      "source": "AbiWord/quh",
+      "source_key": "Strike",
+      "adaptation": "none"
+    },
+    {
+      "locale": "quh",
+      "key": "ui_top",
+      "value": "Patapi",
+      "source": "AbiWord/quh",
+      "source_key": "&Top:",
+      "adaptation": "Remove mnemonic ampersand and field colon only"
+    },
+    {
+      "locale": "quz",
+      "key": "ui_strikethrough",
+      "value": "Ukhunpi siqiy",
+      "source": "AbiWord/quz",
+      "source_key": "Strike",
+      "adaptation": "none"
+    },
+    {
+      "locale": "quz",
+      "key": "ui_top",
+      "value": "Patapi",
+      "source": "AbiWord/quz",
+      "source_key": "&Top:",
+      "adaptation": "Remove mnemonic ampersand and field colon only"
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_gallery_back34",
+      "value": "ᥐᥣᥱ ᥚᥣᥭᥱ ᥘᥒᥴ",
+      "source": "VisualEditor/tdd",
+      "source_key": "visualeditor-dialog-action-goback",
+      "adaptation": "none"
+    },
+    {
+      "locale": "wo",
+      "key": "gallery_credit_source",
+      "value": "Gongikuwaay : %1$s",
+      "source": "MediaWiki/wo",
+      "source_key": "filesource",
+      "adaptation": "Append one space and %1$s after unchanged label; preserve Wolof precolon space."
+    },
+    {
+      "locale": "se",
+      "key": "gallery_credit_source",
+      "value": "Gáldu: %1$s",
+      "source": "MediaWiki/se",
+      "source_key": "filesource",
+      "adaptation": "Append one space and %1$s after unchanged label."
     }
   ]
 }
