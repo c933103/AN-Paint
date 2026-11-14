@@ -1,0 +1,98 @@
+{
+  "failed_head": "dfd4905f5a3958085c2ad855f6b4ebfb86bd1121",
+  "failed_run": 43599864409,
+  "new_head": "bb119a94c7ba62cec7bc78d45801b2fbf2076c67",
+  "new_tree": "b77068b087218a84d434f71d3f93dbc1e3cfac74",
+  "hosted_cases": [
+    {
+      "file": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.HungarianAttributionC05Test.xml",
+      "attrs": {
+        "name": "org.catrobat.paintroid.local.HungarianAttributionC05Test",
+        "tests": "8",
+        "skipped": "0",
+        "failures": "2",
+        "errors": "0",
+        "timestamp": "2026-11-14T13:43:28.850Z",
+        "hostname": "runnervmy75tu",
+        "time": "8.083"
+      },
+      "cases": [
+        {
+          "name": "realAboutChooserAndThreeNoticeRoutesKeepVerbatimBodiesAtLargeText[30]",
+          "failure": "org.junit.ComparisonFailure: expected:<...ad of this License.\n[]> but was:<...ad of this License.\n[\n\n===== Source-supported translation additions (2026-11-14) =====\nSource-supported translation additi"
+        },
+        {
+          "name": "realAboutChooserAndThreeNoticeRoutesKeepVerbatimBodiesAtLargeText",
+          "failure": "org.junit.ComparisonFailure: expected:<...ad of this License.\n[]> but was:<...ad of this License.\n[\n\n===== Source-supported translation additions (2026-11-14) =====\nSource-supported translation additi"
+        }
+      ]
+    },
+    {
+      "file": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.WorkspaceRefinementTest.xml",
+      "attrs": {
+        "name": "org.catrobat.paintroid.local.WorkspaceRefinementTest",
+        "tests": "24",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-11-14T13:47:37.104Z",
+        "hostname": "runnervmy75tu",
+        "time": "20.772"
+      },
+      "cases": [
+        {
+          "name": "thirdPartyNoticesDisplayAndCopyExactOriginalAndSupplement",
+          "failure": null
+        },
+        {
+          "name": "ordinaryLegalAssetDisplayAndCopyRemainVerbatim",
+          "failure": null
+        }
+      ]
+    }
+  ],
+  "independent_review": {
+    "decision": "approve bounded test expectation correction",
+    "reviewed_files": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/HungarianAttributionC05Test.kt",
+      "app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt"
+    ],
+    "unstaged_files_at_review": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/HungarianAttributionC05Test.kt",
+      "app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt"
+    ],
+    "findings": [],
+    "checks": [
+      "Diff changes only independent expected-text construction in the two failing real-notice routes. Original asset read remains complete; supplement read completely and appended only for exact aggregate path. Other assets unchanged.",
+      "No LegalInfo.assetText production helper called to compute either corrected expectation; expected composition comes independently from both shipped assets.",
+      "Full equality assertions retained rather than contains/substrings. No replacement of actual menu callback or shortening of content.",
+      "LocalizedDialogDeviceTest retains full body/title assertions, same-dialog after both rotations, clipboard sentinel and native overlay dismissal, full clipboard equality before/after dismissal, nested native-back behavior and screenshots.",
+      "HungarianAttributionC05Test retains both configured variants, all three notice routes, full text comparison, title and visible-action capture/assertions at large text, and close checks.",
+      "WorkspaceRefinementTest already checks composed showAsset display/copy and ordinary asset behavior; unchanged.",
+      "EditorDeviceTest largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard directly passes raw aggregate to termsDialog: raw expected remains correct for that synthetic large-content obligation. Not an actual showAsset route; do not change merely to match new wording.",
+      "ClassicWorkspaceTest raw-asset attribution presence check remains a bundled-file obligation, not a delivered aggregate comparison. No correction needed.",
+      "Searched test files for THIRD_PARTY_NOTICES and SOURCE_SUPPORTED_TRANSLATIONS: no other actual showAsset/menu callback full-text expectation found requiring this correction.",
+      "tools/ci_emulator.sh lines477–481 deliberately skips restart regression when editor/dialog suite failed. Missing summaries are secondary, not justification to alter runner/gates. No runner change in unstaged diff."
+    ],
+    "evidence": "473-hosted-cases.json reports two Hungarian ComparisonFailures with unexpected appended supplement; WorkspaceRefinement 24 tests passed. This matches stale old-aggregate oracle diagnosis, not lost production notice content.",
+    "hashes": {
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/HungarianAttributionC05Test.kt": "32fbff410f5b13f22ef8042a644c8d7b53f39d8bf4650429d75d19ec517e7663",
+      "app/src/androidTest/java/paint/anpaint/android/LocalizedDialogDeviceTest.kt": "a3c57f734c2a4ce2c4eab2b1ab13ac5e90e90f2be591b85da012f5c4f77fcd1c"
+    },
+    "diff_sha256": "323d223a89c1b429942df9e73c3fb2440b4d2db614d4f0d0a7e06ef723df95f2",
+    "limits": [
+      "Source review only; corrected-head JVM/instrumentation execution not yet verified. Exact-head required CI still required.",
+      "Compared correction against unchanged indexed versions of these files representing pre-correction #473; did not publish or alter source."
+    ],
+    "checksum_followup": {
+      "decision": "approved existing checksum update",
+      "original_body_sha256": "a04a779411a0bfbefaaa37e8af1ffabb2d5235895becb43bc24d15b299c4bc04",
+      "current_body_sha256": "b5a87e07dffa1e7e64bc95b5b032a3bc7a4a5d1b00454f0987d350359c6e9749",
+      "independent_test": "NoticeFlowPartitionContractTest:4 passed with PYTHONPATH=tools. Initial invocation without required PYTHONPATH failed import before tests; corrected invocation passed.",
+      "reason": "Independent complete Kotlin diff remains solely old-plus-supplement expected text construction. Host diff only replaces existing whole-body digest and clarifies historical/current scope in docstring. No normalization adapter, old-body reconstruction, runner change or dropped interaction/binding/rotation/native/clipboard assertions."
+    }
+  },
+  "host_log": ".............................../opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'receipt.json'\n  return self._open_to_write(zinfo, force_zip64=force_zip64)\n.........................................\n----------------------------------------------------------------------\nRan 72 tests in 0.871s\n\nOK\n",
+  "secondary_failure": "ci_emulator.sh477-481 deliberately skips restart phases on ordinary/dialog failure. Missing restart summaries were secondary, no runner/gate alteration.",
+  "limits": "Corrected-head JVM/device CI and Codex required. Existing new WorkspaceRefinement24 cases passed on failed old head; not a whole-run pass."
+}
