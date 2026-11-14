@@ -1,0 +1,231 @@
+{
+  "base": "67a73121c9f91531079df6124f4735cb53364feb",
+  "rows": [
+    {
+      "tag": "tok",
+      "old": 414,
+      "new": 432,
+      "added": 18,
+      "canonical": 432,
+      "direct_kotlin_refs": 18,
+      "no_direct_kotlin_refs": 0,
+      "blob": "a3341cd7b46b297dd4ee0edeb1460c2222f5db74"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+tok/strings.xml"
+  ],
+  "pr": 469,
+  "head": "08ee688d7908667d8883e0ab325f9e55833cfb3d",
+  "tree": "b97a5384378aa4c6d0b7dfc00626d417374dfc0b",
+  "tests": {
+    "affected": "53passed5.841s",
+    "host": "Notduplicatedlocally; requiredexactheadhostedfullsuitepending",
+    "remote_tree": "complete stagedGit tree matchesremoteallpaths/modes/content"
+  },
+  "review": {
+    "status": "accepted within moderate independent AI/source-review limits",
+    "additions_verified": 18,
+    "originals_preserved": 414,
+    "total": 432,
+    "remaining_missing": 287,
+    "reviewed_values_exact": true,
+    "rejected_page_keys_absent": true,
+    "validation_errors": [],
+    "review": {
+      "scope": "Second nonoverlapping active Toki Pona UI subset",
+      "reviewed": 20,
+      "accepted_unchanged": 14,
+      "corrected_count": 4,
+      "rejected_count": 2,
+      "accepted": {
+        "ui_filename_a_z": "nimi lipu A–Z",
+        "ui_filename_z_a": "nimi lipu Z–A",
+        "ui_modified_newest_first": "tenpo ante: sin li lon open",
+        "ui_modified_oldest_first": "tenpo ante: majuna li lon open",
+        "ui_batch_crop": "o kipisi e sitelen mute",
+        "ui_batch_crop_images": "o kipisi e sitelen mute",
+        "ui_create_output": "o pali e sitelen pana",
+        "ui_restore_original_sizes": "o pana sin e suli open tawa sitelen",
+        "formats22_page_number": "nanpa lipu",
+        "formats22_open_page": "o open e lipu",
+        "formats22_page_preview": "lukin open pi lipu ni",
+        "formats22_preview_unavailable": "ilo li ken ala pana e lukin open: %1$s",
+        "ui_the_first_image_starts_at_the_top_left": "sitelen nanpa wan li open lon poka sewi soto.",
+        "ui_tool_option": "nasin ilo"
+      },
+      "corrected": {
+        "ui_rendering_images": {
+          "proposed": "sitelen pali: %1$s / %2$s…",
+          "accepted": "ilo li pini e pali tawa sitelen %1$s tan sitelen %2$s…",
+          "rationale": "Explicit processed-image progress: completed work on the counted images out of total; does not assert whole assembly output is finished."
+        },
+        "ui_strikethrough": {
+          "proposed": "linja lon insa toki",
+          "accepted": "linja lon insa pi sitelen toki",
+          "rationale": "Specify a line through written characters, not an arbitrary line inside speech/text content. This is a narrow label for the strike checkbox."
+        },
+        "ui_replace_palette23": {
+          "proposed": "kulupu kule li jo e ken ale ona. o wile e kule pi kama weka",
+          "accepted": "kulupu kule li jo ala e ma tawa kule sin. o pana e kule sin lon ma pi kule wan.",
+          "rationale": "Original says palette possesses all its abilities, not full, and requests a desired disappearing colour without explicit replacement. Revised: no space for new colour; put new colour in the place of one existing colour. Actual consumer replaces the selected slot."
+        },
+        "formats22_select_page": {
+          "proposed": "o wile e lipu wan",
+          "accepted": "sina wile e lipu seme?",
+          "rationale": "Ask which page is wanted rather than command the user to want a page. Natural chooser heading without imposing a specific input method."
+        }
+      },
+      "rejected": {
+        "formats22_previous_page": {
+          "proposed": "lipu pi tenpo pini",
+          "reason": "Page of past time risks implying a previously viewed or historical page, not immediate preceding page number. No sufficiently natural and precise sequence label established in this pass; retain fallback."
+        },
+        "formats22_next_page": {
+          "proposed": "lipu pi tenpo kama",
+          "reason": "Page of future time risks implying a future version rather than immediate next page number. Do not force an arithmetic instruction or vague temporal label; retain fallback pending better wording."
+        }
+      },
+      "final_values": {
+        "ui_filename_a_z": "nimi lipu A–Z",
+        "ui_filename_z_a": "nimi lipu Z–A",
+        "ui_modified_newest_first": "tenpo ante: sin li lon open",
+        "ui_modified_oldest_first": "tenpo ante: majuna li lon open",
+        "ui_batch_crop": "o kipisi e sitelen mute",
+        "ui_batch_crop_images": "o kipisi e sitelen mute",
+        "ui_create_output": "o pali e sitelen pana",
+        "ui_restore_original_sizes": "o pana sin e suli open tawa sitelen",
+        "formats22_page_number": "nanpa lipu",
+        "formats22_open_page": "o open e lipu",
+        "formats22_page_preview": "lukin open pi lipu ni",
+        "formats22_preview_unavailable": "ilo li ken ala pana e lukin open: %1$s",
+        "ui_the_first_image_starts_at_the_top_left": "sitelen nanpa wan li open lon poka sewi soto.",
+        "ui_tool_option": "nasin ilo",
+        "ui_rendering_images": "ilo li pini e pali tawa sitelen %1$s tan sitelen %2$s…",
+        "ui_strikethrough": "linja lon insa pi sitelen toki",
+        "ui_replace_palette23": "kulupu kule li jo ala e ma tawa kule sin. o pana e kule sin lon ma pi kule wan.",
+        "formats22_select_page": "sina wile e lipu seme?"
+      },
+      "direct_kotlin_references_verified": 20,
+      "already_present_overlap": 0,
+      "context_basis": [
+        "Read all20 proposed values and corresponding English/context records. Independently checked current XML absence and direct Kotlin references.",
+        "Inspected actual paletteStore.add/replace failure branch: title must explain full palette and replacement of selected slot.",
+        "Inspected normalization reset action and assembly sort enum; restored sizes and modified-time sort terminology retain actual scope.",
+        "Progress callback supplies processed n,total; revised wording avoids claiming the full output finished.",
+        "Page chooser includes numeric entry and previous/next controls. Select-page heading accepted with correction; temporal previous/next labels rejected individually.",
+        "Existing lexicon is supporting context, not independent proof of correctness."
+      ],
+      "limits": [
+        "Moderate independent AI/source linguistic acceptance for18basicUIstrings only",
+        "No full-manual/legal/memory wording acceptance",
+        "No native-speaker or physical-device/layout certification",
+        "Application source untouched by reviewer"
+      ]
+    },
+    "verification_limits": [
+      "No native-speaker or device/layout certification",
+      "Reviewer verified resource content only; does not claim execution of parent tests or hosted gates",
+      "No full-manual completion"
+    ],
+    "source_edits_by_reviewer": false
+  },
+  "candidate_review": {
+    "scope": "Second nonoverlapping active Toki Pona UI subset",
+    "reviewed": 20,
+    "accepted_unchanged": 14,
+    "corrected_count": 4,
+    "rejected_count": 2,
+    "accepted": {
+      "ui_filename_a_z": "nimi lipu A–Z",
+      "ui_filename_z_a": "nimi lipu Z–A",
+      "ui_modified_newest_first": "tenpo ante: sin li lon open",
+      "ui_modified_oldest_first": "tenpo ante: majuna li lon open",
+      "ui_batch_crop": "o kipisi e sitelen mute",
+      "ui_batch_crop_images": "o kipisi e sitelen mute",
+      "ui_create_output": "o pali e sitelen pana",
+      "ui_restore_original_sizes": "o pana sin e suli open tawa sitelen",
+      "formats22_page_number": "nanpa lipu",
+      "formats22_open_page": "o open e lipu",
+      "formats22_page_preview": "lukin open pi lipu ni",
+      "formats22_preview_unavailable": "ilo li ken ala pana e lukin open: %1$s",
+      "ui_the_first_image_starts_at_the_top_left": "sitelen nanpa wan li open lon poka sewi soto.",
+      "ui_tool_option": "nasin ilo"
+    },
+    "corrected": {
+      "ui_rendering_images": {
+        "proposed": "sitelen pali: %1$s / %2$s…",
+        "accepted": "ilo li pini e pali tawa sitelen %1$s tan sitelen %2$s…",
+        "rationale": "Explicit processed-image progress: completed work on the counted images out of total; does not assert whole assembly output is finished."
+      },
+      "ui_strikethrough": {
+        "proposed": "linja lon insa toki",
+        "accepted": "linja lon insa pi sitelen toki",
+        "rationale": "Specify a line through written characters, not an arbitrary line inside speech/text content. This is a narrow label for the strike checkbox."
+      },
+      "ui_replace_palette23": {
+        "proposed": "kulupu kule li jo e ken ale ona. o wile e kule pi kama weka",
+        "accepted": "kulupu kule li jo ala e ma tawa kule sin. o pana e kule sin lon ma pi kule wan.",
+        "rationale": "Original says palette possesses all its abilities, not full, and requests a desired disappearing colour without explicit replacement. Revised: no space for new colour; put new colour in the place of one existing colour. Actual consumer replaces the selected slot."
+      },
+      "formats22_select_page": {
+        "proposed": "o wile e lipu wan",
+        "accepted": "sina wile e lipu seme?",
+        "rationale": "Ask which page is wanted rather than command the user to want a page. Natural chooser heading without imposing a specific input method."
+      }
+    },
+    "rejected": {
+      "formats22_previous_page": {
+        "proposed": "lipu pi tenpo pini",
+        "reason": "Page of past time risks implying a previously viewed or historical page, not immediate preceding page number. No sufficiently natural and precise sequence label established in this pass; retain fallback."
+      },
+      "formats22_next_page": {
+        "proposed": "lipu pi tenpo kama",
+        "reason": "Page of future time risks implying a future version rather than immediate next page number. Do not force an arithmetic instruction or vague temporal label; retain fallback pending better wording."
+      }
+    },
+    "final_values": {
+      "ui_filename_a_z": "nimi lipu A–Z",
+      "ui_filename_z_a": "nimi lipu Z–A",
+      "ui_modified_newest_first": "tenpo ante: sin li lon open",
+      "ui_modified_oldest_first": "tenpo ante: majuna li lon open",
+      "ui_batch_crop": "o kipisi e sitelen mute",
+      "ui_batch_crop_images": "o kipisi e sitelen mute",
+      "ui_create_output": "o pali e sitelen pana",
+      "ui_restore_original_sizes": "o pana sin e suli open tawa sitelen",
+      "formats22_page_number": "nanpa lipu",
+      "formats22_open_page": "o open e lipu",
+      "formats22_page_preview": "lukin open pi lipu ni",
+      "formats22_preview_unavailable": "ilo li ken ala pana e lukin open: %1$s",
+      "ui_the_first_image_starts_at_the_top_left": "sitelen nanpa wan li open lon poka sewi soto.",
+      "ui_tool_option": "nasin ilo",
+      "ui_rendering_images": "ilo li pini e pali tawa sitelen %1$s tan sitelen %2$s…",
+      "ui_strikethrough": "linja lon insa pi sitelen toki",
+      "ui_replace_palette23": "kulupu kule li jo ala e ma tawa kule sin. o pana e kule sin lon ma pi kule wan.",
+      "formats22_select_page": "sina wile e lipu seme?"
+    },
+    "direct_kotlin_references_verified": 20,
+    "already_present_overlap": 0,
+    "context_basis": [
+      "Read all20 proposed values and corresponding English/context records. Independently checked current XML absence and direct Kotlin references.",
+      "Inspected actual paletteStore.add/replace failure branch: title must explain full palette and replacement of selected slot.",
+      "Inspected normalization reset action and assembly sort enum; restored sizes and modified-time sort terminology retain actual scope.",
+      "Progress callback supplies processed n,total; revised wording avoids claiming the full output finished.",
+      "Page chooser includes numeric entry and previous/next controls. Select-page heading accepted with correction; temporal previous/next labels rejected individually.",
+      "Existing lexicon is supporting context, not independent proof of correctness."
+    ],
+    "limits": [
+      "Moderate independent AI/source linguistic acceptance for18basicUIstrings only",
+      "No full-manual/legal/memory wording acceptance",
+      "No native-speaker or physical-device/layout certification",
+      "Application source untouched by reviewer"
+    ]
+  },
+  "limits": [
+    "Moderate narrowAI/source acceptance notnative/device/fullmanual",
+    "287missingretainfallback including2rejectedpageorderkeys",
+    "CI/Codex pending notmerged",
+    "Base468freshpostmergemonitoredseparately",
+    "Holds unchanged"
+  ]
+}
