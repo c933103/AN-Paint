@@ -200,7 +200,13 @@ class HungarianAttributionC05Test {
                 val notice=ShadowDialog.getLatestDialog()
                 assertTrue(notice.isShowing)
                 val body=notice.window!!.decorView.findViewWithTag<TextView>("terms_text")
-                assertEquals(activity.assets.open(asset).bufferedReader().use {it.readText()},body.text.toString())
+                // Independent expected delivery: retain both bundled texts in full.
+                val original=activity.assets.open(asset).bufferedReader().use {it.readText()}
+                val expectedNotice=if(asset=="legal/THIRD_PARTY_NOTICES.txt")
+                    original+"\n\n===== Source-supported translation additions (2026-11-14) =====\n"+
+                        activity.assets.open("legal/SOURCE_SUPPORTED_TRANSLATIONS.txt").bufferedReader().use {it.readText()}
+                else original
+                assertEquals(expectedNotice,body.text.toString())
                 assertTrue(texts(notice.window!!.decorView).any {it.text.toString()==expected.getValue(titleKey)})
                 capture(notice,"notice-$titleKey",2f,listOf(
                     notice.window!!.decorView.findViewWithTag<TextView>("terms_copy"),

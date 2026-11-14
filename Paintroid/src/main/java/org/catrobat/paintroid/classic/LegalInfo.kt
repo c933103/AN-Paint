@@ -66,9 +66,17 @@ object LegalInfo {
     }
     fun buildAboutDialog(activity: Activity): Dialog = termsDialog(activity,ui(R.string.ui_about_copyright_licence),aboutText(activity))
     fun showAbout(activity: Activity) { buildAboutDialog(activity).show() }
+    /** Compose displayed notices without duplicating the unchanged aggregate asset. */
+    fun assetText(activity: Activity,asset: String): String {
+        fun read(path: String)=activity.assets.open(path).bufferedReader().use { it.readText() }
+        val text=read(asset)
+        return if(asset=="legal/THIRD_PARTY_NOTICES.txt")
+            text+"\n\n===== Source-supported translation additions (2026-11-14) =====\n"+
+                read("legal/SOURCE_SUPPORTED_TRANSLATIONS.txt")
+        else text
+    }
     fun showAsset(activity: Activity,title: String,asset: String) {
-        val text=activity.assets.open(asset).bufferedReader().use { it.readText() }
-        termsDialog(activity,title,text).show()
+        termsDialog(activity,title,assetText(activity,asset)).show()
     }
     /** Keep the codec overview identical to the individual, verbatim bundled notices. */
     fun codecNotices(activity: Activity): String = listOf(

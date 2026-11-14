@@ -368,6 +368,36 @@ class WorkspaceRefinementTest {
         val local=Rect();assertTrue(actions.getGlobalVisibleRect(local));assertEquals(actions.height,local.height())
         render(root,"licence-landscape.png");root.findViewWithTag<View>("terms_done").performClick();assertFalse(dialog.isShowing)
     }
+    @Test fun thirdPartyNoticesDisplayAndCopyExactOriginalAndSupplement() {
+        fun read(path: String)=activity.assets.open(path).bufferedReader().use { it.readText() }
+        val expected=read("legal/THIRD_PARTY_NOTICES.txt")+
+            "\n\n===== Source-supported translation additions (2026-11-14) =====\n"+
+            read("legal/SOURCE_SUPPORTED_TRANSLATIONS.txt")
+        assertEquals(expected,LegalInfo.assetText(activity,"legal/THIRD_PARTY_NOTICES.txt"))
+        LegalInfo.showAsset(activity,"Third-party notices","legal/THIRD_PARTY_NOTICES.txt")
+        settle()
+        val dialog=ShadowDialog.getLatestDialog()
+        val root=dialog.window!!.decorView
+        assertEquals(expected,root.findViewWithTag<TextView>("terms_text").text.toString())
+        root.findViewWithTag<View>("terms_copy").performClick()
+        val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        assertEquals(expected,clipboard.primaryClip!!.getItemAt(0).text.toString())
+        dialog.dismiss()
+    }
+    @Test fun ordinaryLegalAssetDisplayAndCopyRemainVerbatim() {
+        val path="legal/AGPL-3.0.txt"
+        val expected=activity.assets.open(path).bufferedReader().use { it.readText() }
+        assertEquals(expected,LegalInfo.assetText(activity,path))
+        LegalInfo.showAsset(activity,"GNU AGPL v3",path)
+        settle()
+        val dialog=ShadowDialog.getLatestDialog()
+        val root=dialog.window!!.decorView
+        assertEquals(expected,root.findViewWithTag<TextView>("terms_text").text.toString())
+        root.findViewWithTag<View>("terms_copy").performClick()
+        val clipboard=activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        assertEquals(expected,clipboard.primaryClip!!.getItemAt(0).text.toString())
+        dialog.dismiss()
+    }
     @Test fun allBundledFontsLoadAndDropdownNamesUseTheirOwnTypeface() {
         val catalog=FontCatalog(activity)
         val inventory=activity.assets.open("fonts/inventory.json").bufferedReader().use {JSONArray(it.readText())}

@@ -108,7 +108,12 @@ class LocalizedDialogDeviceTest {
         tapRow(menu,onMain {activity.getString(entry.first)})
         await("notice opened") {termsRoot()!=null}
         val root=onMain {termsRoot()!!}
-        val expected=context.assets.open(entry.third).bufferedReader().use {it.readText()}
+        // Read expected assets independently of LegalInfo's production composition.
+        val original=context.assets.open(entry.third).bufferedReader().use {it.readText()}
+        val expected=if(entry.third=="legal/THIRD_PARTY_NOTICES.txt")
+            original+"\n\n===== Source-supported translation additions (2026-11-14) =====\n"+
+                context.assets.open("legal/SOURCE_SUPPORTED_TRANSLATIONS.txt").bufferedReader().use {it.readText()}
+        else original
         fun assertNotice()=onMain {
             assertEquals(activity.getString(entry.second),root.findViewWithTag<TextView>("terms_title").text.toString())
             assertEquals("Actual menu callback loaded the bundled notice",expected,
