@@ -1,0 +1,258 @@
+{
+  "base": "7795af7c0c821a16aed2b9965c8394273a0e8a99",
+  "rows": [
+    {
+      "tag": "ku",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "1d1b7c64722603058ba439297ba808e577faf2d0"
+    },
+    {
+      "tag": "ckb",
+      "old": 409,
+      "new": 719,
+      "added": 310,
+      "canonical": 719,
+      "direct_kotlin_refs": 265,
+      "no_direct_kotlin_refs": 45,
+      "blob": "2443662563803e56f6726ab4955dcdfdd5fbc7c6"
+    },
+    {
+      "tag": "ps",
+      "old": 414,
+      "new": 719,
+      "added": 305,
+      "canonical": 719,
+      "direct_kotlin_refs": 260,
+      "no_direct_kotlin_refs": 45,
+      "blob": "bbee47c1612e879489cda01094237d6eb10b0961"
+    },
+    {
+      "tag": "ug",
+      "old": 408,
+      "new": 719,
+      "added": 311,
+      "canonical": 719,
+      "direct_kotlin_refs": 266,
+      "no_direct_kotlin_refs": 45,
+      "blob": "a4f621dfd2648366f6a4c147479704db5ed3e294"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+ckb/strings.xml",
+    "Paintroid/src/main/res/values-b+ku/strings.xml",
+    "Paintroid/src/main/res/values-b+ug/strings.xml",
+    "Paintroid/src/main/res/values-ps/strings.xml"
+  ],
+  "tree": "324387205dc7c628ab3d51005ef0d4be7aaf8617",
+  "head": "81b6c885adede8e04cdd2cdea826e35c3915959d",
+  "independent_reviews": [
+    {
+      "reviewer": "independent-ku-ckb",
+      "status": "accepted_after_corrections",
+      "method": "Read every one of 622 added values against English, including all six complete manuals; inspected current action captions and reviewed final correction deltas. No source edits by reviewer.",
+      "rows": [
+        {
+          "tag": "ku",
+          "added": 312,
+          "originals_preserved": 407,
+          "total": 719,
+          "blob": "1d1b7c64722603058ba439297ba808e577faf2d0",
+          "full_manuals_read": 3,
+          "complete_validator_errors": []
+        },
+        {
+          "tag": "ckb",
+          "added": 310,
+          "originals_preserved": 409,
+          "total": 719,
+          "blob": "2443662563803e56f6726ab4955dcdfdd5fbc7c6",
+          "full_manuals_read": 3,
+          "complete_validator_errors": []
+        }
+      ],
+      "findings_resolved": [
+        "ku horizontal asoyi rather than ordinary asayi",
+        "ku radius current caption and original pixel dimensions",
+        "ckb decoded bitmap precision in three memory strings",
+        "ckb Same width/height, Unplace, Reset crop and Drawing action captions",
+        "ckb original pixel dimensions and transparent/opaque meaning",
+        "ckb default colour, spectrum, font licence and Black/white caption alignment",
+        "ckb accidental ambiguous-file opacity substitution caught and reverted"
+      ],
+      "tests": {
+        "command": "PYTHONPATH=tools python -m unittest test_translations test_localized_help test_help_commons_provider",
+        "count": 53,
+        "result": "PASS",
+        "seconds": 5.654,
+        "log": "/tmp/locale-nineteenth/independent-ku-ckb-tests.log"
+      },
+      "limits": "AI/source review only. Not native-speaker, user wording acceptance or device/RTL/font visual certification. No publication or merge performed."
+    },
+    {
+      "reviewer": "independent AI source reviewer",
+      "scope": {
+        "ps": 305,
+        "ug": 311
+      },
+      "full_value_read": true,
+      "manuals_read": 6,
+      "structural": {
+        "ps": {
+          "base_count": 414,
+          "new_count": 305,
+          "total": 719,
+          "changed_originals": [],
+          "blob": "bbee47c1612e879489cda01094237d6eb10b0961",
+          "errors": []
+        },
+        "ug": {
+          "base_count": 408,
+          "new_count": 311,
+          "total": 719,
+          "changed_originals": [],
+          "blob": "a4f621dfd2648366f6a4c147479704db5ed3e294",
+          "errors": []
+        }
+      },
+      "caption_checks": [
+        "Draw/Drawing/Selection/Insert current categories",
+        "Navigate return to Draw again",
+        "Strength and Radius current preserved captions",
+        "Use image and Copy credit",
+        "File/About/Image credits provider routes"
+      ],
+      "semantic_checks": [
+        "snapping overlap rejection versus exact-coordinate overlap permission",
+        "normalization and retained crop/aspect/source",
+        "opaque document versus floating alpha and Commons white backing",
+        "autosave draft versus save/export/share destination",
+        "selection transforms and masks",
+        "codec placeholders, sizes and literal data URL",
+        "CC BY-SA adaptations, creator notices, Irasutoya21 and CC0 distinctions"
+      ],
+      "findings": [
+        {
+          "locale": "ug",
+          "key": "ui_the_arrow_on_the_left_directly_below_the",
+          "issue": "existing pixels not scaled rendered as unchanged ratio",
+          "status": "resolved and independently verified exact single-string substitution",
+          "accepted_text": "بار پىكسېللارنىڭ چوڭلۇقى ئۆزگەرتىلمەيدۇ"
+        }
+      ],
+      "tests": {
+        "command": "PYTHONPATH=tools python -m unittest test_translations test_localized_help test_help_commons_provider",
+        "passed": 53,
+        "seconds": 5.333,
+        "log": "independent-ps-ug-tests-final.log"
+      },
+      "limits": [
+        "AI linguistic and source review, not native speaker acceptance",
+        "No Android rendering, RTL layout, font shaping, screen-reader or device verification",
+        "No claim that direct catalogue presence certifies wording quality or overall171-language completion"
+      ],
+      "status": "accepted after narrow correction",
+      "final_verification": "Compared all311 new values with reviewer snapshot: only exact requested substring in full editor manual changed. Original408 Uyghur elements preserved; complete validator clean. Pashto blob unchanged."
+    }
+  ],
+  "author_reports": [
+    {
+      "tag": "ku",
+      "added": 312,
+      "originals": 407,
+      "total": 719,
+      "blob": "1d1b7c64722603058ba439297ba808e577faf2d0",
+      "tests": "53 provider/help/translation tests passed; see ku-tests.log",
+      "review": "Full 312 additions and three manuals authored. Independent review corrections applied: horizontal asoyî, radius live caption, original pixel-dimension precision. Final independent reading pending.",
+      "limits": "AI/source review; not native-speaker, owner wording acceptance, or device certification.",
+      "changed_files": [
+        "Paintroid/src/main/res/values-b+ku/strings.xml"
+      ]
+    },
+    {
+      "locale": "ckb",
+      "base_entries": 409,
+      "added_entries": 310,
+      "total_entries": 719,
+      "originals_preserved": true,
+      "complete_catalogue_errors": [],
+      "tests": "53 passed: test_translations, test_localized_help, test_help_commons_provider",
+      "manuals": "Full assembly guide, full main manual, short help translated; current live captions reconciled",
+      "limits": "AI-authored and independent AI linguistic/source review; not native acceptance or on-device RTL/rendering verification",
+      "independent_review": "awaiting final confirmation from kurdish_review"
+    },
+    {
+      "locale": "ps",
+      "original_entries": 414,
+      "new_entries": 305,
+      "total_entries": 719,
+      "originals_preserved": true,
+      "complete_validation_errors": [],
+      "tests": {
+        "suite": "test_translations test_localized_help test_help_commons_provider",
+        "passed": 53,
+        "failed": 0,
+        "seconds": 5.214
+      },
+      "git_blob_sha": "bbee47c1612e879489cda01094237d6eb10b0961",
+      "independent_review": "pending",
+      "verification_limits": [
+        "AI-authored and source-reviewed Pashto, not native-speaker acceptance",
+        "No device font/layout or runtime certification"
+      ],
+      "notes": [
+        "Full quick help, user manual, assembly manual included",
+        "Existing gallery captions used verbatim in explanatory instructions",
+        "Watercolor help formatted=false because referenced live Strength (%) caption introduces literal percent"
+      ]
+    },
+    {
+      "locale": "ug",
+      "base_commit": "7795af7c",
+      "file": "Paintroid/src/main/res/values-b+ug/strings.xml",
+      "original_resources_preserved": 408,
+      "added_resources": 311,
+      "total_resources": 719,
+      "blob": "a4f621dfd2648366f6a4c147479704db5ed3e294",
+      "author_review": "All 311 new values authored from English canonical source in Uyghur Arabic script, including all three complete manuals. Original XML elements preserved exactly, no existing wording changed.",
+      "caption_alignment": [
+        "ui_strength literal percent retained with formatted=false",
+        "ui_draw_again actual continue-drawing caption used",
+        "ui_lock_proportions actual immutable-caption wording used",
+        "ui_radius_px actual long radius caption used",
+        "ui_image_assembly actual legacy caption used in navigation paths",
+        "ui_about_credits23 and Image credits paths aligned",
+        "ui_load_image actual caption retained in manual path"
+      ],
+      "semantic_review": [
+        "Assembly snapping versus exact-position overlaps, normalization, unplace descendants and memory floor distinction",
+        "Opaque canvas versus inserted alpha; Commons white background and source files unchanged",
+        "Autosave draft versus explicit save, export/share destination, recovery and undo history",
+        "Provider licences CC BY-SA 4.0, CC0, Irasutoya21 threshold and retained creator notices",
+        "Formatting placeholders, PNG/Base64 literal, GIF limit, format and source credit semantics"
+      ],
+      "validation": {
+        "complete_catalogue_errors": [],
+        "command": "PYTHONPATH=tools python -m unittest test_help_commons_provider test_localized_help test_translations",
+        "tests": 53,
+        "seconds": 5.83,
+        "result": "passed"
+      },
+      "limitations": [
+        "AI-authored and source/static validation only. Independent review pending.",
+        "No native-speaker acceptance or device glyph/layout verification claimed."
+      ],
+      "files_changed_in_scope": [
+        "Paintroid/src/main/res/values-b+ug/strings.xml"
+      ],
+      "independent_review_correction": "Replaced ratio-unchanged wording in canvas-bounds manual with explicit existing pixels are not resized/scaled, per independent reviewer. Originals preserved; final 53 tests passed."
+    }
+  ],
+  "remote_verification": "Local git write-tree equals remote recursive tree,1291 leaves,modes; no unstaged diff or untracked source.",
+  "tests": "Final53 affected passed; full892 passed163.836s",
+  "limits": "AI/source not native/owner/device acceptance. No release; holds unchanged."
+}
