@@ -1,0 +1,189 @@
+{
+  "base": "212389b719b8e834e569e77f174b4259eb2921b7",
+  "rows": [
+    {
+      "tag": "mai",
+      "old": 409,
+      "new": 719,
+      "added": 310,
+      "canonical": 719,
+      "direct_kotlin_refs": 265,
+      "no_direct_kotlin_refs": 45,
+      "blob": "096d3503587412177d82bae55b0648ed12cab805"
+    },
+    {
+      "tag": "sa",
+      "old": 406,
+      "new": 719,
+      "added": 313,
+      "canonical": 719,
+      "direct_kotlin_refs": 268,
+      "no_direct_kotlin_refs": 45,
+      "blob": "b43411aba6dcce1823ab415ee714af99b8e294b0"
+    },
+    {
+      "tag": "mww",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "e4ffc3292ca682de589cddd0b949321418f6f069"
+    },
+    {
+      "tag": "yi",
+      "old": 407,
+      "new": 719,
+      "added": 312,
+      "canonical": 719,
+      "direct_kotlin_refs": 267,
+      "no_direct_kotlin_refs": 45,
+      "blob": "02d7c3664d1041030550bbd951044556ca2d0f03"
+    }
+  ],
+  "changed_files": [
+    "Paintroid/src/main/res/values-b+mai/strings.xml",
+    "Paintroid/src/main/res/values-b+mww/strings.xml",
+    "Paintroid/src/main/res/values-b+sa/strings.xml",
+    "Paintroid/src/main/res/values-b+yi/strings.xml"
+  ],
+  "pr": 463,
+  "head": "9cf191cd630f205164bab1a098f3fc6ec590acaa",
+  "tree": "d3ae368d6b5420eb69f977e7a3dbeb0fbd63adf4",
+  "verification": {
+    "affected": "53 passed after percent-attribute and wording corrections",
+    "full_host": "892 passed in158.991s",
+    "initial_failure": "53 affected: one global validation failure containing8missingformatted=false attributes in new Sanskrit strings; fixed attributes, testsunchanged",
+    "remote_tree": "complete staged checkout git write-tree equalsremote tree; allpaths,modes,contents"
+  },
+  "reviews": {
+    "indic-review.json": {
+      "review_type": "independent AI/source semantic review, not native speaker/device certification",
+      "mai": {
+        "read_additions": 310,
+        "full_manuals_read": 3,
+        "status": "accepted after verified corrections",
+        "findings": [
+          {
+            "key": "formats22_pdf_encrypted",
+            "old_fragment": "असुरक्षित प्रति",
+            "proposed_fragment": "पासवर्ड-सुरक्षाक बिना प्रति",
+            "reason": "Describe removal of password protection, not unsafe copy."
+          },
+          {
+            "key": "ui_tap_vertices_then_double_tap_the_last_vertex",
+            "old_fragment": "बहुभुज बंद करू बंद करू",
+            "proposed_fragment": "«बहुभुज बंद करू» विकल्प बंद करू",
+            "reason": "Disambiguate control caption from switch-off instruction."
+          }
+        ],
+        "corrections_verified": true
+      },
+      "sa": {
+        "read_additions": 313,
+        "full_manuals_read": 3,
+        "validation_errors": [],
+        "status": "accepted after verified corrections",
+        "findings": [
+          {
+            "keys": [
+              "ui_the_arrow_on_the_left_directly_below_the"
+            ],
+            "reason": "Navigate return caption must match actual ui_draw_again",
+            "old_fragment": "सञ्चरतु-विकल्पेषु आलिखतु इति पुनः चिनोतु",
+            "proposed_fragment": "सञ्चरतु-विकल्पेषु आलेखनम् अनुवर्तयतु इति पुनः चिनोतु"
+          },
+          {
+            "keys": [
+              "ui_the_arrow_on_the_left_directly_below_the",
+              "ui_help23"
+            ],
+            "reason": "Color tab caption must use actual वर्णः, not वर्णाः"
+          },
+          {
+            "keys": [
+              "ui_help23"
+            ],
+            "old_fragment": "वर्णं प्रयुङ्क्ताम् इति तत् पुष्णाति",
+            "proposed_fragment": "वर्णं प्रयुङ्क्ताम् इति तत् दृढीकरोति",
+            "reason": "Confirms rather than nourishes."
+          },
+          {
+            "keys": [
+              "ui_serif",
+              "ui_sans_serif",
+              "ui_sans_condensed",
+              "ui_sans_light",
+              "ui_sans_medium",
+              "ui_sans_thin"
+            ],
+            "reason": "Serif is not the Indic headline (शिरोरेखा); use identifiable font-family loans rather than misleading script property.",
+            "proposed_values": [
+              "सेरिफ्",
+              "सान्स सेरिफ्",
+              "संकीर्णं सान्स",
+              "लघु सान्स",
+              "मध्यमं सान्स",
+              "तनु सान्स"
+            ]
+          }
+        ],
+        "limits": "Independent AI/source review; no native-speaker or physical-device/layout certification.",
+        "corrections_verified": true,
+        "originals_preserved": 406
+      }
+    },
+    "hmong-yiddish-review.json": {
+      "review_type": "independent AI/source-language semantic review",
+      "catalogues": [
+        {
+          "tag": "mww",
+          "new_values_read": 312,
+          "full_manuals_read": 3,
+          "original_elements_preserved": 407,
+          "total_resources": 719,
+          "validation_errors": [],
+          "sha256": "e6595ed4e271c4e54e30be8c0ee85770d045b28ca7abe89b719f4bee4f5eb7ba",
+          "acceptance": "accepted within stated review limits",
+          "checked": [
+            "Every new value compared with canonical English",
+            "Three full manuals including assembly and compact help",
+            "Actual current captions for menus, selection/insert, radius, curve/polygon, crop, About and licence controls",
+            "Decoded memory versus encoded formats, source-file preservation, opaque versus transparent composition, undo/autosave, selected-image movement and overlap boundaries",
+            "Placeholder/format and licence/attribution boundaries"
+          ]
+        },
+        {
+          "tag": "yi",
+          "new_values_read": 312,
+          "full_manuals_read": 3,
+          "original_elements_preserved": 407,
+          "total_resources": 719,
+          "validation_errors": [],
+          "sha256": "c0a61ca493115c4687e340e270ea9cc5316f9a0ca92963eb01f5560256590647",
+          "acceptance": "accepted within stated review limits",
+          "checked": [
+            "Every new value compared with canonical English",
+            "Three full manuals including assembly and compact help",
+            "Actual current captions for menus, selection/insert, radius, curve/polygon, crop, About and licence controls",
+            "Decoded memory versus encoded formats, source-file preservation, opaque versus transparent composition, undo/autosave, selected-image movement and overlap boundaries",
+            "Placeholder/format and licence/attribution boundaries"
+          ]
+        }
+      ],
+      "findings": [],
+      "limits": [
+        "Not native-speaker certification",
+        "No physical device, RTL rendering, glyph shaping or layout verification",
+        "No ownership/acceptance claim beyond source review"
+      ]
+    }
+  },
+  "limits": [
+    "AI/source linguistic acceptance only",
+    "No native speaker certification",
+    "No physical device or layout acceptance",
+    "Exact head CI/Codex pending"
+  ]
+}
