@@ -1,0 +1,96 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/478",
+  "base": "d4ac0ee2486955dc3c47c1d0dafbf2940886e32f",
+  "head": "cd244b8fb0d616e58968c174d4cae01d0887ab98",
+  "tested_checkout": "f12d67c95047cddc99456208c357a8e32bdb20c1",
+  "tree": "c82f3db7b5ea7228c0eb823666941d5793228bac",
+  "merge": "e79f2ff63176d436361104c37132ba96762a7071",
+  "merged_at": "2026-11-15T06:22:37Z",
+  "changes": {
+    "Toki Pona": 15,
+    "Northern Sami": 31,
+    "active_consumer_entries": 31,
+    "catalogue_only_entries": 15,
+    "previous_elements_preserved": 985
+  },
+  "initial_research_review_evidence": "9a7691deac54c63c591948838a41740730f84757:verification/translations/2026-11-15/tok-sami-controls",
+  "review": {
+    "independent_model_full_value_review": "43 accepted unchanged, 3 revised and accepted, 2 uncertain Sami alignment terms rejected and left as fallback",
+    "codex_comment": 6890011830,
+    "exact_head_code_review": "completed, no findings",
+    "security_review": "completed, gate disabled; null findings state not represented as a clean finding verdict"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.894,
+    "diff_check": "passed"
+  },
+  "pr_ci": {
+    "run": 43683050558,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests_run": 892,
+      "skipped": 2,
+      "seconds": 244.433,
+      "result": "OK"
+    },
+    "jvm": {
+      "tests": 1411,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lint": {
+      "issues_by_severity": {},
+      "successful_job": true
+    },
+    "exact_script_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true
+    }
+  },
+  "postmerge": {
+    "run": 43685152848,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "6 skipped; not new executions",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "archive_sha256": "cddaf0aecb01915bf01e6c6387d22fa29fb2352b686751afea8ea1c46ba108fb",
+    "artifact_id": 14149902820,
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "source": "e79f2ff63176d436361104c37132ba96762a7071",
+    "tree": "c82f3db7b5ea7228c0eb823666941d5793228bac",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117222,
+    "total": 122949,
+    "missing": 5727,
+    "complete": 153,
+    "partial": 18,
+    "empty": 0
+  },
+  "limits": [
+    "Model linguistic confidence is bounded; no native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Other 16 partial locales were structurally inventoried, not all linguistically re-reviewed.",
+    "Two Sami alignment words and other uncertain candidates remain fallback, not blanket language holds.",
+    "The Ayacucho dictionary metadata/PDF encountered a verification wall; no entry inspected, no candidate accepted and no bypass.",
+    "Python runner reported OK with 2 skipped tests; this is not a claim that all 892 test bodies executed.",
+    "Build/source and test-APK archive bytes were not downloaded independently by this worker; their byte/source binding was verified by successful hosted composition/preflight.",
+    "All holds, release destinations and separate #422 evidence operation remain untouched; no Work task was started."
+  ]
+}
