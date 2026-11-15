@@ -1,0 +1,209 @@
+{
+  "status": "Merged and actual-develop qualified through bounded prior-environment reuse",
+  "pr": "https://github.com/c933103/AN-Paint/pull/496",
+  "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+  "head": "a743ef15f20568b77bd01a765b56bbe0d20a536c",
+  "tested_checkout": "bd7fa9596187d1a435e8302b2013c2a23bbeb79c",
+  "tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+  "merge": "edcab920e818790445782aeed788d30c15742ae9",
+  "merged_at": "2026-11-15T20:06:15Z",
+  "changes": {
+    "new_values": {
+      "Toki Pona": 6,
+      "South Bolivian Quechua": 6
+    },
+    "existing_repairs": 0,
+    "touched_total": 12,
+    "active": 12,
+    "catalogue_only": 0,
+    "resource_tiers": {
+      "P2": 12
+    },
+    "old_elements_total": 1009,
+    "old_elements_unchanged": 1009
+  },
+  "review": {
+    "current_proposed_keys": 12,
+    "accepted_unchanged": 10,
+    "revised": 2,
+    "revision_author_agreed": true,
+    "full_value_model_review": "passed for all twelve applied values",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6900010514,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "3469061413b4e77e51bbaea1cbfd3fda39d2587f",
+    "path": "verification/translations/2026-11-15/toki-bolivian-assembly"
+  },
+  "local_checks": {
+    "executed_base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "executed_candidate_tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 9.27,
+    "result": "pass",
+    "log_sha256": "706ebd9c32b7bdc8283d7d72711044a2676314d7c8caf9d22cd9f51162599d2e",
+    "diff_check": "pass",
+    "scope": "Affected local host tests on current integrated base; Android/runtime qualification requires exact-head hosted CI."
+  },
+  "source_change_UI_scan": {
+    "checked_change": 495,
+    "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "previous_base": "e42d7cf45ed66c1295e36e5de1786d3ad02eb656",
+    "changed_paths_sha256": {
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/CanvasDraftGeometry.kt": "f39c67ab3f1edcbb977dcf4bb00ed16ef1e3d666d436370bf3f48039fe8237c3",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt": "134f16760ca4a23992cedcb5009278b628692e171d4981eecaa38d31fcb8af10",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt": "f756c7306c570a857b9dc12eda3e3bd5f82b63162482f015fdb4e09d583bc12d",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/CanvasRecoveryAutosaveTest.kt": "efadd69ea7184bf775f711b070aae808ce5fa2f1cd51b6846cca0364d4a39c07"
+    },
+    "resource_changes": [],
+    "new_diagnostic_literal": "Non-finite canvas draft point",
+    "conclusion": "No new displayed translation item found. Worker geometry validation throws before document/canvas adoption; existing catch discards exception text and uses existing resource-based preserve/recovery notices. Direct PaintCanvas restoration uses the same parser before state mutation.",
+    "anchors": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CanvasDraftGeometry.kt",
+        "line": 19,
+        "text": "require(x.isFinite() && y.isFinite()) { \"Non-finite canvas draft point\" }",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/CanvasDraftGeometry.kt#L19"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+        "line": 59,
+        "text": "recovered.optJSONObject(\"canvas\")?.let {CanvasDraftGeometry.read(it,draft.image.width,draft.image.height)}",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L59"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+        "line": 102,
+        "text": "} catch (_: Exception) { recovered=null;preserveFailedDraft(UiMessage.Resource(R.string.ui_the_previous_draft_could_not_be_restored)) }",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L102"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "line": 473,
+        "text": "val geometry=CanvasDraftGeometry.read(state,document.bitmap.width,document.bitmap.height)",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L473"
+      }
+    ],
+    "limits": [
+      "Source-flow localization review only; runtime regression qualification belongs to #495.",
+      "No claim of broad scalar-metadata recovery safety or rollback behavior beyond the changed geometry path."
+    ]
+  },
+  "pr_ci": {
+    "run": 43752613589,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 242.218,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1432,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 161,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43756144271,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14178800394,
+    "archive_bytes": 10871,
+    "archive_sha256": "29370e4cf78c85e23c77b1df975d994369acd3f5b367d47facd91a8493cb282d",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "Actual clean merged source direct-presence recount",
+    "merge": "edcab920e818790445782aeed788d30c15742ae9",
+    "tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117603,
+    "missing": 5346,
+    "complete": 153,
+    "partial": 18,
+    "counting_scope": "718 translatable string keys plus one translatable plural key per catalogue; presence is not linguistic completeness."
+  },
+  "resource_priority_impact": {
+    "changed_total": 12,
+    "changed_by_tier": {
+      "P2": 12
+    },
+    "active": 12,
+    "catalogue_only": 0,
+    "scope": "All twelve are new current P2 values with direct consumers; no promotions or manifest edits."
+  },
+  "reviewed_revisions": {
+    "assessments": [
+      {
+        "locale": "tok",
+        "key": "ui_that_arrangement_overlaps_another_image_use_a_different",
+        "decision": "agree",
+        "final_value": "nasin ni la kipisi sitelen tu li lon ma sama. o kepeken poka pini ante. nasin ante la o weka e sitelen pi awen wan tan ma pali lon tenpo open.",
+        "backtranslation": "In this arrangement, portions of two images occupy the same area. Use another edge. Alternatively, first remove the connected images from the workspace.",
+        "rationale": "Agree after independent author reassessment. kipisi sitelen tu makes the overlapping objects image portions rather than asserting equality of entire image bounds; in this arrangement context it expresses partial intersection as well as complete overlap. nasin ante la explicitly makes unplacing an alternative to another edge, not a subsequent mandatory operation. tan ma pali retains removal from placement rather than deletion of source or removal from the input tray. lon tenpo open applies first to unplacing in that alternative. The message is scoped to nasin ni, matching snapped/new attachment validation and not prohibiting allowed absolute-position overlap. No source/consumer semantic boundary or formatting changed.",
+        "provenance": "Reviewer-authored original clarification independently assessed by original author; no third-party sentence copied."
+      },
+      {
+        "locale": "quh",
+        "key": "ui_assembly_position_nonnegative",
+        "decision": "agree",
+        "final_value": "Xpaq chaymanta Ypaq 0manta 2147483647kama junt\\'a yupaykunata qillqay.",
+        "backtranslation": "For X and Y, enter whole numbers from 0 to 2147483647.",
+        "rationale": "The revision better describes a property of the number rather than its written notation. Bolivian junt'a has the complete/whole sense; as the attributive modifier of yupaykunata in this bounded numeric instruction it expresses integral numbers. This is a compositional judgment, not acceptance merely because junt'a pixelkunata exists in the catalogue. Xpaq and Ypaq mark the two coordinate fields; chaymanta joins them; -manta and -kama delimit the inclusive interval; plural accusative yupaykunata is the object of imperative qillqay. Both endpoints, including zero, remain explicit. placementPixels tests parsed finite numeric value against floor and the 0..Int.MAX_VALUE bounds, rather than banning a decimal separator: integral values represented as 0.0 are not excluded by this wording. No arbitrary fractional rounding, positive-only restriction or automatic placement success is promised.",
+        "format_checks": {
+          "exact_review_value_preserved": true,
+          "android_apostrophe_escaped": true,
+          "no_placeholders_added": true,
+          "NFC": true
+        },
+        "limits": [
+          "Original complete-value model assessment, not native-human or externally certified specialist terminology.",
+          "No new primary-source lexical claim; existing same-variety whole-pixel usage is corroborating context only.",
+          "No original packet, app source, test or remote mutation."
+        ]
+      }
+    ],
+    "original_receipts": {
+      "tok-revision-assessment.json": "6acb77ae8c320eb8013b50475b5d8a852df13e208df6550fa9a2036765e25521",
+      "quh-revision-assessment.json": "c5db130432d14fbc0ea8663f711053921634370da6daf731a01f2c90562f76c3"
+    }
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/glyph/TalkBack acceptance.",
+    "Primary lexical evidence corroborates terms, not whole sentences; canonical anchors establish consistency, not automatic acceptance.",
+    "Original specific deferrals including directed attachment cycles, cursor-pan meaning and Toki stored-slot wording remain excluded, not language-wide holds.",
+    "Python totals include skipped bodies; their identities are not inferred from non-verbose output.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified byte/source binding.",
+    "All holds, separate #422 approval operation, #330, Work tasks and release destinations remained untouched."
+  ]
+}
