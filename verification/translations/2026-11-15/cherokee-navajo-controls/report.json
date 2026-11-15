@@ -1,0 +1,263 @@
+{
+  "status": "source published and verified; PR/hosted qualification not yet started",
+  "base": "758eaece5398fc2f85e504c45a4b300008a30018",
+  "head": "ed888fbf403cab8c3069a7b1f981aeb291871350",
+  "tree": "4390cc10006dd864a0fe151f09abfb02252c97c2",
+  "branch": "localization/p2-cherokee-navajo-controls-20261115",
+  "reconciliation": {
+    "base": "758eaece5398fc2f85e504c45a4b300008a30018",
+    "tree": "f1ff2572bd3e479ad592ea938697fa88f584f088",
+    "baseline_leaves": 1310,
+    "all_baseline_files_modes_blobs_match": true,
+    "prepared_catalogue_hashes_unchanged": true,
+    "prepared_evidence_commit": "51c6a89016923f0a60916f3f288338ed26341d20",
+    "prepared_evidence_path": "verification/translations/2026-11-15/cherokee-navajo-next-preparation/research-review.zip",
+    "open_prs": [
+      {
+        "number": 226,
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence",
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "ref": "experiment/jvm-two-fork-20261029"
+      },
+      {
+        "number": 159,
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression",
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6",
+        "ref": "verification/czech-active-workflows-20261021"
+      },
+      {
+        "number": 88,
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter",
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884",
+        "ref": "tracking/bug-gallery-linkage-colour-diagnosis-20261015"
+      },
+      {
+        "number": 87,
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host",
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1",
+        "ref": "tracking/bug-gallery-redirect-rejection-diagnosis-20261015"
+      },
+      {
+        "number": 75,
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement",
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61",
+        "ref": "tracking/bug-french-crop-attached-image-referent-20261015"
+      },
+      {
+        "number": 72,
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?",
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8",
+        "ref": "tracking/bug-generic-busy-draft-saving-message-20261015"
+      },
+      {
+        "number": 71,
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling",
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457",
+        "ref": "tracking/bug-commons-resize-background-hint-20261015"
+      },
+      {
+        "number": 69,
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF",
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb",
+        "ref": "tracking/bug-tagged-colour-format-warning-20261015"
+      },
+      {
+        "number": 56,
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices",
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332",
+        "ref": "tracking/language-translation-progress-20261012"
+      }
+    ],
+    "tracker_latest_comment": 6892343563,
+    "owner_reconciliation": "No competing open Cherokee/Navajo source PR. Existing #56 tracking, #159 Czech hold, #226 experiment and bug trackers unchanged. Parent assigned this follow-up; no Work task.",
+    "holds": "All holds unchanged; #422 pending evidence operation and Atlas #330 untouched; no release."
+  },
+  "applied": {
+    "base": "758eaece5398fc2f85e504c45a4b300008a30018",
+    "review_pairs": [
+      [
+        "cherokee-next-proposals.json",
+        "cherokee-next-independent-review.json"
+      ],
+      [
+        "navajo-next-proposals.json",
+        "navajo-next-independent-review.json"
+      ],
+      [
+        "cherokee-supplemental-proposals.json",
+        "cherokee-supplemental-review.json"
+      ],
+      [
+        "navajo-supplemental-proposals.json",
+        "navajo-supplemental-review.json"
+      ]
+    ],
+    "source_anchors_revalidated": 29,
+    "consumer_anchors_revalidated": 12,
+    "proposed": 13,
+    "accepted": 13,
+    "accepted_unchanged": 13,
+    "revised": 0,
+    "withheld": [],
+    "active": 10,
+    "catalogue_only": 3,
+    "applied": {
+      "chr": {
+        "added": 5,
+        "old_elements_preserved": 381,
+        "total": 386,
+        "sha256": "133b9c9264b2ae382647800665704390f4c0acf53af82d2c3ab065de9e2a7388",
+        "path": "Paintroid/src/main/res/values-b+chr/strings.xml"
+      },
+      "nv": {
+        "added": 8,
+        "old_elements_preserved": 382,
+        "total": 390,
+        "sha256": "ac8a152aa895b9c992c8a18a88b84bf91c6bcbe187181674e780d03758f73b5e",
+        "path": "Paintroid/src/main/res/values-b+nv/strings.xml"
+      }
+    }
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.567,
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "758eaece5398fc2f85e504c45a4b300008a30018",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 13,
+        "prior_elements_attributes_text_and_order_preserved": 763,
+        "only_expected_two_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 29,
+        "prepared_consumer_lines_revalidated": 12,
+        "fresh_main_source_active": 10,
+        "fresh_main_source_catalogue_only": 3,
+        "all_13_English_values_match": true
+      },
+      "applied": {
+        "chr": {
+          "added": 5,
+          "old_elements_preserved": 381,
+          "total_elements": 386,
+          "sha256": "133b9c9264b2ae382647800665704390f4c0acf53af82d2c3ab065de9e2a7388"
+        },
+        "nv": {
+          "added": 8,
+          "old_elements_preserved": 382,
+          "total_elements": 390,
+          "sha256": "ac8a152aa895b9c992c8a18a88b84bf91c6bcbe187181674e780d03758f73b5e"
+        }
+      },
+      "fresh_consumer_paths": {
+        "chr/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "chr/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nv/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nv/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "nv/ui_save_as_webp": [],
+        "nv/ui_save_as_heic": [],
+        "nv/ui_save_as_avif": [],
+        "chr/ui_width_in": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt"
+        ],
+        "chr/ui_wheel": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "chr/ui_copper": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "nv/ui_gold": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "nv/ui_silver": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "nv/ui_copper": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ]
+      },
+      "review_file_sha256": {
+        "cherokee-next-independent-review.json": "1708518cc8a1183ed9c01ac0498279a45c2cbd574563f267ff021b4d9a1fd1e5",
+        "navajo-next-independent-review.json": "bb261ca2abb526993cefa78b6cde4a25be78478aa45a4eda65e5f293dafd3d18",
+        "cherokee-supplemental-review.json": "4dc99be44490d081a97acae5b0c90ac23fe8a2096e1c5d8bec4c88caab577463",
+        "navajo-supplemental-review.json": "0ddbc11b7538df1c6298c260194ae2f74dfef2f333654bff55a0f892098f514b"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ]
+    }
+  },
+  "remote_source": {
+    "complete_leaves": 1310,
+    "path_mode_type_blob_comparison": "all entries match reviewed index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "candidate_counts": {
+    "status": "candidate only, not merged credit",
+    "source_tree": "4390cc10006dd864a0fe151f09abfb02252c97c2",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117459,
+    "missing": 5490,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "source": "758eaece5398fc2f85e504c45a4b300008a30018",
+    "present": 117446,
+    "total": 122949,
+    "missing": 5503,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 13
+    },
+    "by_locale": {
+      "chr": {
+        "P2": 5
+      },
+      "nv": {
+        "P2": 8
+      }
+    },
+    "limit": "Resource priority classification is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "prior_preparation": {
+    "commit": "51c6a89016923f0a60916f3f288338ed26341d20",
+    "path": "verification/translations/2026-11-15/cherokee-navajo-next-preparation/research-review.zip",
+    "original_base": "d456c113a690c56a219d8b008e713fae2d3faf55",
+    "reconciliation": "Both current catalogue hashes unchanged; all source and consumer anchors revalidated."
+  },
+  "additional_research": {
+    "accepted": 6,
+    "Cherokee": 3,
+    "Navajo": 3,
+    "basis": "Fresh Cherokee Nation Consortium width/colour-wheel/copper entries and Diné-authored metal terminology with independent complete-value review. These support original consumer-context mappings, not universal orthographic or RGB-name standards.",
+    "individual_uncertainty": "Prior and fresh key-specific deferrals preserved; no rejected complete proposals in this batch and no whole-language hold."
+  },
+  "limits": [
+    "Bounded independent model/source review, not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Lexical and instructional corroboration does not certify every composed phrase; regional and spelling variants remain documented.",
+    "Catalogue-only Save-as additions do not claim current UI improvements.",
+    "No application behavior, default resources, tests, workflow, permissions or release changes.",
+    "No Work task, #422, #330 or other held/pending operation was performed."
+  ]
+}
