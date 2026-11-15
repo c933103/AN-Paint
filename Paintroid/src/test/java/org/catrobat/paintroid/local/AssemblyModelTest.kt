@@ -32,6 +32,30 @@ class AssemblyModelTest {
         file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it)) }; bitmap.recycle()
         return AssemblyImage(id,file,name,time,ImageDimensions(w,h))
     }
+    @Test @Config(sdk=[35]) fun backupOnlyProjectRestoresSourcesAndSurvivesEditAndReopen() {
+        val a=item("recover",12,8); model.add(listOf(a)); model.position(a.id,3,4)
+        val source=a.file.readBytes(); val project=File(model.directory,"project.json")
+        val metadata=project.readBytes(); val backup=File(project.path+".bak")
+        assertTrue(project.renameTo(backup)); assertFalse(project.exists())
+        val restored=ImageAssembly(model.directory)
+        assertEquals(listOf(a.id),restored.images.map {it.id})
+        assertEquals(Rect(3,4,15,12),restored.layout()[a.id])
+        assertArrayEquals(source,a.file.readBytes()); assertArrayEquals(metadata,project.readBytes())
+        restored.position(a.id,7,9)
+        val reopened=ImageAssembly(model.directory)
+        assertEquals(Rect(7,9,19,17),reopened.layout()[a.id])
+        assertArrayEquals(source,a.file.readBytes())
+    }
+    @Test @Config(sdk=[35]) fun corruptBackupFailsWithoutPruningSourceImages() {
+        val a=item("keep",12,8); model.add(listOf(a))
+        val source=a.file.readBytes(); val project=File(model.directory,"project.json")
+        val broken="{invalid project".toByteArray(); val backup=File(project.path+".bak")
+        backup.writeBytes(broken); assertTrue(project.delete())
+        assertThrows(org.json.JSONException::class.java) {ImageAssembly(model.directory)}
+        assertArrayEquals(source,a.file.readBytes())
+        // AtomicFile is allowed to restore the backup name before parsing fails.
+        assertArrayEquals(broken,(if(project.exists()) project else backup).readBytes())
+    }
     @Test fun attachToAnyPlacedImageWithExactTopOrLeftAlignmentAndPreventOverlap() {
         val a=item("a"); val b=item("b",60,100); val c=item("c",100,60); val d=item("d",50,50)
         model.add(listOf(a,b,c,d)); model.place(a.id,Attachment(null,null))
