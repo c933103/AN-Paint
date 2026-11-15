@@ -1,0 +1,145 @@
+{
+  "status": "Merged and actual-develop qualified through bounded prior-environment reuse",
+  "pr": "https://github.com/c933103/AN-Paint/pull/490",
+  "base": "5f3b19d43f6c3bdfdfc6fc92c9ac77ee08b1ace2",
+  "head": "53c5516831eb9ed8de8a7fd7b47f1de6a9acd181",
+  "tested_checkout": "4418febde5c35120cd0d41d75a59f58dba5f311d",
+  "tree": "2a7e9fd457bee80489e45ee0ad4ddfaee30ddb7c",
+  "merge": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+  "merged_at": "2026-11-15T16:12:01Z",
+  "changes": {
+    "new_values": {
+      "Shan": 7,
+      "Toki Pona": 1,
+      "Zhuang": 1
+    },
+    "existing_Toki_axis_intro_repairs": 2,
+    "touched_total": 11,
+    "new_active": 7,
+    "new_catalogue_only": 2,
+    "active_repairs": 2,
+    "P2_touched": 11,
+    "old_elements_total": 1484,
+    "old_elements_unchanged": 1482
+  },
+  "review": {
+    "current_proposed_keys": 11,
+    "accepted_unchanged": 11,
+    "revised": 0,
+    "held_key_excluded_before_review_application": 1,
+    "full_value_model_review": "passed for 11 applied values",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6897058233,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "cb35bddc948db8b4a9992d0904cb853e15b82c37",
+    "path": "verification/translations/2026-11-15/normalization-shan-zhuang"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 10.059,
+    "executed_base": "5f3b19d43f6c3bdfdfc6fc92c9ac77ee08b1ace2",
+    "diff_check": "pass"
+  },
+  "pr_ci": {
+    "run": 43731429939,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 246.613,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1416,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 158,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43734121708,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14169314580,
+    "archive_bytes": 10862,
+    "archive_sha256": "03b1bdd03e4cd43ffa683e19e15cdf26f97055d34057bebc65cd2fc94d83ac6d",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "Actual merge/develop direct presence; not linguistic completeness",
+    "source": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "tree": "2a7e9fd457bee80489e45ee0ad4ddfaee30ddb7c",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117563,
+    "total": 122949,
+    "missing": 5386,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 11
+    },
+    "by_locale": {
+      "shn": {
+        "P2": 7
+      },
+      "tok": {
+        "P2": 3
+      },
+      "za": {
+        "P2": 1
+      }
+    },
+    "limit": "Resource tier is distinct from master-task priority; presence is not linguistic completeness."
+  },
+  "next_preparation": {
+    "commit": "05185b2b70a7f3350260b8d58555ae6a1cc7adca",
+    "path": "verification/translations/2026-11-15/wolof-next-preparation/research-review.zip",
+    "P2_additions": 10,
+    "accepted_unchanged": 10,
+    "active": 6,
+    "catalogue_only": 4,
+    "status": "Independently reviewed preparation only; unapplied, not CI-qualified and excluded from merged counts",
+    "current_source_status": "PR490 is now merged. Wolof bytes remain unchanged. Linked preparation archive retains its historical premerge source status; fresh base/owner/hold reconciliation needed.",
+    "anchor_representation": "15 anchors record display text without enclosing Android quotes. Readback separately records raw canonical text; original proposal/review packets remain unchanged."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/glyph/TalkBack acceptance.",
+    "Shan primary lexical-access limitations remain explicit; canonical anchors are consistency evidence, not independent whole-sentence attestation.",
+    "Prior exact-quotient Toki wording remains rejected historically; new accepted forms explicitly describe multiplication and integer rounding, not exact final quotient or clamping.",
+    "Held #69 warning excluded before independent review/application; no review credit, #69 investigation or resumption. Five Zhuang deferrals remain specific.",
+    "Next Wolof preparation preserves prior narrow deferrals plus three pan-help exclusions; cursor movement must not become viewport-pan claim.",
+    "Python totals include skipped bodies; their identities are not inferred from non-verbose output.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified byte/source binding.",
+    "All holds, separate #422 approval operation, #330, Work tasks and release destinations remained untouched."
+  ]
+}
