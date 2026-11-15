@@ -1,0 +1,148 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/480",
+  "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+  "head": "77a68ec9354d7ad924ad8529387b8d1ac9bf0275",
+  "tested_checkout": "df8b8078e0cd8e6a0ac51a06e46a3d64dabe03d3",
+  "tree": "7aa976f6d92cbbd7eb4c845e46e5493e41a13f99",
+  "merge": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+  "merged_at": "2026-11-15T08:14:08Z",
+  "changes": {
+    "Shan": 36,
+    "Standard Zhuang": 21,
+    "Northern Highland Kichwa": 13,
+    "South Bolivian Quechua": 14,
+    "total": 84,
+    "active_consumer_entries": 52,
+    "catalogue_only_entries": 32,
+    "previous_elements_preserved": 1591
+  },
+  "review": {
+    "proposed": 90,
+    "accepted_unchanged": 84,
+    "revised": 0,
+    "withheld": 6,
+    "full_value_model_review": "passed",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6891234226,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a claimed clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "f1522196349e15a92e5900905e636b2c4a15e419",
+    "path": "verification/translations/2026-11-15/shan-zhuang-kichwa-controls"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.849,
+    "diff_check": "passed"
+  },
+  "pr_ci": {
+    "run": 43691228441,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 244.639,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1411,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 157,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43693543559,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14153034169,
+    "archive_sha256": "f239e86db32dbd154b9c1b70a727c49115236e6f073a89be5f17dae85630cda2",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "status": "actual merged tree recounted",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117417,
+    "missing": 5532,
+    "complete": 153,
+    "partial": 18,
+    "source": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+    "head": "77a68ec9354d7ad924ad8529387b8d1ac9bf0275",
+    "tree": "7aa976f6d92cbbd7eb4c845e46e5493e41a13f99",
+    "basis": "Complete reviewed source index equals actual merged tree."
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 83,
+      "P3": 1
+    },
+    "by_locale": {
+      "qug": {
+        "P2": 13
+      },
+      "quh": {
+        "P2": 14
+      },
+      "shn": {
+        "P2": 35,
+        "P3": 1
+      },
+      "za": {
+        "P2": 21
+      }
+    },
+    "limit": "Resource priority is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "next_preparation": {
+    "status": "26 independently model-reviewed candidates; not applied or CI-qualified; excluded from merged counts",
+    "commit": "f4b13ff1534854ea6dfd33921f6c3d2e7ffa7d32",
+    "path": "verification/translations/2026-11-15/yucatec-nahuatl-next-preparation/research-review.zip",
+    "Yucatec": 11,
+    "Central_Huastecan_Nahuatl": 5,
+    "Eastern_Huastecan_Nahuatl": 5,
+    "Western_Huastecan_Nahuatl": 5,
+    "active": 15,
+    "catalogue_only": 11,
+    "withheld_Yucatec_save_as": 3,
+    "bytes": 20118,
+    "sha256": "f1f9b3a3b02bf90a8390b78c965f839ce91572f8055f85338c8bb04be3a5f87a",
+    "members": 5,
+    "next_action": "After #480 integration, reconcile actual develop, current owners and holds before applying only qualified values and running the next exact-head path. Exclude all preparation from current coverage counts."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary lexical evidence corroborates targeted terms, not every complete original UI phrase; catalogue anchors are consistency evidence rather than proof.",
+    "Six uncertain Shan/Zhuang proposals remain fallback; unrelated partial locales and unreviewed complex wording remain unfinished.",
+    "Python 892 is the runner total including two skipped bodies; skip identities are unavailable in the nonverbose output.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified their byte/source binding.",
+    "All holds, the separate #422 approval operation, Work-side tasks and release destinations were untouched."
+  ]
+}
