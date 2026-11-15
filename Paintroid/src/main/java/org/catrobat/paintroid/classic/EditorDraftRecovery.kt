@@ -54,8 +54,8 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
         if (autosave.exists()) try {
             val draft=autosave.read(historyReader=document::readHistory) { w,h -> checkSize(w,h) }
             recovered=draft.metadata
-            textSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
-            savedTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
+            val recoveredTextSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
+            val recoveredTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
             document.background=recovered.optInt("background",Color.WHITE)
             document.replace(draft.image)
             draft.history?.let {document.restoreHistory(it)}
@@ -68,7 +68,7 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
                 document.restoreFloatingSelection(image,RectF(r.getDouble(0).toFloat(),r.getDouble(1).toFloat(),r.getDouble(2).toFloat(),r.getDouble(3).toFloat()),recovered!!.optDouble("floating_rotation",0.0).toFloat(),SelectionOutline.read(recovered!!.optJSONArray("selection_outline")))
             }
             document.restoreImageCredits(recovered.optJSONObject("image_credits"))
-            documentName=DocumentName.read(recovered,savedTarget)
+            val recoveredName=DocumentName.read(recovered,recoveredTarget)
             document.foreground=recovered.optInt("foreground",Color.BLACK)
             document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
             document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
@@ -79,7 +79,12 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
             document.antialiasing=recovered.optBoolean("antialiasing",false)
             document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
             if (recovered.optBoolean("dirty")) document.edited()
-            draftStatus=UiMessage.Resource(R.string.ui_draft_restored);restored=true
+            // Finish fallible restoration before committing the draft's identity/settings.
+            draftStatus=UiMessage.Resource(R.string.ui_draft_restored)
+            savedTarget=recoveredTarget
+            documentName=recoveredName
+            textSettings=recoveredTextSettings
+            restored=true
         } catch (_: Exception) { recovered=null;preserveFailedDraft(UiMessage.Resource(R.string.ui_the_previous_draft_could_not_be_restored)) }
           catch (_: OutOfMemoryError) { recovered=null;preserveFailedDraft(UiMessage.Resource(R.string.ui_the_previous_draft_needs_more_memory_to_reopen)) }
         if (!restored) {
