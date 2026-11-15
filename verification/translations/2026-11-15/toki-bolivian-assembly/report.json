@@ -1,0 +1,1007 @@
+{
+  "pr": 496,
+  "url": "https://github.com/c933103/AN-Paint/pull/496",
+  "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+  "head": "a743ef15f20568b77bd01a765b56bbe0d20a536c",
+  "tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+  "source_branch": "localization/toki-bolivian-assembly-20261115",
+  "status": "Published and ready; exact-head CI and automatic Codex pending, not merged",
+  "ci_run": 43752613589,
+  "tested_checkout": "bd7fa9596187d1a435e8302b2013c2a23bbeb79c",
+  "reconciliation": {
+    "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "tree": "42c7d61564c3602f4bf800ecf3c8d16ea949d78f",
+    "base_leaf_count": 1314,
+    "full_local_remote_tree_verified": true,
+    "open_prs": [
+      {
+        "number": 226,
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence",
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "draft": false
+      },
+      {
+        "number": 159,
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression",
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6",
+        "draft": true
+      },
+      {
+        "number": 88,
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter",
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884",
+        "draft": true
+      },
+      {
+        "number": 87,
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host",
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1",
+        "draft": true
+      },
+      {
+        "number": 75,
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement",
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61",
+        "draft": true
+      },
+      {
+        "number": 72,
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?",
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8",
+        "draft": true
+      },
+      {
+        "number": 71,
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling",
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457",
+        "draft": true
+      },
+      {
+        "number": 69,
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF",
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb",
+        "draft": true
+      },
+      {
+        "number": 56,
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices",
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332",
+        "draft": true
+      }
+    ],
+    "preserved_holds": [
+      422,
+      330,
+      226,
+      159,
+      88,
+      87,
+      75,
+      72,
+      71,
+      69,
+      56
+    ],
+    "prior_pr": 495,
+    "prior_merge": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "private_scope": {
+      "issue": 1,
+      "title": "Manage current work: AN Paint, Atlas, research and infrastructure",
+      "latest_observed_comment": 6899846424
+    },
+    "scope": "Continue source-backed offered incomplete-language translations; no Work-side tasks, no duplicate CI or held actions."
+  },
+  "source_change_UI_scan": {
+    "checked_change": 495,
+    "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "previous_base": "e42d7cf45ed66c1295e36e5de1786d3ad02eb656",
+    "changed_paths_sha256": {
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/CanvasDraftGeometry.kt": "f39c67ab3f1edcbb977dcf4bb00ed16ef1e3d666d436370bf3f48039fe8237c3",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt": "134f16760ca4a23992cedcb5009278b628692e171d4981eecaa38d31fcb8af10",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt": "f756c7306c570a857b9dc12eda3e3bd5f82b63162482f015fdb4e09d583bc12d",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/CanvasRecoveryAutosaveTest.kt": "efadd69ea7184bf775f711b070aae808ce5fa2f1cd51b6846cca0364d4a39c07"
+    },
+    "resource_changes": [],
+    "new_diagnostic_literal": "Non-finite canvas draft point",
+    "conclusion": "No new displayed translation item found. Worker geometry validation throws before document/canvas adoption; existing catch discards exception text and uses existing resource-based preserve/recovery notices. Direct PaintCanvas restoration uses the same parser before state mutation.",
+    "anchors": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CanvasDraftGeometry.kt",
+        "line": 19,
+        "text": "require(x.isFinite() && y.isFinite()) { \"Non-finite canvas draft point\" }",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/CanvasDraftGeometry.kt#L19"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+        "line": 59,
+        "text": "recovered.optJSONObject(\"canvas\")?.let {CanvasDraftGeometry.read(it,draft.image.width,draft.image.height)}",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L59"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+        "line": 102,
+        "text": "} catch (_: Exception) { recovered=null;preserveFailedDraft(UiMessage.Resource(R.string.ui_the_previous_draft_could_not_be_restored)) }",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L102"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "line": 473,
+        "text": "val geometry=CanvasDraftGeometry.read(state,document.bitmap.width,document.bitmap.height)",
+        "url": "https://github.com/c933103/AN-Paint/blob/42ca4ac35ab306761b9fcf22cafeeff5a32abc81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L473"
+      }
+    ],
+    "limits": [
+      "Source-flow localization review only; runtime regression qualification belongs to #495.",
+      "No claim of broad scalar-metadata recovery safety or rollback behavior beyond the changed geometry path."
+    ]
+  },
+  "preparation_reconciliation": {
+    "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "packets": {
+      "tok-proposals.json": {
+        "proposal_sha256": "2b321761b47301ce169672cbe05609202a9054439de17f3cde5ec1856b6b85aa",
+        "source_hashes_verified": {
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyCanvas.kt": "28292c8e4a788eb37e0950d050cce8cf63f46eea229a11d74e9d811061add4d9",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231",
+          "Paintroid/src/main/res/values-b+tok/strings.xml": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c",
+          "Paintroid/src/main/res/values/strings.xml": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+        },
+        "anchor_ranges_verified": 56,
+        "anchor_records": [
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 342,
+            "end": 342,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 471,
+            "end": 471,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 554,
+            "end": 554,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 444,
+            "end": 444,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 143,
+            "end": 143,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 522,
+            "end": 522,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 134,
+            "end": 134,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 223,
+            "end": 223,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "start": 249,
+            "end": 249,
+            "source_sha256": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 342,
+            "end": 342,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 471,
+            "end": 471,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 554,
+            "end": 554,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 444,
+            "end": 444,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 143,
+            "end": 143,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 522,
+            "end": 522,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 208,
+            "end": 208,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "start": 409,
+            "end": 409,
+            "source_sha256": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 342,
+            "end": 342,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 471,
+            "end": 471,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 554,
+            "end": 554,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 444,
+            "end": 444,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 143,
+            "end": 143,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 522,
+            "end": 522,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 206,
+            "end": 206,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "start": 410,
+            "end": 410,
+            "source_sha256": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 342,
+            "end": 342,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 471,
+            "end": 471,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 554,
+            "end": 554,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 444,
+            "end": 444,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 143,
+            "end": 143,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 522,
+            "end": 522,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 148,
+            "end": 148,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "start": 424,
+            "end": 424,
+            "source_sha256": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 342,
+            "end": 342,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 471,
+            "end": 471,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 554,
+            "end": 554,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 444,
+            "end": 444,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 143,
+            "end": 143,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 522,
+            "end": 522,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyCanvas.kt",
+            "start": 119,
+            "end": 119,
+            "source_sha256": "28292c8e4a788eb37e0950d050cce8cf63f46eea229a11d74e9d811061add4d9"
+          },
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "start": 275,
+            "end": 275,
+            "source_sha256": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 342,
+            "end": 342,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 471,
+            "end": 471,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 554,
+            "end": 554,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 444,
+            "end": 444,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 143,
+            "end": 143,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "start": 522,
+            "end": 522,
+            "source_sha256": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 226,
+            "end": 226,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 231,
+            "end": 231,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "start": 404,
+            "end": 404,
+            "source_sha256": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+          }
+        ],
+        "producer_boundaries": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "lines": [
+              125,
+              149
+            ],
+            "finding": "Reflow dependencies and alternative candidates; no valid arrangement fallback.",
+            "code": "    /** Preserve valid attachments; if resized branches collide, reattach only those needing room. */\n    private fun reflow(items: List<AssemblyImage>): List<AssemblyImage> {\n        val desired = layout(items)\n        try { validate(items); return items } catch (_: IllegalArgumentException) { }\n        var next = items.map { it.copy(attachment=null) }\n        val pending = items.filter { it.attachment != null }.toMutableList()\n        val done = items.filter { it.position != null }.mapTo(mutableSetOf()) { it.id }\n        while (pending.isNotEmpty()) {\n            val item = pending.firstOrNull { it.attachment!!.anchor == null || it.attachment.anchor in done }\n                ?: throw IllegalArgumentException(ui(R.string.ui_invalid_image_attachments))\n            val alternatives = if (done.isEmpty()) listOf(Attachment(null,null)) else\n                listOf(item.attachment!!) + next.filter { it.id in done }.flatMap { anchor -> SnapEdge.values().map { Attachment(anchor.id,it) } }\n            var best: List<AssemblyImage>? = null; var distance = Double.POSITIVE_INFINITY\n            for ((index,a) in alternatives.distinct().withIndex()) {\n                val candidate = next.map { if (it.id == item.id) it.copy(attachment=a) else it }\n                try {\n                    validate(candidate)\n                    val rect = layout(candidate).getValue(item.id); val original = desired.getValue(item.id)\n                    val dx=rect.left.toDouble()-original.left; val dy=rect.top.toDouble()-original.top\n                    val score = if (index == 0 && a == item.attachment) -1.0 else dx*dx+dy*dy\n                    if (score < distance) { best=candidate; distance=score }\n                } catch (_: IllegalArgumentException) { }\n            }\n            next = best ?: throw IllegalArgumentException(ui(R.string.ui_the_images_cannot_fit_within_android_s_coordinate))\n            done.add(item.id); pending.remove(item)",
+            "sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "lines": [
+              197,
+              232
+            ],
+            "finding": "Missing/unplaced anchors, cycle recursion, extent limits, snapped intersection and new-placement intersection; absolute overlap allowed elsewhere.",
+            "code": "    private fun layout(items: List<AssemblyImage>): Map<String,Rect> {\n        val result = linkedMapOf<String,Rect>(); val resolving = mutableSetOf<String>()\n        val byId = items.associateBy { it.id }\n        fun resolve(item: AssemblyImage): Rect {\n            result[item.id]?.let { return it }\n            require(resolving.add(item.id)) { ui(R.string.ui_an_image_cannot_attach_to_itself_or_one) }\n            val a = item.attachment\n            var x = item.position?.x ?: 0; var y = item.position?.y ?: 0\n            require(x >= 0 && y >= 0) { ui(R.string.ui_assembly_position_nonnegative) }\n            require(a != null || item.position != null) { ui(R.string.ui_the_attachment_image_is_not_placed) }\n            if (a?.anchor != null) {\n                val parent = resolve(byId[a.anchor] ?: throw IllegalArgumentException(ui(R.string.ui_the_attachment_image_is_missing)))\n                require(a.edge != null)\n                x = if (a.edge == SnapEdge.RIGHT) parent.right else parent.left\n                y = if (a.edge == SnapEdge.BOTTOM) parent.bottom else parent.top\n            }\n            val size = item.placedSize\n            val right = x.toLong()+size.width; val bottom = y.toLong()+size.height\n            require(right <= Int.MAX_VALUE && bottom <= Int.MAX_VALUE) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }\n            val r = Rect(x,y,right.toInt(),bottom.toInt()); result[item.id] = r; resolving.remove(item.id); return r\n        }\n        items.filter { it.isPlaced }.forEach { resolve(it) }; return result\n    }\n    private fun validate(items: List<AssemblyImage>) {\n        require(items.size <= MAX_IMAGES && items.map { it.id }.distinct().size == items.size)\n        require(items.count { it.attachment != null && it.attachment.anchor == null } <= 1) { ui(R.string.ui_the_first_image_starts_at_the_top_left) }\n        items.forEach { require(it.attachment == null || it.position == null) { ui(R.string.ui_invalid_image_attachments) }; require(it.crop.left >= 0 && it.crop.top >= 0 && it.crop.right <= it.dimensions.width && it.crop.bottom <= it.dimensions.height && it.crop.width() > 0 && it.crop.height() > 0) { ui(R.string.ui_the_crop_must_stay_inside_the_image) }; it.placedSize }\n        val rects = layout(items)\n        val snapped = items.filter { it.attachment != null }\n        for (i in snapped.indices) for (j in i+1 until snapped.size) require(!Rect.intersects(rects.getValue(snapped[i].id),rects.getValue(snapped[j].id))) { ui(R.string.ui_that_arrangement_overlaps_another_image_use_a_different) }\n    }\n    private fun validateSnapPlacement(id: String, items: List<AssemblyImage>) {\n        validate(items)\n        val rects = layout(items); val target = rects.getValue(id)\n        require(rects.none { (other,rect) -> other != id && Rect.intersects(target,rect) }) { ui(R.string.ui_that_arrangement_overlaps_another_image_use_a_different) }\n    }",
+            "sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "lines": [
+              265,
+              278
+            ],
+            "finding": "Restored coordinates validate number type, integer parsing and nonnegative signed-int range.",
+            "code": "                ImageDimensions(o.getInt(\"width\"),o.getInt(\"height\")),Rect(c.getInt(0),c.getInt(1),c.getInt(2),c.getInt(3)),\n                if (o.optBoolean(\"placed\")) Attachment(if (o.isNull(\"anchor\")) null else o.getString(\"anchor\"),if (o.isNull(\"edge\")) null else SnapEdge.valueOf(o.getString(\"edge\"))) else null,\n                if (o.has(\"normalize_axis\")) ImageNormalization(NormalizeAxis.valueOf(o.getString(\"normalize_axis\")),o.getInt(\"normalize_pixels\")) else null,o.optInt(\"page\",0),\n                if (o.has(\"position\")) o.getJSONArray(\"position\").let { p ->\n                    require(p.length() == 2)\n                    fun coordinate(index: Int): Int {\n                        val raw = p.get(index)\n                        require(raw is Number) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }\n                        val value = raw.toString().toLongOrNull()\n                        require(value != null && value in 0..Int.MAX_VALUE.toLong()) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }\n                        return value.toInt()\n                    }\n                    ImagePosition(coordinate(0),coordinate(1))\n                } else null)",
+            "sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          }
+        ]
+      },
+      "quh-proposals.json": {
+        "proposal_sha256": "77561b89ccab65f445d3e692d7791f8557381813ee56b9b2cb017d6e871fa251",
+        "source_hashes_verified": {
+          "Paintroid/src/main/res/values-b+quh/strings.xml": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3",
+          "Paintroid/src/main/res/values/strings.xml": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt": "ef1c5a09c1a1bfc7258539180a1b3b0f1f9f2d57694adf14da97afe3620a8726"
+        },
+        "anchor_ranges_verified": 31,
+        "anchor_records": [
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 372,
+            "end": 372,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 395,
+            "end": 395,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 40,
+            "end": 40,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 210,
+            "end": 210,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "start": 187,
+            "end": 187,
+            "source_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "start": 185,
+            "end": 189,
+            "source_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 372,
+            "end": 372,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 395,
+            "end": 395,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 85,
+            "end": 85,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 84,
+            "end": 87,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 395,
+            "end": 395,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 183,
+            "end": 183,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 226,
+            "end": 226,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "start": 219,
+            "end": 219,
+            "source_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "start": 217,
+            "end": 221,
+            "source_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 339,
+            "end": 339,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 360,
+            "end": 360,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 169,
+            "end": 169,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 222,
+            "end": 222,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 196,
+            "end": 223,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 248,
+            "end": 248,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 176,
+            "end": 176,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+            "start": 141,
+            "end": 141,
+            "source_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+            "start": 127,
+            "end": 149,
+            "source_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 186,
+            "end": 186,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+            "start": 184,
+            "end": 184,
+            "source_sha256": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 167,
+            "end": 167,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "start": 205,
+            "end": 205,
+            "source_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+            "start": 33,
+            "end": 33,
+            "source_sha256": "ef1c5a09c1a1bfc7258539180a1b3b0f1f9f2d57694adf14da97afe3620a8726"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+            "start": 34,
+            "end": 34,
+            "source_sha256": "ef1c5a09c1a1bfc7258539180a1b3b0f1f9f2d57694adf14da97afe3620a8726"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+            "start": 64,
+            "end": 66,
+            "source_sha256": "ef1c5a09c1a1bfc7258539180a1b3b0f1f9f2d57694adf14da97afe3620a8726"
+          }
+        ],
+        "producer_boundaries": []
+      }
+    },
+    "result": "pass"
+  },
+  "applied": {
+    "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "review_pairs": [
+      [
+        "tok-proposals.json",
+        "tok-review.json"
+      ],
+      [
+        "quh-proposals.json",
+        "quh-review.json"
+      ]
+    ],
+    "source_anchors_revalidated_at_base": 64,
+    "consumer_anchors_revalidated": 17,
+    "proposed_unique_keys": 12,
+    "accepted": 12,
+    "accepted_unchanged_from_proposal": 10,
+    "revised": 2,
+    "withheld": [],
+    "new_values": 12,
+    "corrected_existing_values": 0,
+    "active_changed": 12,
+    "catalogue_only_changed": 0,
+    "new_active": 12,
+    "new_catalogue_only": 0,
+    "resource_tiers_changed": {
+      "P2": 12
+    },
+    "applied": {
+      "quh": {
+        "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+        "added": 6,
+        "corrected_existing": 0,
+        "corrected_keys": [],
+        "old_elements": 413,
+        "old_elements_preserved": 413,
+        "total": 419,
+        "sha256": "34264aa694a4d9ea5feeb655d57f47a8ef837ba6aee2106dcf8424fc2198e09e"
+      },
+      "tok": {
+        "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+        "added": 6,
+        "corrected_existing": 0,
+        "corrected_keys": [],
+        "old_elements": 596,
+        "old_elements_preserved": 596,
+        "total": 602,
+        "sha256": "f5f3a05fb41bf60b9486a848f3bfc485a0dabe0975ef07a2871753b293524b19"
+      }
+    },
+    "review_file_sha256": {
+      "tok-review.json": "071273cd4684b293159b596edd1923f1a6064ce13dc5567c50b1381148a22e3a",
+      "quh-review.json": "9505131f55ca966f426ea3e1ad848ffe6ba6d245ab84e9c4b876ef3579ee7706"
+    },
+    "limits": [
+      "Original proposal/review files remain unchanged. Raw canonical anchor and display-quote representations are recorded separately.",
+      "Individual deferrals remain excluded; inventory gaps are not whole-value linguistic findings or a language-wide hold.",
+      "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+      "All existing holds, #422 approval operation, #330 and Work-side tasks remain untouched."
+    ]
+  },
+  "independent_applied_check": {
+    "result": "pass",
+    "base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "review_file_sha256": {
+      "tok-review.json": "071273cd4684b293159b596edd1923f1a6064ce13dc5567c50b1381148a22e3a",
+      "quh-review.json": "9505131f55ca966f426ea3e1ad848ffe6ba6d245ab84e9c4b876ef3579ee7706"
+    },
+    "summary": {
+      "additions": 12,
+      "accepted_unchanged": 10,
+      "author_agreed_revisions": 2,
+      "active": 12,
+      "catalogue_only": 0,
+      "resource_tiers": {
+        "P2": 12
+      },
+      "old_elements": 1009,
+      "old_elements_preserved": 1009,
+      "source_anchors": 64,
+      "consumer_lines": 17
+    },
+    "catalogues": {
+      "quh": {
+        "old": 413,
+        "preserved": 413,
+        "added": 6,
+        "sha256": "34264aa694a4d9ea5feeb655d57f47a8ef837ba6aee2106dcf8424fc2198e09e"
+      },
+      "tok": {
+        "old": 596,
+        "preserved": 596,
+        "added": 6,
+        "sha256": "f5f3a05fb41bf60b9486a848f3bfc485a0dabe0975ef07a2871753b293524b19"
+      }
+    },
+    "mappings": [
+      {
+        "locale": "tok",
+        "key": "ui_invalid_image_attachments",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "tok",
+        "key": "ui_the_attachment_image_is_missing",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "tok",
+        "key": "ui_the_attachment_image_is_not_placed",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "tok",
+        "key": "ui_the_images_cannot_fit_within_android_s_coordinate",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "tok",
+        "key": "ui_no_attachment_fits_within_the_current_coordinate_range",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "tok",
+        "key": "ui_that_arrangement_overlaps_another_image_use_a_different",
+        "decision": "revise",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "quh",
+        "key": "ui_an_assembly_can_contain_up_to_20_images",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "quh",
+        "key": "ui_an_assembly_can_contain_up_to_20_images_86d995",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "quh",
+        "key": "ui_you_can_add_more_images_select_fewer_files",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "quh",
+        "key": "ui_the_first_image_starts_at_the_top_left",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "quh",
+        "key": "ui_batch_crop_images",
+        "decision": "accept",
+        "exact_reviewed_value": true
+      },
+      {
+        "locale": "quh",
+        "key": "ui_assembly_position_nonnegative",
+        "decision": "revise",
+        "exact_reviewed_value": true
+      }
+    ],
+    "checks": {
+      "only_two_XML_files_changed": true,
+      "all_exact_proposal_review_assessment_bindings": true,
+      "prior_source_hashes_verified_against_base": true,
+      "all_normalized_source_consumer_anchors_and_original_producer_ranges": true,
+      "default_attrs_English_placeholders_NFC_escaping_linebreaks": true,
+      "all_old_element_bytes_attrs_order_preserved": true,
+      "no_stale_or_excluded_additions": true
+    },
+    "limits": [
+      "Mechanical applied-source audit only, not independent linguistic re-review of author’s own Toki composition.",
+      "Both final revisions separately agreed by their original authors; records remain unchanged.",
+      "No application source edits, tests, publication, external mutation or Work task.",
+      "Existing holds and individual deferrals unchanged."
+    ]
+  },
+  "local_checks": {
+    "executed_base": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "executed_candidate_tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 9.27,
+    "result": "pass",
+    "log_sha256": "706ebd9c32b7bdc8283d7d72711044a2676314d7c8caf9d22cd9f51162599d2e",
+    "diff_check": "pass",
+    "scope": "Affected local host tests on current integrated base; Android/runtime qualification requires exact-head hosted CI."
+  },
+  "remote_source": {
+    "head": "a743ef15f20568b77bd01a765b56bbe0d20a536c",
+    "tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+    "parent": "42ca4ac35ab306761b9fcf22cafeeff5a32abc81",
+    "source_branch": "localization/toki-bolivian-assembly-20261115",
+    "full_leaf_count": 1314,
+    "full_path_mode_type_blob_comparison": "pass",
+    "expected_parent_and_branch_ref": "pass",
+    "local_source_blob_sha": {
+      "quh": "21006e6996809c73cbe50316bb56233bfad80b7a",
+      "tok": "696e42ac35637edd785f80baed7b3e0b7e53e501"
+    },
+    "local_reviewed_tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5"
+  },
+  "candidate_counts": {
+    "status": "Candidate only, not merged credit",
+    "source_tree": "2676447944a64cc20c5e1a71cee3b8953953d4d5",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117603,
+    "missing": 5346,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "changed_total": 12,
+    "changed_by_tier": {
+      "P2": 12
+    },
+    "active": 12,
+    "catalogue_only": 0,
+    "scope": "All twelve are new current P2 values with direct consumers; no promotions or manifest edits."
+  },
+  "reviewed_revisions": {
+    "assessments": [
+      {
+        "locale": "tok",
+        "key": "ui_that_arrangement_overlaps_another_image_use_a_different",
+        "decision": "agree",
+        "final_value": "nasin ni la kipisi sitelen tu li lon ma sama. o kepeken poka pini ante. nasin ante la o weka e sitelen pi awen wan tan ma pali lon tenpo open.",
+        "backtranslation": "In this arrangement, portions of two images occupy the same area. Use another edge. Alternatively, first remove the connected images from the workspace.",
+        "rationale": "Agree after independent author reassessment. kipisi sitelen tu makes the overlapping objects image portions rather than asserting equality of entire image bounds; in this arrangement context it expresses partial intersection as well as complete overlap. nasin ante la explicitly makes unplacing an alternative to another edge, not a subsequent mandatory operation. tan ma pali retains removal from placement rather than deletion of source or removal from the input tray. lon tenpo open applies first to unplacing in that alternative. The message is scoped to nasin ni, matching snapped/new attachment validation and not prohibiting allowed absolute-position overlap. No source/consumer semantic boundary or formatting changed.",
+        "provenance": "Reviewer-authored original clarification independently assessed by original author; no third-party sentence copied."
+      },
+      {
+        "locale": "quh",
+        "key": "ui_assembly_position_nonnegative",
+        "decision": "agree",
+        "final_value": "Xpaq chaymanta Ypaq 0manta 2147483647kama junt\\'a yupaykunata qillqay.",
+        "backtranslation": "For X and Y, enter whole numbers from 0 to 2147483647.",
+        "rationale": "The revision better describes a property of the number rather than its written notation. Bolivian junt'a has the complete/whole sense; as the attributive modifier of yupaykunata in this bounded numeric instruction it expresses integral numbers. This is a compositional judgment, not acceptance merely because junt'a pixelkunata exists in the catalogue. Xpaq and Ypaq mark the two coordinate fields; chaymanta joins them; -manta and -kama delimit the inclusive interval; plural accusative yupaykunata is the object of imperative qillqay. Both endpoints, including zero, remain explicit. placementPixels tests parsed finite numeric value against floor and the 0..Int.MAX_VALUE bounds, rather than banning a decimal separator: integral values represented as 0.0 are not excluded by this wording. No arbitrary fractional rounding, positive-only restriction or automatic placement success is promised.",
+        "format_checks": {
+          "exact_review_value_preserved": true,
+          "android_apostrophe_escaped": true,
+          "no_placeholders_added": true,
+          "NFC": true
+        },
+        "limits": [
+          "Original complete-value model assessment, not native-human or externally certified specialist terminology.",
+          "No new primary-source lexical claim; existing same-variety whole-pixel usage is corroborating context only.",
+          "No original packet, app source, test or remote mutation."
+        ]
+      }
+    ],
+    "original_receipts": {
+      "tok-revision-assessment.json": "6acb77ae8c320eb8013b50475b5d8a852df13e208df6550fa9a2036765e25521",
+      "quh-revision-assessment.json": "c5db130432d14fbc0ea8663f711053921634370da6daf731a01f2c90562f76c3"
+    }
+  },
+  "current_merged_counts": {
+    "present": 117591,
+    "missing": 5358,
+    "total": 122949,
+    "complete_by_presence": 153,
+    "partial": 18,
+    "scope": "Current base42ca has unchanged locale blobs from verified #494; candidate twelve additions have not merged."
+  },
+  "limits": [
+    "Twelve complete values only, not whole-language acceptance; catalogue presence does not certify fluency.",
+    "Model/source review is not native-human or exhaustive installed-layout/glyph/TalkBack certification.",
+    "Primary lexical research supports terms and distinctions, not full original sentences. The Bolivian curriculum lookup did not verify its target and is not treated as supporting evidence.",
+    "Directed self/descendant attachment wording and all other individual deferrals remain excluded; remaining inventory is unreviewed, not a language-wide hold.",
+    "Only affected local host tests have executed here; exact-head hosted Android build/regression/device and Codex are pending at this initial report.",
+    "No Work-side task, release, permission change, held #422 evidence operation, #330 or other held tracker resumed."
+  ]
+}
