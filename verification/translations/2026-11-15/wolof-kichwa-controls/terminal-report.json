@@ -1,0 +1,183 @@
+{
+  "status": "Merged and actual-develop qualified through bounded prior-environment reuse",
+  "pr": "https://github.com/c933103/AN-Paint/pull/492",
+  "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+  "head": "7f464090ade0d2d4fcc7a1a62d43aa314a7a685c",
+  "tested_checkout": "33a40d6394229e3910a89277228b8aa29e87dc8e",
+  "tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+  "merge": "9ce0377a34f94e7dbf7d2ddd433d3afb6efb4171",
+  "merged_at": "2026-11-15T17:22:33Z",
+  "changes": {
+    "new_values": {
+      "Wolof": 14,
+      "Kichwa": 5
+    },
+    "existing_repairs": 0,
+    "touched_total": 19,
+    "active": 15,
+    "catalogue_only": 4,
+    "resource_tiers": {
+      "P2": 15,
+      "P3": 4
+    },
+    "old_elements_total": 848,
+    "old_elements_unchanged": 848
+  },
+  "review": {
+    "current_proposed_keys": 19,
+    "accepted_unchanged": 19,
+    "revised": 0,
+    "full_value_model_review": "passed for all nineteen applied values",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6898003617,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "ab5b5ae2b4e9a4884f7e94abed2f48b0b16ef314",
+    "path": "verification/translations/2026-11-15/wolof-kichwa-controls"
+  },
+  "local_checks": {
+    "executed_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "executed_candidate_tree": "310327b37f1d3957416c8f0fd3b3f576b6a1e0c2",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 10.709,
+    "result": "pass",
+    "log_sha256": "578ecaee8b16050975adb1f5267354b07ed06a40971345dc25e08874ff898cb3",
+    "diff_check": "pass",
+    "scope": "Executed affected host tests before pending #491 integration; final source head must separately pass normal hosted CI. No Android test execution claimed here."
+  },
+  "base_refresh": {
+    "previous_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+    "base_tree": "ae31901ad77c7369efda9d3aa8530d0b2b26c952",
+    "source_tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+    "integrated_PR": 491,
+    "base_changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/FailedRecoverySaveTargetTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/FloatingSelectionGeometryRecoveryTest.kt"
+    ],
+    "reviewed_resource_sha256": {
+      "Paintroid/src/main/res/values-b+qug/strings.xml": "0816a00af0d1f3ae26aa9a96cf6c1136e282203d686a3039c0fe901d638acbd2",
+      "Paintroid/src/main/res/values-b+wo/strings.xml": "645a74bc4a406de7160d392a425df6f5fd1738fee9db235f1f46940cb4a1e7dd"
+    },
+    "translation_patch_byte_identical": true,
+    "anchors_revalidated": 54,
+    "consumer_lines_revalidated": 21,
+    "producer_boundary_ranges_revalidated": 7,
+    "local_tests": "62 passed on previous base; affected tools/resources/consumer bindings unchanged. Not relabelled as executed on new base. Exact-head hosted CI remains required.",
+    "limits": "Narrow integration reconciliation, not a new full runtime/native-language acceptance."
+  },
+  "accounting_and_packaging_recovery": {
+    "step": "Initial local application",
+    "outcome": "P2-only assertion failed when encountering reviewed P3 guidance after five qug additions had been written. No remote mutation or tests.",
+    "diagnosis": "Four prepared Wolof resources are P3; original ten-value P2 label was incorrect. Full batch has fifteen P2 and four P3.",
+    "recovery": "Partial patch preserved; only own new qug edits restored from verified base. Scratch helper now accepts authorized P2/P3; full exact reviewed values reapplied.",
+    "source_wording_changed_due_to_failure": false,
+    "evidence_packaging_guard": {
+      "outcome": "Initial archive guard rejected internal absolute proposal_path metadata in one review before upload.",
+      "recovery": "Published representation replaces only that field with archive-relative filename and records original hash; original review content and source are unchanged. Independent audit refresh required before publication.",
+      "upload_occurred_before_correction": false
+    }
+  },
+  "pr_ci": {
+    "run": 43738242589,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 167.695,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1419,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 159,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43740758600,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14172003381,
+    "archive_bytes": 10859,
+    "archive_sha256": "5a191e58dc8c909cfc7b991dc0bf3700c463dec33da74559007762ed2e6e789b",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "Actual clean merged source direct-presence recount",
+    "merge": "9ce0377a34f94e7dbf7d2ddd433d3afb6efb4171",
+    "tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117582,
+    "missing": 5367,
+    "complete": 153,
+    "partial": 18,
+    "limit": "Direct presence, not full linguistic/native-human acceptance."
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 15,
+      "P3": 4
+    },
+    "by_locale": {
+      "qug": {
+        "P2": 5
+      },
+      "wo": {
+        "P2": 10,
+        "P3": 4
+      }
+    },
+    "limit": "Resource tier is distinct from master-task priority; presence is not linguistic completeness."
+  },
+  "next_preparation": {
+    "commit": "0d2e8c7e6dc81e29ca322b39cc1bfdaff0b58785",
+    "path": "verification/translations/2026-11-15/tok-orientation-next-preparation/research-review.zip",
+    "P2_additions": 4,
+    "accepted_unchanged": 3,
+    "reviewer_revision_author_agreed": 1,
+    "active": 4,
+    "catalogue_only": 0,
+    "status": "Independently reviewed preparation only; unapplied, not CI-qualified and excluded from merged counts",
+    "current_source_status": "PR492 changes only Wolof/Kichwa. Toki preparation was reconciled to 0dfd5861 with five full source hashes; fresh current-base/owner/hold check remains necessary before application."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/glyph/TalkBack acceptance.",
+    "Primary lexical evidence corroborates terms, not whole sentences; canonical anchors establish consistency, not automatic acceptance.",
+    "Historical ten-P2 Wolof preparation claim corrected to six P2/four P3. Initial scratch assertion failure/recovery retained; no wording change.",
+    "One internal proposal_path field was caught before upload and replaced with disclosed archive-relative representation; all review content unchanged and independently rechecked.",
+    "Original specific deferrals including cursor-pan meaning remain excluded, not language-wide holds.",
+    "Python totals include skipped bodies; their identities are not inferred from non-verbose output.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified byte/source binding.",
+    "All holds, separate #422 approval operation, #330, Work tasks and release destinations remained untouched."
+  ]
+}
