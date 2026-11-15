@@ -340,8 +340,14 @@ class PaintDocument(width: Int = 1024, height: Int = 768,
 
     /** Restored floating content has already been lifted from the saved canvas. */
     fun restoreFloatingSelection(image: Bitmap, rect: RectF, rotation: Float = 0f, outline: Path? = null) {
-        require(rect.width() > 0 && rect.height() > 0)
-        require(rotation.isFinite())
+        // Finite JSON doubles can overflow when restored as Float. Validate all
+        // drawing geometry before discarding the current selection or owning image.
+        require(listOf(rect.left,rect.top,rect.right,rect.bottom,rotation).all {it.isFinite()})
+        fun usable(bounds: RectF)=bounds.width().isFinite() && bounds.height().isFinite() &&
+            bounds.width()>0f && bounds.height()>0f && bounds.centerX().isFinite() && bounds.centerY().isFinite()
+        require(usable(rect))
+        val bounds=SelectionGeometry(rect,rotation).bounds()
+        require(listOf(bounds.left,bounds.top,bounds.right,bounds.bottom).all {it.isFinite()} && usable(bounds))
         clearSelection(); selection = Selection(RectF(rect),image,null,true,rotation,outline); changed()
     }
 

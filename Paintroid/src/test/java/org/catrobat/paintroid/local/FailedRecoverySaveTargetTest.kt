@@ -40,10 +40,10 @@ class FailedRecoverySaveTargetTest {
         listOf("classic","classic-ui","export").forEach {context.getSharedPreferences(it,0).edit().clear().commit()}
     }
 
-    private fun prepare(valid: Boolean,legacy: Boolean) {
+    private fun prepare(valid: Boolean,legacy: Boolean,overflow: Boolean=false) {
         val canvas=Bitmap.createBitmap(7,5,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.RED)}
         val floating=Bitmap.createBitmap(2,2,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.BLUE)}
-        val rectangle=if(valid) listOf(0,0,2,2) else listOf(0,0,2)
+        val rectangle=if(overflow) listOf(0.0,0.0,1e300,2.0) else if(valid) listOf(0,0,2,2) else listOf(0,0,2)
         val metadata=JSONObject().put("version",1).put("dirty",true)
             .put("save_target",target.json()).put("floating_rect",JSONArray(rectangle))
         try {AutosaveStore(context.filesDir).write(canvas,floating,metadata)}
@@ -60,8 +60,11 @@ class FailedRecoverySaveTargetTest {
     @Test fun legacyFallbackDoesNotInheritFailedDraftTarget()=checkRecovery(valid=false,legacy=true)
     @Test fun successfulRecoveryRetainsItsSaveDestination()=checkRecovery(valid=true,legacy=false)
 
-    private fun checkRecovery(valid: Boolean,legacy: Boolean) {
-        prepare(valid,legacy)
+    @Test fun overflowingCoordinatesDoNotInstallOldTargetOnNewCanvas()=checkRecovery(valid=false,legacy=false,overflow=true)
+    @Test fun legacyFallbackRejectsOverflowingSelectionCoordinates()=checkRecovery(valid=false,legacy=true,overflow=true)
+
+    private fun checkRecovery(valid: Boolean,legacy: Boolean,overflow: Boolean=false) {
+        prepare(valid,legacy,overflow)
         val original=AutosaveStore(context.filesDir).file.readBytes()
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java)
         val activity=controller.setup().get()
@@ -74,6 +77,7 @@ class FailedRecoverySaveTargetTest {
                 assertEquals(Color.RED,activity.document.bitmap.getPixel(0,0))
             } else {
                 assertNull("Failed ZIP metadata must not bind Save for replacement artwork",installed)
+                assertNull("Replacement artwork must not retain invalid floating geometry",activity.document.selection)
                 assertEquals(if(legacy) DocumentName.Named("Legacy.png") else DocumentName.Untitled,
                     ReflectionHelpers.getField<DocumentName>(activity,"documentName"))
                 assertTrue("Failed original remains available for recovery",AutosaveStore(context.filesDir).recoveryCopies().any {it.readBytes().contentEquals(original)})
