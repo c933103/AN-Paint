@@ -1,0 +1,1167 @@
+{
+  "status": "source published and verified; PR/hosted qualification not yet started",
+  "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+  "head": "f69a4e140bda2850df6ca3de4e9210ec261bd646",
+  "tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+  "branch": "localization/p2-tainua-tamazight-controls-20261115",
+  "reconciliation": {
+    "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+    "tree": "4390cc10006dd864a0fe151f09abfb02252c97c2",
+    "baseline_leaves": 1310,
+    "all_baseline_files_modes_blobs_match": true,
+    "prepared_catalogue_hashes_unchanged": true,
+    "prepared_evidence_commit": "9a19f6aa8749cfcb95c1fa3183add6a914dd5c44",
+    "prepared_evidence_path": "verification/translations/2026-11-15/tainua-tamazight-next-preparation/research-review.zip",
+    "open_prs": [
+      {
+        "number": 226,
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence",
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "ref": "experiment/jvm-two-fork-20261029"
+      },
+      {
+        "number": 159,
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression",
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6",
+        "ref": "verification/czech-active-workflows-20261021"
+      },
+      {
+        "number": 88,
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter",
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884",
+        "ref": "tracking/bug-gallery-linkage-colour-diagnosis-20261015"
+      },
+      {
+        "number": 87,
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host",
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1",
+        "ref": "tracking/bug-gallery-redirect-rejection-diagnosis-20261015"
+      },
+      {
+        "number": 75,
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement",
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61",
+        "ref": "tracking/bug-french-crop-attached-image-referent-20261015"
+      },
+      {
+        "number": 72,
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?",
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8",
+        "ref": "tracking/bug-generic-busy-draft-saving-message-20261015"
+      },
+      {
+        "number": 71,
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling",
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457",
+        "ref": "tracking/bug-commons-resize-background-hint-20261015"
+      },
+      {
+        "number": 69,
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF",
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb",
+        "ref": "tracking/bug-tagged-colour-format-warning-20261015"
+      },
+      {
+        "number": 56,
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices",
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332",
+        "ref": "tracking/language-translation-progress-20261012"
+      }
+    ],
+    "tracker_latest_comment": 6892803494,
+    "owner_reconciliation": "No competing open Tai Nua/Tamazight source PR. Existing #56 tracking, #159 Czech hold, #226 experiment and bug trackers unchanged. Parent assigned this follow-up; no Work task.",
+    "holds": "All holds unchanged; #422 pending evidence operation and Atlas #330 untouched; no release."
+  },
+  "applied": {
+    "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+    "review_pairs": [
+      [
+        "tainua-next-proposals.json",
+        "tainua-next-independent-review.json"
+      ],
+      [
+        "tamazight-next-proposals.json",
+        "tamazight-next-independent-review.json"
+      ],
+      [
+        "tamazight-supplemental-proposals.json",
+        "tamazight-supplemental-review.json"
+      ]
+    ],
+    "source_anchors_revalidated": 40,
+    "consumer_anchors_revalidated": 13,
+    "proposed_unique_keys": 17,
+    "submitted_proposal_versions": 18,
+    "superseded_deferred_proposals": [
+      {
+        "previous_proposal": {
+          "locale": "zgh",
+          "key": "ui_add_images_first",
+          "english": "Add images first.",
+          "value": "ⵔⵏⵓ ⵜⵉⵡⵍⴰⴼⵉⵏ ⴷⴰⵜ.",
+          "rationale": "Same singular-addressee instruction with plural direct object and final dat indicating prerequisite order. The empty-assembly consumer requires images before later operations, not an instruction to add the first-ranked image. Existing first phrasing is consistency only; new whole clause is independently composed.",
+          "confidence": "medium original whole-value proposal; independent linguistic review required",
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+              "line": 49,
+              "key": "ui_add_colour26",
+              "value": "ⵔⵏⵓ ⴰⴽⵍⵓ"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+              "line": 369,
+              "key": "ui_tap_an_image_first",
+              "value": "ⵙⵉⵜ ⵅⴼ ⵜⵡⵍⴰⴼⵜ ⴷⴰⵜ."
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+              "line": 388,
+              "key": "ui_image_assembly",
+              "value": "ⴰⵙⵎⵓⵏ ⵏ ⵜⵡⵍⴰⴼⵉⵏ…"
+            }
+          ],
+          "english_source": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 17,
+            "key": "ui_add_images_first",
+            "value": "Add images first."
+          },
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 269,
+              "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ],
+          "consumer_classification": "active",
+          "checks": {
+            "missing": true,
+            "NFC": true,
+            "placeholders_match": true,
+            "android_escaping": "pass",
+            "format": "pass",
+            "script": "Tifinagh; Latin brand/format IDs only, no borrowed Kabyle Latin or Arabic-script substitution"
+          }
+        },
+        "previous_review": {
+          "locale": "zgh",
+          "key": "ui_add_images_first",
+          "english": "Add images first.",
+          "proposed": "ⵔⵏⵓ ⵜⵉⵡⵍⴰⴼⵉⵏ ⴷⴰⵜ.",
+          "decision": "defer",
+          "final_value": null,
+          "rationale": "Defer this complete clause only. Add plus plural image is sound, but indexed IRCAM dat gloss covers before/in front, not by itself the standalone clause-final first/prerequisite use needed here. I cannot confidently resolve temporal-adverb scope versus incomplete relational/spatial reading from these sources and own judgment. Existing tap-image-first repeats the same uncertainty rather than settling it. This is not a requirement for a verbatim donor or native-human reviewer, nor a finding that the existing phrase is erroneous. No confident replacement supplied.",
+          "confidence": "insufficient for temporal first in this complete clause",
+          "consumer_classification": "active",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 269,
+              "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ],
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+              "line": 49,
+              "key": "ui_add_colour26",
+              "value": "ⵔⵏⵓ ⴰⴽⵍⵓ"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+              "line": 369,
+              "key": "ui_tap_an_image_first",
+              "value": "ⵙⵉⵜ ⵅⴼ ⵜⵡⵍⴰⴼⵜ ⴷⴰⵜ."
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+              "line": 388,
+              "key": "ui_image_assembly",
+              "value": "ⴰⵙⵎⵓⵏ ⵏ ⵜⵡⵍⴰⴼⵉⵏ…"
+            }
+          ],
+          "checks": {
+            "missing": true,
+            "NFC": true,
+            "placeholders": "None in source or candidate",
+            "escaping": "No ASCII apostrophes/XML-sensitive content; identifiers and ellipsis retained.",
+            "variety": "Moroccan Standard Tamazight zgh; no mechanical Kabyle/other-variety transliteration."
+          }
+        },
+        "new_review_file": "tamazight-supplemental-review.json"
+      }
+    ],
+    "accepted": 17,
+    "accepted_unchanged": 17,
+    "revised": 0,
+    "withheld": [],
+    "active": 10,
+    "catalogue_only": 7,
+    "applied": {
+      "tdd": {
+        "added": 5,
+        "old_elements_preserved": 384,
+        "total": 389,
+        "sha256": "4c63004845ab3243a9de119b805b396b5717d121f8313497f431e76a1c29dfbc",
+        "path": "Paintroid/src/main/res/values-b+tdd/strings.xml"
+      },
+      "zgh": {
+        "added": 12,
+        "old_elements_preserved": 389,
+        "total": 401,
+        "sha256": "ffeb4165849e2ae12f784a193debc3eb3afe479cabd9e3957132c732dd9b4467",
+        "path": "Paintroid/src/main/res/values-b+zgh/strings.xml"
+      }
+    }
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 10.557,
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 17,
+        "proposal_versions_checked": 18,
+        "superseded_deferral_preserved": true,
+        "prior_elements_attributes_text_and_order_preserved": 773,
+        "only_expected_two_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 43,
+        "prepared_consumer_lines_revalidated": 15,
+        "fresh_main_source_active": 10,
+        "fresh_main_source_catalogue_only": 7,
+        "all_18_English_values_match": true,
+        "current_unique_proposal_source_anchors_revalidated": 40,
+        "current_unique_proposal_consumer_lines_revalidated": 13,
+        "anchor_count_scope": "43/15 includes superseded prerequisite version; current17 uses40/13."
+      },
+      "applied": {
+        "tdd": {
+          "added": 5,
+          "old_elements_preserved": 384,
+          "total_elements": 389,
+          "sha256": "4c63004845ab3243a9de119b805b396b5717d121f8313497f431e76a1c29dfbc"
+        },
+        "zgh": {
+          "added": 12,
+          "old_elements_preserved": 389,
+          "total_elements": 401,
+          "sha256": "ffeb4165849e2ae12f784a193debc3eb3afe479cabd9e3957132c732dd9b4467"
+        }
+      },
+      "fresh_consumer_paths": {
+        "tdd/formats22_select_page": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "tdd/formats22_open_page": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "tdd/ui_save_as_webp": [],
+        "tdd/ui_save_as_heic": [],
+        "tdd/ui_save_as_avif": [],
+        "zgh/ui_add_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "zgh/ui_add_images_first": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "zgh/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "zgh/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "zgh/formats22_select_page": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "zgh/formats22_page_number": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "zgh/ui_save_as_webp": [],
+        "zgh/ui_save_as_heic": [],
+        "zgh/ui_save_as_avif": [],
+        "zgh/ui_add_palette23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "zgh/ui_remove_palette23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "zgh/ui_edit_palette23": []
+      },
+      "review_file_sha256": {
+        "tainua-next-independent-review.json": "57d764b2ee546baa566bbaa63d01f4d924c6f88a24daced6175499818118b02c",
+        "tamazight-next-independent-review.json": "dd3b4ff9894450c26e76235493a9db21513e56a3d8061c24de32036908a9475b",
+        "tamazight-supplemental-review.json": "920b76b6c5f73de3c2f19ca0fdba162d8af8f1aa33540ddb746acc7d767e83b3"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ]
+    }
+  },
+  "remote_source": {
+    "complete_leaves": 1310,
+    "path_mode_type_blob_comparison": "all entries match reviewed index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "candidate_counts": {
+    "status": "candidate only, not merged credit",
+    "source_tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117476,
+    "missing": 5473,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "source": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+    "present": 117459,
+    "total": 122949,
+    "missing": 5490,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 17
+    },
+    "by_locale": {
+      "tdd": {
+        "P2": 5
+      },
+      "zgh": {
+        "P2": 12
+      }
+    },
+    "limit": "Resource priority classification is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "prior_preparation": {
+    "commit": "9a19f6aa8749cfcb95c1fa3183add6a914dd5c44",
+    "path": "verification/translations/2026-11-15/tainua-tamazight-next-preparation/research-review.zip",
+    "original_base": "758eaece5398fc2f85e504c45a4b300008a30018",
+    "reconciliation": "Both current catalogue hashes unchanged; all source and consumer anchors revalidated."
+  },
+  "additional_research": {
+    "current_supplemental_decisions": [
+      {
+        "locale": "zgh",
+        "key": "ui_add_images_first",
+        "english": "Add images first.",
+        "proposed": "ⴳ ⵜⵉⵣⵡⵉⵔⵉ, ⵔⵏⵓ ⵜⵉⵡⵍⴰⴼⵉⵏ.",
+        "decision": "accept",
+        "final_value": "ⴳ ⵜⵉⵣⵡⵉⵔⵉ, ⵔⵏⵓ ⵜⵉⵡⵍⴰⴼⵉⵏ.",
+        "rationale": "Accept revised full instruction, not the older dat wording. Fronted g tizwiri supplies temporal at-the-start scope for the following command; in the empty-images guard this naturally orders adding images before normalization or batch cropping. Unlike a bare relational before, beginning is a complete nominal complement, so no omitted comparison is needed. The imperative rnu governs free-state plural tiwlafin. The official chronological paragraph confirms temporal beginning semantics, while standalone instructional use and scope are my independent composition judgment. No ordinal-first-image reading is introduced.",
+        "confidence": "medium bounded independent model review",
+        "consumer_classification": "active",
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "line": 269,
+            "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "line": 279,
+            "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+          }
+        ],
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_add_colour26",
+            "value": "ⵔⵏⵓ ⴰⴽⵍⵓ",
+            "line": 49
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_image_assembly",
+            "value": "ⴰⵙⵎⵓⵏ ⵏ ⵜⵡⵍⴰⴼⵉⵏ…",
+            "line": 388
+          }
+        ],
+        "english_source": {
+          "path": "Paintroid/src/main/res/values/strings.xml",
+          "key": "ui_add_images_first",
+          "value": "Add images first.",
+          "line": 17
+        }
+      },
+      {
+        "locale": "zgh",
+        "key": "ui_add_palette23",
+        "english": "Add to palette",
+        "proposed": "ⵔⵏⵓ ⵉ ⵜⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+        "decision": "accept",
+        "final_value": "ⵔⵏⵓ ⵉ ⵜⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+        "rationale": "Accept full contextual command. Rnu is positive add, i supplies destination, and feminine tnkul t (one word in the actual value) is the annexed form after the preposition. The understood direct object is the current colour: saveCustom actually calls paletteStore.add(value.colour), not creation of a new palette. I assess tankult n iklan here as a transparent colour-box/colour-collection metaphor, not an independently proven standardized dictionary translation of palette. IRCAM indexed tankult means box and its paint-box compound corroborates the container metaphor; app presence alone is not the reason for acceptance. The genitive colour complement and destination relation preserve the useful collection meaning.",
+        "confidence": "medium bounded independent model review",
+        "consumer_classification": "active",
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+            "line": 220,
+            "code": "saveCustomButton=button(ui(R.string.ui_add_palette23), \"add_custom_colour\") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+            "line": 346,
+            "code": "saveCustomButton.text=ui(R.string.ui_add_palette23)"
+          }
+        ],
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_add_colour26",
+            "value": "ⵔⵏⵓ ⴰⴽⵍⵓ",
+            "line": 49
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_palette",
+            "value": "ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+            "line": 185
+          }
+        ],
+        "english_source": {
+          "path": "Paintroid/src/main/res/values/strings.xml",
+          "key": "ui_add_palette23",
+          "value": "Add to palette",
+          "line": 517
+        }
+      },
+      {
+        "locale": "zgh",
+        "key": "ui_remove_palette23",
+        "english": "Remove from palette",
+        "proposed": "ⴽⴽⵙ ⵙⴳ ⵜⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+        "decision": "accept",
+        "final_value": "ⴽⴽⵙ ⵙⴳ ⵜⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+        "rationale": "Accept full command with source relation sg, not deletion of the palette. Kks permits removing an understood selected object; the swatch-specific dialog title identifies it, and action2 removes only store[index]. Annexed feminine tnkult after sg is appropriate; genitive n iklan remains inside the colour-box noun phrase. Primary watch/unwatch instructions independently establish add-to versus remove-from relations. Colour-box is an original bounded metaphor for stored swatches, not a claim that a physical paint box or an entire collection is destroyed.",
+        "confidence": "medium bounded independent model review",
+        "consumer_classification": "active",
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "line": 1016,
+            "code": ".setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->"
+          }
+        ],
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_remove",
+            "value": "ⴽⴽⵙ",
+            "line": 19
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_palette",
+            "value": "ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+            "line": 185
+          }
+        ],
+        "english_source": {
+          "path": "Paintroid/src/main/res/values/strings.xml",
+          "key": "ui_remove_palette23",
+          "value": "Remove from palette",
+          "line": 523
+        }
+      },
+      {
+        "locale": "zgh",
+        "key": "ui_edit_palette23",
+        "english": "Edit palette",
+        "proposed": "ⵙⵏⴼⵍ ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+        "decision": "accept",
+        "final_value": "ⵙⵏⴼⵍ ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+        "rationale": "Accept complete positive edit directive. Snfl governs free-state direct object tankult, contrasting with the annexed forms after i/sg in the other commands. N iklan modifies the container noun, so the whole object is the colour collection. Primary edit-page/edit-description commands corroborate this transitive use. This key has no literal production consumer; acceptance is catalogue wording only, not verification of a live edit-palette action. Colour-box metaphor is independently assessed as meaningful here, not taken as a canonical dictionary palette equivalence.",
+        "confidence": "medium bounded independent model review",
+        "consumer_classification": "catalogue-only",
+        "consumer_anchors": [],
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_menu_edit",
+            "value": "ⵙⵏⴼⵍ",
+            "line": 8
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+            "key": "ui_palette",
+            "value": "ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+            "line": 185
+          }
+        ],
+        "english_source": {
+          "path": "Paintroid/src/main/res/values/strings.xml",
+          "key": "ui_edit_palette23",
+          "value": "Edit palette",
+          "line": 521
+        }
+      }
+    ],
+    "prior_deferral_history_preserved": true,
+    "tainua_negative_pass": {
+      "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+      "locale": "tdd",
+      "status": "Read-only supplemental assessment complete; no new complete values qualify in this pass. Prior five reconciled separately, not counted as new.",
+      "proposals": [],
+      "reconciled_prior_proposals": [
+        {
+          "locale": "tdd",
+          "key": "formats22_select_page",
+          "english": "Choose a page",
+          "value": "ᥘᥫᥐ ᥘᥣᥲ ᥘᥤᥐ",
+          "confidence": "medium; bounded original whole-value proposal for independent review",
+          "rationale": "Complete bare-subject directive choose page: selection verb precedes the page object. Analytic grammar does not require an English-style article or a new plural inflection. Page here is one selectable document/image page, and MediaWiki multipage-image navigation independently confirms the noun in a closely matching context. Selected-file source corroborates the selection root, not an entire imperative donor. I compose the directive rather than copy its relative-state construction; no completion particle or plural marker is introduced.",
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 31,
+              "key": "ui_select_all",
+              "value": "ᥘᥫᥐ ᥛᥨᥖᥴ"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 385,
+              "key": "formats22_next_page",
+              "value": "ᥘᥣᥲ ᥘᥤᥐ ᥖᥤᥴ ᥛᥣᥰ"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 386,
+              "key": "formats22_previous_page",
+              "value": "ᥘᥣᥲ ᥘᥤᥐ ᥟᥢ ᥙᥨᥢᥳ ᥛᥣᥰ"
+            }
+          ],
+          "english_anchor": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 575,
+            "key": "formats22_select_page",
+            "value": "Choose a page"
+          },
+          "primary_source_anchors": [
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "revdelete-selected-file",
+              "line": 619,
+              "value": "{{PLURAL:$1|ᥜᥣᥭᥱ ᥙᥫᥰ ᥡᥤᥢᥰ ᥟᥢ ᥘᥫᥐ ᥝᥭᥳ|ᥜᥣᥭᥱ ᥙᥫᥰ ᥡᥤᥢᥰ ᥓᥫᥰ ᥘᥫᥐ ᥝᥭᥳ}} ᥞᥒᥰ [[:$2]]:"
+            },
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "imgmultipagenext",
+              "line": 1104,
+              "value": "ᥘᥣᥲ ᥘᥤᥐ ᥖᥤᥴ ᥛᥣᥰ →"
+            }
+          ],
+          "consumer_classification": "active",
+          "consumer_anchors": [
+            {
+              "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 113,
+              "code": "val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_select_page))"
+            }
+          ],
+          "checks": {
+            "key_missing": true,
+            "NFC": true,
+            "placeholders": "None in source or value",
+            "escaping": "No apostrophe, markup or backslash; use U+2026 ellipsis only on format labels.",
+            "script": "Tai Le letters and explicit tone marks preserved; no Shan/Thai automatic transliteration."
+          },
+          "reconciliation": "Still missing; anchors unchanged in meaning and exact value/code at fresh base. Prior independent acceptance retained as evidence, not a new independent review."
+        },
+        {
+          "locale": "tdd",
+          "key": "formats22_open_page",
+          "english": "Open page",
+          "value": "ᥚᥧᥭᥱ ᥘᥣᥲ ᥘᥤᥐ",
+          "confidence": "medium; bounded original whole-value proposal for independent review",
+          "rationale": "Complete verb-object command to open the page. The source newwindow usage independently corroborates open in software and multipage-image navigation corroborates document-page noun. No classifier/number suffix needed for the contextually selected page. Consumer is positive action following valid page selection, so open is distinct from merely displaying the preview or browsing a website.",
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 49,
+              "key": "ui_could_not_open_image",
+              "value": "ᥟᥛᥱ ᥓᥣᥒ ᥚᥧᥭᥱ ᥙᥧᥒᥱ"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 385,
+              "key": "formats22_next_page",
+              "value": "ᥘᥣᥲ ᥘᥤᥐ ᥖᥤᥴ ᥛᥣᥰ"
+            }
+          ],
+          "english_anchor": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 581,
+            "key": "formats22_open_page",
+            "value": "Open page"
+          },
+          "primary_source_anchors": [
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "newwindow",
+              "line": 29,
+              "value": "(ᥚᥧᥭᥱ ᥘᥒᥱ ᥝᥤᥢᥰ ᥖᥨᥝᥰ ᥟᥢ ᥛᥬᥱ)"
+            },
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "imgmultipagenext",
+              "line": 1104,
+              "value": "ᥘᥣᥲ ᥘᥤᥐ ᥖᥤᥴ ᥛᥣᥰ →"
+            }
+          ],
+          "consumer_classification": "active",
+          "consumer_anchors": [
+            {
+              "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 115,
+              "code": ".setPositiveButton(ui(R.string.formats22_open_page),null)"
+            }
+          ],
+          "checks": {
+            "key_missing": true,
+            "NFC": true,
+            "placeholders": "None in source or value",
+            "escaping": "No apostrophe, markup or backslash; use U+2026 ellipsis only on format labels.",
+            "script": "Tai Le letters and explicit tone marks preserved; no Shan/Thai automatic transliteration."
+          },
+          "reconciliation": "Still missing; anchors unchanged in meaning and exact value/code at fresh base. Prior independent acceptance retained as evidence, not a new independent review."
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_save_as_webp",
+          "english": "Save as WebP…",
+          "value": "WebP: ᥔᥤᥛᥰ…",
+          "confidence": "medium; bounded original whole-value proposal for independent review",
+          "rationale": "Complete format-topic plus save command. The fixed identifier is explicitly separated by colon and ellipsis marks a continuing save workflow; this is not an invented translation of the format or a filename. Digital preservation sense of save is independently evidenced by editing-page save controls, not inferred from app repetitions alone. Isolating the save verb avoids implying changes-only or adding unverified as morphology. Tone spelling is retained from primary use. No losslessness, completion, overwriting or indefinite-retention claim. Currently catalogue-only.",
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 85,
+              "key": "ui_save_as_png",
+              "value": "PNG: ᥔᥤᥛᥰ…"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 86,
+              "key": "ui_save_as_jpeg",
+              "value": "JPEG: ᥔᥤᥛᥰ…"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 45,
+              "key": "ui_save_png",
+              "value": "ᥔᥤᥛᥰ PNG"
+            }
+          ],
+          "english_anchor": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 559,
+            "key": "ui_save_as_webp",
+            "value": "Save as WebP…"
+          },
+          "primary_source_anchors": [
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "savechanges",
+              "line": 436,
+              "value": "ᥔᥤᥛᥰ ᥘᥩᥒ ᥘᥦᥐ ᥘᥣᥭ"
+            },
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "savearticle",
+              "line": 435,
+              "value": "ᥐᥥᥙᥱ ᥔᥤᥛᥰ ᥘᥣᥲ ᥘᥤᥐ"
+            }
+          ],
+          "consumer_classification": "catalogue-only; no production Kotlin/Java literal consumer at this base",
+          "consumer_anchors": [],
+          "checks": {
+            "key_missing": true,
+            "NFC": true,
+            "placeholders": "None in source or value",
+            "escaping": "No apostrophe, markup or backslash; use U+2026 ellipsis only on format labels.",
+            "script": "Tai Le letters and explicit tone marks preserved; no Shan/Thai automatic transliteration."
+          },
+          "reconciliation": "Still missing; anchors unchanged in meaning and exact value/code at fresh base. Prior independent acceptance retained as evidence, not a new independent review."
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_save_as_heic",
+          "english": "Save as HEIC…",
+          "value": "HEIC: ᥔᥤᥛᥰ…",
+          "confidence": "medium; bounded original whole-value proposal for independent review",
+          "rationale": "Complete format-topic plus save command. The fixed identifier is explicitly separated by colon and ellipsis marks a continuing save workflow; this is not an invented translation of the format or a filename. Digital preservation sense of save is independently evidenced by editing-page save controls, not inferred from app repetitions alone. Isolating the save verb avoids implying changes-only or adding unverified as morphology. Tone spelling is retained from primary use. No losslessness, completion, overwriting or indefinite-retention claim. Currently catalogue-only.",
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 85,
+              "key": "ui_save_as_png",
+              "value": "PNG: ᥔᥤᥛᥰ…"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 86,
+              "key": "ui_save_as_jpeg",
+              "value": "JPEG: ᥔᥤᥛᥰ…"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 45,
+              "key": "ui_save_png",
+              "value": "ᥔᥤᥛᥰ PNG"
+            }
+          ],
+          "english_anchor": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 560,
+            "key": "ui_save_as_heic",
+            "value": "Save as HEIC…"
+          },
+          "primary_source_anchors": [
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "savechanges",
+              "line": 436,
+              "value": "ᥔᥤᥛᥰ ᥘᥩᥒ ᥘᥦᥐ ᥘᥣᥭ"
+            },
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "savearticle",
+              "line": 435,
+              "value": "ᥐᥥᥙᥱ ᥔᥤᥛᥰ ᥘᥣᥲ ᥘᥤᥐ"
+            }
+          ],
+          "consumer_classification": "catalogue-only; no production Kotlin/Java literal consumer at this base",
+          "consumer_anchors": [],
+          "checks": {
+            "key_missing": true,
+            "NFC": true,
+            "placeholders": "None in source or value",
+            "escaping": "No apostrophe, markup or backslash; use U+2026 ellipsis only on format labels.",
+            "script": "Tai Le letters and explicit tone marks preserved; no Shan/Thai automatic transliteration."
+          },
+          "reconciliation": "Still missing; anchors unchanged in meaning and exact value/code at fresh base. Prior independent acceptance retained as evidence, not a new independent review."
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_save_as_avif",
+          "english": "Save as AVIF…",
+          "value": "AVIF: ᥔᥤᥛᥰ…",
+          "confidence": "medium; bounded original whole-value proposal for independent review",
+          "rationale": "Complete format-topic plus save command. The fixed identifier is explicitly separated by colon and ellipsis marks a continuing save workflow; this is not an invented translation of the format or a filename. Digital preservation sense of save is independently evidenced by editing-page save controls, not inferred from app repetitions alone. Isolating the save verb avoids implying changes-only or adding unverified as morphology. Tone spelling is retained from primary use. No losslessness, completion, overwriting or indefinite-retention claim. Currently catalogue-only.",
+          "source_anchors": [
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 85,
+              "key": "ui_save_as_png",
+              "value": "PNG: ᥔᥤᥛᥰ…"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 86,
+              "key": "ui_save_as_jpeg",
+              "value": "JPEG: ᥔᥤᥛᥰ…"
+            },
+            {
+              "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+              "line": 45,
+              "key": "ui_save_png",
+              "value": "ᥔᥤᥛᥰ PNG"
+            }
+          ],
+          "english_anchor": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 561,
+            "key": "ui_save_as_avif",
+            "value": "Save as AVIF…"
+          },
+          "primary_source_anchors": [
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "savechanges",
+              "line": 436,
+              "value": "ᥔᥤᥛᥰ ᥘᥩᥒ ᥘᥦᥐ ᥘᥣᥭ"
+            },
+            {
+              "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json",
+              "key": "savearticle",
+              "line": 435,
+              "value": "ᥐᥥᥙᥱ ᥔᥤᥛᥰ ᥘᥣᥲ ᥘᥤᥐ"
+            }
+          ],
+          "consumer_classification": "catalogue-only; no production Kotlin/Java literal consumer at this base",
+          "consumer_anchors": [],
+          "checks": {
+            "key_missing": true,
+            "NFC": true,
+            "placeholders": "None in source or value",
+            "escaping": "No apostrophe, markup or backslash; use U+2026 ellipsis only on format labels.",
+            "script": "Tai Le letters and explicit tone marks preserved; no Shan/Thai automatic transliteration."
+          },
+          "reconciliation": "Still missing; anchors unchanged in meaning and exact value/code at fresh base. Prior independent acceptance retained as evidence, not a new independent review."
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/wikimedia/mediawiki-extensions-VisualEditor/master/i18n/ve-mw/tdd.json",
+          "access": "Full 38-line source read via web on 2026-11-15; mutable URL",
+          "findings": "Lines22 thumbnail type: ᥞᥣᥒ ᥘᥥᥐ. Lines23/27 add category construction; line9 edit this page. Narrow primary authored software contexts, not general dictionary or full new phrases."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/wikimedia/mediawiki-extensions-MultimediaViewer/master/i18n/tdd.json",
+          "access": "404; no text retrieved",
+          "findings": "No support asserted."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/wikimedia/mediawiki-extensions-UploadWizard/master/i18n/tdd.json",
+          "access": "404; no text retrieved",
+          "findings": "No support asserted."
+        },
+        {
+          "url": "https://collectanealinguistica.files.wordpress.com/2016/11/dehong-dai-an-introductory-lesson.pdf",
+          "access": "Full four-page primary introductory lesson read via web",
+          "findings": "McKeon 2016: pp2–3 SVO, uninflected verbs, noun modifiers follow head; p4 notes spaces added for convenience. Legacy-font extraction is not Unicode orthographic evidence. Does not supply picture/quality/metal terminology."
+        },
+        {
+          "url": "https://asjp.clld.org/languages/DEHONG_TAI_NUEA",
+          "access": "Metadata page read; lexical rows not exposed in returned page",
+          "findings": "Source identified Deng/Wang 2009; no lexical entries claimed read. No script reconstruction from phonetic forms."
+        },
+        {
+          "url": "https://mzzj.yn.gov.cn/html/2018/weishudongtai_1214/30705.html",
+          "access": "Indexed official primary report snippet only",
+          "findings": "Reports field collection of Dehong Tai vocabulary and sentences. Does not expose specific required entries, no authority transferred from collection announcement to proposed strings."
+        }
+      ],
+      "individual_deferrals": [
+        {
+          "locale": "tdd",
+          "key": "ui_add_images",
+          "english": "Add images",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Fresh VisualEditor add-category wording supports the add root but not the image noun. MediaWiki nstab-image/imagepage actually label file namespace/page; translating this control with file noun would broaden import semantics. Existing picture noun is not independent proof. No new value asserted.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyCanvas.kt",
+              "line": 85,
+              "code": "canvas.drawText(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),width/2f,height/2f,p)"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyCanvas.kt",
+              "line": 87,
+              "code": "val caption=VerticalCanvasCaption(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),p,height-32*density,direction)"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 86,
+              "code": "add = button(ui(R.string.ui_add_images),\"assembly_add\") { launchAdd() }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 269,
+              "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_an_paint_image",
+          "english": "AN Paint image",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Picture noun remains plausible but fresh sources do not remove my uncertainty about precise picture versus form/image use. Brand-plus-noun is grammatically simple; lexical confidence, not missing donor sentence, is the remaining distinction.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1394,
+              "code": "clipData=android.content.ClipData.newRawUri(ui(R.string.ui_an_paint_image),uri)"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 77,
+              "code": "count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 129,
+              "code": "board.refresh(); count.text = ui(R.string.ui_an_paint_image_assembly_20_images_placed, assembly.images.size, assembly.layout().size)"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "gallery_use_image",
+          "english": "Use image",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Use verb is established elsewhere, but picture noun/action-object fit remains individually unresolved; no mechanical reuse of file-label wording.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+              "line": 164,
+              "code": "this,ui(R.string.gallery_use_image),\"gallery_use_selected\") {"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+              "line": 225,
+              "code": "view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_cropped_thumbnail",
+          "english": "Cropped thumbnail: %1$s",
+          "decision": "defer",
+          "value": null,
+          "rationale": "New primary VisualEditor thumb-type label is a display-format noun. It does not establish a complete cropped-thumbnail accessibility phrase or crop modifier scope.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyThumbnail.kt",
+              "line": 12,
+              "code": "init { contentDescription = ui(R.string.ui_cropped_thumbnail, item.name) }"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_tap_an_image_thumbnail_first",
+          "english": "Tap an image thumbnail first.",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Thumbnail-type source does not establish this whole prerequisite instruction, referent scope or ordering of first. Defer, do not substitute tap-image wording and lose thumbnail detail.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 274,
+              "code": "if (id == null) { message(ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "formats22_page_preview",
+          "english": "Selected page preview",
+          "decision": "defer",
+          "value": null,
+          "rationale": "MediaWiki preview alternates several view-before/preview forms. Selected-page modifier must attach to page, not preview action. Full nominal structure not confidently composed in this pass.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 110,
+              "code": "val image=ImageView(activity).apply {tag=\"import_page_preview\";adjustViewBounds=true;scaleType=ImageView.ScaleType.FIT_CENTER;contentDescription=ui(R.string.formats22_page_preview)}"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "formats22_page_number",
+          "english": "Page number",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Page noun is established, but numeric ordinal identifier versus count terminology remains unresolved. Digit lists alone do not establish this field-label meaning.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 105,
+              "code": "val field=EditText(activity).apply {tag=\"import_page_number\";LocaleNumberInput.configure(this);setSingleLine(true);contentDescription=ui(R.string.formats22_page_number);setText(\"1\");selectAll()}"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_smallest",
+          "english": "Smallest",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Comparative smaller wording is established in app; superlative over the image set and exact noun omission not confidently justified by fresh primary evidence.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 64,
+              "code": "listOf(Triple(\"smallest\",R.string.ui_smallest,smallest),Triple(\"largest\",R.string.ui_largest,largest)).forEach { (key,label,pixels) ->"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_largest",
+          "english": "Largest",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Same individual superlative scope issue as smallest; do not assume comparative plus generic utmost string composes safely.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 64,
+              "code": "listOf(Triple(\"smallest\",R.string.ui_smallest,smallest),Triple(\"largest\",R.string.ui_largest,largest)).forEach { (key,label,pixels) ->"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_quality",
+          "english": "Quality (%)",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Existing long description contains a quality-like term; fresh retrieved sources do not establish codec-quality noun versus value/price ambiguity. Percent alone cannot resolve semantics.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+              "line": 84,
+              "code": "val slider=NumericSlider(activity,ui(R.string.ui_quality),quality,1,100) {quality=it}.apply {tag=\"export_quality\"}"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_width_in",
+          "english": "Width in %1$s",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Existing width-with-unit is an anchor, but in-unit relation versus parenthesized unit label not independently justified. No new value merely to repeat existing wording.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+              "line": 81,
+              "code": "widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_gold",
+          "english": "Gold",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Search returned secondary Wiktionary gold spelling; Dai Lue classifier corpus is a different language and cannot license Tai Nuea tone/script. No primary metal spelling found in this bounded pass.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 61,
+              "code": "private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_silver",
+          "english": "Silver",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Dai Lue money/silver corpus is not Tai Nuea. No substitution of cross-language spelling or unverified money noun for metal colour.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 61,
+              "code": "private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_copper",
+          "english": "Copper",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Fresh results largely Thai school material, not Tai Nuea; no justified target metal noun.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 61,
+              "code": "private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        },
+        {
+          "locale": "tdd",
+          "key": "ui_horizontal23",
+          "english": "Horizontal",
+          "decision": "defer",
+          "value": null,
+          "rationale": "Fresh sources do not establish orientation label rather than horizontal line noun. No automatic transliteration.",
+          "consumer_anchors": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+              "line": 57,
+              "code": "adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,arrayOf(ui(R.string.ui_horizontal23),ui(R.string.ui_vertical_rl23),ui(R.string.ui_vertical_lr23)));setSelection(initial.direction.ordinal)}"
+            }
+          ],
+          "consumer_classification": "active production reference"
+        }
+      ],
+      "checks": {
+        "AGENTS_CI": "Read current files; no build/test/workflow changes",
+        "catalogue_sha256": "9ea9cdcf8dab314fd49fa30d6979f0b97a3267475eadb0ecff84c2b7cef4e35a",
+        "prior_five_still_missing": true,
+        "prior_source_and_consumer_anchors_verified": true,
+        "additional_deferrals": 15,
+        "application_edits": false,
+        "external_mutation": false
+      },
+      "limits": [
+        "No claim that deferred wording is impossible or existing source is wrong.",
+        "No donor-sentence/native-human prerequisite imposed; individual lexical and modifier-scope uncertainty only.",
+        "No arbitrary quota, aliases, bare format identifiers or mechanical cross-language transliteration added.",
+        "No device, glyph/layout, TalkBack or whole-language acceptance; no CI run for scratch assessment.",
+        "Prior five remain independently reviewed elsewhere and require parent publication qualification."
+      ]
+    },
+    "basis": "Fresh primary evidence and independent complete-value assessment, not a requirement for a donor sentence or native-human certificate. Only accepted complete values applied; specific uncertainty retained."
+  },
+  "limits": [
+    "Bounded independent model/source review, not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Lexical and instructional corroboration does not certify every composed phrase; regional and spelling variants remain documented.",
+    "Catalogue-only additions do not claim current UI improvements.",
+    "No application behavior, default resources, tests, workflow, permissions or release changes.",
+    "No Work task, #422, #330 or other held/pending operation was performed."
+  ]
+}
