@@ -1,0 +1,305 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/484",
+  "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+  "head": "f69a4e140bda2850df6ca3de4e9210ec261bd646",
+  "tested_checkout": "cc0a347855abfa8342638da15b683c7855eca02b",
+  "tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+  "merge": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+  "merged_at": "2026-11-15T11:09:17Z",
+  "changes": {
+    "Tai Nua": 5,
+    "Standard Moroccan Tamazight": 12,
+    "total": 17,
+    "active_consumer_entries": 10,
+    "catalogue_only_entries": 7,
+    "previous_elements_preserved": 773
+  },
+  "review": {
+    "proposed_unique_keys": 17,
+    "submitted_historical_proposal_versions": 18,
+    "accepted_unchanged_current_values": 17,
+    "revised_current_proposals": 0,
+    "withheld_current_proposals": 0,
+    "historical_deferral_replaced_by_new_reviewed_value": 1,
+    "prior_prepared_values_unchanged": 13,
+    "additional_primary_source_supported_values": 4,
+    "full_value_model_review": "passed",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6893138723,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a claimed clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "cd01edd0404818c2c95902ba4f8d0d46443d5507",
+    "path": "verification/translations/2026-11-15/tainua-tamazight-controls"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 10.557,
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 17,
+        "proposal_versions_checked": 18,
+        "superseded_deferral_preserved": true,
+        "prior_elements_attributes_text_and_order_preserved": 773,
+        "only_expected_two_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 43,
+        "prepared_consumer_lines_revalidated": 15,
+        "fresh_main_source_active": 10,
+        "fresh_main_source_catalogue_only": 7,
+        "all_18_English_values_match": true,
+        "current_unique_proposal_source_anchors_revalidated": 40,
+        "current_unique_proposal_consumer_lines_revalidated": 13,
+        "anchor_count_scope": "43/15 includes superseded prerequisite version; current17 uses40/13."
+      },
+      "applied": {
+        "tdd": {
+          "added": 5,
+          "old_elements_preserved": 384,
+          "total_elements": 389,
+          "sha256": "4c63004845ab3243a9de119b805b396b5717d121f8313497f431e76a1c29dfbc"
+        },
+        "zgh": {
+          "added": 12,
+          "old_elements_preserved": 389,
+          "total_elements": 401,
+          "sha256": "ffeb4165849e2ae12f784a193debc3eb3afe479cabd9e3957132c732dd9b4467"
+        }
+      },
+      "fresh_consumer_paths": {
+        "tdd/formats22_select_page": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "tdd/formats22_open_page": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "tdd/ui_save_as_webp": [],
+        "tdd/ui_save_as_heic": [],
+        "tdd/ui_save_as_avif": [],
+        "zgh/ui_add_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "zgh/ui_add_images_first": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "zgh/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "zgh/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "zgh/formats22_select_page": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "zgh/formats22_page_number": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "zgh/ui_save_as_webp": [],
+        "zgh/ui_save_as_heic": [],
+        "zgh/ui_save_as_avif": [],
+        "zgh/ui_add_palette23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "zgh/ui_remove_palette23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "zgh/ui_edit_palette23": []
+      },
+      "review_file_sha256": {
+        "tainua-next-independent-review.json": "57d764b2ee546baa566bbaa63d01f4d924c6f88a24daced6175499818118b02c",
+        "tamazight-next-independent-review.json": "dd3b4ff9894450c26e76235493a9db21513e56a3d8061c24de32036908a9475b",
+        "tamazight-supplemental-review.json": "920b76b6c5f73de3c2f19ca0fdba162d8af8f1aa33540ddb746acc7d767e83b3"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ]
+    }
+  },
+  "pr_ci": {
+    "run": 43705343043,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 218.269,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1414,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 158,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43707531007,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14159106741,
+    "archive_sha256": "c474a8bb97f527434faced904fea99eda5bc22a1ccb6a33f940f4d6d8c6598a2",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "verified merged develop source",
+    "source_tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117476,
+    "missing": 5473,
+    "complete": 153,
+    "partial": 18,
+    "source_commit": "a0e15ce09c939cae5c94df54e13d78ea2f81078b"
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 17
+    },
+    "by_locale": {
+      "tdd": {
+        "P2": 5
+      },
+      "zgh": {
+        "P2": 12
+      }
+    },
+    "limit": "Resource priority classification is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "remaining_gap_planning": {
+    "tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+    "partial_catalogues": 18,
+    "literal_active_missing_entries": 4775,
+    "unique_literal_active_missing_keys": 295,
+    "independent_planning_review": {
+      "head": "f69a4e140bda2850df6ca3de4e9210ec261bd646",
+      "tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+      "decision": "pass with explicit scope caveats",
+      "independent_method": "Used git ls-tree and git show of the exact tree, not staged worktree. Parsed canonical English translatable string elements and locale XML independently; enumerated literal R.string references in main Kotlin/Java; compared all 295 key records, missing locale sets, source English, manifest tiers and consumer path/line/code sets. Consumer ordering ignored as immaterial.",
+      "verified": {
+        "partial_offered_exact_catalogues": 18,
+        "missing_literal_consumer_entries": 4775,
+        "unique_missing_literal_consumer_keys": 295,
+        "by_tier": {
+          "P2": 3673,
+          "P3": 1102
+        },
+        "per_locale_counts_match": true,
+        "key_metadata_and_consumer_sets_match": true,
+        "prepared_Chamorro_Wolof_excluded": true
+      },
+      "factual_errors": [],
+      "scope_caveats": [
+        "18 describes incomplete exact offered catalogues, not every Android resource folder. Legacy values-es and values-ko are also partial but neither bare es nor ko is a picker option; offered regional/script variants have complete direct key presence.",
+        "4,775 counts locale-key pairs, not unique controls; 295 counts shared missing keys.",
+        "Literal R.string references establish source references, not execution or visibility in every app state. They can include comments/dead code and miss dynamic/indirect sources or XML references; no runtime certification.",
+        "No-reference category is better read as no literal production Kotlin/Java reference found, not proven unreachable catalogue-only.",
+        "P2/P3 are current manifest classifications, not a new risk judgment or translation-quality approval. Long safety/attribution prose may merit special care even when manifest says P2.",
+        "Presence is not translation completeness in semantic terms; aliases, inherited fallback and correctness require separate evaluation. No plurals/arrays counted in string-only totals."
+      ],
+      "next_research_groupings": [
+        {
+          "group": "Document page selection and preview",
+          "keys": [
+            "formats22_previous_page",
+            "formats22_page_preview",
+            "formats22_page_range"
+          ],
+          "reason": "Bounded shared page-selector context; research ordinal identifier, preview noun and range instruction separately in each locale. Preserve placeholders and distinguish page count from page number."
+        },
+        {
+          "group": "Vertical text alignment controls",
+          "keys": [
+            "ui_top23",
+            "ui_bottom23",
+            "ui_horizontal23"
+          ],
+          "reason": "Short coherent layout actions with concrete selector semantics. Separate alignment from width/height changes and writing direction. Exclude already prepared Wolof top/bottom values until reconciliation."
+        },
+        {
+          "group": "Attribution copying outcomes",
+          "keys": [
+            "gallery_copy_credit",
+            "gallery_credit_copied",
+            "commons_credit_copy_failed"
+          ],
+          "reason": "Useful small action/result/failure family. Establish attribution meaning before composition, distinguish it from financial credit; completed aspect and neutral failure need own review. Leave long legal licence instructions out of this bounded group."
+        }
+      ],
+      "limits": [
+        "Evidence-only planning; no translations, application changes, tests, external mutation or permanent approval mirror added.",
+        "No native-human/linguistic/layout/runtime acceptance asserted."
+      ]
+    },
+    "classification": "Read-only current-source planning, not new translation/behavior/completion credit; literal references are not exhaustive runtime reachability."
+  },
+  "next_preparation": {
+    "status": "Independently model-reviewed preparation only; not applied or CI-qualified; excluded from merged counts",
+    "commit": "4745b1ce12490fa46dd6bc5a9976a1f3db1ca42e",
+    "path": "verification/translations/2026-11-15/chamorro-wolof-next-preparation/research-review.zip",
+    "summary": {
+      "chamorro": {
+        "proposed": 3,
+        "accepted": 3,
+        "active": 3,
+        "catalogue_only": 0,
+        "review_deferrals": 0,
+        "other_unproposed_individual_deferrals": 10
+      },
+      "wolof": {
+        "proposed": 5,
+        "accepted": 5,
+        "active": 5,
+        "catalogue_only": 0,
+        "review_deferrals": 0,
+        "other_unproposed_individual_deferrals": 15
+      }
+    },
+    "bytes": 41360,
+    "sha256": "b210a97875507b01832de8c973271f0bea64fe7815837e53590a081cdcf52778",
+    "members": 5,
+    "next_action": "After #484 integration, freshly reconcile actual develop, owners and holds before applying any candidates. Keep preparation separate from current merged coverage."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary lexical and instructional evidence corroborates targeted terms, not every complete original UI phrase; catalogue anchors are consistency evidence rather than proof.",
+    "Regional and spelling variants remain documented; palette wording is accepted as a colour-box metaphor, not standardized dictionary terminology. The original prerequisite deferral remains preserved. Other unproposed uncertainties are not blanket locale holds.",
+    "Python totals include skipped bodies; consult the exact regression receipt rather than interpreting the runner total as all executed passes.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified their byte/source binding.",
+    "All holds, the separate #422 approval operation, Work-side tasks and release destinations were untouched."
+  ]
+}
