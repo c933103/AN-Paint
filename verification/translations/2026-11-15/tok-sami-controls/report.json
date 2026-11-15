@@ -1,0 +1,73 @@
+{
+  "source_commit": "cd244b8fb0d616e58968c174d4cae01d0887ab98",
+  "base_commit": "d4ac0ee2486955dc3c47c1d0dafbf2940886e32f",
+  "source_tree": "c82f3db7b5ea7228c0eb823666941d5793228bac",
+  "pr": 478,
+  "review": {
+    "accept": 43,
+    "revise": 3,
+    "reject": 2,
+    "accepted_total": 46,
+    "accepted_by_locale": {
+      "tok": 15,
+      "se": 31
+    },
+    "accepted_active": 31,
+    "accepted_catalogue_only": 15
+  },
+  "applied": {
+    "tok": {
+      "added": 15,
+      "original_elements_preserved": 571,
+      "total": 586,
+      "sha256": "45da7f650a373b5d2308bcc09f35ba596f0f0b624a87a1f8858c4712cf6aa62d"
+    },
+    "se": {
+      "added": 31,
+      "original_elements_preserved": 414,
+      "total": 445,
+      "sha256": "f4e8d1c8313adbebc23823b2f0d54eecdb74d0a321751e065512be027de37abf"
+    }
+  },
+  "affected_tests": {
+    "passed": 62,
+    "seconds": 9.894,
+    "modules": [
+      "test_translations",
+      "test_translation_boundaries",
+      "test_string_importance",
+      "test_locale_tooltips",
+      "test_gallery_translation_data"
+    ]
+  },
+  "interim_test_limit": "62 tests also ran on the intermediate Tok-only tree after an overly strict outer-tail preservation assertion. That result is not final evidence; the complete two-file tree was rerun and passed independently.",
+  "publication_recovery": "First Northern Sami blob succeeded. The second create_blob returned automatic approval-review failure: authorization changed before approval could be applied; action not executed, not an unsafe-action determination. Readback confirmed Sami exists and Tok404. One ordinary same-tool retry published Tok; completed Sami operation not repeated.",
+  "source_recount_before": {
+    "source": "d4ac0ee2486955dc3c47c1d0dafbf2940886e32f",
+    "tree": "99915993d38367bedd41f3bb9384f52ffab5d2d3",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117176,
+    "missing": 5773,
+    "complete": 153,
+    "partial": 18,
+    "empty": 0
+  },
+  "merged_counts_not_claimed": true,
+  "proposed_counts_after": {
+    "present": 117222,
+    "missing": 5727,
+    "complete": 153,
+    "partial": 18,
+    "tok": 586,
+    "se": 445
+  },
+  "limits": [
+    "Model linguistic review only; no native-human or exhaustive layout/TalkBack acceptance.",
+    "31 additions directly referenced,15 catalogue-only; future use not certified.",
+    "Screened453 missing keys, not a full deep retranslation of every deferred manual.",
+    "Other16partial locales structurally inventoried; no whole-language linguistic review.",
+    "Exact-variety Ayacucho primary lead remains unqualified because direct dictionary pages could not be inspected.",
+    "No release, Work task, held action or #422 evidence operation."
+  ]
+}
