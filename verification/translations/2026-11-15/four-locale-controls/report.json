@@ -1,0 +1,149 @@
+{
+  "base": "e79f2ff63176d436361104c37132ba96762a7071",
+  "head": "c78aa0a329d2398ba8b5b8404bdb655fedc5b32a",
+  "tree": "410ffd76baf4f44f207b2b6585244463700f5b8a",
+  "pr": 479,
+  "source_branch": "localization/p2-four-locale-controls-20261115",
+  "reconciliation": {
+    "develop": "e79f2ff63176d436361104c37132ba96762a7071",
+    "nine_preexisting_open_prs": [
+      226,
+      159,
+      88,
+      87,
+      75,
+      72,
+      71,
+      69,
+      56
+    ],
+    "competing_localization_implementation": "none found in current PRs/private tracker; parent assigned this follow-up",
+    "holds": "All held work and separate #422 evidence approval remain untouched"
+  },
+  "applied": {
+    "base": "e79f2ff63176d436361104c37132ba96762a7071",
+    "reviews": {
+      "proposed": 119,
+      "accept_unchanged": 100,
+      "revised": 11,
+      "rejected": 8,
+      "accepted": 111,
+      "active": 83,
+      "catalogue_only": 28
+    },
+    "applied": {
+      "ch": {
+        "added": 24,
+        "old_elements_preserved": 379,
+        "total": 403,
+        "sha256": "4ad1dc40ea72b9becfc9358363b0572c957285c0df0f37d752e0dac7bdf46296",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml"
+      },
+      "quy": {
+        "added": 22,
+        "old_elements_preserved": 378,
+        "total": 400,
+        "sha256": "3c4d0228d43dced805785cfe02adb376553e26c36ffa10253fd809fc10e78108",
+        "path": "Paintroid/src/main/res/values-b+quy/strings.xml"
+      },
+      "quz": {
+        "added": 17,
+        "old_elements_preserved": 385,
+        "total": 402,
+        "sha256": "68a376a7ef4cdabc8c421db107eb05ddea85ca486fe28dadbbf6ae0b56027e6a",
+        "path": "Paintroid/src/main/res/values-b+quz/strings.xml"
+      },
+      "wo": {
+        "added": 48,
+        "old_elements_preserved": 397,
+        "total": 445,
+        "sha256": "5f1a3049c1fa8aad85e41d0ae9fd865ef33a1482dd59c3d0afa1863207b8feb5",
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml"
+      }
+    },
+    "rejected": [
+      {
+        "locale": "ch",
+        "key": "ui_placed",
+        "rationale": "Hold this individual status. Pega can mean sticking/attaching or placing against something; this app has an independent attachment relation in addition to placed/not-placed. I cannot confidently certify Mapega as the unqualified placement status without implying attachment. The existing error phrase is not independent approval of this new status."
+      },
+      {
+        "locale": "ch",
+        "key": "ui_not_placed",
+        "rationale": "Hold together with the positive placement status. Ti mapega may be understood as not attached, whereas an image can be placed without an attachment. A reliable distinction is needed before replacing fallback; this is a bounded ambiguity, not a proven defect in every use of pega."
+      },
+      {
+        "locale": "wo",
+        "key": "formats22_page_preview",
+        "rationale": "Seenu is an existing project term but I cannot confidently endorse its noun use for a selected-page preview from current evidence. The reviewed primary terminology does not resolve this. This is uncertainty, not proof the existing term is wrong."
+      },
+      {
+        "locale": "wo",
+        "key": "formats22_preview_unavailable",
+        "rationale": "Do not extend the uncertain technical preview noun into this failure status merely because existing crop wording uses it. Leave fallback until this lexical use is resolved."
+      },
+      {
+        "locale": "quz",
+        "key": "ui_add_palette23",
+        "rationale": "The suffix operations are structurally possible, but opaque base llimp'iymaru is not independently understood or supported by the inspected primary material. Existing ui_palette/ui_saved_palette23 presence is not linguistic proof. Exact-form searches did not resolve it. Withhold these four derivatives individually; this is not a finding that the existing term is certainly wrong, nor a blanket hold on Cusco or a donor-sentence prerequisite."
+      },
+      {
+        "locale": "quz",
+        "key": "ui_added_palette23",
+        "rationale": "The suffix operations are structurally possible, but opaque base llimp'iymaru is not independently understood or supported by the inspected primary material. Existing ui_palette/ui_saved_palette23 presence is not linguistic proof. Exact-form searches did not resolve it. Withhold these four derivatives individually; this is not a finding that the existing term is certainly wrong, nor a blanket hold on Cusco or a donor-sentence prerequisite."
+      },
+      {
+        "locale": "quz",
+        "key": "ui_edit_palette23",
+        "rationale": "The suffix operations are structurally possible, but opaque base llimp'iymaru is not independently understood or supported by the inspected primary material. Existing ui_palette/ui_saved_palette23 presence is not linguistic proof. Exact-form searches did not resolve it. Withhold these four derivatives individually; this is not a finding that the existing term is certainly wrong, nor a blanket hold on Cusco or a donor-sentence prerequisite."
+      },
+      {
+        "locale": "quz",
+        "key": "ui_remove_palette23",
+        "rationale": "The suffix operations are structurally possible, but opaque base llimp'iymaru is not independently understood or supported by the inspected primary material. Existing ui_palette/ui_saved_palette23 presence is not linguistic proof. Exact-form searches did not resolve it. Withhold these four derivatives individually; this is not a finding that the existing term is certainly wrong, nor a blanket hold on Cusco or a donor-sentence prerequisite."
+      }
+    ]
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.431,
+    "modules": [
+      "test_translations",
+      "test_translation_boundaries",
+      "test_string_importance",
+      "test_locale_tooltips",
+      "test_gallery_translation_data"
+    ],
+    "diff_check": "passed",
+    "independent_applied_check": "passed"
+  },
+  "remote_source": {
+    "complete_leaves": 1309,
+    "path_mode_type_blob_comparison": "matched reviewed checkout index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "current_merged_counts": {
+    "source": "e79f2ff63176d436361104c37132ba96762a7071",
+    "present": 117222,
+    "total": 122949,
+    "missing": 5727,
+    "complete": 153,
+    "partial": 18
+  },
+  "proposed_counts_after_merge": {
+    "present": 117333,
+    "total": 122949,
+    "missing": 5616,
+    "complete": 153,
+    "partial": 18
+  },
+  "hosted_ci": "pending; not yet qualified or merged",
+  "limits": [
+    "Model/source review, not native-human, full-language or exhaustive installed-layout/TalkBack acceptance.",
+    "28 catalogue-only additions do not claim current runtime improvement.",
+    "Existing catalogue wording is consistency evidence, not independent proof; rejected terms are uncertainty, not proven historical defects.",
+    "No third-party expressive passages or example sentences copied into app text; no licence change.",
+    "Other remaining partial locales are not covered by this four-locale linguistic pass.",
+    "No Work task, release or held evidence operation performed."
+  ]
+}
