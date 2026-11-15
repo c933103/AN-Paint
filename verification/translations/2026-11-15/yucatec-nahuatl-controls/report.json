@@ -1,0 +1,331 @@
+{
+  "status": "source branch published; PR/exact-head CI not yet started pending integration-base reconciliation with active #481",
+  "base": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+  "head": "4f739f342eecfe6abbbf4d51bf0f9f7509896c68",
+  "tree": "e14113c1482df6255f4fe79f1884613618ba299c",
+  "source_branch": "localization/p2-yucatec-nahuatl-controls-20261115",
+  "active_disjoint_pr": 481,
+  "reconciliation": {
+    "develop": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+    "pr481": {
+      "head": "211813290f146e55f5fd20b7ab3daa73d79cb23b",
+      "branch": "fix/recovery-save-identity-20261115",
+      "scope": "Recovery source plus new three-case test; no UI resource change or translation overlap",
+      "ownership": "Separate active fix/qualification owner; untouched"
+    },
+    "openPRs": [
+      {
+        "number": 481,
+        "head": "211813290f146e55f5fd20b7ab3daa73d79cb23b",
+        "title": "fix: adopt recovered save identity only after successful restoration"
+      },
+      {
+        "number": 226,
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence"
+      },
+      {
+        "number": 159,
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6",
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression"
+      },
+      {
+        "number": 88,
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884",
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter"
+      },
+      {
+        "number": 87,
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1",
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host"
+      },
+      {
+        "number": 75,
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61",
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement"
+      },
+      {
+        "number": 72,
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8",
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?"
+      },
+      {
+        "number": 71,
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457",
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling"
+      },
+      {
+        "number": 69,
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb",
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF"
+      },
+      {
+        "number": 56,
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332",
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices"
+      }
+    ],
+    "latest_tracker_comments": [
+      {
+        "id": 6891606979,
+        "updated": "2026-11-15T08:20:02Z"
+      },
+      {
+        "id": 6891666362,
+        "updated": "2026-11-15T08:25:41Z"
+      }
+    ],
+    "holds": "All held and pending operations preserved; #422 and #330 not touched"
+  },
+  "applied": {
+    "base": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+    "original_review_base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "source_anchors_revalidated": 73,
+    "consumer_anchors_revalidated": 20,
+    "proposed": 29,
+    "accepted": 29,
+    "accepted_unchanged": 29,
+    "revised": 0,
+    "rejected": 0,
+    "active": 15,
+    "catalogue_only": 14,
+    "applied": {
+      "nch": {
+        "added": 5,
+        "old_elements_preserved": 379,
+        "total": 384,
+        "sha256": "ee4c6c96148e6a3841898f6e7995b901e49c325662cddd2cec8794ee7b49a873",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml"
+      },
+      "nhe": {
+        "added": 5,
+        "old_elements_preserved": 379,
+        "total": 384,
+        "sha256": "03bb5832b0c04cb966aad692ab89b627e58fab1e03fe39ec2f0e633f4a55f432",
+        "path": "Paintroid/src/main/res/values-b+nhe/strings.xml"
+      },
+      "nhw": {
+        "added": 5,
+        "old_elements_preserved": 378,
+        "total": 383,
+        "sha256": "6431883d4098cc33637bf1879d43dfc789cc640d83e5bde7319e43be920b7fb5",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml"
+      },
+      "yua": {
+        "added": 14,
+        "old_elements_preserved": 382,
+        "total": 396,
+        "sha256": "d99a6c3024ea9e45964626624d81606c7bf866d1a45e5cdd781900b6afd79dd3",
+        "path": "Paintroid/src/main/res/values-b+yua/strings.xml"
+      }
+    },
+    "withheld": [],
+    "prior_deferrals_resolved_by_new_evidence": [
+      {
+        "locale": "yua",
+        "key": "ui_save_as_webp",
+        "rationale": "Defer the saving term, not the standard format identifier or bey construction. Mozilla Focus primary source does use Táabsaj as Save, which is real UI-convention evidence; however it is not independent linguistic certification. UADY lexical discovery gives taʼak/kalan/kanan for guardar, and I cannot resolve the semantic basis of táabsaj confidently enough to extend it to new save-format values. Do not silently substitute a different root only in these three labels, or call existing catalogue values confirmed bugs. A coherent saving-terminology review can settle this later."
+      },
+      {
+        "locale": "yua",
+        "key": "ui_save_as_heic",
+        "rationale": "Defer the saving term, not the standard format identifier or bey construction. Mozilla Focus primary source does use Táabsaj as Save, which is real UI-convention evidence; however it is not independent linguistic certification. UADY lexical discovery gives taʼak/kalan/kanan for guardar, and I cannot resolve the semantic basis of táabsaj confidently enough to extend it to new save-format values. Do not silently substitute a different root only in these three labels, or call existing catalogue values confirmed bugs. A coherent saving-terminology review can settle this later."
+      },
+      {
+        "locale": "yua",
+        "key": "ui_save_as_avif",
+        "rationale": "Defer the saving term, not the standard format identifier or bey construction. Mozilla Focus primary source does use Táabsaj as Save, which is real UI-convention evidence; however it is not independent linguistic certification. UADY lexical discovery gives taʼak/kalan/kanan for guardar, and I cannot resolve the semantic basis of táabsaj confidently enough to extend it to new save-format values. Do not silently substitute a different root only in these three labels, or call existing catalogue values confirmed bugs. A coherent saving-terminology review can settle this later."
+      }
+    ],
+    "additional_review": "saving-terminology-independent-review.json; new primary recording and direct software usage, no broad existing-family certification"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.31,
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Independent applied-source verification of localization29, not a replacement linguistic review. No app edits or test execution.",
+      "checks": {
+        "exact_accepted_complete_values": 29,
+        "original26_complete_values_unchanged": true,
+        "new_three_catalogue_only": true,
+        "prior_elements_attributes_text_and_order_preserved": 1518,
+        "only_expected_four_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 73,
+        "prepared_consumer_lines_revalidated": 20,
+        "fresh_main_source_active": 15,
+        "fresh_main_source_catalogue_only": 14,
+        "all_29_English_source_values_match": true
+      },
+      "applied": {
+        "yua": {
+          "added": 14,
+          "old_elements_preserved": 382,
+          "total_elements": 396,
+          "sha256": "d99a6c3024ea9e45964626624d81606c7bf866d1a45e5cdd781900b6afd79dd3"
+        },
+        "nch": {
+          "added": 5,
+          "old_elements_preserved": 379,
+          "total_elements": 384,
+          "sha256": "ee4c6c96148e6a3841898f6e7995b901e49c325662cddd2cec8794ee7b49a873"
+        },
+        "nhe": {
+          "added": 5,
+          "old_elements_preserved": 379,
+          "total_elements": 384,
+          "sha256": "03bb5832b0c04cb966aad692ab89b627e58fab1e03fe39ec2f0e633f4a55f432"
+        },
+        "nhw": {
+          "added": 5,
+          "old_elements_preserved": 378,
+          "total_elements": 383,
+          "sha256": "6431883d4098cc33637bf1879d43dfc789cc640d83e5bde7319e43be920b7fb5"
+        }
+      },
+      "withheld_absent": [],
+      "history": "Original three deferrals retained in prior linguistic review; superseded for these keys only by separately saved new-evidence review. Initial26 integrity receipt preserved as applied26-independent-check.json.",
+      "fresh_consumer_paths": {
+        "yua/ui_add_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "yua/ui_add_images_first": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "yua/ui_width_in": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt"
+        ],
+        "yua/ui_widths": [],
+        "yua/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "yua/ui_an_paint_image_assembly": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "yua/ui_add_palette23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "yua/ui_edit_palette23": [],
+        "yua/ui_remove_palette23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "yua/ui_smallest": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "yua/ui_largest": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "yua/ui_save_as_webp": [],
+        "yua/ui_save_as_heic": [],
+        "yua/ui_save_as_avif": [],
+        "nch/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nch/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "nch/ui_save_as_webp": [],
+        "nch/ui_save_as_heic": [],
+        "nch/ui_save_as_avif": [],
+        "nhe/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nhe/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "nhe/ui_save_as_webp": [],
+        "nhe/ui_save_as_heic": [],
+        "nhe/ui_save_as_avif": [],
+        "nhw/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nhw/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "nhw/ui_save_as_webp": [],
+        "nhw/ui_save_as_heic": [],
+        "nhw/ui_save_as_avif": []
+      },
+      "review_file_sha256": {
+        "yucatec": "11c5aef096be267974a42656913e92a1b62ecdceb81f404f3d143105040cbfa7",
+        "nahuatl": "07239db1f5eb80c0f65c13965426324276f84946f37043eb4e7650d2542ae435"
+      },
+      "saving_review_sha256": "34fce4600ba9620b6e31081b1825b3967476a595c658477d612733e838806791",
+      "limits": [
+        "Prior independent linguistic decisions retained without expansion. Not native-human, layout or TalkBack certification.",
+        "No tests rerun; parent owns affected tests and subsequent exact-head gates.",
+        "No external mutation, Work task, #481 recovery source or held operation touched.",
+        "Catalogue-only means no literal current main-source reference; dynamic/future lookups are not ruled out."
+      ]
+    }
+  },
+  "remote_source": {
+    "complete_leaves": 1309,
+    "path_mode_type_blob_comparison": "all entries match reviewed index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "candidate_counts": {
+    "status": "candidate only, not merged credit",
+    "source_tree": "e14113c1482df6255f4fe79f1884613618ba299c",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117446,
+    "missing": 5503,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "source": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+    "present": 117417,
+    "total": 122949,
+    "missing": 5532,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 29
+    },
+    "by_locale": {
+      "yua": {
+        "P2": 14
+      },
+      "nch": {
+        "P2": 5
+      },
+      "nhe": {
+        "P2": 5
+      },
+      "nhw": {
+        "P2": 5
+      }
+    },
+    "limit": "Resource priority classification is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "prior_preparation": {
+    "commit": "f4b13ff1534854ea6dfd33921f6c3d2e7ffa7d32",
+    "path": "verification/translations/2026-11-15/yucatec-nahuatl-next-preparation/research-review.zip",
+    "original_base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "reconciliation": "Exact current catalogue hashes and 73 source/20 consumer anchor references revalidated."
+  },
+  "saving_followup": {
+    "newly_accepted": 3,
+    "replacements": 0,
+    "basis": "Independent recording/media contexts plus real software Save use resolve the earlier root-sense uncertainty for the three nominal Save-as labels. Original deferrals are preserved, not retroactively erased.",
+    "not_claimed": "No whole existing saving-family inflection, universal preference or current visible-route certification."
+  },
+  "limits": [
+    "Bounded model/source review, not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary evidence is uneven across the Nahuatl variants; evidence for one variant is not mechanically generalized.",
+    "Catalogue-only additions do not claim current UI improvements.",
+    "The active #481 recovery fix creates no new UI resource keys; its source/tests and qualification remain separately owned.",
+    "No Work task, release, #422, #330 or other held/pending operation was performed."
+  ]
+}
