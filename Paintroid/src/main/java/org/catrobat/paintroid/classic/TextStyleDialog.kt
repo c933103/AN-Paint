@@ -11,6 +11,7 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.*
 import org.json.JSONObject
+import java.math.BigDecimal
 
 data class TextSettings(val text: String="",val size: Float=32f,val font: Int=0,val bold: Boolean=false,val italic: Boolean=false,
     val underline: Boolean=false,val strike: Boolean=false,val box: Boolean=false,val alignment: Int=0,val spacing: Float=1f,val direction: TextDirection=VerticalText.uiDirection(),val glyphOrientation: GlyphOrientation=GlyphOrientation.MIXED) {
@@ -38,8 +39,12 @@ class TextStyleDialog(private val activity: Activity,private val initial: TextSe
         val font=Spinner(activity).apply { tag="text_font";contentDescription=ui(R.string.ui_font_family);adapter=catalog.adapter();setSelection(initial.font.coerceIn(catalog.fonts.indices)) }
         body.addView(label(ui(R.string.ui_font)));body.addView(font,LinearLayout.LayoutParams(-1,dp(48)))
         fun number(value: String,tagName: String)=EditText(activity).apply { tag=tagName;LocaleNumberInput.configure(this, decimal = true);setText(value);setSelectAllOnFocus(true);isSingleLine=true }
-        val size=number(initial.size.toInt().toString(),"text_size")
-        val spacing=number((initial.spacing*100).toInt().toString(),"text_spacing")
+        // Preserve stored decimals without integer truncation or Float percentage
+        // rounding. Exponents cannot pass through the numeric key filter intact.
+        fun initialNumber(value: Float,shift: Int=0)=if(value.isFinite())
+            BigDecimal(value.toString()).movePointRight(shift).stripTrailingZeros().toPlainString() else ""
+        val size=number(initialNumber(initial.size),"text_size")
+        val spacing=number(initialNumber(initial.spacing,2),"text_spacing")
         val sizes=LinearLayout(activity)
         listOf(ui(R.string.ui_size_pixels) to size,ui(R.string.ui_line_spacing) to spacing).forEach { (name,field) ->
             val col=LinearLayout(activity).apply { orientation=LinearLayout.VERTICAL;addView(label(name));addView(field) }
@@ -75,7 +80,7 @@ class TextStyleDialog(private val activity: Activity,private val initial: TextSe
             preview.underline=underline.isChecked;preview.strike=strike.isChecked;preview.opaque=box.isChecked
             preview.direction=TextDirection.values()[direction.selectedItemPosition]
             preview.orientation=GlyphOrientation.values()[glyphs.selectedItemPosition]
-            preview.spacing=((uiNumber(spacing.text.toString())?.toFloat() ?: 100f)/100).coerceIn(.5f,3f)
+            preview.spacing=((uiNumber(spacing.text.toString()) ?: 100.0)/100.0).toFloat().coerceIn(.5f,3f)
             preview.align=arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[align.selectedItemPosition]
             glyphs.visibility=if(preview.direction==TextDirection.HORIZONTAL) View.GONE else View.VISIBLE
             val names=if(preview.direction==TextDirection.HORIZONTAL) arrayOf(ui(R.string.ui_left_aligned),ui(R.string.ui_centred),ui(R.string.ui_right_aligned))
@@ -98,12 +103,12 @@ class TextStyleDialog(private val activity: Activity,private val initial: TextSe
         val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })
             .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()
         dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())?.toFloat()
+            val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())
             when {
                 pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)
-                percent==null || percent !in 50f..300f -> spacing.error=ui(R.string.ui_use_50_300)
+                percent==null || percent !in 50.0..300.0 -> spacing.error=ui(R.string.ui_use_50_300)
                 else -> {
-                    val settings=TextSettings(input.text.toString(),pixels,font.selectedItemPosition,bold.isChecked,italic.isChecked,underline.isChecked,strike.isChecked,box.isChecked,align.selectedItemPosition,percent/100,TextDirection.values()[direction.selectedItemPosition],GlyphOrientation.values()[glyphs.selectedItemPosition])
+                    val settings=TextSettings(input.text.toString(),pixels,font.selectedItemPosition,bold.isChecked,italic.isChecked,underline.isChecked,strike.isChecked,box.isChecked,align.selectedItemPosition,(percent/100.0).toFloat(),TextDirection.values()[direction.selectedItemPosition],GlyphOrientation.values()[glyphs.selectedItemPosition])
                     if (commit(settings,catalog.faceForText(settings.font,settings.text,style()))) dialog.dismiss()
                 }
             }

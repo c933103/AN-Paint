@@ -271,6 +271,52 @@ class LocaleNumberInputTest {
         assertNull(result);assertTrue(dialog.isShowing)
         enter(spacing,"125,5");dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
         assertEquals(12.5f,result!!.size,0f);assertEquals(1.255f,result!!.spacing,.00001f)
+        val accepted=checkNotNull(result)
+        repeat(2) {
+            val reopened=TextStyleDialog(activity,checkNotNull(result),Color.BLACK,Color.WHITE) {settings,_->result=settings;true}.show();idle()
+            val reopenedRoot=reopened.window!!.decorView
+            assertEquals(12.5,uiNumber(reopenedRoot.findViewWithTag<EditText>("text_size").text.toString())!!,0.0)
+            assertEquals(125.5,uiNumber(reopenedRoot.findViewWithTag<EditText>("text_spacing").text.toString())!!,0.0)
+            val preview=reopenedRoot.findViewWithTag<TextPreview>("text_preview")
+            assertEquals(accepted.size,preview.pixels,0f);assertEquals(accepted.spacing,preview.spacing,0f)
+            reopened.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
+            assertFalse(reopened.isShowing)
+            assertEquals(accepted.size,result!!.size,0f);assertEquals(accepted.spacing,result!!.spacing,0f)
+        }
+    }
+
+    @Test @Config(sdk=[35]) fun unchangedFractionalTextSettingsSurvivePercentageRoundTrips() = withActivity("fr") { activity ->
+        // Non-binary values and near-range edges detect intermediate Float rounding.
+        for((pixels,lineSpacing) in listOf(32.125f to .50000006f,12.345678f to 1.2345678f,1023.99994f to 2.9999998f)) {
+            var result=TextSettings("text",size=pixels,spacing=lineSpacing)
+            repeat(2) {
+                val dialog=TextStyleDialog(activity,result,Color.BLACK,Color.WHITE) {settings,_->result=settings;true}.show();idle()
+                val root=dialog.window!!.decorView
+                for(tag in listOf("text_size","text_spacing")) {
+                    val field=root.findViewWithTag<EditText>(tag)
+                    val comma=field.text.toString().replace('.',',')
+                    enter(field,comma)
+                }
+                val preview=root.findViewWithTag<TextPreview>("text_preview")
+                assertEquals(pixels,preview.pixels,0f);assertEquals(lineSpacing,preview.spacing,0f)
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
+                assertFalse(dialog.isShowing)
+                assertEquals(pixels,result.size,0f);assertEquals(lineSpacing,result.spacing,0f)
+            }
+        }
+    }
+
+    @Test @Config(sdk=[35]) fun invalidRestoredTextSizesCannotBecomeValidByLosingAnExponent() = withActivity("fr") { activity ->
+        for(pixels in listOf(1e8f,1e-8f,Float.NaN,Float.POSITIVE_INFINITY,Float.NEGATIVE_INFINITY)) {
+            var result: TextSettings?=null
+            val dialog=TextStyleDialog(activity,TextSettings("text",size=pixels),Color.BLACK,Color.WHITE) {settings,_->result=settings;true}.show();idle()
+            val field=dialog.window!!.decorView.findViewWithTag<EditText>("text_size")
+            val parsed=uiNumber(field.text.toString())
+            assertTrue("Invalid saved size must remain invalid",parsed==null || parsed !in 1.0..1024.0)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
+            assertNull(result);assertTrue(dialog.isShowing);assertNotNull(field.error)
+            dialog.dismiss();idle()
+        }
     }
 
     @Test fun sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers() = withActivity("ar") { activity ->

@@ -1,0 +1,931 @@
+{
+  "pr": 486,
+  "url": "https://github.com/c933103/AN-Paint/pull/486",
+  "base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+  "head": "0f035621afefddef26e0bc7dee5fa94c3ea031f7",
+  "tree": "b630cd2c873a05fedaf775660e98c9aa302a3264",
+  "source_branch": "localization/p2-chamorro-wolof-sami-20261115",
+  "status": "published, ready; automatic Codex and exact-head CI pending",
+  "ci_run": 43711243914,
+  "tested_checkout": "e60817778c094066e62248498cc5d5aca7b630de",
+  "reconciliation": {
+    "base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+    "base_tree": "4e0c6114c85c8a4bfbb9dfc15c0f9db4e72c6190",
+    "source_preparation": "4745b1ce12490fa46dd6bc5a9976a1f3db1ca42e",
+    "tracker_latest": 6893871633,
+    "active_pr": null,
+    "changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt"
+    ],
+    "coordination": "#485 merged and actual develop verified; branch switch retained identical staged XML3; original affected62 tests retained because changed base files are disjoint from catalogue/check tooling; exact-head hosted CI pending.",
+    "holds": [
+      "#422 evidence approval operation",
+      "Czech #159",
+      "JVM #226",
+      "Mongolian/PR56/Hakka and other existing holds",
+      "Atlas #330",
+      "release"
+    ],
+    "prior_preparation_base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "integrated_pr": 485,
+    "integrated_head": "d65402571ec364af3dbb5b951d9ad697cbaf4aa9"
+  },
+  "prepared_reconciliation": {
+    "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "tree": "09a7e3f00936da36a161a08657f130270f1ff403",
+    "status": "prepared8 reconciled; not applied or CI-qualified",
+    "verdict": "pass",
+    "findings": [],
+    "checks": {
+      "clean_checkout": true,
+      "eight_values_absent": true,
+      "all_prior_accept_decisions_match_exact_values": true,
+      "source_anchor_values": 17,
+      "consumer_line_anchors": 14,
+      "fresh_active": 8,
+      "catalogue_only": 0,
+      "NFC_placeholders_escaping_percent": "pass",
+      "ch_silver_ASCII_apostrophe_escaped": true,
+      "selected_catalogue_paths_match": true
+    },
+    "catalogue_identities": {
+      "ch": {
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+        "catalogue_sha256": "4ad1dc40ea72b9becfc9358363b0572c957285c0df0f37d752e0dac7bdf46296",
+        "proposals_sha256": "61dc0ce1d27443a78a62b2c3928b81639bf6734aca9fb1c30aab87501db53cad",
+        "review_sha256": "0f16568cf0462a9643332ee9e415b89d89eaf5efe7456a988fd199242a4a5913"
+      },
+      "wo": {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "catalogue_sha256": "5f1a3049c1fa8aad85e41d0ae9fd865ef33a1482dd59c3d0afa1863207b8feb5",
+        "proposals_sha256": "1d8bb6d2730c8d07aefe22bd0d6835ca9c68977d2709e5a21082aef67477648e",
+        "review_sha256": "b8803d93168d09f26cb8a14f9d05060643b85c59ec0e3ea35d94e6761e1dbcfc"
+      }
+    },
+    "values": [
+      {
+        "locale": "ch",
+        "key": "ui_gold",
+        "final_value": "Kulot oru",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_silver",
+        "final_value": "Kulot salåppi\\'",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_copper",
+        "final_value": "Kulot kopbli",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_edit_in_paint",
+        "final_value": "Soppi ci Paint",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_top23",
+        "final_value": "Dëppale ci kaw",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_bottom23",
+        "final_value": "Dëppale ci suuf",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_downloading_image",
+        "final_value": "Nataal bi ñu ngi koy yebbi…",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "format_checks": "pass"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_the_image_could_not_be_downloaded",
+        "final_value": "Yebbig nataal bi antuwul.",
+        "decision": "accept",
+        "absent_current": true,
+        "active_consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "format_checks": "pass"
+      }
+    ],
+    "limits": [
+      "Reconciled against merged #484 base a0e15ce0 only. Any later #485 integration requires another source/consumer reconciliation; no claim about unmerged changes.",
+      "No source edits, tests, external actions or publication. No holds touched.",
+      "Existing whole-value reviews retained, not native-human or whole-layout certification."
+    ]
+  },
+  "applied": {
+    "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "review_pairs": [
+      [
+        "chamorro-next-proposals.json",
+        "chamorro-next-independent-review.json"
+      ],
+      [
+        "wolof-next-proposals.json",
+        "wolof-next-independent-review.json"
+      ],
+      [
+        "chamorro-supplemental-proposals.json",
+        "chamorro-supplemental-review.json"
+      ],
+      [
+        "wolof-supplemental-proposals.json",
+        "wolof-supplemental-review.json"
+      ],
+      [
+        "sami-normalized-proposals.json",
+        "sami-next-independent-review.json"
+      ]
+    ],
+    "source_anchors_revalidated": 61,
+    "consumer_anchors_revalidated": 39,
+    "proposed_unique_keys": 28,
+    "submitted_proposal_versions": 28,
+    "superseded_deferred_proposals": [],
+    "accepted": 26,
+    "accepted_unchanged": 26,
+    "revised": 0,
+    "withheld": [
+      {
+        "locale": "wo",
+        "key": "formats22_page_description",
+        "english": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image.",
+        "proposed": "%1$s · %2$s\\nLimu xët yi: %3$d. Tànnal benn xët ngir soppi ko ni nataal.",
+        "decision": "defer",
+        "final_value": null,
+        "rationale": "Defer this full value only. Limu xët yi preserves page count; benn requires one page; tànnal is a suitable directive, ngir introduces purpose, and ko refers to the chosen page. The unresolved portion is soppi ko ni nataal: ni can express comparative/manner like/as, and I cannot confidently distinguish edit it like a picture from edit it in image form here. The latter is the workflow boundary: a rendered image is edited, not original document objects. Retrieved support does not settle that complete predicate reading and my own judgment is insufficient to author a confident replacement. This is not a demand for a matching donor sentence or a native reviewer, nor a finding that every ni-as phrase is wrong.",
+        "confidence": "insufficient for image-form versus comparative-manner predicate",
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 367,
+            "key": "formats22_select_page",
+            "value": "Tànnal ab xët"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 372,
+            "key": "formats22_page_dimensions",
+            "value": "Xët %1$d ci %2$d · %3$d × %4$d piksel"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 200,
+            "key": "ui_menu_edit",
+            "value": "\"Soppi\""
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 418,
+            "key": "ui_add_images",
+            "value": "Yokk nataal yi"
+          }
+        ],
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "line": 101,
+            "code": "        body.addView(TextView(activity).apply {text=ui(R.string.formats22_page_description,kind,name,count)})"
+          }
+        ],
+        "consumer_classification": "active",
+        "checks": {
+          "NFC": true,
+          "placeholders": true,
+          "serialization": "Literal backslash sequence before n matches canonical English exactly; no normalization performed. No extra apostrophe/XML escaping needed."
+        }
+      },
+      {
+        "locale": "se",
+        "key": "ui_you_can_add_more_images_select_fewer_files",
+        "english": "Number of images you can still add: %1$s. Select fewer files.",
+        "proposed": "Govaid mearri maid sáhtát vel lasihit: %1$s. Vállje unnit fiillaid.",
+        "decision": "defer",
+        "final_value": null,
+        "rationale": "Defer this complete value: the relative maid follows singular head mearri but is intended to qualify embedded govaid; attachment is insufficiently clear. Also require unnit fiillaid to unmistakably denote fewer files, not smaller files. No revised full wording confidently settled here.",
+        "confidence": "Moderate independent model whole-value assessment; not native-human certification",
+        "source_anchors": [
+          {
+            "key": "ui_add_images",
+            "value": "Lasit govaid",
+            "url": "https://github.com/c933103/AN-Paint/blob/a0e15ce09c939cae5c94df54e13d78ea2f81078b/Paintroid/src/main/res/values-b+se/strings.xml",
+            "path": "Paintroid/src/main/res/values-b+se/strings.xml",
+            "line": 422
+          },
+          {
+            "key": "save20_file_name",
+            "value": "Fiilanamma",
+            "url": "https://github.com/c933103/AN-Paint/blob/a0e15ce09c939cae5c94df54e13d78ea2f81078b/Paintroid/src/main/res/values-b+se/strings.xml",
+            "path": "Paintroid/src/main/res/values-b+se/strings.xml",
+            "line": 58
+          }
+        ],
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "line": 219,
+            "code": "if (uris.size > 20-assembly.images.size) { message(ui(R.string.ui_you_can_add_more_images_select_fewer_files, 20-assembly.images.size)); return }"
+          }
+        ],
+        "consumer_classification": "active",
+        "format_checks": {
+          "errors": [],
+          "placeholders_match": true,
+          "newlines_preserved": true,
+          "NFC": true
+        }
+      }
+    ],
+    "active": 25,
+    "catalogue_only": 1,
+    "applied": {
+      "ch": {
+        "added": 4,
+        "old_elements_preserved": 403,
+        "total": 407,
+        "sha256": "f4ec46f84e70bffd1f69b26ce60bfcfe574465c796bb80bbc3f2e6d18c274bf2",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml"
+      },
+      "wo": {
+        "added": 6,
+        "old_elements_preserved": 445,
+        "total": 451,
+        "sha256": "4cbcc3a1e6f18b2285f0dabfb692670ce6fc9879d7053e8b1e51ef1c6ac49456",
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml"
+      },
+      "se": {
+        "added": 16,
+        "old_elements_preserved": 445,
+        "total": 461,
+        "sha256": "9022343b7151a8d6531b91520025a05b64f9e7d22bdb4cfac2df78d4a620a402",
+        "path": "Paintroid/src/main/res/values-b+se/strings.xml"
+      }
+    }
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 11.995,
+    "executed_base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "integration": "Unchanged exact3XML bytes and affected Python modules; narrow independent reconciliation retained this local pass after #485 integration. New exact-head hosted gates still required.",
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 26,
+        "two_deferred_values_absent": true,
+        "prior_elements_attributes_text_and_order_preserved": 1293,
+        "only_expected_three_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 61,
+        "prepared_consumer_lines_revalidated": 39,
+        "fresh_main_source_active": 25,
+        "fresh_main_source_catalogue_only": 1,
+        "all_28_English_values_match": true,
+        "sami_adapter_preserves_all17_original_keys_english_values_anchors": true,
+        "prior10_XML_hashes_unchanged": true
+      },
+      "applied": {
+        "ch": {
+          "added": 4,
+          "old_elements_preserved": 403,
+          "total_elements": 407,
+          "sha256": "f4ec46f84e70bffd1f69b26ce60bfcfe574465c796bb80bbc3f2e6d18c274bf2"
+        },
+        "wo": {
+          "added": 6,
+          "old_elements_preserved": 445,
+          "total_elements": 451,
+          "sha256": "4cbcc3a1e6f18b2285f0dabfb692670ce6fc9879d7053e8b1e51ef1c6ac49456"
+        },
+        "se": {
+          "added": 16,
+          "old_elements_preserved": 445,
+          "total_elements": 461,
+          "sha256": "9022343b7151a8d6531b91520025a05b64f9e7d22bdb4cfac2df78d4a620a402"
+        }
+      },
+      "fresh_consumer_paths": {
+        "ch/ui_gold": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "ch/ui_silver": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "ch/ui_copper": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "wo/ui_edit_in_paint": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "wo/ui_top23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+        ],
+        "wo/ui_bottom23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+        ],
+        "wo/ui_downloading_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "wo/ui_the_image_could_not_be_downloaded": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "ch/formats22_page_range": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "wo/formats22_page_preview": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "se/ui_preview_memory_error": [],
+        "se/ui_fits_the_current_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+        ],
+        "se/ui_estimated_memory_current_working_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_assembly_output_size": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_create_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_the_assembly_needs_about_choose_a_smaller_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt"
+        ],
+        "se/ui_some_previews_could_not_be_decoded_you_can": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_an_assembly_can_contain_up_to_20_images_86d995": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+        ],
+        "se/ui_an_assembly_can_contain_up_to_20_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_assembly_unknown_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+        ],
+        "se/ui_assembly_position_nonnegative": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt"
+        ],
+        "se/ui_the_assembly_exceeds_android_s_coordinate_range": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+        ],
+        "se/ui_apply_to_these_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+        ],
+        "se/ui_restore_original_sizes": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "se/ui_shows_the_whole_assembly_image_and_output_sizes": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_the_assembly_output_is_unavailable_reopen_image_assembly": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ]
+      },
+      "review_file_sha256": {
+        "chamorro-next-independent-review.json": "0f16568cf0462a9643332ee9e415b89d89eaf5efe7456a988fd199242a4a5913",
+        "wolof-next-independent-review.json": "b8803d93168d09f26cb8a14f9d05060643b85c59ec0e3ea35d94e6761e1dbcfc",
+        "chamorro-supplemental-review.json": "07c60b6e9f303157a3c8a63f2f9533cc10e187008ea13520a5f618fc41f60184",
+        "wolof-supplemental-review.json": "fcde53459717b7e494758148588900054100e5475a86abd73f99ba6b1980266b",
+        "sami-next-independent-review.json": "05bbef02a2e98cbb9e23448a63f6c89db407401fa0002d9fd6df870513207687"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ],
+      "metadata_refresh_note": "Verified all17 Sámi decisions/final values and original/normalized candidate key-English-value identity unchanged. Review-only rights_note correction distinguishes pinned XML CC BY3.0 Norway header from pinned README CC BY4.0; no blanket licence certification. No source or test changes."
+    }
+  },
+  "remote_source": {
+    "complete_leaves": 1310,
+    "path_mode_type_blob_comparison": "all entries match reviewed index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "candidate_counts": {
+    "status": "candidate only, not merged credit",
+    "source_tree": "b630cd2c873a05fedaf775660e98c9aa302a3264",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117502,
+    "missing": 5447,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "source": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+    "present": 117476,
+    "total": 122949,
+    "missing": 5473,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 25,
+      "P3": 1
+    },
+    "by_locale": {
+      "ch": {
+        "P2": 4
+      },
+      "se": {
+        "P2": 15,
+        "P3": 1
+      },
+      "wo": {
+        "P2": 6
+      }
+    },
+    "limit": "Resource tier and master-list priority are separate. Presence is not linguistic or merged completion."
+  },
+  "integrated_base_check": {
+    "verdict": "ready",
+    "old_base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "integrated_base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+    "candidate_tree": "b630cd2c873a05fedaf775660e98c9aa302a3264",
+    "upstream_changed_files": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt"
+    ],
+    "scope_assessment": "#485 changes decimal initialization/percentage arithmetic and adds JVM numeric-input regressions. Existing text alignment consumers and labels retain semantics; their lines shift by five. No canonical/default/catalogue/picker/instruction/Python test-module drift. Existing affected62 Python module source is unchanged; hosted exact-head JVM gates must include the new upstream tests.",
+    "checks": {
+      "all26_exact_values_hashes_unchanged": true,
+      "two_deferred_keys_absent": true,
+      "three_resource_file_scope": true,
+      "source_anchor_values_verified": 61,
+      "consumer_anchors_refreshed": 39,
+      "default_catalogue_picker_instructions_and_affected_Python_modules_unchanged": true
+    },
+    "catalogue_sha256": {
+      "ch": "f4ec46f84e70bffd1f69b26ce60bfcfe574465c796bb80bbc3f2e6d18c274bf2",
+      "wo": "4cbcc3a1e6f18b2285f0dabfb692670ce6fc9879d7053e8b1e51ef1c6ac49456",
+      "se": "9022343b7151a8d6531b91520025a05b64f9e7d22bdb4cfac2df78d4a620a402"
+    },
+    "consumer_anchors": [
+      {
+        "locale": "ch",
+        "key": "ui_gold",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 61,
+        "current_lines": [
+          61
+        ],
+        "code": "private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_gold",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 65,
+        "current_lines": [
+          65
+        ],
+        "code": "val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_gold",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 66,
+        "current_lines": [
+          66
+        ],
+        "code": "return \"$name: ${String.format(Locale.ROOT,\"#%06X\",colour and 0xffffff)}\""
+      },
+      {
+        "locale": "ch",
+        "key": "ui_silver",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 61,
+        "current_lines": [
+          61
+        ],
+        "code": "private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_silver",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 65,
+        "current_lines": [
+          65
+        ],
+        "code": "val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_silver",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 66,
+        "current_lines": [
+          66
+        ],
+        "code": "return \"$name: ${String.format(Locale.ROOT,\"#%06X\",colour and 0xffffff)}\""
+      },
+      {
+        "locale": "ch",
+        "key": "ui_copper",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 61,
+        "current_lines": [
+          61
+        ],
+        "code": "private val defaults=listOf(ui(R.string.ui_pale_violet) to 0xff5b67ff.toInt(),ui(R.string.ui_gold) to 0xffffd700.toInt(),ui(R.string.ui_silver) to 0xffc0c0c0.toInt(),ui(R.string.ui_copper) to 0xffb87333.toInt())"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_copper",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 65,
+        "current_lines": [
+          65
+        ],
+        "code": "val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)"
+      },
+      {
+        "locale": "ch",
+        "key": "ui_copper",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+        "prior_line": 66,
+        "current_lines": [
+          66
+        ],
+        "code": "return \"$name: ${String.format(Locale.ROOT,\"#%06X\",colour and 0xffffff)}\""
+      },
+      {
+        "locale": "wo",
+        "key": "ui_edit_in_paint",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 88,
+        "current_lines": [
+          88
+        ],
+        "code": "button(ui(R.string.ui_save_png),\"assembly_save\") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),\"assembly_edit\") { requestOutput(true) },button(ui(R.string.ui_how_to_use),\"assembly_help\") { showHelp() })"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_top23",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "prior_line": 82,
+        "current_lines": [
+          87
+        ],
+        "code": "else arrayOf(ui(R.string.ui_top23),ui(R.string.ui_centred),ui(R.string.ui_bottom23))"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_bottom23",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "prior_line": 82,
+        "current_lines": [
+          87
+        ],
+        "code": "else arrayOf(ui(R.string.ui_top23),ui(R.string.ui_centred),ui(R.string.ui_bottom23))"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_downloading_image",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "prior_line": 351,
+        "current_lines": [
+          351
+        ],
+        "code": "downloading=true;showStatus(ui(R.string.ui_downloading_image))"
+      },
+      {
+        "locale": "wo",
+        "key": "ui_the_image_could_not_be_downloaded",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "prior_line": 385,
+        "current_lines": [
+          385
+        ],
+        "code": "check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}"
+      },
+      {
+        "locale": "ch",
+        "key": "formats22_page_range",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "prior_line": 124,
+        "current_lines": [
+          124
+        ],
+        "code": "if(value==null) {status.text=ui(R.string.formats22_page_range,count);return}"
+      },
+      {
+        "locale": "wo",
+        "key": "formats22_page_preview",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "prior_line": 110,
+        "current_lines": [
+          110
+        ],
+        "code": "val image=ImageView(activity).apply {tag=\"import_page_preview\";adjustViewBounds=true;scaleType=ImageView.ScaleType.FIT_CENTER;contentDescription=ui(R.string.formats22_page_preview)}"
+      },
+      {
+        "locale": "wo",
+        "key": "formats22_page_description",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "prior_line": 101,
+        "current_lines": [
+          101
+        ],
+        "code": "body.addView(TextView(activity).apply {text=ui(R.string.formats22_page_description,kind,name,count)})"
+      },
+      {
+        "locale": "se",
+        "key": "ui_fits_the_current_budget",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 311,
+        "current_lines": [
+          311
+        ],
+        "code": "estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)"
+      },
+      {
+        "locale": "se",
+        "key": "ui_fits_the_current_budget",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "prior_line": 49,
+        "current_lines": [
+          49
+        ],
+        "code": "if (fits) ui(R.string.ui_fits_the_current_budget) else if(cannotResize) \"\\n\"+ui(R.string.ui_no_resize_fits_decoder_memory) else ui(R.string.ui_too_large_for_the_current_budget_reduce_the)"
+      },
+      {
+        "locale": "se",
+        "key": "ui_estimated_memory_current_working_budget",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 311,
+        "current_lines": [
+          311
+        ],
+        "code": "estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)"
+      },
+      {
+        "locale": "se",
+        "key": "ui_assembly_output_size",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 308,
+        "current_lines": [
+          308
+        ],
+        "code": "val dialog = EditorDialogBuilder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()"
+      },
+      {
+        "locale": "se",
+        "key": "ui_create_output",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 308,
+        "current_lines": [
+          308
+        ],
+        "code": "val dialog = EditorDialogBuilder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()"
+      },
+      {
+        "locale": "se",
+        "key": "ui_the_assembly_needs_about_choose_a_smaller_output",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+        "prior_line": 51,
+        "current_lines": [
+          51
+        ],
+        "code": "if (!fits(size)) throw ImageSizeException(ui(R.string.ui_the_assembly_needs_about_choose_a_smaller_output, memoryLabel(estimatedBytes(size))))"
+      },
+      {
+        "locale": "se",
+        "key": "ui_some_previews_could_not_be_decoded_you_can",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 180,
+        "current_lines": [
+          180
+        ],
+        "code": "else { previews.putAll(decoded); failedPreviews.addAll(errors); thumbnailLoading = false; setBusy(false); refresh(); if (errors.isNotEmpty()) message(ui(R.string.ui_some_previews_could_not_be_decoded_you_can)) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_an_assembly_can_contain_up_to_20_images_86d995",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 85,
+        "current_lines": [
+          85
+        ],
+        "code": "require(state.size + items.size <= MAX_IMAGES) { ui(R.string.ui_an_assembly_can_contain_up_to_20_images_86d995) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_an_assembly_can_contain_up_to_20_images",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 187,
+        "current_lines": [
+          187
+        ],
+        "code": "if (assembly.images.size >= 20) { message(ui(R.string.ui_an_assembly_can_contain_up_to_20_images)); return }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_you_can_add_more_images_select_fewer_files",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 219,
+        "current_lines": [
+          219
+        ],
+        "code": "if (uris.size > 20-assembly.images.size) { message(ui(R.string.ui_you_can_add_more_images_select_fewer_files, 20-assembly.images.size)); return }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_assembly_unknown_image",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 166,
+        "current_lines": [
+          166
+        ],
+        "code": "require(state.any { it.id == id }) { ui(R.string.ui_assembly_unknown_image) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_assembly_position_nonnegative",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 167,
+        "current_lines": [
+          167,
+          205
+        ],
+        "code": "require(x >= 0 && y >= 0) { ui(R.string.ui_assembly_position_nonnegative) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_assembly_position_nonnegative",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 205,
+        "current_lines": [
+          167,
+          205
+        ],
+        "code": "require(x >= 0 && y >= 0) { ui(R.string.ui_assembly_position_nonnegative) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_assembly_position_nonnegative",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "prior_line": 33,
+        "current_lines": [
+          33
+        ],
+        "code": "val targetX = placementPixels(x) ?: throw IllegalArgumentException(ui(R.string.ui_assembly_position_nonnegative))"
+      },
+      {
+        "locale": "se",
+        "key": "ui_assembly_position_nonnegative",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "prior_line": 34,
+        "current_lines": [
+          34
+        ],
+        "code": "val targetY = placementPixels(y) ?: throw IllegalArgumentException(ui(R.string.ui_assembly_position_nonnegative))"
+      },
+      {
+        "locale": "se",
+        "key": "ui_the_assembly_exceeds_android_s_coordinate_range",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 215,
+        "current_lines": [
+          215
+        ],
+        "code": "require(right <= Int.MAX_VALUE && bottom <= Int.MAX_VALUE) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_the_assembly_exceeds_android_s_coordinate_range",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 272,
+        "current_lines": [
+          272
+        ],
+        "code": "require(raw is Number) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_the_assembly_exceeds_android_s_coordinate_range",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "prior_line": 274,
+        "current_lines": [
+          274
+        ],
+        "code": "require(value != null && value in 0..Int.MAX_VALUE.toLong()) { ui(R.string.ui_the_assembly_exceeds_android_s_coordinate_range) }"
+      },
+      {
+        "locale": "se",
+        "key": "ui_apply_to_these_images",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "prior_line": 128,
+        "current_lines": [
+          128
+        ],
+        "code": "body.addView(TextView(activity).apply { text = ui(R.string.ui_apply_to_these_images) })"
+      },
+      {
+        "locale": "se",
+        "key": "ui_restore_original_sizes",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+        "prior_line": 69,
+        "current_lines": [
+          69
+        ],
+        "code": "text=ui(R.string.ui_restore_original_sizes); isAllCaps=false; tag=\"normalize_reset\""
+      },
+      {
+        "locale": "se",
+        "key": "ui_shows_the_whole_assembly_image_and_output_sizes",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "prior_line": 101,
+        "current_lines": [
+          101
+        ],
+        "code": "button(ui(R.string.ui_show_all),\"assembly_fit\") { board.fit(); info.text=ui(R.string.ui_shows_the_whole_assembly_image_and_output_sizes) },button(ui(R.string.ui_clear_all),\"assembly_clear\") { assembly.clear() })"
+      },
+      {
+        "locale": "se",
+        "key": "ui_the_assembly_output_is_unavailable_reopen_image_assembly",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "prior_line": 1256,
+        "current_lines": [
+          1256
+        ],
+        "code": "if (file == null || file.parentFile != filesDir || !file.name.startsWith(\"assembly-output-\") || !file.isFile) { message(ui(R.string.ui_the_assembly_output_is_unavailable_reopen_image_assembly)); return }"
+      }
+    ],
+    "limits": [
+      "No redundant tests or source edits; previous applied integrity/linguistic receipts preserved.",
+      "No claim of #485 test execution by this reviewer; parent owns exact-head qualification/publication.",
+      "No native-human or whole-layout certification."
+    ]
+  },
+  "prior_preparation": {
+    "commit": "4745b1ce12490fa46dd6bc5a9976a1f3db1ca42e",
+    "path": "verification/translations/2026-11-15/chamorro-wolof-next-preparation/research-review.zip",
+    "original_base": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+    "reconciliation": "Prior catalogue hashes and exact reviewed values preserved; current source/consumer reconciliation included."
+  },
+  "limits": [
+    "Bounded independent model/source review, not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Lexical corroboration does not certify every composed phrase; regional/register choices and individual uncertainties retained.",
+    "No application behavior, default resources, tests, workflow, permissions or release changes.",
+    "Root-owned #485 coordination preserved; no Work task, #422, #330 or held operation performed."
+  ]
+}
