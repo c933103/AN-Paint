@@ -1,0 +1,228 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/483",
+  "base": "758eaece5398fc2f85e504c45a4b300008a30018",
+  "head": "ed888fbf403cab8c3069a7b1f981aeb291871350",
+  "tested_checkout": "c8530ee15b906f049bcd6348390f31b524d959e6",
+  "tree": "4390cc10006dd864a0fe151f09abfb02252c97c2",
+  "merge": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf",
+  "merged_at": "2026-11-15T10:05:20Z",
+  "changes": {
+    "Cherokee": 5,
+    "Navajo": 8,
+    "total": 13,
+    "active_consumer_entries": 10,
+    "catalogue_only_entries": 3,
+    "previous_elements_preserved": 763
+  },
+  "review": {
+    "proposed": 13,
+    "accepted_unchanged": 13,
+    "revised": 0,
+    "withheld_completed_proposals": 0,
+    "prior_prepared_values": 7,
+    "additional_primary_source_supported_values": 6,
+    "full_value_model_review": "passed",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6892452380,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a claimed clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "c1f596146df80d5ffc547c34aab717999be22023",
+    "path": "verification/translations/2026-11-15/cherokee-navajo-controls"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.567,
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "758eaece5398fc2f85e504c45a4b300008a30018",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 13,
+        "prior_elements_attributes_text_and_order_preserved": 763,
+        "only_expected_two_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 29,
+        "prepared_consumer_lines_revalidated": 12,
+        "fresh_main_source_active": 10,
+        "fresh_main_source_catalogue_only": 3,
+        "all_13_English_values_match": true
+      },
+      "applied": {
+        "chr": {
+          "added": 5,
+          "old_elements_preserved": 381,
+          "total_elements": 386,
+          "sha256": "133b9c9264b2ae382647800665704390f4c0acf53af82d2c3ab065de9e2a7388"
+        },
+        "nv": {
+          "added": 8,
+          "old_elements_preserved": 382,
+          "total_elements": 390,
+          "sha256": "ac8a152aa895b9c992c8a18a88b84bf91c6bcbe187181674e780d03758f73b5e"
+        }
+      },
+      "fresh_consumer_paths": {
+        "chr/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "chr/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nv/gallery_use_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "nv/ui_an_paint_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ],
+        "nv/ui_save_as_webp": [],
+        "nv/ui_save_as_heic": [],
+        "nv/ui_save_as_avif": [],
+        "chr/ui_width_in": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt"
+        ],
+        "chr/ui_wheel": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "chr/ui_copper": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "nv/ui_gold": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "nv/ui_silver": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "nv/ui_copper": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ]
+      },
+      "review_file_sha256": {
+        "cherokee-next-independent-review.json": "1708518cc8a1183ed9c01ac0498279a45c2cbd574563f267ff021b4d9a1fd1e5",
+        "navajo-next-independent-review.json": "bb261ca2abb526993cefa78b6cde4a25be78478aa45a4eda65e5f293dafd3d18",
+        "cherokee-supplemental-review.json": "4dc99be44490d081a97acae5b0c90ac23fe8a2096e1c5d8bec4c88caab577463",
+        "navajo-supplemental-review.json": "0ddbc11b7538df1c6298c260194ae2f74dfef2f333654bff55a0f892098f514b"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ]
+    }
+  },
+  "pr_ci": {
+    "run": 43700210000,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 240.424,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1414,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 158,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43702363202,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14157112403,
+    "archive_sha256": "32b0c990237c5069ab120b792ae04e165be5ff66eedd3c387e8b8e6b60880788",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "verified merged develop source",
+    "source_tree": "4390cc10006dd864a0fe151f09abfb02252c97c2",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117459,
+    "missing": 5490,
+    "complete": 153,
+    "partial": 18,
+    "source_commit": "53a4e6d2859a4baf4787c22b02ddc523925ce9cf"
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 13
+    },
+    "by_locale": {
+      "chr": {
+        "P2": 5
+      },
+      "nv": {
+        "P2": 8
+      }
+    },
+    "limit": "Resource priority classification is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "next_preparation": {
+    "status": "Independently model-reviewed preparation only; not applied or CI-qualified; excluded from merged counts",
+    "commit": "9a19f6aa8749cfcb95c1fa3183add6a914dd5c44",
+    "path": "verification/translations/2026-11-15/tainua-tamazight-next-preparation/research-review.zip",
+    "summary": {
+      "tainua": {
+        "proposed": 5,
+        "accepted": 5,
+        "active": 2,
+        "catalogue_only": 3,
+        "review_deferrals": 0,
+        "other_unproposed_individual_deferrals": 17
+      },
+      "tamazight": {
+        "proposed": 9,
+        "accepted": 8,
+        "active": 5,
+        "catalogue_only": 3,
+        "review_deferrals": 1,
+        "other_unproposed_individual_deferrals": 17
+      }
+    },
+    "bytes": 34523,
+    "sha256": "9749e79092d798bde924d94423d7b507b2b126cedbafbb6d6ecefb1828391e29",
+    "members": 5,
+    "next_action": "After #483 integration, freshly reconcile actual develop, owners and holds before applying any candidates. Keep preparation separate from current merged coverage."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary lexical and instructional evidence corroborates targeted terms, not every complete original UI phrase; catalogue anchors are consistency evidence rather than proof.",
+    "Regional and spelling variants remain documented; material-derived swatch names are not universal RGB naming standards. Other unproposed individual uncertainties are not blanket locale holds.",
+    "Python totals include skipped bodies; consult the exact regression receipt rather than interpreting the runner total as all executed passes.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified their byte/source binding.",
+    "All holds, the separate #422 approval operation, Work-side tasks and release destinations were untouched."
+  ]
+}
