@@ -1,0 +1,1267 @@
+{
+  "identity": {
+    "base": "49456073f139ff177c4f5dd994f4440c7775d957",
+    "head": "0e29d790b0a276ecddf8a03b1556ceea6216adcf",
+    "tested_checkout": "3b770d011c9e1f39f2b7095d40dd1c67ab14d4bf",
+    "tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "merge": "323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+    "merged_at": "2026-11-15T21:20:05Z",
+    "parents": [
+      "49456073f139ff177c4f5dd994f4440c7775d957",
+      "0e29d790b0a276ecddf8a03b1556ceea6216adcf"
+    ],
+    "source_leaves_verified": 1314,
+    "initial_evidence_commit": "e1f90ab064730c9bcb33eb30c2d937c321cc354f"
+  },
+  "changes": {
+    "new_values": {
+      "Ecuadorian Kichwa": 7,
+      "Wolof": 6
+    },
+    "total": 13,
+    "active": 13,
+    "catalogue_only": 0,
+    "resource_tiers": {
+      "P2": 13
+    },
+    "old_elements": 867,
+    "old_elements_preserved": 867,
+    "existing_repairs": 0,
+    "application_scope": "Only the two language XML catalogues; no behavior or test edits."
+  },
+  "review": {
+    "method": "Each language packet was authored and independently reviewed by a different model reviewer; complete values checked against current consumers and producer semantics.",
+    "accepted_unchanged": 13,
+    "code_review": {
+      "comment_id": 6901237901,
+      "bot_id": 199175422,
+      "app_id": 1144995,
+      "head": "0e29d790b0a276ecddf8a03b1556ceea6216adcf",
+      "code_review": "completed, no findings",
+      "security_review": "completed, disabled gate, null finding state not clean certification"
+    },
+    "limits": "Model/source review is not native-human, whole-language, installed glyph/layout or TalkBack certification."
+  },
+  "local_checks": {
+    "executed_base": "edcab920e818790445782aeed788d30c15742ae9",
+    "executed_candidate_tree": "a42d3b023a119afec8068abe8d94058eeb5b73c6",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 9.233,
+    "result": "pass",
+    "log_sha256": "f96e3118d24dd9af0f096c372fe6cc8c74ebecf331efc699ead951aaabef7e5e",
+    "diff_check": "pass",
+    "scope": "Affected host tests before pending #497 integration. Do not relabel as execution on a later refreshed base; exact-head hosted qualification remains required."
+  },
+  "base_refresh": {
+    "previous_base": "edcab920e818790445782aeed788d30c15742ae9",
+    "actual_base": "49456073f139ff177c4f5dd994f4440c7775d957",
+    "changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt"
+    ],
+    "candidate_tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "patch_byte_identical": true,
+    "patch_sha256": "0e6ed79633395fff1d5eb6ba68a898fb7787d7c149749076d56628ab064f9d3e",
+    "reviewed_inputs_unchanged": true,
+    "local_tests_repeated": false,
+    "scope": "Existing local tests executed on previous edcab920 base. Reviewed resources and consumer bindings unchanged; combined source head still requires hosted CI."
+  },
+  "original_composition": {
+    "summary": "Thirteen complete original software translations grounded in current same-variety catalogue terminology, actual producers and consumers, with independent model review; not copied whole donor sentences.",
+    "semantic_boundaries": [
+      "Total assembly input count versus placed count and fixed20 capacity remain distinct.",
+      "Output labels refer to composed image dimensions/creation, not input-file size or save-only behavior.",
+      "Batch crop and apply-to-these-images preserve selectable subset, not compulsory all images.",
+      "Placement prerequisite means one or more images on the workspace, not merely added tray inputs; no unlimited-capacity promise.",
+      "Base64 identifier and all placeholders/newline escapes retained."
+    ],
+    "primary_research": {
+      "Wolof": [
+        {
+          "url": "https://www.ilo.org/publications/ilo-code-practice-hivaids-and-world-work?lang=wo",
+          "read": "2026-11-15",
+          "anchor": "Publication paragraph, web lines63 and76",
+          "lexical_support": "barabu liggéey bi = workplace; wàññi = reduce",
+          "limits": "Physical workplace in original; digital workspace application is original composition, not donor terminology."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/master/languages/i18n/wo.json",
+          "read": "2026-11-15",
+          "anchor": "create line67; nstab-image line147; missingarticle-rev line164",
+          "lexical_support": "Sos (create), dencukaay (file), limu (number of)",
+          "limits": "Mutable community-translated primary software catalogue; lexical support only, not blanket grammatical authority."
+        }
+      ],
+      "Kichwa": [
+        {
+          "url": "https://educacion.gob.ec/wp-content/uploads/downloads/2013/03/RK_diccionario_kichwa_castellano.pdf",
+          "title": "Kichwa Yachakukkunapa Shimiyuk Kamu, Ecuador education ministry",
+          "access": "Official PDF primary-domain search excerpts expose churana as place/locate and tantachina as gather. Full PDF open timed out on bare and www hosts; full pages not verified.",
+          "limit": "Limited lexical corroboration only; no copied example or full-sentence certification. Search excerpt is not represented as full-document review."
+        }
+      ],
+      "limit": "Primary lexical facts corroborate terms, not complete software sentences. Kichwa full PDF retrieval timed out; limited official excerpts are not full-document certification. Original contextual composition was independently reviewed."
+    }
+  },
+  "scratch_only_corrections": [
+    {
+      "event": "Initial source-preparation helper interpreted a Wolof line-list as a numeric range pair and failed before writes.",
+      "correction": "Verified individual line/range segments with the proper representation; original proposal packets unchanged.",
+      "application_failure": false
+    },
+    {
+      "event": "Initial helper assumed adjacent @Test fun and failed only at the new case source match; observed intervening @Config(sdk=[35]) was explicitly matched. Artifact outcomes unchanged; no application failure or test rerun.",
+      "application_failure": false
+    }
+  ],
+  "merged_direct_presence": {
+    "status": "Actual clean merged source direct-presence recount",
+    "merge": "323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+    "tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "key_definition": "718 translatable strings and one plural resource",
+    "present": 117616,
+    "missing": 5333,
+    "complete": 153,
+    "partial": 18,
+    "rows": [
+      {
+        "tag": "en-001",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "af",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ain-Kana",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ain-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "am",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ang",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ar",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ary",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "as",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ast",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "az",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "be",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bg",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "br",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bs",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ca",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ca-ES-valencia",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ceb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ch",
+        "present": 407,
+        "missing": 312
+      },
+      {
+        "tag": "chr",
+        "present": 386,
+        "missing": 333
+      },
+      {
+        "tag": "ckb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "cs",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "csb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "cy",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "da",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "de",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "dz",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "el",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-AU",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-CA",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-GB",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-IN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-SG",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-US",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-XV",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "eo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "es-419",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "es-ES",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "et",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "eu-ES",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fa-IR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fil",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fy",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ga",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gu",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ha",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hak-Hant-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hak-Latn-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "he",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hne",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ht",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hu",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hy",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ia",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "id",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ig",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "is",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "it",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ja",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "jje",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "jv",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ka",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kab",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "km",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-Kore-KR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-KP",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-KR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ku",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ky",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "la",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ln",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lt",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lv",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lzh-Hant",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mai",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ml-IN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mn-Cyrl-MN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mn-Mong",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mnc-Mong",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ms",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mww",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "my",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nan-Hant-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nan-Latn-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nch",
+        "present": 384,
+        "missing": 335
+      },
+      {
+        "tag": "nds",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ne",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nhe",
+        "present": 384,
+        "missing": 335
+      },
+      {
+        "tag": "nhw",
+        "present": 383,
+        "missing": 336
+      },
+      {
+        "tag": "nl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "no",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "non",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nv",
+        "present": 390,
+        "missing": 329
+      },
+      {
+        "tag": "oc",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pa-IN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pcm",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ps",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pt-BR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pt-PT",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "qaa-Zsye-XV",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "qug",
+        "present": 409,
+        "missing": 310
+      },
+      {
+        "tag": "quh",
+        "present": 419,
+        "missing": 300
+      },
+      {
+        "tag": "quy",
+        "present": 412,
+        "missing": 307
+      },
+      {
+        "tag": "quz",
+        "present": 414,
+        "missing": 305
+      },
+      {
+        "tag": "ro",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ru",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "rw",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ryu",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "se",
+        "present": 461,
+        "missing": 258
+      },
+      {
+        "tag": "shn",
+        "present": 427,
+        "missing": 292
+      },
+      {
+        "tag": "si",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sm",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "so",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sq",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sr-Cyrl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sr-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "su",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sv",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sw",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ta",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tdd",
+        "present": 389,
+        "missing": 330
+      },
+      {
+        "tag": "te",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tg",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "th",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tok",
+        "present": 602,
+        "missing": 117
+      },
+      {
+        "tag": "tpi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tt-Cyrl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tt-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ug",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "uk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ur",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "uz-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "vi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "vi-Hani",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wo",
+        "present": 471,
+        "missing": 248
+      },
+      {
+        "tag": "wuu-Hans",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "xh",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yua",
+        "present": 396,
+        "missing": 323
+      },
+      {
+        "tag": "yue-Hant",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yue-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "za",
+        "present": 474,
+        "missing": 245
+      },
+      {
+        "tag": "zgh",
+        "present": 401,
+        "missing": 318
+      },
+      {
+        "tag": "zh-CN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zh-HK",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zh-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zu",
+        "present": 719,
+        "missing": 0
+      }
+    ],
+    "limit": "Presence only, not linguistic acceptance."
+  },
+  "status": "Merged; exact-head PR and fresh full actual-merge CI independently qualified",
+  "pr": 498,
+  "prior_PR_qualification": {
+    "run_id": 43760825633,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/43760825633",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 132955021127,
+        "name": "Verify recent same-tree PR evidence",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T20:56:14Z",
+        "completed_at": "2026-11-15T20:56:21Z"
+      },
+      {
+        "id": 132955059621,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T20:56:22Z",
+        "completed_at": "2026-11-15T21:16:13Z"
+      },
+      {
+        "id": 132955059649,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T20:56:22Z",
+        "completed_at": "2026-11-15T21:00:25Z"
+      },
+      {
+        "id": 132955059658,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T20:56:23Z",
+        "completed_at": "2026-11-15T21:04:14Z"
+      },
+      {
+        "id": 132957342448,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T21:04:16Z",
+        "completed_at": "2026-11-15T21:18:41Z"
+      },
+      {
+        "id": 132957342470,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T21:04:17Z",
+        "completed_at": "2026-11-15T21:09:32Z"
+      },
+      {
+        "id": 132961655920,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-15T21:18:43Z",
+        "completed_at": "2026-11-15T21:18:53Z"
+      }
+    ],
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 180.391,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "python_executed_non_skipped": 890,
+    "jvm": {
+      "tests": 1433,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 161,
+    "lint_issues": 0,
+    "exact_probes": {
+      "successful_expected_probes": 13,
+      "positive_probes": 12,
+      "expected_negative_probes": 1,
+      "all_13_log_hashes_verified": true
+    },
+    "device": {
+      "API": 35,
+      "app_completed": 51,
+      "native_completed": 74,
+      "app_success": true,
+      "native_success": true
+    }
+  },
+  "fresh_actual_merge_qualification": {
+    "result": "pass",
+    "qualification": "Fresh actual-merge full CI, not bounded reuse",
+    "run": 43763103046,
+    "attempt": 1,
+    "workflow_head": "323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+    "tested_checkout": "323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+    "tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "merge_parents": [
+      "49456073f139ff177c4f5dd994f4440c7775d957",
+      "0e29d790b0a276ecddf8a03b1556ceea6216adcf"
+    ],
+    "original_pr_head": "0e29d790b0a276ecddf8a03b1556ceea6216adcf",
+    "all_seven_jobs_success": [
+      {
+        "id": 132962077821,
+        "name": "Verify recent same-tree PR evidence",
+        "conclusion": "success"
+      },
+      {
+        "id": 132962151576,
+        "name": "Regression tests and lint",
+        "conclusion": "success"
+      },
+      {
+        "id": 132962151599,
+        "name": "Exact-script resource generation",
+        "conclusion": "success"
+      },
+      {
+        "id": 132962151603,
+        "name": "Build APK and corresponding source",
+        "conclusion": "success"
+      },
+      {
+        "id": 132964021632,
+        "name": "Position dialog API 35",
+        "conclusion": "success"
+      },
+      {
+        "id": 132964021698,
+        "name": "Core emulator API 35",
+        "conclusion": "success"
+      },
+      {
+        "id": 132968458239,
+        "name": "Emulator API 35",
+        "conclusion": "success"
+      }
+    ],
+    "fallback_receipt": {
+      "reused": false,
+      "reason": "Full fallback: ValueError: Review last edit is not bound to the same bot/time"
+    },
+    "fallback_limit": "Preflight review last-edit bot/time binding could not be established; full fresh workflow executed successfully. This was not an application failure.",
+    "fresh_results": {
+      "resource_probes": 13,
+      "python": {
+        "tests": 892,
+        "elapsed_seconds": 221.073,
+        "skipped": 2,
+        "failures": 0,
+        "errors": 0,
+        "result": "OK",
+        "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+      },
+      "jvm_suites": 161,
+      "jvm_totals": {
+        "tests": 1433,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "lint_issues": 0,
+      "all_four_phase_exits_and_timing_verified": true,
+      "python_jvm_owner_cleanup_verified": true,
+      "app_API35": 51,
+      "native_API35": 74,
+      "numeric_recovery_cases": 7,
+      "canvas_recovery_cases": 6,
+      "new_decimal_comma_precision_case": 1
+    },
+    "downloaded_artifacts": [
+      {
+        "id": 14181605129,
+        "name": "exact-script-generation-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "bytes": 20049,
+        "sha256": "a16102b428bb1935c18fa07ec846a0e561d0b2918b4dae9761fc162b0ddc1b0c"
+      },
+      {
+        "id": 14182087376,
+        "name": "regression-and-lint-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "bytes": 83601509,
+        "sha256": "0c4ba3aa0203bacb8884495463df74cf0180ec9c54eea76dfbc6fb997377102f"
+      },
+      {
+        "id": 14181567241,
+        "name": "emulator-api-35-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "bytes": 12344589,
+        "sha256": "f6091b29910fb2e98ad416a8c7fe723ae24d82e9097b24c291a32c83c752d9dc"
+      },
+      {
+        "id": 14181159768,
+        "name": "emulator-position-api-35-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "bytes": 1858365,
+        "sha256": "b5162274aa63262e2502bea4ff0ca5b439275b7ac613b61f2d8df716ad2229cb"
+      }
+    ],
+    "artifact_inventory": [
+      {
+        "id": 14182470097,
+        "name": "emulator-core-api-35-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:e0909a3da7b25a898c88ea84e521d643a1d9b0aa6b4cce5674f4a7595fbf07a0",
+        "size_in_bytes": 12331885
+      },
+      {
+        "id": 14182087376,
+        "name": "regression-and-lint-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:0c4ba3aa0203bacb8884495463df74cf0180ec9c54eea76dfbc6fb997377102f",
+        "size_in_bytes": 83601509
+      },
+      {
+        "id": 14181605129,
+        "name": "exact-script-generation-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:a16102b428bb1935c18fa07ec846a0e561d0b2918b4dae9761fc162b0ddc1b0c",
+        "size_in_bytes": 20049
+      },
+      {
+        "id": 14181567241,
+        "name": "emulator-api-35-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:f6091b29910fb2e98ad416a8c7fe723ae24d82e9097b24c291a32c83c752d9dc",
+        "size_in_bytes": 12344589
+      },
+      {
+        "id": 14181406245,
+        "name": "build-diagnostics-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5-1",
+        "digest": "sha256:d304f498d550b3504d9590e119b36e42ba056a68f546dc1a8c3a7a30a350eae1",
+        "size_in_bytes": 24116
+      },
+      {
+        "id": 14181159768,
+        "name": "emulator-position-api-35-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:b5162274aa63262e2502bea4ff0ca5b439275b7ac613b61f2d8df716ad2229cb",
+        "size_in_bytes": 1858365
+      },
+      {
+        "id": 14180984661,
+        "name": "instrumentation-apks-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:e7654667fdcaff7739cdab918cceeae7c90ac0308d874a2bb61df36fcc651f14",
+        "size_in_bytes": 100697542
+      },
+      {
+        "id": 14180849678,
+        "name": "apk-and-source-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:b6ca837f85ca1f86674308e7545a92f215e6ce4d5c3ddcb4e77b224e5130120a",
+        "size_in_bytes": 148952726
+      },
+      {
+        "id": 14180443454,
+        "name": "prior-evidence-link-323a4d15f0bae3344cd3a5501ae20b9616b1fbc5",
+        "digest": "sha256:f92a13f8657627a5cd0c175e063a01b7783b699f7ec1375e4d92a2b6aa6c39e7",
+        "size_in_bytes": 250
+      }
+    ],
+    "limits": [
+      "Fresh source-bound hosted execution, not translation-native-human or exhaustive per-language layout/TalkBack acceptance.",
+      "All seven jobs executed successfully; none skipped. No release operation.",
+      "Build/source, test APK and core-only raw archives not downloaded independently; hosted successful composition validates them, and downloaded composition/position reports were independently recomposed against source.",
+      "Python two skips remain skips; nonverbose log provides no skip names/reasons.",
+      "No app edits, reruns, remote mutations or Work tasks. Prior PR receipts preserved."
+    ]
+  },
+  "limits": [
+    "Model review is not native-speaker certification, whole-language acceptance, exhaustive glyph/layout or TalkBack acceptance.",
+    "Direct catalogue presence does not certify fluency.",
+    "Local 62 tests ran on edcab920, not relabelled as refreshed-base execution. Exact-head PR hosted results are separately identified.",
+    "Python two skips remain skipped; nonverbose log does not identify their names or reasons.",
+    "Existing API35 inventory is not specific installed acceptance of all thirteen new translations.",
+    "Build/source, test APK and core-only archive bytes were not independently downloaded in this qualification; successful hosted composition/preflight verifies their byte/source binding.",
+    "All unrelated paused work remains untouched.",
+    "Fresh full postmerge execution, not evidence reuse; no release performed. Historical pending reports remain preserved."
+  ]
+}
