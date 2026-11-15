@@ -1,0 +1,1200 @@
+{
+  "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+  "head": "77a68ec9354d7ad924ad8529387b8d1ac9bf0275",
+  "tree": "7aa976f6d92cbbd7eb4c845e46e5493e41a13f99",
+  "pr": 480,
+  "source_branch": "localization/p2-shan-zhuang-kichwa-controls-20261115",
+  "ci_run": 43691228441,
+  "ci_status": "in_progress",
+  "status": "source published, exact-head CI and automatic review pending; not merged",
+  "reconciliation": {
+    "issueUpdated": "2026-11-15T07:27:49Z",
+    "recent": [
+      {
+        "id": 6890380984,
+        "updated": "2026-11-15T06:29:46Z"
+      },
+      {
+        "id": 6890725184,
+        "updated": "2026-11-15T06:56:15Z"
+      },
+      {
+        "id": 6891064929,
+        "updated": "2026-11-15T07:27:49Z"
+      }
+    ],
+    "develop": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "prs": [
+      {
+        "number": 226,
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence",
+        "owner": "c933103"
+      },
+      {
+        "number": 159,
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6",
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression",
+        "owner": "c933103"
+      },
+      {
+        "number": 88,
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884",
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter",
+        "owner": "c933103"
+      },
+      {
+        "number": 87,
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1",
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host",
+        "owner": "c933103"
+      },
+      {
+        "number": 75,
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61",
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement",
+        "owner": "c933103"
+      },
+      {
+        "number": 72,
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8",
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?",
+        "owner": "c933103"
+      },
+      {
+        "number": 71,
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457",
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling",
+        "owner": "c933103"
+      },
+      {
+        "number": 69,
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb",
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF",
+        "owner": "c933103"
+      },
+      {
+        "number": 56,
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332",
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices",
+        "owner": "c933103"
+      }
+    ]
+  },
+  "changes": {
+    "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "proposed": 90,
+    "accepted": 84,
+    "accepted_unchanged": 84,
+    "revised": 0,
+    "rejected": 6,
+    "active": 52,
+    "catalogue_only": 32,
+    "applied": {
+      "qug": {
+        "added": 13,
+        "old_elements_preserved": 378,
+        "total": 391,
+        "sha256": "7cac1adc2c657c93d34a302d8d1aadf646977a15ee763848c5cd0c2c2a416493",
+        "path": "Paintroid/src/main/res/values-b+qug/strings.xml"
+      },
+      "quh": {
+        "added": 14,
+        "old_elements_preserved": 382,
+        "total": 396,
+        "sha256": "13e8a21a19912e520a5af097ffd6b2f4e8521ccf2255660fb9247f9907d5b5b9",
+        "path": "Paintroid/src/main/res/values-b+quh/strings.xml"
+      },
+      "za": {
+        "added": 21,
+        "old_elements_preserved": 447,
+        "total": 468,
+        "sha256": "abd32df746a169f751ca676054a1041d3e01603e0bfcde00ea4bef221827da44",
+        "path": "Paintroid/src/main/res/values-b+za/strings.xml"
+      },
+      "shn": {
+        "added": 36,
+        "old_elements_preserved": 384,
+        "total": 420,
+        "sha256": "656c4fdac667f22b03f0932d0bdae65985d1bfdb23a91ef19baa15442f66567b",
+        "path": "Paintroid/src/main/res/values-b+shn/strings.xml"
+      }
+    },
+    "withheld": [
+      {
+        "locale": "za",
+        "key": "ui_cursor_settings31",
+        "rationale": "Defer this longer nominal compound. Gij senj veh yungh… may attach selection/settings ambiguously to drawing or to the marker; the existing short drawing-settings and cursor-drawing strings do not settle the complete settings-for-cursor-mode reading. No arbitrary length restriction or native-human prerequisite is imposed."
+      },
+      {
+        "locale": "za",
+        "key": "ui_remove_palette23",
+        "rationale": "Defer the whole removal/source construction. Daj has a from/source function, but its placement after Duz saek here is not confidently established as natural for removing a colour from a palette. Existing Duz and a standalone from-device phrase do not establish this syntax. No confident replacement supplied; this is uncertainty, not a confirmed existing defect."
+      },
+      {
+        "locale": "za",
+        "key": "formats22_loading_page",
+        "rationale": "Defer this status wording. Hai gij yawj sien is readily read as open the preview, while the actual consumer reports a background decode/loading operation before an open-page confirmation. Ellipsis alone does not confidently settle ongoing state versus instruction. Page/current-total parameters are correct, but whole-value status confidence is insufficient; no unverified new loading term introduced."
+      },
+      {
+        "locale": "shn",
+        "key": "ui_remove_palette23",
+        "rationale": "Defer this new source/destination construction. The compressed out/inside sequence may be understood, but I cannot confidently certify its from-the-palette relation or supply a better whole phrase. Existing remove and palette nouns alone do not settle it."
+      },
+      {
+        "locale": "shn",
+        "key": "formats22_ascii_invert",
+        "rationale": "Defer this whole construction. The actual operation reverses brightness-to-character mapping. I cannot confidently establish that the proposed exchange/replacement phrase communicates that operation naturally rather than swapping or replacing glyphs. The existing light/dark description does not settle the longer compound."
+      },
+      {
+        "locale": "shn",
+        "key": "ui_cursor_settings31",
+        "rationale": "Defer this nested settings/drawing/using-marker compound. The proposed concatenation risks reading as setting up a drawing action rather than settings for the established cursor mode. The existing crop-settings phrase is insufficient to establish this new whole construction."
+      }
+    ]
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.849,
+    "diff_check": "passed",
+    "independent_applied_source_check": {
+      "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+      "status": "passed",
+      "scope": "Independent applied-source mechanical/context integrity, not a new linguistic review. The checker authored the earlier qug/quh proposals, which received separate independent full-value review before this integrity check.",
+      "accepted_values_exact": 84,
+      "deferred_absent": 6,
+      "prior_elements_preserved": 1591,
+      "changed_files": [
+        "Paintroid/src/main/res/values-b+qug/strings.xml",
+        "Paintroid/src/main/res/values-b+quh/strings.xml",
+        "Paintroid/src/main/res/values-b+shn/strings.xml",
+        "Paintroid/src/main/res/values-b+za/strings.xml"
+      ],
+      "by_locale": {
+        "shn": {
+          "added": 36,
+          "prior_elements_preserved": 384,
+          "order_attributes_text_children_preserved": true,
+          "new_total": 420,
+          "sha256": "656c4fdac667f22b03f0932d0bdae65985d1bfdb23a91ef19baa15442f66567b"
+        },
+        "za": {
+          "added": 21,
+          "prior_elements_preserved": 447,
+          "order_attributes_text_children_preserved": true,
+          "new_total": 468,
+          "sha256": "abd32df746a169f751ca676054a1041d3e01603e0bfcde00ea4bef221827da44"
+        },
+        "qug": {
+          "added": 13,
+          "prior_elements_preserved": 378,
+          "order_attributes_text_children_preserved": true,
+          "new_total": 391,
+          "sha256": "7cac1adc2c657c93d34a302d8d1aadf646977a15ee763848c5cd0c2c2a416493"
+        },
+        "quh": {
+          "added": 14,
+          "prior_elements_preserved": 382,
+          "order_attributes_text_children_preserved": true,
+          "new_total": 396,
+          "sha256": "13e8a21a19912e520a5af097ffd6b2f4e8521ccf2255660fb9247f9907d5b5b9"
+        }
+      },
+      "classification": {
+        "active": 52,
+        "catalogue_only": 32,
+        "basis": "Fresh literal R.string and @string scan of production Kotlin/Java/non-catalogue XML; no dynamic-route completeness claim."
+      },
+      "checks": {
+        "accepted_aggregate_matches_independent_reviews": true,
+        "only_expected_four_XML_files_changed": true,
+        "no_untracked_app_files": true,
+        "all_original_order_attributes_text_children_preserved": true,
+        "default_English_matches_reviews": true,
+        "new_attributes_match_default_except_translatable": true,
+        "placeholders_and_android_escaping_and_percent_formats": true,
+        "NFC": true,
+        "current_consumer_anchors_match": true
+      },
+      "consumer_evidence": [
+        {
+          "locale": "shn",
+          "key": "ui_save_as_avif",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_save_as_heic",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_save_as_webp",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_same_height",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 37,
+              "code": "val dialog=EditorDialogBuilder(activity).setTitle(ui(if (axis == NormalizeAxis.WIDTH) R.string.ui_same_width else R.string.ui_same_height))"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 98,
+              "code": "button(ui(R.string.ui_same_height),\"assembly_same_height\") { normalize(NormalizeAxis.HEIGHT) },"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_same_width",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 37,
+              "code": "val dialog=EditorDialogBuilder(activity).setTitle(ui(if (axis == NormalizeAxis.WIDTH) R.string.ui_same_width else R.string.ui_same_height))"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 97,
+              "code": "button(ui(R.string.ui_same_width),\"assembly_same_width\") { normalize(NormalizeAxis.WIDTH) },"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_same",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_width_in",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+              "line": 81,
+              "code": "widthInput.contentDescription = ui(R.string.ui_width_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_widths",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_smallest",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 64,
+              "code": "listOf(Triple(\"smallest\",R.string.ui_smallest,smallest),Triple(\"largest\",R.string.ui_largest,largest)).forEach { (key,label,pixels) ->"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_largest",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 64,
+              "code": "listOf(Triple(\"smallest\",R.string.ui_smallest,smallest),Triple(\"largest\",R.string.ui_largest,largest)).forEach { (key,label,pixels) ->"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_add_images",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 86,
+              "code": "add = button(ui(R.string.ui_add_images),\"assembly_add\") { launchAdd() }"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_add_images_first",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 269,
+              "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "gallery_use_image",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+              "line": 164,
+              "code": "this,ui(R.string.gallery_use_image),\"gallery_use_selected\") {"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+              "line": 225,
+              "code": "view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_an_paint_image",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1394,
+              "code": "clipData=android.content.ClipData.newRawUri(ui(R.string.ui_an_paint_image),uri)"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_an_paint_image_assembly",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 77,
+              "code": "count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_placed",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 142,
+              "code": "contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 157,
+              "code": "card.addView(text(\"${item.placedSize.width} × ${item.placedSize.height}${if (!item.isPlaced) \"\" else \" · \" + ui(R.string.ui_placed)}\",10f))"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_not_placed",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 142,
+              "code": "contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_add_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 220,
+              "code": "saveCustomButton=button(ui(R.string.ui_add_palette23), \"add_custom_colour\") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 346,
+              "code": "saveCustomButton.text=ui(R.string.ui_add_palette23)"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_added_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 350,
+              "code": "fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_edit_palette23",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_base64_label",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+              "line": 20,
+              "code": "val label: String get()=when(this) {BASE64->ui(R.string.formats22_base64_label);ASCII_ART->ui(R.string.formats22_ascii_label);else->displayLabel}"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_ascii_columns",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+              "line": 81,
+              "code": "asciiControls.addView(NumericSlider(activity,ui(R.string.formats22_ascii_columns),asciiColumns,40,240) {asciiColumns=it}.apply {tag=\"export_ascii_columns\"})"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_open_page",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 115,
+              "code": ".setPositiveButton(ui(R.string.formats22_open_page),null)"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_select_page",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 113,
+              "code": "val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_select_page))"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_page_number",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 105,
+              "code": "val field=EditText(activity).apply {tag=\"import_page_number\";LocaleNumberInput.configure(this);setSingleLine(true);contentDescription=ui(R.string.formats22_page_number);setText(\"1\");selectAll()}"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_page_dimensions",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 140,
+              "code": "else {preview=result;image.setImageBitmap(result);status.text=ui(R.string.formats22_page_dimensions,value,count,dimensions.width,dimensions.height)}"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_page_range",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 124,
+              "code": "if(value==null) {status.text=ui(R.string.formats22_page_range,count);return}"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "formats22_pdf_page_count",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt",
+              "line": 112,
+              "code": "if (it !in 1..MAX_PAGES) throw PdfImportException(ui(R.string.formats22_pdf_page_count, MAX_PAGES))"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_filename_a_z",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+              "line": 36,
+              "code": "enum class AssemblySort(private val labelId: Int) { NAME_ASC(R.string.ui_filename_a_z), NAME_DESC(R.string.ui_filename_z_a), OLDEST(R.string.ui_modified_oldest_first), NEWEST(R.string.ui_modified_newest_first);"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_filename_z_a",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+              "line": 36,
+              "code": "enum class AssemblySort(private val labelId: Int) { NAME_ASC(R.string.ui_filename_a_z), NAME_DESC(R.string.ui_filename_z_a), OLDEST(R.string.ui_modified_oldest_first), NEWEST(R.string.ui_modified_newest_first);"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_tap_a_pixel",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 785,
+              "code": "PaintTool.PICKER -> options.addView(label(ui(R.string.ui_tap_a_pixel), 12f))"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_cursor_ink30",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_disable_cursor_drawing",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_copy_an_area_or_use_file_insert_image",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "shn",
+          "key": "ui_time_unavailable",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 156,
+              "code": "card.addView(text(item.timestamp?.let { DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(Date(it)) } ?: ui(R.string.ui_time_unavailable),10f).apply { maxLines = 1; ellipsize = TextUtils.TruncateAt.END })"
+            }
+          ]
+        },
+        {
+          "locale": "shn",
+          "key": "ui_restore_original_sizes",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+              "line": 69,
+              "code": "text=ui(R.string.ui_restore_original_sizes); isAllCaps=false; tag=\"normalize_reset\""
+            }
+          ]
+        },
+        {
+          "locale": "za",
+          "key": "ui_save_as_webp",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_save_as_heic",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_save_as_avif",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_right_arrow_expand",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_disable_cursor_drawing",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_cursor_ink30",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_magnified_preview",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_magnified_preview_ea9209",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1580,
+              "code": "EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))"
+            }
+          ]
+        },
+        {
+          "locale": "za",
+          "key": "ui_widths",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_same",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_hide_pixel_grid_800",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_show_pixel_grid_800",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_add_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 220,
+              "code": "saveCustomButton=button(ui(R.string.ui_add_palette23), \"add_custom_colour\") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 346,
+              "code": "saveCustomButton.text=ui(R.string.ui_add_palette23)"
+            }
+          ]
+        },
+        {
+          "locale": "za",
+          "key": "ui_added_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 350,
+              "code": "fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}"
+            }
+          ]
+        },
+        {
+          "locale": "za",
+          "key": "ui_edit_palette23",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_add_active23",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "ui_replace_with_active23",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "formats22_page_dimensions",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+              "line": 140,
+              "code": "else {preview=result;image.setImageBitmap(result);status.text=ui(R.string.formats22_page_dimensions,value,count,dimensions.width,dimensions.height)}"
+            }
+          ]
+        },
+        {
+          "locale": "za",
+          "key": "ui_lossless_jpeg_xl",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "za",
+          "key": "formats22_ascii_invert",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+              "line": 82,
+              "code": "val asciiInvert=CheckBox(activity).apply {tag=\"export_ascii_invert\";text=ui(R.string.formats22_ascii_invert);isChecked=initial.asciiInvert}"
+            }
+          ]
+        },
+        {
+          "locale": "za",
+          "key": "ui_tool_option",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 831,
+              "code": "EditorDialogBuilder(this).setTitle(ui(R.string.ui_tool_option)).setSingleChoiceItems(values.toTypedArray(), selected) { dialog, which ->"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_add_images",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 86,
+              "code": "add = button(ui(R.string.ui_add_images),\"assembly_add\") { launchAdd() }"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_add_images_first",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 269,
+              "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_placed",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 142,
+              "code": "contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 157,
+              "code": "card.addView(text(\"${item.placedSize.width} × ${item.placedSize.height}${if (!item.isPlaced) \"\" else \" · \" + ui(R.string.ui_placed)}\",10f))"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_not_placed",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 142,
+              "code": "contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_an_paint_image",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1394,
+              "code": "clipData=android.content.ClipData.newRawUri(ui(R.string.ui_an_paint_image),uri)"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_an_paint_image_assembly",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 77,
+              "code": "count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_add_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 220,
+              "code": "saveCustomButton=button(ui(R.string.ui_add_palette23), \"add_custom_colour\") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 346,
+              "code": "saveCustomButton.text=ui(R.string.ui_add_palette23)"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_added_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 350,
+              "code": "fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_edit_palette23",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "qug",
+          "key": "ui_remove_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1016,
+              "code": ".setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->"
+            }
+          ]
+        },
+        {
+          "locale": "qug",
+          "key": "ui_save_as_webp",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "qug",
+          "key": "ui_save_as_heic",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "qug",
+          "key": "ui_save_as_avif",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "quh",
+          "key": "ui_add_images",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 86,
+              "code": "add = button(ui(R.string.ui_add_images),\"assembly_add\") { launchAdd() }"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_add_images_first",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 269,
+              "code": "if (assembly.images.isEmpty()) { message(ui(R.string.ui_add_images_first)); return }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 279,
+              "code": "if (images.isEmpty()) { message(if (batch) ui(R.string.ui_add_images_first) else ui(R.string.ui_tap_an_image_thumbnail_first)); return }"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_placed",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 142,
+              "code": "contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 157,
+              "code": "card.addView(text(\"${item.placedSize.width} × ${item.placedSize.height}${if (!item.isPlaced) \"\" else \" · \" + ui(R.string.ui_placed)}\",10f))"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_not_placed",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 142,
+              "code": "contentDescription = ui(R.string.ui_by_pixels_hold_and_drag_to_place, item.name, if (!item.isPlaced) ui(R.string.ui_not_placed) else ui(R.string.ui_placed), item.placedSize.width, item.placedSize.height)"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_an_paint_image",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1394,
+              "code": "clipData=android.content.ClipData.newRawUri(ui(R.string.ui_an_paint_image),uri)"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_an_paint_image_assembly",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+              "line": 77,
+              "code": "count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_add_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 220,
+              "code": "saveCustomButton=button(ui(R.string.ui_add_palette23), \"add_custom_colour\") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 346,
+              "code": "saveCustomButton.text=ui(R.string.ui_add_palette23)"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_added_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+              "line": 350,
+              "code": "fun changed() {refreshCustom();paletteChanged();LocaleTypography.showMessage(activity,ui(R.string.ui_added_palette23),Toast.LENGTH_SHORT,saveCustomButton)}"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_edit_palette23",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "quh",
+          "key": "ui_remove_palette23",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+              "line": 1016,
+              "code": ".setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "gallery_use_image",
+          "classification": "active",
+          "consumers": [
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+              "line": 164,
+              "code": "this,ui(R.string.gallery_use_image),\"gallery_use_selected\") {"
+            },
+            {
+              "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+              "line": 225,
+              "code": "view.evaluateJavascript(GalleryTypography.script(this@MediaGalleryActivity,AppLanguage.locale(this@MediaGalleryActivity))+IllustrationPage.script(provider,ui(R.string.gallery_use_image),ui(R.string.gallery_copy_credit)),null)"
+            }
+          ]
+        },
+        {
+          "locale": "quh",
+          "key": "ui_save_as_webp",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "quh",
+          "key": "ui_save_as_heic",
+          "classification": "catalogue-only",
+          "consumers": []
+        },
+        {
+          "locale": "quh",
+          "key": "ui_save_as_avif",
+          "classification": "catalogue-only",
+          "consumers": []
+        }
+      ],
+      "limits": [
+        "No test suite run by this check; parent owns affected tests and exact-head CI.",
+        "No fresh linguistic/native-human, whole-language or installed-layout/TalkBack acceptance.",
+        "No application edits, external mutation or Work task."
+      ]
+    }
+  },
+  "remote_source": {
+    "complete_leaves": 1309,
+    "path_mode_type_blob_comparison": "all entries match reviewed index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "candidate_counts": {
+    "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "status": "candidate only; not merged credit",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117417,
+    "missing": 5532,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "source": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "present": 117333,
+    "total": 122949,
+    "missing": 5616,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 83,
+      "P3": 1
+    },
+    "by_locale": {
+      "qug": {
+        "P2": 13
+      },
+      "quh": {
+        "P2": 14
+      },
+      "shn": {
+        "P2": 35,
+        "P3": 1
+      },
+      "za": {
+        "P2": 21
+      }
+    },
+    "limit": "Resource priority is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "shan_preparation_lineage": {
+    "commit": "9f5510da101ef8ab2d5f6bd2ff0d0de6f211b021",
+    "path": "verification/translations/2026-11-15/shan-next-preparation/research-review.zip",
+    "original_base": "e79f2ff63176d436361104c37132ba96762a7071",
+    "current_base_reconciliation": {
+      "base": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+      "path": "Paintroid/src/main/res/values-b+shn/strings.xml",
+      "added": 36,
+      "old_elements_preserved": 384,
+      "total": 420,
+      "source_anchors_revalidated": 73,
+      "consumer_anchors_revalidated": true,
+      "active": 27,
+      "catalogue_only": 9,
+      "rejected": [
+        {
+          "key": "ui_remove_palette23",
+          "rationale": "Defer this new source/destination construction. The compressed out/inside sequence may be understood, but I cannot confidently certify its from-the-palette relation or supply a better whole phrase. Existing remove and palette nouns alone do not settle it."
+        },
+        {
+          "key": "formats22_ascii_invert",
+          "rationale": "Defer this whole construction. The actual operation reverses brightness-to-character mapping. I cannot confidently establish that the proposed exchange/replacement phrase communicates that operation naturally rather than swapping or replacing glyphs. The existing light/dark description does not settle the longer compound."
+        },
+        {
+          "key": "ui_cursor_settings31",
+          "rationale": "Defer this nested settings/drawing/using-marker compound. The proposed concatenation risks reading as setting up a drawing action rather than settings for the established cursor mode. The existing crop-settings phrase is insufficient to establish this new whole construction."
+        }
+      ],
+      "sha256": "656c4fdac667f22b03f0932d0bdae65985d1bfdb23a91ef19baa15442f66567b",
+      "original_review_base": "e79f2ff63176d436361104c37132ba96762a7071",
+      "source_reconciliation": "Shan catalogue bytes, all cited source/consumer anchors and English source values unchanged from preparation."
+    }
+  },
+  "limitations": [
+    "All additions are original model-authored and independently model-reviewed complete values; not native-human, whole-language, exhaustive installed-layout or TalkBack acceptance.",
+    "Primary lexical evidence is narrow and does not certify every composed sentence. Existing catalogue anchors are consistency evidence, not independent linguistic proof.",
+    "Kichwa Ministry dictionary was successfully read through a publisher mirror during independent review; earlier failed original-source retrieval remains recorded honestly. Bolivian evidence is narrower.",
+    "Six individually uncertain proposals remain fallback; untouched longer wording remains unfinished. This is not a blanket locale hold or a finding that every related existing term is defective.",
+    "Catalogue-only additions do not claim current application UI improvement.",
+    "No Work-side task, release action, held operation or separate #422 evidence approval operation was performed."
+  ]
+}
