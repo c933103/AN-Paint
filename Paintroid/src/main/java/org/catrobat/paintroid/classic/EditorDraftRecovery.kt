@@ -54,6 +54,9 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
         if (autosave.exists()) try {
             val draft=autosave.read(historyReader=document::readHistory) { w,h -> checkSize(w,h) }
             recovered=draft.metadata
+            // Canvas restoration runs on the main thread after publication. Reject
+            // malformed pending-edit geometry here, while recovery can preserve it.
+            recovered.optJSONObject("canvas")?.let {CanvasDraftGeometry.read(it,draft.image.width,draft.image.height)}
             val recoveredTextSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
             val recoveredTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
             // A finite JSON Double may overflow when narrowed to Float. Validate
