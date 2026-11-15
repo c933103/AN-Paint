@@ -1,0 +1,215 @@
+{
+  "status": "Local tested/reviewed preparation; not published source PR, not merged or hosted-CI qualified",
+  "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+  "local_candidate_tree": "b9962eebc24efc4c312489f0c69b5621c44aa12d",
+  "accepted": {
+    "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "review_pairs": [
+      [
+        "chamorro-next-proposals.json",
+        "chamorro-next-independent-review.json"
+      ],
+      [
+        "wolof-next-proposals.json",
+        "wolof-next-independent-review.json"
+      ],
+      [
+        "chamorro-supplemental-proposals.json",
+        "chamorro-supplemental-review.json"
+      ],
+      [
+        "wolof-supplemental-proposals.json",
+        "wolof-supplemental-review.json"
+      ]
+    ],
+    "source_anchors_revalidated": 27,
+    "consumer_anchors_revalidated": 17,
+    "proposed_unique_keys": 11,
+    "submitted_proposal_versions": 11,
+    "superseded_deferred_proposals": [],
+    "accepted": 10,
+    "accepted_unchanged": 10,
+    "revised": 0,
+    "withheld": [
+      {
+        "locale": "wo",
+        "key": "formats22_page_description",
+        "english": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image.",
+        "proposed": "%1$s · %2$s\\nLimu xët yi: %3$d. Tànnal benn xët ngir soppi ko ni nataal.",
+        "decision": "defer",
+        "final_value": null,
+        "rationale": "Defer this full value only. Limu xët yi preserves page count; benn requires one page; tànnal is a suitable directive, ngir introduces purpose, and ko refers to the chosen page. The unresolved portion is soppi ko ni nataal: ni can express comparative/manner like/as, and I cannot confidently distinguish edit it like a picture from edit it in image form here. The latter is the workflow boundary: a rendered image is edited, not original document objects. Retrieved support does not settle that complete predicate reading and my own judgment is insufficient to author a confident replacement. This is not a demand for a matching donor sentence or a native reviewer, nor a finding that every ni-as phrase is wrong.",
+        "confidence": "insufficient for image-form versus comparative-manner predicate",
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 367,
+            "key": "formats22_select_page",
+            "value": "Tànnal ab xët"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 372,
+            "key": "formats22_page_dimensions",
+            "value": "Xët %1$d ci %2$d · %3$d × %4$d piksel"
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 200,
+            "key": "ui_menu_edit",
+            "value": "\"Soppi\""
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+            "line": 418,
+            "key": "ui_add_images",
+            "value": "Yokk nataal yi"
+          }
+        ],
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "line": 101,
+            "code": "        body.addView(TextView(activity).apply {text=ui(R.string.formats22_page_description,kind,name,count)})"
+          }
+        ],
+        "consumer_classification": "active",
+        "checks": {
+          "NFC": true,
+          "placeholders": true,
+          "serialization": "Literal backslash sequence before n matches canonical English exactly; no normalization performed. No extra apostrophe/XML escaping needed."
+        }
+      }
+    ],
+    "active": 10,
+    "catalogue_only": 0,
+    "applied": {
+      "ch": {
+        "added": 4,
+        "old_elements_preserved": 403,
+        "total": 407,
+        "sha256": "f4ec46f84e70bffd1f69b26ce60bfcfe574465c796bb80bbc3f2e6d18c274bf2",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml"
+      },
+      "wo": {
+        "added": 6,
+        "old_elements_preserved": 445,
+        "total": 451,
+        "sha256": "4cbcc3a1e6f18b2285f0dabfb692670ce6fc9879d7053e8b1e51ef1c6ac49456",
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml"
+      }
+    }
+  },
+  "independent_applied_review": {
+    "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "verdict": "pass",
+    "findings": [],
+    "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+    "checks": {
+      "exact_accepted_complete_values": 10,
+      "deferred_wo_page_description_absent": true,
+      "prior_elements_attributes_text_and_order_preserved": 848,
+      "only_expected_two_XML_files_changed": true,
+      "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+      "new_XML_attrs_match_default": true,
+      "no_duplicate_keys": true,
+      "placeholders_escaping_format_NFC": "pass",
+      "prepared_source_anchors_revalidated": 27,
+      "prepared_consumer_lines_revalidated": 17,
+      "fresh_main_source_active": 10,
+      "fresh_main_source_catalogue_only": 0,
+      "all_11_English_values_match": true
+    },
+    "applied": {
+      "ch": {
+        "added": 4,
+        "old_elements_preserved": 403,
+        "total_elements": 407,
+        "sha256": "f4ec46f84e70bffd1f69b26ce60bfcfe574465c796bb80bbc3f2e6d18c274bf2"
+      },
+      "wo": {
+        "added": 6,
+        "old_elements_preserved": 445,
+        "total_elements": 451,
+        "sha256": "4cbcc3a1e6f18b2285f0dabfb692670ce6fc9879d7053e8b1e51ef1c6ac49456"
+      }
+    },
+    "fresh_consumer_paths": {
+      "ch/ui_gold": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+      ],
+      "ch/ui_silver": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+      ],
+      "ch/ui_copper": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+      ],
+      "wo/ui_edit_in_paint": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      ],
+      "wo/ui_top23": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+      ],
+      "wo/ui_bottom23": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+      ],
+      "wo/ui_downloading_image": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+      ],
+      "wo/ui_the_image_could_not_be_downloaded": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+      ],
+      "ch/formats22_page_range": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+      ],
+      "wo/formats22_page_preview": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+      ]
+    },
+    "review_file_sha256": {
+      "chamorro-next-independent-review.json": "0f16568cf0462a9643332ee9e415b89d89eaf5efe7456a988fd199242a4a5913",
+      "wolof-next-independent-review.json": "b8803d93168d09f26cb8a14f9d05060643b85c59ec0e3ea35d94e6761e1dbcfc",
+      "chamorro-supplemental-review.json": "07c60b6e9f303157a3c8a63f2f9533cc10e187008ea13520a5f618fc41f60184",
+      "wolof-supplemental-review.json": "fcde53459717b7e494758148588900054100e5475a86abd73f99ba6b1980266b"
+    },
+    "limits": [
+      "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+      "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+      "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+    ]
+  },
+  "local_tests": {
+    "total": 62,
+    "seconds": 10.441,
+    "result": "pass",
+    "diff_check": "pass"
+  },
+  "candidate_coverage": {
+    "status": "candidate only, not merged credit",
+    "source_tree": "b9962eebc24efc4c312489f0c69b5621c44aa12d",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117486,
+    "missing": 5463,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_coverage": {
+    "present": 117476,
+    "total": 122949,
+    "missing": 5473,
+    "complete": 153,
+    "partial": 18
+  },
+  "coordination": {
+    "root_owned_pr": 485,
+    "head": "d65402571ec364af3dbb5b951d9ad697cbaf4aa9",
+    "source_publication": "Wait for integration and fresh exact base/consumer reconciliation to avoid redundant candidate runs; does not block root work."
+  },
+  "limits": [
+    "Independent bounded model/source review, not native-human, whole-language, installed-layout or TalkBack acceptance.",
+    "All10 are active literal-consumer additions; source references are not exhaustive runtime coverage.",
+    "One Wolof page-description version withheld for image-form versus comparison semantics, not a blanket locale hold.",
+    "No app source branch, CI run, Work task, held operation or release action performed."
+  ]
+}
