@@ -65,7 +65,9 @@ class DimensionControls(context: Context, val original: ImageDimensions, initial
         val otherBase = if (fromWidth) original.height else original.width
         if (aspectLock.isChecked) number(active)?.let { n ->
             val next = if (percent) n else n * otherBase / base
-            other.setText(if (percent) format(next) else if (next <= Int.MAX_VALUE && next >= .5) next.roundToInt().toString() else "")
+            // Both locked axes must use the same entered percentage. Formatting
+            // the companion first can move it across a pixel-rounding boundary.
+            other.setText(if (percent) active.text.toString() else if (next <= Int.MAX_VALUE && next >= .5) next.roundToInt().toString() else "")
         }
         val w = pixels(number(widthInput),original.width); val h = pixels(number(heightInput),original.height)
         target = if (w != null && h != null) ImageDimensions(w,h) else null

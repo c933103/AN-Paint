@@ -207,6 +207,33 @@ class LocaleNumberInputTest {
         assertTrue(controls.widthInput.contentDescription.isNotEmpty())
     }
 
+    @Test @Config(sdk=[35])
+    fun lockedResizeRetainsDecimalCommaPrecisionThroughEditToggleAndReopen() = withActivity("fr") { activity ->
+        val source=ImageDimensions(4000,3000)
+        val policy=ImageMemoryPolicy.calculate(512L*1024*1024,0,2L*1024*1024*1024,0,true)
+        var accepted: ImageDimensions?=null
+        repeat(2) { pass ->
+            val dialog=ImageResizeDialog(activity,source,0,{policy},previousAttempt=accepted,
+                resize={accepted=it},cancel={}).show();idle()
+            val root=dialog.window!!.decorView
+            root.findViewWithTag<View>("resize_percent").performClick()
+            val width=root.findViewWithTag<EditText>("resize_width")
+            val height=root.findViewWithTag<EditText>("resize_height")
+            enter(if(pass==0) width else height,"0,049999")
+            assertEquals("0,049999",width.text.toString())
+            assertEquals("0,049999",height.text.toString())
+            repeat(3) {
+                root.findViewWithTag<View>("resize_pixels").performClick()
+                assertEquals("2",width.text.toString());assertEquals("1",height.text.toString())
+                root.findViewWithTag<View>("resize_percent").performClick()
+            }
+            assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
+            assertFalse(dialog.isShowing)
+            assertEquals(ImageDimensions(2,1),accepted)
+        }
+    }
+
     @Test fun dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation() {
         for((tag,value) in listOf("ar" to "١٢٥","fa" to "۱۲۵")) withActivity(tag) { activity ->
             val controls=DimensionControls(activity,ImageDimensions(200,400))
