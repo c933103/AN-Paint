@@ -1,0 +1,347 @@
+{
+  "status": "Published ready; exact-head CI and automatic Codex review pending",
+  "pr": 498,
+  "url": "https://github.com/c933103/AN-Paint/pull/498",
+  "head": "0e29d790b0a276ecddf8a03b1556ceea6216adcf",
+  "tested_checkout": "3b770d011c9e1f39f2b7095d40dd1c67ab14d4bf",
+  "ci_run": 43760825633,
+  "base": "49456073f139ff177c4f5dd994f4440c7775d957",
+  "tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+  "changes": {
+    "new_values": {
+      "Ecuadorian Kichwa": 7,
+      "Wolof": 6
+    },
+    "total": 13,
+    "active": 13,
+    "catalogue_only": 0,
+    "resource_tiers": {
+      "P2": 13
+    },
+    "old_elements": 867,
+    "old_elements_preserved": 867,
+    "existing_repairs": 0,
+    "application_scope": "Only the two language XML catalogues; no behavior or test edits."
+  },
+  "review": {
+    "proposed": 13,
+    "accepted_unchanged": 13,
+    "revisions": 0,
+    "method": "Each language packet was authored and independently reviewed by a different model reviewer; complete values checked against current consumers and producer semantics.",
+    "applied_source_audit": "pass",
+    "refresh_audit": "pass",
+    "proposal_review_bindings": {
+      "wo-review.json": "e92b37fd1e168153fd0cc9032dfe7add7bba775dab6599cb0bb0537271c7d828",
+      "qug-review.json": "33ae4980aa1c29576e69a0a9b78f940c8a6f0f430972c1003e3191f33dab81b0"
+    },
+    "limits": "Model/source review is not native-human, whole-language, installed glyph/layout or TalkBack certification."
+  },
+  "local_checks": {
+    "executed_base": "edcab920e818790445782aeed788d30c15742ae9",
+    "executed_candidate_tree": "a42d3b023a119afec8068abe8d94058eeb5b73c6",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 9.233,
+    "result": "pass",
+    "log_sha256": "f96e3118d24dd9af0f096c372fe6cc8c74ebecf331efc699ead951aaabef7e5e",
+    "diff_check": "pass",
+    "scope": "Affected host tests before pending #497 integration. Do not relabel as execution on a later refreshed base; exact-head hosted qualification remains required."
+  },
+  "base_refresh": {
+    "previous_base": "edcab920e818790445782aeed788d30c15742ae9",
+    "actual_base": "49456073f139ff177c4f5dd994f4440c7775d957",
+    "changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt"
+    ],
+    "candidate_tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "patch_byte_identical": true,
+    "patch_sha256": "0e6ed79633395fff1d5eb6ba68a898fb7787d7c149749076d56628ab064f9d3e",
+    "reviewed_inputs_unchanged": true,
+    "local_tests_repeated": false,
+    "scope": "Existing local tests executed on previous edcab920 base. Reviewed resources and consumer bindings unchanged; combined source head still requires hosted CI."
+  },
+  "candidate_counts": {
+    "status": "Candidate only, not merged credit",
+    "source_tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117616,
+    "missing": 5333,
+    "complete": 153,
+    "partial": 18,
+    "provenance": "Original recount at pre-refresh candidate a42d3b02; resource bytes unchanged by narrow code-only refresh.",
+    "keys_per_catalogue_definition": "718 translatable strings and one plural resource"
+  },
+  "current_base_counts": {
+    "present": 117603,
+    "total": 122949,
+    "missing": 5346,
+    "complete": 153,
+    "partial": 18,
+    "limit": "Direct presence, not complete linguistic acceptance."
+  },
+  "source_change_applicability": {
+    "pr": 497,
+    "integration": "Now integrated at actual base49456073; pending-source applicability receipt is historical.",
+    "finding": "Shared percent-dimension mirroring retains validated active numeric text rather than reducing it to four decimals. Selected-locale filtering/parser apply across languages without a locale-specific branch.",
+    "new_translation_items": 0,
+    "reason": "No resource change or new displayed literal; copied user input is not a translation item.",
+    "limit": "Source applicability review, not installed per-locale runtime certification or a new execution claim for existing tests."
+  },
+  "semantic_boundaries": [
+    "Total assembly input count versus placed count and fixed20 capacity remain distinct.",
+    "Output labels refer to composed image dimensions/creation, not input-file size or save-only behavior.",
+    "Batch crop and apply-to-these-images preserve selectable subset, not compulsory all images.",
+    "Placement prerequisite means one or more images on the workspace, not merely added tray inputs; no unlimited-capacity promise.",
+    "Base64 identifier and all placeholders/newline escapes retained."
+  ],
+  "primary_research": {
+    "Wolof": [
+      {
+        "url": "https://www.ilo.org/publications/ilo-code-practice-hivaids-and-world-work?lang=wo",
+        "read": "2026-11-15",
+        "anchor": "Publication paragraph, web lines63 and76",
+        "lexical_support": "barabu liggéey bi = workplace; wàññi = reduce",
+        "limits": "Physical workplace in original; digital workspace application is original composition, not donor terminology."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/master/languages/i18n/wo.json",
+        "read": "2026-11-15",
+        "anchor": "create line67; nstab-image line147; missingarticle-rev line164",
+        "lexical_support": "Sos (create), dencukaay (file), limu (number of)",
+        "limits": "Mutable community-translated primary software catalogue; lexical support only, not blanket grammatical authority."
+      }
+    ],
+    "Kichwa": [
+      {
+        "url": "https://educacion.gob.ec/wp-content/uploads/downloads/2013/03/RK_diccionario_kichwa_castellano.pdf",
+        "title": "Kichwa Yachakukkunapa Shimiyuk Kamu, Ecuador education ministry",
+        "access": "Official PDF primary-domain search excerpts expose churana as place/locate and tantachina as gather. Full PDF open timed out on bare and www hosts; full pages not verified.",
+        "limit": "Limited lexical corroboration only; no copied example or full-sentence certification. Search excerpt is not represented as full-document review."
+      }
+    ],
+    "limit": "Primary lexical facts corroborate terms, not complete software sentences. Kichwa full PDF retrieval timed out; limited official excerpts are not full-document certification. Original contextual composition was independently reviewed."
+  },
+  "individual_deferrals": {
+    "Wolof": [
+      {
+        "key": "ui_an_paint_image_assembly_20_images_placed",
+        "reason": "Count-status grammatical treatment of placed number remains less confident than six action/error values; no arbitrary seventh entry."
+      },
+      {
+        "key": "ui_cursor_pan_draw32 / ui_cursor_pan_move32 / ui_cursor_help31",
+        "reason": "Preserve prior cursor-vs-viewport semantic ambiguity; no new evidence."
+      },
+      {
+        "key": "formats22_page_description / formats22_loading_page",
+        "reason": "Preserve rendered-image wording and loading-vs-downloading deferrals."
+      },
+      {
+        "key": "credit / preview / modified / unplace / custom-colour compounds",
+        "reason": "Prior narrow terminology limitations remain unresolved; not reopened."
+      },
+      {
+        "key": "save20_unsupported_tagged_colour and held issues #422/#330/#226/#159/#88/#87/#75/#72/#71/#69/#56",
+        "reason": "Explicitly outside scope; untouched."
+      }
+    ],
+    "Kichwa": [
+      {
+        "key": "ui_you_can_add_more_images_select_fewer_files",
+        "reason": "Remaining-capacity relational clause not yet settled as a complete Ecuadorian phrase; no automatic conversion of Bolivian wording."
+      },
+      {
+        "key": "ui_rendering_images",
+        "reason": "Processed versus rendered/saved nuance needs separate phrase review."
+      },
+      {
+        "key": "ui_apply_to_all",
+        "reason": "Normalization action outside selected crop/output cluster; leave its separate semantics unchanged."
+      },
+      {
+        "key": "ui_the_attachment_image_is_missing",
+        "reason": "Directed attachment referent requires separate full-value assessment."
+      }
+    ],
+    "prior_Kichwa": [
+      "cursor-pan and long gesture help",
+      "normalization compounds",
+      "legal credits/licensing",
+      "redirect/profile/import-resize held work"
+    ]
+  },
+  "holds_preserved": [
+    422,
+    330,
+    226,
+    159,
+    88,
+    87,
+    75,
+    72,
+    71,
+    69,
+    56
+  ],
+  "preparation_helper_correction": {
+    "event": "Initial source-preparation helper interpreted a Wolof line-list as a numeric range pair and failed before writes.",
+    "correction": "Verified individual line/range segments with the proper representation; original proposal packets unchanged.",
+    "application_failure": false
+  },
+  "limits": [
+    "13 complete values, not whole-language acceptance; catalogue presence does not certify fluency.",
+    "Model/source review is not native-human or exhaustive installed-layout/glyph/TalkBack certification.",
+    "Only affected local host tests executed here, on prior base as explicitly recorded. Exact-head CI and Codex pending at this initial snapshot.",
+    "No release, Work task, permission change or held operation."
+  ],
+  "draft": false,
+  "remote_source": {
+    "result": "pass",
+    "pr": 498,
+    "url": "https://github.com/c933103/AN-Paint/pull/498",
+    "head": "0e29d790b0a276ecddf8a03b1556ceea6216adcf",
+    "base": "49456073f139ff177c4f5dd994f4440c7775d957",
+    "tree": "64227920f68401d58b6cfb1460628140e1b005bb",
+    "tested_checkout": "3b770d011c9e1f39f2b7095d40dd1c67ab14d4bf",
+    "ci_run": 43760825633,
+    "status": "Published ready; exact-head CI and automatic Codex review pending",
+    "draft": false,
+    "leaf_count": 1314,
+    "complete_content_mode_comparison": true,
+    "exact_parent_verified": true,
+    "exact_branch_ref_verified": true,
+    "only_paths": [
+      "Paintroid/src/main/res/values-b+qug/strings.xml",
+      "Paintroid/src/main/res/values-b+wo/strings.xml"
+    ]
+  },
+  "current_reconciliation": {
+    "base": "49456073f139ff177c4f5dd994f4440c7775d957",
+    "tree": "5f7302c5d5c5dd53b1bbb0da98050723bdbcb6ad",
+    "full_local_remote_tree_verified": true,
+    "base_leaf_count": 1314,
+    "open_prs": [
+      {
+        "number": 226,
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence",
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c"
+      },
+      {
+        "number": 159,
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression",
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6"
+      },
+      {
+        "number": 88,
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter",
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884"
+      },
+      {
+        "number": 87,
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host",
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1"
+      },
+      {
+        "number": 75,
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement",
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61"
+      },
+      {
+        "number": 72,
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?",
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8"
+      },
+      {
+        "number": 71,
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling",
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457"
+      },
+      {
+        "number": 69,
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF",
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb"
+      },
+      {
+        "number": 56,
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices",
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332"
+      }
+    ],
+    "preserved_holds": [
+      422,
+      330,
+      226,
+      159,
+      88,
+      87,
+      75,
+      72,
+      71,
+      69,
+      56
+    ]
+  },
+  "integrated_source_applicability": {
+    "pr": 497,
+    "status": "Source applicability verified on actual integrated #497 base; not per-locale runtime certification",
+    "observed_head": "0adb75c92524e9effb8c2117044f7d06a3dead5a",
+    "preparation_base": "edcab920e818790445782aeed788d30c15742ae9",
+    "current_source_hashes": {
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt": "f68a5eebf880c98fc3c8e102998658ceab32b6695e43363643245cd011098d0e",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNumberInput.kt": "0070e3f847b8074d32993e61535067ebfdabee030f2abe1c221fe9bb92b926be",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt": "13dd59d913cb53f4376f2384890a29198bc02e8cb450f1019dc6c22fd910db38"
+    },
+    "anchors": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 82,
+        "code": "listOf(widthInput,heightInput).forEach { LocaleNumberInput.configure(it, decimal = percent) }"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "line": 54,
+        "code": "private fun number(input: EditText) = uiNumber(input.text.toString())?.takeIf { it.isFinite() && it > 0 && (percent || it == floor(it)) }"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNumberInput.kt",
+        "line": 13,
+        "code": "val symbols = DecimalFormatSymbols(view.resources.configuration.locale)"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt",
+        "line": 71,
+        "code": "internal fun uiNumber(text: String): Double? {"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "line": 90,
+        "code": "Locale.setDefault(chosen)"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "line": 131,
+        "code": "Locale.setDefault(chosen)"
+      }
+    ],
+    "non_translation_language_applicability": "Changed shared DimensionControls percent mirror copies the validated active numeric text instead of formatting to four decimals. Both width/height inputs use the same selected-locale filter and parser. No language switch or French-only branch: the shared fix applies to every locale using these controls. This is source applicability, not installed per-locale runtime certification.",
+    "translation_item_scan": "No resource change or new displayed literal. Existing translated labels/validation remain; newly copied text is user input, not a new translation item.",
+    "runtime_scope": "New targeted regression is French decimal-comma API35; existing contracts cover Arabic/Persian digit filtering and fractional-percent versus fractional-pixel distinction. Their presence is not a new execution claim; #497 exact-head CI is separately owned.",
+    "scope_limits": [
+      "No per-locale Cartesian replay or extra tests added.",
+      "All existing precision/range/validation boundaries preserved by this source-only review; deliberate unlock/relock remains a separate documented behavior."
+    ],
+    "actual_base": "49456073f139ff177c4f5dd994f4440c7775d957",
+    "actual_source_hashes": {
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt": "b995b62e09a93ffc1d6bb2142ad64e26a240cb3b7e2263021da604af5a23cb4c",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNumberInput.kt": "0070e3f847b8074d32993e61535067ebfdabee030f2abe1c221fe9bb92b926be",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt": "13dd59d913cb53f4376f2384890a29198bc02e8cb450f1019dc6c22fd910db38"
+    },
+    "base_changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/LocaleNumberInputTest.kt"
+    ]
+  }
+}
