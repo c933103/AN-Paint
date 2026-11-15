@@ -1,0 +1,309 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/486",
+  "base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+  "head": "0f035621afefddef26e0bc7dee5fa94c3ea031f7",
+  "tested_checkout": "e60817778c094066e62248498cc5d5aca7b630de",
+  "tree": "b630cd2c873a05fedaf775660e98c9aa302a3264",
+  "merge": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+  "merged_at": "2026-11-15T12:22:01Z",
+  "changes": {
+    "Chamorro": 4,
+    "Wolof": 6,
+    "Northern Sami": 16,
+    "total": 26,
+    "active_consumer_entries": 25,
+    "catalogue_only_entries": 1,
+    "previous_elements_preserved": 1293
+  },
+  "review": {
+    "proposed_unique_keys": 28,
+    "accepted_unchanged": 26,
+    "withheld_current_proposals": 2,
+    "prior_prepared_values_unchanged": 8,
+    "full_value_model_review": "passed",
+    "independent_applied_source_check": "passed",
+    "integrated_base_refresh": "passed, unchanged XML3 and affected Python tooling after #485; current consumer locations verified",
+    "codex_comment": 6893943812,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a claimed clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "14742c0f96d706bf2298c5860afb3590e677183b",
+    "path": "verification/translations/2026-11-15/chamorro-wolof-sami-controls"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 11.995,
+    "executed_base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+    "integration": "Unchanged exact3XML bytes and affected Python modules; narrow independent reconciliation retained this local pass after #485 integration. New exact-head hosted gates still required.",
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "a0e15ce09c939cae5c94df54e13d78ea2f81078b",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 26,
+        "two_deferred_values_absent": true,
+        "prior_elements_attributes_text_and_order_preserved": 1293,
+        "only_expected_three_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 61,
+        "prepared_consumer_lines_revalidated": 39,
+        "fresh_main_source_active": 25,
+        "fresh_main_source_catalogue_only": 1,
+        "all_28_English_values_match": true,
+        "sami_adapter_preserves_all17_original_keys_english_values_anchors": true,
+        "prior10_XML_hashes_unchanged": true
+      },
+      "applied": {
+        "ch": {
+          "added": 4,
+          "old_elements_preserved": 403,
+          "total_elements": 407,
+          "sha256": "f4ec46f84e70bffd1f69b26ce60bfcfe574465c796bb80bbc3f2e6d18c274bf2"
+        },
+        "wo": {
+          "added": 6,
+          "old_elements_preserved": 445,
+          "total_elements": 451,
+          "sha256": "4cbcc3a1e6f18b2285f0dabfb692670ce6fc9879d7053e8b1e51ef1c6ac49456"
+        },
+        "se": {
+          "added": 16,
+          "old_elements_preserved": 445,
+          "total_elements": 461,
+          "sha256": "9022343b7151a8d6531b91520025a05b64f9e7d22bdb4cfac2df78d4a620a402"
+        }
+      },
+      "fresh_consumer_paths": {
+        "ch/ui_gold": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "ch/ui_silver": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "ch/ui_copper": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt"
+        ],
+        "wo/ui_edit_in_paint": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "wo/ui_top23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+        ],
+        "wo/ui_bottom23": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt"
+        ],
+        "wo/ui_downloading_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "wo/ui_the_image_could_not_be_downloaded": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+        ],
+        "ch/formats22_page_range": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "wo/formats22_page_preview": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+        ],
+        "se/ui_preview_memory_error": [],
+        "se/ui_fits_the_current_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+        ],
+        "se/ui_estimated_memory_current_working_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_assembly_output_size": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_create_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_the_assembly_needs_about_choose_a_smaller_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt"
+        ],
+        "se/ui_some_previews_could_not_be_decoded_you_can": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_an_assembly_can_contain_up_to_20_images_86d995": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+        ],
+        "se/ui_an_assembly_can_contain_up_to_20_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_assembly_unknown_image": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+        ],
+        "se/ui_assembly_position_nonnegative": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt"
+        ],
+        "se/ui_the_assembly_exceeds_android_s_coordinate_range": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+        ],
+        "se/ui_apply_to_these_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+        ],
+        "se/ui_restore_original_sizes": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "se/ui_shows_the_whole_assembly_image_and_output_sizes": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "se/ui_the_assembly_output_is_unavailable_reopen_image_assembly": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+        ]
+      },
+      "review_file_sha256": {
+        "chamorro-next-independent-review.json": "0f16568cf0462a9643332ee9e415b89d89eaf5efe7456a988fd199242a4a5913",
+        "wolof-next-independent-review.json": "b8803d93168d09f26cb8a14f9d05060643b85c59ec0e3ea35d94e6761e1dbcfc",
+        "chamorro-supplemental-review.json": "07c60b6e9f303157a3c8a63f2f9533cc10e187008ea13520a5f618fc41f60184",
+        "wolof-supplemental-review.json": "fcde53459717b7e494758148588900054100e5475a86abd73f99ba6b1980266b",
+        "sami-next-independent-review.json": "05bbef02a2e98cbb9e23448a63f6c89db407401fa0002d9fd6df870513207687"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ],
+      "metadata_refresh_note": "Verified all17 Sámi decisions/final values and original/normalized candidate key-English-value identity unchanged. Review-only rights_note correction distinguishes pinned XML CC BY3.0 Norway header from pinned README CC BY4.0; no blanket licence certification. No source or test changes."
+    }
+  },
+  "pr_ci": {
+    "run": 43711243914,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 207.252,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1416,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 158,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43713472173,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14161358471,
+    "archive_sha256": "f24ad6e42fdde80cb2657239d063626c384debfb904d759668f2eb119ebdc2f6",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "Merged source count, not linguistic completeness",
+    "source_tree": "b630cd2c873a05fedaf775660e98c9aa302a3264",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117502,
+    "missing": 5447,
+    "complete": 153,
+    "partial": 18,
+    "source_commit": "03586511ed8bc28f011f9aa470bd85736e7e2e71"
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 25,
+      "P3": 1
+    },
+    "by_locale": {
+      "ch": {
+        "P2": 4
+      },
+      "se": {
+        "P2": 15,
+        "P3": 1
+      },
+      "wo": {
+        "P2": 6
+      }
+    },
+    "limit": "Resource tier and master-list priority are separate. Presence is not linguistic or merged completion."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary lexical evidence corroborates terms and morphology, not every complete original UI phrase; catalogue anchors are consistency evidence rather than proof.",
+    "Specific complete-value deferrals and prior held alignment wording remain preserved, not a blanket locale hold.",
+    "Sami XML-header and README licence statements are separately recorded. New values are original composition, not copied donor sentences.",
+    "Python totals include skipped bodies; consult the exact regression receipt rather than interpreting the runner total as all executed passes.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified their byte/source binding.",
+    "All holds, the separate #422 approval operation, Work-side tasks and release destinations were untouched."
+  ],
+  "next_preparation": {
+    "base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+    "status": "Independently model-reviewed preparation only; not applied or CI-qualified; excluded from merged counts",
+    "groups": {
+      "Ayacucho Quechua": 5,
+      "Cusco Quechua": 5
+    },
+    "total": 10,
+    "active": 10,
+    "catalogue_only": 0,
+    "independent_review": {
+      "accepted_unchanged": 7,
+      "revised": 3,
+      "author_revision_assessment": "all3 agreed; not an additional independent-author or native-human certificate"
+    },
+    "catalogues": {
+      "quy": {
+        "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+        "sha256": "3c4d0228d43dced805785cfe02adb376553e26c36ffa10253fd809fc10e78108"
+      },
+      "quz": {
+        "path": "Paintroid/src/main/res/values-b+quz/strings.xml",
+        "sha256": "68a376a7ef4cdabc8c421db107eb05ddea85ca486fe28dadbbf6ae0b56027e6a"
+      }
+    },
+    "reconciliation": {
+      "all10_still_missing": true,
+      "source_anchors": 24,
+      "consumer_lines": 12,
+      "format_NFC": "pass",
+      "current_PR486": "Only ch/wo/se XML changes; future quy/quz catalogues unchanged. Fresh develop/owner/hold check required after integration."
+    },
+    "limits": [
+      "Original model composition with independently assessed complete values, not native-human or whole-language certification.",
+      "No installed-layout/glyph/TalkBack acceptance; source consumers are not exhaustive reachability.",
+      "Page terminology and prior Cusco palette deferrals remain specific and unchanged."
+    ],
+    "next_action": "After current PR486 integration, reconcile exact develop/owners/holds and current source semantics; apply only final accepted/revised values, test and independently audit actual source before publication.",
+    "bytes": 41956,
+    "sha256": "81489be2d24a9afd8ff07107a0e9c8e65675dc8e9fd8e5dfade87eccd9161cf1",
+    "members": 4,
+    "commit": "0f7606c612bbed8ac3f58cbe0da7c1fc84275d22",
+    "path": "verification/translations/2026-11-15/quy-quz-next-preparation/research-review.zip"
+  }
+}
