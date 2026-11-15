@@ -470,6 +470,7 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         trim?.rect?.let { put("bounds",JSONArray(listOf(it.left,it.top,it.right,it.bottom))) }
     }
     fun restoreDraft(state: JSONObject) {
+        val geometry=CanvasDraftGeometry.read(state,document.bitmap.width,document.bitmap.height)
         pencilSize=state.optDouble("pencil_size",1.0).toFloat()
         closePolygon=state.optBoolean("close_polygon",true)
         tool=PaintTool.values().firstOrNull { it.name==state.optString("tool") } ?: PaintTool.ZOOM
@@ -479,19 +480,10 @@ class PaintCanvas(context: Context, val document: PaintDocument) : View(context)
         magnifiedPreview=state.optBoolean("magnified_preview");previewMagnification=state.optDouble("preview_magnification",2.0).toFloat().coerceIn(1f,4f)
         cursorMagnifier=state.optBoolean("cursor_magnifier",true)
         grid=state.optBoolean("grid");lockSelectionAspect=state.optBoolean("selection_lock_aspect",true); polygon.clear();resetPolygonTap()
-        state.optJSONArray("polygon")?.let { points -> for (i in 0 until points.length()) {
-            val p=points.getJSONArray(i); polygon.add(PointF(p.getDouble(0).toFloat(),p.getDouble(1).toFloat()))
-        } }
+        polygon.addAll(geometry.polygon)
         curveStage=state.optInt("curve_stage").coerceIn(0,2)
-        state.optJSONArray("curve_points")?.let { a ->
-            fun point(i: Int)=PointF(a.getDouble(i).toFloat(),a.getDouble(i+1).toFloat())
-            start=point(0);end=point(2);control1=point(4);control2=point(6)
-        }
-        state.optJSONArray("bounds")?.let { a ->
-            trim=CropOverlay(ImageDimensions(document.bitmap.width,document.bitmap.height),allowOutside=true).apply {
-                set(Rect(a.getInt(0),a.getInt(1),a.getInt(2),a.getInt(3)))
-            }
-        }
+        geometry.curve?.let {points ->start=points[0];end=points[1];control1=points[2];control2=points[3]}
+        geometry.trim?.let {trim=it}
         zoom=state.optDouble("zoom",1.0).toFloat().takeIf {it.isFinite()}?.coerceIn(.000001f,32f) ?: 1f
         panX=state.optDouble("pan_x",0.0).toFloat();panY=state.optDouble("pan_y",0.0).toFloat();fitted=true
         // Old drafts stored absolute screen offsets without the old viewport size.
