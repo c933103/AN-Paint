@@ -1,0 +1,135 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/479",
+  "base": "e79f2ff63176d436361104c37132ba96762a7071",
+  "head": "c78aa0a329d2398ba8b5b8404bdb655fedc5b32a",
+  "tested_checkout": "91496bd13277aba1863fb46de253c21f441711e9",
+  "tree": "410ffd76baf4f44f207b2b6585244463700f5b8a",
+  "merge": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+  "merged_at": "2026-11-15T07:18:52Z",
+  "changes": {
+    "Wolof": 48,
+    "Chamorro": 24,
+    "Ayacucho Quechua": 22,
+    "Cusco Quechua": 17,
+    "total": 111,
+    "active_consumer_entries": 83,
+    "catalogue_only_entries": 28,
+    "prior_elements_preserved": 1539
+  },
+  "initial_research_review_evidence": "a99606509600366a8c93b450ce6ac64f6247b236:verification/translations/2026-11-15/four-locale-controls",
+  "review": {
+    "independent_model_full_value_review": "119 proposals: 100 accepted unchanged, 11 revised, 8 withheld individually",
+    "codex_comment": 6890644298,
+    "exact_head_code_review": "completed, no findings",
+    "security_review": "completed, gate disabled; null findings state is not a clean-finding verdict"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.431,
+    "diff_check": "passed",
+    "independent_applied_check": "passed"
+  },
+  "pr_ci": {
+    "run": 43687299986,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests_run": 892,
+      "skipped": 2,
+      "seconds": 160.032,
+      "result": "OK"
+    },
+    "jvm": {
+      "tests": 1411,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lint": {
+      "issues_by_severity": {},
+      "successful_job": true
+    },
+    "exact_script_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true
+    }
+  },
+  "postmerge": {
+    "run": 43689389519,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "6 skipped; not new executions",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14151737371,
+    "archive_sha256": "e44a3631b6a1e490ed447d0b6670ae196afd0cdc43701a02543cd10482adb72a",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "tree": "410ffd76baf4f44f207b2b6585244463700f5b8a",
+    "head": "c78aa0a329d2398ba8b5b8404bdb655fedc5b32a",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117333,
+    "missing": 5616,
+    "complete": 153,
+    "partial": 18,
+    "source": "e6fcb401e3836aa977149f3e9a6ead5754706321",
+    "basis": "Actual merged tree equals complete reviewed and recounted checkout index."
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 108,
+      "P3": 3
+    },
+    "by_locale": {
+      "ch": {
+        "P2": 24
+      },
+      "wo": {
+        "P2": 47,
+        "P3": 1
+      },
+      "quz": {
+        "P2": 16,
+        "P3": 1
+      },
+      "quy": {
+        "P2": 21,
+        "P3": 1
+      }
+    },
+    "limit": "Resource-priority classification is separate from the master task-list ordering; this is not linguistic or merged completion."
+  },
+  "next_preparation": {
+    "locale": "shn",
+    "status": "36 independently model-reviewed candidates, not applied or CI-qualified; excluded from merged counts",
+    "accepted_active": 27,
+    "accepted_catalogue_only": 9,
+    "withheld": 3,
+    "archive_path": "verification/translations/2026-11-15/shan-next-preparation/research-review.zip",
+    "bytes": 20672,
+    "sha256": "dfc8bede3e13a0ffe904511c0b1cd3baa01b4e678f7391f2fea56cdb9866cded",
+    "next_action": "Fresh develop/owner/hold reconciliation before applying and qualifying this separate next batch."
+  },
+  "limits": [
+    "Model/source confidence only, not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Eight uncertain entries remain fallback: two Chamorro placement states, two Wolof preview labels, four Cusco palette derivatives. This is not proof existing related terms are wrong.",
+    "Primary lexical evidence corroborates targeted terms, not every complete model-authored sentence.",
+    "The other partial locales were not linguistically reviewed by this four-locale implementation.",
+    "Python runner reported OK with 2 skipped tests; not all 892 test bodies executed.",
+    "Build/source and test-APK archive bytes were not downloaded independently by this worker; successful hosted composition/preflight verified their byte/source binding.",
+    "All holds, release destinations and separate #422 evidence operation are untouched; no Work task."
+  ]
+}
