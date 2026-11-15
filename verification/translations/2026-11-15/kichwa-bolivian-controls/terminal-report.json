@@ -1,0 +1,151 @@
+{
+  "status": "Merged and postmerge-qualified through bounded prior-environment reuse",
+  "pr": "https://github.com/c933103/AN-Paint/pull/488",
+  "base": "dca156a418b26710bad960b0a1f34debf15e775c",
+  "head": "7f2a5f983bf61543680eaf963071f088a7bedd57",
+  "tested_checkout": "d56bc83d1f874dbaccdad7a1d09349d9ccd51771",
+  "tree": "e62960da3c526021320a0eeb14b138935f2ceaa0",
+  "merge": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+  "merged_at": "2026-11-15T14:04:25Z",
+  "changes": {
+    "Ecuadorian Kichwa": 6,
+    "South Bolivian Quechua": 12,
+    "total": 18,
+    "active_consumer_entries": 18,
+    "catalogue_only_entries": 0,
+    "P2": 18,
+    "previous_elements_preserved": 787
+  },
+  "review": {
+    "proposed_unique_keys": 18,
+    "accepted_unchanged": 18,
+    "revised": 0,
+    "withheld_current_proposals": 0,
+    "original_prepared_complete_values_applied_unchanged": 18,
+    "full_value_model_review": "passed",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6895164443,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "6a739b75e32c786073a9583e7e4e922f3f5e1629",
+    "path": "verification/translations/2026-11-15/kichwa-bolivian-controls"
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.432,
+    "executed_base": "dca156a418b26710bad960b0a1f34debf15e775c",
+    "diff_check": "pass"
+  },
+  "pr_ci": {
+    "run": 43720075655,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 159.93,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1416,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 158,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43722338558,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14164099599,
+    "archive_bytes": 10855,
+    "archive_sha256": "5b71f74b3409e7d17eb54f63704933867caf8860cc80eaa0fe032ca9d96436d5",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "Recounted actual merged source; direct presence is not linguistic completeness",
+    "source_commit": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "source_tree": "e62960da3c526021320a0eeb14b138935f2ceaa0",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117544,
+    "missing": 5405,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 18
+    },
+    "by_locale": {
+      "qug": {
+        "P2": 6
+      },
+      "quh": {
+        "P2": 12
+      }
+    },
+    "limit": "Resource priority is distinct from master-task priority. Presence is not linguistic completeness."
+  },
+  "next_preparation": {
+    "base": "dca156a418b26710bad960b0a1f34debf15e775c",
+    "locale": "za",
+    "status": "Independently reviewed preparation only; not applied or CI-qualified; excluded from merged counts",
+    "accepted_unchanged": 4,
+    "revised": 0,
+    "active": 1,
+    "catalogue_only": 3,
+    "P2": 4,
+    "source_anchors": 11,
+    "consumer_lines": 1,
+    "catalogue_sha256": "abd32df746a169f751ca676054a1041d3e01603e0bfcde00ea4bef221827da44",
+    "source_and_format_reconciliation": "pass",
+    "preserved_individual_deferrals": 6,
+    "historical_loading_resolution": "Original Hai version stays historically deferred; a separately composed explicit-subject progressive value accepted, no retroactive approval",
+    "current_source_PR": "PR488 is now merged as f98bd1b36ccef4c127fcb14d8d3ddab42b233b67. Zhuang catalogue bytes remain unchanged; four candidates are unapplied. Fresh base/owner/hold and semantics reconciliation is required before application. The linked preparation archive retains its original pre-merge status.",
+    "limits": [
+      "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+      "Three catalogue-only labels have no literal production reference; no current displayed UI claim.",
+      "Primary sources corroborate limited grammar/lexemes, not entire UI sentences.",
+      "No source edits, coverage credit, extra CI/review request, Work task, held operation or release."
+    ],
+    "bytes": 7906,
+    "sha256": "f65cc7cab02ea86c11769b94c59a921324ee124ad315aa6e74a076710bf828ae",
+    "members": 3,
+    "commit": "5e8da4a0c103934cbeb139d373dede1bb9b468af",
+    "path": "verification/translations/2026-11-15/zhuang-next-preparation/research-review.zip"
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary lexical/morphological evidence supports original composition but does not attest every complete UI sentence. Canonical anchors are consistency evidence, not independent linguistic proof.",
+    "Seven individual unproposed Kichwa deferrals remain. South Bolivian 310 unproposed strings comprise 275 inventory-only plus 35 topic-screened without complete-value assessment, not new holds; the separate missing plural remains in full resource counts.",
+    "Python totals include two skipped bodies; their identities are not inferred from non-verbose output.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified byte/source binding.",
+    "All holds, the separate #422 approval operation, #330, Work-side tasks and release destinations remained untouched."
+  ]
+}
