@@ -56,6 +56,17 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
             recovered=draft.metadata
             val recoveredTextSettings=TextSettings.read(recovered.optJSONObject("text_settings"))
             val recoveredTarget=SavedTarget.read(recovered.optJSONObject("save_target"))
+            // A finite JSON Double may overflow when narrowed to Float. Validate
+            // these restored numeric settings before mutating the worker document;
+            // otherwise even the fallback's next autosave cannot serialize it.
+            fun finiteSetting(key: String,default: Double): Float = draft.metadata.optDouble(key,default).toFloat().also {
+                require(it.isFinite()) { "Non-finite restored setting: $key" }
+            }
+            val recoveredStrokeWidth=finiteSetting("stroke_width",5.0)
+            val recoveredCornerRadius=finiteSetting("corner_radius",16.0).coerceAtLeast(0f)
+            val recoveredTolerance=finiteSetting("tolerance",0.0)
+            val recoveredSprayRadius=finiteSetting("spray_radius",recoveredStrokeWidth*2.0).coerceIn(1f,100f)
+            require(recoveredTextSettings.size.isFinite() && recoveredTextSettings.spacing.isFinite())
             document.background=recovered.optInt("background",Color.WHITE)
             document.replace(draft.image)
             draft.history?.let {document.restoreHistory(it)}
@@ -70,14 +81,14 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
             document.restoreImageCredits(recovered.optJSONObject("image_credits"))
             val recoveredName=DocumentName.read(recovered,recoveredTarget)
             document.foreground=recovered.optInt("foreground",Color.BLACK)
-            document.strokeWidth=recovered.optDouble("stroke_width",5.0).toFloat()
-            document.cornerRadius=recovered.optDouble("corner_radius",16.0).toFloat().coerceAtLeast(0f)
+            document.strokeWidth=recoveredStrokeWidth
+            document.cornerRadius=recoveredCornerRadius
             document.brushTip=recovered.optInt("brush_tip");document.shapeStyle=recovered.optInt("shape_style")
-            document.tolerance=recovered.optDouble("tolerance",0.0).toFloat()
+            document.tolerance=recoveredTolerance
             document.watercolorStrength=recovered.optInt("watercolor_strength",50).coerceIn(1,100)
             document.strokeSmoothing=recovered.optBoolean("stroke_smoothing")
             document.antialiasing=recovered.optBoolean("antialiasing",false)
-            document.sprayRadius=recovered.optDouble("spray_radius",document.strokeWidth*2.0).toFloat().coerceIn(1f,100f)
+            document.sprayRadius=recoveredSprayRadius
             if (recovered.optBoolean("dirty")) document.edited()
             // Finish fallible restoration before committing the draft's identity/settings.
             draftStatus=UiMessage.Resource(R.string.ui_draft_restored)
