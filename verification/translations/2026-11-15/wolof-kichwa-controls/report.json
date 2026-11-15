@@ -1,0 +1,887 @@
+{
+  "pr": 492,
+  "url": "https://github.com/c933103/AN-Paint/pull/492",
+  "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+  "head": "7f464090ade0d2d4fcc7a1a62d43aa314a7a685c",
+  "tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+  "source_branch": "localization/wolof-kichwa-controls-20261115",
+  "status": "Published and ready; exact-head CI and automatic Codex pending, not merged",
+  "ci_run": 43738242589,
+  "tested_checkout": "33a40d6394229e3910a89277228b8aa29e87dc8e",
+  "reconciliation": {
+    "observed_at": "2026-11-15T16:31:00Z",
+    "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+    "base_tree": "ae31901ad77c7369efda9d3aa8530d0b2b26c952",
+    "current_source_owner": {
+      "prior_PR": 491,
+      "state": "merged; actual develop verified",
+      "head": "80b62ff85b93b7e777740940217f3691b2a8a332",
+      "merge": "0dfd5861677cf59eb162db9a116480db7de2a0ea"
+    },
+    "open_PRs": [
+      {
+        "number": 226,
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c"
+      },
+      {
+        "number": 159,
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6"
+      },
+      {
+        "number": 88,
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884"
+      },
+      {
+        "number": 87,
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1"
+      },
+      {
+        "number": 75,
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61"
+      },
+      {
+        "number": 72,
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8"
+      },
+      {
+        "number": 71,
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457"
+      },
+      {
+        "number": 69,
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb"
+      },
+      {
+        "number": 56,
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332"
+      }
+    ],
+    "held_operations_unchanged": [
+      "#226",
+      "#159",
+      "#88",
+      "#87",
+      "#75",
+      "#72",
+      "#71",
+      "#69",
+      "#56",
+      "separate #422 evidence approval",
+      "#330"
+    ],
+    "task_scope": "Continue authorized incomplete offered-locale translation/review, after required language applicability and changed-UI obligations",
+    "source_edits": true,
+    "work_task": false,
+    "release": false,
+    "changed_UI_translation_check": {
+      "PR": 491,
+      "head": "80b62ff85b93b7e777740940217f3691b2a8a332",
+      "files": 3,
+      "new_string_resources": 0,
+      "new_user_facing_literals": 0,
+      "scope": "Three-file diff only: finite geometry guards and regression additions; existing error path, no new label/resource text."
+    },
+    "initial_base_observation": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "source_edits_scope": "Only nineteen accepted values in two XML files; no #491 mutation",
+    "observation_scope": "Historical preapplication/base reconciliation; source-edit/owner fields describe that earlier stage, superseded by top-level publication/applied status."
+  },
+  "wolof_preparation_reconciliation": {
+    "base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "tree": "2a7e9fd457bee80489e45ee0ad4ddfaee30ddb7c",
+    "prior_base": "5f3b19d43f6c3bdfdfc6fc92c9ac77ee08b1ace2",
+    "prior_evidence_commit": "05185b2b70a7f3350260b8d58555ae6a1cc7adca",
+    "values": 10,
+    "accepted_unchanged": 10,
+    "active": 6,
+    "catalogue_only": 4,
+    "anchors": [
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_draw26",
+        "line": 127,
+        "value": "Dessine",
+        "raw_canonical_value": "\"Dessine\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_enable_cursor_drawing",
+        "line": 382,
+        "value": "Dekkal anamu dessin ak màndargay bérab",
+        "raw_canonical_value": "Dekkal anamu dessin ak màndargay bérab",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_drawing_settings",
+        "line": 131,
+        "value": "Jekkali dessin…",
+        "raw_canonical_value": "\"Jekkali dessin…\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_enable_cursor_drawing",
+        "line": 382,
+        "value": "Dekkal anamu dessin ak màndargay bérab",
+        "raw_canonical_value": "Dekkal anamu dessin ak màndargay bérab",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_disable_cursor_drawing33",
+        "line": 380,
+        "value": "Fay anamu dessin ak màndargay bérab",
+        "raw_canonical_value": "Fay anamu dessin ak màndargay bérab",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_cursor_marker_size31",
+        "line": 376,
+        "value": "Kem-kemu màndarga biy wone fu ñuy dessin (%)",
+        "raw_canonical_value": "Kem-kemu màndarga biy wone fu ñuy dessin (%)",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_cursor_start31",
+        "line": 378,
+        "value": "Tàmbali dessin",
+        "raw_canonical_value": "Tàmbali dessin",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_cursor_stop31",
+        "line": 379,
+        "value": "Taxawal dessin",
+        "raw_canonical_value": "Taxawal dessin",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_tap_a_pixel",
+        "line": 452,
+        "value": "Laalal ab piksel.",
+        "raw_canonical_value": "Laalal ab piksel.",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_cursor_marker_size31",
+        "line": 376,
+        "value": "Kem-kemu màndarga biy wone fu ñuy dessin (%)",
+        "raw_canonical_value": "Kem-kemu màndarga biy wone fu ñuy dessin (%)",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_brush",
+        "line": 70,
+        "value": "Pënso",
+        "raw_canonical_value": "\"Pënso\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_zoom_in",
+        "line": 332,
+        "value": "Màggal seet bi",
+        "raw_canonical_value": "\"Màggal seet bi\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_expand_tool_category",
+        "line": 152,
+        "value": "%1$s: %2$s lañu tànn. Yaatal jumtukaay yi ak tànneef yi",
+        "raw_canonical_value": "\"%1$s: %2$s lañu tànn. Yaatal jumtukaay yi ak tànneef yi\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_left_arrow_collapse",
+        "line": 191,
+        "value": "Fettu càmmooñ: lëmit",
+        "raw_canonical_value": "\"Fettu càmmooñ: lëmit\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_right",
+        "line": 253,
+        "value": "Ndeyjoor",
+        "raw_canonical_value": "\"Ndeyjoor\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_expand_toolbox",
+        "line": 153,
+        "value": "Yaatal boyetu jumtukaay yi",
+        "raw_canonical_value": "\"Yaatal boyetu jumtukaay yi\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_drag_to_erase_with_the_background_colour",
+        "line": 434,
+        "value": "Xëccal ngir far ak melow ginnaaw.",
+        "raw_canonical_value": "Xëccal ngir far ak melow ginnaaw.",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_line",
+        "line": 192,
+        "value": "Rëdd",
+        "raw_canonical_value": "\"Rëdd\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_the_first_image_starts_at_the_top_left",
+        "line": 455,
+        "value": "Nataal bu jëkk bi day tàmbali ci kaw càmmooñ.",
+        "raw_canonical_value": "Nataal bu jëkk bi day tàmbali ci kaw càmmooñ.",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_finish_curve",
+        "line": 384,
+        "value": "Jeexal rëdd wu wër wi",
+        "raw_canonical_value": "Jeexal rëdd wu wër wi",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_colour_tap_foreground_hold_background",
+        "line": 97,
+        "value": "Melo #%1$s. Laal ngir kanam, bës tëye ngir ginnaaw.",
+        "raw_canonical_value": "\"Melo #%1$s. Laal ngir kanam, bës tëye ngir ginnaaw.\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_spray_radius_px",
+        "line": 391,
+        "value": "Wisaare: diggante digg bi ak pegg bi (px)",
+        "raw_canonical_value": "Wisaare: diggante digg bi ak pegg bi (px)",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_airbrush",
+        "line": 46,
+        "value": "Pënso buy wisaare",
+        "raw_canonical_value": "\"Pënso buy wisaare\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_drag_to_erase_with_the_background_colour",
+        "line": 434,
+        "value": "Xëccal ngir far ak melow ginnaaw.",
+        "raw_canonical_value": "Xëccal ngir far ak melow ginnaaw.",
+        "packet_display_form_without_enclosing_Android_quotes": false
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_tap_canvas_to_type",
+        "line": 285,
+        "value": "Laal xëtu nataal bi\\nngir bind",
+        "raw_canonical_value": "\"Laal xëtu nataal bi\\nngir bind\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_font",
+        "line": 165,
+        "value": "Melow mbind",
+        "raw_canonical_value": "\"Melow mbind\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_choose_a_smaller_size",
+        "line": 84,
+        "value": "Tànnal kem-kem bu gëna ndaw.",
+        "raw_canonical_value": "\"Tànnal kem-kem bu gëna ndaw.\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "key": "ui_add_text",
+        "line": 45,
+        "value": "Yokk mbind",
+        "raw_canonical_value": "\"Yokk mbind\"",
+        "packet_display_form_without_enclosing_Android_quotes": true
+      }
+    ],
+    "anchor_count": 28,
+    "display_quote_anchors": 15,
+    "consumer_lines": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line": 1523,
+        "code": "message(ui(R.string.ui_cursor_help31)+\"\\n\\n\"+ui(R.string.ui_cursor_tap_hint37)+\"\\n\\n\"+ui(R.string.ui_cursor_marker_help31))"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line": 1532,
+        "code": "if(on) LocaleTypography.showMessage(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+\"\\n\"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG)"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line": 1523,
+        "code": "message(ui(R.string.ui_cursor_help31)+\"\\n\\n\"+ui(R.string.ui_cursor_tap_hint37)+\"\\n\\n\"+ui(R.string.ui_cursor_marker_help31))"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line": 831,
+        "code": "EditorDialogBuilder(this).setTitle(ui(R.string.ui_tool_option)).setSingleChoiceItems(values.toTypedArray(), selected) { dialog, which ->"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "line": 26,
+        "code": "LINE(R.string.ui_line, R.string.ui_drag_from_the_start_to_the_end_of),"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "line": 24,
+        "code": "SPRAY(R.string.ui_airbrush, R.string.ui_hold_or_drag_to_spray_colour),"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "line": 25,
+        "code": "TEXT(R.string.ui_text, R.string.ui_tap_the_canvas_to_place_text_and_choose),"
+      }
+    ],
+    "consumer_line_count": 7,
+    "source_edits": false,
+    "AGENTS_sha256": "8aadd78ca318cff7ac20bb5950a12f6f00dab89bf9c465a3440eb84172d110c7",
+    "CI_sha256": "9c06fff3f2de1b38b5ac6859fd5dd4109ec57933fd61c492fd5f183c9145a8b2",
+    "limits": [
+      "Prepared/reconciled only, not merged or newly native-human accepted.",
+      "Original proposal/review files unchanged; raw versus display quote representations recorded separately.",
+      "All existing holds, individual deferrals and #491 source ownership preserved."
+    ],
+    "resource_tiers": {
+      "P2": 6,
+      "P3": 4
+    },
+    "tier_correction": "Historical preparation labelled ten P2 incorrectly; current manifest proves six P2 plus four P3. No value or acceptance decision changed.",
+    "observation_scope": "Historical preapplication/base reconciliation; source-edit/owner fields describe that earlier stage, superseded by top-level publication/applied status."
+  },
+  "applied": {
+    "base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "review_pairs": [
+      [
+        "wo-prepared-proposals.json",
+        "wo-prepared-review.json"
+      ],
+      [
+        "qug-proposals.json",
+        "qug-independent-review.json"
+      ],
+      [
+        "wo-further-proposals.json",
+        "wo-further-review.json"
+      ]
+    ],
+    "source_anchors_revalidated_at_base": 54,
+    "consumer_anchors_revalidated": 21,
+    "proposed_unique_keys": 19,
+    "accepted": 19,
+    "accepted_unchanged_from_proposal": 19,
+    "revised": 0,
+    "withheld": [],
+    "new_values": 19,
+    "corrected_existing_values": 0,
+    "active_changed": 15,
+    "catalogue_only_changed": 4,
+    "new_active": 15,
+    "new_catalogue_only": 4,
+    "resource_tiers_changed": {
+      "P2": 15,
+      "P3": 4
+    },
+    "applied": {
+      "qug": {
+        "path": "Paintroid/src/main/res/values-b+qug/strings.xml",
+        "added": 5,
+        "corrected_existing": 0,
+        "corrected_keys": [],
+        "old_elements": 397,
+        "old_elements_preserved": 397,
+        "total": 402,
+        "sha256": "0816a00af0d1f3ae26aa9a96cf6c1136e282203d686a3039c0fe901d638acbd2"
+      },
+      "wo": {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "added": 14,
+        "corrected_existing": 0,
+        "corrected_keys": [],
+        "old_elements": 451,
+        "old_elements_preserved": 451,
+        "total": 465,
+        "sha256": "645a74bc4a406de7160d392a425df6f5fd1738fee9db235f1f46940cb4a1e7dd"
+      }
+    },
+    "review_file_sha256": {
+      "wo-prepared-review.json": "330682b0c01e135e26792e26e84290e7909b35a2dfded71e9c36b1e721862cc4",
+      "qug-independent-review.json": "b065f3f65bd93f548b15cc1afb5c1eef12b1a1d03688537bbfcc471bf8f328de",
+      "wo-further-review.json": "5ecb13f1ebf472363f8eabde824e66edd84fc78ee425da11bff30f0748bdbffd"
+    },
+    "limits": [
+      "Original proposal/review files remain unchanged. Raw canonical anchor and display-quote representations are recorded separately.",
+      "Individual deferrals remain excluded; inventory gaps are not whole-value linguistic findings or a language-wide hold.",
+      "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+      "All existing holds, #422 approval operation, #330 and Work-side tasks remain untouched."
+    ],
+    "review_metadata_representation": {
+      "original_review_sha256": "680f57690dfc8e99ec2056beba0d4a7c521d8acbd5a6b2030f4b332672f95f75",
+      "change": "Only internal absolute proposal_path replaced with archive-relative proposal filename; all review decisions, values, rationales, anchors and source hashes unchanged.",
+      "review_content_changed": false
+    }
+  },
+  "base_refresh": {
+    "previous_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+    "base_tree": "ae31901ad77c7369efda9d3aa8530d0b2b26c952",
+    "source_tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+    "integrated_PR": 491,
+    "base_changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/FailedRecoverySaveTargetTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/FloatingSelectionGeometryRecoveryTest.kt"
+    ],
+    "reviewed_resource_sha256": {
+      "Paintroid/src/main/res/values-b+qug/strings.xml": "0816a00af0d1f3ae26aa9a96cf6c1136e282203d686a3039c0fe901d638acbd2",
+      "Paintroid/src/main/res/values-b+wo/strings.xml": "645a74bc4a406de7160d392a425df6f5fd1738fee9db235f1f46940cb4a1e7dd"
+    },
+    "translation_patch_byte_identical": true,
+    "anchors_revalidated": 54,
+    "consumer_lines_revalidated": 21,
+    "producer_boundary_ranges_revalidated": 7,
+    "local_tests": "62 passed on previous base; affected tools/resources/consumer bindings unchanged. Not relabelled as executed on new base. Exact-head hosted CI remains required.",
+    "limits": "Narrow integration reconciliation, not a new full runtime/native-language acceptance."
+  },
+  "independent_integrated_base_check": {
+    "previous_audit_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "current_base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+    "source_tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+    "base_changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/FailedRecoverySaveTargetTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/FloatingSelectionGeometryRecoveryTest.kt"
+    ],
+    "accepted_resource_bytes_unchanged": true,
+    "source_anchors_verified": 54,
+    "consumer_lines_verified": 21,
+    "producer_file_hashes_verified": 7,
+    "tests": "62 actually executed on a021ac9e in 10.709s; not rerun or relabelled after integration. Exact-head hosted CI required.",
+    "limits": "Narrow unchanged-input integration check, not full new runtime/native-language acceptance."
+  },
+  "application_failure_recovery": {
+    "step": "Initial local application",
+    "outcome": "P2-only assertion failed when encountering reviewed P3 guidance after five qug additions had been written. No remote mutation or tests.",
+    "diagnosis": "Four prepared Wolof resources are P3; original ten-value P2 label was incorrect. Full batch has fifteen P2 and four P3.",
+    "recovery": "Partial patch preserved; only own new qug edits restored from verified base. Scratch helper now accepts authorized P2/P3; full exact reviewed values reapplied.",
+    "source_wording_changed_due_to_failure": false,
+    "evidence_packaging_guard": {
+      "outcome": "Initial archive guard rejected internal absolute proposal_path metadata in one review before upload.",
+      "recovery": "Published representation replaces only that field with archive-relative filename and records original hash; original review content and source are unchanged. Independent audit refresh required before publication.",
+      "upload_occurred_before_correction": false
+    }
+  },
+  "independent_applied_check": {
+    "result": "pass",
+    "base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "review_file_sha256": {
+      "wo-prepared-review.json": "330682b0c01e135e26792e26e84290e7909b35a2dfded71e9c36b1e721862cc4",
+      "qug-independent-review.json": "b065f3f65bd93f548b15cc1afb5c1eef12b1a1d03688537bbfcc471bf8f328de",
+      "wo-further-review.json": "5ecb13f1ebf472363f8eabde824e66edd84fc78ee425da11bff30f0748bdbffd"
+    },
+    "summary": {
+      "changed_values": 19,
+      "new_values": 19,
+      "existing_corrections": 0,
+      "accepted_unchanged": 19,
+      "reviewed_revision": 0,
+      "old_elements": 848,
+      "old_elements_unchanged": 848,
+      "active_changed": 15,
+      "catalogue_changed": 4,
+      "new_active": 15,
+      "new_catalogue_only": 4
+    },
+    "catalogues": {
+      "qug": {
+        "old": 397,
+        "unchanged": 397,
+        "added": 5,
+        "corrected": [],
+        "total": 402,
+        "sha256": "0816a00af0d1f3ae26aa9a96cf6c1136e282203d686a3039c0fe901d638acbd2"
+      },
+      "wo": {
+        "old": 451,
+        "unchanged": 451,
+        "added": 14,
+        "corrected": [],
+        "total": 465,
+        "sha256": "645a74bc4a406de7160d392a425df6f5fd1738fee9db235f1f46940cb4a1e7dd"
+      }
+    },
+    "checks": {
+      "exact_review_decision_value_mapping": true,
+      "two_file_scope": true,
+      "no_deletions_duplicates": true,
+      "old_node_order_attrs_and_raw_bytes_all_preserved": "pass; only one addition separator blank line normalized",
+      "default_attrs_placeholders_newlines_escaping_NFC": "pass",
+      "canonical_anchors_at_original_base": 54,
+      "consumer_lines_exact": 21,
+      "tests_rerun": false,
+      "source_edits": false,
+      "all_19_final_values_equal_proposals": true,
+      "original_review_hashes_match_applied_record": true,
+      "quoted_anchor_representation": "Original Wolof packet has 15 display-quoted anchor occurrences; normalized packet records exact raw canonical values. Both independently compared; originals not rewritten."
+    },
+    "current_consumers": {
+      "qug:ui_an_assembly_can_contain_up_to_20_images_86d995": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 85,
+          "code": "require(state.size + items.size <= MAX_IMAGES) { ui(R.string.ui_an_assembly_can_contain_up_to_20_images_86d995) }"
+        }
+      ],
+      "qug:ui_an_assembly_can_contain_up_to_20_images": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 187,
+          "code": "if (assembly.images.size >= 20) { message(ui(R.string.ui_an_assembly_can_contain_up_to_20_images)); return }"
+        }
+      ],
+      "qug:ui_assembly_unknown_image": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 166,
+          "code": "require(state.any { it.id == id }) { ui(R.string.ui_assembly_unknown_image) }"
+        }
+      ],
+      "qug:ui_could_not_create_the_assembly": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 293,
+          "code": "} catch(error: Exception) {runOnUiThread {if(!isDestroyed && !isFinishing) {setBusy(false);refresh();message(ui(R.string.ui_could_not_create_the_assembly,error.message))}}}"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 335,
+          "code": "catch (error: Exception) { file.delete(); runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); message(ui(R.string.ui_could_not_create_the_assembly, error.message)) } } }"
+        }
+      ],
+      "qug:ui_edit_in_paint": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 88,
+          "code": "button(ui(R.string.ui_save_png),\"assembly_save\") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),\"assembly_edit\") { requestOutput(true) },button(ui(R.string.ui_how_to_use),\"assembly_help\") { showHelp() })"
+        }
+      ],
+      "wo:ui_cursor_ink30": [],
+      "wo:ui_cursor_settings31": [],
+      "wo:ui_disable_cursor_drawing": [],
+      "wo:ui_cursor_tap_hint37": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1523,
+          "code": "message(ui(R.string.ui_cursor_help31)+\"\\n\\n\"+ui(R.string.ui_cursor_tap_hint37)+\"\\n\\n\"+ui(R.string.ui_cursor_marker_help31))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1532,
+          "code": "if(on) LocaleTypography.showMessage(this@ClassicPaintActivity,ui(R.string.ui_cursor_pan_move32)+\"\\n\"+ui(R.string.ui_cursor_tap_hint37),Toast.LENGTH_LONG)"
+        }
+      ],
+      "wo:ui_cursor_marker_help31": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1523,
+          "code": "message(ui(R.string.ui_cursor_help31)+\"\\n\\n\"+ui(R.string.ui_cursor_tap_hint37)+\"\\n\\n\"+ui(R.string.ui_cursor_marker_help31))"
+        }
+      ],
+      "wo:ui_tool_option": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 831,
+          "code": "EditorDialogBuilder(this).setTitle(ui(R.string.ui_tool_option)).setSingleChoiceItems(values.toTypedArray(), selected) { dialog, which ->"
+        }
+      ],
+      "wo:ui_right_arrow_expand": [],
+      "wo:ui_drag_from_the_start_to_the_end_of": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 26,
+          "code": "LINE(R.string.ui_line, R.string.ui_drag_from_the_start_to_the_end_of),"
+        }
+      ],
+      "wo:ui_hold_or_drag_to_spray_colour": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 24,
+          "code": "SPRAY(R.string.ui_airbrush, R.string.ui_hold_or_drag_to_spray_colour),"
+        }
+      ],
+      "wo:ui_tap_the_canvas_to_place_text_and_choose": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 25,
+          "code": "TEXT(R.string.ui_text, R.string.ui_tap_the_canvas_to_place_text_and_choose),"
+        }
+      ],
+      "wo:ui_assembly_position_nonnegative": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 167,
+          "code": "require(x >= 0 && y >= 0) { ui(R.string.ui_assembly_position_nonnegative) }"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 205,
+          "code": "require(x >= 0 && y >= 0) { ui(R.string.ui_assembly_position_nonnegative) }"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+          "line": 33,
+          "code": "val targetX = placementPixels(x) ?: throw IllegalArgumentException(ui(R.string.ui_assembly_position_nonnegative))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+          "line": 34,
+          "code": "val targetY = placementPixels(y) ?: throw IllegalArgumentException(ui(R.string.ui_assembly_position_nonnegative))"
+        }
+      ],
+      "wo:formats22_ico_invalid_size": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 77,
+          "code": "if (edge !in exportEdges) throw IOException(ui(R.string.formats22_ico_invalid_size))"
+        }
+      ],
+      "wo:save20_gif_size_limit": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 23,
+          "code": "2 -> R.string.save20_gif_size_limit"
+        }
+      ],
+      "wo:formats22_pdf_file_size": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt",
+          "line": 97,
+          "code": "throw PdfImportException(ui(R.string.formats22_pdf_file_size))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt",
+          "line": 123,
+          "code": "if (file.length() !in 1..MAX_FILE_BYTES) throw PdfImportException(ui(R.string.formats22_pdf_file_size))"
+        }
+      ]
+    },
+    "limits": [
+      "Applied-source audit, not whole-language/native-human/layout certification.",
+      "Quoted canonical anchors may be display form in historical packet; only enclosing Android quotes stripped for comparison, original packets untouched.",
+      "No source edits, test reruns or remote actions."
+    ],
+    "resource_tiers": {
+      "P2": 15,
+      "P3": 4
+    },
+    "quoted_anchor_differences": [
+      {
+        "key": "ui_draw26",
+        "raw": "\"Dessine\"",
+        "packet_display": "Dessine"
+      },
+      {
+        "key": "ui_drawing_settings",
+        "raw": "\"Jekkali dessin…\"",
+        "packet_display": "Jekkali dessin…"
+      },
+      {
+        "key": "ui_brush",
+        "raw": "\"Pënso\"",
+        "packet_display": "Pënso"
+      },
+      {
+        "key": "ui_zoom_in",
+        "raw": "\"Màggal seet bi\"",
+        "packet_display": "Màggal seet bi"
+      },
+      {
+        "key": "ui_expand_tool_category",
+        "raw": "\"%1$s: %2$s lañu tànn. Yaatal jumtukaay yi ak tànneef yi\"",
+        "packet_display": "%1$s: %2$s lañu tànn. Yaatal jumtukaay yi ak tànneef yi"
+      },
+      {
+        "key": "ui_left_arrow_collapse",
+        "raw": "\"Fettu càmmooñ: lëmit\"",
+        "packet_display": "Fettu càmmooñ: lëmit"
+      },
+      {
+        "key": "ui_right",
+        "raw": "\"Ndeyjoor\"",
+        "packet_display": "Ndeyjoor"
+      },
+      {
+        "key": "ui_expand_toolbox",
+        "raw": "\"Yaatal boyetu jumtukaay yi\"",
+        "packet_display": "Yaatal boyetu jumtukaay yi"
+      },
+      {
+        "key": "ui_line",
+        "raw": "\"Rëdd\"",
+        "packet_display": "Rëdd"
+      },
+      {
+        "key": "ui_colour_tap_foreground_hold_background",
+        "raw": "\"Melo #%1$s. Laal ngir kanam, bës tëye ngir ginnaaw.\"",
+        "packet_display": "Melo #%1$s. Laal ngir kanam, bës tëye ngir ginnaaw."
+      },
+      {
+        "key": "ui_airbrush",
+        "raw": "\"Pënso buy wisaare\"",
+        "packet_display": "Pënso buy wisaare"
+      },
+      {
+        "key": "ui_tap_canvas_to_type",
+        "raw": "\"Laal xëtu nataal bi\\nngir bind\"",
+        "packet_display": "Laal xëtu nataal bi\\nngir bind"
+      },
+      {
+        "key": "ui_font",
+        "raw": "\"Melow mbind\"",
+        "packet_display": "Melow mbind"
+      },
+      {
+        "key": "ui_choose_a_smaller_size",
+        "raw": "\"Tànnal kem-kem bu gëna ndaw.\"",
+        "packet_display": "Tànnal kem-kem bu gëna ndaw."
+      },
+      {
+        "key": "ui_add_text",
+        "raw": "\"Yokk mbind\"",
+        "packet_display": "Yokk mbind"
+      }
+    ],
+    "priority_correction": {
+      "historical_prepared_Wolof10": "six P2 plus four P3, not all P2",
+      "full_batch": "fifteen P2 and four P3",
+      "wording_changed_due_to_tier_correction": false,
+      "recovery_record": {
+        "step": "Initial local application",
+        "outcome": "P2-only assertion failed when encountering reviewed P3 guidance after five qug additions had been written. No remote mutation or tests.",
+        "diagnosis": "Four prepared Wolof resources are P3; original ten-value P2 label was incorrect. Full batch has fifteen P2 and four P3.",
+        "recovery": "Partial patch preserved; only own new qug edits restored from verified base. Scratch helper now accepts authorized P2/P3; full exact reviewed values reapplied.",
+        "source_wording_changed_due_to_failure": false
+      },
+      "verification_limit": "Final source independently checked; recovery chronology retained from local parent record, not falsely reported as a successful initial attempt."
+    },
+    "publication_metadata_refresh": {
+      "old_review_sha256": "680f57690dfc8e99ec2056beba0d4a7c521d8acbd5a6b2030f4b332672f95f75",
+      "new_review_sha256": "5ecb13f1ebf472363f8eabde824e66edd84fc78ee425da11bff30f0748bdbffd",
+      "verified_change": "Only absolute proposal_path replaced with archive-relative filename and publication_representation disclosure added. All other original JSON fields are identical; original review preserved separately.",
+      "language_decisions_changed": false
+    },
+    "narrow_base_refresh": {
+      "previous_audit_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+      "current_base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+      "source_tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+      "base_changed_paths": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/FailedRecoverySaveTargetTest.kt",
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/FloatingSelectionGeometryRecoveryTest.kt"
+      ],
+      "accepted_resource_bytes_unchanged": true,
+      "source_anchors_verified": 54,
+      "consumer_lines_verified": 21,
+      "producer_file_hashes_verified": 7,
+      "tests": "62 actually executed on a021ac9e in 10.709s; not rerun or relabelled after integration. Exact-head hosted CI required.",
+      "limits": "Narrow unchanged-input integration check, not full new runtime/native-language acceptance."
+    }
+  },
+  "local_checks": {
+    "executed_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "executed_candidate_tree": "310327b37f1d3957416c8f0fd3b3f576b6a1e0c2",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 10.709,
+    "result": "pass",
+    "log_sha256": "578ecaee8b16050975adb1f5267354b07ed06a40971345dc25e08874ff898cb3",
+    "diff_check": "pass",
+    "scope": "Executed affected host tests before pending #491 integration; final source head must separately pass normal hosted CI. No Android test execution claimed here."
+  },
+  "remote_source": {
+    "head": "7f464090ade0d2d4fcc7a1a62d43aa314a7a685c",
+    "tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+    "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+    "complete_leaves": 1311,
+    "complete_path_mode_type_blob_comparison": "pass against staged reviewed checkout",
+    "parent_and_branch_ref": "verified",
+    "baseline_unrelated_leaves": "all match actual develop",
+    "prior_local_output_error": "First oversized read was truncated and JSON parsing failed; no remote mutation. Smaller reads completed exact inventory comparison before publication."
+  },
+  "candidate_counts": {
+    "status": "Candidate only, not merged credit",
+    "source_tree": "1f678a2eddff35d94989061dfff53863a55d61e5",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117582,
+    "missing": 5367,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "base": "0dfd5861677cf59eb162db9a116480db7de2a0ea",
+    "present": 117563,
+    "total": 122949,
+    "missing": 5386,
+    "complete": 153,
+    "partial": 18,
+    "limit": "Direct key presence, not linguistic/native-human acceptance",
+    "previous_recount_base": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+    "base_refresh": "All catalogue/default/option resources byte-identical across #491"
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 15,
+      "P3": 4
+    },
+    "by_locale": {
+      "qug": {
+        "P2": 5
+      },
+      "wo": {
+        "P2": 10,
+        "P3": 4
+      }
+    },
+    "limit": "Resource tier is distinct from master-task priority; presence is not linguistic completeness."
+  },
+  "prior_preparation": {
+    "commit": "05185b2b70a7f3350260b8d58555ae6a1cc7adca",
+    "path": "verification/translations/2026-11-15/wolof-next-preparation/research-review.zip",
+    "values": 10
+  },
+  "limits": [
+    "Original complete-value model/source review is not native-human, whole-language or exhaustive installed-layout/glyph/TalkBack acceptance.",
+    "Canonical anchors establish consistency, not whole-value linguistic acceptance; primary lexical sources do not attest each complete UI sentence.",
+    "Raw Android-quoted values and packet display-text anchors are separately recorded; original packets remain unchanged.",
+    "Catalogue-only classification is based on literal current production references, not universal unreachability.",
+    "Prior narrow deferrals remain; unproposed inventory gaps are not linguistic findings or language-wide holds.",
+    "All existing holds, #422 approval operation, #330, Work-side tasks and release destinations remain untouched."
+  ]
+}
