@@ -62,7 +62,13 @@ class ImageAssembly(val directory: File) {
     val canUndo get() = undo.isNotEmpty()
     val canRedo get() = redo.isNotEmpty()
     var changed: () -> Unit = {}
-    init { directory.mkdirs(); if (saved.baseFile.exists()) state = read(); validate(state); prune() }
+    init {
+        directory.mkdirs()
+        // AtomicFile may have only its recoverable backup after an interrupted
+        // transaction. Read and validate it before pruning any source images.
+        if (saved.baseFile.exists() || File(saved.baseFile.path+".bak").exists()) state = read()
+        validate(state); prune()
+    }
     fun image(id: String) = state.first { it.id == id }
     fun sorted(sort: AssemblySort): List<AssemblyImage> {
         val name = compareBy<AssemblyImage> { it.name.lowercase(Locale.ROOT) }.thenBy { it.name }.thenBy { it.id }
