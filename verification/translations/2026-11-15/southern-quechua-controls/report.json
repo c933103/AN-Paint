@@ -1,0 +1,434 @@
+{
+  "pr": 487,
+  "url": "https://github.com/c933103/AN-Paint/pull/487",
+  "base": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+  "head": "43bdbd6dd4e5b98122ffde4773f84e39829bb929",
+  "tree": "13efd24fc63b953a40f5ae1558b679509ed634ac",
+  "source_branch": "localization/p2-southern-quechua-controls-20261115",
+  "status": "Published and ready; automatic exact-head Codex and CI pending",
+  "ci_run": 43715624563,
+  "tested_checkout": "a85d177da1a63ffff4f4d25cbe485957b41c54ae",
+  "reconciliation": {
+    "base": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+    "base_tree": "b630cd2c873a05fedaf775660e98c9aa302a3264",
+    "prior_preparation_commit": "0f7606c612bbed8ac3f58cbe0da7c1fc84275d22",
+    "prior_preparation_base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+    "tracker_latest": 6894338096,
+    "open_prs": [
+      {
+        "number": 226,
+        "title": "Experiment: bounded two-worker JVM regression and truthful memory evidence",
+        "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c"
+      },
+      {
+        "number": 159,
+        "title": "Czech active-workflow PDCA: acceptance and Fit regression",
+        "head": "9203a6e9fdbdc9a49ba786fe7246ea6a4786e2b6"
+      },
+      {
+        "number": 88,
+        "title": "[Bug tracker] Gallery reports every native linkage failure as the colour converter",
+        "head": "6a124f275307e53ce16581ddd33ca02f453f5884"
+      },
+      {
+        "number": 87,
+        "title": "[Bug tracker] Non-host redirect restrictions are reported as an unsupported host",
+        "head": "fa052d6a00ba942590b5241106af50f31a7cffb1"
+      },
+      {
+        "number": 75,
+        "title": "[Bug tracker] Crop guidance misnames attached images and overstates guaranteed movement",
+        "head": "ead752dbbdb9e121ad22a5511b1daab795d9cb61"
+      },
+      {
+        "number": 72,
+        "title": "[Investigation tracker] Can credit attachment overlap non-autosave I/O?",
+        "head": "e7c1920b489e83a4b0db4942e8d549a104de1ec8"
+      },
+      {
+        "number": 71,
+        "title": "[Bug tracker] Import-resize guidance misstates context-specific transparency handling",
+        "head": "e714a4c921e6f6fa22c29fd790615464f2cf2457"
+      },
+      {
+        "number": 69,
+        "title": "[Bug tracker] Colour-profile import error misidentifies ICO and DIB as BMP/GIF",
+        "head": "ea89870144dde82d7f822adf7dafe9fbd490d5cb"
+      },
+      {
+        "number": 56,
+        "title": "[Tracking] Translation progress and entry reviews for all 171 offered language choices",
+        "head": "cc1d2718b88b9f08e25b3013ccdbc10770e7f332"
+      }
+    ],
+    "ownership": "No competing active localization source owner; existing held/tracker PRs remain untouched.",
+    "holds": [
+      "#422 separate approval operation",
+      "#159 Czech",
+      "#226 JVM experiment",
+      "Mongolian/Hakka/PR56 and other explicit prior holds",
+      "Atlas #330",
+      "releases"
+    ],
+    "instructions": "AGENTS.md and CI.md unchanged from fully read prior base; canonical wording, no new per-edit mirrors; affected local checks and one exact-head Codex/CI path."
+  },
+  "prepared_reconciliation": {
+    "base": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+    "status": "prepared10 reconciled; unapplied, not CI-qualified",
+    "verdict": "pass",
+    "findings": [],
+    "checks": {
+      "clean_checkout": true,
+      "all10_still_absent": true,
+      "accepted_unchanged": 7,
+      "independently_revised": 3,
+      "author_agrees_all3": true,
+      "canonical_anchor_values": 24,
+      "consumer_lines": 12,
+      "fresh_active": 10,
+      "catalogue_only": 0,
+      "placeholders_escaping_NFC_newline_bounds": "pass"
+    },
+    "catalogues": {
+      "quy": {
+        "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+        "sha256": "3c4d0228d43dced805785cfe02adb376553e26c36ffa10253fd809fc10e78108"
+      },
+      "quz": {
+        "path": "Paintroid/src/main/res/values-b+quz/strings.xml",
+        "sha256": "68a376a7ef4cdabc8c421db107eb05ddea85ca486fe28dadbbf6ae0b56027e6a"
+      }
+    },
+    "values": [
+      {
+        "locale": "quy",
+        "key": "formats22_base64_label",
+        "decision": "accept",
+        "final_value": "Base64 qillqa",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quy",
+        "key": "ui_an_paint_image_assembly_20_images_placed",
+        "decision": "accept",
+        "final_value": "AN Paint · Siqikunata huñuspa allichay\\n%1$s/20 siqikuna · %2$s churasqa",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quy",
+        "key": "ui_could_not_create_the_assembly",
+        "decision": "revise",
+        "final_value": "Manam siqikunata huñuspa huk siqita rurayta atikunchu: %1$s",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quy",
+        "key": "ui_apply_to_all",
+        "decision": "accept",
+        "final_value": "Llapaman churay",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quy",
+        "key": "ui_apply_to_these_images",
+        "decision": "accept",
+        "final_value": "Kay siqikunaman churay",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quz",
+        "key": "formats22_base64_label",
+        "decision": "accept",
+        "final_value": "Base64 qillqa",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quz",
+        "key": "ui_an_paint_image_assembly_20_images_placed",
+        "decision": "accept",
+        "final_value": "AN Paint · Siq\\'ikunata huñuspa allichay\\n%1$s/20 siq\\'ikuna · %2$s churasqa",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quz",
+        "key": "ui_could_not_create_the_assembly",
+        "decision": "accept",
+        "final_value": "Mana huñusqa siq\\'ita rurayta atikunchu: %1$s",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quz",
+        "key": "ui_apply_to_all",
+        "decision": "revise",
+        "final_value": "Llapaman churay",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "absent": true
+      },
+      {
+        "locale": "quz",
+        "key": "ui_apply_to_these_images",
+        "decision": "revise",
+        "final_value": "Kay siq\\'ikunaman churay",
+        "consumer_paths": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+        ],
+        "absent": true
+      }
+    ],
+    "input_sha256": {
+      "quy-quz-next-proposals.json": "921d008ecdf9dd2d0234e218186364d00f3eeb6c63a848bd804ddeb764a3bfd2",
+      "quy-quz-next-independent-review.json": "a3b4f9d0448159a8407167e7d401bcc0a5d05c64195e553d5c40dbdfc3f02091",
+      "quy-quz-revision-assessment.json": "c76caa5bc7334c5fa94b24fafbe7ca6308eda1f81c8eb1f6c6f7b72c58484d54"
+    },
+    "limits": [
+      "No source edits, tests rerun, publication, CI or Work tasks. Prior linguistic decisions retained without expansion.",
+      "Variant-specific catalogue identities preserved; no blanket cross-variety or native-human/layout certification.",
+      "Current source anchors unchanged after #486; any later integration still requires reconciliation."
+    ]
+  },
+  "applied": {
+    "base": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+    "review_pairs": [
+      [
+        "quy-quz-normalized-proposals.json",
+        "quy-quz-next-independent-review.json"
+      ],
+      [
+        "quy-quz-supplemental-normalized-proposals.json",
+        "quy-quz-supplemental-review.json"
+      ]
+    ],
+    "source_anchors_revalidated": 64,
+    "consumer_anchors_revalidated": 28,
+    "proposed_unique_keys": 24,
+    "submitted_proposal_versions": 24,
+    "superseded_deferred_proposals": [],
+    "accepted": 24,
+    "accepted_unchanged": 17,
+    "revised": 7,
+    "withheld": [],
+    "active": 24,
+    "catalogue_only": 0,
+    "applied": {
+      "quy": {
+        "added": 12,
+        "old_elements_preserved": 400,
+        "total": 412,
+        "sha256": "f99a93c50cd0d5480af7d752f18c33560736dd4ea2b9f8244bdfcdc1a3967f7d",
+        "path": "Paintroid/src/main/res/values-b+quy/strings.xml"
+      },
+      "quz": {
+        "added": 12,
+        "old_elements_preserved": 402,
+        "total": 414,
+        "sha256": "1e094e96da92d614fda78cb049ecc08b756ef43d3ca35592db27e3f293ad2e90",
+        "path": "Paintroid/src/main/res/values-b+quz/strings.xml"
+      }
+    }
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 11.666,
+    "executed_base": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+    "diff_check": "passed",
+    "independent_applied_check": {
+      "base": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+      "verdict": "pass",
+      "findings": [],
+      "scope": "Applied-source integrity only; prior whole-value linguistic decisions not expanded.",
+      "checks": {
+        "exact_accepted_complete_values": 24,
+        "prior_elements_attributes_text_and_order_preserved": 802,
+        "only_expected_two_XML_files_changed": true,
+        "raw_old_text_preserved_except_added_lines_and_blank_separator": true,
+        "new_XML_attrs_match_default": true,
+        "no_duplicate_keys": true,
+        "placeholders_escaping_format_NFC": "pass",
+        "prepared_source_anchors_revalidated": 64,
+        "prepared_consumer_lines_revalidated": 28,
+        "fresh_main_source_active": 24,
+        "fresh_main_source_catalogue_only": 0,
+        "all_24_English_values_match": true,
+        "accepted_unchanged": 17,
+        "reviewed_revisions": 7,
+        "all7_author_agreements_match_exact_final_values": true,
+        "literal_newline_boundaries_match": true
+      },
+      "applied": {
+        "quy": {
+          "added": 12,
+          "old_elements_preserved": 400,
+          "total_elements": 412,
+          "sha256": "f99a93c50cd0d5480af7d752f18c33560736dd4ea2b9f8244bdfcdc1a3967f7d"
+        },
+        "quz": {
+          "added": 12,
+          "old_elements_preserved": 402,
+          "total_elements": 414,
+          "sha256": "1e094e96da92d614fda78cb049ecc08b756ef43d3ca35592db27e3f293ad2e90"
+        }
+      },
+      "fresh_consumer_paths": {
+        "quy/formats22_base64_label": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt"
+        ],
+        "quy/ui_an_paint_image_assembly_20_images_placed": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quy/ui_could_not_create_the_assembly": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quy/ui_apply_to_all": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "quy/ui_apply_to_these_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+        ],
+        "quz/formats22_base64_label": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt"
+        ],
+        "quz/ui_an_paint_image_assembly_20_images_placed": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_could_not_create_the_assembly": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_apply_to_all": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+        ],
+        "quz/ui_apply_to_these_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+        ],
+        "quy/ui_create_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quy/ui_assembly_output_size": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quy/ui_rendering_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quy/ui_fits_the_current_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+        ],
+        "quy/ui_estimated_memory_current_working_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quy/ui_the_assembly_needs_about_choose_a_smaller_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt"
+        ],
+        "quy/ui_place_at_least_one_image_in_the_workspace": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_create_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_assembly_output_size": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_rendering_images": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_fits_the_current_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+        ],
+        "quz/ui_estimated_memory_current_working_budget": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ],
+        "quz/ui_the_assembly_needs_about_choose_a_smaller_output": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt"
+        ],
+        "quz/ui_place_at_least_one_image_in_the_workspace": [
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+        ]
+      },
+      "review_file_sha256": {
+        "quy-quz-next-independent-review.json": "a3b4f9d0448159a8407167e7d401bcc0a5d05c64195e553d5c40dbdfc3f02091",
+        "quy-quz-supplemental-review.json": "e0e5c4dadfd977590e6f45f318a30d3097880d4124f0ea30519c1e363195c630"
+      },
+      "limits": [
+        "No source edits, tests rerun, external mutations or Work tasks. Parent owns affected62 and subsequent exact-head gates.",
+        "No native-human, layout or TalkBack certification. Prior approved whole wording retained.",
+        "Catalogue-only means no literal current main-source reference, not proof against future/dynamic use."
+      ]
+    }
+  },
+  "remote_source": {
+    "complete_leaves": 1310,
+    "path_mode_type_blob_comparison": "All entries match reviewed index",
+    "parent_and_nonforce_ref": "verified"
+  },
+  "candidate_counts": {
+    "status": "Candidate only, not merged credit",
+    "source_tree": "13efd24fc63b953a40f5ae1558b679509ed634ac",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117526,
+    "missing": 5423,
+    "complete": 153,
+    "partial": 18
+  },
+  "current_merged_counts": {
+    "source": "03586511ed8bc28f011f9aa470bd85736e7e2e71",
+    "present": 117502,
+    "total": 122949,
+    "missing": 5447,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 24
+    },
+    "by_locale": {
+      "quy": {
+        "P2": 12
+      },
+      "quz": {
+        "P2": 12
+      }
+    },
+    "limit": "Resource tier is separate from master-list priority. Presence is not linguistic or merged completeness."
+  },
+  "prior_preparation": {
+    "commit": "0f7606c612bbed8ac3f58cbe0da7c1fc84275d22",
+    "path": "verification/translations/2026-11-15/quy-quz-next-preparation/research-review.zip",
+    "original_base": "73001d96c554c449fa3a6cf5b459872ffc69128d",
+    "prior_decisions": "Seven unchanged acceptances and three independently reviewed revisions, all three separately agreed by original author; original proposals preserved."
+  },
+  "limits": [
+    "Bounded independent model/source review, not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Varieties assessed separately; similar surface wording is not automatic cross-variety inheritance.",
+    "Original full-value composition uses source-backed lexical and contextual support, not a matching donor-sentence requirement.",
+    "No behavior, default resources, tests, workflow, permissions or release changes.",
+    "No Work task, #422 operation, #330 or held work performed."
+  ]
+}
