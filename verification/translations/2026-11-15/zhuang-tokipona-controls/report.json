@@ -1,0 +1,413 @@
+{
+  "pr": 489,
+  "url": "https://github.com/c933103/AN-Paint/pull/489",
+  "base": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+  "head": "d831d5b9f510ca66f44d84ed80515034a95cadf8",
+  "tree": "6f04da683f2eaa18a035e02156542400ae48c1c3",
+  "source_branch": "localization/zhuang-tokipona-controls-20261115",
+  "status": "Published/ready; exact-head Codex and CI pending; not merged",
+  "ci_run": 43727333973,
+  "tested_checkout": "70035900e9a20c6b8ceeb9d9de2499a5f46712da",
+  "reconciliation": {
+    "base": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "base_tree": "e62960da3c526021320a0eeb14b138935f2ceaa0",
+    "prior_preparation_commit": "5e8da4a0c103934cbeb139d373dede1bb9b468af",
+    "prepared_base": "dca156a418b26710bad960b0a1f34debf15e775c",
+    "prepared_values": 4,
+    "accepted_unchanged": 4,
+    "active": 1,
+    "catalogue_only": 3,
+    "P2": 4,
+    "canonical_anchors": 11,
+    "consumer_lines": 1,
+    "za_catalogue_unchanged": true,
+    "all_missing_default_semantics_and_format_revalidated": true,
+    "current_source_owners": "No active source PR beyond held trackers at fresh read",
+    "source_edited": false,
+    "holds": "All prior holds, #422 pending operation, #330, Work and releases untouched",
+    "AGENTS_sha256": "8aadd78ca318cff7ac20bb5950a12f6f00dab89bf9c465a3440eb84172d110c7",
+    "CI_sha256": "9c06fff3f2de1b38b5ac6859fd5dd4109ec57933fd61c492fd5f183c9145a8b2",
+    "fresh_open_PRs": [
+      226,
+      159,
+      88,
+      87,
+      75,
+      72,
+      71,
+      69,
+      56
+    ],
+    "source_changes_pending": "Applied10 additions plus3 individually reviewed Toki memory corrections; independent source audit and affected checks precede publication",
+    "observation_scope": "Historical prepublication/base reconciliation; source_edited, source_changes_pending and ownership fields describe that earlier stage, not the published PR. Superseded by top-level publication status."
+  },
+  "prepared_reconciliation": {
+    "base": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "base_tree": "e62960da3c526021320a0eeb14b138935f2ceaa0",
+    "prior_preparation_commit": "5e8da4a0c103934cbeb139d373dede1bb9b468af",
+    "prepared_base": "dca156a418b26710bad960b0a1f34debf15e775c",
+    "prepared_values": 4,
+    "accepted_unchanged": 4,
+    "active": 1,
+    "catalogue_only": 3,
+    "P2": 4,
+    "canonical_anchors": 11,
+    "consumer_lines": 1,
+    "za_catalogue_unchanged": true,
+    "all_missing_default_semantics_and_format_revalidated": true,
+    "current_source_owners": "No active source PR beyond held trackers at fresh read",
+    "source_edited": false,
+    "holds": "All prior holds, #422 pending operation, #330, Work and releases untouched",
+    "AGENTS_sha256": "8aadd78ca318cff7ac20bb5950a12f6f00dab89bf9c465a3440eb84172d110c7",
+    "CI_sha256": "9c06fff3f2de1b38b5ac6859fd5dd4109ec57933fd61c492fd5f183c9145a8b2",
+    "observation_scope": "Historical prepared-candidate reconciliation, before this publication; superseded by applied review and top-level publication status."
+  },
+  "applied": {
+    "base": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "review_pairs": [
+      [
+        "za-next-proposals.json",
+        "za-next-independent-review.json"
+      ],
+      [
+        "za-supplemental-proposals.json",
+        "za-supplemental-review.json"
+      ],
+      [
+        "tok-proposals.json",
+        "tok-independent-review.json"
+      ],
+      [
+        "tok-existing-corrections.json",
+        "tok-existing-corrections-review.json"
+      ]
+    ],
+    "source_anchors_revalidated_at_base": 38,
+    "consumer_anchors_revalidated": 10,
+    "proposed_unique_keys": 14,
+    "accepted": 13,
+    "accepted_unchanged_from_proposal": 12,
+    "revised": 1,
+    "withheld": [
+      {
+        "locale": "tok",
+        "key": "ui_give_all_images_the_same_each_image_keeps",
+        "english": "Give all %1$s images the same %2$s. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
+        "proposed": "o pana e %2$s sama tawa sitelen %1$s ale. sitelen wan wan la suli poka en suli sewi li kama suli anu lili kepeken nanpa sama. lipu open en nasin kipisi li ante ala.",
+        "decision": "defer",
+        "final_value": null,
+        "rationale": "Original same-number scaling remains ambiguous between additive and multiplicative changes. Reviewer exact-quotient replacement was independently rejected because actual proportional scaling rounds to whole pixels; exact final numeric ratio is not guaranteed. Defer this generic introduction rather than rush a new formula. No generic ratio wording approved in this batch.",
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 214,
+            "key": "ui_give_all_images_the_same_each_image_keeps",
+            "url": "https://github.com/c933103/AN-Paint/blob/f98bd1b36ccef4c127fcb14d8d3ddab42b233b67/Paintroid/src/main/res/values/strings.xml#L214",
+            "observed_value": "Give all %1$s images the same %2$s. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged."
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "line": 546,
+            "key": "ui_normalize_width_intro",
+            "url": "https://github.com/c933103/AN-Paint/blob/f98bd1b36ccef4c127fcb14d8d3ddab42b233b67/Paintroid/src/main/res/values-b+tok/strings.xml#L546",
+            "observed_value": "o pana e suli poka sama tawa sitelen ale. mute sitelen: %1$d. sitelen wan wan la suli poka en suli sewi li kama suli anu lili kepeken nanpa sama. lipu open en nasin kipisi li ante ala."
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "line": 591,
+            "key": "ui_normalize_height_intro",
+            "url": "https://github.com/c933103/AN-Paint/blob/f98bd1b36ccef4c127fcb14d8d3ddab42b233b67/Paintroid/src/main/res/values-b+tok/strings.xml#L591",
+            "observed_value": "o pana e suli sewi sama tawa sitelen ale. mute sitelen: %1$d. sitelen wan wan la suli poka en suli sewi li kama suli anu lili kepeken nanpa sama. lipu open en nasin kipisi li ante ala."
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+            "line": 593,
+            "key": "ui_same",
+            "url": "https://github.com/c933103/AN-Paint/blob/f98bd1b36ccef4c127fcb14d8d3ddab42b233b67/Paintroid/src/main/res/values-b+tok/strings.xml#L593",
+            "observed_value": "%1$s sama"
+          }
+        ],
+        "consumer_anchors": [],
+        "current_direct_consumer_paths": [],
+        "consumer_classification": "catalogue_only_no_current_direct_reference",
+        "format_checks": {
+          "placeholders": true,
+          "newlines_including_trailing": true,
+          "NFC": true,
+          "Android_escaping": true,
+          "literal_percent_escape": "none",
+          "XML_less_than_escape_required": false,
+          "scope": "Checks describe historical candidate only; no final value approved."
+        },
+        "provenance": "Original composition/revision. Common lexical facts and grammar referenced; no third-party sentence copied.",
+        "current_limits": [
+          "Deferred after independent author reassessment, not approved for application.",
+          "Original proposed value and initial rejected revision preserved historically.",
+          "Separate existing axis-introduction concerns remain documented and unchanged."
+        ],
+        "review_history": [
+          {
+            "decision": "revise",
+            "candidate_value": "o pana e %2$s sama tawa sitelen ale. mute sitelen: %1$s. sitelen wan wan la nanpa ni li ante ala: suli poka / suli sewi. lipu open en nasin kipisi li ante ala.",
+            "rationale": "Revise: growing/shrinking using the same number does not unequivocally distinguish proportional multiplication from equal additive dimension changes. Explicitly keep width/height quotient unchanged for each image, using standard division notation with both operands named. For example equal +10 to 100x50 would fail this invariant, whereas 200x100 satisfies it. Separate count label avoids count-versus-image-identifier ambiguity. Original-files and crop-settings invariance retained. Catalogue-only; future inserted axis noun and layout must be reassessed before wiring a consumer.",
+            "status": "Rejected after independent author assessment: exact invariant final pixel quotient conflicts with whole-pixel rounding (3x2 normalized to width4 becomes4x3). Preserved historical candidate, not approved."
+          }
+        ]
+      }
+    ],
+    "new_values": 10,
+    "corrected_existing_values": 3,
+    "active_changed": 9,
+    "catalogue_only_changed": 4,
+    "new_active": 6,
+    "new_catalogue_only": 4,
+    "resource_tiers_changed": {
+      "P2": 11,
+      "P0": 2
+    },
+    "applied": {
+      "tok": {
+        "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+        "added": 5,
+        "corrected_existing": 3,
+        "corrected_keys": [
+          "ui_assembly_source_memory_floor",
+          "ui_sampled_resize_memory_explanation",
+          "ui_the_assembly_needs_about_choose_a_smaller_output"
+        ],
+        "old_elements": 586,
+        "old_elements_preserved": 583,
+        "total": 591,
+        "sha256": "9a08bbed2deeb7ecbf58e40d67b86e230d22dce4e3d58f53e644f871cfdbe72c"
+      },
+      "za": {
+        "path": "Paintroid/src/main/res/values-b+za/strings.xml",
+        "added": 5,
+        "corrected_existing": 0,
+        "corrected_keys": [],
+        "old_elements": 468,
+        "old_elements_preserved": 468,
+        "total": 473,
+        "sha256": "edf8bce23bc417b921a9cc17887ec2ba7d1395351b3a2cab8cd53be621cf94d1"
+      }
+    },
+    "review_file_sha256": {
+      "za-next-independent-review.json": "48ecf15ab484b72f8845eec52f2bc14137734fd3f233d3bcccf3dfb7e35db550",
+      "za-supplemental-review.json": "1f89677acedc148fe1a3cad79b72cd9ced4ad5f04f01513187755cc72b9af83d",
+      "tok-independent-review.json": "6269678960b0a4bfae8f1794e853d823310d5bf7e8b1d4c3adb4124a86227de6",
+      "tok-existing-corrections-review.json": "ec30b66d26681526e1cebc76faf09ea7b5b747d6a2c7978ed419241ef44d48d9"
+    },
+    "limits": [
+      "Existing memory anchors were verified against the unmodified base before applying individually reviewed corrections; they are not asserted unchanged afterward.",
+      "Generic normalization and both existing axis-specific introductions remain unchanged/deferred due whole-pixel rounding and clarity boundaries.",
+      "Prior version-specific deferrals remain historical; unproposed inventory gaps are not complete-value linguistic findings. Existing holds remain.",
+      "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance."
+    ]
+  },
+  "independent_applied_check": {
+    "result": "pass",
+    "base": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "review_file_sha256": {
+      "za-next-independent-review.json": "48ecf15ab484b72f8845eec52f2bc14137734fd3f233d3bcccf3dfb7e35db550",
+      "za-supplemental-review.json": "1f89677acedc148fe1a3cad79b72cd9ced4ad5f04f01513187755cc72b9af83d",
+      "tok-independent-review.json": "6269678960b0a4bfae8f1794e853d823310d5bf7e8b1d4c3adb4124a86227de6",
+      "tok-existing-corrections-review.json": "ec30b66d26681526e1cebc76faf09ea7b5b747d6a2c7978ed419241ef44d48d9"
+    },
+    "summary": {
+      "changed_values": 13,
+      "new_values": 10,
+      "existing_corrections": 3,
+      "accepted_unchanged": 12,
+      "reviewed_revision": 1,
+      "old_elements": 1054,
+      "old_elements_unchanged": 1051,
+      "active_changed": 9,
+      "catalogue_changed": 4,
+      "new_active": 6,
+      "new_catalogue_only": 4
+    },
+    "catalogues": {
+      "tok": {
+        "old": 586,
+        "unchanged": 583,
+        "added": 5,
+        "corrected": [
+          "ui_assembly_source_memory_floor",
+          "ui_sampled_resize_memory_explanation",
+          "ui_the_assembly_needs_about_choose_a_smaller_output"
+        ],
+        "total": 591,
+        "sha256": "9a08bbed2deeb7ecbf58e40d67b86e230d22dce4e3d58f53e644f871cfdbe72c"
+      },
+      "za": {
+        "old": 468,
+        "unchanged": 468,
+        "added": 5,
+        "corrected": [],
+        "total": 473,
+        "sha256": "edf8bce23bc417b921a9cc17887ec2ba7d1395351b3a2cab8cd53be621cf94d1"
+      }
+    },
+    "checks": {
+      "exact_review_decision_value_mapping": true,
+      "two_file_scope": true,
+      "no_deletions_duplicates": true,
+      "old_node_order_attrs_and_raw_bytes_except_three_reviewed_corrections": "pass; only one addition separator blank line normalized",
+      "default_attrs_placeholders_newlines_escaping_NFC": "pass",
+      "canonical_anchors_at_original_base": 38,
+      "consumer_lines_exact": 10,
+      "generic_normalization_absent": true,
+      "both_axis_introductions_unchanged": true,
+      "tests_rerun": false,
+      "source_edits": false
+    },
+    "current_consumers": {
+      "tok:ui_vertical_rl23": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 62,
+          "code": "adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,arrayOf(ui(R.string.ui_horizontal23),ui(R.string.ui_vertical_rl23),ui(R.string.ui_vertical_lr23)));setSelection(initial.direction.ordinal)}"
+        }
+      ],
+      "tok:ui_estimated_memory_current_working_budget": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 311,
+          "code": "estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)"
+        }
+      ],
+      "tok:ui_each_px_px_percent_is_relative_to_the": [],
+      "tok:save20_gif_size_limit": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 23,
+          "code": "2 -> R.string.save20_gif_size_limit"
+        }
+      ],
+      "tok:formats22_pdf_file_size": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt",
+          "line": 97,
+          "code": "throw PdfImportException(ui(R.string.formats22_pdf_file_size))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PdfCodec.kt",
+          "line": 123,
+          "code": "if (file.length() !in 1..MAX_FILE_BYTES) throw PdfImportException(ui(R.string.formats22_pdf_file_size))"
+        }
+      ],
+      "tok:ui_assembly_source_memory_floor": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300,
+          "code": "message(ui(R.string.ui_assembly_source_memory_floor))"
+        }
+      ],
+      "tok:ui_sampled_resize_memory_explanation": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 34,
+          "code": "body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_sampled_resize_memory_explanation), \"resize_explanation\"))"
+        }
+      ],
+      "tok:ui_the_assembly_needs_about_choose_a_smaller_output": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+          "line": 51,
+          "code": "if (!fits(size)) throw ImageSizeException(ui(R.string.ui_the_assembly_needs_about_choose_a_smaller_output, memoryLabel(estimatedBytes(size))))"
+        }
+      ],
+      "za:colour20_save_slot": [],
+      "za:colour20_replace_slot": [],
+      "za:colour20_saved_slot": [],
+      "za:formats22_loading_page": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 125,
+          "code": "status.text=ui(R.string.formats22_loading_page,value,count)"
+        }
+      ],
+      "za:ui_custom_colour": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "line": 65,
+          "code": "val name=defaults.getOrNull(index)?.takeIf { it.second==colour }?.first ?: ui(R.string.ui_custom_colour, index+1)"
+        }
+      ]
+    },
+    "limits": [
+      "Applied-source audit of independently reviewed values, not renewed whole-language/native-human/layout/TalkBack certification.",
+      "Memory corrections intentionally supersede three base strings; base anchor checks do not assert those strings remain unchanged.",
+      "Generic normalization remains deferred; rejected exact-quotient candidate is historical only.",
+      "Two P0 corrections retain estimate/working-memory budget, smallest-output failure and remedy, sampled decode/edit buffers, variable actual use, detail loss and original-file/assembly unchanged boundaries. No promise of fitting or diagnosis of physical RAM shortage.",
+      "Catalogue-only classification is literal-reference search, not proof against dynamic/future use. No app edits, test reruns, remote mutations, Work tasks or held actions."
+    ]
+  },
+  "local_checks": {
+    "tests": 66,
+    "seconds": 13.394,
+    "executed_base": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "diff_check": "pass"
+  },
+  "remote_source": {
+    "complete_leaves": 1310,
+    "path_type_mode_blob_comparison": "All entries match reviewed staged index",
+    "parent_nonforce_ref_and_tested_parents_tree": "verified"
+  },
+  "candidate_counts": {
+    "status": "Candidate only, not merged credit",
+    "source_tree": "6f04da683f2eaa18a035e02156542400ae48c1c3",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117554,
+    "missing": 5395,
+    "complete": 153,
+    "partial": 18
+  },
+  "change_accounting": {
+    "new_values": 10,
+    "corrected_existing_values": 3,
+    "changed_values": 13,
+    "new_P2": 10,
+    "corrected_P0": 2,
+    "corrected_P2": 1,
+    "unchanged_old_elements": 1051
+  },
+  "current_merged_counts": {
+    "source": "f98bd1b36ccef4c127fcb14d8d3ddab42b233b67",
+    "present": 117544,
+    "total": 122949,
+    "missing": 5405,
+    "complete": 153,
+    "partial": 18
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 11,
+      "P0": 2
+    },
+    "by_locale": {
+      "tok": {
+        "P2": 6,
+        "P0": 2
+      },
+      "za": {
+        "P2": 5
+      }
+    },
+    "limit": "Resource tier is distinct from master-task priority; presence is not linguistic completeness."
+  },
+  "prior_preparation": {
+    "commit": "5e8da4a0c103934cbeb139d373dede1bb9b468af",
+    "path": "verification/translations/2026-11-15/zhuang-next-preparation/research-review.zip",
+    "values": 4,
+    "accepted_final_values_applied_unchanged": true
+  },
+  "limits": [
+    "Original model/source review is not native-human, whole-language or exhaustive installed-layout/glyph/TalkBack acceptance.",
+    "Primary lexical/morphological evidence supports limited constructions, not every complete UI phrase. Existing catalogue wording is consistency evidence, not automatic acceptance.",
+    "Catalogue-only entries have no literal main-source reference; no current UI or universal unreachability claim.",
+    "Specific historical versions stay historically deferred even where new complete formulations qualify. Remaining unproposed gaps are not blanket linguistic findings.",
+    "All prior holds, #422 pending approval operation, Work-side tasks and release destinations remain untouched."
+  ]
+}
