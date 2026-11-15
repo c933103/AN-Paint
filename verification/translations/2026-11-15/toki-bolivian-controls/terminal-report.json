@@ -1,0 +1,188 @@
+{
+  "status": "Merged and actual-develop qualified through bounded prior-environment reuse",
+  "pr": "https://github.com/c933103/AN-Paint/pull/494",
+  "base": "6dd0a950c9b3838daca1fb009f5312eaaa6e4bc6",
+  "head": "1f32ee778c600fcb27938fc833902940b2b3d5bc",
+  "tested_checkout": "ac06b08c9e4be77bda9debf1fa82edd0a86c92e4",
+  "tree": "89ee67b19075795238072f59a3f0e491464fe94b",
+  "merge": "e42d7cf45ed66c1295e36e5de1786d3ad02eb656",
+  "merged_at": "2026-11-15T18:34:44Z",
+  "changes": {
+    "new_values": {
+      "Toki Pona": 4,
+      "South Bolivian Quechua": 5
+    },
+    "existing_repairs": 0,
+    "touched_total": 9,
+    "active": 6,
+    "catalogue_only": 3,
+    "resource_tiers": {
+      "P2": 8,
+      "P3": 1
+    },
+    "old_elements_total": 1000,
+    "old_elements_unchanged": 1000
+  },
+  "review": {
+    "current_proposed_keys": 9,
+    "accepted_unchanged": 8,
+    "revised": 1,
+    "revision_author_agreed": true,
+    "full_value_model_review": "passed for all nine applied values",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6898816421,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "8d78cf51b6c8666cc0ff91da4378cd47bce650ca",
+    "path": "verification/translations/2026-11-15/toki-bolivian-controls"
+  },
+  "local_checks": {
+    "executed_base": "9ce0377a34f94e7dbf7d2ddd433d3afb6efb4171",
+    "executed_candidate_tree": "a938d0403c1d7a20803f7b778067c5d17536e5df",
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "tests": 62,
+    "seconds": 10.071,
+    "result": "pass",
+    "log_sha256": "540465d4dff7a68e465747177d71d1b5bcbbf71d00dfeb143ec6b613d3a549fc",
+    "diff_check": "pass",
+    "scope": "Affected host tests before pending #493 integration; hosted current-head CI remains required. No Android execution locally."
+  },
+  "base_refresh": {
+    "previous_base": "9ce0377a34f94e7dbf7d2ddd433d3afb6efb4171",
+    "base": "6dd0a950c9b3838daca1fb009f5312eaaa6e4bc6",
+    "base_tree": "3a1dbb05e1b3e1f15801e432c0fba4161e13e6b3",
+    "source_tree": "89ee67b19075795238072f59a3f0e491464fe94b",
+    "integrated_PR": 493,
+    "base_changed_paths": [
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericRecoveryAutosaveTest.kt"
+    ],
+    "reviewed_resource_sha256": {
+      "Paintroid/src/main/res/values-b+quh/strings.xml": "afb859a596fb6c17f4956759a7bec5a9baf26bd8bf224defa4fb44fb470043b3",
+      "Paintroid/src/main/res/values-b+tok/strings.xml": "e0210ea4e03510b5a6d1a74d322c07a6809e923038705952233f0abb2b30840c"
+    },
+    "translation_patch_byte_identical": true,
+    "anchors_revalidated": 24,
+    "consumer_lines_revalidated": 7,
+    "local_tests": "62 passed on previous base; affected tools/resources/consumer bindings unchanged. Not relabelled as executed on new base. Exact-head hosted CI remains required.",
+    "limits": "Narrow integration reconciliation, not a new full runtime/native-language acceptance."
+  },
+  "pr_ci": {
+    "run": 43744132743,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 220.244,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1426,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 160,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43747548789,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14174243496,
+    "archive_bytes": 10864,
+    "archive_sha256": "1368bfead8f3a8f2ce7ad635ff046f1687118926666be53b38ad4e1d6273a0c2",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "Actual clean merged source direct-presence recount",
+    "merge": "e42d7cf45ed66c1295e36e5de1786d3ad02eb656",
+    "tree": "89ee67b19075795238072f59a3f0e491464fe94b",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117591,
+    "missing": 5358,
+    "complete": 153,
+    "partial": 18,
+    "counting_scope": "718 translatable string keys plus one translatable plural key per catalogue; presence is not linguistic completeness.",
+    "scratch_recount_correction": "Initial scratch recount omitted the plural key and failed its expected-total assertion before saving. Corrected recount includes separately parsed string/plural keys. No application change or external incorrect claim."
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 8,
+      "P3": 1
+    },
+    "by_locale": {
+      "quh": {
+        "P2": 4,
+        "P3": 1
+      },
+      "tok": {
+        "P2": 4
+      }
+    },
+    "limit": "Resource tier is distinct from master-task priority; presence is not linguistic completeness."
+  },
+  "reviewed_revision": {
+    "original_assessment": {
+      "source_commit": "a021ac9e4ff9ecb6bcf793e00e043e29efae166e",
+      "source_tree": "2a7e9fd457bee80489e45ee0ad4ddfaee30ddb7c",
+      "proposal_sha256": "085d59788e060ff1f758df46aaec51fe2f6eb34351f7cdd8c2c72f3cf1a73347",
+      "review_sha256": "31fca4d1f352771dc4b55b499f6051abe75311936bf7aefbb96e5104161ee03f",
+      "consumer_source_hashes_rechecked": {
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt": "3e886b5d845e61e267bb8e6b4ae7d4842b9fcd090819f80ce369cc7dab709dbc",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt": "0df19c7bee4b2d770e083bea9ece4178580f025fceca6d2de22ab7985068d126",
+        "Paintroid/src/main/res/values/strings.xml": "043252266db963a3977ddbc440d1e4599bbfe6d5ce2e3609c16d7d553d696fc9"
+      },
+      "assessment": {
+        "locale": "tok",
+        "key": "ui_vertical_sideways23",
+        "decision": "agree",
+        "english": "Sideways · keep words joined",
+        "final_value": "nimi li sike 90°. nimi wan wan la sitelen ona li awen wan.",
+        "backtranslation": "Words rotate 90 degrees. For each word, its written characters remain together as one unit.",
+        "rationale": "Accept the complete revision. nimi wan wan la scopes the continued unity to each individual word; sitelen ona refers to that word’s written characters. This resolves the original possibility of all separate words being merged into one. The first sentence retains actual 90-degree rotation. In SIDEWAYS, VerticalText accumulates joined sideways text and shapes a run before rotating it; this is not independent per-character rotation, unlike UPRIGHT. The value does not assert every glyph has a physical joining stroke, does not remove spaces, and does not change column order. No placeholders or linebreak escapes are added or removed.",
+        "provenance": "Reviewer-authored original clarification independently reassessed by original author; no third-party sentence copied."
+      },
+      "limits": [
+        "Assessed at the source-bound a021ac9e tree; parent-reported later #491 merge is not newly qualified by this receipt.",
+        "Model/source semantic acceptance, not native-human, installed glyph/layout or TalkBack certification.",
+        "No application edits, tests, publication, Work task or held action.",
+        "Original proposal and independent review files remain unchanged."
+      ]
+    },
+    "meaning": "Each word’s characters stay together; no claim all separate words become one."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/glyph/TalkBack acceptance.",
+    "Primary lexical evidence corroborates terms, not whole sentences; canonical anchors establish consistency, not automatic acceptance.",
+    "Original specific deferrals including cursor-pan meaning and Toki stored-slot wording remain excluded, not language-wide holds.",
+    "Python totals include skipped bodies; their identities are not inferred from non-verbose output.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified byte/source binding.",
+    "All holds, separate #422 approval operation, #330, Work tasks and release destinations remained untouched."
+  ]
+}
