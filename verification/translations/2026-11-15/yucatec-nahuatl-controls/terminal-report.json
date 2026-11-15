@@ -1,0 +1,234 @@
+{
+  "status": "merged-and-postmerge-qualified",
+  "pr": "https://github.com/c933103/AN-Paint/pull/482",
+  "base": "d456c113a690c56a219d8b008e713fae2d3faf55",
+  "head": "a34d453f706a2b4f1e29c53299a0226140a82de6",
+  "tested_checkout": "f4da7b254cb4dddb5c544f39fff8b6ee233224bb",
+  "tree": "f1ff2572bd3e479ad592ea938697fa88f584f088",
+  "merge": "758eaece5398fc2f85e504c45a4b300008a30018",
+  "merged_at": "2026-11-15T09:23:40Z",
+  "changes": {
+    "Yucatec Maya": 14,
+    "Central Huastecan Nahuatl": 5,
+    "Eastern Huastecan Nahuatl": 5,
+    "Western Huastecan Nahuatl": 5,
+    "total": 29,
+    "active_consumer_entries": 15,
+    "catalogue_only_entries": 14,
+    "previous_elements_preserved": 1518
+  },
+  "review": {
+    "proposed": 29,
+    "accepted_unchanged": 29,
+    "revised": 0,
+    "withheld": 0,
+    "prior_deferrals_resolved_with_new_primary_evidence": 3,
+    "full_value_model_review": "passed",
+    "independent_applied_source_check": "passed",
+    "codex_comment": 6891986608,
+    "exact_head_code_review": "completed with no findings",
+    "security_review": "completed, gate disabled; null finding state is not a claimed clean verdict"
+  },
+  "initial_evidence": {
+    "commit": "c1c4e79f6c7e74ff4f93f0213ded7419a80616ea",
+    "path": "verification/translations/2026-11-15/yucatec-nahuatl-controls"
+  },
+  "integration_evidence": {
+    "record_kind": "Historical integration-stage observation, preserved unchanged; the terminal status and receipts supersede its pending-stage status.",
+    "commit": "5b314551703b29034ba3192d3532ad9bf3101d0b",
+    "observation": {
+      "status": "PR 482 ready, exact-head CI and automatic Codex review pending; not merged",
+      "pr": 482,
+      "source_branch": "localization/p2-yucatec-nahuatl-controls-20261115",
+      "original_source": {
+        "base": "2061e8f914f8bc1e8ae99a6b667ea4c621d6e11c",
+        "head": "4f739f342eecfe6abbbf4d51bf0f9f7509896c68",
+        "tree": "e14113c1482df6255f4fe79f1884613618ba299c"
+      },
+      "final_source": {
+        "base": "d456c113a690c56a219d8b008e713fae2d3faf55",
+        "head": "a34d453f706a2b4f1e29c53299a0226140a82de6",
+        "tree": "f1ff2572bd3e479ad592ea938697fa88f584f088",
+        "head_parents": [
+          "4f739f342eecfe6abbbf4d51bf0f9f7509896c68",
+          "d456c113a690c56a219d8b008e713fae2d3faf55"
+        ],
+        "complete_leaves": 1310,
+        "all_path_mode_type_blobs_match_reviewed_index": true,
+        "nonforce_lease_verified": true
+      },
+      "upstream": {
+        "pr": 481,
+        "head": "211813290f146e55f5fd20b7ab3daa73d79cb23b",
+        "merge": "d456c113a690c56a219d8b008e713fae2d3faf55",
+        "merged_at": "2026-11-15T08:51:24Z",
+        "scope": "Recovery source and three-case JVM regression; no changed UI resource keys and no catalogue overlap. Its separate qualification remains separately owned."
+      },
+      "changes": {
+        "accepted": 29,
+        "Yucatec": 14,
+        "Central_Huastecan_Nahuatl": 5,
+        "Eastern_Huastecan_Nahuatl": 5,
+        "Western_Huastecan_Nahuatl": 5,
+        "active_consumer": 15,
+        "catalogue_only": 14,
+        "all_1518_previous_elements_retained": true,
+        "pr_changed_files": [
+          {
+            "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+            "additions": 6,
+            "deletions": 0
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+            "additions": 6,
+            "deletions": 0
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+            "additions": 6,
+            "deletions": 0
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+yua/strings.xml",
+            "additions": 15,
+            "deletions": 0
+          }
+        ]
+      },
+      "current_base_checks": {
+        "tests": 62,
+        "seconds": 9.482,
+        "diff_check": "passed",
+        "all_accepted_values_and_old_elements_revalidated": true,
+        "consumer_anchors_unchanged": true,
+        "local_JVM_or_device_execution": "not performed; exact-source hosted path owns these"
+      },
+      "ci": {
+        "run": 43696722716,
+        "status": "in_progress",
+        "attempt": 1,
+        "manual_review_request": "none; automatic review triggered by marking ready"
+      },
+      "research": {
+        "initial_evidence_commit": "c1c4e79f6c7e74ff4f93f0213ded7419a80616ea",
+        "initial_archive_sha256": "e7686a66e0ff4d956e75f82228f9f9621e60948d07cd29159438223d29dba9c4",
+        "source_changes_after_archive": "none to the 29 values; only previously merged upstream recovery source/tests incorporated"
+      },
+      "limits": [
+        "Candidate-only coverage remains 117446/122949, not merged credit.",
+        "No native-human, whole-language or exhaustive installed-layout/TalkBack certification.",
+        "#481 follow-through, holds, #422/#330, Work tasks and releases untouched."
+      ]
+    }
+  },
+  "local_checks": {
+    "tests": 62,
+    "seconds": 9.482,
+    "diff_check": "passed"
+  },
+  "pr_ci": {
+    "run": 43696722716,
+    "attempt": 1,
+    "jobs": 7,
+    "conclusion": "success",
+    "python": {
+      "tests": 892,
+      "elapsed_seconds": 232.077,
+      "skipped": 2,
+      "failures": 0,
+      "errors": 0,
+      "result": "OK",
+      "skip_identity_limit": "Non-verbose unittest output gives skip count but not names/reasons; no inferred skip identities."
+    },
+    "jvm": {
+      "tests": 1414,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "jvm_suites": 158,
+    "lint_issue_count": 0,
+    "exact_expected_probes": 13,
+    "app_API35": {
+      "declared_and_completed": 51,
+      "excluded": 0,
+      "source_inventory_and_composition_revalidated": true
+    },
+    "native_API35": {
+      "success": true,
+      "declared_and_completed": 74,
+      "no_exclusions": true,
+      "source_hash_matched": true,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    }
+  },
+  "postmerge": {
+    "run": 43699045701,
+    "attempt": 1,
+    "conclusion": "success",
+    "preflight": "success",
+    "remaining_jobs": "six skipped, not newly executed",
+    "prior_evidence_reused": true,
+    "policy": "immediate-merge-prior-environment-v1",
+    "artifact_id": 14155422795,
+    "archive_sha256": "bbd8965309b6a2b0cd5bfd21b0a0b13bb0507e4686a38212642cb5e440918356",
+    "qualification": "Prior executed environment accepted; no fresh merge build or release qualification."
+  },
+  "merged_counts": {
+    "status": "verified merged develop source",
+    "source_tree": "f1ff2572bd3e479ad592ea938697fa88f584f088",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "present": 117446,
+    "missing": 5503,
+    "complete": 153,
+    "partial": 18,
+    "source_commit": "758eaece5398fc2f85e504c45a4b300008a30018"
+  },
+  "resource_priority_impact": {
+    "accepted_value_counts_by_resource_priority": {
+      "P2": 29
+    },
+    "by_locale": {
+      "yua": {
+        "P2": 14
+      },
+      "nch": {
+        "P2": 5
+      },
+      "nhe": {
+        "P2": 5
+      },
+      "nhw": {
+        "P2": 5
+      }
+    },
+    "limit": "Resource priority classification is separate from master-list ordering; presence is not linguistic or merged completion."
+  },
+  "next_preparation": {
+    "status": "7 independently model-reviewed candidates; not applied or CI-qualified; excluded from merged counts",
+    "commit": "51c6a89016923f0a60916f3f288338ed26341d20",
+    "path": "verification/translations/2026-11-15/cherokee-navajo-next-preparation/research-review.zip",
+    "Cherokee": 2,
+    "Navajo": 5,
+    "active": 4,
+    "catalogue_only": 3,
+    "individual_unproposed_deferrals": {
+      "Cherokee": 12,
+      "Navajo": 29
+    },
+    "bytes": 18749,
+    "sha256": "292471b99eb50cc7e7f4e6f310ba481352581a45c2290dcd7ddf0005eb0c2add",
+    "members": 5,
+    "next_action": "After #482 integration, freshly reconcile actual develop, owners and holds before applying any candidates. Keep preparation separate from current merged coverage."
+  },
+  "limits": [
+    "Model/source review is not native-human, whole-language or exhaustive installed-layout/TalkBack acceptance.",
+    "Primary lexical evidence corroborates targeted terms, not every complete original UI phrase; catalogue anchors are consistency evidence rather than proof.",
+    "The three formerly deferred Yucatec Save-as labels now have narrow recording/media evidence; this does not validate all existing saving-family inflections. Unrelated partial locales and unreviewed complex wording remain unfinished.",
+    "Python totals include skipped bodies; consult the exact regression receipt rather than interpreting the runner total as all executed passes.",
+    "Build/source, test-APK and core-only ZIP bytes were not independently downloaded here; hosted composition/preflight verified their byte/source binding.",
+    "All holds, the separate #422 approval operation, Work-side tasks and release destinations were untouched."
+  ]
+}
