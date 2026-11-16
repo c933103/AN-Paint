@@ -106,9 +106,9 @@ class TiffDescriptionDialogTest {
     private fun expected(tag: String) = PriorityWordingExpectations.resources(tag)
         .getString(R.string.formats22_tiff_description)
 
-    @Test fun missingWolofDescriptionFallsBackToQualifiedEnglishForBothChoices() {
+    @Test fun missingNorthernSamiDescriptionFallsBackToQualifiedEnglishForBothChoices() {
         for (compressed in listOf(false, true)) {
-            val dialog = open("wo", compressed)
+            val dialog = open("se", compressed)
             assertTiff(dialog, expected("en-GB"), compressed)
             confirm(dialog, compressed)
         }
