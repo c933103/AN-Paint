@@ -16,6 +16,8 @@ import android.os.Looper
 import android.os.SystemClock
 import android.text.Spanned
 import android.text.style.ReplacementSpan
+import android.view.MotionEvent
+import android.view.Window
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +59,47 @@ class AssemblyPositionDeviceTest {
     private val context get()=instrumentation.targetContext
     private val device get()=UiDevice.getInstance(instrumentation)
     private var deadline=Long.MAX_VALUE
+    // Bounded passive observations. Never consume a touch, retry it, request
+    // focus/IME, or change the interaction budget to obtain a passing result.
+    private val motionTrace=java.util.ArrayDeque<String>()
+
+    private fun observeMotion(dialog: AlertDialog) {
+        val window=checkNotNull(dialog.window)
+        val original=window.callback
+        window.callback=object: Window.Callback by original {
+            override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+                val entered=SystemClock.uptimeMillis()
+                val observation=runCatching {
+                    val boundary=event.actionMasked==MotionEvent.ACTION_DOWN ||
+                        event.actionMasked==MotionEvent.ACTION_UP || event.actionMasked==MotionEvent.ACTION_CANCEL
+                    if(boundary) "motion action=${MotionEvent.actionToString(event.action)} " +
+                        "down=${event.downTime} event=${event.eventTime} entered=$entered " +
+                        "x=${event.x} y=${event.y} before=[${inputState(window.decorView)}]" else null
+                }.getOrNull()
+                // The delegate runs exactly once even if observation fails;
+                // its result or exception is never replaced by diagnostics.
+                val handled=original.dispatchTouchEvent(event)
+                val exited=SystemClock.uptimeMillis()
+                if(observation!=null) runCatching {
+                    if(motionTrace.size>=128) motionTrace.removeFirst()
+                    motionTrace.addLast("$observation exited=$exited handled=$handled " +
+                        "after=[${inputState(window.decorView)}]")
+                }
+                return handled
+            }
+        }
+    }
+    private fun inputState(root: View): String {
+        val focus=root.findFocus()
+        val field=focus as? EditText
+        return "focus=${focus?.tag} windowFocus=${root.hasWindowFocus()} touchMode=${root.isInTouchMode} " +
+            "ime=${root.rootWindowInsets?.isVisible(WindowInsets.Type.ime())} " +
+            "selection=${field?.selectionStart}:${field?.selectionEnd}"
+    }
+    private fun reportMotion(label: String) {
+        val entries=onMain {motionTrace.toList().also {motionTrace.clear()}}
+        entries.forEach {android.util.Log.i("AssemblyPositionDeviceTest","$label $it")}
+    }
 
     @Test fun ainuKanaPositionTextAndNativeEditing()=checkLocale("ain-Kana")
     @Test fun ainuLatinPositionTextAndNativeEditing()=checkLocale("ain-Latn")
@@ -67,6 +110,7 @@ class AssemblyPositionDeviceTest {
     @Test fun nomPositionTextAndNativeEditing()=checkLocale("vi-Hani")
 
     private fun checkLocale(tag: String) {
+        onMain {motionTrace.clear()}
         val preferences=context.getSharedPreferences("app-language",0)
         val oldTag=preferences.getString("language-tag",null)
         val hadTag=preferences.contains("language-tag")
@@ -118,6 +162,7 @@ class AssemblyPositionDeviceTest {
             fun open(): AlertDialog {
                 val current=onMain {AssemblyPositionDialog(owner,assembly,"selected").show()}
                 dialog=current
+                onMain {observeMotion(current)}
                 await("localized position dialog") {
                     current.isShowing && current.window!!.decorView.hasWindowFocus() &&
                         current.window!!.decorView.findViewWithTag<EditText>("assembly_position_x")?.layout!=null &&
@@ -175,7 +220,22 @@ class AssemblyPositionDeviceTest {
             await("Back dismisses the reopened dialog") {!current.isShowing && owner.window.decorView.hasWindowFocus()}
             assertArrayEquals("Back cannot change saved project",accepted,File(directory,"project.json").readBytes())
             checkDeadline()
-        } catch(error: Throwable) {failure=error}
+        } catch(error: Throwable) {
+            failure=error
+            // Diagnostics run only after the original assertion failed, before
+            // teardown destroys the focus/scroll state. Preserve that failure.
+            try {
+                reportMotion("failure locale=$tag")
+                val states=onMain {dialog?.window?.decorView?.let {root ->
+                    listOf("root ${inputState(root)}")+descendants(root).take(100).map {view ->
+                        "view=${view.javaClass.simpleName} id=${System.identityHashCode(view)} tag=${view.tag} raw=${rawBounds(view)} " +
+                            "visible=${visibleBounds(view)} scroll=${view.scrollX}:${view.scrollY} " +
+                            "layoutRequested=${view.isLayoutRequested}"
+                    }
+                }.orEmpty()}
+                states.forEach {android.util.Log.i("AssemblyPositionDeviceTest","failure locale=$tag $it")}
+            } catch(diagnostic: Throwable) {error.addSuppressed(diagnostic)}
+        }
         finally {
             deadline=Long.MAX_VALUE
             fun cleanup(action: ()->Unit) {try {action()} catch(error: Throwable) {
@@ -318,12 +378,14 @@ class AssemblyPositionDeviceTest {
         // A vertical caption can span many horizontal columns. Requiring one
         // giant rectangle to fit simultaneously would mistake scrolling for loss.
         val tile=onMain {(64*view.resources.displayMetrics.density).toInt().coerceAtLeast(1)}
-        for(region in regions) {
+        for((regionIndex,region) in regions.withIndex()) {
             // Finish each column before advancing horizontally. Row-major order
             // swept a wide vertical caption back to its start for every tile row.
             // The helper emits exactly the same bounded rectangles, once each.
             CaptionTileTraversal.visit(region.left,region.top,region.right,region.bottom,tile) {left,top,right,bottom ->
                 val piece=Rect(left,top,right,bottom)
+                android.util.Log.i("AssemblyPositionDeviceTest","caption tile view=${view.javaClass.simpleName} id=${System.identityHashCode(view)} " +
+                    "tag=${view.tag} region=$regionIndex piece=$piece remainingMs=${deadline-SystemClock.uptimeMillis()}")
                 reveal(view) {rawBounds(view).let {raw ->Rect(piece).apply {offset(raw.left,raw.top)}}}
             }
         }
@@ -338,8 +400,13 @@ class AssemblyPositionDeviceTest {
                 view.hasWindowFocus() && view.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false)
             visibleBounds(view)
         }
+        val started=SystemClock.uptimeMillis()
         assertTrue("Native dialog tap",device.click(bounds.centerX(),bounds.centerY()))
+        val injected=SystemClock.uptimeMillis()
         instrumentation.waitForIdleSync()
+        android.util.Log.i("AssemblyPositionDeviceTest","native tap target=${view.tag} " +
+            "injectionMs=${injected-started} idleMs=${SystemClock.uptimeMillis()-injected}")
+        reportMotion("tap target=${view.tag}")
     }
     private data class Gesture(val owner: View,val bounds: Rect,val horizontal: Boolean,val direction: Int,val hidden: Int)
     private fun reveal(view: View,target: ()->Rect) {
@@ -394,8 +461,15 @@ class AssemblyPositionDeviceTest {
             val inputBefore=onMain {descendants(view.rootView).filterIsInstance<EditText>().associateWith {it.text.toString()}}
             android.util.Log.i("AssemblyPositionDeviceTest","native reveal from=$first to=$last bounds=$bounds " +
                 "horizontal=${gesture.horizontal} target=${view.tag}")
+            val beforeScroll=onMain {"${gesture.owner.scrollX}:${gesture.owner.scrollY}"}
+            val started=SystemClock.uptimeMillis()
             assertTrue("Native caption reveal",device.swipe(arrayOf(first,last,last,last),16))
+            val injected=SystemClock.uptimeMillis()
             settle(view)
+            val afterScroll=onMain {"${gesture.owner.scrollX}:${gesture.owner.scrollY}"}
+            android.util.Log.i("AssemblyPositionDeviceTest","native reveal timing target=${view.tag} " +
+                "scroll=$beforeScroll->$afterScroll injectionMs=${injected-started} " +
+                "settleMs=${SystemClock.uptimeMillis()-injected}")
             onMain {
                 assertSame("Caption scrolling must not focus an editable control",focusBefore,view.rootView.findFocus())
                 inputBefore.forEach {(input,text) ->assertEquals("Caption scrolling must not edit ${input.tag}",text,input.text.toString())}
