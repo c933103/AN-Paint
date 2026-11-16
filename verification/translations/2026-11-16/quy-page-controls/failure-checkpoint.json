@@ -1,0 +1,254 @@
+{
+  "pr": 508,
+  "status": "Attempt 1 failed mandatory dialog evidence export; not qualified, source PR remains open at observation",
+  "run": 43811855915,
+  "attempt": 1,
+  "head": "8d6bf4e1f0e8f047ae467571ae3e8031b0c9d921",
+  "tested_checkout": "3047ac0c25fa5b34c9f8372f059547fba964ef9f",
+  "tree": "e1ba83566632d2f8e88bb1e433557fd633af7110",
+  "artifact": {
+    "id": 14201552539,
+    "bytes": 9271336,
+    "sha256": "019263f784c963e3b9e49d345eb2d1e1e2f47a2cacf0bd14572711f761c349ac",
+    "members": 176
+  },
+  "jobs": [
+    {
+      "id": 133115052902,
+      "name": "Verify recent same-tree PR evidence",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 133115103402,
+      "name": "Regression tests and lint",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 133115103456,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 133115103491,
+      "name": "Exact-script resource generation",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 133118452425,
+      "name": "Position dialog API 35",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    {
+      "id": 133118452445,
+      "name": "Core emulator API 35",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    {
+      "id": 133123511346,
+      "name": "Emulator API 35",
+      "conclusion": "failure",
+      "run_attempt": 1
+    }
+  ],
+  "finding": "Core instrumentation completion did not satisfy mandatory installed-dialog evidence collection. Core and aggregate jobs failed; other five jobs passed.",
+  "transfer": {
+    "transport_complete": false,
+    "budget_seconds": 15,
+    "device_sdk": 35,
+    "abi": "x86_64",
+    "commands": [
+      {
+        "command": "initial-identity",
+        "started_seconds": 0.0008017430000109016,
+        "remaining_seconds": 14.999204018,
+        "exit_status": 0,
+        "ended_seconds": 0.06499197299990556
+      },
+      {
+        "command": "pull-1",
+        "started_seconds": 0.06565231199988375,
+        "remaining_seconds": 14.934350544000154,
+        "exit_status": 1,
+        "ended_seconds": 0.23191925700007232
+      },
+      {
+        "command": "passive-wait",
+        "started_seconds": 0.23260113599985743,
+        "remaining_seconds": 14.767400657000053,
+        "exit_status": 0,
+        "ended_seconds": 0.8488060780000524
+      },
+      {
+        "command": "recovered-identity",
+        "started_seconds": 0.8494403990000592,
+        "remaining_seconds": 14.150561745000005,
+        "exit_status": 0,
+        "ended_seconds": 0.8713350680000076
+      },
+      {
+        "command": "pull-2",
+        "started_seconds": 0.8718366509999669,
+        "remaining_seconds": 14.128165513000113,
+        "exit_status": 1,
+        "ended_seconds": 0.936046056999885
+      }
+    ],
+    "error": "Evidence transfer failed; recovery allowance exhausted"
+  },
+  "same_boot_identity_before_after": true,
+  "collection_exit_statuses": {
+    "dialog_pull_exit": 1,
+    "vertical_pull_exit": 0,
+    "logcat_exit": 0,
+    "result": 1
+  },
+  "host_transport_observations": [
+    {
+      "time": "06:06:35.987",
+      "message": "connection terminated: read failed"
+    },
+    {
+      "time": "06:06:36.723",
+      "message": "connection terminated: read failed"
+    }
+  ],
+  "partial_pull_observation": "Both pull logs end at overall3% and65% of the same named dialog ZIP. Partial transfer files are recorded by hashes, not accepted as complete dialog evidence.",
+  "partial_files": [
+    {
+      "path": "dialog-export-attempts/attempt-1/largeEnglishColourCaptionsAndPreviewRemainReachable.zip",
+      "bytes": 97051,
+      "sha256": "6cb0848bafeec03c52276831590023ed28e1496c8295a907a32a9650692204d7"
+    },
+    {
+      "path": "dialog-export-attempts/attempt-1/largeHungarianColourCaptionsAndPreviewRemainReachable.zip",
+      "bytes": 100486,
+      "sha256": "d060d858f2ae29a428d57215d5031ce538abb533cb0068701a6ff92879ed627c"
+    },
+    {
+      "path": "dialog-export-attempts/attempt-1/retainedColourStateSurvivesRotationImeCancelAndReopen.zip",
+      "bytes": 211489,
+      "sha256": "4325bb4caad1881e68ab01c5d6cda568d3b6acc3fb50267addfd011bb8a05cf7"
+    },
+    {
+      "path": "dialog-export-attempts/attempt-1/retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation.zip",
+      "bytes": 100723,
+      "sha256": "5ce26ed6312febb64218a508748a358ff4c96f36cd9179736a52743e73c47c1b"
+    },
+    {
+      "path": "dialog-export-attempts/attempt-2/retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation.zip",
+      "bytes": 100723,
+      "sha256": "5ce26ed6312febb64218a508748a358ff4c96f36cd9179736a52743e73c47c1b"
+    },
+    {
+      "path": "dialog-export-attempts/initial-identity.log",
+      "bytes": 47,
+      "sha256": "76ab90df8d85c63bab1432e11482d7f8fe6c072aa91b787d2d225a7451bfa74f"
+    },
+    {
+      "path": "dialog-export-attempts/passive-wait.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dialog-export-attempts/pull-1.log",
+      "bytes": 132,
+      "sha256": "dde9a6a99182cd948c74cc29c6d3151d99a1afdd7cd9b32d77fcabd20ec6ca5c"
+    },
+    {
+      "path": "dialog-export-attempts/pull-2.log",
+      "bytes": 132,
+      "sha256": "dde9a6a99182cd948c74cc29c6d3151d99a1afdd7cd9b32d77fcabd20ec6ca5c"
+    },
+    {
+      "path": "dialog-export-attempts/recovered-identity.log",
+      "bytes": 47,
+      "sha256": "76ab90df8d85c63bab1432e11482d7f8fe6c072aa91b787d2d225a7451bfa74f"
+    }
+  ],
+  "partial_ZIP_integrity": "Both copies of the retainedCredit dialog ZIP are identical and CRC-valid. The progress text does not establish ZIP corruption; mandatory directory export remained incomplete.",
+  "retry_status": {
+    "run": 43811855915,
+    "attempt": 1,
+    "head": "8d6bf4e1f0e8f047ae467571ae3e8031b0c9d921",
+    "base": "15e6ecda6212c1c1909679a1b889af5cebe880ea",
+    "source_unchanged": true,
+    "only_failed_jobs": true,
+    "diagnosis": "ADB transport disconnects during mandatory export; source-bound instrumentation passed, complete collection failed; root cause unresolved",
+    "request_result": {
+      "success": true
+    },
+    "verified_after": {
+      "id": 43811855915,
+      "attempt": 2,
+      "status": "in_progress",
+      "head": "8d6bf4e1f0e8f047ae467571ae3e8031b0c9d921"
+    },
+    "rerun_requests": 1,
+    "full_workflow_reruns": 0,
+    "original_failure_retained": true
+  },
+  "instrumentation_limit": "Saved console sequence reports instrumentation result0 and44 selected app cases, with7 position cases deferred. This is not complete independent API35 app/native composition or aggregate acceptance.",
+  "diagnosis_limits": [
+    "Two permitted same-boot pulls failed while time budget remained; recovery allowance exhausted. Exact underlying transport root cause and source-specific defect are not established.",
+    "Original device-verification-blocked.json predates the later core ZIP download; its no-core-download wording is historical. The later downloaded core artifact was independently hash-verified here.",
+    "One failed-jobs-only retry was separately requested and verified as attempt2 in_progress on the same source. This checkpoint does not perform another retry or claim its outcome.",
+    "No release, native-human or exhaustive layout acceptance."
+  ],
+  "publication_scope": "Concise derivative facts only. Original broad emulator/logcat, screenshot ZIPs, boot identifiers, filesystem paths and raw archive are omitted; retained locally with hashes. No credentials or signed URLs included.",
+  "source_receipts": [
+    {
+      "file": "failure-diagnosis.json",
+      "sha256": "dfeb0fec2bd5677728fe900986ee306416932d0f20d9aaa006214ff1df8f4c8d"
+    },
+    {
+      "file": "device-verification-blocked.json",
+      "sha256": "e26c9c4e7067d9e55b5cdb6e8ed6a45059f53bd08b11fe28e596322935eca2b1"
+    },
+    {
+      "file": "failure-diagnosis-independent.json",
+      "sha256": "37d13a7d1dcff0956b3c91e1abb90bfaa80a4170488f83d02525958e10428b03"
+    },
+    {
+      "file": "scoped-retry-receipt.json",
+      "sha256": "032a36c782fd0e38c09e8db043ac5e498e5bfc42dda0d514db5e86c598a1f129"
+    },
+    {
+      "file": "core-failed-verify/dialog-export-transfer.json",
+      "sha256": "3ab93e0478ef6f900223bdbe7c0bfafe1fbc6d8bd888fc86e18827bdcc9ea82d"
+    },
+    {
+      "file": "core-failed-verify/collection-status.log",
+      "sha256": "a0029c975081f0c4399339856956e3c674b3502e642ed82e8b1f64f4c15308bd"
+    },
+    {
+      "file": "core-failed-verify/dialog-pull.log",
+      "sha256": "d145fdc85d2f22fc1e2bd228f9c584336cee26017b56a20abfa52978536febd1"
+    },
+    {
+      "file": "core-failed-verify/adb-server-tail.log",
+      "sha256": "b373ae7e8d9dee81b10bc47d37034459461469df3ede00149c405eb6da24cb70"
+    },
+    {
+      "file": "core-failed-verify/dialog-export-attempts/pull-1.log",
+      "sha256": "dde9a6a99182cd948c74cc29c6d3151d99a1afdd7cd9b32d77fcabd20ec6ca5c"
+    },
+    {
+      "file": "core-failed-verify/dialog-export-attempts/pull-2.log",
+      "sha256": "dde9a6a99182cd948c74cc29c6d3151d99a1afdd7cd9b32d77fcabd20ec6ca5c"
+    },
+    {
+      "file": "core-failed-verify/dialog-export-attempts/initial-identity.log",
+      "sha256": "76ab90df8d85c63bab1432e11482d7f8fe6c072aa91b787d2d225a7451bfa74f"
+    },
+    {
+      "file": "core-failed-verify/dialog-export-attempts/recovered-identity.log",
+      "sha256": "76ab90df8d85c63bab1432e11482d7f8fe6c072aa91b787d2d225a7451bfa74f"
+    }
+  ]
+}
