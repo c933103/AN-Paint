@@ -1,0 +1,1051 @@
+{
+  "head": "411a037f13219e97744cca6a9de8ee41764f2e83",
+  "tree": "6572d6382f42ec388d7b593c04251dd654dc8bcc",
+  "base": "8b6446e01376f8e1fd760ff5bd6823b88caf6ee7",
+  "all_leaves": 1314,
+  "exact_ref": true,
+  "exact_parent": true,
+  "remote_tree_matches_reviewed_local": true,
+  "pr": 507,
+  "pr_url": "https://github.com/c933103/AN-Paint/pull/507",
+  "branch": "localization/quy-page-navigation-20261116",
+  "draft": false,
+  "tested_merge": "d2c01b3e448c40e156eeb6af26a719aa01573ece",
+  "tested_tree": "6572d6382f42ec388d7b593c04251dd654dc8bcc",
+  "tested_ordered_parents": [
+    "8b6446e01376f8e1fd760ff5bd6823b88caf6ee7",
+    "411a037f13219e97744cca6a9de8ee41764f2e83"
+  ],
+  "runs": [
+    {
+      "id": 43805499430,
+      "event": "pull_request",
+      "status": "in_progress",
+      "head": "411a037f13219e97744cca6a9de8ee41764f2e83",
+      "attempt": 1
+    }
+  ],
+  "automatic_Codex": true,
+  "manual_review_requests": 0,
+  "duplicate_CI": 0,
+  "status": "Initial evidence only; source published, not terminal CI or merged credit",
+  "changes": {
+    "new_values": {
+      "quy": 2
+    },
+    "accepted_unchanged_active_P2": 2,
+    "old_elements_preserved": 413,
+    "XML_files": 1,
+    "insertions": 3,
+    "deletions": 0,
+    "new_codepoints": 0
+  },
+  "review": {
+    "method": "Independent whole-value model review and applied source audit, not native-human certification",
+    "original_provenance": [
+      {
+        "original_proposal": "quy-proposals.json",
+        "original_proposal_sha256": "d01ef0db528278fbb67818ca50c1b87e09928968be9daebb6fb720d8ba5e85ac",
+        "original_review": "independent-review.json",
+        "original_review_sha256": "da395a00cdc48640e291715da8d3e1d607c00c15d9b5666377a14abde7021ded",
+        "validated_base": "8b6446e01376f8e1fd760ff5bd6823b88caf6ee7",
+        "normalization": "Schema-only source hash aliases, canonical anchor consolidation, runtime-consumer singular/list and line/start aliases; values and review decisions unchanged. Original packets retained exactly."
+      }
+    ],
+    "accepted_values": [
+      {
+        "locale": "quy",
+        "key": "formats22_select_page",
+        "english": "Choose a page",
+        "proposed": "Huk rapita akllay",
+        "decision": "accept",
+        "final_value": "Huk rapita akllay",
+        "rationale": "Huk is one/an individual page, appropriate to a chooser that selects exactly one page; rapi-ta marks that page as direct object, and aklla-y is a second-person singular imperative/command form. Object-before-verb ordering is natural. The whole title invites a choice, not a completed selection and not every page. Independent official same-variety indexed Rapi entry explicitly includes a notebook/book page as second sense, so the earlier botanical-leaf-only evidence limitation no longer applies to this basic noun. Unaspirated rapi and kichay conform to Ayacucho-Chanka; no Collao raphi or Bolivian laqhi substitution. Existing XML anchors only corroborate current consistency.",
+        "confidence": "high for this bounded basic control; indexed-source access limitation retained",
+        "consumer_classification": "active P2",
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "line": 113,
+            "code": "        val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_select_page))"
+          }
+        ],
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+            "line": 141,
+            "code": "    <string name=\"formats22_pdf_raster_hint\">PDF rapikunaqa 144 dpi nisqa tupupi siqikunaman tikrakun. Qillqapas vector nisqa imakunapas pixel nisqa ñutu tawa kuchukunaman tikrakun.</string>",
+            "key": "formats22_pdf_raster_hint",
+            "value": "PDF rapikunaqa 144 dpi nisqa tupupi siqikunaman tikrakun. Qillqapas vector nisqa imakunapas pixel nisqa ñutu tawa kuchukunaman tikrakun.",
+            "attributes": {
+              "name": "formats22_pdf_raster_hint"
+            }
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+            "line": 190,
+            "code": "    <string name=\"ui_choose_at_least_one_image\">Huk siqillatapas akllay.</string>",
+            "key": "ui_choose_at_least_one_image",
+            "value": "Huk siqillatapas akllay.",
+            "attributes": {
+              "name": "ui_choose_at_least_one_image"
+            }
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+            "line": 189,
+            "code": "    <string name=\"ui_choose_a_smaller_size\">Aswan huchuy chikanta akllay.</string>",
+            "key": "ui_choose_a_smaller_size",
+            "value": "Aswan huchuy chikanta akllay.",
+            "attributes": {
+              "name": "ui_choose_a_smaller_size"
+            }
+          }
+        ],
+        "uncertainties": "No exact software donor phrase or native-human approval claimed. Document-page metaphor covers PDF/TIFF logical pages; technical page-bearing statements require separate whole-value review."
+      },
+      {
+        "locale": "quy",
+        "key": "formats22_open_page",
+        "english": "Open page",
+        "proposed": "Rapita kichay",
+        "decision": "accept",
+        "final_value": "Rapita kichay",
+        "rationale": "Rapi-ta is the selected page as direct object; kicha-y is the open command. Absence of an article is normal, with definiteness supplied by the selected-page context. Digital opening is a modest contextual extension of opening/accessing, not an assertion that rendering has succeeded or all pages will load. Independent official same-variety indexed Rapi entry explicitly includes a notebook/book page as second sense, so the earlier botanical-leaf-only evidence limitation no longer applies to this basic noun. Unaspirated rapi and kichay conform to Ayacucho-Chanka; no Collao raphi or Bolivian laqhi substitution. Existing XML anchors only corroborate current consistency.",
+        "confidence": "high for this bounded basic control; indexed-source access limitation retained",
+        "consumer_classification": "active P2",
+        "consumer_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "line": 115,
+            "code": "            .setPositiveButton(ui(R.string.formats22_open_page),null)"
+          }
+        ],
+        "source_anchors": [
+          {
+            "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+            "line": 141,
+            "code": "    <string name=\"formats22_pdf_raster_hint\">PDF rapikunaqa 144 dpi nisqa tupupi siqikunaman tikrakun. Qillqapas vector nisqa imakunapas pixel nisqa ñutu tawa kuchukunaman tikrakun.</string>",
+            "key": "formats22_pdf_raster_hint",
+            "value": "PDF rapikunaqa 144 dpi nisqa tupupi siqikunaman tikrakun. Qillqapas vector nisqa imakunapas pixel nisqa ñutu tawa kuchukunaman tikrakun.",
+            "attributes": {
+              "name": "formats22_pdf_raster_hint"
+            }
+          },
+          {
+            "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+            "line": 24,
+            "code": "    <string name=\"ui_could_not_open_image\">Manam siqita kichayta atikunchu.</string>",
+            "key": "ui_could_not_open_image",
+            "value": "Manam siqita kichayta atikunchu.",
+            "attributes": {
+              "name": "ui_could_not_open_image"
+            }
+          }
+        ],
+        "uncertainties": "No exact software donor phrase or native-human approval claimed. Document-page metaphor covers PDF/TIFF logical pages; technical page-bearing statements require separate whole-value review."
+      }
+    ],
+    "coverage": {
+      "canonical_occurrences": 7,
+      "runtime_lines": 2,
+      "producer_bindings": 10,
+      "unique_producer_ranges": 5,
+      "note": "Bindings are not ten independent producers or tests."
+    },
+    "runtime": "PDF/TIFF page chooser, not ICO. Valid one-based selection1..count enables the Open action, which passes zero-based index to finishSelection. It initiates ImportedImage handoff; subsequent resize/loading/failure handling remains possible. Both title and imperative button are actions, not success promises."
+  },
+  "local_checks": {
+    "result": "pass",
+    "base": "8b6446e01376f8e1fd760ff5bd6823b88caf6ee7",
+    "scope": "Two accepted Ayacucho Quechua PDF/TIFF navigation values; all existing values and individual deferrals unchanged.",
+    "tests": 62,
+    "seconds": 14.576,
+    "command": "PYTHONPATH=tools python3 -m unittest test_translations test_translation_boundaries test_string_importance test_locale_tooltips test_gallery_translation_data",
+    "changed_files_sha256": {
+      "Paintroid/src/main/res/values-b+quy/strings.xml": "365a9238da8627af5d32020aeb4d46b5997718ccec5e955f0e6f3db2997956df"
+    },
+    "log_sha256": "8946f073ba8d3ea3f4582408a8e1c2c84be1d20b93f59fb3fb1ffcc6a0730e27"
+  },
+  "candidate_counts": {
+    "status": "Candidate only, not merged credit",
+    "base": "8b6446e01376f8e1fd760ff5bd6823b88caf6ee7",
+    "tree": "6572d6382f42ec388d7b593c04251dd654dc8bcc",
+    "catalogues": 171,
+    "keys_per_catalogue": 719,
+    "key_definition": "718 translatable strings and one plural resource",
+    "present": 117639,
+    "missing": 5310,
+    "complete": 153,
+    "partial": 18,
+    "rows": [
+      {
+        "tag": "en-001",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "af",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ain-Kana",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ain-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "am",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ang",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ar",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ary",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "as",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ast",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "az",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "be",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bg",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "br",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bs",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ca",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ca-ES-valencia",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ceb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ch",
+        "present": 407,
+        "missing": 312
+      },
+      {
+        "tag": "chr",
+        "present": 386,
+        "missing": 333
+      },
+      {
+        "tag": "ckb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "cs",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "csb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "cy",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "da",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "de",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "dz",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "el",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-AU",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-CA",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-GB",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-IN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-SG",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-US",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-XV",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "eo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "es-419",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "es-ES",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "et",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "eu-ES",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fa-IR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fil",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fy",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ga",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gu",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ha",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hak-Hant-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hak-Latn-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "he",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hne",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ht",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hu",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hy",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ia",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "id",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ig",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "is",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "it",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ja",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "jje",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "jv",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ka",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kab",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "km",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-Kore-KR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-KP",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-KR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ku",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ky",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "la",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ln",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lt",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lv",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lzh-Hant",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mai",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ml-IN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mn-Cyrl-MN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mn-Mong",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mnc-Mong",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ms",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mww",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "my",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nan-Hant-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nan-Latn-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nch",
+        "present": 384,
+        "missing": 335
+      },
+      {
+        "tag": "nds",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ne",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nhe",
+        "present": 384,
+        "missing": 335
+      },
+      {
+        "tag": "nhw",
+        "present": 383,
+        "missing": 336
+      },
+      {
+        "tag": "nl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "no",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "non",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nv",
+        "present": 390,
+        "missing": 329
+      },
+      {
+        "tag": "oc",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pa-IN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pcm",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ps",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pt-BR",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pt-PT",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "qaa-Zsye-XV",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "qug",
+        "present": 410,
+        "missing": 309
+      },
+      {
+        "tag": "quh",
+        "present": 422,
+        "missing": 297
+      },
+      {
+        "tag": "quy",
+        "present": 415,
+        "missing": 304
+      },
+      {
+        "tag": "quz",
+        "present": 418,
+        "missing": 301
+      },
+      {
+        "tag": "ro",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ru",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "rw",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ryu",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "se",
+        "present": 464,
+        "missing": 255
+      },
+      {
+        "tag": "shn",
+        "present": 430,
+        "missing": 289
+      },
+      {
+        "tag": "si",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sm",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "so",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sq",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sr-Cyrl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sr-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "su",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sv",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sw",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ta",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tdd",
+        "present": 389,
+        "missing": 330
+      },
+      {
+        "tag": "te",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tg",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "th",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tok",
+        "present": 603,
+        "missing": 116
+      },
+      {
+        "tag": "tpi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tr",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tt-Cyrl",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tt-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ug",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "uk",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ur",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "uz-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "vi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "vi-Hani",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wo",
+        "present": 476,
+        "missing": 243
+      },
+      {
+        "tag": "wuu-Hans",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "xh",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yi",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yo",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yua",
+        "present": 396,
+        "missing": 323
+      },
+      {
+        "tag": "yue-Hant",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yue-Latn",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "za",
+        "present": 474,
+        "missing": 245
+      },
+      {
+        "tag": "zgh",
+        "present": 401,
+        "missing": 318
+      },
+      {
+        "tag": "zh-CN",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zh-HK",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zh-TW",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zu",
+        "present": 719,
+        "missing": 0
+      }
+    ]
+  },
+  "research_limits": [
+    "Indexed official MINEDU Ayacucho dictionary evidence supports document/book-page rapi p120, selection akllay p15, opening kichay p54 and reverse Abrir p177. No full PDF read/render or challenge passage claimed.",
+    "Complete original sentences and imperative grammar independently model assessed, not exact donor sentences or native-human certification.",
+    "PDF/TIFF only, not ICO. Valid one-based choice becomes zero-based finishSelection index; later resize, loading or failure remains possible.",
+    "No PDF redistribution or exhaustive glyph/layout/TalkBack acceptance."
+  ],
+  "provenance_limits": "Original preparation pending/unapplied statements remain historical. Current final audit and applied values provide application status. All four declared source hashes unchanged across actual base reconciliation.",
+  "limits": [
+    "Only two current additions; three future page controls excluded.",
+    "Ten producer bindings are five unique ranges, not ten tests or producers.",
+    "Prior technical deferrals and all existing values preserved; no whole-language or release credit."
+  ]
+}
