@@ -1,0 +1,46 @@
+{
+  "scope": "ch/zgh 13-label integration",
+  "head": "9923a0a1f7ae63e5fa905dd0f063ccfce74f683a",
+  "tree": "afa5e22e200e34508c65d264fbdc502c7f2ef2ac",
+  "prior_source_evidence": "e1a46545bd04e518cc64f45665bd98ca80790826",
+  "independent_review": {
+    "scope": "13 complete new labels (7 ch,6 zgh) and provenance correction; not full catalogue audit",
+    "diff_sha256": "a0c6973ebb13fbf0720df35f85a99000d94d086e8e5b64ddb3c35c8259264f17",
+    "result": "No blocking findings; bounded source/context acceptance",
+    "tests": "40 tests passed in7.214s: tools.test_translation_boundaries + tools.test_translations; git diff --check clean",
+    "source_checks": [
+      "Primary Natibun dictionary inatyik option, ramienta tool, rueda wheel, lisensia license/permission, tåtti back; source spelling retained",
+      "Quality exact Kualidǻt from locally preserved official technology PDF, SHA d031b6efc90d8fe68bf3bb63fb9ed28b77a65f99e5686bd5165e0ddf424bc63e; fresh Drive open unavailable",
+      "Pinned MediaWiki377002822b34077904f4e83c21faaf69d1bfea9a exact licence, filename, About and copyright labels; namespace removed only, identifiers/order notation appended",
+      "Top Sanhilo' exact official Guam2024 orthography indexed p75–76 san+hulo'=sanhilo' on top; CNMI finder has sanhilu', not silently normalized. https://kumisionchamoru.guam.gov/wp-content/uploads/2025/02/Utugrafihan-CHamoru-GuA%C2%A5han-3rd-Ed-2024_KumisiA%C2%B3n-i-Fino-CHamoru_Digital.pdf"
+    ],
+    "consumers": [
+      "SaveOptionsDialog84 quality1..100",
+      "ImageCropDialog72 top edge",
+      "ClassicPaintActivity831 single tool option",
+      "AdvancedColourDialog118 wheel tab",
+      "MediaGalleryActivity128 back",
+      "LegalInfo113 and ClassicPaintActivity889 licence/about",
+      "ImageAssembly36 filename sort",
+      "ui_about_copyright_licence live: ClassicPaintActivity888 and LegalInfo67; earlier no-consumer classification was wrong due incomplete exact-key scan and is withdrawn."
+    ],
+    "limits": [
+      "No native grammar, region-wide orthography or device-layout certification",
+      "Chamorro tool-option and licence labels bounded compositions, not attested full technical phrases",
+      "No unapproved long drafts integrated"
+    ],
+    "edits": "None"
+  },
+  "tests": {
+    "full_host": {
+      "count": 893,
+      "seconds": 221.714,
+      "result": "pass"
+    },
+    "focused_translation": 47,
+    "focused_help_font": 59,
+    "local_jvm_device": "unexecuted"
+  },
+  "status": "PR531 exact-head review/CI pending; no merge or coverage increment",
+  "limits": "13 accepted subset only; other drafts excluded; no native certification; Spanish hold"
+}
