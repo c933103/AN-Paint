@@ -174,9 +174,9 @@
     <string name="ui_cursor_start31" formatted="false">開始繪圖</string>
     <string name="ui_cursor_stop31" formatted="false">停止繪圖</string>
     <string name="ui_cursor_shape31" formatted="false">游標形狀</string>
-    <string name="ui_cursor_pan_draw32" formatted="false">平移即可開始繪圖。再次輕觸即可停止繪圖。</string>
+    <string name="ui_cursor_pan_draw32" formatted="false">拖曳以移動游標並開始繪圖。再次輕觸即可停止繪圖。</string>
     <string name="ui_cursor_pan_move32" formatted="false">拖曳以移動游標。點按繪圖按鈕即可開始繪圖。</string>
-    <string name="ui_cursor_help31" formatted="false">拖曳以定位游標。輕觸畫面上的繪圖按鈕，再平移以繪圖。再次輕觸即可停止。筆刷及筆觸設定可在「繪圖」→「繪圖」選擇。</string>
+    <string name="ui_cursor_help31" formatted="false">拖曳以定位游標。輕觸畫面上的繪圖按鈕，再拖曳以移動游標並繪圖。再次輕觸即可停止。筆刷及筆觸設定可在「繪圖」→「繪圖」選擇。</string>
     <string name="ui_edit_canvas33" formatted="false">畫布</string>
     <string name="ui_edit_transform33" formatted="false">翻轉／旋轉</string>
     <string name="ui_pixel_grid33" formatted="false">像素格線</string>
@@ -289,7 +289,7 @@
     <string name="ui_crop_preview_drag_an_edge_or_corner_drag">裁切預覽。拖曳邊緣或角落調整大小；拖曳內部以移動裁切範圍。</string>
     <string name="ui_cropped_thumbnail">已裁切縮圖：%1$s</string>
     <string name="ui_current_safe_budget_2f_mp">目前安全上限：%1$.2f MP。</string>
-    <string name="ui_current_safe_editing_budget_s_up_to_2f">目前安全編輯上限：%1$s · 扣除解碼器額外開銷前最多 %2$.2f MP</string>
+    <string name="ui_current_safe_editing_budget_s_up_to_2f">目前安全編輯記憶體上限：%1$s · 最多 %2$.2f MP（MP 估算不包含解碼器所需的額外記憶體）</string>
     <string name="ui_cursive">草寫體</string>
     <string name="ui_custom_colour">自訂顏色 %1$s</string>
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">自訂顏色 · 長按色樣以取代</string>
@@ -309,7 +309,7 @@
     <string name="ui_drag_between_opposite_corners_to_draw_a_heart">在兩個對角之間拖曳以繪畫心形。請選擇輪廓或填滿。</string>
     <string name="ui_drag_from_the_start_to_the_end_of">由線段起點拖到終點。</string>
     <string name="ui_drag_from_the_tail_towards_the_arrowhead_choose">由箭尾向箭頭方向拖曳。請選擇輪廓或填滿。</string>
-    <string name="ui_drag_out_to_expand_in_to_trim_drag">向外拖曳以擴展，向內拖曳以裁減。拖曳範圍內部可移動邊界。可用雙指縮放或「符合視窗」騰出更多空間。新增空間以 BG 填滿。</string>
+    <string name="ui_drag_out_to_expand_in_to_trim_drag">向外拖曳以擴展，向內拖曳以裁減。拖曳範圍內部可移動邊界。可用雙指縮放或「符合視窗」騰出更多空間。新增空間以背景色填滿。</string>
     <string name="ui_drag_placed_images_to_move_them_hold_and">拖曳已放置的圖片以移動。長按並拖曳縮圖即可加入圖片。</string>
     <string name="ui_drag_to_erase_with_the_background_colour">拖曳以背景色擦除。</string>
     <string name="ui_drag_to_pan_without_drawing_pinch_with_two">拖曳以平移而不繪圖。用兩隻手指縮放及平移。使用繪圖工具時也可用兩指導覽。</string>
@@ -345,7 +345,7 @@
     <string name="ui_filename_a_z">檔案名稱 A–Z</string>
     <string name="ui_filename_z_a">檔案名稱 Z–A</string>
     <string name="ui_fill_line">填滿＋線條</string>
-    <string name="ui_fill_text_box_with_bg_colour">以 BG 顏色填滿文字框</string>
+    <string name="ui_fill_text_box_with_bg_colour">以背景色填滿文字框</string>
     <string name="ui_finish_curve">完成曲線</string>
     <string name="ui_finish_polygon">完成多邊形</string>
     <string name="ui_fits_the_current_budget">符合目前上限。</string>
@@ -407,7 +407,7 @@
     <string name="ui_not_enough_memory_to_inspect_this_image">記憶體不足，無法檢查此圖片</string>
     <string name="ui_not_enough_memory_to_save_in_this_format">記憶體不足，無法以此格式儲存。請嘗試 PNG</string>
     <string name="ui_not_placed">未放置</string>
-    <string name="ui_open_source_credits_and_notices">開源軟件致謝及聲明</string>
+    <string name="ui_open_source_credits_and_notices">開源軟體致謝及聲明</string>
     <string name="ui_original_decoded_image_rgba_4_bytes_pixel_estimated">原圖：%1$s\n解碼後圖片：%2$s（RGBA，每像素 4 位元組）\n不調整大小時的估算編輯記憶體：%3$s</string>
     <string name="ui_other_terms">其他條款</string>
     <string name="ui_pale_violet">淡紫色</string>
@@ -483,12 +483,12 @@
     <string name="ui_tap_to_type_a_number">%1$s：%2$s。輕觸以輸入數值。</string>
     <string name="ui_tap_vertices_then_double_tap_the_last_vertex">逐一輕觸頂點，再雙按最後一個頂點以封閉多邊形。也可使用「完成多邊形」。關閉「封閉多邊形」即可繪畫相連但不封閉的線段。</string>
     <string name="ui_that_arrangement_overlaps_another_image_use_a_different">該排列與另一張圖片重疊。請改用另一條邊，或先取消放置已連接的圖片。</string>
-    <string name="ui_the_arrow_on_the_left_directly_below_the" formatted="false">工具列正下方左側的箭頭可收起或還原工具：向上收起，向下展開。直向時，工具列會在頂部工具列下方橫向排列；滑動即可查看其他工具。橫向時則保持在左側。 「筆刷」包含鉛筆、筆刷、水彩及噴槍。「選取」包含長方形及自由形狀選取。「插入」包含線條、圖形及文字。輕觸分類可展開其中工具及設定：直向時顯示於工具列下方，橫向時顯示於右方。再次輕觸即可收起，箭頭方向也會反轉。各分類會記住最後使用的工具。可捲動有界限的選項面板查看更多設定及編輯控制項。首次使用此版面時兩個面板都會展開，其後會記住選擇。橫向時，上方控制項共用一行，檔案名稱置中。\n\nFG/BG 顏色指示器固定於左下方，位於調色盤旁。調色盤會在同一行直接向右展開。箭頭在調色盤右邊：向左收起，向右展開。收起只會隱藏額外色樣，不會移動指示器。輕觸顏色方格也可切換調色盤。輕觸色樣設為前景色，長按設為背景色。FG/BG 可開啟「調色盤」、「蜂巢」及「進階」。「進階」提供光譜、色環、RGB、HSV、HSL 及六位十六進制控制。最右四個方格會保留最近使用的顏色；輕觸設為前景色，長按設為背景色。自訂顏色預設為淡紫色 #5B67FF、金色 #FFD700、銀色 #C0C0C0 及銅色 #B87333。長按自訂色樣可取代它。主編輯器使用不透明顏色；匯入透明圖片時會放到目前 BG 顏色上。原始來源檔案不會改變。\n\n「移動與縮放」取代原本的放大鏡工具：單指拖曳以平移，雙指縮放以縮放及平移。再次輕觸「移動與縮放」或「再次繪圖」即可返回繪圖。繪圖工具中也可用雙指導覽而不留下筆跡。右下方滑桿在 100% 有中央線。放大／縮小按鈕如果一步會跨過 100%，會先停在 100%；再按一次才繼續。旁邊的「符合視窗」按鈕會把整個畫布縮放並置中於視圖。「檢視」亦提供 100% 及像素格線。\n\n自動儲存會在編輯短暫停止後，以及離開應用程式時記錄目前草稿。狀態會顯示「已儲存草稿」或自動儲存錯誤。重新開啟時會還原草稿、檔案名稱、工具設定、浮動選取範圍及未完成圖形。自動儲存只保留私人工作草稿。「檔案」提供 PNG、可調品質的 JPEG 及 HEIC，以及無損或有損 JPEG XL、WebP 及 AVIF。「儲存並分享」會先寫入檔案，再開啟 Android 分享。「匯出為」會儲存到你選擇的位置；檔案名稱旁的星號表示匯出後仍有未儲存變更。自動儲存永不會覆寫來源圖片。\n\n選取範圍：繪畫長方形或自由形狀輪廓。拖曳內部以移動；拖曳方形角位或邊緣中點控制點以調整大小；拖曳圓形「旋轉」控制點以旋轉。「鎖定比例」預設開啟；關閉後可獨立拉伸寬度及高度。邊緣控制點只沿所選一邊調整大小。自由形狀選取會在變形框內保留所選形狀，包括旋轉或自動儲存後。尺寸及角度會顯示於側欄。「確定選取範圍」會將結果套用為一次可復原的選取編輯；自動儲存會保留未完成的變形。「複製」、「剪下」及「裁切至選取範圍」會使用變形後的圖片。「全選」位於第二行編輯圖示，外置鍵盤也可使用 Ctrl+A。「剪下／複製」及「貼上／全選」在「使用說明」下方分成兩行。選取遮罩會保留選取形狀；文件本身仍然不透明。\n\n畫布邊界：向內拖曳控制點可裁減，向外拖曳可在任何一邊擴展，然後按「套用邊界」。新增空間使用 BG；現有像素不會縮放。可使用「取消」及「復原」。「調整圖片大小」、「畫布大小」及「新增圖片」亦接受像素或百分比，並可選擇鎖定長寬比例。\n\n曲線：先畫一條線，再拖曳兩次使其彎曲。多邊形：逐一輕觸頂點，再雙按最後一個頂點，或使用「完成多邊形」。關閉「封閉多邊形」即可繪畫相連但不封閉的線段。圓角長方形：以滑桿設定「半徑（px）」；每個圖形的半徑最多為較短一邊的一半。文字：輕觸畫布，選擇以自身樣式顯示的字型，並使用即時預覽。選項包括大小、粗體、斜體、底線、刪除線、對齊、行距及 BG 文字框。水彩位於「筆刷」分類，與筆刷及噴槍並列；調整強度可獲得更柔和的筆觸。鉛筆、筆刷及工具大小滑桿最高為 100 像素。鉛筆由 1 像素開始，並會記住自己的寬度。輕觸顯示的數值可準確輸入。心形、星形及箭頭與其他圖形一樣提供輪廓／填滿選項。「檢視」&gt;「游標繪圖」可展開啟用開關、游標形狀及放大鏡設定。拖曳以定位游標，輕觸畫面上的繪圖按鈕，再平移即可繪圖；再按一次停止。筆刷及筆觸設定仍在「繪圖」&gt;「繪圖」。「檢視」&gt;「放大預覽」會以可調倍率顯示游標或繪圖位置。「繪圖設定」亦提供反鋸齒及筆觸平滑。另內置十一款字型；「字型授權條款」列有致謝及完整條款。\n\n「檔案」&gt;「開啟圖片」會透過 Android 檔案選擇器取代畫布。「繪圖」>「插入」>「其他圖片」提供裝置檔案、Catrobat、いらすとや 及 Openclipart，圖片會以浮動選取範圍加入。Catrobat 的可下載圖片可輕觸或長按插入；いらすとや與 Openclipart 則先開啟作品頁面，再按使用圖片的按鈕。「檔案」&gt;「關於、授權與致謝」&gt;「圖片致謝」會保留來源連結及授權聲明。裝置記憶體上限內的圖片會以原始解析度載入。如有需要，尺寸選擇對話框會顯示尺寸、像素數及記憶體估算，可選像素／百分比及是否鎖定長寬比例。原始檔案不會改變。\n\n「檔案」&gt;「圖片拼接」會開啟最多可處理 20 張圖片的獨立工作區。縮圖可按檔案名稱或時間排序。可裁切一張圖片或批次裁切多張。「相同寬度／相同高度」會在保持長寬比例下統一所有已載入圖片的尺寸。拖曳縮圖或已放置圖片，可貼齊為右方／頂端對齊或下方／左邊對齊。「取消放置」只移除所選放置並填補空位。「顯示全部」只改變視圖縮放。「儲存 PNG」匯出拼合結果；「在 Paint 編輯」會以可復原編輯傳送到主編輯器。應用程式一般編輯器處理一張不透明圖片；圖片組合是獨立的排列工作區。\n\n「檔案」&gt;「關於、授權與致謝」包括原始版權、素材／字型致謝、完整授權文字及此版本的完整原始碼。授權文字可獨立捲動，而「全部複製」、「其他條款」及「完成」按鈕固定不動。</string>
+    <string name="ui_the_arrow_on_the_left_directly_below_the" formatted="false">選擇「檢視」、「繪圖」、「檔案」、「編輯」或「顏色」分頁，即可顯示該分頁的控制項。分頁旁的箭頭可收起或還原面板。直向時，分頁與工具列橫向排列；捲動即可查看更多控制項。橫向時，分頁與主要工具沿左側排列。「繪圖」包含「繪圖」、「選取」及「插入」。「繪圖」分類包含鉛筆、筆刷、水彩及噴槍；「選取」包含長方形及自由形狀選取；「插入」包含線條、圖形及文字。輕觸分類會選取該分類記住的工具，並顯示其工具與設定：直向時位於工具列下方，橫向時位於右方。再次輕觸已選取的分類，可收起或展開其工具與設定。各分類會記住本次工作階段中最後使用的工具。捲動選項面板可查看更多設定。標頭包含檔案名稱與快速操作。致謝及條款位於「檔案」&gt;「關於、授權與致謝」。\n\n「顏色」分頁包含前景／背景顏色指示器、「交換顏色」、「黑／白」及「進階」。輕觸指示器的前景或背景部分，即可編輯該顏色。標準調色盤及已儲存顏色位於標頭下方。輕觸標準色樣設為前景色，長按設為背景色。標準調色盤最右側的四個方格會保留最近使用的顏色；輕觸設為前景色，長按設為背景色。顏色編輯器包含「調色盤」、「蜂巢」及「進階」。「進階」提供光譜、色環、RGB、HSV、HSL 及六位十六進位控制項。自訂顏色預設為淡紫色 #5B67FF、金色 #FFD700、銀色 #C0C0C0 及銅色 #B87333。輕觸已儲存顏色可將其用作前景色；長按可選擇設為背景色、編輯或移除。「新增顏色」或空白儲存位置會開啟編輯器以儲存顏色。主文件是不透明的。將透明圖片載入為畫布時，透明區域會填入目前的背景色。插入的圖片會維持浮動選取範圍；確定後，透明區域會顯露既有畫布。Wikimedia Commons 匯入圖片會在插入前加上白色背景。原始來源檔案不會改變。\n\n「檢視」&gt;「移動與縮放」：單指拖曳可平移，雙指可縮放及平移。在「移動與縮放」選項中選擇「繼續繪圖」，或選取繪圖工具，即可返回繪圖。繪圖工具中也可用雙指導覽而不留下筆跡。右下方滑桿在 100% 有中央線。放大／縮小按鈕如果一步會跨過 100%，會先停在 100%；再按一次才繼續。旁邊的「符合視窗」按鈕會調整縮放，使畫布及任何浮動選取範圍都能完整顯示並置中。「移動與縮放」也提供 100% 顯示；「檢視」提供像素格線。\n\n自動儲存會在編輯短暫停止後，以及離開應用程式時記錄目前草稿。狀態會顯示「已儲存草稿」或自動儲存錯誤。重新開啟時會還原草稿、檔案名稱、工具設定、浮動選取範圍及未完成圖形。自動儲存只保留私人工作草稿。「檔案」提供 PNG、可調品質的 JPEG 及 HEIC，以及無損或有損 JPEG XL、WebP 及 AVIF。「另存新檔」可選擇圖片格式、設定及位置；「儲存」會再次寫入該位置。「匯出為」及「儲存並分享」會寫出副本，不會改變目前的儲存目的地，也不會將繪圖標記為已儲存。「儲存並分享」隨後會開啟 Android 分享。檔案名稱旁的星號表示目前繪圖有未儲存的變更。自動儲存永不會覆寫來源圖片。\n\n選取範圍：繪畫長方形或自由形狀輪廓。拖曳內部以移動；拖曳方形角位或邊緣中點控制點以調整大小；拖曳圓形「旋轉」控制點以旋轉。「鎖定比例」預設開啟；關閉後可獨立拉伸寬度及高度。邊緣控制點只沿所選一邊調整大小。自由形狀選取會在變形框內保留所選形狀，包括旋轉或自動儲存後。尺寸及角度會顯示於選項面板。「確定選取範圍」會套用結果；選取編輯可復原，自動儲存會保留未完成的變形。「複製」、「剪下」及「裁切至選取範圍」會使用變形後的圖片。「全選」位於「編輯」&gt;「選取」，外接鍵盤也可使用 Ctrl+A。「剪下」、「複製」及「貼上」是標頭中的快速操作。選取遮罩會保留選取形狀；文件本身仍然不透明。\n\n畫布邊界：向內拖曳控制點可裁減，向外拖曳可在任何一邊擴展，然後按「套用邊界」。新增空間使用背景色；現有像素不會縮放。可使用「取消」及「復原」。「調整圖片大小」、「畫布大小」及「新增圖片」亦接受像素或百分比，並可選擇鎖定長寬比例。\n\n曲線：先畫一條線，再拖曳兩次使其彎曲。多邊形：逐一輕觸頂點，再雙按最後一個頂點，或使用「完成多邊形」。關閉「封閉多邊形」即可繪畫相連但不封閉的線段。圓角長方形：以滑桿設定「半徑（px）」；每個圖形的半徑最多為較短一邊的一半。文字：輕觸畫布，選擇以自身樣式顯示的字型，並使用即時預覽。選項包括大小、粗體、斜體、底線、刪除線、對齊、行距及背景色文字框。水彩位於「繪圖」分類，與筆刷及噴槍並列；調整強度可獲得更柔和的筆觸。鉛筆、筆刷及工具大小滑桿最高為 100 像素。鉛筆由 1 像素開始，並會記住自己的寬度。輕觸顯示的數值可準確輸入。心形、星形及箭頭與其他圖形一樣提供輪廓／填滿選項。「檢視」&gt;「游標繪圖」可展開啟用開關、游標形狀及放大鏡設定。拖曳以定位游標，輕觸畫面上的繪圖按鈕，再拖曳以移動游標並繪圖；再按一次停止。筆刷及筆觸設定仍在「繪圖」&gt;「繪圖」。「檢視」&gt;「放大鏡」可啟用游標或繪圖位置的放大預覽，並調整倍率。「繪圖設定」亦提供反鋸齒及筆觸平滑。另內置十一款字型；「字型授權條款」列有致謝及完整條款。\n\n「檔案」&gt;「開啟圖片」會透過 Android 檔案選擇器取代畫布。「繪圖」&gt;「插入」&gt;「其他圖片」提供裝置檔案、Catrobat、いらすとや、Openclipart 及「Wikimedia Commons · 空白地圖…」。選擇裝置圖片，或開啟線上作品頁面並輕觸「使用圖片」，即可將圖片加入為浮動選取範圍。「檔案」&gt;「關於、授權與致謝」&gt;「圖片致謝」會保留來源連結及授權聲明。裝置記憶體上限內的圖片會以原始解析度載入。如有需要，尺寸選擇對話框會顯示尺寸、像素數及記憶體估算，可選像素／百分比及是否鎖定長寬比例。原始檔案不會改變。\n\n「檔案」&gt;「圖片拼接」會開啟最多可處理 20 張圖片的獨立工作區。縮圖可按檔案名稱或時間排序。可裁切一張圖片或批次裁切多張。「相同寬度／相同高度」會在保持長寬比例下統一所有已載入圖片的尺寸。拖曳縮圖或已放置圖片，可貼齊為右方／頂端對齊或下方／左邊對齊。「精確位置」可設定左上角座標，以從零開始的整數像素為單位，保持其他圖片的位置不變，並允許重疊。較晚匯入的圖片會繪製在上層。「取消放置」只移除所選圖片的放置。其他圖片仍維持已放置狀態；相連的圖片可能會移動以填補空位。「顯示全部」只改變視圖縮放。「儲存 PNG」匯出拼合結果；「在 Paint 編輯」會以可復原編輯傳送到主編輯器。應用程式一般編輯器處理一張不透明圖片；圖片組合是獨立的排列工作區。\n\n「檔案」&gt;「關於、授權與致謝」包括原始版權、素材／字型致謝、完整授權文字及此版本的完整原始碼。授權文字可獨立捲動，而「全部複製」、「其他條款」及「完成」按鈕固定不動。</string>
     <string name="ui_the_assembly_exceeds_android_s_coordinate_range">圖片組合超出 Android 的座標範圍。</string>
     <string name="ui_the_assembly_needs_about_choose_a_smaller_output">圖片組合約需 %1$s。請選擇較小的輸出大小。</string>
     <string name="ui_the_assembly_output_is_unavailable_reopen_image_assembly">拼合輸出目前不可用。請重新開啟「圖片拼接」再試。</string>
     <string name="ui_the_attachment_image_is_missing">連接圖片遺失。</string>
-    <string name="ui_the_attachment_image_is_not_placed">連接圖片尚未放置。</string>
+    <string name="ui_the_attachment_image_is_not_placed">圖片尚未放置。</string>
     <string name="ui_the_crop_must_contain_at_least_one_pixel">裁切範圍必須至少包含一個像素。</string>
     <string name="ui_the_crop_must_stay_inside_the_image">裁切範圍必須位於圖片內。</string>
     <string name="ui_the_decoder_and_editing_buffers_need_about_the">解碼器及編輯緩衝區約需 %1$s；目前安全編輯上限為 %2$s。請選擇較小的副本。</string>
@@ -566,7 +566,7 @@
     <string name="ui_export_explanation23">匯出圖示、Base64 文字或 ASCII 藝術。匯出不會改變目前圖片及其「儲存」目的地。</string>
     <string name="ui_export_did_not_save23">已建立匯出內容。繼續前，請使用「儲存」或「另存新檔」儲存目前圖片。</string>
     <string name="ui_vertical_hint23">換行會開始新一欄。橫倒文字會保留包括蒙古文在內的連寫文字連接。直立字元會保持組合符號及表情符號序列完整。</string>
-    <string name="ui_help23">選擇分頁即可顯示相關控制項。「檢視」由「移動與縮放」開始；「繪圖」包含「繪圖」、「選取」及「插入」。「移動與縮放」可在不繪圖的情況下平移；以兩指縮放。分頁旁的箭頭可收起面板。所有工具都有標籤。「編輯」可修改選取範圍、畫布邊界、尺寸或圖片。「顏色」可選擇前景色及背景色；「交換顏色」會互換兩者，「黑／白」會重設。顏色選擇器會即時預覽選擇；「使用顏色」確定，「取消」還原上一個顏色。「新增顏色」或輕觸空白已儲存位置可選擇並儲存顏色。長按已儲存顏色可編輯或移除。「進階」會在「黑／白」旁開啟詳細編輯器。像素格線也會顯示圖片像素刻度；游標繪圖會在縮放顯示旁即時顯示 x/y。「另存新檔」可選擇圖片格式、壓縮設定及位置；「儲存」會以同一設定再次寫入。「匯出為」可建立 ICO、ASCII 藝術或 Base64 文字，而不會將目前繪圖標記為已儲存。「儲存並分享」會儲存一份副本，再開啟 Android 分享，並保留目前「儲存」目的地。「繪圖」&gt;「插入」&gt;「其他圖片」包含裝置檔案、Catrobat、いらすとや、Openclipart 及「Wikimedia Commons · 空白地圖…」。插入的圖片會維持選取狀態，即使控制點位於畫布外也會顯示。「使圖片符合畫布」會改變放置大小；「原始大小」會還原來源尺寸。重新開啟應用程式時，自動儲存會還原草稿以及復原／重做兩個堆疊。「檔案」也包含圖片組合、使用方法，以及關於、授權條款及致謝。「插入文字」支援橫排及直排。</string>
+    <string name="ui_help23">選擇分頁即可顯示相關控制項。「檢視」由「移動與縮放」開始；「繪圖」包含「繪圖」、「選取」及「插入」。「移動與縮放」可在不繪圖的情況下平移；以兩指縮放。分頁旁的箭頭可收起面板。所有工具都有標籤。「編輯」可修改選取範圍、畫布邊界、尺寸或圖片。「顏色」可選擇前景色及背景色；「交換顏色」會互換兩者，「黑／白」會重設。顏色選擇器會即時預覽選擇；「使用顏色」確定，「取消」還原上一個顏色。「新增顏色」或輕觸空白已儲存位置可選擇並儲存顏色。長按已儲存顏色可編輯或移除。「進階」會在「黑／白」旁開啟詳細編輯器。像素格線也會顯示圖片像素刻度；游標繪圖會在縮放顯示旁即時顯示 x/y。「另存新檔」可選擇圖片格式、壓縮設定及位置；「儲存」會以同一設定再次寫入。「匯出為」可建立 ICO、ASCII 藝術或 Base64 文字，而不會將目前繪圖標記為已儲存。「儲存並分享」會儲存一份副本，再開啟 Android 分享，並保留目前「儲存」目的地。「繪圖」&gt;「插入」&gt;「其他圖片」包含裝置檔案、Catrobat、いらすとや、Openclipart 及「Wikimedia Commons · 空白地圖…」。插入的圖片會維持選取狀態，即使控制點位於畫布外也會顯示。「使圖片符合畫布」會改變放置大小；「原始大小」會還原來源尺寸。重新開啟應用程式時，自動儲存會還原草稿以及復原／重做兩個堆疊。「檔案」也包含「圖片拼接」、「使用說明」及「關於、授權與致謝」。「插入文字」支援橫排及直排。</string>
     <string name="ui_empty_palette26">空白調色盤位置 %1$d — 加入顏色</string>
     <string name="ui_cursor_position26">x：%1$d，y：%2$d</string>
     <string name="ui_numeric_slider_value">%1$s：%2$d</string>
@@ -630,7 +630,7 @@
     <string name="formats22_ascii_columns">寬度（字元）</string>
     <string name="formats22_ascii_invert">反轉明暗字元</string>
     <string name="formats22_text_not_image">Base64 文字不包含受支援的圖片。</string>
-    <string name="gallery_description">輕觸「使用圖片」即可立即插入。圖片旁的「複製致謝」會複製作品名稱、發佈者、來源及授權條款，供你發佈時使用。Catrobat 自家作品採用 CC BY-SA 4.0；請保留任何另外列出的作者、版權及其他來源聲明。請說明你的修改，並以 CC BY-SA 4.0 或相容授權分享改作。「編輯致謝」可補充這些資料；插入來源也會保留在「檔案」→「關於、授權與致謝」→「圖片致謝」。</string>
+    <string name="gallery_description">輕觸「使用圖片」即可立即插入。圖片旁的「複製致謝資訊」會複製作品名稱、發佈者、來源及授權條款，供你發佈時使用。Catrobat 自家作品採用 CC BY-SA 4.0；請保留任何另外列出的作者、版權及其他來源聲明。請說明你的修改，並以 CC BY-SA 4.0 或相容授權分享改作。「編輯致謝」可補充這些資料；插入來源也會保留在「檔案」→「關於、授權與致謝」→「圖片致謝」。</string>
     <string name="gallery_edit_credits">編輯致謝</string>
     <string name="gallery_credit_copied">已複製致謝</string>
     <string name="gallery_credit_edit_hint">發佈前，請保留任何列出的作者或版權聲明，並加入你所作修改的說明。請移除最終發佈圖片中沒有使用的來源。以下文字可編輯。</string>
@@ -644,7 +644,7 @@
     <string name="formats22_ico_size">圖示大小</string>
     <string name="formats22_ico_description">以所選大小（16–256 像素）儲存一張 PNG 壓縮圖示圖片。圖片會保持長寬比例，並置中於透明正方形上。</string>
     <string name="formats22_ico_decode_budget">解碼此圖示所需記憶體超出可用圖片記憶體上限。</string>
-    <string name="formats22_ico_dimensions_error">圖示圖片尺寸與其目錄記錄不一致。</string>
+    <string name="formats22_ico_dimensions_error">圖示圖片尺寸與 ICO 檔案內部對應目錄項目所記錄的尺寸不一致。</string>
     <string name="formats22_ico_invalid_size">請選擇 16、24、32、48、64、128 或 256 像素的圖示大小。</string>
     <string name="language20_current">應用程式語言：%1$s</string>
     <string name="language20_translation_note">應用程式語言\n\n翻譯內容會在 AN Paint 的語言資源中維護。新增或尚未翻譯的文字會以英文顯示。</string>
