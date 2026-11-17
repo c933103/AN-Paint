@@ -1,0 +1,121 @@
+{
+  "scope": "Cantonese Hant and Latin separate full-catalogue review",
+  "local_head": "5eed53b5c47b4583cb8cafa112577f857c57f46b",
+  "remote_head": "c5a0398f316d7396a54aa075325660e7037110a7",
+  "tree": "412a0fed9b6583afaf6f078b468982523555b8d6",
+  "applied": {
+    "yue-Hant": 7,
+    "yue-Latn": 6
+  },
+  "audits": [
+    {
+      "locale": "yuehant",
+      "folder": "values-b+yue+Hant",
+      "complete_values_examined": 719,
+      "scope": "Separate full complete-value reading, all guides/legal/recovery. This is examination coverage, not acceptance of all inherited text. Initial clipped final-range output reread in bounded chunks.",
+      "raw_plurals": {
+        "ui_crop_preview_images": [
+          "other"
+        ]
+      },
+      "proposals": 7,
+      "sha256": "de56069a053057c1099258c38398f690a440c97f22377dfc3b2223f709177e0c",
+      "changed_editor_guide_paragraphs": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "source_evidence": {
+        "MP": "ImageResizeDialog.kt42 current.workingBytes and maxPixels/1e6; memoryRequirements.accepts separate. Explicit estimate qualifier, not RAM exclusion.",
+        "ICO": "IcoCodec.kt38-50 internal selected entry dimensions compared against decoded PNG.",
+        "placement": "ImageAssembly.kt212 item requirement generic; missing anchor214 unchanged.",
+        "cursor": "PaintCanvas.kt680-700 cursor.offset and stroke, no viewport change. Existing generic drag is clarification not explicit false viewport.",
+        "Fit": "ClassicPaintActivity.kt1064/781 trim_fit and zoom_fit bind ui_fit; Hant actual 配合視窗 differs old 符合視窗, Latin already matches.",
+        "guide": "Canonical-only old guide has no direct Kotlin reference; actual live help and assembly help current and retained. Exact Draw-category/Magnifier/return/Fit labels verified separately."
+      },
+      "checks": "Indexed placeholders and literal escaped newline counts match each original. No resource edits or local JVM/device tests.",
+      "retained": "Both processed counters, raw other plural, accurate modern animation unknown-frame scope, credit legal and recovery safeguards, complete current assembly guide/live help retained. No credit status hypothesis added.",
+      "limits": [
+        "Not native or terminology certification; no device or layout acceptance.",
+        "Latin romanization has inherited inconsistent tones/spacing and formal-vs-colloquial alternatives; no systematic tone correction or mechanical Hant conversion.",
+        "Broader stylistic mixture in Hant retained; numerical and source identifiers are not linguistic acceptance."
+      ],
+      "deferred": []
+    },
+    {
+      "locale": "yuelatn",
+      "folder": "values-b+yue+Latn",
+      "complete_values_examined": 719,
+      "scope": "Separate full complete-value reading, all guides/legal/recovery. This is examination coverage, not acceptance of all inherited text. Initial clipped final-range output reread in bounded chunks.",
+      "raw_plurals": {
+        "ui_crop_preview_images": [
+          "other"
+        ]
+      },
+      "proposals": 6,
+      "sha256": "c3e54bb3533240ffc6a50852113f5788e89b4f3d2add8ec595c1efc42dafd625",
+      "changed_editor_guide_paragraphs": [
+        3,
+        7
+      ],
+      "source_evidence": {
+        "MP": "ImageResizeDialog.kt42 current.workingBytes and maxPixels/1e6; memoryRequirements.accepts separate. Explicit estimate qualifier, not RAM exclusion.",
+        "ICO": "IcoCodec.kt38-50 internal selected entry dimensions compared against decoded PNG.",
+        "placement": "ImageAssembly.kt212 item requirement generic; missing anchor214 unchanged.",
+        "cursor": "PaintCanvas.kt680-700 cursor.offset and stroke, no viewport change. Existing generic drag is clarification not explicit false viewport.",
+        "Fit": "ClassicPaintActivity.kt1064/781 trim_fit and zoom_fit bind ui_fit; Hant actual 配合視窗 differs old 符合視窗, Latin already matches.",
+        "guide": "Canonical-only old guide has no direct Kotlin reference; actual live help and assembly help current and retained. Exact Draw-category/Magnifier/return/Fit labels verified separately."
+      },
+      "checks": "Indexed placeholders and literal escaped newline counts match each original. No resource edits or local JVM/device tests.",
+      "retained": "Both processed counters, raw other plural, accurate modern animation unknown-frame scope, credit legal and recovery safeguards, complete current assembly guide/live help retained. No credit status hypothesis added.",
+      "limits": [
+        "Not native or terminology certification; no device or layout acceptance.",
+        "Latin romanization has inherited inconsistent tones/spacing and formal-vs-colloquial alternatives; no systematic tone correction or mechanical Hant conversion.",
+        "Broader stylistic mixture in Hant retained; numerical and source identifiers are not linguistic acceptance."
+      ],
+      "deferred": [
+        "Canonical-only full guide still stale paragraphs1/2/3/4/5/8/9 beyond exact return-label repair in3: old toolbar/palette layout, opaque insertion blanket, save/export state/destination omissions, selection header placement, old gallery download flow and missing Commons/exact-position. Full Latin restoration deferred rather than claim confidence in long new romanized prose.",
+        "Potential 倍率 pui5 leot2 inherited tone and other tones need reliable comprehensive romanization review; not blanket changed."
+      ]
+    }
+  ],
+  "independent_review": "All13 complete proposed values independently read including full Hant restored guide and Latin bounded guide. Hant restores tabs/palette/selection/save destination and dirty-state/gallery/exact placement; actual Fit label checked against trim_fit1064 and zoom_fit781. Latin guide only paragraphs3/7 changed; broader stale layout/palette/save/gallery/assembly explicitly deferred. Existing cursor targets were generic rather than explicit viewport errors; additions are clarification. MP-only qualifier, internal ICO record and generic placement clarified in both. Hant bounds BG spacing fixed; final packet serialization hash reconciled and final values equal committed resources exactly. No broad tone/native/romanization certification.",
+  "tests": {
+    "host": 71,
+    "seconds": 22.424,
+    "result": "pass",
+    "diff_check": "pass",
+    "limited_stale_prose_scan": 0,
+    "JVM": "not executed; Gradle download blocked",
+    "device": "unverified",
+    "preedit_host_script_routing": {
+      "tests": 5,
+      "seconds": 0.174,
+      "result": "pass; host not JVM/device"
+    }
+  },
+  "draft_counts": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "new_keys": 1640,
+    "changed_existing": 1384,
+    "canonical": 8,
+    "locale": 1376
+  },
+  "limits": [
+    "Not native certification or blanket acceptance",
+    "Counts unmerged",
+    "No clean exact-head Codex review, no quota retry or merge",
+    "Spanish held"
+  ],
+  "next_action": "Separate full Hakka Taiwan Hant/Latin audits started after parent reservation confirmation; dialect/tone limits preserved.",
+  "CI": {
+    "run": 44040684003,
+    "status": "pending"
+  }
+}
