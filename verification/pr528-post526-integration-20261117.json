@@ -1,0 +1,1305 @@
+{
+  "scope": "PR528 post-526 integration and diagnosed CI repairs",
+  "head": "bd190c11e531912ea8b844602a7a43bf7562477b",
+  "tree": "c7d5ec744f90fedc9f6a60372e7fd8ed229104be",
+  "integrated_develop": "ef115ddc7c63b6d9770f72f7c274b7e61c16e5fb",
+  "initial_failure": "Raw Tai Nüa resource alias compared against ordered caption route",
+  "integration_failure": "Shan became translated but was newly used by develop as a fallback fixture",
+  "repairs": [
+    "Resolve hint aliases through same selected/canonical resource map, retain exact ordered route expectations",
+    "Use verified missing and offered Tai Nüa fallback, add Shan and Yucatec whole-message/non-English consumer assertions"
+  ],
+  "independent_reviews": [
+    {
+      "decision": "No blocking finding",
+      "scope": "tools/test_localized_help.py diff against ef115ddc only",
+      "file_sha256": "dd8ef40f64a5cb8f797fa0d8a1efe3698820cf340284e33080ba2f94d2412a57",
+      "diff_sha256": "1efaaccd23192cee5c625026031c37488d4e8bbf29c8ca18f9e953ca8f3dd6a7",
+      "checks": [
+        "Resolver extraction retains prior caption traversal and cycle rejection; missing references raise KeyError.",
+        "Paste resource checked for local presence as before, then resolves through merged selected catalogue plus canonical fallback. No locale/resource bypass introduced.",
+        "Same ordered exact caption route regex and displayed normalization retained.",
+        "Negative controls reject reversed route, missing final control, wrong middle caption, missing reference and cycle; multi-hop valid alias passes.",
+        "Other navigation/protected-draft/selection assertions unchanged."
+      ],
+      "limits": [
+        "Host resource semantics, not Android compiled-resource execution or native fluency",
+        "No edits/publication"
+      ]
+    },
+    {
+      "decision": "No blocker; no weakened fallback or translated consumer obligation",
+      "diff_sha256": "d755c054bf7d63895149b090a26b9d1fe089f9b71f3f4d4f1f6384d2984c95af",
+      "files": {
+        "tools/test_commons_import_change_translations.py": "7982e5f17deaefa9f65762fba9108940cd279c7b30e3e198be52fdb575c5e9e9",
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportChangeTranslationTest.kt": "79320b7ed1d0b4222754663ffdccbc9ccf8dfad592bfcb8b49d397a9bf7ea072"
+      },
+      "checks": [
+        "Offered tdd genuinely lacks both notes; zgh/nv unchanged",
+        "shn/yua both present and each note differs from canonical English",
+        "JVM added full selected-resource inclusion and independent en-GB inequality; real attribution consumer and imported-only exclusion preserved",
+        "All-published technical-literal/format guard unchanged"
+      ],
+      "nonenglish_check": {
+        "shn": {
+          "commons_import_svg_changes": true,
+          "commons_import_raster_changes": true
+        },
+        "yua": {
+          "commons_import_svg_changes": true,
+          "commons_import_raster_changes": true
+        }
+      },
+      "tests": "3 focused host tests pass0.442s",
+      "limits": [
+        "JVM not executed",
+        "No linguistic acceptance inferred from inequality",
+        "No edits"
+      ]
+    }
+  ],
+  "tests": {
+    "focused": {
+      "tests": 19,
+      "result": "pass"
+    },
+    "full_host": {
+      "tests": 893,
+      "seconds": 232.679,
+      "result": "pass",
+      "log_sha256": "31a935160ec659d87541178590ef76c30170830649c5eed108ef4f0ffb29b141"
+    },
+    "local_jvm_device": "unexecuted",
+    "hosted_ci": "pending at publication"
+  },
+  "review_gate": "exact-head Codex and required CI pending, not merged",
+  "recount": {
+    "tree": "c7d5ec744f90fedc9f6a60372e7fd8ed229104be",
+    "method": "Exact canonical typed string/plurals identities; translatable=false excluded; aliases count as direct presence; no fallback or wording-review credit.",
+    "canonical": 719,
+    "options": 171,
+    "total": 122949,
+    "present": 120094,
+    "missing": 2855,
+    "complete": 157,
+    "partial": 14,
+    "empty": 0,
+    "inputs": {
+      "Paintroid/src/main/res/values/app_language_tags.xml": "2192dd4e7def590e1f1c62a5843daa4412a9c30b",
+      "Paintroid/src/main/res/values/app_language_names.xml": "79c10ce49b5906a59b6a9eb87922ab7025904eb2",
+      "Paintroid/src/main/res/values/classic.xml": "40042cb8a63a0a59bf9dc7e7684f33942693ae04",
+      "Paintroid/src/main/res/values/display_numbers.xml": "095131194b37b151084951ca0f02366579aa928f",
+      "Paintroid/src/main/res/values/editor33_strings.xml": "50d98a89b3ec42818367f7a50c0cff0e7ccf720d",
+      "Paintroid/src/main/res/values/editor34_strings.xml": "50d98a89b3ec42818367f7a50c0cff0e7ccf720d",
+      "Paintroid/src/main/res/values/ids24.xml": "bf8ef22b0f698234812327578b33a64f33e57859",
+      "Paintroid/src/main/res/values/material3_colours.xml": "2ca54bc8e8d91cc8c9df9a524554b87203de14ac",
+      "Paintroid/src/main/res/values/strings.xml": "cf08b393a08758f40b7ce983cf4a9b365dd6fd1f"
+    },
+    "rows": [
+      {
+        "tag": "en-001",
+        "path": "Paintroid/src/main/res/values-b+en+001/strings.xml",
+        "blob": "a0861f8932f0126d03efbbaae4b135496c4f4e7e",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "af",
+        "path": "Paintroid/src/main/res/values-b+af/strings.xml",
+        "blob": "973a5e704bce8677625a5995d5abb2dc1da316fc",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ain-Kana",
+        "path": "Paintroid/src/main/res/values-b+ain+Kana/strings.xml",
+        "blob": "d5ff3221ad058b553b56239613e192cbd3df7c05",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ain-Latn",
+        "path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+        "blob": "4fdf6e4e2827d53a79d4bf1c81f66b23b2b38f65",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "am",
+        "path": "Paintroid/src/main/res/values-b+am/strings.xml",
+        "blob": "4718cf76990a486d4e532a130935ecba4387ccdc",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ang",
+        "path": "Paintroid/src/main/res/values-b+ang/strings.xml",
+        "blob": "6954883eb3bc1eba99ec8297cd271a3d4d199ffc",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ar",
+        "path": "Paintroid/src/main/res/values-ar/strings.xml",
+        "blob": "c447ed019681b1f9d14621ee85d10a18c186531f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ary",
+        "path": "Paintroid/src/main/res/values-b+ary/strings.xml",
+        "blob": "20e1cad0176b5e3d7feb8d97578ed64a3712a92c",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "as",
+        "path": "Paintroid/src/main/res/values-b+as/strings.xml",
+        "blob": "b706212a1b3d461b98132f3b857a6073aa664a9b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ast",
+        "path": "Paintroid/src/main/res/values-b+ast/strings.xml",
+        "blob": "6d5b98ff650343ac6db6c90137666939be3e37a7",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "az",
+        "path": "Paintroid/src/main/res/values-az/strings.xml",
+        "blob": "5c00261b3190006273fdbf5a756ea1149e6a9fc7",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "be",
+        "path": "Paintroid/src/main/res/values-b+be/strings.xml",
+        "blob": "eaa864f9f6b23d758fae78d2219ac279ce2c9af6",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bg",
+        "path": "Paintroid/src/main/res/values-bg/strings.xml",
+        "blob": "7128ad92a2ba819acbaee967b65a5894f7c2d441",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bn",
+        "path": "Paintroid/src/main/res/values-bn/strings.xml",
+        "blob": "aca02949326cfc569884cc710661ca47596d5952",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bo",
+        "path": "Paintroid/src/main/res/values-b+bo/strings.xml",
+        "blob": "532837d5435e86467fd1fdb06bde616679e43268",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "br",
+        "path": "Paintroid/src/main/res/values-b+br/strings.xml",
+        "blob": "8040a4215b561ee4525f41493fc352e6a9fbf5a3",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "bs",
+        "path": "Paintroid/src/main/res/values-bs/strings.xml",
+        "blob": "f1a854877bbb46292d36c3d724f77b8b47e8e949",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ca",
+        "path": "Paintroid/src/main/res/values-ca/strings.xml",
+        "blob": "a7f040217e5107a49bbd92832a2ccf7b33319756",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ca-ES-valencia",
+        "path": "Paintroid/src/main/res/values-b+ca+ES+valencia/strings.xml",
+        "blob": "169f2b77bda524095d81a2c4e5739cb66eec8c0b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ceb",
+        "path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+        "blob": "012e540a409bdca135c1cb33b34cd10be0e06c98",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ch",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+        "blob": "f30b42305b14ce695447d8c59dc85594f4094cbe",
+        "present": 407,
+        "missing": 312
+      },
+      {
+        "tag": "chr",
+        "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+        "blob": "41c10763627fb1b377bcc332d5bbacb5accd59c2",
+        "present": 391,
+        "missing": 328
+      },
+      {
+        "tag": "ckb",
+        "path": "Paintroid/src/main/res/values-b+ckb/strings.xml",
+        "blob": "ffb49070f8b7c25a52c45c7752231324de4f3e83",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "cs",
+        "path": "Paintroid/src/main/res/values-cs/strings.xml",
+        "blob": "6d758dc37615d78805fbbb1d6130b4cbab66fa05",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "csb",
+        "path": "Paintroid/src/main/res/values-b+csb/strings.xml",
+        "blob": "66959a8c0ac78fd856401d5438cf11b4ae128962",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "cy",
+        "path": "Paintroid/src/main/res/values-b+cy/strings.xml",
+        "blob": "1a695cdab52298da921d477342b68621c18be892",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "da",
+        "path": "Paintroid/src/main/res/values-da/strings.xml",
+        "blob": "4761715dedf08960d81c39f3c190ff2b7b3016b6",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "de",
+        "path": "Paintroid/src/main/res/values-de/strings.xml",
+        "blob": "5a103f8c2eceae404a8dcd7f4197efde9e910ba7",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "dz",
+        "path": "Paintroid/src/main/res/values-b+dz/strings.xml",
+        "blob": "1acdfa9eefd4a4649d7c62a16d64f92536198fad",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "el",
+        "path": "Paintroid/src/main/res/values-el/strings.xml",
+        "blob": "9b04cbe8703d4ebe0719c65d5094dabb65a70c62",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-AU",
+        "path": "Paintroid/src/main/res/values-en-rAU/strings.xml",
+        "blob": "8e480b5f6683abb50d389647a62e36cde0d2e883",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-CA",
+        "path": "Paintroid/src/main/res/values-en-rCA/strings.xml",
+        "blob": "45e3ca143e34dc25a3a4a8f7a7b2a252e3755198",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-GB",
+        "path": "Paintroid/src/main/res/values-en-rGB/strings.xml",
+        "blob": "dfb9124d8b4805b4efa6fcbeef91b40519023b82",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-IN",
+        "path": "Paintroid/src/main/res/values-en-rIN/strings.xml",
+        "blob": "1d43bd3b1ef53379870598e616ba19d3b506d912",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-SG",
+        "path": "Paintroid/src/main/res/values-en-rSG/strings.xml",
+        "blob": "7d8ccc87e8a1d3c1141d52073ae1716f7623c4f1",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-US",
+        "path": "Paintroid/src/main/res/values-en-rUS/strings.xml",
+        "blob": "41ec88b853d4333326bbfe097b1518a4e9914837",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "en-XV",
+        "path": "Paintroid/src/main/res/values-b+en+XV/strings.xml",
+        "blob": "7f23760189f651c0a344c47463b3eb3645ea8352",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "eo",
+        "path": "Paintroid/src/main/res/values-b+eo/strings.xml",
+        "blob": "94dde2eb744c688ae0cb35883db7a610cacecd49",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "es-419",
+        "path": "Paintroid/src/main/res/values-b+es+419/strings.xml",
+        "blob": "457c23d1c233e2caadf6070532bb2353736459b0",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "es-ES",
+        "path": "Paintroid/src/main/res/values-b+es+ES/strings.xml",
+        "blob": "93f97f6f93a62f5a97d02c96f174fadafc567804",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "et",
+        "path": "Paintroid/src/main/res/values-b+et/strings.xml",
+        "blob": "818509f95c928a786c28fe3332558dda096ecce9",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "eu-ES",
+        "path": "Paintroid/src/main/res/values-eu-rES/strings.xml",
+        "blob": "c50f5187e55f587cfe7be7a87fc35c6262eb24d8",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fa",
+        "path": "Paintroid/src/main/res/values-fa/strings.xml",
+        "blob": "958329b38041e082e1c61b98dd334f6576285afe",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fa-IR",
+        "path": "Paintroid/src/main/res/values-fa-rIR/strings.xml",
+        "blob": "3c1ca7f42b9fefd673d43b4d855714364001f584",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fi",
+        "path": "Paintroid/src/main/res/values-fi/strings.xml",
+        "blob": "61c5c13656ef918c5017e51b23565a3ec993bd46",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fil",
+        "path": "Paintroid/src/main/res/values-b+fil/strings.xml",
+        "blob": "bfc81c7ef563aa8514d85f9c58f3900774aecb78",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fr",
+        "path": "Paintroid/src/main/res/values-fr/strings.xml",
+        "blob": "f0478e1955db72add93f8811d8d4b8b680d44d6b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "fy",
+        "path": "Paintroid/src/main/res/values-b+fy/strings.xml",
+        "blob": "3ed58c5b22e4fce7988824f58d08b79474158633",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ga",
+        "path": "Paintroid/src/main/res/values-b+ga/strings.xml",
+        "blob": "d4faafe63248d1e02e2ece0837a43e8e846d8d84",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gd",
+        "path": "Paintroid/src/main/res/values-b+gd/strings.xml",
+        "blob": "75788d505c29c6828c6a25189febd58815eab618",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gl",
+        "path": "Paintroid/src/main/res/values-gl/strings.xml",
+        "blob": "71bccd2208554478fa2463d4622cb75686fdde9d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "gu",
+        "path": "Paintroid/src/main/res/values-gu/strings.xml",
+        "blob": "59818284b5f63c0091f7afffc6da95e557054898",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ha",
+        "path": "Paintroid/src/main/res/values-b+ha/strings.xml",
+        "blob": "98b8b11fccf19e7951cea4eafaa0991502264a7b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hak-Hant-TW",
+        "path": "Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml",
+        "blob": "67e3a569aac1a4ea2e24bda3addcf0c7e3ccdc17",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hak-Latn-TW",
+        "path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+        "blob": "e042040651ed5b075a26afd36cb8610a66f762fd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "he",
+        "path": "Paintroid/src/main/res/values-iw/strings.xml",
+        "blob": "9f7cfa5aa5ff933619e8f8518dd7ea8e2036ed0b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hi",
+        "path": "Paintroid/src/main/res/values-hi/strings.xml",
+        "blob": "364a5324ed48bc7c2550c734cfd6cffd4fad9d12",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hne",
+        "path": "Paintroid/src/main/res/values-b+hne/strings.xml",
+        "blob": "41758366e383670ed936806654bc0148547c466a",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hr",
+        "path": "Paintroid/src/main/res/values-hr/strings.xml",
+        "blob": "7224c22646002e7a570033b804cecdd1cae73a6e",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ht",
+        "path": "Paintroid/src/main/res/values-b+ht/strings.xml",
+        "blob": "4264207030c5a78d30d0d39c02b0bd5883240923",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hu",
+        "path": "Paintroid/src/main/res/values-hu/strings.xml",
+        "blob": "b57e78e86b3274282e7abe46c05b9ca7e6a7f508",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "hy",
+        "path": "Paintroid/src/main/res/values-b+hy/strings.xml",
+        "blob": "b424dbeeab6e63aae01cb544473de7171cc06549",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ia",
+        "path": "Paintroid/src/main/res/values-b+ia/strings.xml",
+        "blob": "381a2032ef33242be081c010ddc754003bb8f6d0",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "id",
+        "path": "Paintroid/src/main/res/values-in/strings.xml",
+        "blob": "7387f097b3c641b51dff5b5dd689b8b7639c7be1",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ig",
+        "path": "Paintroid/src/main/res/values-b+ig/strings.xml",
+        "blob": "b3e13aa64e4829c88941d8cc65b5995545ea5b4f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "is",
+        "path": "Paintroid/src/main/res/values-b+is/strings.xml",
+        "blob": "ebd6b062f4c9ef94d8298b7f7241e1585f3aa4b9",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "it",
+        "path": "Paintroid/src/main/res/values-it/strings.xml",
+        "blob": "d35e6c22889ee74173a982da20523516ddc6e77d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ja",
+        "path": "Paintroid/src/main/res/values-ja/strings.xml",
+        "blob": "351fd23e5ce7bf4d074511a61337dee569095b56",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "jje",
+        "path": "Paintroid/src/main/res/values-b+jje/strings.xml",
+        "blob": "e818520472be3b432cf174534933a08b26c68f94",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "jv",
+        "path": "Paintroid/src/main/res/values-b+jv/strings.xml",
+        "blob": "6bbbfb094a5c2496e0b8e97cef43e93bb0087b08",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ka",
+        "path": "Paintroid/src/main/res/values-ka/strings.xml",
+        "blob": "9dc0e4f0a6c2c84d8924454cbdfef92f39601caf",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kab",
+        "path": "Paintroid/src/main/res/values-kab/strings.xml",
+        "blob": "f6c04a33f61e56bdd50fdcdc3de39de8aa8a8b3f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kk",
+        "path": "Paintroid/src/main/res/values-kk/strings.xml",
+        "blob": "63334cf050432faf3ec9ca272c888f7e35cf8f0e",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "km",
+        "path": "Paintroid/src/main/res/values-b+km/strings.xml",
+        "blob": "3dbc1381342f967a91e6fd0be469d8d97bead1fd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "kn",
+        "path": "Paintroid/src/main/res/values-kn/strings.xml",
+        "blob": "1cbd6ba01279eaac43703159607ddee1fafdbe1a",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-Kore-KR",
+        "path": "Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml",
+        "blob": "5122cba334a99574801a7dc55777bf17850040f5",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-KP",
+        "path": "Paintroid/src/main/res/values-b+ko+KP/strings.xml",
+        "blob": "23ac2dbf12b6026109d262d85bc8f4b34d5b8cd3",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ko-KR",
+        "path": "Paintroid/src/main/res/values-b+ko+KR/strings.xml",
+        "blob": "188268af184816b7ed95f175e01634e6db3b2581",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ku",
+        "path": "Paintroid/src/main/res/values-b+ku/strings.xml",
+        "blob": "2d24eafba9831839dace40291bec0bee83afe8db",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ky",
+        "path": "Paintroid/src/main/res/values-b+ky/strings.xml",
+        "blob": "8d541efaa4c330fe990225814c7821b3eed60453",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "la",
+        "path": "Paintroid/src/main/res/values-b+la/strings.xml",
+        "blob": "32c789ee14ac1d6a92b953dfd607b352002c018a",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ln",
+        "path": "Paintroid/src/main/res/values-b+ln/strings.xml",
+        "blob": "92c3c41b542f951f407e6e70937b4b8c7c88b23b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lo",
+        "path": "Paintroid/src/main/res/values-b+lo/strings.xml",
+        "blob": "86b2c65aa697889673f07604e77b84aea4371aba",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lt",
+        "path": "Paintroid/src/main/res/values-lt/strings.xml",
+        "blob": "c0fa2838a7c18a16a8d7f4f707b156ff25367bd3",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lv",
+        "path": "Paintroid/src/main/res/values-b+lv/strings.xml",
+        "blob": "04a885e39f8640bc0a63caa34d780ce14358b7f7",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "lzh-Hant",
+        "path": "Paintroid/src/main/res/values-b+lzh+Hant/strings.xml",
+        "blob": "b5faaa0263da434e334d9e4bc65154379ff8e2f0",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mai",
+        "path": "Paintroid/src/main/res/values-b+mai/strings.xml",
+        "blob": "32b447e554cd79a4f214a2cae675d3ba23a1f730",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mi",
+        "path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+        "blob": "5735c73ad84d80fe5eba6df4b03175ccccdfde8c",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mk",
+        "path": "Paintroid/src/main/res/values-mk/strings.xml",
+        "blob": "8b6573ee0de57a69aee9856139324919d5556420",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ml-IN",
+        "path": "Paintroid/src/main/res/values-ml-rIN/strings.xml",
+        "blob": "4573d40cb00dd47b9ee1429ba3d9b63cbe95ba5d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mn-Cyrl-MN",
+        "path": "Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml",
+        "blob": "b4605d3db7399e2d131c22fe29eff13abff5d760",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mn-Mong",
+        "path": "Paintroid/src/main/res/values-b+mn+Mong/strings.xml",
+        "blob": "974655dc096ce9936c4c443fac730f84509e207b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mnc-Mong",
+        "path": "Paintroid/src/main/res/values-b+mnc+Mong/strings.xml",
+        "blob": "591c0ccbb28709b8bc1546c2582bd7c84733afe7",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mr",
+        "path": "Paintroid/src/main/res/values-b+mr/strings.xml",
+        "blob": "da16cbd2a9a09fa1841774e58a00b6bf30ce43f5",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ms",
+        "path": "Paintroid/src/main/res/values-ms/strings.xml",
+        "blob": "3a71e2829685080d1bd55c6d9372b3e600f303e8",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "mww",
+        "path": "Paintroid/src/main/res/values-b+mww/strings.xml",
+        "blob": "64c8520df49341455e35dc4f614505754530fb68",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "my",
+        "path": "Paintroid/src/main/res/values-b+my/strings.xml",
+        "blob": "7a668f274f992c8fcad2dc07fa1cba4673afaf4d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nan-Hant-TW",
+        "path": "Paintroid/src/main/res/values-b+nan+Hant+TW/strings.xml",
+        "blob": "a8344ebb0ccc07f48a9230f9c4d3adc6f5d0596f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nan-Latn-TW",
+        "path": "Paintroid/src/main/res/values-b+nan+Latn+TW/strings.xml",
+        "blob": "d8872b8f30b929fa9eafa71045c053f164a40ff2",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nch",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "blob": "b688a6e604150c973c8e0d3465935c5e4d71ff21",
+        "present": 384,
+        "missing": 335
+      },
+      {
+        "tag": "nds",
+        "path": "Paintroid/src/main/res/values-b+nds/strings.xml",
+        "blob": "d79325721256ed30c21e60238fe2fcd282b5bdfb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ne",
+        "path": "Paintroid/src/main/res/values-b+ne/strings.xml",
+        "blob": "5c4fe4be0cbff77e6f17bae595bbaac45c03069d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nhe",
+        "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+        "blob": "fa6bf57fda9fd3b738b240b500d247d1f42264eb",
+        "present": 400,
+        "missing": 319
+      },
+      {
+        "tag": "nhw",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "blob": "9eb4a31393710d62a5ebf4f44e5da59dc88c84bc",
+        "present": 383,
+        "missing": 336
+      },
+      {
+        "tag": "nl",
+        "path": "Paintroid/src/main/res/values-nl/strings.xml",
+        "blob": "27cae110158c8ec8c49b9e82b9f57bf36d09296d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nn",
+        "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+        "blob": "473d4e3895a28221a85e8bb20ae60ebb1040706a",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "no",
+        "path": "Paintroid/src/main/res/values-no/strings.xml",
+        "blob": "2fa532ee18a817710db82252ccfba5862038ca9a",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "non",
+        "path": "Paintroid/src/main/res/values-b+non/strings.xml",
+        "blob": "a18578bb5e911f650833c020da5074425d1d26fb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "nv",
+        "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+        "blob": "54e4a7b719c79d38d3ab41bb7dde28497dc306eb",
+        "present": 391,
+        "missing": 328
+      },
+      {
+        "tag": "oc",
+        "path": "Paintroid/src/main/res/values-b+oc/strings.xml",
+        "blob": "389fdbd656d958e78a9ce9f9e9a3a9a5bdc36f8d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pa-IN",
+        "path": "Paintroid/src/main/res/values-pa-rIN/strings.xml",
+        "blob": "b159f1dd94893d267e32790e642dc8676f0b2bc2",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pcm",
+        "path": "Paintroid/src/main/res/values-b+pcm/strings.xml",
+        "blob": "ce59dabfd576f1a05e975d625912d5ae30caab67",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pl",
+        "path": "Paintroid/src/main/res/values-pl/strings.xml",
+        "blob": "92d6f817d33b493b46639a0b4b516045408da3bb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ps",
+        "path": "Paintroid/src/main/res/values-ps/strings.xml",
+        "blob": "5b7bc1e70e477bf797178845a62be67881190973",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pt-BR",
+        "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+        "blob": "09fa97ab85019af26ccc878dd1156697c267744a",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "pt-PT",
+        "path": "Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+        "blob": "63ac55094db09456848f4f7e73ebff4f4e96f538",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "qaa-Zsye-XV",
+        "path": "Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml",
+        "blob": "b7a4cbf4a3a28d74832ca91b119c121f34a57bce",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "qug",
+        "path": "Paintroid/src/main/res/values-b+qug/strings.xml",
+        "blob": "8c654ed388ea46016bdaa0ace4922a9458cd5911",
+        "present": 714,
+        "missing": 5
+      },
+      {
+        "tag": "quh",
+        "path": "Paintroid/src/main/res/values-b+quh/strings.xml",
+        "blob": "7bb25f217e6a2e31a48c133b127b3076dcfcc97f",
+        "present": 716,
+        "missing": 3
+      },
+      {
+        "tag": "quy",
+        "path": "Paintroid/src/main/res/values-b+quy/strings.xml",
+        "blob": "919ea093b7205574d4c4a9b03bcb5414af85efcb",
+        "present": 716,
+        "missing": 3
+      },
+      {
+        "tag": "quz",
+        "path": "Paintroid/src/main/res/values-b+quz/strings.xml",
+        "blob": "cd5b2db1284256048c7806c78d28f66af60d9d76",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ro",
+        "path": "Paintroid/src/main/res/values-ro/strings.xml",
+        "blob": "3ab14b96336018f5fc6a30300e93ff6907cfdc46",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ru",
+        "path": "Paintroid/src/main/res/values-ru/strings.xml",
+        "blob": "4eff14f63815e512ca033144516cd87d4329644f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "rw",
+        "path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+        "blob": "f8bee91884226bcc1e4dc1cd6696c277e23af32d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ryu",
+        "path": "Paintroid/src/main/res/values-b+ryu/strings.xml",
+        "blob": "dbea6b0c3ed2134ea5677f585055aceb096cf704",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sa",
+        "path": "Paintroid/src/main/res/values-b+sa/strings.xml",
+        "blob": "0de5b69b457bc04860ee6c072a6173c13c493c1e",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sd",
+        "path": "Paintroid/src/main/res/values-sd/strings.xml",
+        "blob": "eadf86281f4159948f0a5bb772544af6135a5b41",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "se",
+        "path": "Paintroid/src/main/res/values-b+se/strings.xml",
+        "blob": "ef902be8de78637e8a7250aebbc9e43a4e84c3be",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "shn",
+        "path": "Paintroid/src/main/res/values-b+shn/strings.xml",
+        "blob": "1e8adf61ed1f12e6291a520b88907d1c036da794",
+        "present": 718,
+        "missing": 1
+      },
+      {
+        "tag": "si",
+        "path": "Paintroid/src/main/res/values-si/strings.xml",
+        "blob": "2bfe18bf321a12eb3da30fdff2d32472a49d7ffb",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sk",
+        "path": "Paintroid/src/main/res/values-sk/strings.xml",
+        "blob": "1805c5cef26640164d07d8ce7904db8bfdc94533",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sl",
+        "path": "Paintroid/src/main/res/values-sl/strings.xml",
+        "blob": "334878000297e707e883ae3d9262e6864b25aa47",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sm",
+        "path": "Paintroid/src/main/res/values-b+sm/strings.xml",
+        "blob": "aa25fcd8dafe1ac6c1742c8194709fdb4a8e639b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "so",
+        "path": "Paintroid/src/main/res/values-b+so/strings.xml",
+        "blob": "644f4aee39128a5a62adac119d27e772cf9fabd2",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sq",
+        "path": "Paintroid/src/main/res/values-sq/strings.xml",
+        "blob": "1200ca910812e54556dbb9eb39b8c442615ab760",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sr-Cyrl",
+        "path": "Paintroid/src/main/res/values-b+sr+Cyrl/strings.xml",
+        "blob": "d7bc4a610ad5620ae1ab1ce9850d6bd7708c7654",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sr-Latn",
+        "path": "Paintroid/src/main/res/values-b+sr+Latn/strings.xml",
+        "blob": "fc551523297fd9dae3cb9850b108b61fb4516c1d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "su",
+        "path": "Paintroid/src/main/res/values-b+su/strings.xml",
+        "blob": "22e7b03f49c3b541fdedb55cf5cbe239264d6457",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sv",
+        "path": "Paintroid/src/main/res/values-sv/strings.xml",
+        "blob": "feac824749f3913838f2edc0021e7daa1892eb12",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "sw",
+        "path": "Paintroid/src/main/res/values-sw/strings.xml",
+        "blob": "29982be8a31fd78d778c388ac4957bd95b178f5e",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ta",
+        "path": "Paintroid/src/main/res/values-ta/strings.xml",
+        "blob": "a32e1ea79e4d72d492b48c06bdc436cb28f1cf45",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tdd",
+        "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+        "blob": "4b01e342c71adfaa33617dd36e777525cdb49f98",
+        "present": 398,
+        "missing": 321
+      },
+      {
+        "tag": "te",
+        "path": "Paintroid/src/main/res/values-te/strings.xml",
+        "blob": "181932d815c94537ed66febfb09ea557adddd9e7",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tg",
+        "path": "Paintroid/src/main/res/values-b+tg/strings.xml",
+        "blob": "42bf9df23c309a34bac51f82d30c9e6db23e7ea1",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "th",
+        "path": "Paintroid/src/main/res/values-th/strings.xml",
+        "blob": "97b57c6633b8634c24401a7ed65e7f315eb5bacd",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tok",
+        "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+        "blob": "2bf08ff8a82ca44e2404fb1aa1f18251355d5123",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tpi",
+        "path": "Paintroid/src/main/res/values-b+tpi/strings.xml",
+        "blob": "cfec63d849bf6fba5882370f7706ac74868e5593",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tr",
+        "path": "Paintroid/src/main/res/values-tr/strings.xml",
+        "blob": "aa4100d445a89286f593602223b150e1931148fc",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tt-Cyrl",
+        "path": "Paintroid/src/main/res/values-b+tt+Cyrl/strings.xml",
+        "blob": "ca890940ccce989ec3aac32b56b17028fdd5af6f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "tt-Latn",
+        "path": "Paintroid/src/main/res/values-b+tt+Latn/strings.xml",
+        "blob": "7b518ac20db6f6bce984cb1eee86b208db137045",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ug",
+        "path": "Paintroid/src/main/res/values-b+ug/strings.xml",
+        "blob": "9ae77d30b2f5d1d54a8ac401d4a21e89f860f53d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "uk",
+        "path": "Paintroid/src/main/res/values-uk/strings.xml",
+        "blob": "61eb2e0f7326c841601caccfa58537efd85da301",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "ur",
+        "path": "Paintroid/src/main/res/values-ur/strings.xml",
+        "blob": "d73b84d88f9c0c11125eb904f111b4f21bc9dd5f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "uz-Latn",
+        "path": "Paintroid/src/main/res/values-b+uz+Latn/strings.xml",
+        "blob": "e1d32d17c87720be8c4fc9348710a0e1ae50a8ac",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "vi",
+        "path": "Paintroid/src/main/res/values-vi/strings.xml",
+        "blob": "fd6c2856ab83f0738446ca5598204ce8ccfb4204",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "vi-Hani",
+        "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+        "blob": "740b470a85a7f5e8c029d26cd0044d48627b94ce",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wa",
+        "path": "Paintroid/src/main/res/values-b+wa/strings.xml",
+        "blob": "8b1c4f49b34d17a220ae3589d73cfafefdf73d8d",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wo",
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "blob": "cf4ecbef162901817f7f6022ba9c412f9656437b",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "wuu-Hans",
+        "path": "Paintroid/src/main/res/values-b+wuu+Hans/strings.xml",
+        "blob": "e74fbdbe37fed545aeb6bf20a663fe22a7596250",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "xh",
+        "path": "Paintroid/src/main/res/values-b+xh/strings.xml",
+        "blob": "c0324fcbdd37b22f608f652d4abfe1cfdc2bd442",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yi",
+        "path": "Paintroid/src/main/res/values-b+yi/strings.xml",
+        "blob": "64403db97f58d69da13a9272528c3a78d9cd17aa",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yo",
+        "path": "Paintroid/src/main/res/values-b+yo/strings.xml",
+        "blob": "fd8e367e4de29a352c1fddfce9d86e08a5394aca",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yua",
+        "path": "Paintroid/src/main/res/values-b+yua/strings.xml",
+        "blob": "78579f9dcd83edde24b197c9122dc04550b5b282",
+        "present": 718,
+        "missing": 1
+      },
+      {
+        "tag": "yue-Hant",
+        "path": "Paintroid/src/main/res/values-b+yue+Hant/strings.xml",
+        "blob": "79c1ecd9973af7e265fc07f32c096db572a2d04f",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "yue-Latn",
+        "path": "Paintroid/src/main/res/values-b+yue+Latn/strings.xml",
+        "blob": "57fb778d393938b864ddf43006bbf1a3afbe5ad3",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "za",
+        "path": "Paintroid/src/main/res/values-b+za/strings.xml",
+        "blob": "fc4b6b349cbb3483b68e2e72e597981d508ed7fc",
+        "present": 474,
+        "missing": 245
+      },
+      {
+        "tag": "zgh",
+        "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+        "blob": "43e46c9704fc641b202a11ee9ed34d5f13936bc2",
+        "present": 401,
+        "missing": 318
+      },
+      {
+        "tag": "zh-CN",
+        "path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+        "blob": "2d8d15715365a7e6f707210c166ed1c145796823",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zh-HK",
+        "path": "Paintroid/src/main/res/values-zh-rHK/strings.xml",
+        "blob": "42924eb6af66dd585fc231255a45e9d941e95095",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zh-TW",
+        "path": "Paintroid/src/main/res/values-zh-rTW/strings.xml",
+        "blob": "b6e7e9ffc7738a49b26c676dc108a8ffa5e3c174",
+        "present": 719,
+        "missing": 0
+      },
+      {
+        "tag": "zu",
+        "path": "Paintroid/src/main/res/values-b+zu/strings.xml",
+        "blob": "b6e50254c538d078e466fc442b0c2afef1967277",
+        "present": 719,
+        "missing": 0
+      }
+    ],
+    "local_commit_same_tree": "52c26b9b73377573ed556cf6d6ee720d57352473",
+    "remote_commit": "bd190c11e531912ea8b844602a7a43bf7562477b"
+  },
+  "limits": [
+    "Direct resource presence is not language acceptance",
+    "Existing draft grammar and full-guide limits remain",
+    "No Spanish changes relative to develop"
+  ]
+}
