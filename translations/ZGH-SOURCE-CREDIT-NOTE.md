@@ -1,0 +1,5 @@
+# Standard Moroccan Tamazight source-credit label
+
+`gallery_credit_source` uses the standalone noun Source, ⴰⵙⴰⴳⵎ, with the unchanged colon and indexed URL placeholder. Independently visually checked against IRCAM, Vocabulaire des médias (2009), printed p.69, Source / Source. PublicationCredit.text renders the source-page URL with this label. This is a bounded noun label, not a newly authored sentence or whole-language certification.
+
+Official edition URL: https://www.ircam.ma/sites/default/files/2021-02/lexiquemedias-fr.pdf . Retrieval unavailable during this review; the IRCAM-authored edition was inspected via https://www.fichier-pdf.fr/2012/08/06/lexiquemedias-fr/lexiquemedias-fr.pdf (SHA256 27449a078806d86196d8eb3810835113b6c438f184c966f2856661d2ccea96df). Imprint: Meftaha Ameur, Aïcha Bouhjar, Abdallah Boumalk, Noura El Azrak, Rachid Laabdelaoui; IRCAM 2009, ISBN9954-439-92-7. No dictionary page/prose is redistributed. The embedded custom font required visual verification rather than treating extracted ASCII as Tifinagh. Official and mirror bytes could not be compared.
