@@ -41,18 +41,19 @@ def caption(value):
     return displayed(value.rstrip(" \t\r\n.,;:!?…。！？；：།༎"))
 
 
-def route_pattern(rendered, keys):
-    def resolve(key):
-        seen = set()
-        while key not in seen:
-            seen.add(key)
-            value = rendered[key]
-            if not value.startswith("@string/"):
-                return value
-            key = value.removeprefix("@string/")
-        raise AssertionError(f"Cyclic caption reference: {key}")
+def resolve_string(rendered, key):
+    seen = set()
+    while key not in seen:
+        seen.add(key)
+        value = rendered[key]
+        if not value.startswith("@string/"):
+            return value
+        key = value.removeprefix("@string/")
+    raise AssertionError(f"Cyclic string reference: {key}")
 
-    return r"[།༎]*[>→←]".join(re.escape(caption(resolve(key))) for key in keys)
+
+def route_pattern(rendered, keys):
+    return r"[།༎]*[>→←]".join(re.escape(caption(resolve_string(rendered, key))) for key in keys)
 
 
 class LocalizedHelpTests(unittest.TestCase):
@@ -118,7 +119,22 @@ class LocalizedHelpTests(unittest.TestCase):
                 if resource not in local:
                     continue
                 with self.subTest(locale=locale, resource=resource):
-                    self.assertRegex(displayed(local[resource]), route_pattern(rendered, keys))
+                    self.assertRegex(displayed(resolve_string(rendered, resource)), route_pattern(rendered, keys))
+
+    def test_paste_alias_resolution_preserves_route_assertions(self):
+        rendered = {"hint": "@string/alias", "alias": "@string/text",
+                    "text": "Draw > Insert > Other images",
+                    "draw": "Draw", "insert": "Insert", "other": "Other images"}
+        pattern = route_pattern(rendered, ("draw", "insert", "other"))
+        self.assertRegex(displayed(resolve_string(rendered, "hint")), pattern)
+        for wrong in ("Other images > Insert > Draw", "Draw > Insert", "Draw > Wrong > Other images"):
+            with self.subTest(wrong=wrong):
+                mutated = {**rendered, "text": wrong}
+                self.assertNotRegex(displayed(resolve_string(mutated, "hint")), pattern)
+        with self.assertRaises(KeyError):
+            resolve_string({"hint": "@string/missing"}, "hint")
+        with self.assertRaisesRegex(AssertionError, "Cyclic string"):
+            resolve_string({"hint": "@string/alias", "alias": "@string/hint"}, "hint")
 
     def test_slovenian_croatian_help_uses_live_reset_caption(self):
         # The colour header dispatches RESET_COLOURS/ui_reset_bw23, not the
