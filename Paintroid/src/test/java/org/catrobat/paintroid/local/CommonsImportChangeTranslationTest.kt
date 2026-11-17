@@ -44,11 +44,11 @@ class CommonsImportChangeTranslationTest {
     }
 
     @Test fun selectedLocaleSuppliesWholeMessagesWithExactTechnicalLiterals() {
-        for(tag in listOf("en-US","fr","ja","bn","cy")) withLanguage(tag) {
+        for(tag in listOf("en-US","fr","ja","bn","cy","wo","se","shn","yua")) withLanguage(tag) {
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
             val notes=PaintApplication.currentResources.getString(R.string.commons_import_svg_changes) to
                 PaintApplication.currentResources.getString(R.string.commons_import_raster_changes)
-            if(tag=="cy") {
+            if(tag in listOf("cy","wo","se","shn","yua")) {
                 val english=PriorityWordingExpectations.resources("en-GB")
                 assertNotEquals(english.getString(R.string.commons_import_svg_changes),notes.first)
                 assertNotEquals(english.getString(R.string.commons_import_raster_changes),notes.second)
@@ -84,7 +84,7 @@ class CommonsImportChangeTranslationTest {
         val english=PriorityWordingExpectations.resources("en-GB")
         val englishSvg=english.getString(R.string.commons_import_svg_changes)
         val englishRaster=english.getString(R.string.commons_import_raster_changes)
-        for(tag in listOf("wo","zgh","se")) withLanguage(tag) {
+        for(tag in listOf("zgh","nv","tdd")) withLanguage(tag) {
             assertEquals(englishSvg,PaintApplication.currentResources.getString(R.string.commons_import_svg_changes))
             assertEquals(englishRaster,PaintApplication.currentResources.getString(R.string.commons_import_raster_changes))
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)

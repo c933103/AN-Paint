@@ -14,11 +14,13 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         # Fixture validity: a newly translated sample must not masquerade as fallback.
         paths = catalogues.catalogue_paths()
         offered = set(catalogues.offered_tags())
-        for tag in ('wo', 'zgh', 'se'):
+        for tag in ('zgh', 'nv', 'tdd'):
             with self.subTest(tag=tag):
                 self.assertIn(tag, offered)
                 self.assertTrue(KEYS.isdisjoint(catalogues.read_strings(paths[tag])))
-        self.assertTrue(KEYS <= catalogues.read_strings(paths['cy']).keys())
+        for tag in ('cy', 'shn', 'yua'):
+            with self.subTest(translated=tag):
+                self.assertTrue(KEYS <= catalogues.read_strings(paths[tag]).keys())
 
     def test_all_published_notes_preserve_literals_and_formatting(self):
         paths = {'default': catalogues.RES / 'values/strings.xml', **catalogues.catalogue_paths()}
