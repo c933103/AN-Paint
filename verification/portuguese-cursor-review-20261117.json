@@ -1,0 +1,144 @@
+{
+  "application_head": "178e7187702cef99d79452b8a74fc4374253c5ea",
+  "tree": "26e01a093673a9d1c944469de316930fca099e10",
+  "scope": "Portuguese full 719-resource catalogues separately read; 38 bounded edits; 24 unmerged cursor-guide repairs across six locales",
+  "tests": {
+    "command": "PYTHONPATH=tools python -m unittest tools.test_translation_boundaries tools.test_translations tools.test_current_localization_contracts tools.test_localized_help tools.test_brazilian_portuguese_priority_wording",
+    "passed": 65,
+    "seconds": 10.207,
+    "initial_failure": "missing PYTHONPATH import errors, corrected without test change"
+  },
+  "limits": [
+    "No native-speaker certification",
+    "No runtime/device verification",
+    "No Codex review quota retry",
+    "Style refinements not classified as defects"
+  ],
+  "br_review": {
+    "packet_sha256": "664050ff8f4fbbba92a96dd4b5bd5e75425ea2539988dbc7d393a9cdc4c4bd7e",
+    "full_values_read": 36,
+    "accepted_bounded": 35,
+    "revise": 1,
+    "findings": [
+      {
+        "key": "ui_the_arrow_on_the_left_directly_below_the",
+        "reason": "Cursor mode moves cursor and paints; it does not pan viewport in this gesture. Added visualizacao target introduces false instruction.",
+        "evidence": "PaintCanvas.kt:680-687, separate two-finger view pan at650-651",
+        "replacement_packet": "/tmp/pt-BR-independent-revisions.json"
+      }
+    ],
+    "limits": [
+      "Read all 36 complete values, including entire long guide and short help against canonical. Independently inspected relevant cursor, memory, ICO, assembly and text alignment consumers.",
+      "No native/device-layout certification. Correct regional alternatives in old text are not bugs. Changes such as tem de -> deve, experimente -> tente, para aqui -> para ca are optional editorial consistency; not necessary semantic repairs.",
+      "Marker size replacement describes painted stroke footprint, not a new image resize. Decoder exclusion applies explicitly to MP count; RAM budget remains actual."
+    ],
+    "final_packet_sha256": "1ed343acff59c216e99f28448fe2cce3cf56fcc331d4a51112cdc5883a1aba7f",
+    "final_status": "All36 acceptable after verified cursor correction; regional/style items remain optional not bugs.",
+    "reviewed_key_count": 36
+  },
+  "pt_review": {
+    "head": "6f0832099fd503073c9305c3a5bdeade1b244621",
+    "catalogue_sha256": "a754267ba432fab46573188f20cc275474c509a96314855647dbd501c0a222c0",
+    "scope": 719,
+    "full_values_read": 719,
+    "proposed_precision_refinements": 2,
+    "structural_issues": [],
+    "reviewed_key_count": 719
+  },
+  "cursor_review": {
+    "values": 24,
+    "locales": 6,
+    "scope": "Only four specified values per locale; no blanket all-resources approval",
+    "all_6_guides_non_cursor_paragraphs_unchanged": true,
+    "reviewed_key_count": 24
+  },
+  "pt-BR": {
+    "sha256": "1ed343acff59c216e99f28448fe2cce3cf56fcc331d4a51112cdc5883a1aba7f",
+    "keys": [
+      "ui_share_saved_image",
+      "ui_sort_tray",
+      "formats22_ico_dimensions_error",
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "ui_cursor_marker_help31",
+      "ui_pinch_to_zoom_drag_to_pan",
+      "ui_pinch_and_pan_mode",
+      "ui_image_assembly_workspace_drag_placed_images_or_drop",
+      "ui_drag_to_pan_without_drawing_pinch_with_two",
+      "ui_drop_at_a_highlighted_edge_right_top_aligned",
+      "ui_no_attachment_fits_within_the_current_coordinate_range",
+      "ui_selection_dimensions_are_too_large",
+      "formats22_pdf_dimensions",
+      "ui_the_picker_returned_no_file_please_choose_the",
+      "ui_the_picker_returned_no_files",
+      "ui_the_selected_provider_did_not_return_any_image",
+      "ui_try_a_different_file_or_location",
+      "ui_not_enough_memory_to_save_in_this_format",
+      "ui_add_images_then_drag_a_thumbnail_here",
+      "ui_hold_a_thumbnail_and_drag_it_here_or",
+      "ui_crop_must_stay_inside_the_canvas",
+      "ui_the_crop_must_contain_at_least_one_pixel",
+      "ui_the_crop_must_stay_inside_the_image",
+      "ui_trim_amounts_must_be_zero_or_greater",
+      "ui_trim_amounts_must_fit_inside_each_image_use",
+      "formats22_pdf_file_size",
+      "formats22_pdf_page_count",
+      "formats22_pdf_crop",
+      "ui_codec_resize_memory_floor",
+      "ui_drag_from_the_start_to_the_end_of",
+      "ui_some_previews_could_not_be_decoded_you_can",
+      "ui_you_can_add_more_images_select_fewer_files",
+      "ui_top23",
+      "ui_bottom23",
+      "ui_the_arrow_on_the_left_directly_below_the",
+      "ui_help23"
+    ]
+  },
+  "pt-PT": {
+    "sha256": "a69f05658928df89eb63aa6a26d737041b9e02ac725facfbbf914f41240eb7ee",
+    "keys": [
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "formats22_ico_dimensions_error"
+    ]
+  },
+  "cursor-six": {
+    "sha256": "782a165a96f70d2c83d8a9e2300ff282c96d0034b2b231e9239dc011acf3b76e",
+    "keys": {
+      "wo": [
+        "ui_cursor_help31",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_pan_move32",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "se": [
+        "ui_cursor_help31",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_pan_move32",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "quz": [
+        "ui_cursor_help31",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_pan_move32",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "quh": [
+        "ui_cursor_help31",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_pan_move32",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "quy": [
+        "ui_cursor_help31",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_pan_move32",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "qug": [
+        "ui_cursor_help31",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_pan_move32",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ]
+    }
+  }
+}
