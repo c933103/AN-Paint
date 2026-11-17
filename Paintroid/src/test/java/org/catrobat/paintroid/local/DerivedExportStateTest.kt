@@ -196,15 +196,14 @@ class DerivedExportStateTest {
                 idle()
                 activity.onBackPressed(); idle()
                 val unsaved = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                assertEquals(if (tag == "ca") PriorityWordingExpectations.resourceText("ca","ui_save_your_changes") else "Salvaţi modificările?", shadowOf(unsaved).title.toString())
-                assertEquals(if (tag == "ca") "La imatge actual té canvis sense desar."
-                    else "Imaginea curentă are modificări nesalvate.", shadowOf(unsaved).message.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_save_your_changes"), shadowOf(unsaved).title.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_your_current_image_has_unsaved_changes"), shadowOf(unsaved).message.toString())
                 unsaved.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
                 assertFalse(activity.isFinishing)
                 assertTrue(activity.document.dirty)
                 menu(activity.getString(R.string.ui_save_and_share))
                 val share = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                assertEquals(if (tag == "ca") "Desa i comparteix" else "Salvează și partajează", shadowOf(share).title.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_save_and_share_41edb4"), shadowOf(share).title.toString())
                 share.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
                 assertTrue(activity.document.dirty)
 

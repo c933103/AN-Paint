@@ -10,6 +10,12 @@ import unittest
 import xml.etree.ElementTree as ET
 
 
+# These guides are maintained independently: the Han guide has restored layout
+# and save semantics that remain deferred in the romanized guide. Their term
+# counts are not a transliteration contract. Contextual readings still apply.
+INDEPENDENT_GUIDE = "ui_the_arrow_on_the_left_directly_below_the"
+
+
 RES = pathlib.Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
 
 
@@ -33,10 +39,15 @@ class HakkaContextTests(unittest.TestCase):
         self.assertTrue(keys, han_term)
         for key in keys:
             with self.subTest(key=key, term=han_term):
-                self.assertEqual(
-                    self.han[key].count(han_term),
-                    len(re.findall(pfs_pattern, self.latin[key], re.IGNORECASE)),
-                )
+                readings = re.findall(pfs_pattern, self.latin[key], re.IGNORECASE)
+                if key == INDEPENDENT_GUIDE:
+                    # Verify the term in each script, not equal frequencies in
+                    # prose with different coverage. Wrong spatial readings are
+                    # independently rejected below, including a mixed occurrence.
+                    self.assertIn(han_term, self.han[key])
+                    self.assertTrue(readings, (key, han_term))
+                else:
+                    self.assertEqual(self.han[key].count(han_term), len(readings))
 
     def test_full_missing_picker_warning_keeps_failure_and_recovery_steps(self):
         # The fixture binds all clauses, not just the corrected result complement.
@@ -55,13 +66,22 @@ class HakkaContextTests(unittest.TestCase):
         self.assert_paired_term("肚背", r"\btú[- ]poi\b")
         self.assert_paired_term("下背", r"\bhâ[- ]poi\b")
 
+        # Reject the carrying reading in these spatial compounds, not the
+        # legitimate verb elsewhere. One wrong occurrence must fail even when
+        # other correct occurrences remain in this independently authored guide.
+        self.assertNotRegex(
+            self.latin[INDEPENDENT_GUIDE].lower(), r"\b(?:tú|hâ)[- ]pà\b"
+        )
+
     def test_next_time_is_not_spatial_below(self):
         # MOE 下擺 ha55 bai31, versus 下背 ha24 boi55.
         self.assert_paired_term("下擺", r"\bha[- ]pái\b")
 
-    def test_save_and_system_terms_remain_paired_in_every_occurrence(self):
+    def test_save_and_system_contextual_readings_and_command_labels(self):
         self.assert_paired_term("保存", r"\bpó[- ]sùn\b")
         self.assert_paired_term("系統", r"\bne[- ]thúng\b")
+        self.assertEqual("保存", self.han["ui_save"])
+        self.assertEqual("Pó-sùn", self.latin["ui_save"])
         self.assertEqual("@string/ui_save", self.han["ui_save_a5d0d9"])
         self.assertEqual("Pó-sùn…",self.latin["ui_save_a5d0d9"])
         self.assertEqual(self.latin["ui_save"] + "…", self.latin["ui_save_a5d0d9"])

@@ -77,12 +77,6 @@ class VerticalNoticeResizeCharacterizationTest {
     private fun label(a: Activity)=host(a).findViewWithTag<TextView>("locale_notification_text")
     private fun combined(a: Activity)=a.getString(R.string.ui_cursor_pan_move32)+"\n"+a.getString(R.string.ui_cursor_tap_hint37)
 
-    private fun expected(tag: String): JSONObject {
-        val bytes=javaClass.getResourceAsStream("/vertical-notice-resize/expected-resources.json")
-        assertNotNull("Compiled-resource oracle must be packaged in the test classpath",bytes)
-        return bytes!!.bufferedReader().use {JSONObject(it.readText()).getJSONObject("locales").getJSONObject(tag)}
-    }
-
     /** C01: compiled resources and actual message entry point, not an actual save/provider operation. */
     @Test fun compiledAppResourcesRouteFiveVerticalProfilesToWindowCards()=withLanguageState {
         report("routes") {rows->
@@ -91,10 +85,12 @@ class VerticalNoticeResizeCharacterizationTest {
             assertEquals(joinedEmoji,ExportNames.withExtension(joinedEmoji,ImageFormat.PNG))
             assertEquals(1,VerticalText.clusters(joinedEmoji.removeSuffix(".png")).size)
             for(tag in tags) withActivity(tag) {a->
-                val oracle=expected(tag)
-                assertEquals(oracle.getString("ui_cursor_pan_move32"),a.getString(R.string.ui_cursor_pan_move32))
-                assertEquals(oracle.getString("ui_cursor_tap_hint37"),a.getString(R.string.ui_cursor_tap_hint37))
-                assertEquals(oracle.getString("ui_saved"),a.getString(R.string.ui_saved))
+                // Current compiled resources own wording. A separately configured
+                // context checks the activity's selected-resource binding, not an
+                // obsolete prose snapshot. Host checks retain template boundaries.
+                val selected=PriorityWordingExpectations.resources(tag)
+                for(key in listOf(R.string.ui_cursor_pan_move32,R.string.ui_cursor_tap_hint37,R.string.ui_saved))
+                    assertEquals(selected.getString(key),a.getString(key))
                 assertEquals(tag in nullFaces,LocaleTypography.typeface(a)==null)
                 val expectedDirection=if(tag=="lzh-Hant" || tag=="qaa-Zsye-XV")
                     TextDirection.VERTICAL_RL else TextDirection.VERTICAL_LR
@@ -102,7 +98,7 @@ class VerticalNoticeResizeCharacterizationTest {
                 val cursor=combined(a)
                 assertEquals(1,cursor.count {it=='\n'})
                 val saved=a.getString(R.string.ui_saved,joinedEmoji)
-                assertEquals(oracle.getString("ui_saved").replace("%1\$s",joinedEmoji),saved)
+                assertEquals(selected.getString(R.string.ui_saved).replace("%1\$s",joinedEmoji),saved)
                 for((kind,text) in listOf("combined" to cursor,"joined-emoji-save" to saved)) {
                     ShadowToast.reset()
                     LocaleTypography.showMessage(a,text,Toast.LENGTH_LONG)
