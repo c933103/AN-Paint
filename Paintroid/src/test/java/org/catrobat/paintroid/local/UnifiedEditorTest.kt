@@ -129,7 +129,7 @@ class UnifiedEditorTest {
         assertTrue("Starting ink keeps cursor settings open",root.findViewWithTag<View>("cursor_options").isShown)
         assertEquals("Stop drawing",ink.text.toString())
         assertTrue(ink.isSelected)
-        assertEquals("Pan to start drawing. Tap again to stop drawing.",org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
+        assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_cursor_pan_draw32),org.robolectric.shadows.ShadowToast.getTextOfLatestToast())
         assertTrue("Draw toggle overlays the canvas instead of consuming a separate row",ink.parent is FrameLayout)
         event(MotionEvent.ACTION_DOWN,20f,20f);event(MotionEvent.ACTION_UP,20f,20f)
         assertTrue(board.cursorDrawing);assertTrue(doc.canUndo)
