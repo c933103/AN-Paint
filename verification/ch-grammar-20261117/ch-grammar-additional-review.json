@@ -1,0 +1,151 @@
+{
+  "scope": "Additional grammar-assisted short full values, separate from earlier three; no new full-catalogue claim",
+  "rows": [
+    {
+      "key": "ui_placed",
+      "canonical": "Placed",
+      "proposal": "Mapega",
+      "reason": "Extract supported placement passive from own ui_could_not_place_the_image; bare resulting-state caption, not inability or fixed coordinates. AssemblyActivity142/157 item.isPlaced.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_not_placed",
+      "canonical": "Not placed",
+      "proposal": "Ti mapega",
+      "reason": "Negated same placement predicate; item.isPlaced false. Does not claim no placement is possible.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_the_attachment_image_is_not_placed",
+      "canonical": "The image has not been placed.",
+      "proposal": "Ti mapega i pinenta.",
+      "reason": "Complete generic not-placed clause, removing modal inability from own Ti siña mapega i pinenta. Source ImageAssembly212 concerns item itself. Old attachment-specific draft rejected.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "formats22_preview_unavailable",
+      "canonical": "Preview unavailable: %1$s",
+      "proposal": "Ti siña ma'usa i mostra: %1$s",
+      "reason": "Own unavailable/cannot-use construction from ui_invalid_autosave_metadata; own ui_preview Mostra. ImportSelection143 catches preview generation errors. Preserves reason placeholder, does not say preview was deleted.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_enable_android_s_files_or_documents_app_then",
+      "canonical": "Enable Android's Files or Documents app, then try again.",
+      "proposal": "Na'siña ma'usa i app “Files” pat “Documents” gi inatyik siha gi Android, pues chagi ta'lu.",
+      "reason": "Exact complete second sentence of current ui_android_could_not_find_a_file_picker_enable. AssemblyActivity194 ActivityNotFoundException remedy is same enable app action, not opening it. Strong exact whole-clause reuse.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_an_paint_image_assembly",
+      "canonical": "AN Paint · Image assembly",
+      "proposal": "AN Paint · Dinanña' i pinenta siha",
+      "reason": "Exact current ui_image_assembly phrase without menu ellipsis, with canonical AN Paint separator. Live AssemblyActivity77 initial title. Not a newly coined assembly noun.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_an_paint_image",
+      "canonical": "AN Paint image",
+      "proposal": "AN Paint · Pinenta",
+      "reason": "Supersedes Pinenta AN Paint: unlinked noun-brand juxtaposition lacked specific support; §7.2 requires consideration of linker-n for possessive relation. Use explicit app-brand separator noun label instead. ClassicPaintActivity1394 ClipData.newRawUri label is human-readable image description; AN Paint · Pinenta retains app identity and image noun without asserting a newly composed possessive construction. No URI, MIME, filename or payload changes.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_could_not_create_the_assembly",
+      "canonical": "Could not create the assembly: %1$s",
+      "proposal": "Ti siña mafa'tinas i dinanña' i pinenta siha: %1$s",
+      "reason": "Own inability/passive mafa’tinas construction from ui_autosave_image_encoding_failed, assembly object exact current ui_could_not_save_the_assembly. Does not invent encoding/decoding meaning: source says create assembly. Preserve error placeholder.",
+      "main_kotlin_consumers": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      ],
+      "status": "candidate_pending_parent_review"
+    },
+    {
+      "key": "ui_filename_a_z",
+      "proposal": "Na'an i dokumentu A–Z",
+      "status": "candidate_pending_parent_review",
+      "kind": "bounded_donor_label",
+      "reason": "Exact current save20_file_name plus invariant ordering suffix. ImageAssembly AssemblySort NAME_ASC/NAME_DESC sorts names; no modification-time ambiguity."
+    },
+    {
+      "key": "ui_filename_z_a",
+      "proposal": "Na'an i dokumentu Z–A",
+      "status": "candidate_pending_parent_review",
+      "kind": "bounded_donor_label",
+      "reason": "Exact current save20_file_name plus invariant ordering suffix. ImageAssembly AssemblySort NAME_ASC/NAME_DESC sorts names; no modification-time ambiguity."
+    },
+    {
+      "key": "ui_copy_an_area_or_use_file_insert_image",
+      "proposal": "@string/ui_paste_hint34",
+      "status": "candidate_pending_parent_review",
+      "kind": "resource_alias",
+      "reason": "Canonical complete English values identical to target donor; no old-key exact Kotlin consumer. Modern donor remains actual caller. Alias adds direct slot only, not newly authored sentence or newly reachable UI."
+    },
+    {
+      "key": "ui_disable_cursor_drawing",
+      "proposal": "@string/ui_disable_cursor_drawing33",
+      "status": "candidate_pending_parent_review",
+      "kind": "resource_alias",
+      "reason": "Canonical complete English values identical to target donor; no old-key exact Kotlin consumer. Modern donor remains actual caller. Alias adds direct slot only, not newly authored sentence or newly reachable UI."
+    }
+  ],
+  "holds": {
+    "ui_not_enough_memory_to_inspect_the_gallery_image": "Inspect grammar now supported: exact own Ti nahung i RAM para u ma’inspekta esti na pinenta and primary finder inspekta. But gallery/galeria not found in current own catalogue or inspected finder; do not infer borrowed noun from Spanish. Hold complete value pending noun support or defensible full gallery-source description.",
+    "ui_gallery_image": "Same gallery-noun gap; a dictionary-free borrowed Spanish noun is not established by grammar.",
+    "ui_could_not_load_gallery_image": "Open/load passive own donor exists; gallery qualifier remains unverified.",
+    "ui_the_gallery_image_is_unavailable": "Cannot-use state is supported, gallery qualifier still not established.",
+    "ui_sort_images_by_filename_or_modification_time": "New primary lexical evidence sort=satteha (finder) and Chung §15.2.1 example7b Satteteha i edda’. Reject old generic Na’arekla. Complete timestamp/order-by construction still unverified, so no full candidate yet.",
+    "ui_restore_original_sizes": "Finder restore=rimedia does not alone establish reset original dimensions; old na’ta’lu remains unapproved.",
+    "formats22_ascii_columns": "Draft lettra means letters, source counts characters, so not accepted by atom replacement.",
+    "formats22_pdf_dimensions": "Invalid OR oversized import distinction needs complete phrase confidence; no generic size-only shortcut.",
+    "ui_rendering_images": "No inspected independent lexical evidence for maprosesa and completed-entry vs rendering semantics; not approved.",
+    "formats22_ico_dimensions_error": "Old draft still loses corresponding internal ICO directory-entry condition; grammar not sufficient technical vocabulary."
+  },
+  "sources": [
+    "Sandra Chung2020 §9.3.2.2 implicit-agent ma-passive; §10.2.1 passive derivation; §7.2 linker/possessive; §15.2.1 imperative and sorting example",
+    "Own current ch whole resource donors checked in /tmp/anpaint-next-supported",
+    "English-Chamorro finder inspect/arrange/sort/restore entries inspected; no claim full finder read"
+  ],
+  "validation": "Eight absent keys verified; indexed placeholder patterns match canonical. No canonical edits or integrated tests. Exact whole-clause reuse and bounded new composition distinguished. Four requested follow-up candidates separately checked: exact English donor equality for aliases, both sort consumers. No source-presence quality claim.",
+  "limits": [
+    "No native certification",
+    "No technical lexicon acceptance from grammar alone",
+    "No normalization of regional spelling",
+    "Parent independent complete-value review required"
+  ],
+  "counts": {
+    "additional_candidates": 12,
+    "bounded_labels_or_full_values": 10,
+    "aliases_no_new_authored_prose": 2
+  },
+  "alias_metadata_note": "Paste pair canonical decoded text identical; modern donor formatted=false, old key attribute absent. Neither text has percent/format tokens; explicit alias resolves existing nonformatted prose. Not raw XML element identity.",
+  "supersessions": [
+    {
+      "key": "ui_an_paint_image",
+      "old": "Pinenta AN Paint",
+      "new": "AN Paint · Pinenta",
+      "reason": "Independent parent review identified unsupported noun-brand juxtaposition; explicit label separator avoids inferred possessive grammar."
+    }
+  ]
+}

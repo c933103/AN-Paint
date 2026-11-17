@@ -1,0 +1,82 @@
+{
+  "scope": "New grammar-assisted review of eight named remaining Chamorro draft values only, not full catalogue re-audit",
+  "source": {
+    "author": "Sandra Chung",
+    "year": 2020,
+    "url": "https://escholarship.org/uc/item/2sx7w4h5",
+    "pdf_sha256": "2a4c973dca32efde4c1e2306146340bae2dc949c7c10de1f4bd9b3a45395ce20",
+    "read_sections": [
+      "§15.2.1 affirmative imperatives pp339–342 excerpt",
+      "§7.2 possessive morphology pp141–143 excerpt",
+      "§17.5 example23 plural demonstrative construction",
+      "selected tulaika/nahung lexical examples, not entire grammar"
+    ]
+  },
+  "rows": [
+    {
+      "key": "ui_edit_in_paint",
+      "draft": "Tulaika gi Paint",
+      "status": "supported_candidate",
+      "proposed": "Tulaika gi Paint",
+      "reason": "Supported bounded composition. Current own ui_menu_edit=Tulaika, supported also Chung change examples; bare transitive imperative §15.2.1. gi locative plus proper mode name Paint. Actual AssemblyActivity88 requestOutput(true) transfers output for editing. Does not promise source overwrite."
+    },
+    {
+      "key": "ui_open_artwork34",
+      "draft": "Baba i påhinan pinenta fine'na, despues patcha Usa i pinenta.",
+      "status": "supported_candidate",
+      "proposed": "Baba i påhinan pinenta fine'na, despues patcha Usa i pinenta.",
+      "reason": "Supported bounded composition. Own formats22_open_page=Baba i påhina, ui_add_images_first establishes fine’na, existing commands use patcha, and gallery_use_image exactly Usa i pinenta. Complete sequence matches MediaGalleryActivity168/343/349. Chung §15.2.1 supports bare active imperatives; §7.2 linker -n after vowel supports påhinan pinenta. No new technical noun. Retains original draft spelling/sequence rather than global normalization."
+    },
+    {
+      "key": "ui_preview_memory_error",
+      "draft": "%1$s: ti nahong i memoria para i mostra-ña.",
+      "status": "supported_candidate",
+      "proposed": "%1$s: ti nahung i RAM para i mostra-ña.",
+      "reason": "Support revised full value only: current own repeated Ti nahung i RAM para... supplies technical-memory sense rather than unverified memoria; ui_preview=Mostra. Chung §7.2 third-singular possessive -ña supports its preview, including inanimate antecedent. Placeholder remains image identifier. Exact-key scan found no current main Kotlin consumer; canonical-only, not claimed user-facing improvement."
+    },
+    {
+      "key": "ui_apply_to_all",
+      "draft": "Usa para todu",
+      "status": "deferred",
+      "proposed": null,
+      "reason": "Hold pending apply/use relation review. Grammar establishes Usa is possible imperative, not that Usa para todu unambiguously means apply current transformation to every image. Existing ui_apply=Cho'gui and crop/bounds use Usa with explicit direct object; do not infer relational construction from morphology alone."
+    },
+    {
+      "key": "ui_apply_to_these_images",
+      "draft": "Usa para este siha na pinenta",
+      "status": "deferred",
+      "proposed": null,
+      "reason": "Hold for same apply-to relation. Chung attests esti siha na noun (example17.5(23)), but establishes plural demonstrative construction only, not missing applied-object role. Existing este/esti differences not automatically errors."
+    },
+    {
+      "key": "ui_restore_original_sizes",
+      "draft": "Na'ta'lu i orihinåt na mineddung siha",
+      "status": "deferred",
+      "proposed": null,
+      "reason": "Hold. Draft Na'ta'lu is not validated as restore-original-state by grammar; na' productive causative plus ta'lu again is insufficient lexical/action evidence. Existing recovered-copy reopening donor does not describe dimension reset. Original/mineddung nouns alone cannot close this gap."
+    },
+    {
+      "key": "ui_sort_images_by_filename_or_modification_time",
+      "draft": "Na'arekla i pinenta siha sigun i na'an i dokumentu pat i oran tinilaika",
+      "status": "deferred",
+      "proposed": null,
+      "reason": "Hold. Grammar helps noun linking and plural siha, but Na'arekla must specifically order/sort and oran tinilaika must mean modification timestamp rather than duration. No whole construction established in inspected source. Do not import generic arrange/change as proven technical sort."
+    },
+    {
+      "key": "ui_not_enough_memory_to_inspect_the_gallery_image",
+      "draft": "Ti nahong i memoria para u ma'atan i pinentan galeria.",
+      "status": "deferred",
+      "proposed": null,
+      "reason": "Hold original. Technical memoria not independently established; RAM donor can fix that but ma'atan viewing is not necessarily inspection/processing in actual download/decode/credit pipeline OOM. Need defensible inspect term/full clause, not grammar alone."
+    }
+  ],
+  "limits": [
+    "Three supported whole-value candidates require parent independent review before integration",
+    "No native-language certification",
+    "Grammar does not establish technical nouns or legal meanings",
+    "Preserve Guam/CNMI variants; no blanket spelling normalization",
+    "Preview resource canonical-only; do not count it as a newly reachable UI control"
+  ],
+  "no_edits": true,
+  "excluded": "Existing ui_add_images not counted; obsolete attachment-specific not-placed draft not accepted"
+}
