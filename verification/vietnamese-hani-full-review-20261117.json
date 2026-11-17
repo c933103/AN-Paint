@@ -1,0 +1,113 @@
+{
+  "scope": "Vietnamese Hani separate full-catalogue review",
+  "local_head": "bfcb052432ad9f17eb44a5e222f762efebe01cfe",
+  "remote_head": "6c645e86b06c59793f0ac0591721232c35146f4c",
+  "tree": "ca6a253ed36d66e2195ea9c831e69390464633a6",
+  "applied": {
+    "vi-Hani": 9
+  },
+  "audits": [
+    {
+      "locale": "vi-Hani",
+      "folder": "values-b+vi+Hani",
+      "source_head": "b56e4048fd27344877a4926566b7d4d7fb4a8c50",
+      "complete_values_read": 719,
+      "raw_plurals": {
+        "ui_crop_preview_images": [
+          "other"
+        ]
+      },
+      "read_ranges": [
+        "0-179 including complete assembly guide",
+        "180-359",
+        "360-549 including complete ten-paragraph editor guide and live help",
+        "550-718 including complete recovery/legal/format prose"
+      ],
+      "proposal_count": 9,
+      "proposal_sha256": "3292672b7295b4bd087947796a09c9d1b0a770f8cb3f182f6032e970375d6f4b",
+      "guide_changed_paragraphs": [
+        1,
+        6,
+        7
+      ],
+      "checks": [
+        "All proposed values changed from source",
+        "Indexed placeholders preserved",
+        "Literal escaped newline counts preserved",
+        "No application files edited"
+      ],
+      "evidence": {
+        "placement": "ImageAssembly.kt212 generic item condition, distinct missing anchor214 unchanged",
+        "cursor": "PaintCanvas.kt680-700 cursor.offset and stroke; existing generic drag clarified, not explicit viewport mistranslation",
+        "budget": "ImageResizeDialog.kt42 maxPixels yields MP estimate, acceptance separately evaluates decoder memory",
+        "counter": "AssemblyRenderer.kt57-64 progress callback after each processed item; existing ui_working supplies 處 理, completed 㐌 reused throughout catalogue",
+        "labels": "ToolCategoryButton.kt14 Drawing group ui_drawing23=𡳒; ui_magnifier33=鏡 𧙀; ui_background_colour=𦭷 𡋂",
+        "tiff": "Canonical may-reduce scope; conditional 𣎏 体 already extensively used in locale"
+      },
+      "deferred": [
+        {
+          "keys": [
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "reason": "Whole old guide remains stale in layout/first-use behavior, palette location/state, canvas-vs-insert transparency, navigation-toggle/Fit, selection actions, missing Commons and exact-position/overlap details. Proposed only bounded labels/cursor/BG clauses, not full restoration. Save/export paragraph4 already current and unchanged."
+        },
+        {
+          "keys": [
+            "formats22_ico_dimensions_error"
+          ],
+          "reason": "Internal directory entry wording still generic; unverified new Han-Nom technical composition deferred."
+        },
+        {
+          "keys": [
+            "ui_assembly_source_memory_floor"
+          ],
+          "reason": "Existing text asserts a single source needs excessive decoder memory; canonical now describes estimated total assembly working-memory floor. Concrete semantic drift identified, but whole technical-prose repair deferred for composition confidence."
+        }
+      ],
+      "retained": [
+        "Current complete assembly guide including remain-placed versus exact fixed positions",
+        "Current live help",
+        "Both smoothing targets",
+        "Marker actual brush-size scope",
+        "Sampling terminology",
+        "Legal attribution/licence and recovery safeguards",
+        "Raw other-only plural"
+      ],
+      "limitations": [
+        "Source/consumer-backed bounded composition using existing Han-Nom words, not independent attestation of every glyph/compound",
+        "Not native Vietnamese Han-Nom or Sino-Vietnamese lexical certification",
+        "No broad script normalization or mechanical Mandarin replacement",
+        "No glyph/font/vertical-script/device/JVM testing",
+        "All719 read does not certify all719 correct; deferrals remain actionable"
+      ]
+    }
+  ],
+  "independent_review": "All9 complete proposed values independently read including entire old guide. Cursor target clarified, not falsely classified explicit viewport error. Generic placement, MP-only exclusion, processed count using existing processing term, TIFF may-reduce and BG references corrected; Drawing/Magnifier labels align existing controls. Only guide1/6/7 changed. Broad old-guide restoration, ICO terminology and assembly-memory-floor single-source versus total-estimate prose remain deferred. No script/dialect/native certification or mechanical conversion from modern Vietnamese.",
+  "tests": {
+    "host": 71,
+    "seconds": 27.12,
+    "result": "pass",
+    "diff_check": "pass",
+    "limited_stale_prose_scan": 0,
+    "JVM": "not executed; Gradle download blocked",
+    "device": "unverified"
+  },
+  "draft_counts": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "new_keys": 1640,
+    "changed_existing": 1419,
+    "canonical": 8,
+    "locale": 1411
+  },
+  "limits": [
+    "Not native certification or blanket acceptance",
+    "Counts unmerged",
+    "No clean exact-head Codex review, no quota retry or merge",
+    "Spanish held"
+  ],
+  "next_action": "Distinct Valencian full audit started after reservation confirmation; evidence inventory reconciliation also underway to avoid blanket claims.",
+  "CI": {
+    "run": 44042117071,
+    "status": "pending"
+  }
+}
