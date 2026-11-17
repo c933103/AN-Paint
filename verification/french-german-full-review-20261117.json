@@ -1,0 +1,193 @@
+{
+  "head": "c8aed4ed10a1dfae7e5076f2f3b3517c07743d57",
+  "tree": "581f5ba4edcd17c385c8b21a045d435ae6033d3c",
+  "scope": {
+    "French_complete_resources_read": 719,
+    "German_complete_resources_read": 719,
+    "French_applied": 6,
+    "German_applied": 11
+  },
+  "tests": {
+    "count": 64,
+    "seconds": 9.516,
+    "command": "PYTHONPATH=tools python -m unittest tools.test_translation_boundaries tools.test_translations tools.test_current_localization_contracts tools.test_localized_help tools.test_german_priority_wording tools.test_french_assembly_help tools.test_french_legacy_placement"
+  },
+  "French_findings": [
+    "Stale canonical-only long guide: obsolete controls and palette layout; wrong transparent insertion generalization; obsolete selection paths; missing Commons/exact positioning clauses",
+    "Live help uses actual Édition and Couleurs labels",
+    "Gallery help refers to actual Copier les crédits button",
+    "Marker help clarifies painted stroke size rather than painted brush",
+    "MP-only decoder overhead and ICO internal directory clarifications"
+  ],
+  "limits": [
+    "Long guide has no direct current Kotlin consumer, unlike ui_help23; not presented as a live user-facing full-guide defect",
+    "No native speaker or device/UI certification",
+    "No new keys; no stylistic rewrite to inflate repair counts",
+    "Exact-head CI and Codex review gates remain; no exhausted quota retry"
+  ],
+  "German_review": {
+    "head": "c319dcefb0c37b0a0b87774dd7463cb06cc84727",
+    "catalogue_sha256": "ff22aac543edfa4c36485c6139d5a8878451305a6a97095049a4365c4809c659",
+    "full_values_read": 719,
+    "proposal_count": 11,
+    "structural_issues_existing": [],
+    "proposal_checks": "Indexed placeholders and literal newline counts match canonical",
+    "limits": [
+      "All719 complete values read including both long guides, legal/gallery clauses and plural one/other. No native or installed-device layout certification.",
+      "Correct alternatives and mixed polite/informal address not counted as semantic defects; no style-only bulk rewrite.",
+      "Source code and canonical wording establish behavior; no external legal interpretation or current third-party terms audit.",
+      "Other708 values have no concrete defect identified in this reading, not blanket language-quality certification."
+    ],
+    "findings": {
+      "ui_the_arrow_on_the_left_directly_below_the": {
+        "class": "stale complete guide; substantive semantic restoration",
+        "details": "Replaced obsolete toolbar/palette layout/toggling, blanket transparent-import background claim, old selection action positions, missing Commons provider and exact position/overlap conditions; restored actual Drawing category and Magnifier label. Retains all10 canonical paragraphs, exports/autosave/source/attribution boundaries. Canonical-only exact main scan, not claimed live help defect.",
+        "evidence": [
+          "EditorNavigation.kt:31,41",
+          "ToolCategoryButton.kt:14",
+          "ClassicPaintActivity.kt navigation and colour controls",
+          "PaintCanvas.kt:638-708",
+          "current English canonical full guide; current de action labels"
+        ]
+      },
+      "ui_current_safe_editing_budget_s_up_to_2f": {
+        "class": "precision refinement",
+        "details": "Explicit MP-only exclusion of additional decoder memory; actual RAM budget unaltered.",
+        "evidence": [
+          "ImageResizeDialog.kt:42-46",
+          "ImageMemoryPolicy.kt:38-41"
+        ]
+      },
+      "formats22_ico_dimensions_error": {
+        "class": "precision refinement",
+        "details": "Clarifies dimensions in internal ICO entry, not filesystem directory.",
+        "evidence": [
+          "IcoCodec.kt:37-50"
+        ]
+      },
+      "gallery_description": {
+        "class": "action-label mismatch",
+        "details": "Use actual Quellenangabe kopieren button instead of nonexistent Nachweis kopieren. Legal clauses untouched.",
+        "evidence": [
+          "MediaGalleryActivity.kt:225",
+          "values-de gallery_copy_credit"
+        ]
+      },
+      "ui_help23": {
+        "class": "action-label mismatch",
+        "details": "Use actual Farben tab instead of Farbe. Other live help unchanged.",
+        "evidence": [
+          "EditorNavigation.kt:41",
+          "values-de ui_colour_tab23"
+        ]
+      },
+      "ui_rendering_images": {
+        "class": "progress-state wording",
+        "details": "Counter reports processed images, not number concurrently being rendered.",
+        "evidence": [
+          "AssemblyRenderer.kt:64",
+          "AssemblyActivity.kt:323"
+        ]
+      },
+      "ui_drop_at_a_highlighted_edge_right_top_aligned": {
+        "class": "alignment clarity refinement",
+        "details": "Separates placement side from aligned edge; no geometry change.",
+        "evidence": [
+          "AssemblyCanvas.kt:119",
+          "canonical right/top versus below/left"
+        ]
+      },
+      "ui_gallery_artwork_catrobat_and_its_credited_creators_cc": {
+        "class": "attribution fidelity",
+        "details": "Nennen Sie das Werk may mean merely mention the work; Bildnachweis explicitly preserves source credit instruction, no new licence obligations.",
+        "evidence": [
+          "English canonical Credit the artwork",
+          "same catalogue Bildnachweise terminology"
+        ]
+      },
+      "ui_cursor_help31": {
+        "class": "demonstrated wrong gesture target",
+        "details": "Single-finger cursor gesture changes cursor position and paints, not viewport. Replaces explicit Ansicht claim.",
+        "evidence": [
+          "PaintCanvas.kt:680-687",
+          "separate two-finger viewport branch650-651"
+        ]
+      },
+      "ui_cursor_pan_draw32": {
+        "class": "demonstrated wrong gesture target",
+        "details": "Single-finger cursor gesture changes cursor position and paints, not viewport. Replaces explicit Ansicht claim.",
+        "evidence": [
+          "PaintCanvas.kt:680-687",
+          "separate two-finger viewport branch650-651"
+        ]
+      },
+      "ui_cursor_pan_move32": {
+        "class": "demonstrated wrong gesture target",
+        "details": "Single-finger cursor gesture changes cursor position and paints, not viewport. Replaces explicit Ansicht claim.",
+        "evidence": [
+          "PaintCanvas.kt:680-687",
+          "separate two-finger viewport branch650-651"
+        ]
+      }
+    }
+  },
+  "French_independent_review": {
+    "packet_sha256": "bd98cea61a8a24aa0fd519c4ec6ed88958dfb8d672f200f805e3982bc7d02504",
+    "complete_values_reviewed": 6,
+    "accepted": 6,
+    "blocking_findings": [],
+    "corrections": {},
+    "full_guide_checks": [
+      "Current tab/category positions and remembered-tool behavior, no obsolete first-run state assertion.",
+      "Palette interaction, recent/custom colours, separate opaque canvas vs transparent inserted selection and Commons white backing.",
+      "One/two-finger navigation;100-percent stop and floating selection included in Fit.",
+      "Autosave versus save/export/share destinations and saved-state boundaries; JPEG and HEIC adjustable quality.",
+      "Transform controls, crop/copy transformed content, independent aspect ratio, undo and unfinished transforms.",
+      "Canvas expansion no scaling; cancellation/undo retained.",
+      "Curve/polygon/open segments, radius half shorter side, full text options, 100px tools, actual Drawing category; cursor drawing uses drag not viewport motion; actual Loupe label.",
+      "All providers including Commons exact label, originals retained, memory resize options.",
+      "Assembly20, normalization, right/top vs below/left, exact zero-based integer placement, overlap/order/other images, Unplace qualifications, export/edit semantics.",
+      "Original copyright, asset/font credits, full licence/source and independently scrolling text."
+    ],
+    "consumer_evidence": [
+      "PaintCanvas.kt:638-708: two-finger view navigation separate from single-finger cursor drawing",
+      "ImageResizeDialog.kt:42-46 and ImageMemoryPolicy.kt:38-41: MP-only decoder exclusion",
+      "IcoCodec.kt:37-50: extracted PNG versus selected internal entry dimensions",
+      "MediaGalleryActivity.kt:225 and values-fr gallery_copy_credit: Copier les credits action label",
+      "EditorNavigation.kt:31,41; ToolCategoryButton.kt:14; values-fr action labels checked including FG/BG, Rotation, Brosse, Dessin, Loupe, Couleurs, Retirer du placement, Ajuster"
+    ],
+    "limits": [
+      "Independent review of6 proposed values, not separate re-audit of all719 French values.",
+      "Memory/ICO/marker edits are precision refinements; guide repairs address actual stale clauses.",
+      "No native speaker certification, device layout verification or new test run; no app edits.",
+      "No current third-party licence lookup; legal notices compared against supplied canonical content without expanding obligations."
+    ]
+  },
+  "fr_packet": {
+    "sha256": "bd98cea61a8a24aa0fd519c4ec6ed88958dfb8d672f200f805e3982bc7d02504",
+    "keys": [
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "formats22_ico_dimensions_error",
+      "ui_cursor_marker_help31",
+      "gallery_description",
+      "ui_help23",
+      "ui_the_arrow_on_the_left_directly_below_the"
+    ]
+  },
+  "de_packet": {
+    "sha256": "c4ea44ba75822ffa5cb4879052ef71fdb098d05bfc2698c3e18ae03d409fdf66",
+    "keys": [
+      "ui_the_arrow_on_the_left_directly_below_the",
+      "ui_cursor_help31",
+      "ui_cursor_pan_draw32",
+      "ui_cursor_pan_move32",
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "formats22_ico_dimensions_error",
+      "gallery_description",
+      "ui_help23",
+      "ui_rendering_images",
+      "ui_drop_at_a_highlighted_edge_right_top_aligned",
+      "ui_gallery_artwork_catrobat_and_its_credited_creators_cc"
+    ]
+  }
+}
