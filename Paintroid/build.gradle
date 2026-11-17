@@ -245,7 +245,9 @@ gradle.projectsEvaluated {
 // Host-side Android graphics tests supplement the upstream unit tests.
 tasks.withType(Test).configureEach {
     maxHeapSize = '2g'
-    maxParallelForks = 1
+    // Class-level process isolation; methods/SDK variants within a class stay together.
+    // Keep this bounded by CI's existing two-worker limit and audit shared report paths.
+    maxParallelForks = 2
     // Robolectric 4.14.1 needs FileDescriptor internals when API 35 closes a real stream.
     jvmArgs '--add-opens=java.base/java.io=ALL-UNNAMED'
     systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'

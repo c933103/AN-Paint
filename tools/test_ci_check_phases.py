@@ -89,8 +89,9 @@ class CheckPhaseContracts(unittest.TestCase):
                             (root / 'tools').mkdir()
                             shutil.copy(ROOT / 'tools/ci_run_timed.sh', root / 'tools')
                             shutil.copy(ROOT / 'tools/ci_run_process_group.py', root / 'tools')
+                            shutil.copy(ROOT / 'tools/ci_observe_jvm_memory.py', root / 'tools')
                             stub = '#!/bin/bash\nprintf "%s\\n" "$@"\nexit "$TEST_EXIT"\n'
-                            stub = stub.replace('#!/bin/bash\n', '#!/bin/bash\nif [[ \"$1\" == tools/ci_run_process_group.py ]]; then exec ' + shlex.quote(sys.executable) + ' \"$@\"; fi\n')
+                            stub = stub.replace('#!/bin/bash\n', '#!/bin/bash\nif [[ \"$1\" == tools/ci_run_process_group.py || \"$1\" == tools/ci_observe_jvm_memory.py ]]; then exec ' + shlex.quote(sys.executable) + ' \"$@\"; fi\n')
                             for command in ('python3', 'gradlew'):
                                 path = root / command
                                 path.write_text(stub)
