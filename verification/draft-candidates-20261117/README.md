@@ -1,4 +1,4 @@
-# Continued draft review: 365 distinct source keys
+# Continued draft review: 382 distinct source keys
 
 **UNAPPROVED DRAFT EVIDENCE, NOT AN APPLICATION MERGE BRANCH.**
 
@@ -29,3 +29,13 @@ Independent review now supports four additional zgh label compositions: filename
 New rejection records preserve generic one/a incorrectly proposed as same, a Zhuang rendering label using an attested conjunction, and a Tamazight GIF limit whose negated obligation may invert the prohibition. These failures matter despite preserved numbers and placeholders. Round3-independent-review.md details numeric checks, source limitations and additional lexical holds. All other new prose remains unapproved. Original-size morphology and assembly terminology remain unresolved; this record is not a general translation certificate.
 
 Source attribution is bounded: MediaWikiza has sparse terminology and cannot support the technical/credit compounds; MediaWikizgh exact labels do not certify newly inflected compounds or long prose. Remaining full-language authoring and source/callsite/qualified linguistic review are still required. Do not merge this evidence branch into the application.
+
+## Fourth pass: Chamorro instruction review
+
+Added17 further Chamorro draft keys and revised3previously rejected lexical constructions. Total382distinct drafted keys:258ch,54za,70zgh, including historical rejects. This is not382completed translations. Current retained candidates248ch/53za/68zgh; all unapproved prose remains excluded from the application.
+
+An independent pass screened69distinct Chamorro keys plus3correction versions, with targeted primary-dictionary checks. It rejected an ellipse bounding-box construction using the pronoun `hit` as an enclosing verb, isolated selected-versus-custom palette confusion, and corrected a prior review overclaim about the established foreground-control phrase. It verified light-coloured and physical-handle lexical improvements, without certifying the GUI metaphor or whole sentences. Geometry, polygon closure, text orientation, and attribution terminology remain explicit holds. See round4-independent-review.md and its52-key initial inventory plus the17-key round4_drafts inventory in ch.json.
+
+The13-label combined integration proposal is unchanged. No added production translations, merge, runtime/CI result or new Codex approval is claimed in this fourth evidence commit. Candidate mechanical checks and6correction-hypothesis placeholder/newline checks pass. Application tests remain the previously recorded6+34passes on the unchanged patch.
+
+Broader primary-source research located IRCAM school/general lexicon resources and the official Guangxi notice of an online Zhuang–Chinese vocabulary app. IRCAM dictionary/lexicon endpoints timed out in this session; the Guangxi notice establishes the resource exists, not the technical translations. No inaccessible source is represented as checked lexical evidence. Further full-language progress requires substantiated specialist terminology and qualified whole-phrase review, not additional ungrounded short-label substitutions.
