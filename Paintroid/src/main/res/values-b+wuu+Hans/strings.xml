@@ -174,9 +174,9 @@
     <string name="ui_cursor_start31" formatted="false">开始绘图</string>
     <string name="ui_cursor_stop31" formatted="false">停止绘图</string>
     <string name="ui_cursor_shape31" formatted="false">游标形状</string>
-    <string name="ui_cursor_pan_draw32" formatted="false">移画面就开始绘图。再揿一趟就停下来。</string>
+    <string name="ui_cursor_pan_draw32" formatted="false">拖动游标就开始绘图。再揿一趟就停下来。</string>
     <string name="ui_cursor_pan_move32" formatted="false">拖动来移游标；揿绘图按钮就开始画。</string>
-    <string name="ui_cursor_help31" formatted="false">拖动来定游标个位置。揿画面浪个绘图按钮，再移画面就好画；再揿一趟就停下来。笔刷搭笔触个设置，辣「绘图」→「绘图」里向拣。</string>
+    <string name="ui_cursor_help31" formatted="false">拖动来定游标个位置。揿画面浪个绘图按钮，再拖动游标就好画；再揿一趟就停下来。笔刷搭笔触个设置，辣「绘图」→「绘图」里向拣。</string>
     <string name="ui_edit_canvas33" formatted="false">画布</string>
     <string name="ui_edit_transform33" formatted="false">翻转／旋转</string>
     <string name="ui_pixel_grid33" formatted="false">像素格线</string>
@@ -289,7 +289,7 @@
     <string name="ui_crop_preview_drag_an_edge_or_corner_drag">裁剪预览。拖边浪或者角浪，好调大小；拖里向，好移整个裁剪范围。</string>
     <string name="ui_cropped_thumbnail">已裁剪小图：%1$s</string>
     <string name="ui_current_safe_budget_2f_mp">现在安全上限：%1$.2f MP。</string>
-    <string name="ui_current_safe_editing_budget_s_up_to_2f">现在安全编辑上限：%1$s · 扣除解码器额外开销前最多 %2$.2f MP</string>
+    <string name="ui_current_safe_editing_budget_s_up_to_2f">现在安全编辑内存上限：%1$s · 最多 %2$.2f MP（搿个 MP 估算呒没计入解码器额外要用个内存）</string>
     <string name="ui_cursive">草写体</string>
     <string name="ui_custom_colour">自订颜色 %1$s</string>
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">自订颜色 · 长揿色样以取代</string>
@@ -309,7 +309,7 @@
     <string name="ui_drag_between_opposite_corners_to_draw_a_heart">从一只角拖到对角，就画出心形。拣画轮廓，还是填满。</string>
     <string name="ui_drag_from_the_start_to_the_end_of">由线段起点拖到终点。</string>
     <string name="ui_drag_from_the_tail_towards_the_arrowhead_choose">由箭尾向箭头方向拖。请拣轮廓或填满。</string>
-    <string name="ui_drag_out_to_expand_in_to_trim_drag">朝外头拖，画布就放大；朝里向拖，就裁小。拖范围里向，好移边界。用两只手指缩放，或者揿「符合视窗」，好看着更大个范围。新加出来个地方用 BG 填满。</string>
+    <string name="ui_drag_out_to_expand_in_to_trim_drag">朝外头拖，画布就放大；朝里向拖，就裁小。拖范围里向，好移边界。用两只手指缩放，或者揿「符合视窗」，好看着更大个范围。新加出来个地方用背景色填满。</string>
     <string name="ui_drag_placed_images_to_move_them_hold_and">摆好个图片，拖一拖就好移。揿牢小图再拖进去，就好加图片。</string>
     <string name="ui_drag_to_erase_with_the_background_colour">拖过去个地方，用背景色擦脱。</string>
     <string name="ui_drag_to_pan_without_drawing_pinch_with_two">拖动只移画面，勿会画落去。两只手指好缩放、移画面。绘图辰光，也好用两只手指移画面。</string>
@@ -345,7 +345,7 @@
     <string name="ui_filename_a_z">文件名 A–Z</string>
     <string name="ui_filename_z_a">文件名 Z–A</string>
     <string name="ui_fill_line">填满＋线条</string>
-    <string name="ui_fill_text_box_with_bg_colour">以 BG 颜色填满文字框</string>
+    <string name="ui_fill_text_box_with_bg_colour">以背景色填满文字框</string>
     <string name="ui_finish_curve">做好曲线</string>
     <string name="ui_finish_polygon">做好多边形</string>
     <string name="ui_fits_the_current_budget">符合现在上限。</string>
@@ -483,12 +483,12 @@
     <string name="ui_tap_to_type_a_number">%1$s：%2$s。点以输入数值。</string>
     <string name="ui_tap_vertices_then_double_tap_the_last_vertex">顶点一只一只揿过去；最后一只顶点连揿两记，就封闭多边形。也好揿「做好多边形」。「封闭多边形」关脱，就只画相连个线，勿封口。</string>
     <string name="ui_that_arrangement_overlaps_another_image_use_a_different">照搿能摆，会搭另外一张图片叠起来。请换条边接，或者先拿连牢个图片「取消摆」。</string>
-    <string name="ui_the_arrow_on_the_left_directly_below_the" formatted="false">工具列正下头左侧个箭嘴可收起或还原工具：向上收起，向下摊开。直向时，工具列会辣顶部工具列下头横向排列；滑就好望另外工具。横向时则保持辣左侧。 「笔刷」包含铅笔、笔刷、水彩及喷枪。「拣取」包含长方形及自由形状拣取。「插入」包含线条、图形及文字。点分类可摊开其中工具及设置：直向时显示于工具列下头，横向时显示于右方。再次点就好收起，箭嘴方向也会反转。各分类会记住最后使用个工具。可滚动有界限个选项面板望更多设置及编辑控制项。首次使用此版面时两个面板都会摊开，后首会记牢侬拣个样子。横向时，上头控制项共用一行，文件名置中。\n\nFG/BG 颜色指示器固定于左下头，位于调色板旁。调色板会辣同一行直接向右摊开。箭嘴辣调色板右面：向左收起，向右摊开。收起只会收起额外色样，勿会移指示器。点颜色方格也可切换调色板。点色样设为前景色，长揿设为背景色。FG/BG 可打开「调色板」、「蜂窝调色板」及「高级」。「高级」提供光谱、色环、RGB、HSV、HSL 及六位十六进制控制。最右四个方格会留牢最近使用个颜色；点设为前景色，长揿设为背景色。自订颜色预设为淡紫色 #5B67FF、金色 #FFD700、银色 #C0C0C0 及铜色 #B87333。长揿自订色样可取代它。主编辑器使用不透明颜色；导入透明图片时会放到现在 BG 颜色上。原来来源文件勿会改。\n\n「移搭缩放」取代原本个放大镜工具：单指拖以移画面，双指缩放以缩放及移画面。再次点「移搭缩放」或「再次绘图」就好返回绘图。绘图工具中也可用双指导航而不留下笔迹。右下头滑杆辣 100% 有中央线。放大／缩小按钮假使一步会跨过 100%，会先停辣 100%；再按一次才继续。旁边个「符合视窗」按钮会把整个画布缩放并置中于视图。「显示」也提供 100% 及像素格线。\n\n自动保存会辣编辑短暂停止后，搭离开应用时记录现在草稿。状态会显示「草稿保存哉」或自动保存错误。重新打开时会还原草稿、文件名、工具设置、浮动拣取范围及未做好图形。自动保存只留牢私人工作草稿。「文件」提供 PNG、可调品质个 JPEG 及 HEIC，搭无损或有损 JPEG XL、WebP 及 AVIF。「保存并分享」会先写进文件，再打开 Android 分享。「导出为」会保存到侬拣个位置；文件名旁个星号表示导出后仍有未保存改。自动保存永勿会覆写来源图片。\n\n拣取范围：绘画长方形或自由形状轮廓。拖里向以移；拖方形角位或边浪中点控制点以调大小；拖圆形「旋转」控制点以旋转。「锁定比例」预设打开；关脱后可独立拉伸宽度及高度。边浪控制点只沿拣着个一边调大小。自由形状拣取会辣变形框内留牢拣着个形状，包括旋转或自动保存后。尺寸及角度会显示于侧栏。「确定拣取范围」会将结果应用成一趟好撤销个选区编辑；自动保存会留牢未做好个变形。「复制」、「剪下」及「裁剪至拣取范围」会使用变形后个图片。「全选」位于第二行编辑图标，外置键盘也可使用 Ctrl+A。「剪下／复制」及「贴上／全选」辣「使用说明」下头分成两行。拣取遮罩会留牢拣取形状；文件本身还是不透明。\n\n画布边界：向内拖控制点可裁减，向外拖可辣任何一边扩展，然后按「应用边界」。新增空间使用 BG；现有像素勿会缩放。可使用「取消」及「撤销」。「调整图片大小」、「画布大小」及「新图片」也接受像素或百分比，并可拣锁定长宽比例。\n\n曲线：先画一条线，再拖两次使其弯曲。多边形：逐一点顶点，再双按最后一个顶点，或使用「做好多边形」。关脱「封闭多边形」就好绘画相连但不封闭个线段。圆角长方形：以滑杆设置「半径（px）」；每个图形个半径最多为较短一边个一半。文字：点画布，拣以自身样式显示个字体，并使用即时预览。选项包括大小、粗体、斜体、底线、删除线、对齐、行距及 BG 文字框。水彩位于「笔刷」分类，搭笔刷及喷枪并列；调整强度可获得更柔和个笔触。铅笔、笔刷及工具大小滑杆最高为 100 像素。铅笔由 1 像素开始，并会记住自己个宽度。点显示个数值可准确输入。心形、星形及箭嘴搭另外图形一样提供轮廓／填满选项。「显示」&gt;「游标绘图」会显示启用开关、游标形状及放大镜设置。拖以定位游标，点画面上个绘图按钮，再移画面就好绘图；再按一次停止。笔刷及笔触设置仍辣「绘图」&gt;「绘图」。「显示」&gt;「放大预览」会以可调倍率显示游标或绘图位置。「绘图设置」也提供反锯齿及笔触平滑。另内置十一款字体；「字体授权条款」列有致谢及完整条款。\n\n「文件」&gt;「打开图片」会透过 Android 文件拣器取代画布。「绘图」→「插入」→「另外图片」好从设备或者图库加图片；图片加进来，是浮动个选区。Catrobat 贴图库提供网上素材；点或长揿可下载图片就好插入。「文件」→「关于、授权搭致谢」→「图片致谢」会留牢来源连结及授权声明。设备内存上限内个图片会以原来分辨率加载。要缩小个辰光，尺寸拣对话框会显示尺寸、像素数及内存估算，可选像素／百分比及是否锁定长宽比例。原来文件勿会改。\n\n「文件」&gt;「图片拼接」会打开最多可处理 20 张图片个独立做事区。小图可按文件名或时间排序。可裁剪一张图片或批次裁剪多张。「相同宽度／相同高度」会辣保持长宽比例下拿加载好个图片尺寸侪调成一样。拖小图或已摆图片，可贴齐为右方／顶端对齐或下头／左面对齐。「取消摆」只拿拣着个图片放回托盘，后头图片补空位。「全部显示」只改视图缩放。「保存 PNG」导出拼合结果；「辣 Paint 编辑」会以可撤销编辑传送到主编辑器。应用一般编辑器处理一张不透明图片；图片拼接是独立个排列做事区。\n\n「文件」→「关于、授权搭致谢」里向有原来版权、素材／字体致谢、完整授权文字及此版本个完整源代码。授权文字可独立滚动，而「全部复制」、「另外条款」及「做好」按钮固定不动。</string>
+    <string name="ui_the_arrow_on_the_left_directly_below_the" formatted="false">拣「显示」、「绘图」、「文件」、「编辑」或者「颜色」，好看搿只标签页个控件。标签页边浪个箭头好收起或者摊开面板。直向辰光，标签页搭工具列横向排列；滚动好看更多控件。横向辰光，标签页搭主要工具排辣左面。「绘图」里向有「绘图」、「拣取」搭「插入」。「绘图」分类有「铅笔」、「画笔」、「水彩」搭「喷笔」；「拣取」分类有长方形搭自由形状拣取；「插入」分类有线条、图形搭文字。揿一只分类，就拣中搿只分类记牢个工具，并显示工具搭设置：直向辰光辣工具列下头，横向辰光辣右面。再揿已经拣中个分类，好收起或者摊开工具搭设置。搿趟使用应用期间，各分类会记牢最后用过个工具。滚动选项面板好看更多设置。顶栏有文件名搭快捷操作。致谢搭条款辣「文件」→「关于、授权搭致谢」。\n\n「颜色」标签页里向有前景／背景色指示器（FG/BG）、「交换颜色」、「黑／白」搭「高级」。揿指示器个前景或背景部分，好改埃只颜色。标准调色板搭保存好个颜色辣顶栏下头。标准色样揿一记设前景色，揿牢设背景色。标准调色板最右面四格留牢最近用过个颜色；也是揿一记设前景色，揿牢设背景色。颜色编辑器有「调色板」、「蜂窝调色板」搭「高级」。「高级」有色谱、色环、RGB、HSV、HSL 搭六位十六进制控件。自订颜色开始是「淡紫色」#5B67FF、「金色」#FFD700、「银色」#C0C0C0 搭「铜色」#B87333。揿保存好个颜色，好用作前景色；揿牢，好拣背景色、编辑或者拿脱。揿「新增颜色」或者空白保存色位，会打开编辑器来保存颜色。主文档勿透明。拿透明图片加载成画布个辰光，透明部分用现在个背景色填满。插入个图片还是浮动选区；确定以后，透明部分透出原来个画布。Wikimedia Commons 导入图片辣插入前头会衬白底。原来来源文件勿会改。\n\n「显示」→「移搭缩放」：单指拖动好移视图，两只手指开合好缩放，也好移视图。辣「移搭缩放」选项里向揿「再次绘图」，或者拣一只绘图工具，好返回绘图。绘图工具里向也好用两只手指导航，勿会留下笔迹。右下头滑杆辣 100% 有中央线。放大／缩小按钮假使一步会跨过 100%，会先停辣 100%；再揿一趟才继续。边浪个「符合视窗」会拿画布搭所有浮动选区缩放到视图里向，并摆辣正中。「移搭缩放」还有 100%；「显示」有像素格线。\n\n自动保存会辣编辑短暂停止后，搭离开应用时记录现在草稿。状态会显示「草稿保存哉」或自动保存错误。重新打开时会还原草稿、文件名、工具设置、浮动拣取范围及未做好图形。自动保存只留牢私人工作草稿。「文件」提供 PNG、可调品质个 JPEG 及 HEIC，搭无损或有损 JPEG XL、WebP 及 AVIF。「另存新档」好拣图片格式、设置搭保存位置；下趟「保存」还是写到搿个地方。「导出为」搭「保存并分享」只写一份副本，勿会改现在个「保存」位置，也勿会拿绘图标成保存好。「保存并分享」随后打开 Android 分享。文件名边浪个星号表示绘图还有呒没保存个修改。自动保存永勿会覆写来源图片。\n\n拣取范围：画长方形或者自由形状轮廓。拖里向好移；拖方形角点或者边浪中点控制点，好调大小；拖圆形「旋转」控制点，好旋转。「锁定比例」预设打开；关脱后，宽度搭高度好各调各个。边浪控制点只沿拣着个一边调大小。自由形状拣取会辣变形框内留牢拣着个形状，旋转或者自动保存以后也一样。尺寸搭角度显示辣选项面板里向。「确定拣取范围」会应用结果；选区编辑好撤销，自动保存会留牢未做好个变形。「复制」、「剪下」搭「裁剪至拣取范围」用变形后个图片。「全选」辣「编辑」→「拣取」里向，外接键盘也好用 Ctrl+A。「剪下」、「复制」搭「贴上」是顶栏个快捷操作。拣取遮罩会留牢拣取形状；文档本身还是不透明。\n\n画布边界：向内拖控制点可裁减，向外拖可辣任何一边扩展，然后按「应用边界」。新增空间使用背景色；现有像素勿会缩放。可使用「取消」及「撤销」。「调整图片大小」、「画布大小」及「新图片」也接受像素或百分比，并可拣锁定长宽比例。\n\n曲线：先画一条线，再拖两次使其弯曲。多边形：逐一点顶点，再双按最后一个顶点，或使用「做好多边形」。关脱「封闭多边形」就好绘画相连但不封闭个线段。圆角长方形：以滑杆设置「半径（px）」；每个图形个半径最多为较短一边个一半。文字：点画布，拣以自身样式显示个字体，并使用即时预览。选项包括大小、粗体、斜体、底线、删除线、对齐、行距及 背景色文字框。水彩位于「绘图」分类，搭「画笔」及「喷笔」并列；调整强度可获得更柔和个笔触。铅笔、笔刷及工具大小滑杆最高为 100 像素。铅笔由 1 像素开始，并会记住自己个宽度。点显示个数值可准确输入。心形、星形及箭嘴搭另外图形一样提供轮廓／填满选项。「显示」&gt;「游标绘图」会显示启用开关、游标形状及放大镜设置。拖以定位游标，点画面上个绘图按钮，再拖动游标就好绘图；再按一次停止。笔刷及笔触设置仍辣「绘图」&gt;「绘图」。「显示」&gt;「放大镜」会以可调倍率显示游标或绘图位置。「绘图设置」也提供反锯齿及笔触平滑。另内置十一款字体；「字体授权条款」列有致谢及完整条款。\n\n「文件」→「打开图片」会透过 Android 文件拣器取代画布。「绘图」→「插入」→「另外图片」里向有设备文件、Catrobat、いらすとや、Openclipart 搭「Wikimedia Commons · 空白地图…」。拣一张设备图片，或者打开网上作品页面再揿「使用图片」，就好拿图片加成浮动选区。「文件」→「关于、授权搭致谢」→「图片致谢」会留牢来源连结搭授权声明。设备内存上限内个图片，会以原来分辨率加载。假使有需要，尺寸选择对话框会显示尺寸、像素数搭内存估算，好用像素或者百分比定大小，也好拣要勿要锁定长宽比例。原来文件勿会改。\n\n「文件」→「图片拼接」会打开最多可处理 20 张图片个独立做事区。小图好按文件名或者时间排序。好裁剪一张图片，也好批次裁剪多张。「相同宽度／相同高度」会统一加载好个图片个宽度或高度，各张图片个长宽比例留牢。拖小图或者已摆图片，好接到右面并对齐顶端，或者接到下头并对齐左面。「精确位置」用从零开始个整数像素设定左上角位置，别个图片位置勿变，也允许重叠。后头导入个图片会画辣上头。「取消摆」只取消拣着个图片个摆放。别个图片还是摆好个；接牢个图片有可能移过来填补空位。「全部显示」只调视图缩放。「保存 PNG」导出拼合结果；「辣 Paint 编辑」会以可撤销编辑传送到主编辑器。应用用一只不透明图片编辑器；图片拼接是独立个排列做事区。\n\n「文件」→「关于、授权搭致谢」里向有原来版权、素材／字体致谢、完整授权文字及此版本个完整源代码。授权文字可独立滚动，而「全部复制」、「另外条款」及「做好」按钮固定不动。</string>
     <string name="ui_the_assembly_exceeds_android_s_coordinate_range">图片拼接超出 Android 个座标范围。</string>
     <string name="ui_the_assembly_needs_about_choose_a_smaller_output">图片拼接约需 %1$s。请拣小眼个输出大小。</string>
     <string name="ui_the_assembly_output_is_unavailable_reopen_image_assembly">拼合输出现在不可用。请重新打开「图片拼接」再试趟。</string>
     <string name="ui_the_attachment_image_is_missing">连接图片遗失。</string>
-    <string name="ui_the_attachment_image_is_not_placed">连接图片还呒没摆。</string>
+    <string name="ui_the_attachment_image_is_not_placed">图片还呒没摆。</string>
     <string name="ui_the_crop_must_contain_at_least_one_pixel">裁剪范围里向，起码要留一只像素。</string>
     <string name="ui_the_crop_must_stay_inside_the_image">裁剪范围要全部留辣图片里向。</string>
     <string name="ui_the_decoder_and_editing_buffers_need_about_the">解码器及编辑缓冲区约需 %1$s；现在安全编辑上限为 %2$s。请拣小眼个副本。</string>
@@ -611,7 +611,7 @@
     <string name="formats22_preview_memory">内存勿够，搿个预览显示勿出。打开页面辰光，假使解码器用个内存放得落，就会拨侬拣小眼个尺寸。</string>
     <string name="formats22_animation_title">动画图片</string>
     <string name="formats22_animation_message">搿个 %1$s 有 %2$s 帧。AN Paint 只编辑静态图片，勿会保存动画。</string>
-    <string name="formats22_animation_unknown">搿个 %1$s 个结构忒复杂，定勿下来到底有几帧。AN Paint 只打开静态图片，勿会保存动画。</string>
+    <string name="formats22_animation_unknown">搿个 %1$s 个结构忒复杂，定勿下来到底是不是有多帧。AN Paint 只打开静态图片，勿会保存动画。</string>
     <string name="formats22_at_least_frames">至少 %1$d</string>
     <string name="formats22_animation_still">只导入头一帧；存下来就是静态图片。</string>
     <string name="formats22_animation_poster">搿个 PNG 另外有默认图片。程序会导入埃张图，勿是动画帧；存下来就是静态图片。</string>
@@ -644,7 +644,7 @@
     <string name="formats22_ico_size">图标大小</string>
     <string name="formats22_ico_description">照拣好个大小（16–256 像素），保存一张用 PNG 压缩个图标。图片长宽比例勿变，摆辣透明正方形当中。</string>
     <string name="formats22_ico_decode_budget">解码此图标要个内存超出可用图片内存上限。</string>
-    <string name="formats22_ico_dimensions_error">图标图片尺寸搭其目录记录不一致。</string>
+    <string name="formats22_ico_dimensions_error">图标图片个尺寸，搭 ICO 文件内部对应个目录记录里向写个尺寸勿一致。</string>
     <string name="formats22_ico_invalid_size">请拣 16、24、32、48、64、128 或 256 像素个图标大小。</string>
     <string name="language20_current">应用语言：%1$s</string>
     <string name="language20_translation_note">应用个言话\n\n翻译辣 AN Paint 个语言资源里向维护。新个或者还呒没翻译个文字会用英文显示。搿份翻译用上海闲话。技术名词照通行个写法。</string>

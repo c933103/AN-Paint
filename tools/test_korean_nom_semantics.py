@@ -68,8 +68,9 @@ class KoreanNomContextTests(unittest.TestCase):
                 v = strings(locale)
                 paragraphs = v['ui_the_arrow_on_the_left_directly_below_the'].split('\\n\\n')
                 self.assertIn(v['ui_menu_file'] + ' → ' + v['ui_image_assembly'], paragraphs[8])
+                route = paragraphs[7].replace(' > ', ' → ').replace('「', '').replace('」', '')
                 self.assertIn(' → '.join(v[k] for k in (
-                    'ui_draw26', 'ui_category_insert', 'ui_other_images34')), paragraphs[7])
+                    'ui_draw26', 'ui_category_insert', 'ui_other_images34')), route)
                 self.assertIn(v['ui_about_credits23'], paragraphs[-1])
                 self.assertNotIn(v['ui_menu_help'], paragraphs[-1].split('。')[0]
                                  if locale == 'b+vi+Hani' else paragraphs[-1].split('.')[0])

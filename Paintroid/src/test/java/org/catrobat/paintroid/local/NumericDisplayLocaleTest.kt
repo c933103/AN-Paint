@@ -122,37 +122,25 @@ class NumericDisplayLocaleTest {
     }
 
     @Test fun resizeBudgetRefreshUsesResourceLocaleAndCancelPreservesInputs() {
-        // Literal full captions exercise both formatting layers independently:
+        // Independent literal numeric expectations exercise both formatting layers:
         // 27,000,000 bytes = 25.7 MiB; 18,000,000 bytes = 17.2 MiB.
-        // Do not compute expectations using the production memoryLabel helper.
-        val captions=mapOf(
-            "pt-BR" to ("Limite seguro de edição atual: 25,7 MiB · até 2,25 MP antes da sobrecarga do decodificador" to
-                "Limite seguro de edição atual: 17,2 MiB · até 1,50 MP antes da sobrecarga do decodificador"),
-            "de" to ("Aktuelles sicheres Bearbeitungslimit: 25,7 MiB · bis zu 2,25 MP vor Decoder-Overhead" to
-                "Aktuelles sicheres Bearbeitungslimit: 17,2 MiB · bis zu 1,50 MP vor Decoder-Overhead"),
-            "en-001" to ("Current safe editing budget: 25.7 MiB · up to 2.25 MP before decoder overhead" to
-                "Current safe editing budget: 17.2 MiB · up to 1.50 MP before decoder overhead"),
-            "ar" to ("حد التحرير الآمن الحالي: ٢٥٫٧ MiB · حتى ٢٫٢٥ ميغابكسل قبل الحمل الإضافي لفك الترميز" to
-                "حد التحرير الآمن الحالي: ١٧٫٢ MiB · حتى ١٫٥٠ ميغابكسل قبل الحمل الإضافي لفك الترميز"),
-            "ro" to ("Limita sigură actuală pentru editare: 25,7 MiB · până la 2,25 MP înainte de memoria suplimentară a decodorului" to
-                "Limita sigură actuală pentru editare: 17,2 MiB · până la 1,50 MP înainte de memoria suplimentară a decodorului"),
-            "sk" to ("Aktuálny bezpečný limit pamäte na úpravy: 25,7 MiB · najviac 2,25 MP pred započítaním réžie dekodéra" to
-                "Aktuálny bezpečný limit pamäte na úpravy: 17,2 MiB · najviac 1,50 MP pred započítaním réžie dekodéra"),
-            "sl" to ("Trenutna varna pomnilniška omejitev za urejanje: 25,7 MiB · do 2,25 MP pred dodatno porabo dekodirnika" to
-                "Trenutna varna pomnilniška omejitev za urejanje: 17,2 MiB · do 1,50 MP pred dodatno porabo dekodirnika"),
-            "sr-Cyrl" to ("Тренутни безбедни лимит за уређивање: 25,7 MiB · до 2,25 MP пре додатне меморије декодера" to
-                "Тренутни безбедни лимит за уређивање: 17,2 MiB · до 1,50 MP пре додатне меморије декодера"),
-            "sr-Latn" to ("Trenutni bezbedni limit za uređivanje: 25,7 MiB · do 2,25 MP pre dodatne memorije dekodera" to
-                "Trenutni bezbedni limit za uređivanje: 17,2 MiB · do 1,50 MP pre dodatne memorije dekodera"),
-            "hr" to ("Trenutačno sigurno ograničenje za uređivanje: 25,7 MiB · do 2,25 MP prije dodatne memorije za dekoder" to
-                "Trenutačno sigurno ograničenje za uređivanje: 17,2 MiB · do 1,50 MP prije dodatne memorije za dekoder"),
-            "bs" to ("Trenutno sigurno ograničenje za uređivanje: 25,7 MiB · do 2,25 MP prije dodatne memorije za dekoder" to
-                "Trenutno sigurno ograničenje za uređivanje: 17,2 MiB · do 1,50 MP prije dodatne memorije za dekoder")
-        )
-        assertEquals(tags.toSet(), captions.keys)
+        // Keep the full selected-resource binding without freezing translated prose.
+        // Do not compute these numbers using production memoryLabel or formatters.
+        val numbers=tags.associateWith { tag -> when(tag) {
+            "en-001" -> listOf("25.7 MiB", "2.25", "17.2 MiB", "1.50")
+            "ar" -> listOf("٢٥٫٧ MiB", "٢٫٢٥", "١٧٫٢ MiB", "١٫٥٠")
+            else -> listOf("25,7 MiB", "2,25", "17,2 MiB", "1,50")
+        } }
         for(tag in tags) {
             select(tag)
-            val (initialCaption,updatedCaption)=captions.getValue(tag)
+            val (initialMemory,initialPixels,updatedMemory,updatedPixels)=numbers.getValue(tag)
+            if(tag!="en-001") {
+                val englishConfiguration=android.content.res.Configuration(activity.resources.configuration).apply { setLocale(Locale.US) }
+                val englishTemplate=activity.createConfigurationContext(englishConfiguration)
+                    .getString(R.string.ui_current_safe_editing_budget_s_up_to_2f)
+                assertNotEquals("$tag must not fall back to English",englishTemplate,
+                    activity.getString(R.string.ui_current_safe_editing_budget_s_up_to_2f))
+            }
             var limit=policy(2_250_000)
             var applied=false;var cancelled=false
             val dialog=ImageResizeDialog(activity,ImageDimensions(2000,2000),0,{limit},
@@ -162,12 +150,16 @@ class NumericDisplayLocaleTest {
             shadowOf(Looper.getMainLooper()).idle()
             val root=dialog.window!!.decorView
             val label=root.findViewWithTag<TextView>("resize_budget")
-            assertEquals(tag,initialCaption,label.text.toString())
+            assertEquals(tag,expected(R.string.ui_current_safe_editing_budget_s_up_to_2f,initialMemory,2.25),label.text.toString())
+            assertTrue(tag,label.text.toString().contains(initialMemory))
+            assertTrue(tag,label.text.toString().contains(initialPixels))
             if(tag=="pt-BR") assertTrue(label.text.toString().contains("2,25 MP"))
-            if(tag=="ro") assertFalse(label.text.toString().startsWith("Current safe editing budget:"))
+            if(tag=="ro") assertFalse(label.text.toString().startsWith("Current safe editing"))
             limit=policy(1_500_000)
             root.findViewWithTag<EditText>("resize_width").setText("1000")
-            assertEquals(tag,updatedCaption,label.text.toString())
+            assertEquals(tag,expected(R.string.ui_current_safe_editing_budget_s_up_to_2f,updatedMemory,1.50),label.text.toString())
+            assertTrue(tag,label.text.toString().contains(updatedMemory))
+            assertTrue(tag,label.text.toString().contains(updatedPixels))
             assertEquals("1000",root.findViewWithTag<EditText>("resize_width").text.toString())
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             shadowOf(Looper.getMainLooper()).idle()

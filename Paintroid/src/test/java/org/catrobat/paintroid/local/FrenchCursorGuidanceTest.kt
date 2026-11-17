@@ -66,8 +66,14 @@ class FrenchCursorGuidanceTest {
     private fun idle()=shadowOf(Looper.getMainLooper()).idleFor(32,TimeUnit.MILLISECONDS)
 
     @Test fun compiledLegacyCursorHelpAliasUsesCurrentGuidance() {
-        PaintApplication.currentResources=AppLanguage.wrap(context).resources
-        assertEquals(help,ui(R.string.ui_cursor_help29))
+        for(tag in listOf("fr", "qaa-Zsye-XV")) {
+            AppLanguage.select(context,tag)
+            PaintApplication.currentResources=AppLanguage.wrap(context).resources
+            // The emoji catalogue uses an internal English resource mirror;
+            // decorated @string text must not leak through the legacy route.
+            assertEquals(tag, ui(R.string.ui_cursor_help31), ui(R.string.ui_cursor_help29))
+            if(tag=="fr") assertEquals(help, ui(R.string.ui_cursor_help29))
+        }
     }
 
     @Test fun actualCursorHelpAndStartStopControlsUseFrenchGuidance() {

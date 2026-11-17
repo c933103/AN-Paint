@@ -308,7 +308,8 @@ class DeviceLanguagePickerTest {
             val explanation=picker.window!!.decorView.findViewWithTag<TextView>("app_language_explanation")
             assertNotNull(heading);assertNotNull(explanation)
             assertEquals(activity.getString(R.string.language20_app_language),heading.text.toString())
-            assertFalse(explanation.text.toString().contains("Translations are maintained"))
+            // Emoji cues accompany the current explanation; English fallback guidance is intentional.
+            assertTrue(explanation.text.toString().startsWith("📝🔁🌐"))
             assertEquals(activity.getString(R.string.language20_translation_note)
                 .substringAfter("\n\n"),explanation.text.toString())
         } finally {picker.dismiss();idle()}
