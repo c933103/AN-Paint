@@ -1,0 +1,221 @@
+{
+  "scope": "Old English and Old Norse separate full-catalogue review",
+  "local_head": "e51111f38965305513eaaeca0430735ebefc870d",
+  "remote_head": "35b2b9712745c7d1c2d99708e5bbf0fcf9514d7e",
+  "tree": "809cd964c966fab3084ff372f41846c4c071be83",
+  "applied": {
+    "ang": 5,
+    "non": 5
+  },
+  "audits": [
+    {
+      "scope": {
+        "folder": "values-b+ang",
+        "complete_typed_entries_read": 719,
+        "all_long_guides_and_legal_recovery_values_read": true,
+        "raw_plurals": {
+          "ui_crop_preview_images": [
+            "one",
+            "other"
+          ]
+        },
+        "scope_is_examination_not_blanket_acceptance": true
+      },
+      "base_commit": "1c0d9dffbed8b4be3084b3568e84202a3403c06f",
+      "proposal_count": 5,
+      "proposal_sha256": "5781b8cc2a770b517860c4d028eebde1ff02e54b9c5bf433277fd21ce1573051",
+      "guide_changed_paragraphs": [
+        3,
+        7
+      ],
+      "checks": {
+        "all_proposed_values_differ": true,
+        "indexed_placeholders_and_literal_newlines_preserved": true,
+        "guide_other_eight_paragraphs_exactly_preserved": true,
+        "no_app_edits": true
+      },
+      "findings": [
+        {
+          "keys": [
+            "ui_cursor_pan_draw32",
+            "ui_cursor_pan_move32",
+            "ui_cursor_help31",
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "evidence": "PaintCanvas.kt680–700 changes cursor.offset on single-finger drag and strokes between cursor points, not viewport. Current target explicitly says move view; changed only to cursor drag."
+        },
+        {
+          "keys": [
+            "ui_the_attachment_image_is_not_placed"
+          ],
+          "evidence": "ImageAssembly.kt212 requires generic item attachment or position. It can fail for the item itself, not only an anchor. Remove target-specific relative clause; missing-anchor214 unchanged."
+        },
+        {
+          "keys": [
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "evidence": "ClassicPaintActivity.kt779 uses ui_draw_again for Navigate return button. Guide paragraph3 quoted Draw label instead of actual Eft metan / Teikna aptr. Current control reused exactly."
+        }
+      ],
+      "live_scope": "Three cursor values live in ClassicPaintActivity197/1523/1532; generic placement ImageAssembly212. Full editor guide canonical-only; no direct Kotlin reference.",
+      "retained": [
+        "Both entire editor guides current: no wholesale rewrite. Assembly placed-state, exact-position, reflow and save/current-draft boundaries retained.",
+        "Legacy-credit kept-text sentence matches current canonical; not forced into another form.",
+        "Processed counters already processed, current sampling descriptions plausible technical reductions; no claim of failure.",
+        "Anglo-Saxon unexpected-cache quantity wording retained: RasterHistory97 specifically detects trailing extra input. Old Norse already says unexpected content.",
+        "Existing square terms and legal/recovery wording not rewritten for stylistic preference."
+      ],
+      "deferred": [
+        {
+          "keys": [
+            "formats22_ico_dimensions_error"
+          ],
+          "reason": "Anglo-Saxon generic file-declared dimensions lacks internal-entry precision; Old Norse identifies image list of ICO but not exact corresponding record. Historical technical directory-entry compound not securely supported. Recorded residual, not accepted parity."
+        },
+        {
+          "keys": [
+            "ui_current_safe_editing_budget_s_up_to_2f"
+          ],
+          "reason": "Temporal before-counting-decoder-memory qualifier immediately follows MP limit. More explicit MP-only estimate could help, but no unsupported historical compound introduced. Consumer first placeholder is editing RAM, second nominal MP; no claim entire RAM allowance excludes decoder."
+        },
+        {
+          "keys": [
+            "language20_translation_note"
+          ],
+          "reason": "Fallback basics present; fuller canonical contribution guidance not represented. New historical technical prose deferred."
+        }
+      ],
+      "lexical_sources": [
+        {
+          "url": "https://bosworthtoller.com/30345",
+          "support": "Bosworth-Toller teon: draw/pull. Existing Teoh imperative and wisiend object retained in bounded compositional instruction.",
+          "access": "Search-index excerpt, not full historical lexicon read."
+        }
+      ],
+      "limits": [
+        "Historical-language modern-computing composition; neither native certification nor claim of attested medieval technical vocabulary.",
+        "No device, font, script-rendering, Android/JVM or layout verification performed.",
+        "Complete catalogue reading does not approve all inherited morphology, novel compounds or legal phrasing. No blanket linguistic or legal certification.",
+        "No trans-language mechanical copy; each complete value inspected in its own language."
+      ]
+    },
+    {
+      "scope": {
+        "folder": "values-b+non",
+        "complete_typed_entries_read": 719,
+        "all_long_guides_and_legal_recovery_values_read": true,
+        "raw_plurals": {
+          "ui_crop_preview_images": [
+            "one",
+            "other"
+          ]
+        },
+        "scope_is_examination_not_blanket_acceptance": true
+      },
+      "base_commit": "1c0d9dffbed8b4be3084b3568e84202a3403c06f",
+      "proposal_count": 5,
+      "proposal_sha256": "15da17aa1a9082581be6f92b4b358845454a46561f15aaf85a3886dba274909d",
+      "guide_changed_paragraphs": [
+        3,
+        7
+      ],
+      "checks": {
+        "all_proposed_values_differ": true,
+        "indexed_placeholders_and_literal_newlines_preserved": true,
+        "guide_other_eight_paragraphs_exactly_preserved": true,
+        "no_app_edits": true
+      },
+      "findings": [
+        {
+          "keys": [
+            "ui_cursor_pan_draw32",
+            "ui_cursor_pan_move32",
+            "ui_cursor_help31",
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "evidence": "PaintCanvas.kt680–700 changes cursor.offset on single-finger drag and strokes between cursor points, not viewport. Current target explicitly says move view; changed only to cursor drag."
+        },
+        {
+          "keys": [
+            "ui_the_attachment_image_is_not_placed"
+          ],
+          "evidence": "ImageAssembly.kt212 requires generic item attachment or position. It can fail for the item itself, not only an anchor. Remove target-specific relative clause; missing-anchor214 unchanged."
+        },
+        {
+          "keys": [
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "evidence": "ClassicPaintActivity.kt779 uses ui_draw_again for Navigate return button. Guide paragraph3 quoted Draw label instead of actual Eft metan / Teikna aptr. Current control reused exactly."
+        }
+      ],
+      "live_scope": "Three cursor values live in ClassicPaintActivity197/1523/1532; generic placement ImageAssembly212. Full editor guide canonical-only; no direct Kotlin reference.",
+      "retained": [
+        "Both entire editor guides current: no wholesale rewrite. Assembly placed-state, exact-position, reflow and save/current-draft boundaries retained.",
+        "Legacy-credit kept-text sentence matches current canonical; not forced into another form.",
+        "Processed counters already processed, current sampling descriptions plausible technical reductions; no claim of failure.",
+        "Anglo-Saxon unexpected-cache quantity wording retained: RasterHistory97 specifically detects trailing extra input. Old Norse already says unexpected content.",
+        "Existing square terms and legal/recovery wording not rewritten for stylistic preference."
+      ],
+      "deferred": [
+        {
+          "keys": [
+            "formats22_ico_dimensions_error"
+          ],
+          "reason": "Anglo-Saxon generic file-declared dimensions lacks internal-entry precision; Old Norse identifies image list of ICO but not exact corresponding record. Historical technical directory-entry compound not securely supported. Recorded residual, not accepted parity."
+        },
+        {
+          "keys": [
+            "ui_current_safe_editing_budget_s_up_to_2f"
+          ],
+          "reason": "Temporal before-counting-decoder-memory qualifier immediately follows MP limit. More explicit MP-only estimate could help, but no unsupported historical compound introduced. Consumer first placeholder is editing RAM, second nominal MP; no claim entire RAM allowance excludes decoder."
+        },
+        {
+          "keys": [
+            "language20_translation_note"
+          ],
+          "reason": "Fallback basics present; fuller canonical contribution guidance not represented. New historical technical prose deferred."
+        }
+      ],
+      "lexical_sources": [
+        {
+          "url": "https://vsnr.org/wp-content/uploads/2021/11/NION-Glossary-2011.pdf",
+          "support": "Viking Society New Introduction to Old Norse glossary: draga draw/pull. Bounded compositional cursor use; not attested medieval GUI vocabulary.",
+          "access": "Search-index excerpt; no full PDF-read claim."
+        }
+      ],
+      "limits": [
+        "Historical-language modern-computing composition; neither native certification nor claim of attested medieval technical vocabulary.",
+        "No device, font, script-rendering, Android/JVM or layout verification performed.",
+        "Complete catalogue reading does not approve all inherited morphology, novel compounds or legal phrasing. No blanket linguistic or legal certification.",
+        "No trans-language mechanical copy; each complete value inspected in its own language."
+      ]
+    }
+  ],
+  "independent_review": "All10 complete proposed values independently read including full editor guides. Explicit viewport target replaced with existing cursor/drag vocabulary, generic placement removes attachment-specific relative clause. Guide exact return-to-drawing labels match ui_draw_again. Paragraphs3/7 only changed, other eight retained. Both guides already current, no wholesale restoration. MP-adjacent decoder qualifier, processed counters and current legal/recovery/assembly boundaries retained. ICO corresponding internal-record specificity and fuller contributor note remain deferred. Historical-language computing compounds not attested/native certification; no mechanical copy.",
+  "tests": {
+    "host": 71,
+    "seconds": 20.668,
+    "result": "pass",
+    "diff_check": "pass",
+    "limited_stale_prose_scan": 0,
+    "JVM": "not executed; Gradle download blocked",
+    "device": "unverified"
+  },
+  "draft_counts": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "new_keys": 1640,
+    "changed_existing": 1354,
+    "canonical": 8,
+    "locale": 1346
+  },
+  "limits": [
+    "Not native certification or blanket acceptance",
+    "Counts unmerged",
+    "No clean exact-head Codex review, no quota retry or merge",
+    "Spanish held"
+  ],
+  "next_action": "Separate full Wu Hans and Classical Chinese Hant audits started after reservation confirmation; no conflation with prior CN/HK/TW.",
+  "CI": {
+    "status": "No run returned at initial exact-head query; not passed."
+  }
+}
