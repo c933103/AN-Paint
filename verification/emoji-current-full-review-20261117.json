@@ -1,0 +1,187 @@
+{
+  "author_audit": {
+    "locale": "qaa-Zsye-XV",
+    "source_commit": "89223a3a13a7a4a5821c736dbabc039d9ab404ce",
+    "source_blob": "39b9006e8d5cfb0e6612c171d82e2fa7e10a3ece",
+    "full_read": {
+      "typed_entries": 719,
+      "ranges": [
+        [
+          0,
+          179
+        ],
+        [
+          180,
+          396
+        ],
+        [
+          397,
+          549
+        ],
+        [
+          550,
+          718
+        ]
+      ],
+      "complete_editor_paragraphs": 10,
+      "complete_assembly_paragraphs": 8,
+      "raw_plurals": {
+        "ui_crop_preview_images": [
+          "one",
+          "other"
+        ]
+      }
+    },
+    "proposals_count": 18,
+    "proposals_sha256": "08ada19fcd5fa85e94e4d746edc20aa8cbfa73f31dfbe8902ad75447b87eb597",
+    "changes": [
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "ui_the_attachment_image_is_not_placed",
+      "formats22_ico_dimensions_error",
+      "ui_cursor_pan_draw32",
+      "ui_cursor_pan_move32",
+      "ui_cursor_help29",
+      "ui_cursor_help31",
+      "ui_the_arrow_on_the_left_directly_below_the",
+      "ui_help23",
+      "ui_irasutoya_help34",
+      "ui_openclipart_help34",
+      "ui_open_artwork34",
+      "gallery_description",
+      "ui_a_separate_recovery_copy_has_been_kept_use",
+      "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "ui_recovery_copy_preserved_unverified",
+      "ui_recovery_copy_exported_unverified",
+      "language20_translation_note"
+    ],
+    "evidence": {
+      "alias": "ClassicPaintActivity812 directly displays ui_cursor_help29; emoji prefix breaks resource reference resolution. Restore actual alias.",
+      "cursor": "PaintCanvas680–700 offsets cursor and strokes; generic pan clarified, not claimed explicit viewport target.",
+      "MP": "ImageResizeDialog42 separates workingBytes and maxPixels estimate from actual decoder acceptance.",
+      "ICO": "IcoCodec38–50 compares decoded PNG against selected entry dimensions.",
+      "placement": "ImageAssembly212 checks generic current item; missing anchor214 untouched.",
+      "labels": "Actual XML ui_draw26/ui_drawing23/ui_category_selection/ui_category_insert/ui_menu_edit/ui_colour_tab23/ui_swap23/ui_reset_bw23/ui_advanced/ui_navigate/ui_draw_again/ui_load_image/ui_other_images34/ui_image_assembly and gallery_use_image/gallery_copy_credit; ToolCategoryButton14, EditorNavigation12–15, MediaGalleryActivity164/225.",
+      "routing": "AppLanguage70–77 maps public qaa-Zsye-XV to internal en-Zsye-XV-anpaint for English one/other. VerticalText25/27 preserves vertical RL. No routing change proposed.",
+      "build": "Paintroid/build.gradle205–208 mirrors exact XML to internal en-Zsye-XV-anpaint without wording transformation."
+    },
+    "preserved": [
+      "All safety data-loss/recovery uncertainty and legal/attribution clauses",
+      "Current assembly guide, exact-position overlap vs snapped-overlap semantics",
+      "Current processed counter and sampling wording",
+      "Deliberate pictogram controls and English prose fallback; no broad emoji replacement",
+      "Guide behavior current, no wholesale restoration",
+      "Existing woman-artist ZWJ/skin-tone sequence retained once as leading guide decoration; wrong repeated Draw labels replaced by actual control pictogram. No fixture clusters intentionally removed wholesale."
+    ],
+    "limits": [
+      "719-entry reading is not linguistic completeness or accessibility certification.",
+      "Emoji glyphs can be ambiguous or differently announced; no device, screen-reader, glyph/font or vertical-layout verification.",
+      "No JVM/CI/device tests or app edits by reviewer.",
+      "Generic test-tube emoji on errors and otherwise odd decorative symbols retained absent behavior evidence; no claim ideal icon semantics.",
+      "English fallback is intentionally visible, not missing-language completion.",
+      "Full editor guide canonical-only; live help and cursor/recovery/gallery messages have consumers."
+    ],
+    "structural_checks": "Indexed placeholder sequence and literal escaped newline counts unchanged for all18 proposals; alias intentionally restored.",
+    "guide_changed_paragraphs": [
+      1,
+      2,
+      3,
+      5,
+      7,
+      8,
+      9
+    ],
+    "guide_unchanged_paragraphs": [
+      4,
+      6,
+      10
+    ],
+    "independent_review_adjustments": [
+      "Removed misleading control pictograms from generic Selection masks and Other images remain-placed statements."
+    ],
+    "alias_regression_review": {
+      "existing": "FrenchCursorGuidanceTest.compiledLegacyCursorHelpAliasUsesCurrentGuidance covers French only; its tool_help consumer test is French only. LocaleTextBoundaryTest.sourceAliasesCannotResolveBackToCorruptTranslatedTargets covers empty translated input fallback with en-US injection, not decorated nonempty emoji literal. test_string_importance checks canonical alias only. Host translation_catalogues structure does not enforce this translated alias.",
+      "recommendation": "Extend the existing compiled-alias equality test with one explicitly selected qaa-Zsye-XV case using AppLanguage.wrap context and compare getString(ui_cursor_help29) with getString(ui_cursor_help31). This exercises generated internal emoji resource routing and alias resolution without freezing guidance prose or adding a locale matrix. A host narrow exact resource-alias assertion may catch decoration earlier, but is not a replacement for compiled resource resolution.",
+      "runtime_status": "Inspected source only; no tests executed by reviewer."
+    }
+  },
+  "changes": {
+    "ui_current_safe_editing_budget_s_up_to_2f": "🧪 Current safe editing memory budget: %1$s · up to %2$.2f MP (MP estimate excludes additional decoder memory)",
+    "ui_the_attachment_image_is_not_placed": "🖼️ The image has not been placed.",
+    "formats22_ico_dimensions_error": "🖼️ The icon image dimensions do not match the dimensions recorded in the corresponding internal ICO directory entry.",
+    "ui_cursor_pan_draw32": "✏️ Drag to move the cursor and start drawing. Tap again to stop drawing.",
+    "ui_cursor_pan_move32": "✏️ Drag to position the cursor. Tap the drawing button to start drawing.",
+    "ui_cursor_help29": "@string/ui_cursor_help31",
+    "ui_cursor_help31": "🖌️ Drag to position the cursor. Tap the on-screen drawing button, then drag to move the cursor and draw. Tap it again to stop. Choose the brush and stroke settings under 🎨 → 🖌️.",
+    "ui_the_arrow_on_the_left_directly_below_the": "💾 👩🏽‍🎨 Choose 👁️ View, 🎨 Draw, 📁 File, ✂️ Edit or 🌈 Color to show that tab\\'s controls. The arrow beside the tabs collapses or restores the panel. In portrait, the tabs and tool strip run horizontally; scroll them to reach more controls. In landscape, the tabs and primary tools run down the left. 🎨 Draw contains 🖌️ Drawing, 🔲 Selection and ➕ Insert. 🖌️ Drawing groups ✏️ Pencil, 🖌️ Brush, 💧🖌️ Watercolor and 💨🖌️ Airbrush. 🔲 Selection groups rectangular and free-form selections. ➕ Insert groups lines, shapes and text. Tap a category to select its remembered tool and show its tools and settings below the strip in portrait, or to its right in landscape. Tap the selected category again to collapse or expand its tools and settings. Categories remember the tool last used in them during the session. Scroll the options panel for further settings. The header contains the filename and quick actions. Credits & terms: «📁 > ℹ️📜».\\n\\nThe 🌈 Color tab contains the FG/BG colour indicator, 🔁🌈 Swap colors, ⚫⚪ Black / white and ⚙️ Advanced. Tap the foreground or background part of the indicator to edit that colour. The standard palette and saved colours are below the header. Tap a standard swatch for foreground or hold for background. The four cells at the far right of the standard palette keep recent colours; tap for foreground or hold for background. The colour editor has 🧪 Palette, 🧪 Honeycomb and ⚙️ Advanced. ⚙️ Advanced has spectrum, wheel, RGB, HSV, HSL and six-digit hex controls. Custom colours start with Pale Violet #5B67FF, Gold #FFD700, Silver #C0C0C0 and Copper #B87333. Tap a saved colour to use it as foreground; hold it to choose background, edit or remove it. Add colour or an empty saved slot opens the editor to save a colour. The main document is opaque. Loading a transparent image as the canvas fills its transparent areas with the current BG colour. An inserted image remains a floating selection; its transparent areas reveal the existing canvas when committed. Wikimedia Commons imports receive a white backing before insertion. Original source files are unchanged.\\n\\nView > 🔍🖐️ Navigate: drag with one finger to pan, pinch with two fingers to zoom and pan. Choose ✏️ Draw again in the 🔍🖐️ Navigate options, or select a drawing tool, to return to drawing. Two-finger navigation also works in drawing tools without leaving paint marks. The bottom-right slider has a centre line at 100%. Zoom in/out buttons stop at 100% when a step would cross it; press again to continue. The adjacent Fit button fits and centres the canvas and any floating selection in the view. 🔍🖐️ Navigate also provides 100%; 👁️ View provides a pixel grid.\\n\\nAutosave records the current draft after a short editing pause, and when you leave the app. The status shows Draft saved or an autosave error. Reopening restores the draft, filename, tool settings, floating selection and unfinished geometry. Autosave keeps a private working draft. 📁 File offers PNG, adjustable-quality JPEG and HEIC, and lossless or lossy JPEG XL, WebP and AVIF. Save as chooses the image format, settings and location; Save writes there again. Export as and Save and share write a copy without changing the current Save destination or marking the drawing saved. Save and share then opens Android sharing. The filename star means the drawing has unsaved changes. Source images are never overwritten by autosave.\\n\\nSelections: draw a rectangle or free-form outline. Drag inside to move, drag a square corner or edge midpoint to resize, or drag the round Rotate handle to rotate. Lock proportions is on by default; switch it off to stretch width and height independently. Edge handles resize along the selected side. Free-form selections keep their selected shape within the transform box, including after rotation and autosave. The dimensions and angle appear in the options panel. Commit selection applies the result; selection edits can be undone, and autosave retains unfinished transforms. Copy, Cut and Crop to selection use the transformed image. Select all is under ✂️ Edit > 🔲 Selection, and Ctrl+A works on an external keyboard. Cut, Copy and Paste are quick actions in the header. Selection masks preserve the selected shape; the document itself remains opaque.\\n\\nCanvas bounds: drag handles inward to trim or outward to expand on any side, then Apply bounds. New space uses BG; existing pixels are not scaled. Cancel and Undo are available. Resize image, Canvas size and New image also accept Pixels or Percent with an optional aspect lock.\\n\\nCurve: draw a line and drag twice to bend it. Polygon: tap vertices, then double-tap the final vertex or use Finish polygon. Switch off Close polygon to draw connected open segments. Rounded rectangle: set Radius (px) with its slider; each shape limits the radius to half its shorter side. Text: tap the canvas, choose a font displayed in its own style and use the live preview. Options include size, bold, italic, underline, strikethrough, alignment, line spacing and a BG text box. 💧🖌️ Watercolor is in the 🖌️ Drawing category beside 🖌️ Brush and 💨🖌️ Airbrush; adjust strength for softer strokes. ✏️ Pencil, brush and tool size sliders go up to 100 pixels. ✏️ Pencil starts at 1 pixel and remembers its own width. Tap the displayed number for exact numeric entry. Heart, Star and Arrow have the same outline/fill choices as other shapes. 👁️ View > Cursor drawing expands its enable switch, cursor shape and magnifier settings. Drag to position the cursor, tap the on-screen drawing button, then drag to move the cursor and draw. Tap again to stop drawing. 🖌️ Brush and stroke settings remain under 🎨 Draw > 🖌️ Drawing. 👁️ View > Magnifier lets you enable a magnified preview of the cursor or drawing point and adjust its magnification. 🖌️ Drawing settings also offers antialiasing and stroke smoothing. Eleven additional fonts are bundled; Font licences has their credits and full terms.\\n\\nFile > 📂🖼️ Load image replaces the canvas through Android\\'s picker. «🎨 Draw → ➕ Insert → 🖼️➕ Other images» provides device files, Catrobat, Irasutoya, Openclipart and “Wikimedia Commons · 🗺️ Blank maps…”. Choose a device image, or open an online artwork page and tap «🖼️➕ Use image», to add an image as a floating selection. 📁 > ℹ️📜 > 🖼️ Image credits keeps the source links and licence notice. Images within the device memory budget load at original resolution. If needed, a resize-choice dialog shows dimensions, pixel count and memory estimates, with Pixels/Percent sizing and optional aspect lock. The original file stays unchanged.\\n\\n«📁 File» > 🖼️🧩 Image assembly opens a separate workspace for up to 20 images. Sort thumbnails by filename or time. Crop one image or batch-crop several. Same width / Same height normalizes all loaded images while preserving aspect ratios. Drag thumbnails or placed images to snap right/top aligned or bottom/left aligned. Exact position sets the top-left corner in whole pixels starting at zero, keeps other images fixed and permits overlaps. Images imported later are drawn on top. Unplace removes just the selected placement. Other images stay placed; attached images may move to fill the gap. «🧪 Show all» adjusts the view zoom. 💾 Save PNG exports the assembly; 🎨 Edit in Paint transfers it as an undoable edit. The app uses one opaque image editor. 🖼️🧩 Image assembly is a separate arrangement workspace.\\n\\nThe «📁 > ℹ️📜» panel includes original copyright, asset/font credits, full licence text and this version\\'s complete source. Licence text scrolls independently of the fixed 📋 Copy all, 🧪 Other terms and ✅ Done buttons.",
+    "ui_help23": "💾 Choose a tab to show its controls. View starts with Navigate; Draw contains Drawing, Selection and Insert. Navigate pans without drawing; pinch with two fingers to zoom. The arrow beside the tabs collapses the panel. All tools have labels. Edit changes the selection, canvas bounds, dimensions or image. Color selects foreground and background colors; 🔁🌈 Swap colors exchanges them and Black / white resets them. The color picker previews your choice immediately. 🎨 Use colour confirms it; Cancel restores the previous color. Add colour or tap an empty saved slot to choose and save a colour. Hold a saved colour to edit or remove it. Advanced opens the detailed editor beside Black / white. Pixel grid also shows image-pixel rulers; cursor drawing shows live x/y beside zoom. Save as chooses an image format, compression settings and location; Save writes there again using those settings. Export as creates ICO, ASCII art or Base64 text without marking the drawing saved. Save and share saves a copy, then opens Android sharing. It keeps your current Save destination. 🎨 Draw > ➕ Insert > 🖼️➕ Other images contains device files, Catrobat, Irasutoya, Openclipart and “Wikimedia Commons · 🗺️ Blank maps…”. Inserted images remain selected; the view shows their handles even outside the canvas. 🖼️ Fit image to canvas changes placement; Original size restores the source dimensions. Autosave restores the draft and both undo/redo stacks when you reopen the app. File also contains image assembly, How to use, and About, licences & credits. Insert text supports horizontal and vertical writing.",
+    "ui_irasutoya_help34": "📂 Open an artwork page and tap «🖼️➕» (Use image). Search in English or Japanese; artwork titles and site text remain in Japanese. Free use is subject to Irasutoya’s terms: commercial designs using 21 or more items require payment. Special collaborations may have different conditions. Source pages and credits are kept under 📁 → ℹ️📜 → 🖼️ Image credits.",
+    "ui_openclipart_help34": "📂 Open an artwork page and tap «🖼️➕» (Use image) beside its Large PNG download. Openclipart publishes artwork under CC0. The source page and licence are kept under 📁 → ℹ️📜 → 🖼️ Image credits.",
+    "ui_open_artwork34": "📂 Open the artwork page first, then tap «🖼️➕» (Use image).",
+    "gallery_description": "📁 Tap «🖼️➕» (Use image) to insert immediately. «📋» (Copy credit) beside an image copies its title, publisher, source and licence for your publication. Catrobat\\'s original artwork is CC BY-SA 4.0; keep any separately named creators, copyright and other source notices. Describe your edits and share adaptations under CC BY-SA 4.0 or a compatible licence. Edit credits lets you add these details; inserted sources remain under 📁 → ℹ️📜 → 🖼️ Image credits.",
+    "ui_a_separate_recovery_copy_has_been_kept_use": "💾 %1$s A separate recovery copy has been kept. Use «📁 > 🛟📤» (File > Export recovery copy) to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+    "ui_recovery_copy_exported_extract_canvas_png_from_the": "📤 Recovery copy exported. Extract canvas.png from the ZIP and open it with «📁 > 📂🖼️» (File > Load image). The ZIP also contains draft settings and any floating selection.",
+    "ui_recovery_copy_preserved_unverified": "💾 %1$s A separate recovery copy has been kept. Use «📁 > 🛟📤» (File > Export recovery copy) to save it. Its contents may be damaged or unreadable. If the exported file opens as a ZIP and contains a readable canvas.png, extract that image and open it with «📁 > 📂🖼️» (File > Load image); you can then resize it if needed. Keep the exported copy even if it cannot be opened.",
+    "ui_recovery_copy_exported_unverified": "💾 Recovery copy exported without changing its contents. Its contents may be damaged or unreadable. If the exported file opens as a ZIP and contains a readable canvas.png, extract that image and open it with «📁 > 📂🖼️» (File > Load image). Draft settings or a floating selection may also be present, but have not been verified. Keep the exported copy even if it cannot be opened.",
+    "language20_translation_note": "🌍🌐 App language\\n\\n📝🔁🌐 Translations are maintained in AN Paint’s language resources. New or untranslated text appears in English."
+  },
+  "integration_review": {
+    "read_complete_proposals": 18,
+    "accepted": "After independent complete-value reading, removed mistaken control-pictogram prefixes from generic Selection masks and Other images stay placed; reviewer reread final paragraphs5/9. All18 final values match packet08ada19fcd5fa85e94e4d746edc20aa8cbfa73f31dfbe8902ad75447b87eb597.",
+    "alias_consumer": "ClassicPaintActivity812 shows ui_cursor_help29. Decorated prefix made it literal; restored exact Android reference.",
+    "compiled_test": "Existing FrenchCursorGuidanceTest.compiledLegacyCursorHelpAliasUsesCurrentGuidance now checks fr and qaa-Zsye-XV using select/wrap; retained independently sourced French help assertion after reviewer flagged possible weakening. No prose snapshot or broad Cartesian matrix.",
+    "separate_reading_scope": "Reviewer read all719; integration independently read18 proposed complete values and source/routing, not second independent719 certification."
+  },
+  "local_head": "68a68788b7c851f97d8f3a02c16b25ad71af58d4",
+  "remote_head": "44fdf5bd55f66e00eea4bfb0946ced3fad68eb63",
+  "verified_tree": "43ab1860ebb01cf7315c6b75133abc5647863d06",
+  "resource_blob": "b7a4cbf4a3a28d74832ca91b119c121f34a57bce",
+  "test_blob": "4472054ba2d0424236c6bf7e26ca5e4751ac7b80",
+  "tests": {
+    "final_host_count": 71,
+    "result": "pass",
+    "seconds": 21.707,
+    "alias_ad_hoc_red": "Old value rendered literal reference; temporary host equality test failed.",
+    "alias_ad_hoc_green": "Current host resolver29 equals31; temporary duplicate permanent host test removed.",
+    "compiled_jvm_case": "Added, independently source-reviewed but NOT EXECUTED locally.",
+    "diff_and_format_checks": "pass",
+    "limited_stale_prose_scan_matches": 0
+  },
+  "draft_recount": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "added_keys": 1640,
+    "changed_existing": 1466,
+    "canonical": 9,
+    "locale": 1457
+  },
+  "reconciliation_followup": {
+    "prior_index": "5cffcb1f50a0e237e2199da0dafdcb1c1fddd07d",
+    "english_current_read_evidence": "6abec4ed791ab84c8df24138719ad422d3a9713e:verification/english-source-regions-review-20261117.json",
+    "tok_current_read_evidence": "d72cd1a86a9961549948032aa0151ed264952be2:verification/toki-pona-current-full-review-20261117.json",
+    "emoji": "This report supplies current full-read evidence formerly unlocated. Does not upgrade reading into blanket correctness.",
+    "still_deferred_guides": [
+      "bo",
+      "mnc-Mong",
+      "ain-Kana",
+      "ain-Latn",
+      "hak-Hant-TW",
+      "hak-Latn-TW",
+      "nan-Hant-TW",
+      "nan-Latn-TW",
+      "yue-Latn",
+      "vi-Hani"
+    ],
+    "other_open": [
+      "vi-Hani estimated total assembly memory floor",
+      "Ainu/Manchu processing counter precision",
+      "specialist missing/deferred nv/nch/nhe/nhw/quh/quy/qug prose",
+      "specialist ch/za/zgh/shn/tdd/yua/chr ownership and source receipts",
+      "Spanish publication hold"
+    ]
+  },
+  "limits": [
+    "Unmerged draft; exact-head CI and clean Codex review still required. No quota retry.",
+    "No JVM/device, screen-reader, glyph/font or vertical-layout pass.",
+    "English fallback and intentional emoji style retained; presence not language or accessibility acceptance.",
+    "No legal certification or changed licence commitments."
+  ]
+}
