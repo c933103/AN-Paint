@@ -1,0 +1,94 @@
+{
+  "scope": "Valencian separate full-catalogue review",
+  "local_head": "868a7e2b56a8e613eda079f83947ade75f20e25a",
+  "remote_head": "933ec481d33f39e6d82f22be1904b23872d2eefa",
+  "tree": "c78c30692011d531ba1da4363c98a0abdb694d8e",
+  "applied": {
+    "ca-ES-valencia": 8
+  },
+  "audits": [
+    {
+      "locale": "ca-ES-valencia",
+      "folder": "values-b+ca+ES+valencia",
+      "source_head": "bfcb052432ad9f17eb44a5e222f762efebe01cfe",
+      "complete_values_read": 719,
+      "read_ranges": [
+        "0-179 (complete assembly guide)",
+        "180-396",
+        "397-549 (complete ten-paragraph editor guide and live help)",
+        "550-718 (complete legal/recovery/format guidance)"
+      ],
+      "raw_plural_quantities": {
+        "ui_crop_preview_images": [
+          "one",
+          "many",
+          "other"
+        ]
+      },
+      "proposal_count": 8,
+      "proposal_sha256": "a0cf24f7eef6d9f3ceda4cf5e2b07fc85e319ec69c14eb965fa8899614d7e741",
+      "guide_changed_paragraphs": [
+        7
+      ],
+      "findings": {
+        "cursor": "Three live instructions explicitly say move viewport, contradicting PaintCanvas680-688 cursor.offset. Full guide generic motion clarified, not classified explicit wrong-target. Nine of ten guide paragraphs unchanged.",
+        "placement": "ImageAssembly212 validates generic item; original wrongly restricts to anchor. Missing-anchor214 unchanged.",
+        "memory": "ImageResizeDialog42 produces MP estimate from maxPixels, decoder acceptance separate45. Qualifier explicitly attaches to MP, not RAM.",
+        "smoothing": "ClassicPaintActivity1576 strokeSmoothing versus1577 antialiasing; existing labels distinct but omit freehand/pixel target. Proposed as bounded precision improvements, not English-only gap."
+      },
+      "preserved": [
+        "Full current guide except one cursor clause",
+        "Current assembly guide, reflow and exact-position distinction",
+        "Live help and gallery action labels",
+        "Accurate ICO internal table entry",
+        "Processed counter",
+        "Both reduced-resolution sampling descriptions",
+        "TIFF possibility",
+        "Whole recovery/legal/licence conditions",
+        "Raw one/many/other plurals",
+        "Valencian forms seua, menuda, eixida, guarda, apega and other inherited regional alternatives"
+      ],
+      "checks": [
+        "Indexed placeholders equal originals",
+        "Literal escaped newline counts equal originals",
+        "Proposal differs from original",
+        "Guide paragraph diff exactly7",
+        "No app edits"
+      ],
+      "limitations": [
+        "Complete source-context read is not blanket linguistic approval",
+        "No native Valencian certification or device/layout/JVM testing",
+        "Mixed inherited Catalan/Valencian variants were not mechanically normalized",
+        "No external glossary authority asserted for technical wording"
+      ]
+    }
+  ],
+  "independent_review": "All8 complete proposed values independently read including full guide. Explicit wrong-view cursor instructions repaired, generic placement and MP-only exclusion clarified. Smoothing distinguishes freehand stroke processing from pixel-edge antialiasing, checked ClassicPaintActivity1576/1577. Guide only paragraph7 changed; other9 current paragraphs preserved. Distinct Valencian conventions maintained, not collapsed into Catalan. Raw one/many/other plural retained. No native certification.",
+  "tests": {
+    "host": 71,
+    "seconds": 25.207,
+    "result": "pass",
+    "diff_check": "pass",
+    "limited_stale_prose_scan": 0,
+    "JVM": "not executed; Gradle download blocked",
+    "device": "unverified"
+  },
+  "draft_counts": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "new_keys": 1640,
+    "changed_existing": 1427,
+    "canonical": 8,
+    "locale": 1419
+  },
+  "limits": [
+    "Not native certification or blanket acceptance",
+    "Counts unmerged",
+    "No clean exact-head Codex review, no quota retry or merge",
+    "Spanish held"
+  ],
+  "next_action": "Traceable all-catalogue inventory reconciliation underway against immutable durable evidence10790219 and current actual folders; specialist ownership/history gaps to remain explicit rather than assume audited.",
+  "CI": {
+    "run": 44042599876,
+    "status": "pending"
+  }
+}
