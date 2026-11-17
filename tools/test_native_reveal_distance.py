@@ -10,6 +10,13 @@ SOURCE = ROOT / 'app/src/androidTest/java/paint/anpaint/android/NativeRevealDist
 HARNESS = '''package paint.anpaint.android;
 public final class RevealHarness {
  public static void main(String[] args) {
+  if (args[0].equals("plan")) {
+   NativeRevealDistance planner = new NativeRevealDistance();
+   for (int i=1;i<args.length;i+=5)
+    System.out.println(planner.plan(Integer.parseInt(args[i]),Integer.parseInt(args[i+1]),
+     Integer.parseInt(args[i+2]),Integer.parseInt(args[i+3]),Integer.parseInt(args[i+4])));
+   return;
+  }
   for(int i=0;i<args.length;i+=4)
    System.out.println(NativeRevealDistance.choose(Integer.parseInt(args[i]),
     Integer.parseInt(args[i+1]),Integer.parseInt(args[i+2]),Integer.parseInt(args[i+3])));
@@ -71,9 +78,32 @@ class NativeRevealDistanceTest(unittest.TestCase):
             if travel >= hidden:
                 self.assertLessEqual(travel, spare)
 
+    def test_recorded_tibetan_overshoot_uses_small_correction_not_opposite_edge(self):
+        # #530: viewport y115..212, tile y302..342 before scrolling.
+        # At scroll128, minimum hiding is2 and leading space59. Native
+        #59px swipe moved67px to195, putting tile top107 (8px above).
+        # The former lookahead then requested another59px and oscillated.
+        result = self.choose('plan', 1, 2, 59, 8, 59,
+                             -1, 8, 65, 8, 59,
+                             1, 1, 58, 8, 59)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual([59, 18, 11], list(map(int, result.stdout.split())))
+        # Model the observed +8px native overtravel: correction18+8=26
+        # changes scroll195 to169; the complete tile then fits y133..173.
+        self.assertTrue(115 <= 302 - 169 < 342 - 169 <= 212)
+
+    def test_invalid_direction_is_rejected(self):
+        for direction in (0, 2, -2):
+            with self.subTest(direction=direction):
+                self.assertNotEqual(0, self.choose('plan', direction, 2, 59, 8, 59).returncode)
+
+    def test_mirrored_overshoot_has_same_correction(self):
+        result = self.choose('plan', -1, 2, 59, 8, 59, 1, 8, 65, 8, 59)
+        self.assertEqual([59, 18], list(map(int, result.stdout.split())))
+
     def test_native_obligations_and_budgets_remain(self):
         source = (SOURCE.parent / 'AssemblyPositionDeviceTest.kt').read_text()
-        for required in ('NativeRevealDistance.choose(', 'CaptionTileTraversal.visit(',
+        for required in ('val planner=NativeRevealDistance()', 'planner.plan(gesture.direction,', 'CaptionTileTraversal.visit(',
                          'visibleBounds(view).contains(target())', 'repeat(24)',
                          'SystemClock.uptimeMillis()+45000', 'SystemClock.uptimeMillis()+8000',
                          'device.swipe(arrayOf(first,last,last,last),16)',

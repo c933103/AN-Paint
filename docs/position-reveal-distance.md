@@ -35,3 +35,25 @@ Ainu Kana's separate focus-without-IME failure remains unexplained. Its original
 log has clickNoSync at 18:57:08.370, nearby popup activity and no keyboard-show
 request; it predates the passive delivered-motion diagnostics and does not
 establish why the tap failed to request the IME.
+
+## First candidate device failure and correction
+
+Run 44077666592 on first candidate 63e 613de passed Ainu and Manchu, but Tibetan
+exhausted the unchanged budget. Artifact 14325209673 records native overshoot:
+for landscape viewport y 115..212 and caption tile y 302..342 before scroll,
+scroll 128 led to a 59 px swipe that moved 67 px to 195. The tile top was then 107,
+above the viewport. Aggressive reverse alignment requested another 59 px,
+oscillating roughly 128..195 until the deadline. This is a candidate regression,
+not an infrastructure failure or a passing result.
+
+The planner now lives for one target reveal and uses measured geometry to
+notice a direction reversal. On the first reversal it disables lookahead for
+that target and retains the original minimum-hidden-edge/slop correction.
+Thus the 8 px overshoot requests 18 px correction instead of another 59 px alignment.
+Later targets may use lookahead again. The existing visibility and gesture
+bounds still decide success. Recorded-geometry and mirrored-direction host
+controls reproduce the old planner's distance choice and check the corrected
+sequence; real-device verification remains necessary.
+
+The observed device overshoot supersedes any earlier interpretation of the
+unit-gain geometry model as a native no-overshoot guarantee.

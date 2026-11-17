@@ -410,6 +410,7 @@ class AssemblyPositionDeviceTest {
     }
     private data class Gesture(val owner: View,val bounds: Rect,val horizontal: Boolean,val direction: Int,val hidden: Int,val leadingSpace: Int)
     private fun reveal(view: View,target: ()->Rect) {
+        val planner=NativeRevealDistance()
         repeat(24) {
             checkDeadline()
             if(onMain {visibleBounds(view).contains(target())}) return
@@ -435,7 +436,7 @@ class AssemblyPositionDeviceTest {
             val bounds=gesture.bounds
             val low=if(gesture.horizontal) bounds.left+bounds.width()/5 else bounds.top+bounds.height()/5
             val high=if(gesture.horizontal) bounds.right-bounds.width()/5 else bounds.bottom-bounds.height()/5
-            val distance=NativeRevealDistance.choose(gesture.hidden,gesture.leadingSpace,
+            val distance=planner.plan(gesture.direction,gesture.hidden,gesture.leadingSpace,
                 android.view.ViewConfiguration.get(context).scaledTouchSlop,high-low)
             val start=if(gesture.direction>0) high else low
             val end=start-gesture.direction*distance
