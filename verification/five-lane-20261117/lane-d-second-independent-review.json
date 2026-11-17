@@ -1,0 +1,86 @@
+{
+  "scope": "Six pending Tai Nüa candidates only, distinct from prior four lane-D entries",
+  "candidate_sha256": "849e150565d35fefa651c09576ba5e229f6fc193d7badb8d0c396bfe6b0604e7",
+  "rows": [
+    {
+      "locale": "tdd",
+      "key": "ui_honeycomb",
+      "value": "ᥞᥨᥒᥰ",
+      "source": "Luo1999",
+      "page": "30 / PDF 70",
+      "adaptation": "direct lexical source",
+      "review_status": "accept_bounded",
+      "evidence_type": "direct_lexical",
+      "reason": "Visually checked Luo printed30 second sense honeycomb, hoŋ². HA+OO+NGA and diaeresis→U1970 consistent. Shape-tab metaphor fits actual hexagonal palette; not a botanical-only first sense assumption."
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_largest",
+      "value": "ᥕᥬᥱ ᥔᥤᥴ ᥙᥫᥢ",
+      "source": "Luo1999",
+      "page": "152 / PDF 192",
+      "adaptation": "direct source phrase",
+      "review_status": "accept_bounded",
+      "evidence_type": "direct_phrase",
+      "reason": "Visually checked printed152 largest/greatest example yai³ si¹ pən⁶. Actual consumer chooses maximum current width/height. Source acute maps U1974 despite Luo numbering1; unmarked source sixth tone remains unmarked. Do not map source tone numbers mechanically."
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_top",
+      "value": "ᥐᥢᥲ ᥘᥫᥴ",
+      "source": "Luo1999",
+      "page": "41 / PDF 81",
+      "adaptation": "direct lexical phrase",
+      "review_status": "accept_bounded",
+      "evidence_type": "direct_phrase",
+      "reason": "Printed41 explicitly Top/on top/above in side-direction series kan⁴ lə¹. Fits ImageCropDialog top-edge label, not z-order command. Grave→U1972 and acute→U1974 checked."
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_smallest",
+      "value": "ᥟᥦᥖᥴ ᥔᥤᥴ ᥙᥫᥢ",
+      "source": "Luo1999",
+      "page": "6 and 152 / PDF 46 and 192",
+      "adaptation": "composition: small plus attested superlative marker",
+      "review_status": "accept_bounded",
+      "evidence_type": "productive_composition",
+      "reason": "Printed6 explicit small/tiny adjective, not just piglet sound sense; printed152 explicitly productive highest-degree marker with adjective examples. Small+marker fits minimum dimension button. EH U1966 checked against epsilon vowel, not EE U1965. This whole phrase is composed, not directly quoted."
+    },
+    {
+      "locale": "tdd",
+      "key": "formats22_base64_label",
+      "value": "ᥘᥤᥐ Base64",
+      "source": "existing canonical ui_text + invariant format identifier",
+      "page": "Luo1999 §2.3.1.2 head-modifier ordering",
+      "adaptation": "bounded nominal composition; not exact donor phrase",
+      "review_status": "accept_bounded",
+      "evidence_type": "bounded_nominal_composition",
+      "reason": "Existing own ui_text exactly ᥘᥤᥐ; Text head with invariant Base64 modifier matches source head-modifier nominal pattern. SaveFormat.BASE64 uses label for text format, not decoding command. Not a source-attested computing phrase."
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_honeycomb_colour_06x",
+      "value": "ᥔᥤᥴ ᥞᥨᥒᥰ #%1$06X",
+      "source": "existing canonical ui_colour + Luo1999 honeycomb",
+      "page": "30 / PDF70; §2.3.1.2 head-modifier ordering",
+      "adaptation": "bounded nominal composition; retain indexed hex token",
+      "review_status": "accept_bounded",
+      "evidence_type": "bounded_nominal_composition",
+      "reason": "Existing own ui_colour supplies colour noun ᥔᥤᥴ; honeycomb noun modifies colour head under attested nominal pattern. Actual accessibility label identifies palette cell plus unchanged hex code, not honeycomb material colour. No unsupported verb or agreement added. Not full accessibility/usability certification."
+    }
+  ],
+  "source_checks": [
+    "Visual complete entries printed6,30,41,152; consonant/vowel table xxvii and tone explanation xxviii",
+    "Luo §2.3.1.2 modification examples read; head-modifier pattern supports only bounded nominal composition, not arbitrary prose",
+    "Unicode L2/2024/24098-tai-le-update.pdf table3 independently opened: diaeresis1970, caron1971, grave1972, dot1973, acute1974",
+    "Own current ui_text/ui_colour read from actual tdd XML; source consumers NormalizeImagesDialog, ImageCropDialog, SaveOptionsDialog, HoneycombPalette read"
+  ],
+  "structural": "Only indexed placeholder #%1$06X in six candidates; preserved exactly. No newline tokens introduced. No resource mutation or integrated test run.",
+  "limits": [
+    "Not native-language certification",
+    "Luo source tone numbering differs from Unicode tone names; mapping checked by visible marks, not equal numbers",
+    "Three compositions explicitly distinguished from direct attestations",
+    "No device rendering or screen-reader testing",
+    "No acceptance of remaining long technical/legal prose"
+  ]
+}
