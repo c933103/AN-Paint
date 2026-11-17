@@ -3,30 +3,41 @@
   "results": [
     {
       "locale": "ch",
-      "candidates": 174,
+      "candidate_values": 232,
       "errors": []
     },
     {
       "locale": "za",
-      "candidates": 33,
+      "candidate_values": 33,
       "errors": []
     },
     {
       "locale": "zgh",
-      "candidates": 40,
+      "candidate_values": 40,
       "errors": []
     }
   ],
   "checks": [
-    "source key exists",
-    "target key absent in pinned base",
+    "source keys",
+    "missing target keys at pinned base",
     "placeholder multisets",
     "literal newline counts"
   ],
   "not_checked": [
-    "native fluency",
-    "complete linguistic correctness",
+    "fluency",
+    "full grammar and semantics",
     "AAPT/runtime"
   ],
-  "integration": "Only4 ch short labels proposed separately for larger combined batch; no whole locale complete."
+  "tests": {
+    "translation_boundaries": 6,
+    "translations": 34
+  },
+  "final_patch": {
+    "canonical_additions": 9,
+    "provenance_fixes": 1,
+    "translation_boundaries_passed": 6,
+    "translations_passed": 34,
+    "hosted_CI": "not run",
+    "Android_runtime": "not run"
+  }
 }
