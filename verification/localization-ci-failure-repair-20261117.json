@@ -1,0 +1,247 @@
+{
+  "application_head": "7f96361de01e728df0bfc1b34302c2272dbb49f7",
+  "application_tree": "d25ad8a803db7791f60997e579c12e90600d9b14",
+  "local_commit": "582607fe082bf9761bf549f49c4abdbc6cf7aa94",
+  "failed_head": "3a03183879c87c15b32cc8101bbb7fafdc4b6e57",
+  "failed_run": 44050348188,
+  "failed_job": 133935197070,
+  "failure_excerpt": "2026-11-17T09:11:38.6558650Z BUILD SUCCESSFUL in 26s\n2026-11-17T09:15:04.3911511Z FAIL: test_fallback_samples_are_offered_and_missing_while_welsh_is_present (test_commons_import_change_translations.CommonsImportChangeTranslationsTest) (tag='wo')\n2026-11-17T09:15:04.3914318Z AssertionError: False is not true\n2026-11-17T09:15:04.3915164Z FAIL: test_fallback_samples_are_offered_and_missing_while_welsh_is_present (test_commons_import_change_translations.CommonsImportChangeTranslationsTest) (tag='se')\n2026-11-17T09:15:04.3917770Z AssertionError: False is not true\n2026-11-17T09:15:04.3918886Z FAIL: test_save_and_system_terms_remain_paired_in_every_occurrence (test_hakka_context.HakkaContextTests) (key='ui_the_arrow_on_the_left_directly_below_the', term='保存')\n2026-11-17T09:15:04.3920708Z AssertionError: 17 != 11\n2026-11-17T09:15:04.3927175Z FAIL: test_spatial_back_is_not_the_carrying_reading (test_hakka_context.HakkaContextTests) (key='ui_the_arrow_on_the_left_directly_below_the', term='下背')\n2026-11-17T09:15:04.3929020Z AssertionError: 4 != 7\n2026-11-17T09:15:04.3929711Z FAIL: test_all_five_manuals_name_the_live_routes (test_korean_nom_semantics.KoreanNomContextTests) (locale='b+vi+Hani')\n2026-11-17T09:15:04.3933094Z AssertionError: '𡳒 → 㙻 → 影 恪' not found in '𣜿 > 𢲫 影 𠊝 椌 𡳒 通 瓜 呈 譔 𧵑 Android. 𡳒 > 㙻 > 「影 恪」 𠁟 𣜿 𨑗 設備, Catrobat, Irasutoya, Openclipart 吧 「Wikimedia Commons · 版圖 𥧪…」. 𢲫 張 作品 耒 𪮻 「用 影」 抵 㙻 影 𠁑 樣 漨 譔 浽. 𣜿 > 介紹, 紙 法 吧 𥱬 功 > 𥱬 功 形 影 流連 結 源 吧 通 報 紙 法. 影 㑲 𥪝 界限 部𢖵 設備 仕 得 𢲫 於 度解析 㭲. 裊 懃, 匣 話 譔 戟 𡱩 顯示 戟 𡱩, 数 點影 吧 約 併 部𢖵, 貝 戟 𡱩 點影/分 𤾓 吧 銙 比例 隨 譔. 𣜿 㭲 空 𠊝 𢷮.'\n2026-11-17T09:15:04.3934731Z FAIL: test_every_nom_catalogue_ideograph_is_bundled (test_locale_font_coverage.LocaleFontCoverageTest)\n2026-11-17T09:15:04.3937138Z AssertionError: Lists differ: [] != ['U+53EA']\n2026-11-17T09:15:04.3938931Z FAIL: test_resource_oracle_matches_five_current_exact_catalogues (test_vertical_notice_characterization.VerticalNoticeCharacterizationContractTest) (tag='mn-Mong')\n2026-11-17T09:15:04.3941611Z AssertionError: {'ui_cursor_pan_move32': 'ᠵᠥᠭᠡᠵᠦ ᠺᠦᠷᠰᠣᠷ ᠢ ᠪᠠᠶᠢᠷᠢᠯᠠᠭᠤᠯ[172 chars]ᠠᠪᠠ'} != {'ui_cursor_tap_hint37': 'ᠺᠦᠷᠰᠣᠷ ᠢ ᠳᠠᠷᠤᠵᠤ ᠵᠢᠷᠤᠬᠤ ᠶᠢ ᠡ[174 chars]eᠠ᠃'}\n2026-11-17T09:15:04.3946522Z FAIL: test_resource_oracle_matches_five_current_exact_catalogues (test_vertical_notice_characterization.VerticalNoticeCharacterizationContractTest) (tag='en-XV')\n2026-11-17T09:15:04.3949048Z AssertionError: {'ui_cursor_pan_move32': 'Pan to position the cursor.[132 chars]1$s'} != {'ui_cursor_tap_hint37': 'Tap the cursor to start or [133 chars]ng.'}\n2026-11-17T09:15:04.3952453Z FAIL: test_resource_oracle_matches_five_current_exact_catalogues (test_vertical_notice_characterization.VerticalNoticeCharacterizationContractTest) (tag='qaa-Zsye-XV')\n2026-11-17T09:15:04.3955049Z AssertionError: {'ui_cursor_pan_move32': '✏️ Pan to position the curs[140 chars]1$s'} != {'ui_cursor_tap_hint37': '✏️ Tap the cursor to start [141 chars]ng.'}\n2026-11-17T09:15:04.3958216Z Ran 892 tests in 204.481s\n2026-11-17T09:15:04.3958438Z FAILED (failures=9, skipped=2)\n2026-11-17T09:20:33.9678422Z CommonsImportChangeTranslationTest > absentUnscopedCatalogueUsesRealEnglishFallback[30] FAILED\n2026-11-17T09:20:33.9679972Z CommonsImportChangeTranslationTest > absentUnscopedCatalogueUsesRealEnglishFallback FAILED\n2026-11-17T09:21:42.5676838Z DerivedExportStateTest > catalanAndRomanianExportKeepsTheDirtyDrawingAndExistingOrdinarySaveDestination FAILED\n2026-11-17T09:22:03.8677894Z DeviceLanguagePickerTest > emojiPickerShowsSymbolsWithoutTheFormerEnglishTestLabel[30] FAILED\n2026-11-17T09:22:03.9787055Z DeviceLanguagePickerTest > emojiPickerShowsSymbolsWithoutTheFormerEnglishTestLabel FAILED\n2026-11-17T09:27:24.2680123Z VerticalNoticeResizeCharacterizationTest > compiledAppResourcesRouteFiveVerticalProfilesToWindowCards[30] FAILED\n2026-11-17T09:27:24.2681781Z VerticalNoticeResizeCharacterizationTest > compiledAppResourcesRouteFiveVerticalProfilesToWindowCards FAILED\n2026-11-17T09:28:01.8677339Z 1435 tests completed, 7 failed\n2026-11-17T09:28:02.0676524Z > Task :Paintroid:testDebugUnitTest FAILED\n2026-11-17T09:28:02.1694484Z BUILD FAILED in 12m 57s\n2026-11-17T09:29:04.3453969Z BUILD SUCCESSFUL in 1m 1s\n2026-11-17T09:30:57.4633029Z BUILD SUCCESSFUL in 1m 52s",
+  "classification": "Actual test failures, not assumed infrastructure. Missing U+53EA is a product font coverage defect; remaining diagnosed failures are current-resource/fallback/parallel-prose test assumptions.",
+  "changes": [
+    "Append U+53EA from pinned NomNaTong donor; preserve previous750codepoints/752glyphs/outlines/metrics/cmap and licence metadata",
+    "Use actual absent zgh/nv/shn fallback fixtures; wo/se explicitly test translated current complete attribution notes",
+    "Independent current-resource unsaved/share dialog bindings; dirty-state, target identity, filename, cancel/write assertions unchanged",
+    "Emoji picker keeps symbolic identity and cues plus current complete English fallback explanation",
+    "Hani route preserves ordered exact labels while allowing equivalent > or → separators and quoted labels",
+    "Hakka guides independently maintained: correct reading presence and forbidden spatial carrying mutation checks; paired counts retained for parallel values; no forced bad Hant prose",
+    "Vertical five-profile consumer content/accessibility/glyph/direction/geometry/deadline assertions preserved; old prose JSON mirror removed, historical copy remains at failed_head"
+  ],
+  "font": {
+    "donor_url": "https://github.com/nomfoundation/font/releases/download/v5.18/NomNaTong-Regular.ttf",
+    "donor_sha256": "37bd8506257d0905d499395e7f0bc2b6a2ae619dbb635a82ea0905b75b2ff5f3",
+    "base_sha256": "bba0c60ab2793db0c9b907ec9f47399010a0325f15021324a02798b4db18a072",
+    "result_sha256": "26fb5d06d41824b6db4894e75c767f9469e1cf53db762ae3c6e9ac2afe9fce0a",
+    "reproduction": "tools.extend_nom_ui_font.extend(primary,base,output,base_sha=<base_sha256>,additions=(0x53EA,)); existing generic preservation checks executed",
+    "new_codepoints": [
+      "U+53EA"
+    ],
+    "total_codepoints": 751,
+    "total_glyphs": 753
+  },
+  "tests": {
+    "full_host": "892 tests passed in247.487s; unittest discover -s tools -p test_*.py",
+    "font": "51 passed",
+    "independent_focused": "57 passed",
+    "hakka": "4 passed plus negative spatial mutations rejected",
+    "vertical": "5 profiles plus6 mutation controls reported by independent owner",
+    "diff_check": "pass",
+    "local_JVM": "unexecuted; wrapper distribution unavailable, prior Java download network failure; no JVM pass inferred from host tests",
+    "remote": "new exact-head workflow not yet returned at first observation"
+  },
+  "reviews": {
+    "combined-ci-fixes-independent-review.json": {
+      "decision": "No remaining blocking finding in reviewed current scope after parent corrected share-dialog resource",
+      "diff_sha256": "d51206de83db4fc674e94b01f41e244460462dfd5ae93c943085ef5255b05678",
+      "files": {
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportChangeTranslationTest.kt": "c7dafbbae193fd0cde32292dc13c699635622381c6b9b9310062e52c34a802e1",
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/DerivedExportStateTest.kt": "977415eb7311d9282b1511b8d72c3765cd8536c552a8c79ce2eeb30f9494c0e4",
+        "Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt": "e638fc4b70c0acda05fd977d3ca83a71d95a941767a3a310334110201541014a",
+        "tools/test_commons_import_change_translations.py": "6bb8f3e89221b375a4936d75c3cef7762bc49e9503957e31fba27101ee9b59cf",
+        "tools/test_korean_nom_semantics.py": "f81dfc752f4cd7a6dc1fe053a647b997c3e973596b015d5d0ed5c44e2fbe1653",
+        "tools/current_font_contract.py": "280edb4915b21986545aa06bdfb09aa264409a31fdab0a9f1d37719a814b84cb",
+        "tools/fixtures/current_localization/nom_current_font_contract.json": "7bce28ecde76d8cddc8761b5b01b861575bb3816b9899b120188f5afca730106",
+        "Paintroid/src/main/assets/fonts/inventory.json": "45df714957f74489c4ac87c693699b42536b87dea4f4b82b8e47164ed2ce809a",
+        "Paintroid/src/main/assets/fonts/anpaintnomui.ttf": "26fb5d06d41824b6db4894e75c767f9469e1cf53db762ae3c6e9ac2afe9fce0a"
+      },
+      "checks": [
+        "Commons fallback sample presence guard passes; wo/se retain non-English template inequality and real attribution display",
+        "DerivedExportState exact production keys verified ClassicPaintActivity1086 and SaveOptionsDialog187; dirty, actual writes, save target identity, destination bytes and cancellation assertions unchanged",
+        "DeviceLanguagePicker intentional English explanation plus emoji prefix/full current resource; does not imply translation certification",
+        "Korean/Nom normalizes only separator and quotation syntax; exact ordered control labels still required",
+        "Font old750cmap coverage retained, new U+53EA only;752oldglyph outlines and horizontal metrics identical; new outline/metrics exactly pinned donor;donorSHA37bd8506257d0905d499395e7f0bc2b6a2ae619dbb635a82ea0905b75b2ff5f3 matches existing provenance"
+      ],
+      "tests": "PYTHONPATH=tools python -m unittest tools.test_commons_import_change_translations tools.test_korean_nom_semantics tools.test_current_font_contract tools.test_extend_nom_ui_font -q:57pass4.726s",
+      "initial_test_invocation": "Without PYTHONPATH produced3 import errors; corrected environment invocation passed. Not product failures.",
+      "limits": [
+        "No JVM/device execution",
+        "Excluded vertical and own Hakka edits from independent approval",
+        "No app changes made by reviewer",
+        "Host checks and outline equality not native rendering/linguistic certification"
+      ]
+    },
+    "hakka-context-repair-proof.json": {
+      "baseline": "4 tests pass",
+      "mutation_proof": [
+        {
+          "mutation": "hâ-poi -> hâ-pà (one occurrence)",
+          "failures": 1,
+          "errors": 0
+        },
+        {
+          "mutation": "tú-poi -> tú-pà (one occurrence)",
+          "failures": 2,
+          "errors": 0
+        }
+      ],
+      "file_sha256": "2079b39253b9a589b84c5b25bb9fc00bed2ac9994f5a2adfb65b18d7d202dda1",
+      "mapping": {
+        "parallel_resources": "All existing count pairing retained",
+        "independent_guide": "Both term/readings presence; spatial carrying compound rejected even among correct occurrences; unequal counts permitted",
+        "save_system": "Other resource paired checks retained; exact Save label and alias/ellipsis relationship retained/strengthened",
+        "missing_picker": "Existing complete source/Han/PFS fixture unchanged"
+      },
+      "limits": [
+        "No whole-guide language certification",
+        "Guide save/system presence is not a full occurrence-by-occurrence grammatical proof",
+        "No app edits or permanent copied prose guards"
+      ],
+      "proof_note": "First proof script expected exactly one failure; tu-poi removal also correctly fails required correct-term presence, so updated proof accepts one or more assertion failures, never errors."
+    },
+    "quechua-gap-residual-assessment.json": {
+      "scope": "Narrow current missing-value residual assessment; not repeat full-catalogue quality audit",
+      "source_commit": "5aa33759fe2d03fb99917e70654392decfedccfd",
+      "canonical_translatable_typed_count": 719,
+      "durable_evidence": {
+        "commit": "57b20254d7debc744a6095bfd295cb5919972c54",
+        "path": "verification/localization-full-scope-review-20261117.json",
+        "pointers": [
+          "/review_files/quh297-independent-review.json/data/entries (defer records)",
+          "/review_files/qug309-independent-review.json/data/entries (defer records)",
+          "/review_files/quy-deferred-values.json/data"
+        ]
+      },
+      "locales": {
+        "quh": {
+          "resource": "Paintroid/src/main/res/values-b+quh/strings.xml",
+          "dialect_boundary": "South Bolivian Quechua, own Latin orthography including aspirated/ejective forms",
+          "direct_typed_present": 716,
+          "missing": [
+            {
+              "type": "string",
+              "key": "ui_draw_a_crisp_one_pixel_line",
+              "canonical": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_pencil_crisp_adjustable_strokes",
+              "canonical": "Pencil keeps crisp edges at any selected width.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing",
+              "canonical": "Pencil keeps crisp edges at any selected width.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            }
+          ]
+        },
+        "quy": {
+          "resource": "Paintroid/src/main/res/values-b+quy/strings.xml",
+          "dialect_boundary": "Ayacucho/Chanka Quechua, separate Latin orthography",
+          "direct_typed_present": 716,
+          "missing": [
+            {
+              "type": "string",
+              "key": "ui_draw_a_crisp_one_pixel_line",
+              "canonical": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_pencil_crisp_adjustable_strokes",
+              "canonical": "Pencil keeps crisp edges at any selected width.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing",
+              "canonical": "Pencil keeps crisp edges at any selected width.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            }
+          ]
+        },
+        "qug": {
+          "resource": "Paintroid/src/main/res/values-b+qug/strings.xml",
+          "dialect_boundary": "Chimborazo Highland Kichwa; existing broader Ecuadorian-standard support is not local native certification",
+          "direct_typed_present": 714,
+          "missing": [
+            {
+              "type": "string",
+              "key": "ui_draw_a_crisp_one_pixel_line",
+              "canonical": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_pencil_crisp_adjustable_strokes",
+              "canonical": "Pencil keeps crisp edges at any selected width.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing",
+              "canonical": "Pencil keeps crisp edges at any selected width.",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own anti-aliasing label names smoothing pixel edges, not a complete affirmative description of hard pencil edges at every selected width. Negating/recombining it would author new grammar. Clear/visible/separated is not established raster-edge precision.",
+              "evidence_needed": "Proficient dialect-specific complete sentence describing sharp unsmoothed raster edges, preserving any-width qualification; for tool hint, exact adjustable Width 1–100 pixels. Do not regress to one-pixel-only merely from key name."
+            },
+            {
+              "type": "string",
+              "key": "ui_sans_medium",
+              "canonical": "Sans medium",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own Light/Thin/Condensed descriptions cannot establish Medium weight; chawpi raku in another locale is not evidence for Chimborazo. An unchanged Sans medium identifier would only fill presence, not author meaningful localization.",
+              "evidence_needed": "Support for typeface stroke weight Medium, distinguishing glyph width/size and middle position; retain canonical family/style identifier if useful."
+            },
+            {
+              "type": "string",
+              "key": "ui_smooth_freehand_strokes",
+              "canonical": "Smooth freehand strokes",
+              "decision": "defer; no safe complete own-value reuse",
+              "reason": "Own guide says suniyakkunata llampuyachina (stroke smoothing), but omits freehand; own free-form selection wording denotes chosen shape, not this continuous hand-drawn stroke control. Pixel-edge smoothing belongs to a different toggle.",
+              "evidence_needed": "A complete locally supportable freehand-stroke smoothing action, reviewed separately from antialiasing and free-form selection."
+            }
+          ]
+        }
+      },
+      "source_bindings": {
+        "PaintDocument.kt:249-253": "Pencil own width and square cap; isAntiAlias = tool != PENCIL && antialiasing. Crisp is raster-edge behavior, not brightness.",
+        "PaintDocument.kt:21": "PENCIL live tool hint ui_draw_a_crisp_one_pixel_line",
+        "ClassicPaintActivity.kt:1576-1578": "Distinct strokeSmoothing toggle and live ui_pencil_crisp_adjustable_strokes explanation",
+        "FontCatalog.kt:22": "ui_sans_medium maps sans-serif-medium",
+        "ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing": "No exact main Kotlin reference found; canonical-only legacy sibling, same full meaning, also currently absent."
+      },
+      "decision": "Zero proposed edits; 11 typed gaps remain (3/3/5). Identical English crisp siblings cannot reuse a missing own translation. No cross-dialect copying or alias/numeric padding.",
+      "limits": [
+        "Inspected exact current gaps, nearby own smoothing/typeface values and guide7 tails, not a new all719 read.",
+        "Read durable explicit deferral records; unrelated truncated evidence output not claimed reviewed.",
+        "No fresh primary linguistic sources accessed; no inference that evidence does not exist.",
+        "No app edits, tests, or native linguistic certification."
+      ]
+    }
+  },
+  "limits": [
+    "Clean exact-head Codex review still unavailable; no quota retry or merge",
+    "No linguistic completion credit from test repair",
+    "Quechua11gaps remain; no safe complete replacement, no crossdialect transfer",
+    "Spanish denial unchanged"
+  ],
+  "verification": "Created all13entries including removal, matched fullremote tree to local reviewed tree, fetched remote and verified absent retiredJSON."
+}
