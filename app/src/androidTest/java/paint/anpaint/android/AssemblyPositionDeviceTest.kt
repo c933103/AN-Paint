@@ -408,7 +408,7 @@ class AssemblyPositionDeviceTest {
             "injectionMs=${injected-started} idleMs=${SystemClock.uptimeMillis()-injected}")
         reportMotion("tap target=${view.tag}")
     }
-    private data class Gesture(val owner: View,val bounds: Rect,val horizontal: Boolean,val direction: Int,val hidden: Int)
+    private data class Gesture(val owner: View,val bounds: Rect,val horizontal: Boolean,val direction: Int,val hidden: Int,val leadingSpace: Int)
     private fun reveal(view: View,target: ()->Rect) {
         repeat(24) {
             checkDeadline()
@@ -424,7 +424,8 @@ class AssemblyPositionDeviceTest {
                             val high=if(horizontal) wanted.right-bounds.right else wanted.bottom-bounds.bottom
                             val direction=if(low<0) -1 else if(high>0) 1 else 0
                             if(direction!=0 && (if(horizontal) candidate.canScrollHorizontally(direction) else candidate.canScrollVertically(direction)))
-                                found=Gesture(candidate,bounds,horizontal,direction,if(direction<0) -low else high)
+                                found=Gesture(candidate,bounds,horizontal,direction,if(direction<0) -low else high,
+                                    if(direction<0) -high else low)
                         }
                     }
                     parent=candidate.parent as? View
@@ -434,7 +435,8 @@ class AssemblyPositionDeviceTest {
             val bounds=gesture.bounds
             val low=if(gesture.horizontal) bounds.left+bounds.width()/5 else bounds.top+bounds.height()/5
             val high=if(gesture.horizontal) bounds.right-bounds.width()/5 else bounds.bottom-bounds.height()/5
-            val distance=(gesture.hidden+android.view.ViewConfiguration.get(context).scaledTouchSlop+2).coerceIn(1,high-low)
+            val distance=NativeRevealDistance.choose(gesture.hidden,gesture.leadingSpace,
+                android.view.ViewConfiguration.get(context).scaledTouchSlop,high-low)
             val start=if(gesture.direction>0) high else low
             val end=start-gesture.direction*distance
             // A scroll-container center can be an EditText. On a busy emulator,
