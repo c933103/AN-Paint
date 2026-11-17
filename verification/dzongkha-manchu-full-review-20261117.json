@@ -1,0 +1,108 @@
+{
+  "scope": "Dzongkha and Manchu script-specific full-scope examination",
+  "local_head": "8d1b82d9e4e2289508ebcc8c9b7f25bf2ecdb7e9",
+  "remote_head": "e1ccc971b0de9d4027b35dd86bb4858411b9bacd",
+  "tree": "3e9e299c0d37bee2f74fefb5b590c9d30f23fea9",
+  "applied": {
+    "dz": 9,
+    "mnc-Mong": 2
+  },
+  "audits": [
+    {
+      "locale": "dz",
+      "folder": "values-b+dz",
+      "complete_values_read": 719,
+      "proposal_count": 9,
+      "proposal_sha256": "3ec7817db1eb69fa72c133f2b68e78a2e6f44e57f3a34ce6bf45fdf6a6c0533e",
+      "read_scope": "All complete values separately read including full editor and assembly guides, live help, legal/recovery/codec; truncated editor paragraphs5/6 reread separately. Raw other-only plural read. No blanket language approval.",
+      "guide_changed_paragraphs": [
+        2,
+        3,
+        6,
+        7,
+        10
+      ],
+      "evidence": [
+        "PaintCanvas685/697 single-finger cursor movement not viewport; three live hints and guide explicit viewport targets repaired. Two-finger instructions unchanged.",
+        "ImageResizeDialog42 RAM versus maxPixels/1e6: MP estimate explicitly excludes additional decoder memory.",
+        "ImageAssembly212 generic item guard, missing anchor214 unchanged.",
+        "AssemblyRenderer64 reports processed index+1 after operation; AssemblyActivity323 displays processed count, not currently displaying.",
+        "Actual ui_draw_again, ui_magnifier33 and ui_done labels used in old guide. BG descriptions reuse existing background-colour vocabulary."
+      ],
+      "checks": "Indexed formats/literal newline counts preserved. Originals match XML. No source edits or device tests.",
+      "limits": [
+        "No native fluency, official terminology, legal-translation or layout certification. Parent independent review required.",
+        "Canonical-only editor guide still stale in layout/palette/selection/gallery/exact-position clauses. Full rewrite deferred for linguistic confidence; save4 and legal10 substance preserved, only Done label changed in10.",
+        "ICO internal entry terminology expansion deferred. Marker and sampling terms retained; no unsupported glossary rewrite.",
+        "Assembly guide already accurately distinguishes remaining placed from fixed coordinates; unchanged.",
+        "Dzongkha-specific spelling/morphology retained, not mechanically copied from Tibetan."
+      ]
+    },
+    {
+      "locale": "mnc-Mong",
+      "folder": "values-b+mnc+Mong",
+      "complete_value_scope_examined": 719,
+      "proposal_count": 2,
+      "proposal_sha256": "36709a2417b016e85504475f3fb81182832506ed979dbdd0ee8458b0da5649c6",
+      "read_method": "Complete values examined with a temporary per-character Latin reading aid, retaining explicit FVS1/FVS2/MVS markers; original-script proposed spans and current controls independently checked. This is not a fluent original-script/full-language certification. All guide paragraphs and both raw plural forms examined. No transliteration written to resources.",
+      "raw_plural_quantities": {
+        "ui_crop_preview_images": [
+          "one",
+          "other"
+        ]
+      },
+      "guide_changed_paragraphs": [
+        4,
+        7
+      ],
+      "evidence": [
+        "ImageAssembly212 checks generic item placement. Remove only holboho attached modifier; nirugan be sindahakū retained. Missing anchor214 unchanged.",
+        "Canonical-only guide4 old exported-file object wrong: star reflects unsaved changes in current drawing. Replace only tere tucibuhe bithe with te nirugan. Other missing save/copy/destination semantics remain explicitly deferred.",
+        "Guide7 route now copies actual ui_magnifier33 unchanged, including its existing variation selector. All other guide paragraphs and vertical-script behavior untouched."
+      ],
+      "primary_source": "P.G. von Möllendorff, A Manchu Grammar (1892), https://en.wikisource.org/wiki/A_Manchu_Grammar : paradigm lines686–696 explicitly araha preterite; lines800–801 negative past construction; line521 dere de sindambi to place on table. Historical grammar supports narrow morphology, not modern UI glossary or native acceptance.",
+      "checks": "Indexed placeholders, literal newline counts and current XML original equality pass. Guide only4/7 changed. No app edits, routing, font, orientation or normalization changes.",
+      "limits": [
+        "Not native fluency or full original-script linguistic approval; reading aid cannot certify glyph shaping/vertical layout. Parent independent full-value review required.",
+        "Generic guribume move in cursor hints does not explicitly name viewport, unlike Dzongkha. Not classified as proved wrong target and left unchanged.",
+        "MP already describes omitted extra working space when estimating; no invented technical expansion. ICO describes record inside file but internal directory precision remains specialist question.",
+        "Canonical-only guide stale layout/palette/selection/gallery/exact-position sections and incomplete save/export paragraph remain deferred. Only concrete unsaved-object error repaired.",
+        "Modern sampled decoding reduced-pixel wording retained; regional/script choices, FVS and MVS in untouched spans unchanged. Legal terminology and technical long prose need specialist review, not blanket approval.",
+        "Counter candidate withdrawn after independent review: preterite morphology does not establish technical processed meaning. Preserved separately in mnc-deferred-counter.json; not for integration."
+      ]
+    }
+  ],
+  "independent_review": "DZ9 full changed values independently read, truncated guide4–7 reread; actual Done/Draw-again/Magnifier/background labels verified. MNC2 original-script complete changed values examined with explicit confidence limits; truncated guide3–8 reread. Narrow modifier removal, current-image object and exact existing magnifier label only. Variation selector retained; no normalization/routing/font/orientation change. Counter proposal deferred: independently opened historical grammar paradigm and verified past tense, but this does not establish processed meaning. No native original-script/full-language certification. Stale long guides and ICO terminology remain deferred.",
+  "tests": {
+    "host": 71,
+    "seconds": 22.247,
+    "result": "pass",
+    "diff_check": "pass",
+    "limited_stale_prose_scan": 0,
+    "JVM": "not executed; Gradle download blocked",
+    "device": "unverified"
+  },
+  "draft_counts": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "new_keys": 1640,
+    "changed_existing": 1299,
+    "canonical": 8,
+    "locale": 1291
+  },
+  "limits": [
+    "Not native certification or blanket acceptance",
+    "Counts unmerged",
+    "No clean exact-head Codex review, no quota retry or merge",
+    "Spanish held"
+  ],
+  "next_action": "Started separate full Hmong Daw and Chhattisgarhi audits; actual folders verified. Reviewer resumed remaining values after partial150/719 checkpoint; no full-read or acceptance claim yet.",
+  "CI": {
+    "run": 44037048200,
+    "status": "pending"
+  },
+  "counter_deferred": {
+    "key": "ui_rendering_images",
+    "withdrawn_candidate": "%1$s / %2$s ᠨᡳᡵᡠᡤᠠᠨ ᠪᡝ ᠠᡵᠠᡥᠠ…",
+    "reason": "Historical grammar establishes completed tense, not technical processed meaning. Existing rendering verb is not sufficient independent lexical evidence. Do not integrate."
+  }
+}
