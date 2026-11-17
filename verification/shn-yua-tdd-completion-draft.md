@@ -4,8 +4,27 @@ This is a work-in-progress translation proposal, not linguistic acceptance or re
 
 Baseline: `428f9f2a203116c4d11a279ea2c1cfb3093059c0` (`develop`). On the 718 translatable-string definition used by this pass, baseline gaps are Shan 288, Yucatec Maya 322, Tai Nüa 329. This denominator is deliberately not conflated with the tracker's 719-entry inventory.
 
-Current proposal adds 220 Shan values and 307 Yucatec Maya values (including one reference alias and format-only controls). It leaves 68 Shan, 15 Yucatec Maya and 329 Tai Nüa gaps. Missing long guides and specialized terminology have not been replaced with English copies or unsupported generated text to manufacture completeness. No Tai Nüa changes have been made because reliable linguistic coverage has not yet been established.
+Current proposal adds 288 Shan values and 319 Yucatec Maya values (including one reference alias and format-only controls), plus two Tai Nüa references to existing resources with identical English source. It leaves zero Shan, three Yucatec Maya and 327 Tai Nüa gaps. The three Yucatec gaps are the assembly, main and quick-start guides. Missing long guides and specialized terminology have not been replaced with English copies to manufacture completeness. Tai Nüa prose remains blocked on reliable linguistic coverage.
 
 The Shan author checked source/placeholder alignment. An independent model source/semantic review of Yucatec identified and corrected “fewer files” and transparent-versus-bright ICO backing ambiguities, horizontal-versus-left-to-right direction, explicit two-drag instructions, and smooth-versus-small wording. This is not native-fluency acceptance; full independent linguistic review, especially of licensing, typography and technical instructions, is still required. Presence and structural checks are not proof of naturalness.
 
 The shared catalogue validation, translation-boundary checks, translation catalogue tests and current legal/protocol/format contracts must be run on the final proposal. Hosted exact-head Codex review and required CI remain merge gates. No merge or release is authorized by this record.
+
+## Tai Nüa follow-up investigation
+
+The full Tai Nüa MediaWiki catalogue (1,144 message keys excluding `@metadata`) was compared with the English messages from the same pinned revision and the 329 missing application strings. Comparison ignored terminal punctuation, case, surrounding whitespace and literal newline escapes. No exact normalized source-text matches were found. This is a bounded negative result, not a claim that no reusable terminology exists anywhere.
+
+Sources inspected:
+- [MediaWiki Tai Nüa](https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/tdd.json) and [matching English](https://raw.githubusercontent.com/wikimedia/mediawiki/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n/en.json).
+- [VisualEditor Tai Nüa](https://raw.githubusercontent.com/wikimedia/VisualEditor/4d12cd4ed69480fcf0ebc7aa0627716e39ab93af/i18n/tdd.json).
+- Existing application source mappings in `translations/SOURCE-SUPPORTED-UI.json` and the packaged source-supported translation licence notice.
+
+Useful terminology leads include MediaWiki `filename` (filename), `filehist-dimensions` (dimensions), `filehist-datetime` (date/time), `show-big-image` (original file), and `license-header` (licensing). These are **not** sufficient evidence for composing the application's longer instructions, technical distinctions or legal obligations. Reusing words does not establish sentence grammar or legal meaning. No synthetic long-form Tai Nüa prose was added on that basis.
+
+Two missing controls have exactly the same English source as existing app controls. They now reference those resources: `ui_copy_an_area_or_use_file_insert_image` → `ui_paste_hint34`; `ui_disable_cursor_drawing` → `ui_disable_cursor_drawing33`. These reduce structural fallback by two; they are not two newly translated or independently verified sentences. Existing target wording still requires linguistic review. Tai Nüa therefore has 327 remaining gaps. A fluent Tai Nüa contributor must resolve the prose/terminology gap before full-language completion can be claimed.
+
+The follow-up Yucatec controls were checked against their English clauses and the existing translated UI labels; exact button labels were aligned. Literal `%` in the quoted strength label is marked `formatted="false"`. Catalogue validation plus 44 boundary/catalogue/current-contract tests are rerun on the combined final proposal before publication. These are structural/source-alignment checks only.
+
+All 68 remaining Shan entries were drafted, including the three complete guides. Author review checked source clauses and aligned existing UI labels. An independent nonlinguistic check confirmed 8/10/1 paragraph counts and retained the source numeric/format/product tokens; this does not establish semantic equivalence or native fluency. Zero missing Shan keys is structural completion of the draft only, not accepted language completion.
+
+Independent model source-semantic review of the follow-up Yucatec controls identified four further clarifications: square resize handles, outward canvas expansion, explicit consecutive double-taps, and current-canvas memory accounting. These were corrected before final checks. This review still does not certify fluent Yucatec.
