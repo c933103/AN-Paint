@@ -1,0 +1,214 @@
+{
+  "scope": "Ainu Kana and Latin separate full-catalogue review",
+  "local_head": "1c0d9dffbed8b4be3084b3568e84202a3403c06f",
+  "remote_head": "de0ff2599bc5a97614ff9d8199dc427444ea2adc",
+  "tree": "1b69634e33cee95e4092c1f4b903117ba679858f",
+  "applied": {
+    "ain-Kana": 5,
+    "ain-Latn": 5
+  },
+  "audits": [
+    {
+      "scope": {
+        "complete_typed_entries_examined": 719,
+        "not_linguistic_approval_count": true,
+        "folder": "values-b+ain+Kana",
+        "raw_plurals": {
+          "ui_crop_preview_images": [
+            "one",
+            "other"
+          ]
+        },
+        "all_long_values_read": true,
+        "truncated_output_ranges_reread": true
+      },
+      "base_commit": "1b96f769917c16136ea09d043ac2d017be6fea8c",
+      "proposal_count": 5,
+      "proposal_sha256": "0ea2669cfd1d6a1c3ed53d8f979721d64fd4851fa9e944f5c1dd0a157e313691",
+      "guide_changed_paragraphs": [
+        3,
+        7,
+        9
+      ],
+      "checks": {
+        "indexed_placeholders_preserved": true,
+        "literal_newline_counts_preserved": true,
+        "no_app_edits": true,
+        "guide_other_paragraphs_exactly_preserved": true
+      },
+      "evidence": [
+        "ImageAssembly.kt:212 checks generic image placement; missing anchor at214 is separate and unchanged. Remove only attached modifier.",
+        "PaintCanvas.kt:680-700 single-finger gesture moves cursor.offset and paints, not viewport. Replace screen/page movement target with existing script-specific cursor term; retain on-screen button location.",
+        "EditorNavigation.kt:31 binds ui_magnifier33; ClassicPaintActivity.kt:779 binds ui_draw_again. Guide exact references changed to current controls. Same-width/height names reused exactly from current catalogue.",
+        "Full editor guide is canonical-only (no direct Kotlin reference). Three cursor strings and placement diagnostic are live.",
+        "Assembly guide, live help, recovery/legal paragraphs and raw one/other plural values separately read; no proposed changes to them."
+      ],
+      "sources": [
+        {
+          "url": "https://www.ff-ainu.or.jp/web/potal_site/files/bihoro_tyukyu.pdf",
+          "use": "Primary Ainu foundation indexed word list: moymoye transitive move. Bounded lexical support only, not technical cursor phrase certification.",
+          "access": "search-index excerpt; PDF not fully downloaded/read"
+        },
+        {
+          "url": "https://ainugo.nam.go.jp/dic?word=kotaci",
+          "use": "National Ainu Museum archive indexed Tamura entry: kote attach/tie. Supports removal of attached modifier.",
+          "access": "indexed excerpt; direct new moymoye/kote query opens failed"
+        }
+      ],
+      "deferred": [
+        {
+          "keys": [
+            "formats22_ico_dimensions_error"
+          ],
+          "reason": "Current file dimensions wording omits corresponding internal directory entry. New technical composition not adequately supported; not repaired."
+        },
+        {
+          "keys": [
+            "ui_rendering_images"
+          ],
+          "reason": "Ongoing processing/rendering phrase differs from completed-item counter. No confident completion/processing full phrase; defer rather than tense-only pseudo-fix."
+        },
+        {
+          "keys": [
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "reason": "Guide remains stale in layout/default categories, palette layout and transparent insertion, navigation/Fit behavior, save/export destinations, selection layout, Commons, exact assembly position/overlap. Bounded label/cursor edits do not restore complete guide. No unsupported wholesale Ainu rewrite."
+        },
+        {
+          "keys": [
+            "language20_translation_note"
+          ],
+          "reason": "Existing note has fallback basics but not all current canonical contributor guidance; long technical rewrite deferred."
+        }
+      ],
+      "retained": [
+        "MP decoder exclusion already directly adjacent to MP capacity; no demonstrated need to rewrite.",
+        "Existing square definition explicitly equal width/height, marker scale distinct from brush paint, modern sampled decode and assembly placed-state wording retained.",
+        "Script-specific lexical, spacing, small Kana and equals-sign person marking preserved; no mechanical transliteration or spelling normalization."
+      ],
+      "limitations": [
+        "Compositional source-bound review, not native Ainu certification, dialect harmonization, official glossary, device/glyph/font/layout testing or legal certification.",
+        "Full scope examined is not a claim every inherited phrase is linguistically correct. Legal and recovery texts retain unresolved vocabulary quality risk.",
+        "No Android compilation or emulator run performed in this audit.",
+        "Counter, ICO and substantial stale-guide residuals remain actionable pending competent Ainu linguistic review."
+      ]
+    },
+    {
+      "scope": {
+        "complete_typed_entries_examined": 719,
+        "not_linguistic_approval_count": true,
+        "folder": "values-b+ain+Latn",
+        "raw_plurals": {
+          "ui_crop_preview_images": [
+            "one",
+            "other"
+          ]
+        },
+        "all_long_values_read": true,
+        "truncated_output_ranges_reread": true
+      },
+      "base_commit": "1b96f769917c16136ea09d043ac2d017be6fea8c",
+      "proposal_count": 5,
+      "proposal_sha256": "dd175ef55adf0a17d07f7372bf14754a442ad81e2fb37af7891d0d8c3f0c9c90",
+      "guide_changed_paragraphs": [
+        3,
+        7,
+        9
+      ],
+      "checks": {
+        "indexed_placeholders_preserved": true,
+        "literal_newline_counts_preserved": true,
+        "no_app_edits": true,
+        "guide_other_paragraphs_exactly_preserved": true
+      },
+      "evidence": [
+        "ImageAssembly.kt:212 checks generic image placement; missing anchor at214 is separate and unchanged. Remove only attached modifier.",
+        "PaintCanvas.kt:680-700 single-finger gesture moves cursor.offset and paints, not viewport. Replace screen/page movement target with existing script-specific cursor term; retain on-screen button location.",
+        "EditorNavigation.kt:31 binds ui_magnifier33; ClassicPaintActivity.kt:779 binds ui_draw_again. Guide exact references changed to current controls. Same-width/height names reused exactly from current catalogue.",
+        "Full editor guide is canonical-only (no direct Kotlin reference). Three cursor strings and placement diagnostic are live.",
+        "Assembly guide, live help, recovery/legal paragraphs and raw one/other plural values separately read; no proposed changes to them."
+      ],
+      "sources": [
+        {
+          "url": "https://www.ff-ainu.or.jp/web/potal_site/files/bihoro_tyukyu.pdf",
+          "use": "Primary Ainu foundation indexed word list: moymoye transitive move. Bounded lexical support only, not technical cursor phrase certification.",
+          "access": "search-index excerpt; PDF not fully downloaded/read"
+        },
+        {
+          "url": "https://ainugo.nam.go.jp/dic?word=kotaci",
+          "use": "National Ainu Museum archive indexed Tamura entry: kote attach/tie. Supports removal of attached modifier.",
+          "access": "indexed excerpt; direct new moymoye/kote query opens failed"
+        }
+      ],
+      "deferred": [
+        {
+          "keys": [
+            "formats22_ico_dimensions_error"
+          ],
+          "reason": "Current file dimensions wording omits corresponding internal directory entry. New technical composition not adequately supported; not repaired."
+        },
+        {
+          "keys": [
+            "ui_rendering_images"
+          ],
+          "reason": "Ongoing processing/rendering phrase differs from completed-item counter. No confident completion/processing full phrase; defer rather than tense-only pseudo-fix."
+        },
+        {
+          "keys": [
+            "ui_the_arrow_on_the_left_directly_below_the"
+          ],
+          "reason": "Guide remains stale in layout/default categories, palette layout and transparent insertion, navigation/Fit behavior, save/export destinations, selection layout, Commons, exact assembly position/overlap. Bounded label/cursor edits do not restore complete guide. No unsupported wholesale Ainu rewrite."
+        },
+        {
+          "keys": [
+            "language20_translation_note"
+          ],
+          "reason": "Existing note has fallback basics but not all current canonical contributor guidance; long technical rewrite deferred."
+        }
+      ],
+      "retained": [
+        "MP decoder exclusion already directly adjacent to MP capacity; no demonstrated need to rewrite.",
+        "Existing square definition explicitly equal width/height, marker scale distinct from brush paint, modern sampled decode and assembly placed-state wording retained.",
+        "Script-specific lexical, spacing, small Kana and equals-sign person marking preserved; no mechanical transliteration or spelling normalization."
+      ],
+      "limitations": [
+        "Compositional source-bound review, not native Ainu certification, dialect harmonization, official glossary, device/glyph/font/layout testing or legal certification.",
+        "Full scope examined is not a claim every inherited phrase is linguistically correct. Legal and recovery texts retain unresolved vocabulary quality risk.",
+        "No Android compilation or emulator run performed in this audit.",
+        "Counter, ICO and substantial stale-guide residuals remain actionable pending competent Ainu linguistic review."
+      ]
+    }
+  ],
+  "independent_review": "All10 complete proposed values independently read including both full editor guides. Generic attached modifier removal checked against ImageAssembly212; cursor target checked against PaintCanvas cursor.offset/stroke. Existing script-specific cursor term reused, on-screen button location retained. Actual Magnifier, Draw-again and Same-width/height references aligned; only paragraphs3/7/9 changed. MP exclusion already adjacent to MP retained. ICO, processed counter and substantial old guide drift deferred, no wholesale restoration or native certification. Script-specific small Kana, spacing, equals-sign person marking and one/other plurals preserved. Existing API21 script switching and escaped-percent JVM tests inspected but not run.",
+  "tests": {
+    "host": 71,
+    "seconds": 21.103,
+    "result": "pass",
+    "diff_check": "pass",
+    "limited_stale_prose_scan": 0,
+    "JVM": "not executed; Gradle download blocked",
+    "device": "unverified",
+    "additional_preedit_host_script_matrix": {
+      "tests": 15,
+      "seconds": 57.016,
+      "result": "pass; host/synthetic not JVM/device"
+    }
+  },
+  "draft_counts": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "new_keys": 1640,
+    "changed_existing": 1344,
+    "canonical": 8,
+    "locale": 1336
+  },
+  "limits": [
+    "Not native certification or blanket acceptance",
+    "Counts unmerged",
+    "No clean exact-head Codex review, no quota retry or merge",
+    "Spanish held"
+  ],
+  "next_action": "Old English and Old Norse full independent audits started after reservation confirmation, historical-language limitations retained.",
+  "CI": {
+    "status": "No run returned yet at initial exact-head query; not passed."
+  }
+}
