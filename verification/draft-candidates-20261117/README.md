@@ -1,8 +1,8 @@
-# Continued draft review: 314 distinct source keys
+# Continued draft review: 365 distinct source keys
 
 **UNAPPROVED DRAFT EVIDENCE, NOT AN APPLICATION MERGE BRANCH.**
 
-Pinned base remains 428f9f2a203116c4d11a279ea2c1cfb3093059c0. Continued authoring now covers 241 distinct Chamorro keys, 33 Zhuang keys and 40 Standard Moroccan Tamazight keys: 314 distinct source-key candidates. These are incomplete draft hypotheses against 875 missing keys, not 314 completed translations.
+Pinned base remains 428f9f2a203116c4d11a279ea2c1cfb3093059c0. Continued authoring now covers 241 distinct Chamorro keys, 54 Zhuang keys and 70 Standard Moroccan Tamazight keys: 365 distinct source-key candidates. These are incomplete draft hypotheses against 875 missing keys, not 365 completed translations.
 
 Chamorro has 232 retained candidate values and 10 historical rejects; one rejected spelling (Back) was subsequently corrected and has lexical acceptance, so these categories overlap by one key. Three further correction hypotheses remain separate and unapproved. The newest 57 candidate keys cover memory diagnostics, format behavior, assembly dimensions and licence/help terminology. All uncertain prose remains outside canonical resources.
 
@@ -19,3 +19,13 @@ Zhuang image/width/height and Tamazight width candidates were adjusted toward cu
 Six translation-boundary and 34 translation tests passed for the preceding 7-label patch; the final 9-label patch is rechecked separately in checks.json. No Android/AAPT/runtime or hosted-CI result is claimed. Required exact-head Codex/CI gates remain unchanged.
 
 Sources remain those in the initial evidence README/history: official Guam technology list and orthography; https://natibunmarianas.org/l/ for lisensia; pinned MediaWiki 377002822b34077904f4e83c21faaf69d1bfea9a za/zgh terminology references, with GPL-2.0-or-later notices. Individual lexical evidence is not whole-phrase attestation. Full source/callsite/linguistic review is still needed before production integration.
+
+## Third source/semantic pass
+
+Added 30 Tamazight and 21 Zhuang draft hypotheses. This totals 365 distinct drafted keys against 875 original gaps; rejections remain in that drafted count. Retained candidate values are232ch/53za/68zgh, with rejected wording saved separately. No full-language completion is claimed.
+
+Independent review now supports four additional zgh label compositions: filename A–Z/Z–A and punctuation-separated About/copyright/licence labels, using exact pinned primary-source labels. `accepted.patch` therefore now proposes13labels (7ch,6zgh) for a larger combined integration, not a standalone micro-PR. Six boundary and34translation tests passed on this exact13-label patch; diff whitespace checks passed. No app compile/runtime, hostedCI or Codex approval claimed.
+
+New rejection records preserve generic one/a incorrectly proposed as same, a Zhuang rendering label using an attested conjunction, and a Tamazight GIF limit whose negated obligation may invert the prohibition. These failures matter despite preserved numbers and placeholders. Round3-independent-review.md details numeric checks, source limitations and additional lexical holds. All other new prose remains unapproved. Original-size morphology and assembly terminology remain unresolved; this record is not a general translation certificate.
+
+Source attribution is bounded: MediaWikiza has sparse terminology and cannot support the technical/credit compounds; MediaWikizgh exact labels do not certify newly inflected compounds or long prose. Remaining full-language authoring and source/callsite/qualified linguistic review are still required. Do not merge this evidence branch into the application.
