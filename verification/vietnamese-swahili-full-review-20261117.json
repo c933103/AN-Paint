@@ -1,0 +1,186 @@
+{
+  "head": "f586acdde77396ec7b2e6e7aaaca4b3a36ee3ae4",
+  "local_commit": "cd6b07b828824bd06e4bbd2184d0f346eb915a0a",
+  "tree": "d8c2fc7adaa5f1a91cea86efd51d98ac71747e85",
+  "audits": {
+    "vi": {
+      "locale": "vi",
+      "base": "5b70dca",
+      "scope": {
+        "typed_resources_read": 719,
+        "full_editor_guide_paragraphs_read": 10,
+        "assembly_guide_complete": true,
+        "legal_recovery_complete": true,
+        "actual_plural_quantities_read": [
+          "other"
+        ]
+      },
+      "proposal_count": 9,
+      "proposal_sha256": "325f89973be4ff8525a6b5b4d03fe37a77082fe3caaf81865c71fcb093084640",
+      "structural_errors": [],
+      "changed_keys_live_exact_references": [
+        "ui_current_safe_editing_budget_s_up_to_2f",
+        "formats22_ico_dimensions_error",
+        "ui_the_attachment_image_is_not_placed",
+        "ui_rendering_images",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_help31",
+        "ui_drag_out_to_expand_in_to_trim_drag",
+        "ui_fill_text_box_with_bg_colour"
+      ],
+      "changed_keys_no_exact_main_kotlin_reference": [
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "evidence": [
+        "PaintCanvas 638-651: two-finger viewport zoom/pan; 680-697 cursor offset/stroke separate",
+        "IcoCodec 38-50: decoded payload compared to internal ICO entry dimensions",
+        "ImageResizeDialog 42: workingBytes vs maxPixels MP estimate; overhead qualification applies to latter",
+        "ImageAssembly 212: item itself not necessarily anchor; 214 separate missing anchor",
+        "AssemblyRenderer 64: processed input count",
+        "EditorNavigation and current catalogue: actual tab, magnifier and route labels"
+      ],
+      "classification": "Stale canonical-only guide restoration; processed-counter and placement-source corrections; MP/ICO/cursor precision and bounded real-control/grammar repairs. Existing correct prose retained.",
+      "limitations": [
+        "Not native-language certification or installed-device/layout verification",
+        "No JVM/device run, no repository edits",
+        "Linguistic uncertainty remains outside actionable findings; sampling and broader relational cycle wording retained without asserting defects"
+      ],
+      "independent_review": "Parent read all complete proposed values including full guides and accepted bounded corrections; VI paragraph 3 fit/centering fluency refinement independently accepted and applied."
+    },
+    "sw": {
+      "locale": "sw",
+      "base": "5b70dca",
+      "scope": {
+        "typed_resources_read": 719,
+        "full_editor_guide_paragraphs_read": 10,
+        "assembly_guide_complete": true,
+        "legal_recovery_complete": true,
+        "actual_plural_quantities_read": [
+          "one",
+          "other"
+        ]
+      },
+      "proposal_count": 10,
+      "proposal_sha256": "6308bec8b24c70f19e87ef5c5d4e30206d5d5042d164c558b231a8e5f248f278",
+      "structural_errors": [],
+      "changed_keys_live_exact_references": [
+        "ui_current_safe_editing_budget_s_up_to_2f",
+        "formats22_ico_dimensions_error",
+        "ui_the_attachment_image_is_not_placed",
+        "ui_rendering_images",
+        "ui_cursor_pan_draw32",
+        "ui_cursor_help31",
+        "ui_source_code_exported_including_build_scripts_and_licence",
+        "ui_help23"
+      ],
+      "changed_keys_no_exact_main_kotlin_reference": [
+        "ui_give_all_images_the_same_each_image_keeps",
+        "ui_the_arrow_on_the_left_directly_below_the"
+      ],
+      "evidence": [
+        "PaintCanvas 638-651: two-finger viewport zoom/pan; 680-697 cursor offset/stroke separate",
+        "IcoCodec 38-50: decoded payload compared to internal ICO entry dimensions",
+        "ImageResizeDialog 42: workingBytes vs maxPixels MP estimate; overhead qualification applies to latter",
+        "ImageAssembly 212: item itself not necessarily anchor; 214 separate missing anchor",
+        "AssemblyRenderer 64: processed input count",
+        "EditorNavigation and current catalogue: actual tab, magnifier and route labels"
+      ],
+      "classification": "Stale canonical-only guide restoration; processed-counter and placement-source corrections; MP/ICO/cursor precision and bounded real-control/grammar repairs. Existing correct prose retained.",
+      "limitations": [
+        "Not native-language certification or installed-device/layout verification",
+        "No JVM/device run, no repository edits",
+        "Linguistic uncertainty remains outside actionable findings; sampling and broader relational cycle wording retained without asserting defects"
+      ],
+      "independent_review": "Parent read all complete proposed values including full guides and accepted bounded corrections; VI paragraph 3 fit/centering fluency refinement independently accepted and applied."
+    }
+  },
+  "independent_review": {
+    "base": "5b70dca427f1992c0b2fc2f52ba789e269b2b19e",
+    "stage": "complete proposed-value independent review accepted",
+    "locales": [
+      "vi",
+      "sw"
+    ],
+    "checked": [
+      "MP ImageResizeDialog.kt 42 separates workingBytes from maxPixels",
+      "ICO IcoCodec.kt 38-50 internal selected entry dimensions",
+      "ImageAssembly.kt 208-214 generic unplaced versus missing anchor",
+      "Current live help, assembly guides, legal/gallery, recovery and normalization values read",
+      "Old editor guides read completely in pieces; paragraphs1,2,3,5,7,8,9 stale;4 save/export already current and preserve"
+    ],
+    "bounds": [
+      "No native fluency certification",
+      "Independent parent read all19proposed complete values; full719-value catalogue reads by drafting reviewer",
+      "Final changes applied and tested; remote exact tree verified",
+      "CI44016233199 pending at published head; JVM/device/Codex unverified"
+    ],
+    "review": {
+      "complete_values_read": 19,
+      "vi": 9,
+      "sw": 10,
+      "VI_refinement": "Adjusted Fit sentence to natural fit-and-center expression; independently rechecked reviewer acceptance",
+      "preserved": "VI4/10 and SW4/6/10, adequate marker, smoothing, sampling, current assembly and legal/recovery",
+      "actual_labels": "VI Airbrush/Fit/New image and SW Swap read from XML",
+      "plural_quantities": "VI other; SW one/other independently read"
+    },
+    "proposal_hashes": {
+      "vi": "325f89973be4ff8525a6b5b4d03fe37a77082fe3caaf81865c71fcb093084640",
+      "sw": "6308bec8b24c70f19e87ef5c5d4e30206d5d5042d164c558b231a8e5f248f278"
+    }
+  },
+  "short_proposals": {
+    "vi": {
+      "ui_current_safe_editing_budget_s_up_to_2f": "Giới hạn bộ nhớ chỉnh sửa an toàn hiện tại: %1$s · tối đa %2$.2f MP (ước tính MP không bao gồm bộ nhớ bổ sung của bộ giải mã)",
+      "formats22_ico_dimensions_error": "Kích thước ảnh biểu tượng không khớp với kích thước được ghi trong mục tương ứng của thư mục nội bộ ICO.",
+      "ui_the_attachment_image_is_not_placed": "Ảnh chưa được đặt.",
+      "ui_rendering_images": "Số ảnh đã xử lý: %1$s / %2$s…",
+      "ui_cursor_pan_draw32": "Kéo để di chuyển con trỏ và bắt đầu vẽ. Chạm lần nữa để dừng vẽ.",
+      "ui_cursor_help31": "Kéo để đặt con trỏ. Chạm nút vẽ trên màn hình, rồi kéo để di chuyển con trỏ và vẽ. Chạm lại nút đó để dừng. Chọn cọ và thiết lập nét trong Vẽ → Vẽ.",
+      "ui_drag_out_to_expand_in_to_trim_drag": "Kéo ra ngoài để mở rộng, kéo vào trong để cắt bớt. Kéo bên trong để di chuyển giới hạn. Chụm hoặc dùng Vừa khung nhìn để có thêm không gian. Màu nền tô phần mới.",
+      "ui_fill_text_box_with_bg_colour": "Tô hộp văn bản bằng màu nền"
+    },
+    "sw": {
+      "ui_current_safe_editing_budget_s_up_to_2f": "Kikomo salama cha sasa cha kumbukumbu ya uhariri: %1$s · hadi %2$.2f MP (kadirio la MP halijumuishi kumbukumbu ya ziada ya kisimbuzi)",
+      "formats22_ico_dimensions_error": "Vipimo vya picha ya ikoni havilingani na vipimo vilivyorekodiwa katika ingizo linalolingana la saraka ya ndani ya ICO.",
+      "ui_the_attachment_image_is_not_placed": "Picha haijawekwa.",
+      "ui_rendering_images": "Picha zilizochakatwa: %1$s / %2$s…",
+      "ui_cursor_pan_draw32": "Buruta ili kusogeza kishale na kuanza kuchora. Gusa tena ili kuacha kuchora.",
+      "ui_cursor_help31": "Buruta ili kuweka kishale. Gusa kitufe cha kuchora kwenye skrini, kisha buruta ili kusogeza kishale na kuchora. Gusa tena kusimamisha. Chagua mipangilio ya brashi na mipigo chini ya Chora → Kuchora.",
+      "ui_source_code_exported_including_build_scripts_and_licence": "Msimbo chanzo umehamishwa, pamoja na hati za ujenzi na taarifa za leseni.",
+      "ui_help23": "Chagua kichupo ili kuonyesha vidhibiti vyake. Mwonekano huanza na Sogeza; Chora ina Kuchora, Uteuzi na Ingiza. Sogeza huhamisha mwonekano bila kuchora; sogeza vidole viwili karibu au mbali ili kupunguza au kukuza mwonekano. Mshale kando ya vichupo hukunjia paneli. Zana zote zina lebo. Hariri hubadilisha uteuzi, mipaka ya turubai, vipimo au picha. Rangi huchagua rangi ya mbele na mandharinyuma; Badilisha nafasi za rangi huzibadilishana na Nyeusi / nyeupe huziweka upya. Kichagua rangi huonyesha chaguo lako mara moja. Tumia rangi huthibitisha; Ghairi hurejesha rangi ya awali. Ongeza rangi au gusa nafasi tupu iliyohifadhiwa ili kuchagua na kuhifadhi rangi. Shikilia rangi iliyohifadhiwa ili kuihariri au kuiondoa. Mahiri hufungua kihariri cha kina kando ya Nyeusi / nyeupe. Gridi ya pikseli pia huonyesha rula za pikseli za picha; uchoraji kwa kishale huonyesha x/y ya moja kwa moja kando ya ukuzaji. Hifadhi kama huchagua umbizo la picha, mipangilio ya mgandamizo na eneo; Hifadhi huandika tena huko kwa mipangilio hiyo. Hamisha kama huunda ICO, sanaa ya ASCII au maandishi ya Base64 bila kutia alama mchoro kuwa umehifadhiwa. Hifadhi na shiriki huhifadhi nakala, kisha hufungua ushiriki wa Android. Mahali pa sasa pa Hifadhi hubaki. Chora > Ingiza > Picha nyingine ina faili za kifaa, Catrobat, Irasutoya, Openclipart na “Wikimedia Commons · Ramani tupu…”. Picha zilizoingizwa hubaki zimechaguliwa; mwonekano huonyesha vishikio vyake hata nje ya turubai. Tosheleza picha kwenye turubai hubadilisha uwekaji; Ukubwa asili hurejesha vipimo vya chanzo. Uhifadhi kiotomatiki hurejesha rasimu na marundo yote mawili ya tengua/rudia unapofungua programu tena. Faili pia ina Muunganiko wa picha, Jinsi ya kutumia, na Kuhusu, leseni na sifa. Ingiza maandishi inasaidia uandishi mlalo na wima.",
+      "ui_give_all_images_the_same_each_image_keeps": "Zipe picha zote %1$s %2$s sawa. Kila picha huhifadhi uwiano wake. Faili asili na mipangilio ya ukataji hubaki bila kubadilishwa."
+    }
+  },
+  "verification": {
+    "host_tests": "71 passed in22.106s",
+    "suite": [
+      "translation_boundaries",
+      "translations",
+      "current_localization_contracts",
+      "localized_help",
+      "source_text_resources",
+      "memory_warning_source_review"
+    ],
+    "diff_check": "passed",
+    "limited_old_prose_test_literal_scan": "0 matches; not all semantic dependencies",
+    "CI_run": 44016233199,
+    "CI_status": "pending",
+    "JVM": "Not locally executed: Gradle8.13 wrapper download network unreachable, prior saved log",
+    "device": "unverified",
+    "Codex": "no fresh clean exact-head review verified; no quota retry; unmerged"
+  },
+  "draft_global_count": {
+    "base": "428f9f2a203116c4d11a279ea2c1cfb3093059c0",
+    "added": 1640,
+    "existing_changed": 500,
+    "canonical_changed": 8,
+    "locale_changed": 492,
+    "meaning": "unmerged draft presence/change counts, not merged or native quality"
+  },
+  "changes": {
+    "vi": 9,
+    "sw": 10
+  },
+  "remote_verified": true,
+  "full_values": "Full proposal values independently read incl both10paragraph guides and SW live help; app source tree binds full final values; short-only proposal copies here avoid duplication"
+}
