@@ -1,0 +1,204 @@
+{
+  "head": "a1f77535041078ea636e4706922a90fab38f6f31",
+  "tree": "da8b1fa173737425b92bc7a659fa07ef1a36f527",
+  "scope": {
+    "it": {
+      "full_values_read": 719,
+      "applied": 12
+    },
+    "nl": {
+      "full_values_read": 719,
+      "applied": 8
+    }
+  },
+  "tests": {
+    "passed": 71,
+    "seconds": 9.936,
+    "command": "PYTHONPATH=tools python -m unittest tools.test_translation_boundaries tools.test_translations tools.test_current_localization_contracts tools.test_localized_help tools.test_italian_priority_wording tools.test_dutch_editor_wording"
+  },
+  "limitations": [
+    "No native-speaker or installed UI certification",
+    "Both full editor guides canonical-only without current Kotlin consumer; Dutch legacy generic reflow and old memory explanation also canonical-only",
+    "No new keys; not presence completion",
+    "No quota retry; exact-head Codex review and CI required"
+  ],
+  "it_author": {
+    "full_values_read": 719,
+    "read_scope": "All719 includes both plural quantities, both full guides, recovery and licensing values. Truncated initial620-649 range reread completely.",
+    "candidate_count": 12,
+    "candidate_sha256": "6a0a468b42faf698579da61a1f0a7e6f12d2ae44c5fbf6737b5f41e18f20a4d8",
+    "findings": {
+      "full_guide": "Obsolete tabs/palette, blanket transparency, inaccurate export unsaved-state, old selection locations, wrong actual control labels, missing Commons and exact-position overlap rules; canonical-only resource not current live help",
+      "live_help": "Colori, Salva con nome, Istruzioni exact labels; pinch has zoom-out and zoom-in",
+      "cursor": "Ambiguous sposta clarified as drag, not claimed explicit viewport defect",
+      "progress": "Renderer callback index+1 after processing image, label updated to completed processed count",
+      "technical": "ICO internal directory and MP-only decoder overhead clarified; marker versus painted stroke"
+    },
+    "evidence": [
+      "EditorNavigation.kt:40-49",
+      "ClassicPaintActivity.kt:1325-1340",
+      "ClassicPaintActivity.kt:1595",
+      "PaintDocument.kt:200,390-406",
+      "PaintCanvas.kt:638-687",
+      "AssemblyRenderer.kt:55-64",
+      "ImageResizeDialog.kt:42",
+      "ImageMemoryPolicy.kt:38-41",
+      "IcoCodec.kt:37-50"
+    ],
+    "limits": [
+      "Independent full-value review pending",
+      "No native-speaker or device UI certification",
+      "No blanket approval of unchanged alternatives",
+      "No grammar-only mass rewrite or fabricated missing keys"
+    ]
+  },
+  "it_independent": {
+    "packet_sha256": "6a0a468b42faf698579da61a1f0a7e6f12d2ae44c5fbf6737b5f41e18f20a4d8",
+    "complete_values_read": 12,
+    "accepted": 11,
+    "refine": 1,
+    "findings": [
+      {
+        "key": "ui_cursor_help31",
+        "reason": "Existing Scegli pennello e tratto drops settings scope. Since this value is already edited, preserve exact brush-and-stroke-settings meaning. Not a newly introduced regression or false viewport claim.",
+        "evidence": [
+          "English canonical Choose the brush and stroke settings",
+          "ClassicPaintActivity cursor help and Drawing category controls"
+        ],
+        "full_revision": "/tmp/it-independent-revisions.json"
+      }
+    ],
+    "guide_verification": [
+      "All10 full paragraphs read against canonical, not just diff.",
+      "Current tabs/category recall, palette/recent/custom operation, separate opaque canvas/transparency insertion/Commons white background.",
+      "Navigation gestures/100% stop/Fit selection, cursor gesture correctly drag not viewport shift.",
+      "Save/export/share saved-state and destination boundaries, source preservation, both JPEG/HEIC quality.",
+      "Selection transformation, masks, optional aspect ratio, reversible changes, no one-undo-unit assertion.",
+      "Geometry radius/open polygon, text/style/tool limits, actual labels checked in current Italian XML.",
+      "All providers, originals and memory-resize conditionality, complete20-image assembly exact position/overlap/z-order/unplace qualifications.",
+      "Full source/licences/credits and fixed buttons."
+    ],
+    "limits": [
+      "Only12 proposals independently reviewed; parent owns whole719 Italian audit.",
+      "Memory/ICO/marker/ambiguous sposta improvements labelled clarity, not false claims of wrong earlier viewport wording.",
+      "No native/UI certification or app edits. No external legal advice; canonical legal scope retained."
+    ]
+  },
+  "nl_author": {
+    "head": "567ec0a15496879ce071f3ee167ad6b2065922ae",
+    "source_context": "/tmp/nl-source-context.json",
+    "catalogue_sha256": "e5d404eb3447e35bcefeccedf9ba37dc642dae14ca9edb58f17b48689f3efb94",
+    "complete_values_read": 719,
+    "proposal_count": 8,
+    "structural_issues_existing": [],
+    "proposal_checks": "All indexed placeholders and literal newline counts match canonical.",
+    "findings": {
+      "ui_the_arrow_on_the_left_directly_below_the": {
+        "classification": "substantive stale guide repair",
+        "reason": "Old tool/palette layout and interaction, blanket transparent import/background claim, obsolete selection locations and single undo-unit assertion, obsolete navigation toggle and missing floating selection Fit, old Catrobat long-press insertion and missing other providers, missing exact-position overlap rules; actual Drawing and Magnifier labels restored. Canonical-only exact reference scan.",
+        "evidence": [
+          "English current ten-paragraph guide",
+          "EditorNavigation.kt:31,41; ToolCategoryButton.kt:14",
+          "PaintCanvas.kt:638-708; ClassicPaintActivity navigation/colour UI",
+          "IllustrationSource.kt provider list; current nl control labels"
+        ]
+      },
+      "ui_estimates_include_the_current_canvas_and_clipboard_sampled": {
+        "classification": "wrong technical sense",
+        "reason": "Voorbeelddecodering means preview/example decoding, not sampled decoding; align with accurate existing decodering met subsampling in ui_sampled_resize_memory_explanation.",
+        "evidence": [
+          "PlatformImageColour.kt:38-39 sets inSampleSize",
+          "ImageResizeDialog.kt memory estimates",
+          "exact key canonical-only"
+        ]
+      },
+      "ui_each_px_px_percent_is_relative_to_the": {
+        "classification": "wrong literal reflow rendering",
+        "reason": "Vloeien opnieuw suggests flowing rather than rearrangement of placed images. Match existing dimension-specific normalization messages.",
+        "evidence": [
+          "NormalizeImagesDialog.kt dimension-specific resources",
+          "AssemblyModel placement recalculation",
+          "exact key canonical-only"
+        ]
+      },
+      "ui_current_safe_editing_budget_s_up_to_2f": {
+        "classification": "precision refinement",
+        "reason": "MP count excludes additional decoder memory, not RAM budget; temporal wording clarified.",
+        "evidence": [
+          "ImageResizeDialog.kt:42-46",
+          "ImageMemoryPolicy.kt:38-41"
+        ]
+      },
+      "formats22_ico_dimensions_error": {
+        "classification": "precision refinement",
+        "reason": "Internal ICO entry dimensions, not filesystem directory.",
+        "evidence": [
+          "IcoCodec.kt:37-50"
+        ]
+      },
+      "ui_rendering_images": {
+        "classification": "progress-state fidelity",
+        "reason": "Reports already processed count rather than concurrent images rendering.",
+        "evidence": [
+          "AssemblyRenderer.kt:64",
+          "AssemblyActivity.kt:323"
+        ]
+      },
+      "ui_gallery_artwork_catrobat_and_its_credited_creators_cc": {
+        "classification": "attribution fidelity",
+        "reason": "Vermeld het artwork only says mention the artwork; explicitly preserve its credits instruction. No extra licence terms.",
+        "evidence": [
+          "English Credit the artwork canonical clause",
+          "existing nl credits vocabulary"
+        ]
+      },
+      "ui_openclipart_help34": {
+        "classification": "action label precision",
+        "reason": "Retain publisher Large PNG identifier so user can locate named action; current translation broadly understandable, not legal defect.",
+        "evidence": [
+          "IllustrationPage.kt:55",
+          "English canonical action identifier"
+        ]
+      }
+    },
+    "limits": [
+      "All719 full values read including one/other plural, both long guides, current short help and legal/recovery/codec clauses.",
+      "No native-speaker or device-layout certification. No external legal interpretation.",
+      "Existing cursor hints use generic verschuif, not explicit viewport target; not falsely classified as same defect as WO/DE.",
+      "No optional bulk stylistic rewrite. Mixed register and borrowed technical words left alone.",
+      "Source reading uses current canonical semantics and actual relevant consumers; absence of other concrete findings not blanket quality approval."
+    ]
+  },
+  "it_review_resolution": "Accepted full independent replacement for ui_cursor_help31 to restore settings scope; all twelve applied after that repair.",
+  "nl_independent": "All eight complete proposed values read separately, including all ten guide paragraphs; actual labels and sampled-memory sibling checked; accepted. Correct generic cursor verschuif not called explicit viewport defect.",
+  "it_final_packet": {
+    "sha256": "0cc54d8fcff87001b315841b2058d97da6ba16665ba49393f741ac8846e6a98c",
+    "keys": [
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "formats22_ico_dimensions_error",
+      "ui_cursor_marker_help31",
+      "ui_cursor_pan_draw32",
+      "ui_cursor_help31",
+      "gallery_description",
+      "ui_rendering_images",
+      "ui_help23",
+      "ui_pinch_to_zoom_drag_to_pan",
+      "ui_image_assembly_workspace_drag_placed_images_or_drop",
+      "ui_drop_at_a_highlighted_edge_right_top_aligned",
+      "ui_the_arrow_on_the_left_directly_below_the"
+    ]
+  },
+  "nl_final_packet": {
+    "sha256": "edfa3d925067981b5ffaa84c7d84f674814141066724b2403677348a24b2002f",
+    "keys": [
+      "ui_the_arrow_on_the_left_directly_below_the",
+      "ui_current_safe_editing_budget_s_up_to_2f",
+      "formats22_ico_dimensions_error",
+      "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+      "ui_each_px_px_percent_is_relative_to_the",
+      "ui_rendering_images",
+      "ui_gallery_artwork_catrobat_and_its_credited_creators_cc",
+      "ui_openclipart_help34"
+    ]
+  }
+}
