@@ -1,0 +1,7 @@
+# AN Paint backlog: shared source and consumer context
+
+Evidence branch only; no app changes, translations or approvals. Continue the original five-lane translation/review assignments from November 17. Prior outputs are linked in PRs #532–534; do not redo merged entries or treat unaccepted proposals as approvals.
+
+Pinned develop baseline: `0029a13d6fba6514e4475308a557944359a754e5`. The nine large partial catalogues cover 2,757 of 2,764 residual slots. The source strings, priority manifest and nine catalogue blobs were checked against this baseline. The three smaller Quechua backlogs (qug, quh, quy) remain separate to avoid cross-variant substitution.
+
+Unpack `shared-translation-context.json.gz` with `gzip -dc shared-translation-context.json.gz`. Uncompressed SHA-256: `a25230a77c663c0b7251a9fadf7e8c00d1cb43f82e6162bcba5afcb3df1347de`. Use `locale_keys[tag]` as the exact input list, and `source_context[key]` for canonical XML, priority, direct Kotlin/Java reference matches and identical-English candidates. All nine share 212 keys (152 P2/60 P3); these get one source-context pass rather than nine. A missing direct match is not proof that a resource is unused. Same-English candidates still require same meaning and natural own-variant wording in both consumers. This file contains no synthetic translations. Preserve parameters, plurals and live UI semantics; review complete target-language values independently, then run exact-head CI.
