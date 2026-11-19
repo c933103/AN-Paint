@@ -1,0 +1,61 @@
+{
+  "locale": "ch",
+  "app_source": "53f1c03d1ce1e2d534f2cae08fa4df137eaedd07",
+  "supersedes_for_listed_keys": "d4509b81e155fb5c930eefaa81a6c096b4f542fd",
+  "status": "Wording drafted and checked against UI behavior. Terms for transparency and colour-profile management still need a second language pass; no integration or runtime validation.",
+  "references": [
+    "https://natibunmarianas.org/wp-content/uploads/2025/01/English-Chamorro-Finders-List.pdf",
+    "https://github.com/c933103/AN-Paint/blob/53f1c03d1ce1e2d534f2cae08fa4df137eaedd07/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L29-L51"
+  ],
+  "entries": [
+    {
+      "key": "formats22_ico_description",
+      "source": "Saves one PNG-compressed icon image at the selected size (16–256 pixels). Your image keeps its proportions and is centred on a transparent square.",
+      "wording": "Ha po'lu un pinentan ikonu ni mana'dikiki' kumu PNG gi mineddung ni ma'atyik (16–256 pixels). I pinenta-mu ha adahi i hechura-ña ya machura gi talu' un kuadrådu ni tåya' kulot gi sanhalum-ña.",
+      "why": "ICO stores one compressed PNG at the chosen edge length. Retain the source proportions through the app's Adahi i hechura vocabulary, and express the transparent square as an uncoloured backing. Check idiomatic wording for the transparent backing before release.",
+      "change": "new wording for previously held entry"
+    },
+    {
+      "key": "formats22_ico_decode_budget",
+      "source": "Decoding this icon exceeds the available image memory budget.",
+      "wording": "Ti nahong i RAM ni ma sedi para u mafa'tinas i pinentan esti na ikonu ginin i sinahguan i dokumentu.",
+      "why": "Decode, not download or file size. Reuses the host locale's existing explanation of decoding an image into RAM.",
+      "change": "new wording for previously held entry"
+    },
+    {
+      "key": "formats22_ico_dimensions_error",
+      "source": "The icon image dimensions do not match the dimensions recorded in the corresponding internal ICO directory entry.",
+      "wording": "Ti parehu i mineddung i pinentan ikonu yan i mineddung siha ni matugi' gi rehistrun esti na ikonu gi halum i dokumentu ICO.",
+      "why": "The relevant record is inside the ICO file and is the one for this icon. Do not use a term that leads readers to their filesystem directory.",
+      "change": "new wording for previously held entry"
+    },
+    {
+      "key": "save20_unsupported_tagged_colour",
+      "source": "This BMP or GIF uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "wording": "Esti na BMP pat GIF ha usa un profile i kulot ni ti siña ha kombi'ette i AN Paint på'gu. Kombi'ette para PNG sRGB gi un app ni ha apapacha i profile i kulot, åntis di un na'hålum.",
+      "why": "The problem is converting the colour profile rather than opening all BMP/GIF files. The intermediate editor must use colour profiles; keep the technical profile term recognizable and flag its Chamorro phrasing for review.",
+      "change": "new wording for previously held entry"
+    },
+    {
+      "key": "formats22_base64_description",
+      "source": "Stores a lossless PNG as Base64 text, beginning with data:image/png;base64,. Open this text file again to recover the image. Base64 is larger than the PNG it contains.",
+      "wording": "Ha po'lu un PNG ni tåya' malaknos na infotmasion kumu tinige' Base64. Tutuhun i tinige' ni esti: «data:image/png;base64,». Baba ta'lu esti na dokumentu tinige' para un na'ta'lu i pinenta. I Base64 mås dångkulu ki i PNG ni gaigi gi halum-ña.",
+      "why": "The exact prefix, including its comma, is visually separated from sentence punctuation.",
+      "change": "revise earlier candidate"
+    },
+    {
+      "key": "save20_bmp_size_limit",
+      "source": "The image exceeds the BMP file-size limit.",
+      "wording": "I dokumentun BMP ni para u mafa'tinas ginin esti na pinenta mås dångkulu ki i mineddung ni ma sedi para BMP.",
+      "why": "The output BMP would exceed its file-size limit, not the image dimensions.",
+      "change": "revise earlier candidate"
+    },
+    {
+      "key": "formats22_dib_size_limit",
+      "source": "The image exceeds the DIB file-size limit.",
+      "wording": "I dokumentun DIB ni para u mafa'tinas ginin esti na pinenta mås dångkulu ki i mineddung ni ma sedi para DIB.",
+      "why": "Parallel wording for DIB so neighbouring error messages distinguish the file type, not the failure mechanism.",
+      "change": "revise earlier candidate"
+    }
+  ]
+}
