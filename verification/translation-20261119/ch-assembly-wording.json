@@ -56,7 +56,7 @@
       "key": "ui_assembly_png",
       "source": "Assembly.png",
       "wording": "Dinanña.png",
-      "decision": "Default filename; keep extension, prefer no quote or spaces.",
+      "decision": "Suggested editor image name on Edit in Paint. The Save PNG picker independently uses AN-Paint-assembly.png; no change to that picker or its filename.",
       "draft_revised": false
     },
     {
@@ -153,8 +153,8 @@
     {
       "key": "ui_the_normalized_image_dimensions_are_outside_android_s",
       "source": "The normalized image dimensions are outside Android\\'s range.",
-      "wording": "I mineddung i pinenta siha ni manaparehu mås ki i limit ni ma sedi gi Android.",
-      "decision": "Dimensions after normalization, not total file size or count.",
+      "wording": "Ti ha sedi Android i mineddung i pinenta siha ni manaparehu.",
+      "decision": "The adjusted companion dimension can be below 1 px (e.g., 1,000 × 1 cropped to a target width of 1) or above Android's Int.MAX_VALUE. Say that Android does not allow the resulting dimensions; don't imply only an upper limit.",
       "draft_revised": true
     },
     {
@@ -209,16 +209,22 @@
     {
       "key": "ui_normalize_width_intro",
       "source": "Give all images the same width. Number of images: %1$d. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
-      "wording": "Na'parehu i finedda' i todu i pinenta siha. Numirun pinenta: %1$d. Kada pinenta ha na'sahnguan i proporsion-ña. Ti matulaika i urihinåt na dokumentu siha yan i inatyik para i inutot.",
-      "decision": "Each image preserves its own aspect ratio; preserve both original files and crop settings.",
+      "wording": "Na'parehu i finedda' i todu i pinenta siha. Numirun pinenta: %1$d. Ma'adahi i hechuran kada pinenta. Ti matulaika i urihinåt na dokumentu siha yan i inatyik para i inutot.",
+      "decision": "Each image preserves its own aspect ratio; preserve both original files and crop settings. Use the resize UI's Adahi i hechura vocabulary for preserving shape. Verify this complete clause in Chamorro; the prior na’sahnguan form wasn't established.",
       "draft_revised": true
     },
     {
       "key": "ui_normalize_height_intro",
       "source": "Give all images the same height. Number of images: %1$d. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
-      "wording": "Na'parehu i attura i todu i pinenta siha. Numirun pinenta: %1$d. Kada pinenta ha na'sahnguan i proporsion-ña. Ti matulaika i urihinåt na dokumentu siha yan i inatyik para i inutot.",
-      "decision": "Same instruction for matching heights, not width or both dimensions.",
+      "wording": "Na'parehu i attura i todu i pinenta siha. Numirun pinenta: %1$d. Ma'adahi i hechuran kada pinenta. Ti matulaika i urihinåt na dokumentu siha yan i inatyik para i inutot.",
+      "decision": "Same instruction for matching heights, not width or both dimensions. Use the resize UI's Adahi i hechura vocabulary for preserving shape. Verify this complete clause in Chamorro; the prior na’sahnguan form wasn't established.",
       "draft_revised": true
     }
+  ],
+  "reviewer_context": [
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt lines 24–32: inclusive computed dimension limits",
+    "Paintroid/src/main/res/values-b+ch/strings.xml lines 320–323: Adahi i hechura",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt line 1284: editor image name",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt line 330: distinct Save PNG picker filename"
   ]
 }
