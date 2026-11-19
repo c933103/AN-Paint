@@ -1,0 +1,70 @@
+{
+  "status": "Context-reviewed proposed wording for combined integration; not yet in Android resources or verified on a device",
+  "app_source": "53f1c03d1ce1e2d534f2cae08fa4df137eaedd07",
+  "decisions": [
+    "These are the three remaining translatable entries in each locale at the pinned source. Both tooltip/settings variants deliberately say the same thing. Do not infer one-pixel-only width from historical key names.",
+    "Crisp describes edges with no antialiasing, not a straight line or one-pixel stroke. The width instruction uses the existing Size (px) localized label next to the pencil control. It preserves 1–100 as the inclusive range.",
+    "The labels remain Qillqana in both locales. Match the shipped pixel edge-smoothing labels for term and orthography: Southern Bolivian quh uses siq’iy and llamp’uyachiy; Ayacucho quy uses siqiy and llampuyachiy. Do not substitute the neighboring Cusco Lápiz wording.",
+    "Linguistic review covers source meaning, app behavior, orthography, and terminology. No native or device test was performed."
+  ],
+  "sources": [
+    {
+      "url": "https://formacionenservicio.minedu.gob.pe/sifods/centro-recurso/2022/Material-educativo/757.018453-ITEM-16-Vocabulario-pedinaria-Quechua-Sureno-ALTA.pdf",
+      "detail": "Peru MINEDU Southern Quechua pedagogical vocabulary, p. 35; siqiy/siq’iy as drawing; Chanka spelling distinction."
+    },
+    {
+      "url": "https://www.illaa.org/pirwa/diccionarios/quechua-cochabamba/DicHerreroSanchezQU.pdf",
+      "detail": "Herrero and Sánchez Cochabamba dictionary; llamp’uyachiy, used here for pixel edge smoothing in line with the shipped locale."
+    },
+    {
+      "url": "https://github.com/c933103/AN-Paint/blob/53f1c03d1ce1e2d534f2cae08fa4df137eaedd07/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L250-L255",
+      "detail": "Pencil anti-aliasing exception."
+    },
+    {
+      "url": "https://github.com/c933103/AN-Paint/blob/53f1c03d1ce1e2d534f2cae08fa4df137eaedd07/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L780-L784",
+      "detail": "Pencil slider: 1–100, ui_size_px."
+    }
+  ],
+  "locales": {
+    "quh": [
+      {
+        "key": "ui_draw_a_crisp_one_pixel_line",
+        "source": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
+        "wording": "Mana llamp'uyachisqa patayuq siq'ita siq'iy. «Chhikan (px)» nisqapi kinrayninta 1manta 100 pixelkama allichay.",
+        "android_xml_value": "Mana llamp\\'uyachisqa patayuq siq\\'ita siq\\'iy. «Chhikan (px)» nisqapi kinrayninta 1manta 100 pixelkama allichay."
+      },
+      {
+        "key": "ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing",
+        "source": "Pencil keeps crisp edges at any selected width.",
+        "wording": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siq'ikunap patankunata mana llamp'uyachinchu.",
+        "android_xml_value": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siq\\'ikunap patankunata mana llamp\\'uyachinchu."
+      },
+      {
+        "key": "ui_pencil_crisp_adjustable_strokes",
+        "source": "Pencil keeps crisp edges at any selected width.",
+        "wording": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siq'ikunap patankunata mana llamp'uyachinchu.",
+        "android_xml_value": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siq\\'ikunap patankunata mana llamp\\'uyachinchu."
+      }
+    ],
+    "quy": [
+      {
+        "key": "ui_draw_a_crisp_one_pixel_line",
+        "source": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
+        "wording": "Mana llampuyachisqa patayuq siqita siqiy. «Chikan (px)» nisqapi kinrayninta 1manta 100 pixelkama allichay.",
+        "android_xml_value": "Mana llampuyachisqa patayuq siqita siqiy. «Chikan (px)» nisqapi kinrayninta 1manta 100 pixelkama allichay."
+      },
+      {
+        "key": "ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing",
+        "source": "Pencil keeps crisp edges at any selected width.",
+        "wording": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siqikunapa patankunata mana llampuyachinchu.",
+        "android_xml_value": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siqikunapa patankunata mana llampuyachinchu."
+      },
+      {
+        "key": "ui_pencil_crisp_adjustable_strokes",
+        "source": "Pencil keeps crisp edges at any selected width.",
+        "wording": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siqikunapa patankunata mana llampuyachinchu.",
+        "android_xml_value": "Mayqin kinraytapas akllaptiyki, Qillqanaqa siqikunapa patankunata mana llampuyachinchu."
+      }
+    ]
+  }
+}
