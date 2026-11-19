@@ -2,10 +2,12 @@
   "locale": "ch",
   "app_source": "53f1c03d1ce1e2d534f2cae08fa4df137eaedd07",
   "supersedes_for_listed_keys": "d4509b81e155fb5c930eefaa81a6c096b4f542fd",
-  "status": "Wording drafted and checked against UI behavior. Terms for transparency and colour-profile management still need a second language pass; no integration or runtime validation.",
+  "status": "Current ICO and file-size wording drafted and checked against UI behavior. The term for transparency needs a second language pass; no integration or runtime validation.",
   "references": [
     "https://natibunmarianas.org/wp-content/uploads/2025/01/English-Chamorro-Finders-List.pdf",
-    "https://github.com/c933103/AN-Paint/blob/53f1c03d1ce1e2d534f2cae08fa4df137eaedd07/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L29-L51"
+    "https://github.com/c933103/AN-Paint/blob/53f1c03d1ce1e2d534f2cae08fa4df137eaedd07/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L29-L51",
+    "https://github.com/c933103/AN-Paint/pull/86",
+    "https://github.com/c933103/AN-Paint/blob/53f1c03d1ce1e2d534f2cae08fa4df137eaedd07/Paintroid/src/main/res/values-b%2Bch/strings.xml#L219"
   ],
   "entries": [
     {
@@ -30,13 +32,6 @@
       "change": "new wording for previously held entry"
     },
     {
-      "key": "save20_unsupported_tagged_colour",
-      "source": "This BMP or GIF uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
-      "wording": "Esti na BMP pat GIF ha usa un profile i kulot ni ti siña ha kombi'ette i AN Paint på'gu. Kombi'ette para PNG sRGB gi un app ni ha apapacha i profile i kulot, åntis di un na'hålum.",
-      "why": "The problem is converting the colour profile rather than opening all BMP/GIF files. The intermediate editor must use colour profiles; keep the technical profile term recognizable and flag its Chamorro phrasing for review.",
-      "change": "new wording for previously held entry"
-    },
-    {
       "key": "formats22_base64_description",
       "source": "Stores a lossless PNG as Base64 text, beginning with data:image/png;base64,. Open this text file again to recover the image. Base64 is larger than the PNG it contains.",
       "wording": "Ha po'lu un PNG ni tåya' malaknos na infotmasion kumu tinige' Base64. Tutuhun i tinige' ni esti: «data:image/png;base64,». Baba ta'lu esti na dokumentu tinige' para un na'ta'lu i pinenta. I Base64 mås dångkulu ki i PNG ni gaigi gi halum-ña.",
@@ -56,6 +51,16 @@
       "wording": "I dokumentun DIB ni para u mafa'tinas ginin esti na pinenta mås dångkulu ki i mineddung ni ma sedi para DIB.",
       "why": "Parallel wording for DIB so neighbouring error messages distinguish the file type, not the failure mechanism.",
       "change": "revise earlier candidate"
+    }
+  ],
+  "not_for_integration": [
+    {
+      "key": "save20_unsupported_tagged_colour",
+      "source": "This BMP or GIF uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "wording": "Esti na BMP pat GIF ha usa un profile i kulot ni ti siña ha kombi'ette i AN Paint på'gu. Kombi'ette para PNG sRGB gi un app ni ha apapacha i profile i kulot, åntis di un na'hålum.",
+      "why": "Merged #86 replaced the misleading BMP/GIF-only description with save20_unsupported_image_colour. ICO, DIB and platform colour import use the replacement; it already has direct Chamorro wording for converting to sRGB PNG in a colour-managed editor. The legacy key still contributes to the P2 source inventory until separately retired.",
+      "change": "new wording for previously held entry",
+      "status": "legacy resource, not used by the current importers; do not integrate or spend another language pass on this wording"
     }
   ]
 }
