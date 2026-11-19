@@ -1,0 +1,389 @@
+{
+  "review_scope": "Existing lanes A and B; file import/export wording. This is proposed target-language text, not an application resource patch or a native speaker approval.",
+  "app_source": "53f1c03d1ce1e2d534f2cae08fa4df137eaedd07",
+  "original_drafts": "e1a46545bd04e518cc64f45665bd98ca80790826",
+  "references": [
+    "https://natibunmarianas.org/chamorro-dictionary/",
+    "https://github.com/wikimedia/mediawiki/tree/377002822b34077904f4e83c21faaf69d1bfea9a/languages/i18n",
+    "https://www.ircam.ma/sites/default/files/2021-02/ticam12.pdf"
+  ],
+  "holds": {
+    "ch": [
+      "formats22_ico_dimensions_error: prior English changed; rewrite to preserve the corresponding internal directory entry, not the external filesystem directory.",
+      "formats22_ico_decode_budget: decoding term still needs clarification.",
+      "formats22_ico_description: review phrase for compressed PNG and preserving the aspect ratio, centered in transparency.",
+      "save20_unsupported_tagged_colour: specialized profile conversion semantics remain unreviewed."
+    ]
+  },
+  "entries": [
+    {
+      "locale": "ch",
+      "key": "formats22_ascii_label",
+      "source": "ASCII art",
+      "wording": "Pinenta ASCII",
+      "status": "complete-wording-for-language-review",
+      "decision": "Keep the established term pinenta and format name; label only, not a normal editable image.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_ascii_columns",
+      "source": "Width (characters)",
+      "wording": "Finedda' (simbulu siha)",
+      "status": "complete-wording-for-language-review",
+      "decision": "Use the catalogue's own ASCII description (simbulu) so punctuation and symbols are not described only as letters.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_previous_page",
+      "source": "Previous page",
+      "wording": "I ma'pos na påhina",
+      "status": "complete-wording-for-language-review",
+      "decision": "Previous page, not Back to the app.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_page_preview",
+      "source": "Selected page preview",
+      "wording": "Mostra i påhina ni ma'atyik",
+      "status": "complete-wording-for-language-review",
+      "decision": "The chosen page itself is previewed.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_loading_page",
+      "source": "Page %1$d of %2$d · Loading preview…",
+      "wording": "Påhina %1$d gi %2$d · Mabababa i mostra…",
+      "status": "complete-wording-for-language-review",
+      "decision": "Preserve selected page and total; this is opening a local preview, not a download.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_page_description",
+      "source": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image.",
+      "wording": "%1$s · %2$s\\nNumirun påhina siha: %3$d. Atyik un påhina para un tulaika kumu pinenta.",
+      "status": "complete-wording-for-language-review",
+      "decision": "User can edit one selected page as an image; don't imply editing all pages or producing a PDF.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_file_size",
+      "source": "PDF must be a non-empty file no larger than 512 MiB.",
+      "wording": "Debi na i PDF un dokumentu ni guaha håfa gi halum-ña yan ti mås ki 512 MiB.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Use the positive non-empty condition; preserve the inclusive upper bound and MiB.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_page_count",
+      "source": "PDF must contain between 1 and %1$d pages.",
+      "wording": "Debi na guaha 1 asta %1$d na påhina gi PDF.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Inclusive first and maximum pages; retain integer placeholder.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_page_index",
+      "source": "PDF page selection is no longer valid. Choose a page from this document.",
+      "wording": "Ti balidu esta i påhina PDF ni ma'atyik. Atyik un påhina ginin esti na dokumentu.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Old selection became invalid; the user should choose from this document, not reopen another PDF.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_dimensions",
+      "source": "PDF page dimensions are invalid or too large to import.",
+      "wording": "Ti balidu pat mampus dångkulu i mineddong i påhina PDF para u mana'hålum.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Distinguish invalid geometry from geometry too large to import; reuse mineddong used in base UI.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_ico_size",
+      "source": "Icon size",
+      "wording": "Mineddong i ikonu",
+      "status": "complete-wording-for-language-review",
+      "decision": "Same size noun as base UI; square icon context is supplied by the screen.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_ico_invalid_size",
+      "source": "Choose an icon size of 16, 24, 32, 48, 64, 128 or 256 pixels.",
+      "wording": "Atyik 16, 24, 32, 48, 64, 128 pat 256 pixels para i mineddong i ikonu.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Keep the seven discrete supported edges, not an arbitrary continuous range.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "save20_gif_size_limit",
+      "source": "GIF dimensions cannot exceed 65,535 pixels per side.",
+      "wording": "Ti siña lumampas 65,535 pixels kada banda i mineddong GIF.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Per side, not total pixel count or file bytes.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_dib_size_limit",
+      "source": "The image exceeds the DIB file-size limit.",
+      "wording": "Mås dångkulu i dokumentu DIB para esti na pinenta ki i mineddong ni ma sedi.",
+      "status": "complete-wording-for-language-review",
+      "decision": "The encoded DIB file would exceed the permitted size; not a pixel dimension or original upload size.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "save20_bmp_size_limit",
+      "source": "The image exceeds the BMP file-size limit.",
+      "wording": "Mås dångkulu i dokumentu BMP para esti na pinenta ki i mineddong ni ma sedi.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Parallel to DIB while explicitly naming BMP.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_text_not_image",
+      "source": "The Base64 text does not contain a supported image.",
+      "wording": "I tinige' Base64 tåya' pinenta ni masupopotta gi halum-ña.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Text may be valid Base64; the embedded image is absent or unsupported, not necessarily invalid Base64.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_preview_memory",
+      "source": "There is not enough memory for this preview. Opening the page will offer smaller dimensions when possible.",
+      "wording": "Ti nahong i memoria para esti na mostra. An mababa i påhina, u maofrese mås dikiki' na mineddong siha an siña.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Preserve waiting until open, conditional offer of downsizing, and insufficient memory only for this preview.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_memory",
+      "source": "PDF rendering exceeds the available image memory budget.",
+      "wording": "I minostra i PDF mås ki i memoria ni siña mausa para i pinenta.",
+      "status": "complete-wording-for-language-review",
+      "decision": "This is the PDF rendering budget, not a file-size limit.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_tiff_compression",
+      "source": "Lossless compression (Deflate)",
+      "wording": "Mana'dikiki' sin linaknos i infotmasion (Deflate)",
+      "status": "complete-wording-for-language-review",
+      "decision": "Explain lossless in terms of retained information and preserve codec name.",
+      "draft_revised": false
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_tiff_description",
+      "source": "Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.",
+      "wording": "Ha po'lu un påhina RGB. I minadikiki' siña ha na'dikiki' i dokumentu sin tinilaika gi pixels; desåtiba i minadikiki' para TIFF ni ti mana'dikiki'.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Single RGB page, potential (not guaranteed) smaller file, unchanged pixels, explicit instruction to turn compression off.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "save20_bmp_description",
+      "source": "Uncompressed 24-bit RGB; exact colours, larger files.",
+      "wording": "RGB ni 24-bit yan ti mana'dikiki'; eksåktu na kulot siha, mås dångkulu na dokumentu siha.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Preserve 24-bit RGB, no compression, and file size tradeoff.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "ui_export_this_version_s_source_code",
+      "source": "Export this version\\'s source code…",
+      "wording": "Eksport i kodigu urihinåt para esti na bersion…",
+      "status": "complete-wording-for-language-review",
+      "decision": "Use the catalogue's urihinåt pattern; exact version's source, not original version or image export.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_base64_description",
+      "source": "Stores a lossless PNG as Base64 text, beginning with data:image/png;base64,. Open this text file again to recover the image. Base64 is larger than the PNG it contains.",
+      "wording": "Ha po'lu un PNG ni tåya' malaknos na infotmasion kumu tinige' Base64. Tutuhun i tinige' ni data:image/png;base64,. Baba ta'lu esti na dokumentu tinige' para un na'ta'lu i pinenta. I Base64 mås dångkulu ki i PNG ni gaigi gi halum-ña.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Preserve exact data URI prefix (comma included), instructions to recover image, and size comparison. Review punctuation around the code sample.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_dib_description",
+      "source": "Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.",
+      "wording": "Ha po'lu un Windows DIB ni 24-bit yan ti mana'dikiki'. Usa BMP anggen i app ni risisibi i pinenta ha nisisita i header i dokumentu BMP.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Windows DIB is uncompressed; BMP only if the receiving app needs the BMP file header.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_invalid",
+      "source": "PDF could not be read. The file may be damaged or use features unsupported by this Android version.",
+      "wording": "Ti siña mataitai i PDF. Siña madåñu i dokumentu pat ha usa kapasidåt siha ni ti masupopotta gi esti na bersion Android.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Replace malan with reading wording; qualify both possible causes instead of declaring corruption.",
+      "draft_revised": true
+    },
+    {
+      "locale": "ch",
+      "key": "formats22_pdf_encrypted",
+      "source": "PDF requires a password or uses unsupported encryption. Save an unprotected copy before importing it.",
+      "wording": "I PDF ha nisisita un password pat ha usa encryption ni ti masupopotta. Po'lu un kopia ni tåya' proteksion åntis di un na'hålum.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Password or unsupported encryption; save unprotected copy before import. Retain recognizable technical loanwords pending terminology review.",
+      "draft_revised": true
+    },
+    {
+      "locale": "za",
+      "key": "formats22_ico_size",
+      "source": "Icon size",
+      "wording": "Cikconq dozsiengqbyau",
+      "status": "complete-wording-for-language-review",
+      "decision": "Replace hung iq with current UI's size noun; use consistent icon term.",
+      "draft_revised": true
+    },
+    {
+      "locale": "za",
+      "key": "formats22_ico_invalid_size",
+      "source": "Choose an icon size of 16, 24, 32, 48, 64, 128 or 256 pixels.",
+      "wording": "Senj cikconq dozsiengqbyau: 16, 24, 32, 48, 64, 128 rox 256 pixels.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Use Senj from the page chooser rather than switching verbs; preserve all seven discrete edges.",
+      "draft_revised": true
+    },
+    {
+      "locale": "za",
+      "key": "save20_gif_size_limit",
+      "source": "GIF dimensions cannot exceed 65,535 pixels per side.",
+      "wording": "Cikconq GIF, moix bien mbouj ndaej gvaq 65,535 pixels.",
+      "status": "complete-wording-for-language-review",
+      "decision": "State the bound on each side; not aggregate pixel count. Review moix bien for technical register.",
+      "draft_revised": true
+    },
+    {
+      "locale": "za",
+      "key": "save20_bmp_size_limit",
+      "source": "The image exceeds the BMP file-size limit.",
+      "wording": "Dajs iuj vwnzgen BMP gvaq hanh dingh.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Refer explicitly to the BMP file size, not image dimensions. Full wording needs Zhuang review; hanh dingh expresses the set limit.",
+      "draft_revised": true
+    },
+    {
+      "locale": "za",
+      "key": "formats22_dib_size_limit",
+      "source": "The image exceeds the DIB file-size limit.",
+      "wording": "Dajs iuj vwnzgen DIB gvaq hanh dingh.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Match the BMP limit wording and change only format ID.",
+      "draft_revised": true
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_base64_label",
+      "source": "Base64 text",
+      "wording": "ⴰⴹⵕⵉⵙ Base64",
+      "status": "complete-wording-for-language-review",
+      "decision": "Use the currently shipped Tifinagh spelling for text, not the earlier abbreviated spelling.",
+      "draft_revised": true
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_open_page",
+      "source": "Open page",
+      "wording": "ⵕⵥⵎ ⵜⴰⵙⵏⴰ",
+      "status": "complete-wording-for-language-review",
+      "decision": "Same open-page action, not open whole document.",
+      "draft_revised": false
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_page_dimensions",
+      "source": "Page %1$d of %2$d · %3$d × %4$d pixels",
+      "wording": "ⵜⴰⵙⵏⴰ %1$d ⵙⴳ %2$d · %3$d × %4$d ⵉⴷ ⴱⵉⴽⵙⵍ",
+      "status": "complete-wording-for-language-review",
+      "decision": "Clarify selected page out of total using the from/of pattern; preserve width × height.",
+      "draft_revised": true
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_page_range",
+      "source": "Enter a page number from 1 to %1$d.",
+      "wording": "ⵙⵙⴽⵛⵎ ⴰⵎⴹⴰⵏ ⵏ ⵜⵙⵏⴰ ⵙⴳ 1 ⴰⵔ %1$d.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Enter a page number in the inclusive range; preserve placeholder type.",
+      "draft_revised": false
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_page_preview",
+      "source": "Selected page preview",
+      "wording": "ⵜⴰⵎⵓⵖⵍⵉ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ ⵏ ⵜⵙⵏⴰ ⵉⵜⵜⵓⵙⵜⴰⵢⵏ",
+      "status": "complete-wording-for-language-review",
+      "decision": "Matches the app's preview phrase; selected page only.",
+      "draft_revised": false
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_loading_page",
+      "source": "Page %1$d of %2$d · Loading preview…",
+      "wording": "ⵜⴰⵙⵏⴰ %1$d ⵙⴳ %2$d · ⴰⵣⴷⴰⵎ ⵏ ⵜⵎⵓⵖⵍⵉ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ…",
+      "status": "complete-wording-for-language-review",
+      "decision": "Use the same out-of-total wording as page dimensions and keep the in-progress preview state.",
+      "draft_revised": true
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_preview_unavailable",
+      "source": "Preview unavailable: %1$s",
+      "wording": "ⵓⵔ ⵜⵡⵊⵉⴷ ⵜⵎⵓⵖⵍⵉ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ: %1$s",
+      "status": "complete-wording-for-language-review",
+      "decision": "Name the preview using the exact established noun phrase; keep reason argument.",
+      "draft_revised": false
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_pdf_page_count",
+      "source": "PDF must contain between 1 and %1$d pages.",
+      "wording": "ⵉⵇⵇⴰⵏ ⴰⴷ ⵢⵓⵎⴰ PDF ⵙⴳ 1 ⴰⵔ %1$d ⵏ ⵜⵙⵏⵉⵡⵉⵏ.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Inclusive one through maximum, not an input request.",
+      "draft_revised": false
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_pdf_file_size",
+      "source": "PDF must be a non-empty file no larger than 512 MiB.",
+      "wording": "ⵉⵇⵇⴰⵏ ⴰⴷ ⵉⴳ PDF ⴰⴼⴰⵢⵍⵓ ⵓⵔ ⵉⵅⵡⴰⵏ، ⵓⵔ ⵉⵣⵔⵉ 512 MiB.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Preserve both nonempty requirement and inclusive MiB cap.",
+      "draft_revised": false
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_ico_invalid_size",
+      "source": "Choose an icon size of 16, 24, 32, 48, 64, 128 or 256 pixels.",
+      "wording": "ⵙⵜⵉ ⵜⵉⴷⴷⵉ ⵏ ⵜⵉⴽⵓⵏⵉⵜ: 16، 24، 32، 48، 64، 128 ⵏⵖ 256 ⵉⴷ ⴱⵉⴽⵙⵍ.",
+      "status": "complete-wording-for-language-review",
+      "decision": "Keep all seven exact options and the shipped unit spelling.",
+      "draft_revised": true
+    }
+  ]
+}
