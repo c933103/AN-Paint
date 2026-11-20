@@ -221,3 +221,108 @@ Compared each keyed draft with the pinned source in the combined handoff (blob `
 98. `ui_honeycomb_colour_06x` **H**: Hex format is preserved; hold until the shared honeycomb caption is resolved.
 99. `ui_honeycomb_colour_swatches_with_a_greyscale_row` **H**: Grayscale row is described, but hold pending shared honeycomb wording.
 100. `ui_colour_hsv_hue_range` **K**: HSV hue letter and 0–360° domain remain; the extra descriptive label does not change the numeric operation.
+
+## Independent wording review: batch 2 (100 draft keys)
+
+Personally compared 61 remaining Standard Zhuang (`za`) draft keys and the first 39 Standard Moroccan Tamazight (`zgh`) draft keys with their pinned source and related captions. Input: `remaining-translations.json`, blob `4ec048d12a74dd312d9dfd99801b5fd0a403f053`. No duplication of batch 1; earlier structural checks do not count as wording decisions. K = keep at this editorial pass, not native-speaker certification. H = hold for the stated reason; the draft remains available. **57 keep, 43 hold** (`za`: 30 / 31; `zgh`: 27 / 12). Across the two batches: **200 distinct draft keys reviewed, 126 keep, 74 hold**. No new wording, locale metadata change, Android integration, or device test in this batch.
+
+1. `za/ui_colour_hsv_saturation_range` **H**: Added “thick colour” gloss may be read as paint density; numeric interval alone does not validate the HSV S label.
+2. `za/ui_colour_hsv_value_range` **H**: The added brightness wording needs to distinguish HSV value from HSL lightness; both slider descriptions use the same generic brightness wording.
+3. `za/ui_colour_hsl_hue_range` **H**: The new “kind of colour” gloss needs to read as the angular hue coordinate rather than a category; the degree interval alone is not sufficient.
+4. `za/ui_colour_hsl_saturation_range` **H**: The HSL S gloss has the same thick-paint ambiguity; assess it as saturation, not coverage or opacity.
+5. `za/ui_colour_hsl_lightness_range` **H**: The added lightness expression differs from the generic brightness used in the slider help. Reconcile the accessibility and visual labels before keeping it.
+6. `za/ui_other_terms` **K**: Reads as additional terms/conditions, distinct from licence title and acknowledgement headings.
+7. `za/ui_third_party_notices` **H**: The ordinal third-person wording does not reliably establish independent third parties; verify notices wording separately from a public announcement.
+8. `za/ui_gimp_translations31` **H**: The line narrows credits to translators’ names and expresses licences as permission to use. Verify against the actual translation attribution and licence listing.
+9. `za/ui_copy_an_area_or_use_file_insert_image` **H**: Other images reads differently from the established menu wording in the longer help. The instruction should point to the exact available item.
+10. `za/ui_current_safe_budget_2f_mp` **K**: Retains current safe limit and the measured megapixel value rather than implying a permanent device maximum.
+11. `za/ui_current_safe_editing_budget_s_up_to_2f` **K**: Explicitly identifies editing RAM, keeps both formatted values and excludes additional decoder RAM from the MP estimate.
+12. `za/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **H**: Hue and saturation are recognizable as the two spectrum axes, but the right slider wording says brightness rather than distinguishing HSL lightness.
+13. `za/ui_hue_and_saturation_wheel_value_slider_on_the` **H**: The wheel is identifiable, but the right slider uses the same wording as the HSL help and does not disambiguate HSV value.
+14. `za/ui_tap_vertices_then_double_tap_the_last_vertex` **H**: Last vertex and double-tap are present; closing uses an imprecise join-the-shape expression, and both quoted controls need exact caption matches before keeping.
+15. `za/ui_vertical_letters23` **K**: Identifies characters within vertically arranged text rather than the direction of columns.
+16. `za/ui_vertical_mixed23` **H**: Retains CJK, but the upright term also reads as straight/correct in isolation; contrast with sideways must survive a short standalone caption.
+17. `za/ui_vertical_sideways23` **K**: The sideways option states that letters of each word stay joined, unlike the per-character mode.
+18. `za/ui_vertical_upright23` **H**: The upright term needs validation against the paired automatic and sideways labels; character-by-character alone does not convey orientation.
+19. `za/ui_vertical_hint23` **H**: The first sentence describes the direction of a column but not the creation of a new column for each new line; combining-mark wording also needs a clearer attestation.
+20. `za/colour20_stored_slot` **K**: Keeps slot and stored colour distinct, and makes Replace the explicit step that saves edits.
+21. `za/colour20_empty_slot` **K**: Distinguishes choosing a destination for the current colour from recalling a stored colour.
+22. `za/save20_dither` **H**: The draft describes mixing alternating colours for intermediate appearance but the term needs to distinguish dithering from blending and anti-aliasing in the save controls.
+23. `za/save20_unsupported_tagged_colour` **K**: Preserves the tagged BMP/GIF limitation and requires conversion to sRGB PNG in an editor that handles colour profiles before import.
+24. `za/ui_cursor_help31` **K**: Correct sequence: position cursor, tap the on-screen control, then drag to draw, then tap again to stop. Brush and stroke settings are not described as cursor-size controls.
+25. `za/ui_normalize_width_intro` **K**: Common width, image count, individual proportions, unchanged originals and unchanged crops are all stated.
+26. `za/ui_normalize_height_intro` **K**: Common height rather than width; keeps the individual ratio and both unchanged items.
+27. `za/commons_check_file_licence` **H**: “Name of the maker” is narrower than required attribution; page requirements can include more than a name, and “adaptation” needs less ambiguous legal wording.
+28. `za/commons_import_svg_changes` **K**: Keeps original dimensions distinct from source file identity; preserves SVG to PNG and all three literal render settings.
+29. `za/commons_import_raster_changes` **H**: The alpha description may read as an opacity-related colour operation rather than compositing onto the stated white background.
+30. `za/commons_credit_copy_failed` **H**: Wording reduces image credit to the maker’s name; this app copies a richer citation.
+31. `za/commons_credit_copy_failed_reason` **H**: Reason argument remains, but the action still names only the maker’s name instead of the whole citation.
+32. `za/commons_credit_copy_out_of_memory` **H**: Memory error is preserved but its object is still only the maker’s name, inconsistent with the actual clipboard action.
+33. `za/commons_metadata_http_error` **K**: The file-data qualifier establishes metadata in this error context; HTTP and its supplied status remain literal.
+34. `za/commons_metadata_response_too_large` **K**: Names the size of the returned Commons data, not the size of the downloaded image.
+35. `za/commons_metadata_query_failed` **K**: Failure of querying the Commons file data is distinct from an HTTP code or an oversized response.
+36. `za/commons_metadata_ambiguous_file` **K**: Makes the ambiguity about which file is identified, not the image content.
+37. `za/commons_metadata_unavailable` **K**: States that the file metadata could not be obtained, without asserting the image does not exist.
+38. `za/commons_metadata_original_mismatch` **H**: The comparison is narrowed to the artist name rather than whether the whole Commons attribution matches the selected original.
+39. `za/commons_metadata_invalid_page` **H**: The page is described as a creator-name page; that is not the full attribution record/page checked here.
+40. `za/commons_metadata_field_too_large` **H**: The constrained field is any applicable attribution text field, not just the creator-name field.
+41. `za/commons_metadata_cache_failed` **H**: “Could not save the creator’s name” leaves out the remaining stored attribution, including source/licence information.
+42. `za/commons_download_original_mismatch` **K**: Expresses that the download was redirected to a different original rather than that the selected file itself was edited.
+43. `za/commons_svg_png_encode_failed` **K**: Distinguishes the blank map and PNG encoding failure from attribution or download failures.
+44. `za/ui_assembly_decoded_output_estimated_editing_render_memory_at` **K**: Keeps assembly, decoded output, and editing/render RAM at original size as three distinct lines with the original formatter indices.
+45. `za/ui_copy_decoded_image_at_this_size_estimated_loading` **K**: Labels the copy rather than the original, keeps decoded size separate from loading/editing memory, and leaves the trailing line break.
+46. `za/ui_each_px_px_percent_is_relative_to_the` **K**: Retains each dynamic axis, pixel bounds and scaling against the current largest reference; reflow applies to placed images.
+47. `za/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **H**: The description of sampled decoding and temporary editing buffers is ambiguous, and the selected opaque background must not read as an import colour-profile property.
+48. `za/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **H**: Uses author name as the only explicit credit action; licensing boilerplate should preserve the broader requirement to credit artwork and identify modifications.
+49. `za/ui_gnu_affero_general_public_license` **K**: The local description is accompanied by the complete official GNU licence name, preserving its unambiguous identity.
+50. `za/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **K**: Separates decoded RGBA bytes/pixel from estimated editing RAM and correctly conditions the estimate on no resizing.
+51. `za/ui_crop_preview_images` **K**: Keeps preview dimensions and image count in both variants, and warns only that attachments might move when placed images are cropped.
+52. `za/formats22_page_description` **K**: Indicates choosing a single page to edit as an image; preserves file information and page count separately.
+53. `za/gallery_description` **H**: The quoted Copy credit action reads as copying the maker name even though the next clause lists fuller fields; align panel and button captions to preserve the complete citation workflow.
+54. `za/ui_normalize_width_info` **K**: States that the percentage uses the maximum current width while displaying the resulting heights separately; retains placed-image reflow.
+55. `za/ui_normalize_height_info` **K**: Uses maximum current height, not width, for the scale reference and retains the distinct output width range and reflow.
+56. `za/ui_irasutoya_help34` **H**: The threshold wording can convey “21 or more than that” but “require money” is weaker than the commercial-use payment requirement; reconcile the full source/credits route as well.
+57. `za/ui_openclipart_help34` **K**: Keeps CC0 tied to Openclipart artwork and locates Use image beside the Large PNG link; separately identifies retained source page and licence.
+58. `za/ui_assembly_position_help` **K**: Retains the top-left whole-pixel position, zero origin, unchanged other positions, later-import stacking, canvas expansion and unchanged crops/sizes.
+59. `za/ui_add_up_to_20_images_with_android_s` **H**: Remove is rendered with an apparently erroneous repetition, and Reset crop uses a caption that reads as reuse of the whole image. Verify both against the actual buttons rather than approving an otherwise largely aligned guide.
+60. `za/ui_help23` **H**: The compact guide’s reset-colour caption differs from the longer guide and the repeated Draw/Drawing label is hard to navigate. Match the guide to the shipped control captions.
+61. `za/ui_the_arrow_on_the_left_directly_below_the` **H**: The editor guide still has the flagged edge anti-aliasing versus stroke smoothing ambiguity and a rounded-radius sentence that needs to unambiguously name half the shorter side.
+62. `zgh/ui_draw_with_the_selected_brush_tip_and_size` **K**: Keeps both selected parameters: the brush tip, not a second drawing tool, and the brush size.
+63. `zgh/ui_drag_from_the_start_to_the_end_of` **K**: Specifies dragging along the line operation from the start point to the end point, with the direction in the correct order.
+64. `zgh/ui_draw_a_crisp_one_pixel_line` **H**: The 1–100 pixel adjustment is intact, but the edge adjective can read as bright/clear rather than crisp or unsmoothed; cross-check the pencil help before accepting.
+65. `zgh/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **H**: The draft keeps “any selected width,” but the same potentially brightness-related adjective could misrepresent the pencil’s crisp edges.
+66. `zgh/ui_pencil_crisp_adjustable_strokes` **H**: Identical source and draft to the other pencil description, which is appropriate for consistency; the shared edge adjective remains unresolved on this surface too.
+67. `zgh/ui_pinch_to_zoom_drag_to_pan` **K**: The two opposite finger gestures adjust zoom, and the separate drag moves the view rather than the image.
+68. `zgh/ui_tool_option` **K**: The singular option is explicitly attached to a tool, not a global preference.
+69. `zgh/ui_toolbox_and_tool_options_scroll_for_more` **H**: Tools and their options are present, but the object of the scroll verb needs to identify the tool panel rather than a generic view.
+70. `zgh/ui_cursor_ink30` **K**: The imperative names the cursor as the means of drawing, not as the thing being painted.
+71. `zgh/ui_cursor_settings31` **K**: Settings applies to the cursor-drawing mode, and the ellipsis is retained for the follow-on panel.
+72. `zgh/ui_cursor_tap_hint37` **H**: The wording follows the English instruction to tap the cursor, but adjacent help says to tap the on-screen drawing button. Verify which element receives the tap before using this hint.
+73. `zgh/ui_cursor_pan_move32` **K**: Positions the cursor with a drag and starts drawing from the named button, preserving their order.
+74. `zgh/ui_cursor_pan_draw32` **K**: States that dragging moves the cursor and draws; the subsequent tap stops drawing rather than repositioning the cursor.
+75. `zgh/ui_right_arrow_expand` **H**: The rightward direction is clear, but the arrow noun and expand action need to match the actual toolbar toggle for accessibility.
+76. `zgh/ui_add_to_custom_colours` **K**: “Your colours” cleanly identifies the user-managed set in an add-to action, not the stock palette.
+77. `zgh/ui_custom_colour` **K**: Singular personal colour caption keeps the supplied label or identifier in the intended slot.
+78. `zgh/ui_fill_text_box_with_bg_colour` **H**: The background wording needs to identify the actual background paint colour; the current compound can read as a rear auxiliary item rather than BG.
+79. `zgh/ui_copy_an_area_or_use_file_insert_image` **H**: Copy and area are distinct, but the Draw → Insert → Other images steps must match the exact three localized captions; the long guide does not settle the route.
+80. `zgh/ui_cursor_help31` **H**: The gesture sequence and brush/stroke distinction are present; the two identical menu labels leave the intended subsection ambiguous without matching the app’s labels.
+81. `zgh/ui_cursor_marker_help31` **K**: Qualifies enlargement as affecting only the marker and explicitly excludes stroke-size change.
+82. `zgh/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Keeps the opposite-corner drag and explicitly places the outline/fill choice below.
+83. `zgh/ui_drag_between_opposite_corners_to_draw_a_heart` **K**: Names a heart shape and keeps the outline/fill choice separate from drawing the bounding box.
+84. `zgh/ui_drag_between_opposite_corners_to_draw_a_five` **K**: Star and five points are both present, and the fill/outline choice is preserved.
+85. `zgh/ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Distinguishes the non-drawing pan, two-finger zoom/pan, and gesture availability while drawing.
+86. `zgh/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **H**: “Draw with water” does not reliably name the Watercolor brush; align with the existing brush caption before keeping the otherwise meaningful strength instruction.
+87. `zgh/ui_show_pixel_grid_800` **K**: A show action and lines between pixels identify what is made visible; the 800%+ threshold is preserved.
+88. `zgh/ui_hide_pixel_grid_800` **K**: Uses the opposing hide action for the same pixel lines and keeps the same threshold.
+89. `zgh/ui_added_palette23` **K**: A completed-addition message rather than an imperative; names the colour palette as the destination.
+90. `zgh/ui_replace_palette23` **K**: Makes palette fullness explicit and identifies the stored colour as the one to choose for replacement.
+91. `zgh/ui_replace_with_active23` **K**: Preserves the direction of substitution: replace using the in-use colour rather than removing it.
+92. `zgh/ui_add_active23` **K**: Adds the in-use colour rather than requesting a new unrelated colour.
+93. `zgh/ui_top` **K**: A compact top-side label without an added alignment instruction.
+94. `zgh/ui_top23` **K**: Adds the alignment meaning explicitly and chooses the top as the reference edge.
+95. `zgh/ui_bottom23` **K**: Keeps the same alignment construction but correctly selects bottom, not top.
+96. `zgh/ui_vertical_rl23` **K**: Distinguishes downward reading within a column from right-to-left progression between columns.
+97. `zgh/ui_vertical_lr23` **K**: Mirrors the paired option correctly: downward reading within a column, left-to-right progression between columns.
+98. `zgh/ui_assembly_exact_position` **K**: Describes precise location, not centre alignment or saving a preset.
+99. `zgh/ui_set_radius_px_then_drag_between_opposite_corners` **H**: The centre-to-edge paraphrase conveys radius, but the shorter-side phrase needs verification for singular agreement and unambiguous application to each rectangle.
+100. `zgh/ui_drag_a_line_then_drag_twice_to_set` **H**: The first drag and two subsequent adjustments are present; the button wording describes a non-straight line rather than clearly naming Finish curve, and should match the actual control.
