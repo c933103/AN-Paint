@@ -1,7 +1,7 @@
 # AN Paint translation handoffs
 
-Translation owns meaning, terminology, and language review. Deliver each batch as text keyed by locale/resource and pin the exact English source. Include uncertain wording and context notes explicitly. Do not wait for GitHub Actions or encode Android XML as part of writing or reviewing translations. A handoff is usable once wording is accepted, even if a previous batch is still building.
+1. **Translation authors new wording.** Work in non-overlapping portions of the existing locale assignments, using the exact English source and the locale's current terminology. Return keyed wording and flag uncertainty; a worker does not write files or change the app. The coordinator saves the wording handoff and pins the source revision. Don't delay authoring while review or CI is pending.
+2. **Editorial review assesses existing drafts.** Check meaning, natural language, spelling, and consistency with the actual controls. Record acceptance and unresolved items explicitly. Review is not new translation; editorial acceptance is not native-speaker or device verification.
+3. **Integration applies accepted wording.** Check for drift, preserve the accepted wording and Android resource contracts, and handle XML, tests, PRs, merges, and releases. Return wording problems to editorial review rather than rewriting them silently.
 
-Integration owns Android resources, escaping, placeholders in the resource file, tests, PRs, merges and releases. Take a pinned wording handoff, verify the source hasn't drifted, and preserve approved wording. Return any meaning conflict to translation rather than silently rewriting it. Track drafted, wording-accepted, merged and runtime-verified counts separately. Do not call CI or automated code review language acceptance.
-
-Existing locale assignments are unchanged. The first handoff preserves the already-drafted Chamorro wording for text, colours, image assembly and memory. The prior resource branch is an integration candidate only. This evidence branch isn't intended to merge into the app.
+Track fresh drafts, reviewed or accepted wording, merged coverage, and runtime checks separately. Invariant notation, aliases, and unchanged English do not count as new translations. CI and code review cannot confer linguistic acceptance. This evidence branch is not meant to merge into the app.
