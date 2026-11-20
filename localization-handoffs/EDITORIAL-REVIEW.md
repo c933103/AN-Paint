@@ -966,3 +966,110 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 98. `nhe/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **K**: Explicitly ties crisp edges to the pencil across all selected widths, avoiding the earlier straight-line shift.
 99. `nhe/ui_percent_of_pixels` **K**: A relational percent phrase retains the pixel quantity and original format slot.
 100. `nhe/ui_place_at_least_one_image_in_the_workspace` **K**: Explicit first action and one-or-more minimum prevent the error from being read as select exactly one.
+
+## Batch 9: Central Huasteca Nahuatl, 100 draft entries
+
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Central Huasteca Nahuatl draft positions 121–220, one-based).
+- Personal per-key wording review; relevant controls and established terminology checked against pinned locale resources at `597e644c31c450d45aa6962d89564581d4434758`. Keep remains separate from Android integration and device verification. The parallel integration assignment is frozen to batches 1–8 and does not include these decisions.
+- This batch: 80 keep, 20 hold. Running totals: 900 reviewed, 600 keep, 300 hold.
+
+1. `nhe/ui_px_drag_an_image_to_move_hold_a` **K**: Pixel dimensions and both gestures are intact; long-press thumbnail is not confused with dragging the placed image.
+2. `nhe/ui_quality` **K**: Keeps the setting's quality meaning and percent unit, with Quality as a familiar label.
+3. `nhe/ui_rendering_images` **K**: The two slots remain processed versus total, and the ellipsis marks ongoing work.
+4. `nhe/ui_right_arrow_expand` **K**: Right arrow is identified, with opening/expanding as the contrasting action.
+5. `nhe/ui_sans_condensed` **K**: Narrow lettering and absence of serifs distinguish condensed from the weight variants.
+6. `nhe/ui_sans_light` **K**: Keeps the sans category and pairs light weight with the stronger thin modifier.
+7. `nhe/ui_sans_medium` **K**: Tlahco names the middle option within the fixed sans category rather than omitting the family.
+8. `nhe/ui_sans_serif` **K**: Explicit absence of remates contrasts with the serif caption.
+9. `nhe/ui_sans_thin` **K**: The intensifier distinguishes thin from light without losing the sans modifier.
+10. `nhe/ui_serif` **K**: Positive presence of remates makes the intended contrasting font category clear.
+11. `nhe/ui_show_pixel_grid_800` **H**: The visual verb can read as look at the grid, not toggle it on; align with the inverse Hide label.
+12. `nhe/ui_shows_the_whole_assembly_image_and_output_sizes` **K**: Distinguishes viewing the whole assembly from changing input or output sizes.
+13. `nhe/ui_silver` **K**: Recognizable Plata fits the same palette family as Cobre and Oro.
+14. `nhe/ui_smallest` **K**: Comparative smallness identifies the minimum within the set rather than an absolute size.
+15. `nhe/ui_tap_an_image_thumbnail_first` **K**: The gesture specifies immediate lift and that the thumbnail is tapped first.
+16. `nhe/ui_tap_the_canvas_to_place_text_and_choose` **H**: Quen neci can mean appearance generally; name the font/typeface choice separately from its size.
+17. `nhe/ui_tap_the_image_to_sample_the_foreground_colour` **K**: Identifies image sampling with foreground terminology shared by the current palette.
+18. `nhe/ui_time_unavailable` **H**: Adds date and hour to a time-only fallback; match the actual metadata shown where this label is used.
+19. `nhe/ui_set_radius_px_then_drag_between_opposite_corners` **K**: Opposite corners and the shorter-edge half bound both survive; radius terminology matches pinned settings.
+20. `nhe/ui_some_previews_could_not_be_decoded_you_can` **H**: Recast the second remedy as trying to save, not checking whether saving is possible; keep preview failure distinct from source corruption.
+21. `nhe/ui_sort_images_by_filename_or_modification_time` **K**: File name and time of modification remain two different sorting criteria.
+22. `nhe/ui_sort_tray` **H**: Narrows tray contents to not-yet-placed images; the tray may include placed images too.
+23. `nhe/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Tap stays tied to an enclosed region, and tolerance controls which similar colours are included.
+24. `nhe/ui_tap_vertices_then_double_tap_the_last_vertex` **K**: Exact pinned Finish and Close polygon captions, double tap, and open connected segments are retained.
+25. `nhe/ui_that_arrangement_overlaps_another_image_use_a_different` **H**: Clarify that the remedy detaches placements and does not delete the attached images.
+26. `nhe/ui_the_assembly_exceeds_android_s_coordinate_range` **K**: Names the assembly and Android's coordinate limit, not a memory limit.
+27. `nhe/ui_the_assembly_needs_about_choose_a_smaller_output` **K**: The approximate requirement is separate from the remedy of selecting a smaller output.
+28. `nhe/ui_the_assembly_output_is_unavailable_reopen_image_assembly` **H**: Use the exact Image assembly caption for reopening; the second “again” could mean reopening twice rather than retrying output.
+29. `nhe/ui_the_gallery_redirected_outside_its_supported_hosts` **H**: Sending a URL can mean issuing or sharing it rather than redirecting to it; clarify the change of target.
+30. `nhe/ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Names Android's coordinate range and asks for smaller image dimensions.
+31. `nhe/ui_the_normalized_image_dimensions_are_outside_android_s` **H**: Quipano only clearly conveys exceeding an upper limit; source covers any out-of-range normalized dimension.
+32. `nhe/ui_the_online_gallery_could_not_be_loaded_check` **K**: Distinguishes failure to open/load the online gallery, connection check and retry.
+33. `nhe/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Keeps the supported Catrobat gallery boundary instead of implying the image was removed.
+34. `nhe/ui_too_many_gallery_redirects` **H**: Repeated URL sends are not necessarily redirects; use the same explicit redirect term as the unsupported-target warning.
+35. `nhe/ui_smooth_freehand_strokes` **K**: Freehand strokes are the object of smoothing, distinct from pixel-edge antialiasing.
+36. `nhe/ui_smooth_pixel_edges_anti_aliasing` **K**: Adds the visible stair-step explanation without changing the anti-aliasing control.
+37. `nhe/ui_source_code_exported_including_build_scripts_and_licence` **K**: Build scripts and licence notices stay part of the exported source package.
+38. `nhe/ui_spectrum` **K**: Colour arrangement caption works as the spectrum option beside a contrasting circular wheel.
+39. `nhe/ui_third_party_notices` **H**: The paraphrase points to people who made things; retain the breadth of third-party notices beyond maker attribution.
+40. `nhe/ui_tool_option` **K**: Option remains something the user can change on the current tool.
+41. `nhe/ui_toolbox_and_tool_options_scroll_for_more` **K**: Distinguishes toolbox and configurable controls, and the drag-for-more affordance is present.
+42. `nhe/ui_trim_from_the_original_edges_drag_the_handles` **K**: Original edges, draggable controls or typed amounts, and unchanged source files are all present.
+43. `nhe/ui_trim_in_pixels` **K**: Edge slot stays tied to a pixel removal amount rather than an absolute position.
+44. `nhe/ui_wheel` **K**: Circular colour caption is distinct from the spectrum counterpart.
+45. `nhe/ui_you_can_add_more_images_select_fewer_files` **K**: Remaining image count and choosing fewer files are both clear; no size restriction is added.
+46. `nhe/ui_agpl_licence` **K**: AGPL identifier is unchanged and the heading plainly names its licence.
+47. `nhe/ui_jpeg_xl_codec_licences` **K**: JPEG XL is tied specifically to codec licences, not the whole app's licence.
+48. `nhe/ui_an_paint_image_assembly_20_images_placed` **K**: Preserves newline, fixed capacity and separate placed count.
+49. `nhe/ui_assembly_decoded_output_estimated_editing_render_memory_at` **K**: All three slots remain distinct and the memory estimate explicitly uses original size.
+50. `nhe/ui_assembly_png` **K**: Localized basename preserves the PNG extension and remains an output filename.
+51. `nhe/ui_casual` **H**: The wording can mean familiar/ordinary writing; check that it identifies the Casual font category distinctly.
+52. `nhe/ui_copy_decoded_image_at_this_size_estimated_loading` **K**: The first line is the copy, the second decoded size and the third a load/edit RAM estimate, with all three slots and trailing newline.
+53. `nhe/ui_each_px_px_percent_is_relative_to_the` **K**: Explicit percent denominator and opposite-dimension range remain separate; placed images may move to make room.
+54. `nhe/ui_estimated_memory_current_working_budget` **K**: Distinguishes an estimate of needed RAM from currently available working RAM and keeps both slots.
+55. `nhe/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **K**: Keeps original and decoded values, fixed RGBA bytes per pixel and the no-resize RAM condition.
+56. `nhe/ui_gnu_agpl_licence` **K**: Preserves both GNU and AGPL in the licence caption.
+57. `nhe/ui_trim_in_percent` **K**: Specifies the percentage trim amount for the named edge, distinct from pixels.
+58. `nhe/ui_webp_codec_licences` **K**: WebP codec remains the subject of the licence heading.
+59. `nhe/ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: Use the exact pinned Image credits label and broader separate attribution than just another person's name.
+60. `nhe/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **K**: Includes all named memory sources and variable actual usage, plus loss of detail and opaque background/source-file safeguards.
+61. `nhe/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **H**: Preserve the credit scope beyond creator name when describing adaptations; the condition for separate terms is present.
+62. `nhe/ui_crop_preview_images` **K**: Both plural branches preserve dimensions, count and the possible movement of attached images; no guaranteed movement is added.
+63. `nhe/ui_add_palette23` **K**: Colour is added to the palette, consistent with the adjacent palette actions.
+64. `nhe/ui_added_palette23` **K**: Completed save form distinguishes the feedback from the preceding Add command.
+65. `nhe/ui_replace_palette23` **K**: Expresses a full palette and asks which entry will be replaced, not which colour to use.
+66. `nhe/ui_edit_palette23` **K**: The palette is explicitly the edit target rather than an individual selected colour.
+67. `nhe/ui_remove_palette23` **K**: Selected colour is removed from the palette, without deleting the whole palette.
+68. `nhe/ui_horizontal23` **H**: Left-to-right is narrower than horizontal orientation and could conflict with bidirectional horizontal text.
+69. `nhe/ui_vertical_rl23` **K**: Preserves top-down reading along the column separately from right-to-left column order.
+70. `nhe/ui_vertical_lr23` **K**: Preserves top-down reading and correctly reverses only column direction.
+71. `nhe/ui_vertical_letters23` **K**: Labels the behaviour of letters in vertically running text rather than document alignment.
+72. `nhe/ui_vertical_mixed23` **K**: Automatic mode keeps CJK in its existing orientation and turns other words sideways.
+73. `nhe/ui_vertical_sideways23` **H**: “Stays the same” is less specific than keeping letters joined within each word; sharpen the shaping instruction.
+74. `nhe/ui_vertical_upright23` **K**: Names non-rotation and individual character treatment, distinguishing this from sideways words.
+75. `nhe/ui_vertical_hint23` **K**: New columns, Mongolian joining, combining marks and emoji grouping survive without assuming a code point is a whole character.
+76. `nhe/ui_help23` **H**: Long help uses control paraphrases such as Navigate that need exact caption alignment; verify the image credits route against pinned labels.
+77. `nhe/ui_add_up_to_20_images_with_android_s` **H**: Align the long-press/drop instructions and the Unplace effect terminology with the actual controls; avoid implying deletion of inputs.
+78. `nhe/ui_heic_avif_codec_licences` **K**: Both HEIC and AVIF remain part of the same codec-licence heading.
+79. `nhe/colour20_custom_selected_slot` **H**: The first phrase can be read as colours you're placing; make it explicitly the saved custom-colours section.
+80. `nhe/colour20_stored_slot` **K**: Both placeholders survive and the quoted Replace action is distinct from tap to use.
+81. `nhe/colour20_empty_slot` **K**: Identifies an empty numbered slot and the tap as choosing a save destination rather than immediately overwriting.
+82. `nhe/colour20_save_slot` **K**: Pinned save verb and numbered destination match the empty-slot flow.
+83. `nhe/colour20_replace_slot` **K**: Replacement targets the identified slot and is consistent with the adjacent Replace action.
+84. `nhe/colour20_saved_slot` **K**: Completed save is clear, including colour and destination slot.
+85. `nhe/gallery_image_component_unavailable` **H**: Polihui can imply the component is missing or lost rather than temporarily unavailable; preserve the broader failure condition.
+86. `nhe/ui_lossless_format` **K**: The explicit unchanged-pixels wording expresses lossless output for the formatted codec name.
+87. `nhe/ui_image_codec_licences` **K**: Image codec licences are clear and narrower than general image rights.
+88. `nhe/formats22_base64_label` **K**: Identifies Base64 text representation rather than calling the draft a Base64 image viewer.
+89. `nhe/formats22_ascii_label` **K**: Image made of ASCII writing distinguishes the export from plain Base64 text.
+90. `nhe/formats22_tiff_compression` **K**: Retains smaller byte size, unchanged pixels and the precise Deflate method.
+91. `nhe/formats22_tiff_description` **K**: Keeps the single RGB page, reversible compression choice and unchanged pixels.
+92. `nhe/formats22_dib_description` **K**: Keeps 24-bit Windows DIB and the conditional BMP-header alternative.
+93. `nhe/formats22_dib_size_limit` **K**: The byte ceiling belongs to DIB; it is not a pixel-dimension cap.
+94. `nhe/formats22_page_description` **K**: Both metadata fields and page count follow source order; choose one page to edit as an image.
+95. `nhe/formats22_page_number` **K**: Clearly identifies a page number, not total pages or file size.
+96. `nhe/formats22_previous_page` **K**: Previous-page caption aligns with the following next-page counterpart.
+97. `nhe/formats22_next_page` **K**: Next-page caption keeps motion in the correct direction.
+98. `nhe/formats22_open_page` **K**: Open refers to the selected page, not a separate file picker.
+99. `nhe/formats22_page_preview` **K**: Uses the established preview expression and keeps the selected-page qualification.
+100. `nhe/formats22_page_range` **K**: Inclusive limits and dynamic maximum are preserved, with a clear page-number entry instruction.
