@@ -645,3 +645,110 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 98. `chr/ui_the_attachment_image_is_missing` **K**: Identifies missing attached bitmap rather than a blank target or an unplaced image.
 99. `chr/ui_the_attachment_image_is_not_placed` **K**: Uses the same placement state as the label and does not call the file missing.
 100. `chr/ui_the_first_image_starts_at_the_top_left` **K**: The first input's top-left origin is explicit without implying every image starts there.
+
+## Batch 6: Cherokee, 100 draft entries
+
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Cherokee draft positions 129–228, one-based).
+- Compared the source and candidate per key; checked recurring UI, accessibility, format and diagnostic terms against the pinned Cherokee resources at `597e644c31c450d45aa6962d89564581d4434758`. Keep means retained as reviewed draft wording; hold means revise or verify the stated concern. This is not Android integration or runtime verification.
+- This batch: 68 keep, 32 hold. Running totals: 600 reviewed, 392 keep, 208 hold.
+
+1. `chr/ui_the_gallery_download_is_too_large` **H**: Size is stated, but the wording may describe downloading a gallery or an image dimension rather than the download payload.
+2. `chr/ui_the_gallery_image_is_unavailable` **K**: Unavailability is tied to the gallery image rather than a missing local file.
+3. `chr/ui_the_gallery_redirected_outside_its_supported_hosts` **H**: Unsupported URL is named; the preceding away-to-another-URL fragment does not clearly describe a redirect.
+4. `chr/ui_the_image_could_not_be_downloaded` **K**: Keeps the failed online transfer distinct from failure to open or draw the image.
+5. `chr/ui_the_images_cannot_fit_within_android_s_coordinate` **H**: Keeps the smaller-size remedy, but the Android limit needs to name the coordinate range explicitly.
+6. `chr/ui_the_normalized_image_dimensions_are_outside_android_s` **H**: A greater-than fragment does not encompass all dimensions outside the valid range, and the slash leaves the affected axes unclear.
+7. `chr/ui_the_online_gallery_could_not_be_loaded_check` **H**: Keeps check-and-retry; the load failure reads as closing the gallery, not opening or loading it.
+8. `chr/ui_third_party_notices` **K**: The heading ties notices to other parties and does not narrow them to licences alone.
+9. `chr/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Keeps the specific Catrobat gallery boundary rather than alleging a broken image.
+10. `chr/ui_time_unavailable` **K**: Brief unavailable-time status does not substitute a date or a zero duration.
+11. `chr/ui_too_many_gallery_redirects` **H**: The doubled degree phrasing is unclear, and sending to another URL needs an explicit redirect term.
+12. `chr/ui_tool_option` **K**: Compact option caption distinguishes the selection from the tool itself.
+13. `chr/ui_toolbox_and_tool_options_scroll_for_more` **H**: The toolbox and choices are present, but the movement instruction does not unambiguously mean scroll in this panel.
+14. `chr/ui_top` **K**: Uses the same upper-side term as the pinned vertical-flip label.
+15. `chr/ui_trim_from_the_original_edges_drag_the_handles` **H**: Keep the source-file assurance; distinguish dragging the handles from general movement and state that the fields take trim amounts.
+16. `chr/ui_trim_in_pixels` **K**: Preserves the edge slot and identifies pixels as the trim unit.
+17. `chr/ui_unplace` **H**: Same removal idiom could mean deleting the image; this action only detaches its placement.
+18. `chr/ui_widths` **K**: Keeps the plural width label distinct from the pinned height wording and a width-value field.
+19. `chr/ui_you_can_add_more_images_select_fewer_files` **H**: Preserves the remaining-image count but the remedy can read as choosing smaller files rather than fewer files.
+20. `chr/ui_agpl_licence` **K**: AGPL remains identifiable and the licence term matches the pinned About caption.
+21. `chr/ui_jpeg_xl_codec_licences` **K**: Keeps both the JPEG XL component and the licence grouping.
+22. `chr/ui_gnu_agpl_licence` **K**: Retains GNU as well as AGPL without replacing the exact licence identifier.
+23. `chr/ui_preview_memory_error` **H**: Uses a preview label but shortens the explicit insufficient-memory wording used elsewhere.
+24. `chr/ui_trim_in_percent` **K**: Uses the established trim stem, retains the edge slot and distinguishes percent from pixels.
+25. `chr/ui_crop_preview_images` **H**: Both branches retain all three format slots and the newline. Clarify that cropping already placed images may move attached images, not remove them.
+26. `chr/ui_add_palette23` **K**: Reuses the pinned palette term and presents an add action.
+27. `chr/ui_added_palette23` **K**: The completed form distinguishes the confirmation from the preceding add command.
+28. `chr/ui_replace_palette23` **K**: Gives the full-palette state and instructs the user to choose a colour to replace.
+29. `chr/ui_edit_palette23` **K**: Identifies editing the palette itself rather than opening colour editing for one swatch.
+30. `chr/ui_replace_with_active23` **K**: Active colour is the replacement value, not the swatch the user needs to replace.
+31. `chr/ui_remove_palette23` **K**: Identifies removal of a colour from the palette rather than removal of the palette.
+32. `chr/ui_add_active23` **K**: Identifies the current colour and the add action, consistent with the paired replace control.
+33. `chr/ui_vertical_rl23` **K**: Separates vertical reading direction from right-to-left column order.
+34. `chr/ui_vertical_lr23` **K**: Separates vertical reading direction from left-to-right column order.
+35. `chr/ui_vertical_letters23` **K**: Identifies letter layout in vertical text rather than ordering the columns again.
+36. `chr/ui_vertical_mixed23` **H**: The upper-side and sideways terms need a clearer orientation contrast; confirm the automatic mode denotes upright glyphs, not a top position.
+37. `chr/ui_vertical_sideways23` **K**: The sideways option retains the condition that words stay joined.
+38. `chr/ui_vertical_upright23` **H**: Character-by-character is clear but the pinned upper-side term does not by itself establish upright glyph orientation.
+39. `chr/ui_top23` **K**: Pinned alignment term and upper-side value match the intended pair.
+40. `chr/ui_bottom23` **K**: Pinned alignment term and lower-side value match the intended pair.
+41. `chr/ui_webp_codec_licences` **K**: Names WebP and its codec licences rather than the project licence.
+42. `chr/ui_heic_avif_codec_licences` **K**: Keeps both HEIC and AVIF in the same licence grouping.
+43. `chr/colour20_custom_selected_slot` **K**: Custom colours follow pinned colour-tab wording; the selected numbered slot remains obvious.
+44. `chr/colour20_stored_slot` **K**: Retains both slots and the distinction between tap to use and Replace to save; the quoted caption matches the replace verb.
+45. `chr/colour20_empty_slot` **K**: The empty numbered slot and tap-to-select destination are distinct from an immediate save.
+46. `chr/colour20_save_slot` **K**: Numbered destination and save action match the empty-slot workflow.
+47. `chr/colour20_replace_slot` **K**: Numbered slot and replace action match the action named in the help.
+48. `chr/colour20_saved_slot` **K**: Completed save form and destination slot remain visible.
+49. `chr/gallery_image_component_unavailable` **K**: Identifies a required image component and the resulting unsuccessful import.
+50. `chr/ui_lossless_format` **H**: The negative phrase needs to name no loss of image data or quality, not simply an absence or non-missing state.
+51. `chr/ui_save_as_webp` **K**: Save command and explicit WebP destination retain an ellipsis for the next step.
+52. `chr/ui_save_as_heic` **K**: Save command and explicit HEIC destination retain an ellipsis for the next step.
+53. `chr/ui_save_as_avif` **K**: Save command and explicit AVIF destination retain an ellipsis for the next step.
+54. `chr/ui_image_codec_licences` **K**: Identifies image codecs as the subjects of the licences.
+55. `chr/formats22_base64_label` **H**: The generic reading/text term needs to distinguish Base64 text output from an image preview or decode step.
+56. `chr/formats22_ascii_label` **K**: ASCII plus the picture term conveys a text picture within the established ASCII format family.
+57. `chr/formats22_tiff_compression` **H**: The pinned bitmap term is not clear as an action of compression; confirm lossless plus compression rather than just non-missing bitmap data.
+58. `chr/formats22_dib_size_limit` **K**: Correct greater-than relation is paired with the DIB file limit, not the PDF cap.
+59. `chr/formats22_select_page` **K**: Direct page choice is appropriate before the numbered picker.
+60. `chr/formats22_page_description` **K**: Retains filename, second metadata slot and page count on their respective lines, plus choice of one page for image editing.
+61. `chr/formats22_page_number` **K**: Page term plus number matches the picker range and avoids confusing page index with file size.
+62. `chr/formats22_previous_page` **K**: Paired wording clearly marks the preceding page.
+63. `chr/formats22_next_page` **K**: Paired wording clearly marks the page that follows.
+64. `chr/formats22_open_page` **K**: Same page stem as the adjacent picker controls plus the established Open verb.
+65. `chr/formats22_page_preview` **K**: Selection and preview are both present; does not label the open action.
+66. `chr/formats22_page_range` **K**: Inclusive 1–maximum range and numeric entry action remain explicit.
+67. `chr/formats22_loading_page` **K**: Current and total page slots plus in-progress preview are distinct from loading the whole document.
+68. `chr/formats22_page_dimensions` **K**: Page pair precedes the width-by-height pair and the pinned pixel unit.
+69. `chr/formats22_preview_unavailable` **K**: Preview unavailable is distinct from loading or failed opening; preserves the diagnostic slot.
+70. `chr/formats22_preview_memory` **H**: Use pinned insufficient-memory phrasing, and state that smaller dimensions are offered when opening if possible rather than guaranteed or automatically applied.
+71. `chr/formats22_pdf_invalid` **H**: Distinguish unreadable file from unsupported features, and make the dependency on this Android version explicit.
+72. `chr/formats22_pdf_file_size` **K**: Both constraints are present: nonempty PDF and an inclusive 512 MiB ceiling.
+73. `chr/formats22_pdf_page_count` **K**: Inclusive page-count range preserves the dynamic maximum.
+74. `chr/formats22_pdf_page_index` **H**: The invalid selection is present but drops the now/no-longer distinction and should explicitly tell the user to select from this same document.
+75. `chr/formats22_pdf_dimensions` **H**: The connective reads as and; the warning must cover invalid dimensions or excessive size independently.
+76. `chr/formats22_pdf_crop` **K**: Retains the rectangle, nonempty constraint and confinement to the selected page.
+77. `chr/formats22_pdf_memory` **K**: PDF-to-image action is explicit and is compared with available image memory, not the file-size limit.
+78. `chr/formats22_ascii_columns` **K**: Uses the pinned width term and specifies characters rather than pixels.
+79. `chr/formats22_ascii_invert` **H**: Replacement wording does not unambiguously describe a two-way light/dark inversion rather than editing the glyphs.
+80. `chr/formats22_text_not_image` **K**: Preserves the supported-image qualifier in the Base64 diagnostic.
+81. `chr/gallery_copy_credit` **H**: Review the action against the pinned Copy caption and use a credit term identical to the credit confirmation.
+82. `chr/gallery_edit_credits` **H**: Author-only wording is narrower than editable attribution text, which can also include source and licence.
+83. `chr/gallery_credit_copied` **H**: The parenthetical save term can turn a clipboard confirmation into a file-save confirmation; align it to Copy.
+84. `chr/gallery_credit_title` **K**: Identifies the artwork and retains the name slot.
+85. `chr/gallery_credit_publisher` **K**: Distinguishes publisher from artwork and keeps the Catrobat project name.
+86. `chr/gallery_credit_gallery` **K**: Reuses the gallery noun in the adjacent gallery warnings and leaves the source name slot intact.
+87. `chr/gallery_credit_licence` **K**: Keeps original Catrobat artwork, exact licence identifier and linked value together.
+88. `chr/gallery_credit_saved` **H**: Broaden beyond author text so this confirms saving the entire attribution field.
+89. `chr/formats22_ico_size` **H**: The icon noun is the same stem used for bitmap elsewhere; distinguish an icon choice explicitly.
+90. `chr/formats22_ico_decode_budget` **H**: Decoding needs to name the icon rather than a generic bitmap as the source of this memory check.
+91. `chr/formats22_ico_invalid_size` **H**: The literal size list is correct; resolve the icon-vs-bitmap label consistently with the size picker first.
+92. `chr/save20_bmp_size_limit` **K**: Names BMP and points to its file-size limit rather than a per-axis limit.
+93. `chr/save20_gif_size_limit` **K**: Width and height are explicitly subject to the same inclusive 65,535-pixel limit.
+94. `chr/ui_pencil_crisp_adjustable_strokes` **K**: Pencil is distinguished by crisp edges and the caption keeps the any-selected-width qualification.
+95. `chr/ui_cursor_ink30` **K**: Exact match to pinned cursor-drawing feature caption, rather than the brush-only action.
+96. `chr/ui_cursor_help31` **H**: The staged gestures remain, but the Drawing submenu caption does not match pinned ui_drawing23; verify the actual submenu path and use exact labels.
+97. `chr/ui_cursor_settings31` **K**: Extends the pinned cursor-drawing caption with settings and preserves the dialog ellipsis.
+98. `chr/ui_cursor_marker_help31` **H**: It says cursor size and stroke size; specify the visible cursor marker itself, not pointer movement or the actual drawing region.
+99. `chr/ui_gimp_translations31` **K**: Retains translations, credits and licences as distinct concepts, consistent with the pinned About grouping.
+100. `chr/ui_cursor_pan_draw32` **H**: The first directional movement verb also appears in removal contexts; clarify that dragging repositions the cursor while painting and the second tap stops drawing.
