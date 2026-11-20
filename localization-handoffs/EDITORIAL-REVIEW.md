@@ -326,3 +326,108 @@ Personally compared 61 remaining Standard Zhuang (`za`) draft keys and the first
 98. `zgh/ui_assembly_exact_position` **K**: Describes precise location, not centre alignment or saving a preset.
 99. `zgh/ui_set_radius_px_then_drag_between_opposite_corners` **H**: The centre-to-edge paraphrase conveys radius, but the shorter-side phrase needs verification for singular agreement and unambiguous application to each rectangle.
 100. `zgh/ui_drag_a_line_then_drag_twice_to_set` **H**: The first drag and two subsequent adjustments are present; the button wording describes a non-straight line rather than clearly naming Finish curve, and should match the actual control.
+
+## Independent wording review: batch 3 (100 `zgh` draft keys)
+
+Personally reviewed the next 100 distinct Standard Moroccan Tamazight draft keys against their source in `remaining-translations.json`, blob `4ec048d12a74dd312d9dfd99801b5fd0a403f053`, and used [the pinned locale catalogue](https://github.com/c933103/AN-Paint/blob/597e644c31c450d45aa6962d89564581d4434758/Paintroid/src/main/res/values-b%2Bzgh/strings.xml) for related existing labels. No revisits or structural-only checks counted in the batch. K = keep at this editorial pass, not native-speaker certification; H = hold for the stated reason. **70 keep, 30 hold. Running total: 300 reviewed, 196 keep, 104 hold.** No authoring, Android integration, metadata changes or device verification.
+
+1. `zgh/ui_corners_and_edges_resize_round_handle_rotates` **K**: Distinguishes the corner/edge resizing controls from the round rotation handle.
+2. `zgh/ui_vertical_letters23` **K**: Says letters within top-to-bottom text, not the direction in which the columns advance.
+3. `zgh/colour20_save_slot` **K**: Names the numbered destination slot and uses the save action, not the replace action.
+4. `zgh/colour20_replace_slot` **K**: Names the numbered slot as the replacement target, consistent with the stored-slot explanation.
+5. `zgh/colour20_saved_slot` **K**: Completed action: the colour has been saved in the numbered position, not merely selected.
+6. `zgh/ui_percent_of_pixels` **K**: Expresses percent of the supplied reference pixel count; the unit applies to the reference and not to the percentage itself.
+7. `zgh/ui_common_in` **H**: The singular “one” construction may not express a shared target for all images, and the dynamic width/height label may require different agreement.
+8. `zgh/ui_common_in_pixels` **H**: Shares the ambiguity of one versus common with the unit-parameter variant; the pixels unit itself is clear.
+9. `zgh/commons_check_file_licence` **H**: The attribution phrase still directs the reader mainly to what to say about the author, not to every required credit item. The adaptation term also needs a clearer licence-context reading.
+10. `zgh/ui_an_image_cannot_attach_to_itself_or_one` **K**: Retains both prohibited targets: the image itself and an image already attached to it.
+11. `zgh/ui_casual` **K**: The typography label describes everyday/casual lettering rather than an editing mode.
+12. `zgh/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: The online Catrobat gallery and its credited artists remain separate, and neither is recast as the other.
+13. `zgh/ui_catrobat_sticker_gallery` **H**: The modifier for sticker images needs verification; the wording can suggest pasted images rather than a sticker-art gallery.
+14. `zgh/ui_copper` **K**: Names copper as the swatch material/colour, which distinguishes it from gold and silver.
+15. `zgh/ui_could_not_export_source_code` **K**: The action that failed is source-code export, rather than opening or downloading source.
+16. `zgh/ui_could_not_load_gallery_image` **H**: The placeholder is intact and the source is the gallery, but the verb can imply fetching rather than loading; distinguish this from the separate download-failure string.
+17. `zgh/ui_credits_terms` **H**: The heading identifies creators and terms, not the attribution and terms records presented on this surface.
+18. `zgh/ui_current_safe_budget_2f_mp` **K**: Uses the current safe RAM-derived budget and retains the MP estimate; it does not present the figure as a permanent device limit.
+19. `zgh/ui_current_safe_editing_budget_s_up_to_2f` **K**: Preserves both quantities and the exclusion of additional decoder RAM from the megapixel estimate.
+20. `zgh/ui_cursive` **K**: “Joined writing” is a useful description of the cursive style in this short menu label.
+21. `zgh/ui_custom_colours_hold_a_swatch_to_replace_it` **H**: Tap followed by hold can read as two gestures. The instruction should indicate a single long press on the swatch, not on the whole palette.
+22. `zgh/ui_downloading_image` **H**: The download noun differs from the verb used by the gallery error group; verify the intended transfer direction across in-progress and failure messages.
+23. `zgh/ui_drag_a_selection_drag_inside_to_move_square` **K**: Retains move, resize and rotate independently, and conditions shape preservation on the proportions lock.
+24. `zgh/ui_drag_across_the_ellipse_s_bounding_box` **K**: Identifies opposite corners of the enclosing rectangle and uses the existing ellipse caption rather than a generic shape.
+25. `zgh/ui_drag_from_the_tail_towards_the_arrowhead_choose` **H**: The head and arrow name are recognizable, but the word for the tail needs validation in the directional pair before this instruction is used.
+26. `zgh/ui_drag_out_to_expand_in_to_trim_drag` **H**: Expand, trim, move and Fit are distinct, but the trailing BG wording needs resolution against the actual colour control.
+27. `zgh/ui_drag_to_erase_with_the_background_colour` **H**: The instruction should plainly say which paint colour the eraser applies; keep in sync with the BG terminology hold rather than approving the same ambiguous compound.
+28. `zgh/ui_draw_around_an_area_drag_inside_to_move` **H**: The freehand outline and its handles are clear; the quoted commit control can read as shutting off selection. Verify the control caption and applying the edit.
+29. `zgh/ui_drop_at_a_highlighted_edge_right_top_aligned` **K**: Expresses drop onto the highlighted edge with the correct right/top and below/left combinations.
+30. `zgh/ui_export_this_version_s_source_code` **K**: Explicitly exports the source code of the current version and retains the ellipsis for the follow-on action.
+31. `zgh/ui_gallery_image` **K**: Distinguishes an image sourced from the gallery from a heading or source credit.
+32. `zgh/ui_give_all_images_the_same_each_image_keeps` **K**: Retains all-image scope, adjustable common dimension, individual aspect ratio, unchanged originals and unchanged crops; positional placeholders are intentionally reordered.
+33. `zgh/ui_gnu_affero_general_public_license` **K**: The localized full title retains General/Public and the GNU Affero proper name.
+34. `zgh/ui_hold_or_drag_to_spray_colour` **K**: Indicates holding or dragging produces a spray of coloured droplets, keeping the gesture separate from a normal brush pass.
+35. `zgh/ui_honeycomb` **K**: Uses the palette context and six-sided grouping to identify the honeycomb design rather than literal honey.
+36. `zgh/ui_honeycomb_colour_06x` **K**: Ties the sample to the honeycomb and leaves the hex formatter and leading number sign intact.
+37. `zgh/ui_icons_artwork` **K**: Keeps icons and artwork as two asset categories in this short heading.
+38. `zgh/ui_icons_fonts_artwork_credits` **H**: The opener says creators of icons/fonts/artwork, narrower than the credits dossier. Coordinate with the full attribution terminology.
+39. `zgh/ui_image_credits` **K**: Describes image credit as source, creator and rights data rather than a maker-name field alone.
+40. `zgh/ui_insert_gallery_image` **K**: Preserves the confirmation question and the direction of insertion from the gallery into the app.
+41. `zgh/ui_invalid_image_attachments` **K**: The invalidity applies to linked/attached images rather than the entire workspace or merely image format.
+42. `zgh/ui_modified_newest_first` **K**: Modification time rather than creation time; the most recent entries are first.
+43. `zgh/ui_modified_oldest_first` **K**: The paired wording reverses the order to oldest first while keeping modification time as the criterion.
+44. `zgh/ui_monospace` **K**: Says one width for each character, identifying fixed character advances without conflating this with font weight.
+45. `zgh/ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Identifies the current positional bounds rather than a missing file, and proposes smaller image sizes.
+46. `zgh/ui_no_gallery_images_have_been_inserted` **K**: Expresses absence of credit text, not that no images are loaded; follows the current English source rather than the legacy resource name.
+47. `zgh/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: Names safe RAM shortage for inspecting the gallery image, distinct from download or decoding-format errors.
+48. `zgh/ui_open_source_credits_and_notices` **H**: The wording references open-source programs and notices, but the credit element again reads as people rather than acknowledgement records; verify this phrase for dependencies as a whole.
+49. `zgh/ui_same` **H**: “One %1$s” can read as a count rather than equal values across images; grammar also depends on the inserted axis.
+50. `zgh/ui_smooth_freehand_strokes` **K**: Specifies smoothing the paths drawn by hand, distinct from edge treatment at the pixel level.
+51. `zgh/ui_smooth_pixel_edges_anti_aliasing` **K**: Names pixel edges explicitly and distinguishes that operation from the separate freehand stroke smoothing option.
+52. `zgh/ui_some_previews_could_not_be_decoded_you_can` **H**: “Could not convert to pixels” conveys a decoding idea but may read as a resize or effects operation. Clarify that preview decoding failed while saving is still an option.
+53. `zgh/ui_sort_images_by_filename_or_modification_time` **K**: Both ordering criteria are explicit, and the object is the images rather than the filesystem.
+54. `zgh/ui_sort_tray` **H**: Says to order small images; it should identify the tray/thumbnails being sorted rather than suggesting a size-based filter.
+55. `zgh/ui_source_code_exported_including_build_scripts_and_licence` **K**: Completion is explicit, and the exported contents still include build-related files and licence notices.
+56. `zgh/ui_strikethrough` **K**: The line goes across the middle of the text rather than beneath it.
+57. `zgh/ui_that_arrangement_overlaps_another_image_use_a_different` **K**: Preserves overlap with another image and gives both alternatives. Returning attachments to the tray is distinct from deleting them.
+58. `zgh/ui_the_attachment_image_is_missing` **K**: Identifies the missing image as the attachment, not the parent or a failed attachment operation.
+59. `zgh/ui_the_first_image_starts_at_the_top_left` **K**: Locates the first image at the upper left rather than merely saying it goes at the top.
+60. `zgh/ui_the_gallery_download_is_too_large` **H**: The size condition is clear, but the draft says file of the image page rather than the gallery download; check the transfer verb with the paired errors.
+61. `zgh/ui_the_gallery_image_is_unavailable` **H**: Says the image is not present on the gallery site; the source only says it is unavailable, which may be temporary.
+62. `zgh/ui_the_gallery_redirected_outside_its_supported_hosts` **K**: Retains the image URL and unsupported condition without implying the whole gallery site is unsupported.
+63. `zgh/ui_the_image_could_not_be_downloaded` **K**: Says the app could not download the image and does not speculate about size or network cause.
+64. `zgh/ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Preserves both Android coordinate axes and the corrective advice to select smaller dimensions.
+65. `zgh/ui_the_normalized_image_dimensions_are_outside_android_s` **K**: Attributes the error to the normalized dimensions being outside Android limits, not to the original files.
+66. `zgh/ui_the_online_gallery_could_not_be_loaded_check` **K**: Retains the online gallery, the retry suggestion and connection check, without diagnosing a specific cause.
+67. `zgh/ui_third_party_notices` **H**: The notice noun is plausible but “other people” is narrower than third-party organizations and components in the licences panel.
+68. `zgh/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Retains Catrobat as the source boundary and limits the error to the supported gallery.
+69. `zgh/ui_time_unavailable` **H**: The word for generic time should be aligned with the modification timestamp wording in the adjacent sort labels so this is not read as a duration.
+70. `zgh/ui_too_many_gallery_redirects` **K**: Says the gallery moved to another URL too many times, distinguishing excessive redirection from a single unsupported URL.
+71. `zgh/ui_unplace` **K**: Specifies returning a placed image to the tray, without implying input removal or erasure.
+72. `zgh/ui_you_can_add_more_images_select_fewer_files` **K**: Retains the remaining capacity, placeholder and instruction to select fewer files, not to delete existing ones.
+73. `zgh/ui_preview_memory_error` **K**: The supplied item remains attached to its own preview-memory failure.
+74. `zgh/ui_sans_condensed` **H**: The sans qualifier is distinct, but the width adjective needs an attestation for condensed lettering rather than thickness or brevity.
+75. `zgh/ui_sans_light` **H**: The adjective can read as thin; establish a consistent light-versus-thin weight distinction without implying narrower glyphs.
+76. `zgh/ui_sans_medium` **H**: “Middle” has a meaning in the weight selector, but the label should distinguish medium weight from centred alignment or medium size.
+77. `zgh/ui_sans_serif` **H**: Establish that the missing marks are specifically stroke-end serifs, not any letter-edge or diacritic marks; keep consistent with Serif.
+78. `zgh/ui_sans_thin` **H**: Strengthening the “light/thin” adjective with “very” distinguishes intensity but does not by itself validate the two distinct weight labels.
+79. `zgh/ui_serif` **H**: The wording mentions edge marks but does not clearly limit them to stroke terminals, risking confusion with diacritics.
+80. `zgh/ui_tap_vertices_then_double_tap_the_last_vertex` **H**: The double tap and last vertex are explicit; the final command reads as not using Close polygon rather than switching it off. Check the actual switch caption.
+81. `zgh/ui_wheel` **H**: The expression can denote a ball or sphere of colours rather than the flat colour wheel; distinguish it from the spectrum panel.
+82. `zgh/ui_horizontal23` **H**: The noun appears to describe an operation/positioning; verify that this label simply sets horizontal text direction and does not imply centring.
+83. `zgh/ui_vertical_mixed23` **K**: Retains automatic selection, upright CJK and sideways words as two different orientation rules.
+84. `zgh/ui_vertical_sideways23` **K**: Preserves the connection within each word rather than merely rotating the letters individually.
+85. `zgh/ui_vertical_upright23` **K**: Explicitly labels upright mode and distinguishes its character-by-character behaviour from sideways words.
+86. `zgh/ui_vertical_hint23` **K**: Distinguishes new columns at line breaks, preservation of joining (including Mongolian), and combining-mark/emoji grouping in upright mode.
+87. `zgh/colour20_custom_selected_slot` **K**: The selected slot number is spoken explicitly, not implied to be saved or overwritten.
+88. `zgh/colour20_stored_slot` **K**: Tap-to-use and change-then-replace are separate; the second placeholder identifies the stored colour.
+89. `zgh/colour20_empty_slot` **K**: Names the empty numbered slot and says the tap chooses where the current colour is saved.
+90. `zgh/ui_lossless_format` **K**: Names absence of data loss without implying uncompressed output; keeps the format argument.
+91. `zgh/formats22_dib_size_limit` **K**: Identifies a DIB file-size maximum, not conflicting canvas dimensions or a generic save error.
+92. `zgh/formats22_page_preview` **K**: Specifies a preview of the chosen page rather than a page number, canvas or entire document.
+93. `zgh/formats22_loading_page` **K**: Retains current/total page numbers in correct positions and identifies preview loading.
+94. `zgh/formats22_preview_unavailable` **K**: Preview is unavailable, but the reason placeholder is preserved and there is no false claim the page is missing.
+95. `zgh/formats22_preview_memory` **K**: Names preview memory and makes smaller dimensions conditional on opening the page and availability.
+96. `zgh/formats22_text_not_image` **K**: The negative condition is on supported image content within Base64 text, not a claim that Base64 itself is unsupported.
+97. `zgh/gallery_copy_credit` **K**: Uses a source/artist/rights bundle as the copy object, not only the artist’s name; consistent with the credit heading.
+98. `zgh/gallery_edit_credits` **K**: Uses the same bundle with an edit action rather than copying or replacing the image.
+99. `zgh/gallery_credit_copied` **K**: Completed copy of the same attribution bundle, not an imperative or a claim the image was copied.
+100. `zgh/gallery_credit_title` **K**: Retains an artwork/image label and the dynamic title argument without recasting it as the creator field.
