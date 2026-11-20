@@ -44,11 +44,11 @@ class CommonsImportChangeTranslationTest {
     }
 
     @Test fun selectedLocaleSuppliesWholeMessagesWithExactTechnicalLiterals() {
-        for(tag in listOf("en-US","fr","ja","bn","cy","wo","se","shn","yua")) withLanguage(tag) {
+        for(tag in listOf("en-US","fr","ja","bn","cy","wo","se","shn","yua","zgh")) withLanguage(tag) {
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
             val notes=PaintApplication.currentResources.getString(R.string.commons_import_svg_changes) to
                 PaintApplication.currentResources.getString(R.string.commons_import_raster_changes)
-            if(tag in listOf("cy","wo","se","shn","yua")) {
+            if(tag in listOf("cy","wo","se","shn","yua","zgh")) {
                 val english=PriorityWordingExpectations.resources("en-GB")
                 assertNotEquals(english.getString(R.string.commons_import_svg_changes),notes.first)
                 assertNotEquals(english.getString(R.string.commons_import_raster_changes),notes.second)
@@ -79,12 +79,12 @@ class CommonsImportChangeTranslationTest {
         }
     }
 
-    @Test fun absentUnscopedCatalogueUsesRealEnglishFallback() {
+    @Test fun absentImportNotesUseRealEnglishFallback() {
         // Compare the selected fallback with current source resources, not a frozen caption.
         val english=PriorityWordingExpectations.resources("en-GB")
         val englishSvg=english.getString(R.string.commons_import_svg_changes)
         val englishRaster=english.getString(R.string.commons_import_raster_changes)
-        for(tag in listOf("zgh","nv","tdd")) withLanguage(tag) {
+        for(tag in listOf("nch","nv","tdd")) withLanguage(tag) {
             assertEquals(englishSvg,PaintApplication.currentResources.getString(R.string.commons_import_svg_changes))
             assertEquals(englishRaster,PaintApplication.currentResources.getString(R.string.commons_import_raster_changes))
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
