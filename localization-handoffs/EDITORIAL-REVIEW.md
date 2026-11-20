@@ -859,3 +859,110 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 98. `nhe/ui_cursor_tap_hint37` **K**: Directly names the cursor as the toggle target and pairs start with stop.
 99. `nhe/ui_the_first_image_starts_at_the_top_left` **H**: The origin sounds like a top edge only; retain both top and left explicitly.
 100. `nhe/ui_create_output` **K**: Output is described as the image to create, not an instruction to save or export it.
+
+## Batch 8: Central Huasteca Nahuatl, 100 draft entries
+
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Central Huasteca Nahuatl draft positions 21–120, one-based).
+- Reviewed each candidate and source. Checked established locale terminology and UI captions against `597e644c31c450d45aa6962d89564581d4434758`. Keep is a draft editorial decision only, not integration or a device check.
+- This batch: 79 keep, 21 hold. Running totals: 800 reviewed, 520 keep, 280 hold.
+
+1. `nhe/ui_drag_to_erase_with_the_background_colour` **K**: The drag action and erasing with the background colour are both explicit; iica matches the pinned background terminology.
+2. `nhe/ui_fill_text_box_with_bg_colour` **H**: Pinned wording distinguishes text from its area, but “where text is” does not establish the box or all of its fill.
+3. `nhe/ui_hold_or_drag_to_spray_colour` **K**: Retains a sustained press or drag and uses the air metaphor to distinguish spraying from regular brush strokes.
+4. `nhe/ui_magnified_preview` **H**: Reads as an instruction to show something larger; use a preview noun or a caption consistent with pinned Preview for the tool opening.
+5. `nhe/ui_magnified_preview_ea9209` **H**: The no-ellipsis label has the same command-vs-preview ambiguity; keep the paired form consistent after revision.
+6. `nhe/ui_not_placed` **H**: This reads as not yet placed; the standalone state should also apply to something unplaced after having been placed.
+7. `nhe/ui_placed` **K**: The completed form gives a placement state rather than a place command.
+8. `nhe/ui_unplace` **H**: Remove from where it is may sound like deleting or moving the image; explicitly keep the input and remove only its placement.
+9. `nhe/ui_restore_original_sizes` **K**: Restores the prior dimensions of each image instead of imposing a common dimension.
+10. `nhe/ui_pinch_to_zoom_drag_to_pan` **K**: Identifies a two-finger gesture separately from moving the view and does not mention drawing.
+11. `nhe/ui_tap_a_pixel` **K**: A single pixel is the direct tap target; the existing gesture verb is not paired with a hold here.
+12. `nhe/ui_the_gallery_download_is_too_large` **H**: General “what is taken” does not identify the gallery download payload and may instead mean image size.
+13. `nhe/ui_replace_with_active23` **K**: Treats the active colour as the replacement value, not the swatch being replaced.
+14. `nhe/ui_add_active23` **K**: Identifies the current colour as the item to add, mirroring the previous control.
+15. `nhe/ui_top23` **K**: Marks upper alignment, paired with the lower alternative.
+16. `nhe/ui_bottom23` **K**: Marks lower alignment, distinct from the top anchor and sorting.
+17. `nhe/ui_assembly_target_x` **K**: X is measured in pixels from the left, consistent with the position controls.
+18. `nhe/ui_assembly_target_y` **K**: Y is measured in pixels from the top, retaining the correct axis origin.
+19. `nhe/ui_assembly_exact_position` **K**: Refers to an exact location rather than snapping or alignment.
+20. `nhe/commons_blank_maps` **H**: “Without writing” can imply only unlabelled text; verify that the map term covers blank outlines rather than an empty map or zero text.
+21. `nhe/commons_check_file_licence` **K**: Preserves per-file Commons checks, creator, licence, required credit and the possibility of adaptation.
+22. `nhe/ui_about_copyright` **K**: Identifies the app's About information plus copyright, distinct from the full three-part heading.
+23. `nhe/ui_about_copyright_licence` **K**: Preserves copyright and licence as distinct concepts in the About heading.
+24. `nhe/ui_add_images_then_drag_a_thumbnail_here` **K**: Explicitly adds images before a miniature is dragged into this position.
+25. `nhe/ui_add_to_custom_colours` **K**: Identifies the saved custom-colour area as the destination, not a generic colour picker.
+26. `nhe/ui_an_image_cannot_attach_to_itself_or_one` **K**: Specifies both prohibited targets, the image itself and one already attached to it.
+27. `nhe/ui_batch_crop` **H**: Wording can mean keep a single shared region in all images; batch crop applies margins to multiple images, not necessarily one identical pixel box.
+28. `nhe/ui_batch_crop_images` **H**: Same shared-region ambiguity as the short Batch crop label; keep the multiple-image action explicit.
+29. `nhe/ui_by_pixels_hold_and_drag_to_place` **K**: Both text slots and the two dimensions are intact; finger-down pause and drag remain separate.
+30. `nhe/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: Retains the online venue and named creators rather than attributing all art to Catrobat alone.
+31. `nhe/ui_catrobat_sticker_gallery` **K**: Sticker-specific wording distinguishes this entry from a generic Catrobat gallery and keeps the ellipsis.
+32. `nhe/ui_common_in` **K**: Keeps the variable dimension and unit in separate format slots; san se expresses common.
+33. `nhe/ui_common_in_pixels` **K**: Keeps the variable dimension and explicit pixel unit, consistent with the unit-variable companion.
+34. `nhe/ui_copper` **K**: Cobre is the recognizable copper palette colour and pairs with the metal names.
+35. `nhe/ui_corners_and_edges_resize_round_handle_rotates` **K**: Distinct square corners/edges and round handle are correctly assigned to resize and rotation.
+36. `nhe/ui_could_not_decode_the_cropped_region_of` **H**: Generic read does not distinguish decoding from file access; keep the selected cropped region and identify decode failure.
+37. `nhe/ui_could_not_export_source_code` **K**: Source code is expressly the target and the extraction action matches export, not opening or printing it.
+38. `nhe/ui_credits_terms` **H**: Authorship alone is narrower than credits, which also contain attribution and source information; do not collapse that distinction.
+39. `nhe/ui_cropped_thumbnail` **K**: A cropped miniature, not a full preview; diagnostic/name slot is preserved.
+40. `nhe/ui_current_safe_budget_2f_mp` **K**: Gives the current usable megapixel ceiling and preserves the decimal precision token.
+41. `nhe/ui_current_safe_editing_budget_s_up_to_2f` **K**: Keeps memory and MP slots separate and notes exclusion of additional decoding memory.
+42. `nhe/ui_cursive` **K**: Recognizable Cursiva names the font category rather than instructing the user to italicize.
+43. `nhe/ui_custom_colour` **K**: The colour identifier remains attached to the user-selected custom colour.
+44. `nhe/ui_custom_colours_hold_a_swatch_to_replace_it` **K**: Sustained finger contact on a colour entry is distinct from a tap, and replacement is the outcome.
+45. `nhe/ui_drag_a_line_then_drag_twice_to_set` **K**: Retains two bend-setting drags and uses the exact pinned Finish curve caption for early commitment.
+46. `nhe/ui_drag_a_selection_drag_inside_to_move_square` **K**: Distinguishes draw, drag, resize and rotate; the lock wording expresses a relation between width and height.
+47. `nhe/ui_drag_across_the_ellipse_s_bounding_box` **H**: The second corner appears but the initial opposite corner is implicit; define the drag across the bounding rectangle.
+48. `nhe/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Both opposing corners and the outline-or-interior choice are visible.
+49. `nhe/ui_drag_between_opposite_corners_to_draw_a_five` **K**: Retains the five points plus the same two fill modes and corner-to-corner gesture.
+50. `nhe/ui_drag_between_opposite_corners_to_draw_a_heart` **K**: Identifies the heart independently while matching the star's gesture and outline/fill choices.
+51. `nhe/ui_drag_from_the_start_to_the_end_of` **K**: Keeps the drawing start and end distinct without assigning a particular slope.
+52. `nhe/ui_drag_from_the_tail_towards_the_arrowhead_choose` **K**: Arrow tail and head set direction; the outline/fill decision is separate.
+53. `nhe/ui_drag_out_to_expand_in_to_trim_drag` **K**: Four operations remain distinct, and the new space is filled by background colour, not a foreground swatch.
+54. `nhe/ui_drag_placed_images_to_move_them_hold_and` **K**: Keeps movement of a placed image distinct from the long-press-and-drag used to add a new thumbnail.
+55. `nhe/ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Single drag explicitly does not draw; the two-finger gesture works even when a drawing tool is selected.
+56. `nhe/ui_draw_a_crisp_one_pixel_line` **H**: Melahuac can make crisp read as straight, losing sharp edges even though the numeric width range is right.
+57. `nhe/ui_draw_around_an_area_drag_inside_to_move` **K**: The freeform outline and the three subsequent manipulations remain separate; the caption names committing the selection.
+58. `nhe/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **K**: The water-and-colour description preserves soft strokes, and the strength parameter affects blending.
+59. `nhe/ui_draw_with_the_selected_brush_tip_and_size` **K**: Brush tip and size are explicitly the two chosen settings.
+60. `nhe/ui_drop_at_a_highlighted_edge_right_top_aligned` **K**: Distinct highlighted drop target and right/top versus below/left snap options are preserved.
+61. `nhe/ui_enable_android_s_files_or_documents_app_then` **K**: Both exact Android app names and the retry sequence survive.
+62. `nhe/ui_export_this_version_s_source_code` **K**: Describes the current version's source and preserves the ellipsis for the export flow.
+63. `nhe/ui_filename_a_z` **K**: Filename is explicit and the ascending direction is unchanged.
+64. `nhe/ui_filename_z_a` **K**: The same filename caption correctly reverses its sorting direction.
+65. `nhe/ui_fits_the_current_budget` **K**: Specifies available RAM as the relevant budget without claiming a storage or file-size check.
+66. `nhe/ui_font_licences` **K**: Licence and typeface terms distinguish this from icon licensing.
+67. `nhe/ui_give_all_images_the_same_each_image_keeps` **H**: Aspect-ratio and original-file safeguards are present, but cencah can be read as very rather than same; match the common-sizing controls.
+68. `nhe/ui_gnu_affero_general_public_license` **K**: The official licence name remains quoted in English alongside the understandable descriptive form.
+69. `nhe/ui_gold` **K**: The familiar Oro palette term is consistent with Cobre and the other metal labels.
+70. `nhe/ui_hide_pixel_grid_800` **K**: Explicit Hide, pixel grid and the 800%+ threshold are retained.
+71. `nhe/ui_hold_a_thumbnail_and_drag_it_here_or` **K**: Separates long-press and drag from two quick taps on different targets.
+72. `nhe/ui_honeycomb` **K**: Panal is a concise description of the honeycomb arrangement, not the regular palette.
+73. `nhe/ui_honeycomb_colour_06x` **K**: Preserves the hex formatting slot and ties the colour to a honeycomb swatch.
+74. `nhe/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Honeycomb arrangement and the black-to-white row are both named for accessibility.
+75. `nhe/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **H**: Describes hue broadly as colour and lightness as whiteness; check contrast with the adjacent HSV control before clearing.
+76. `nhe/ui_hue_and_saturation_wheel_value_slider_on_the` **H**: Wheel and right-hand slider are clear; verify value/brightness wording apart from HSL lightness so the two controls stay distinguishable.
+77. `nhe/ui_icon_licences` **K**: Names the licence category and the specific icon scope.
+78. `nhe/ui_icon_licences_kde_breeze` **K**: Uses the same icon-licence heading and retains KDE Breeze unchanged.
+79. `nhe/ui_icons_artwork` **K**: Distinguishes icons from other artwork without implying all artwork is an icon.
+80. `nhe/ui_icons_fonts_artwork_credits` **H**: “Who made” alone omits possible source and licence attribution across the three categories.
+81. `nhe/ui_image_assembly_workspace_drag_placed_images_or_drop` **K**: Label identifies the workspace, both drag/drop inputs, right and bottom targets, and empty-space panning.
+82. `nhe/ui_image_credits` **K**: Creator and source are both named; the concise menu caption is broad enough to open the credits panel.
+83. `nhe/ui_image_placed_drag_it_to_move_or_hold` **K**: Completed placement is distinct from later movement and adding another thumbnail by long press.
+84. `nhe/ui_image_shown_in_crop_preview` **K**: Describes the image shown before selecting what to retain; does not imply that cropping is already applied.
+85. `nhe/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **K**: Horizontal swipe and the two contents, thumbnails and filenames, are explicit.
+86. `nhe/ui_invalid_image_attachments` **H**: Uses general joining wording and can read as a physical incompatibility; retain the specific invalid attachment relationships.
+87. `nhe/ui_largest` **K**: Achi huei expresses the greatest size, appropriate to a selection by image dimensions.
+88. `nhe/ui_lossless_jpeg_xl` **H**: Retains the format and parenthetical Lossless, but “does not lose what is visible” is weaker than preserving image data exactly.
+89. `nhe/ui_modified_newest_first` **K**: Sorts by modification, newest first, clearly distinct from import order.
+90. `nhe/ui_modified_oldest_first` **K**: Reverses the modification-time ordering and keeps oldest first.
+91. `nhe/ui_monospace` **H**: The width phrase can read as a lot of width, rather than each glyph having one fixed width.
+92. `nhe/ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Keeps the current coordinate constraint and suggests smaller image dimensions rather than fewer files.
+93. `nhe/ui_no_gallery_images_have_been_inserted` **K**: No attribution text available is clearly distinguished from there being no inserted images.
+94. `nhe/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: RAM failure is tied to inspecting the gallery image, not to downloading it or inability to access the gallery.
+95. `nhe/ui_open_source_credits_and_notices` **H**: Authorship wording narrows credits, while the documents also include attribution and notices; preserve both functions.
+96. `nhe/ui_other_terms` **K**: Short terms label fits the document list and does not claim additional licences.
+97. `nhe/ui_pale_violet` **K**: Names violet and a lighter shade, distinguishing the preset from plain violet.
+98. `nhe/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **K**: Explicitly ties crisp edges to the pencil across all selected widths, avoiding the earlier straight-line shift.
+99. `nhe/ui_percent_of_pixels` **K**: A relational percent phrase retains the pixel quantity and original format slot.
+100. `nhe/ui_place_at_least_one_image_in_the_workspace` **K**: Explicit first action and one-or-more minimum prevent the error from being read as select exactly one.
