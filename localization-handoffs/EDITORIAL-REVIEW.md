@@ -538,3 +538,110 @@ Results: **70 keep, 30 hold**. Running total: **400 distinct drafts reviewed, 26
 98. `chr/ui_corners_and_edges_resize_round_handle_rotates` **K**: Keeps which handles resize and which handle rotates in separate instructions.
 99. `chr/ui_could_not_create_the_assembly` **K**: Uses the established assembly and failure frame but identifies creation, not saving, with the reason retained.
 100. `chr/ui_could_not_decode_the_cropped_region_of` **H**: Pixel arrow does not clearly identify decoding as the failed action; explicitly retain the cropped subregion scope.
+
+## Independent wording review batch 5: 100 chr draft keys
+
+2026-11-20 UTC. Personally reviewed Cherokee draft indices 28–127 inclusive (zero-based) in the combined file, blob `4ec048d12a74dd312d9dfd99801b5fd0a403f053`, against source and the Cherokee UI controls at develop `597e644c31c450d45aa6962d89564581d4434758`. Distinct keys, excluding all earlier batches. K means keep for later integration checks, H means hold for wording or terminology. No native-speaker certification, resource integration, or runtime testing.
+
+Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 324 keep, 176 hold**.
+
+1. `chr/ui_could_not_export_source_code` **H**: Technical verb is shared with ambiguous conversion wording; distinguish exporting source files from compiling or decoding them.
+2. `chr/ui_could_not_load_gallery_image` **K**: Gallery, image loading failure, and the actual reason parameter remain separate.
+3. `chr/ui_create_output` **K**: Directly tells the user to make the image output, not to save an existing file.
+4. `chr/ui_credits_terms` **K**: Retains attribution/source notices and usage terms as different objects, aligned with the About section.
+5. `chr/ui_current_safe_budget_2f_mp` **K**: Uses current safe-limit wording and keeps the two-decimal megapixel quantity.
+6. `chr/ui_current_safe_editing_budget_s_up_to_2f` **H**: Decoder-memory exclusion is a risk-bearing clause; use an explicit additional RAM component rather than image-to-pixel shorthand.
+7. `chr/ui_custom_colour` **K**: Personally saved colour and numbered slot stay distinct from an ordinary colour name.
+8. `chr/ui_custom_colours_hold_a_swatch_to_replace_it` **K**: Uses the established long-press gesture and says the selected swatch is changed/replaced.
+9. `chr/ui_disable_cursor_drawing` **K**: Matches the cursor drawing term and makes this an off action, not a delete operation.
+10. `chr/ui_drag_a_line_then_drag_twice_to_set` **K**: Exact Finish curve caption, two distinct bend drags, and early commit are preserved.
+11. `chr/ui_drag_a_selection_drag_inside_to_move_square` **H**: Square handles and the exact Lock proportions label are missing; distinguish the handles, not just the corner/edge locations.
+12. `chr/ui_drag_across_the_ellipse_s_bounding_box` **H**: The paired-corners phrase does not make the ellipse's bounding rectangle explicit.
+13. `chr/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Preserves the opposite-corner drag and a later choice of outline or fill.
+14. `chr/ui_drag_between_opposite_corners_to_draw_a_five` **K**: Five points, the opposite bounding corners, and outline/fill are all present.
+15. `chr/ui_drag_between_opposite_corners_to_draw_a_heart` **K**: Heart shape, diagonal drag, and distinct outline/fill choices are represented.
+16. `chr/ui_drag_from_the_start_to_the_end_of` **K**: Start and end are visually and linguistically distinguished as the drag endpoints.
+17. `chr/ui_drag_from_the_tail_towards_the_arrowhead_choose` **H**: Check arrowhead versus generic head and the tail term; these determine the direction of dragging.
+18. `chr/ui_drag_out_to_expand_in_to_trim_drag` **K**: Uses the established trim/expand terms and Fit caption, preserving BG fill in newly added space.
+19. `chr/ui_drag_placed_images_to_move_them_hold_and` **H**: First instruction repeats move/drag and the second needs the established thumbnail wording rather than a potentially small source image.
+20. `chr/ui_drag_to_erase_with_the_background_colour` **K**: Erasing by painting with the existing background colour term is explicit.
+21. `chr/ui_drag_to_pan_without_drawing_pinch_with_two` **H**: The wording can imply not using the Draw tab and does not clearly preserve two-finger panning while a drawing tool is active.
+22. `chr/ui_draw_a_crisp_one_pixel_line` **H**: The proposed crisp modifier is not established as an edge quality; keep the real width label and 1–100 range.
+23. `chr/ui_draw_around_an_area_drag_inside_to_move` **H**: The drag passage omits square handles; match the exact Commit selection button wording as well.
+24. `chr/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **H**: Aligns the tool name, but verify that the second phrase means strength of blending into the canvas, not simply using a mixed colour.
+25. `chr/ui_draw_with_the_selected_brush_tip_and_size` **H**: The brush edge wording could mean boundary rather than the selected tip; match the Brush tool label and tip setting.
+26. `chr/ui_drop_at_a_highlighted_edge_right_top_aligned` **H**: Makes the right/top and below/left hard to distinguish as two separate snap rules; keep the respective alignments explicit.
+27. `chr/ui_each_px_px_percent_is_relative_to_the` **H**: Percentage reference is not grammatical enough for an accessibility instruction; explicitly say percent of the largest current dimension and show subsequent repositioning.
+28. `chr/ui_edit_in_paint` **K**: Paint is left as the named editor and the action matches the app's Edit label.
+29. `chr/ui_enable_android_s_files_or_documents_app_then` **K**: Files/Documents remain Android app names and reattempt is after enabling.
+30. `chr/ui_estimated_memory_current_working_budget` **K**: The memory estimate and the currently available working limit are distinctly labeled.
+31. `chr/ui_export_this_version_s_source_code` **H**: Draft describes this kind, not unambiguously this installed version; align the export verb with the failure state.
+32. `chr/ui_fill_text_box_with_bg_colour` **K**: The target is the text box and the selected colour is BG, not foreground.
+33. `chr/ui_fits_the_current_budget` **K**: States that the option fits the current memory ceiling, using the same budget terms as the related dialog.
+34. `chr/ui_font_licences` **K**: Fonts and licences remain distinct; wording follows the established app font label closely.
+35. `chr/ui_gallery_image` **K**: Concise gallery-picture label matches the loading and insert terminology.
+36. `chr/ui_give_all_images_the_same_each_image_keeps` **H**: Disambiguate one shared dimension from a shared aspect ratio; each image keeps its own ratio and its crop.
+37. `chr/ui_gnu_affero_general_public_license` **K**: Preserves the official licence name verbatim and gives a Cherokee categorizing gloss.
+38. `chr/ui_hide_pixel_grid_800` **K**: Uses the existing pixel-grid wording, an explicit hide verb, and the unchanged zoom threshold.
+39. `chr/ui_hold_a_thumbnail_and_drag_it_here_or` **H**: Verify thumbnail wording and make the two taps separate and ordered; do not imply the tap is on a placed image.
+40. `chr/ui_hold_or_drag_to_spray_colour` **K**: Matches the Airbrush concept, retains two possible gestures, and indicates paint colour.
+41. `chr/ui_honeycomb_colour_06x` **K**: Matches the established Honeycomb label and keeps the exact hexadecimal format placeholder.
+42. `chr/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: States a separate row runs from black to white; consistent with the existing Honeycomb label.
+43. `chr/ui_icon_licences` **H**: Check that the draft noun denotes interface icons, rather than marks or generic signs, before assigning licence notices to it.
+44. `chr/ui_icon_licences_kde_breeze` **H**: KDE Breeze identifies the pack, but the same ambiguous interface icon terminology must be resolved first.
+45. `chr/ui_icons_artwork` **H**: Draft's marks-and-pictures contrast does not securely identify icons separately from artwork.
+46. `chr/ui_icons_fonts_artwork_credits` **H**: Attribution/credit wording should cover full records and artwork, not merely named sources; resolve the ambiguous icon term too.
+47. `chr/ui_image_assembly_workspace_drag_placed_images_or_drop` **H**: Exact right and bottom snap targets and the difference between thumbnails and placed images need clearer syntax.
+48. `chr/ui_image_credits` **K**: Existing credits/source pair anchors this heading as attribution records for the images.
+49. `chr/ui_image_placed_drag_it_to_move_or_hold` **H**: Distinguish moving the already placed image from holding and dragging a second tray thumbnail.
+50. `chr/ui_image_shown_in_crop_preview` **K**: Keeps the crop context and labels the displayed image as the preview.
+51. `chr/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **H**: Make the thumbnail representation distinct from a physically small input image; verify the horizontal scroll direction explicitly.
+52. `chr/ui_insert_gallery_image` **K**: Existing gallery-image and insert terms combine naturally as a confirmation question.
+53. `chr/ui_invalid_image_attachments` **K**: Invalid attachments are identified as the problem, not a blanket image-format error.
+54. `chr/ui_lossless_jpeg_xl` **H**: The missing/lost gloss could describe the file being present or not; express that compression loses no image data.
+55. `chr/ui_magnified_preview` **K**: Preview plus nearer view conveys magnification and retains the ellipsis of the control.
+56. `chr/ui_magnified_preview_ea9209` **K**: Same magnification phrase without the affordance ellipsis, matching the static label.
+57. `chr/ui_modified_newest_first` **K**: The date sort sorts by modification and explicitly puts newer entries first.
+58. `chr/ui_modified_oldest_first` **K**: Oldest is the leading sort direction, consistently paired with newest.
+59. `chr/ui_monospace` **K**: Equal widths in a font context distinguishes monospace from an ordinary font family name.
+60. `chr/ui_no_attachment_fits_within_the_current_coordinate_range` **H**: The current range is too generic; make coordinate limits and image resizing clear rather than asking for another source image.
+61. `chr/ui_no_gallery_images_have_been_inserted` **H**: The source requires no credit text available; draft points broadly at credit details and viewing rather than specifically absent text.
+62. `chr/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: Negative memory sufficiency is linked to inspecting this gallery image, not importing or saving it.
+63. `chr/ui_not_placed` **K**: Directly negates the same placement state used by the positive label.
+64. `chr/ui_open_source_credits_and_notices` **H**: Open-source modifier may imply files are opened, and wording should distinguish credits from formal notices.
+65. `chr/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **H**: Keep original and decoded image distinct without an unexplained arrow, and confirm the no-resizing limitation of the estimate.
+66. `chr/ui_other_terms` **K**: Same terms noun as the paired credits-and-terms heading, scoped to additional terms.
+67. `chr/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **H**: Same unverified crisp term as the pencil instructions; verify that it describes a sharp edge at all selected widths.
+68. `chr/ui_percent_of_pixels` **H**: Percent and pixel value are juxtaposed; explicitly denote the percentage of the dynamic reference, not a pixel unit selector.
+69. `chr/ui_pinch_to_zoom_drag_to_pan` **K**: The two separate gestures remain tied to zooming and moving the view, respectively.
+70. `chr/ui_place_at_least_one_image_in_the_workspace` **K**: Establishes first placing an image in the workspace and gives an explicit minimum of one.
+71. `chr/ui_placed` **K**: Placed label matches the term elsewhere in the workspace.
+72. `chr/ui_px_drag_an_image_to_move_hold_a` **H**: Resolve the thumbnail term and distinguish hold-to-add from starting a drag of an already placed image.
+73. `chr/ui_rendering_images` **K**: Completed-image wording matches the progress counter, and retains processed versus total placement of placeholders.
+74. `chr/ui_restore_original_sizes` **K**: Restoration applies to original dimensions, not original cropped pixels.
+75. `chr/ui_right_arrow_expand` **H**: Prefer existing expansion verb for the UI control; the current verb also labels canvas enlargement and could describe the wrong action.
+76. `chr/ui_same` **K**: Uses the same modifier as the width and height specific labels; dynamic axis retained.
+77. `chr/ui_same_height` **K**: Uses the locale's existing height term and the shared-dimension wording.
+78. `chr/ui_same_width` **K**: Uses the established width term and distinguishes it from same height.
+79. `chr/ui_set_radius_px_then_drag_between_opposite_corners` **K**: Matches the Radius concept, opposite corners, and the explicit half-shorter-edge bound for each rectangle.
+80. `chr/ui_show_pixel_grid_800` **K**: Show is the converse of hide, with established grid term and the exact 800% threshold.
+81. `chr/ui_shows_the_whole_assembly_image_and_output_sizes` **K**: Says the entire assembly is shown, not resized; image and output dimensions stay unchanged.
+82. `chr/ui_smallest` **K**: The superlative form is scoped by the dimension selector, not a general smaller-copy instruction.
+83. `chr/ui_some_previews_could_not_be_decoded_you_can` **H**: Pixel conversion shorthand does not clearly identify preview decode failures; also ensure remove refers only to the affected images.
+84. `chr/ui_sort_images_by_filename_or_modification_time` **K**: Keeps two alternative sort keys, filename and when the image changed.
+85. `chr/ui_sort_tray` **H**: Current text can read as sort small photos; label the tray as the UI object, not source image resolution.
+86. `chr/ui_source_code_exported_including_build_scripts_and_licence` **H**: Clear source-code export needs the same terminology as the command and error; the build-script and notices concepts should remain separate.
+87. `chr/ui_strikethrough` **K**: The graphic is a line in the middle of written text, distinct from underline.
+88. `chr/ui_tap_a_pixel` **K**: Applies the existing short tap gesture to a single pixel.
+89. `chr/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **H**: Retain the boundary of the tapped area (not an already filled area) and use the established tolerance control wording.
+90. `chr/ui_tap_an_image_thumbnail_first` **H**: Preserve the first short tap but disambiguate the tray thumbnail from the image itself.
+91. `chr/ui_tap_the_canvas_to_place_text_and_choose` **K**: Short tap on the canvas to position the text, then choose the established font and size controls.
+92. `chr/ui_tap_the_image_to_sample_the_foreground_colour` **H**: Tells the reader to choose foreground colour without making clear the tap samples that point's existing colour.
+93. `chr/ui_tap_vertices_then_double_tap_the_last_vertex` **H**: Ensure double-tap is on the final vertex, use the exact Close polygon caption, and clearly say that the result can remain open.
+94. `chr/ui_that_arrangement_overlaps_another_image_use_a_different` **H**: The overlap meaning and unplace (not delete) for attached images should be explicit.
+95. `chr/ui_the_assembly_exceeds_android_s_coordinate_range` **H**: Generic limit and a greater-than sign do not unambiguously explain Android's x/y coordinate-range limit.
+96. `chr/ui_the_assembly_needs_about_choose_a_smaller_output` **H**: Identifies estimated memory, but the proposed smaller size needs to be scoped to assembly output, not the originals.
+97. `chr/ui_the_assembly_output_is_unavailable_reopen_image_assembly` **K**: Names the unavailable output and preserves reopen-then-retry steps with the workspace label.
+98. `chr/ui_the_attachment_image_is_missing` **K**: Identifies missing attached bitmap rather than a blank target or an unplaced image.
+99. `chr/ui_the_attachment_image_is_not_placed` **K**: Uses the same placement state as the label and does not call the file missing.
+100. `chr/ui_the_first_image_starts_at_the_top_left` **K**: The first input's top-left origin is explicit without implying every image starts there.
