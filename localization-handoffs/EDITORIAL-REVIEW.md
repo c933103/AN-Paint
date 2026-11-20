@@ -753,9 +753,9 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 99. `chr/ui_gimp_translations31` **K**: Retains translations, credits and licences as distinct concepts, consistent with the pinned About grouping.
 100. `chr/ui_cursor_pan_draw32` **H**: The first directional movement verb also appears in removal contexts; clarify that dragging repositions the cursor while painting and the second tap stops drawing.
 
-## Batch 7: Cherokee and Central Huasteca Nahuatl, 100 draft entries
+## Batch 7: Cherokee and Eastern Huasteca Nahuatl, 100 draft entries
 
-- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Cherokee draft positions 229–308 and Central Huasteca Nahuatl draft positions 1–20, one-based).
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Cherokee draft positions 229–308 and Eastern Huasteca Nahuatl draft positions 1–20, one-based).
 - Reviewed wording against each source and checked relevant terms, gestures, diagnostics and control captions against locale resources at `597e644c31c450d45aa6962d89564581d4434758`. Earlier structural-only observations about the two Cherokee percent labels inform this decision but were not counted as previous wording decisions. Keep is an editorial decision on this draft, not a merge or runtime check.
 - This batch: 49 keep, 51 hold. Running totals: 700 reviewed, 441 keep, 259 hold.
 
@@ -860,9 +860,9 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 99. `nhe/ui_the_first_image_starts_at_the_top_left` **H**: The origin sounds like a top edge only; retain both top and left explicitly.
 100. `nhe/ui_create_output` **K**: Output is described as the image to create, not an instruction to save or export it.
 
-## Batch 8: Central Huasteca Nahuatl, 100 draft entries
+## Batch 8: Eastern Huasteca Nahuatl, 100 draft entries
 
-- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Central Huasteca Nahuatl draft positions 21–120, one-based).
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Eastern Huasteca Nahuatl draft positions 21–120, one-based).
 - Reviewed each candidate and source. Checked established locale terminology and UI captions against `597e644c31c450d45aa6962d89564581d4434758`. Keep is a draft editorial decision only, not integration or a device check.
 - This batch: 79 keep, 21 hold. Running totals: 800 reviewed, 520 keep, 280 hold.
 
@@ -967,9 +967,9 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 99. `nhe/ui_percent_of_pixels` **K**: A relational percent phrase retains the pixel quantity and original format slot.
 100. `nhe/ui_place_at_least_one_image_in_the_workspace` **K**: Explicit first action and one-or-more minimum prevent the error from being read as select exactly one.
 
-## Batch 9: Central Huasteca Nahuatl, 100 draft entries
+## Batch 9: Eastern Huasteca Nahuatl, 100 draft entries
 
-- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Central Huasteca Nahuatl draft positions 121–220, one-based).
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Eastern Huasteca Nahuatl draft positions 121–220, one-based).
 - Personal per-key wording review; relevant controls and established terminology checked against pinned locale resources at `597e644c31c450d45aa6962d89564581d4434758`. Keep remains separate from Android integration and device verification. The parallel integration assignment is frozen to batches 1–8 and does not include these decisions.
 - This batch: 80 keep, 20 hold. Running totals: 900 reviewed, 600 keep, 300 hold.
 
