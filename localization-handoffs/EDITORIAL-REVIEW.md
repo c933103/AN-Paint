@@ -752,3 +752,110 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 98. `chr/ui_cursor_marker_help31` **H**: It says cursor size and stroke size; specify the visible cursor marker itself, not pointer movement or the actual drawing region.
 99. `chr/ui_gimp_translations31` **K**: Retains translations, credits and licences as distinct concepts, consistent with the pinned About grouping.
 100. `chr/ui_cursor_pan_draw32` **H**: The first directional movement verb also appears in removal contexts; clarify that dragging repositions the cursor while painting and the second tap stops drawing.
+
+## Batch 7: Cherokee and Central Huasteca Nahuatl, 100 draft entries
+
+- Combined wording snapshot: `b05fb20235ea266b4265f4236c3fb7258d6c790a` (Cherokee draft positions 229–308 and Central Huasteca Nahuatl draft positions 1–20, one-based).
+- Reviewed wording against each source and checked relevant terms, gestures, diagnostics and control captions against locale resources at `597e644c31c450d45aa6962d89564581d4434758`. Earlier structural-only observations about the two Cherokee percent labels inform this decision but were not counted as previous wording decisions. Keep is an editorial decision on this draft, not a merge or runtime check.
+- This batch: 49 keep, 51 hold. Running totals: 700 reviewed, 441 keep, 259 hold.
+
+1. `chr/ui_cursor_pan_move32` **H**: The cursor movement uses the same removal stem held in batch 6; distinguish repositioning from removal and identify the drawing button separately.
+2. `chr/ui_cursor_tap_hint37` **K**: Preserves tap on the cursor itself and both possible toggle outcomes.
+3. `chr/ui_normalize_width_intro` **H**: Same-width command and file/crop preservation are clear, but “same width/height” may read as both dimensions staying fixed rather than each image keeping its ratio.
+4. `chr/ui_normalize_height_intro` **H**: Same-height command and count are clear, but each image's width-to-height ratio needs to be explicit.
+5. `chr/ui_normalize_width_info` **H**: All four slots survived; make the percentage denominator the largest current width, not an adjacent independent number.
+6. `chr/ui_normalize_height_info` **H**: All four slots survived; make the largest current height the comparison base, and keep the opposite-axis width range.
+7. `chr/ui_normalize_width_input_percent` **H**: This distinct draft entry has the accessibility issue seen in the structural pass: parenthetical pixels do not express “percentage of” the reference width.
+8. `chr/ui_normalize_height_input_percent` **H**: Parenthetical pixels likewise do not express “percentage of” the reference height; do not reuse the width label.
+9. `chr/ui_pixel_grid_help33` **K**: Keeps the inclusive 800% threshold and identifies ruler readings as locations in image pixels.
+10. `chr/ui_gallery_back34` **K**: Short back action matches the return wording used elsewhere in the locale.
+11. `chr/ui_gallery_unsupported34` **K**: Keeps the selected-source boundary, not deletion or unavailability of the image.
+12. `chr/ui_open_artwork34` **K**: Exact pinned Use image caption follows the instruction to open the artwork page first.
+13. `chr/ui_creator_on_source34` **H**: Creator name is narrower than contributor; do not invent that the contributor necessarily made the image.
+14. `chr/legacy_credits_title` **H**: Earlier and saved are clear, but the author-only stem understates the contents of the existing credit records.
+15. `chr/legacy_credits_hint` **H**: Earlier records and possible other images survive; make the export a text file, not simply saving the displayed text in the app.
+16. `chr/legacy_credits_add` **H**: The selection and destination are clear, but credit needs to include licence and source, not just author.
+17. `chr/legacy_credits_save_text` **H**: Distinguish the selected complete credit text from saving an author's name or a generic read action.
+18. `chr/legacy_credits_existing` **H**: Preserve both existing attribution for that same source and the fact that its text was retained, not overwritten.
+19. `chr/legacy_credits_added` **H**: Completed add is distinct from the action, but author-only terminology would misdescribe a full credit record.
+20. `chr/commons_check_file_licence` **H**: The list keeps creator and licence, but required attribution and “may count as an adaptation” need clearer scope than name and new creation.
+21. `chr/ui_an_image_cannot_attach_to_itself_or_one` **K**: Retains both prohibited targets, self and its attached image, rather than banning all attachments.
+22. `chr/ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: File and About captions align, but verify the last menu caption and express attribution requirements beyond a creator name.
+23. `chr/ui_catrobat_sticker_gallery` **K**: Identifies both sticker imagery and its gallery, with ellipsis for a subsequent screen.
+24. `chr/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **H**: Licence exception and trailing line breaks survived; ensure the credit requirement covers artwork attribution, not only the creator's name.
+25. `chr/formats22_tiff_description` **H**: One RGB page and undisturbed pixels are present; reuse a clearer compression term rather than the bitmap stem.
+26. `chr/formats22_dib_description` **H**: Preserves the BMP-header condition and 24-bit DIB; clarify uncompressed so it cannot read as no bitmap.
+27. `chr/formats22_base64_description` **H**: Literal prefix and size direction are right; clarify lossless and that reopening the Base64 text recovers the image without silently converting formats.
+28. `chr/formats22_ico_description` **H**: Numeric bounds and centring survive; align the icon noun with the held size control and make the transparent square explicit.
+29. `chr/formats22_ico_dimensions_error` **H**: Keep the image-size mismatch but explicitly locate the competing dimensions in the corresponding ICO directory record.
+30. `chr/save20_bmp_description` **H**: The colour and larger-file contrast is present; same compression-vs-bitmap ambiguity as the DIB description.
+31. `chr/save20_unsupported_tagged_colour` **H**: The conversion sequence survives, but metadata alone is broader than colour profile; keep the format condition exact and check the older key's consumer.
+32. `chr/ui_search_english34` **K**: Clear choice between searching in English and Japanese; does not imply the artwork itself is translated.
+33. `chr/ui_openclipart_help34` **H**: The tap verb reads as press/hold in other pinned help; align the gesture and verify the precise Image credits caption.
+34. `chr/ui_irasutoya_credit34` **K**: States retained copyright, source terms and the specific distinction from Creative Commons without inventing a permission.
+35. `chr/commons_import_svg_changes` **K**: Protects the four technical fields and identifies size as the original size.
+36. `chr/commons_import_raster_changes` **K**: Keeps the white background literal and an explanation that this is alpha/background composition, not an independent licence restriction.
+37. `chr/commons_credit_copy_failed` **H**: Copy action reads as making a duplicate; align clipboard wording with the pinned Copy caption.
+38. `chr/commons_credit_copy_failed_reason` **H**: Diagnostic slot survives, but the copy action must match the no-reason variant and the actual clipboard action.
+39. `chr/commons_credit_copy_out_of_memory` **H**: Explicit memory shortage matches pinned diagnostics; clipboard action still needs the same wording as the other two variants.
+40. `chr/commons_metadata_http_error` **K**: Commons metadata stage, HTTP prefix and diagnostic value remain separate.
+41. `chr/commons_metadata_response_too_large` **H**: The wording points to size but is less clear about the limit being the server response limit.
+42. `chr/commons_metadata_query_failed` **K**: A query failure is distinct from missing metadata or failed image transfer.
+43. `chr/gallery_description` **H**: Align the copied control captions and distinguish named creators, copyright and source notices from generic credits in this long help.
+44. `chr/gallery_credit_edit_hint` **H**: Retains editable text and changes, but avoid reading removal of an unused source as deletion of the file.
+45. `chr/ui_irasutoya_help34` **H**: Retains the 21-or-more condition, but the hold-like gesture and the exact source-credit path need correction before reuse.
+46. `chr/ui_assembly_exact_position` **K**: Marks precise X/Y positioning with a familiar alignment term; it is not a snap command.
+47. `chr/ui_assembly_target_x` **K**: The X input names the left-edge origin in pixels.
+48. `chr/ui_assembly_target_y` **K**: The paired Y input names the top-edge origin in pixels.
+49. `chr/ui_assembly_position_help` **H**: Coordinates and allowed overlap are present, but whole pixels and later-imported images being drawn above earlier ones need unambiguous phrasing.
+50. `chr/ui_assembly_position_nonnegative` **H**: Numeric range is exact, but the completed/saved form does not reliably communicate integer-only entry.
+51. `chr/ui_assembly_unknown_image` **K**: Kept clear that the selected image is not in this assembly now, without calling its file lost.
+52. `chr/gallery_external_link_no_handler` **K**: Names Android's inability to find an app for this link rather than a generic network error.
+53. `chr/commons_metadata_not_file_page` **K**: Correctly limits the diagnostic to the required Commons file-page type.
+54. `chr/commons_metadata_ambiguous_file` **K**: The returned file is indeterminate; does not claim that a known file is missing.
+55. `chr/commons_metadata_unavailable` **K**: Unavailability is specifically of Commons file metadata, not the image.
+56. `chr/commons_metadata_original_mismatch` **K**: Distinguishes the selected original file from the attribution that failed to match it.
+57. `chr/commons_metadata_invalid_page` **K**: Invalid applies to the attribution page, not to the Commons service or image format.
+58. `chr/commons_metadata_field_too_large` **H**: The candidate says the field is too large; identify the explicit text limit, not size of a file or page.
+59. `chr/commons_metadata_cache_failed` **K**: Retaining existing attribution is the unsuccessful action, not a query or clipboard failure.
+60. `chr/commons_download_original_mismatch` **H**: The target original file survives but the same send-to-a-URL phrasing held in batch 6 needs a distinct redirect action.
+61. `chr/commons_svg_png_encode_failed` **K**: Distinguishes blank map to PNG encoding from downloading or opening the map.
+62. `chr/ui_add_up_to_20_images_with_android_s` **H**: The help preserves the 20-image limit and trim structure, but its long-press/drop instructions and crop-triggered movement need a control-by-control correction.
+63. `chr/ui_help23` **H**: The shorter help already uses a Drawing caption different from pinned ui_drawing23; reconcile named controls and gesture terms before integration.
+64. `chr/ui_casual` **H**: The phrase can mean handwriting broadly rather than the Casual typeface category; compare with Cursive.
+65. `chr/ui_cursive` **K**: The joining description differentiates cursive from the non-joined writing style.
+66. `chr/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **K**: Preserves the canvas, clipboard and sampled decode/buffer sources of the estimate, variability, detail loss and the original-file guarantee.
+67. `chr/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: HSL H/S and L remain distinct, and the lightness control stays on the right.
+68. `chr/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: Wheel term and HSV/V distinguish this variant from the HSL spectrum.
+69. `chr/ui_pale_violet` **H**: The parenthetical appears to mark small/light colour generically; verify that it denotes a pale violet shade and not a reduced amount.
+70. `chr/ui_sans_condensed` **K**: Keeps the sans modifier and the reduced glyph-width descriptor.
+71. `chr/ui_sans_light` **K**: Sans modifier is retained and the low-weight form contrasts with medium.
+72. `chr/ui_sans_medium` **K**: Medium is tied to weight within the same sans family rather than middle alignment.
+73. `chr/ui_sans_serif` **K**: No-end-stroke description pairs clearly with the serif counterpart.
+74. `chr/ui_sans_thin` **H**: Thin is differentiated by degree, but drops the sans-family modifier retained in the other weights.
+75. `chr/ui_serif` **K**: Positive stroke-ending marker is the counterpart to the sans label.
+76. `chr/ui_smooth_freehand_strokes` **K**: Smoothing is tied to hand-drawn strokes rather than the antialiasing of pixel edges.
+77. `chr/ui_smooth_pixel_edges_anti_aliasing` **K**: Pixel edges and explicit anti-aliasing disambiguate this from stroke smoothing.
+78. `chr/ui_vertical_hint23` **H**: Preserves column starts and joined scripts, but the upper-side term does not establish upright glyphs; clarify combining marks as opposed to all marks.
+79. `chr/formats22_pdf_encrypted` **H**: Preserve the alternatives, not a requirement for both password and unsupported encryption, and make clear that the saved copy is unprotected.
+80. `chr/ui_the_arrow_on_the_left_directly_below_the` **H**: Long tutorial repeats the Drawing submenu mismatch and treats some cursor and unplace movements with the held removal stem.
+81. `nhe/ui_an_paint_assembly_image` **K**: AN Paint is the named origin and the image is the result of arranging inputs.
+82. `nhe/ui_an_paint_image_assembly` **K**: Matches the pinned assembly term and keeps the brand separator.
+83. `nhe/ui_assembly_output_size` **H**: The output image size remains, but the assembly is unnamed and could be mistaken for a generic new-image size.
+84. `nhe/ui_could_not_create_the_assembly` **K**: Names the failed assembly creation and preserves the diagnostic slot.
+85. `nhe/ui_could_not_load_gallery_image` **H**: Tlapoa matches Open in existing strings; here establish whether the operation means load, not simply open the gallery artwork.
+86. `nhe/ui_downloading_image` **H**: The generic take/get verb does not distinguish an online download from selecting or picking an image.
+87. `nhe/ui_gallery_image` **K**: Concise gallery source label is consistent with the paired insert prompt.
+88. `nhe/ui_insert_gallery_image` **K**: Question retains insertion and gallery provenance without sounding like an immediate action.
+89. `nhe/ui_the_attachment_image_is_missing` **K**: Tlatzquilti distinguishes the missing attached image from a missing base image.
+90. `nhe/ui_the_attachment_image_is_not_placed` **K**: Ayicanah and placement verb keep not-yet-placed distinct from missing.
+91. `nhe/ui_the_gallery_image_is_unavailable` **K**: Axoncah qualifies the gallery image's availability, not device connectivity.
+92. `nhe/ui_the_image_could_not_be_downloaded` **H**: Error needs the same explicit download stem as the progress state, not generic inability to take the image.
+93. `nhe/formats22_select_page` **K**: Pinned picker verb works directly with the page noun and does not imply opening the whole document.
+94. `nhe/ui_cursor_ink30` **K**: Pinned cursor controls already establish the cursor and drawing stems; imperative suits the action.
+95. `nhe/ui_cursor_settings31` **H**: The phrase can read as how to draw with the cursor; make settings explicit rather than a how-to caption.
+96. `nhe/ui_cursor_pan_draw32` **K**: Drag/move, start drawing and second tap to stop remain three distinct steps.
+97. `nhe/ui_cursor_pan_move32` **H**: Positioning is clear, but the second clause says generic button; name the drawing button to avoid tapping the cursor itself.
+98. `nhe/ui_cursor_tap_hint37` **K**: Directly names the cursor as the toggle target and pairs start with stop.
+99. `nhe/ui_the_first_image_starts_at_the_top_left` **H**: The origin sounds like a top edge only; retain both top and left explicitly.
+100. `nhe/ui_create_output` **K**: Output is described as the image to create, not an instruction to save or export it.
