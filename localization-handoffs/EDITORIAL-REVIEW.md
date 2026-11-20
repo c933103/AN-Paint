@@ -431,3 +431,110 @@ Personally reviewed the next 100 distinct Standard Moroccan Tamazight draft keys
 98. `zgh/gallery_edit_credits` **K**: Uses the same bundle with an edit action rather than copying or replacing the image.
 99. `zgh/gallery_credit_copied` **K**: Completed copy of the same attribution bundle, not an imperative or a claim the image was copied.
 100. `zgh/gallery_credit_title` **K**: Retains an artwork/image label and the dynamic title argument without recasting it as the creator field.
+
+## Independent wording review batch 4: 72 zgh and 28 chr draft keys
+
+2026-11-20 UTC. Personally compared the combined authored file (blob `4ec048d12a74dd312d9dfd99801b5fd0a403f053`) with its pinned source `597e644c31c450d45aa6962d89564581d4434758`. Reviewed Standard Moroccan Tamazight draft indices 139–210 and Cherokee draft indices 0–27 (zero-based within each locale); no overlap with previous editorial batches. Compared related terms and button names against the locale catalogues. K means keep for downstream integration subject to technical checks; H means hold wording for revision or better evidence. This is not native-speaker, integration, or device sign-off.
+
+Results: **70 keep, 30 hold**. Running total: **400 distinct drafts reviewed, 266 keep, 134 hold**.
+
+1. `zgh/gallery_credit_publisher` **K**: Publisher role and named Catrobat project remain distinct from creator.
+2. `zgh/gallery_credit_gallery` **K**: Gallery is an image collection, with the displayed gallery name intact.
+3. `zgh/gallery_credit_licence` **K**: Original Catrobat image, license version and link are all retained.
+4. `zgh/gallery_credit_saved` **K**: Completed save of attribution text, not a claim that image was saved.
+5. `zgh/formats22_ico_size` **K**: Icon’s size is explicit and matches the ICO description.
+6. `zgh/save20_dither` **H**: Combining adjacent pixels suggests mixing, not spatial distribution of palette colours to approximate shades.
+7. `zgh/save20_bmp_size_limit` **K**: States the image exceeds the BMP file-size maximum, not a width bound.
+8. `zgh/save20_gif_size_limit` **K**: Retains 65,535 pixels on each side of the GIF.
+9. `zgh/ui_gimp_translations31` **H**: Names translators rather than the complete translation credit record, alongside licenses.
+10. `zgh/ui_search_english34` **K**: Gives the two accepted query languages as alternatives.
+11. `zgh/gallery_image_component_unavailable` **K**: Required component missing, with the import explicitly not performed.
+12. `zgh/formats22_tiff_compression` **K**: Deflate is intact and the wording rules out loss of data.
+13. `zgh/formats22_tiff_description` **K**: One RGB page, possible size reduction without pixel changes, and the off-state are preserved.
+14. `zgh/formats22_dib_description` **H**: Verify that the phrase for receiving app is not read as separate or special app; BMP header is a condition on the destination.
+15. `zgh/formats22_pdf_invalid` **K**: Gives two possible causes and limits unsupported features to this Android version.
+16. `zgh/formats22_pdf_encrypted` **H**: Encryption wording uses a generic protection term too close to the instruction to save an unprotected copy; distinguish encryption from password and protection.
+17. `zgh/formats22_ico_description` **H**: Last clause says no background colour; transparent pixels in a square need to be explicit.
+18. `zgh/formats22_ico_decode_budget` **H**: Uses image creation from the icon, not decoding; name the process that consumes the budget.
+19. `zgh/formats22_ico_dimensions_error` **K**: Mismatch is between actual dimensions and the corresponding slot of the internal ICO table.
+20. `zgh/save20_bmp_description` **K**: Exact colours and larger files remain separate consequences of uncompressed 24-bit RGB.
+21. `zgh/ui_pixel_grid_help33` **K**: Grid and rulers stay distinct, with the 800% threshold and image-pixel units.
+22. `zgh/ui_gallery_unsupported34` **K**: Says the image is not from the selected source, rather than unsupported format.
+23. `zgh/ui_open_artwork34` **K**: Correctly keeps first opening the artwork page, then pressing the named button.
+24. `zgh/ui_creator_on_source34` **K**: Refers user to the source page to identify the contributor.
+25. `zgh/ui_irasutoya_credit34` **H**: Last line deictically refers to this license even though source discusses provider terms that are not a CC license. Keep terms separate from license status.
+26. `zgh/legacy_credits_title` **K**: Distinguishes already saved attribution records from a new save action.
+27. `zgh/legacy_credits_hint` **K**: Retains credits may belong elsewhere, selection attaches credit to this image, or exports full text.
+28. `zgh/legacy_credits_add` **K**: Adds the selected credit data to the current image, consistent with the hint.
+29. `zgh/legacy_credits_save_text` **K**: Saves selected attribution as text, not the selected source image.
+30. `zgh/legacy_credits_existing` **K**: Same-source credit already exists and its original wording stays intact.
+31. `zgh/legacy_credits_added` **K**: Completed addition to the current image, not a save of the artwork.
+32. `zgh/ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: Separate attribution is narrowed to additional creator information; source notices may contain more than that.
+33. `zgh/ui_copy_decoded_image_at_this_size_estimated_loading` **K**: Identifies the copy and separates decoded pixels from estimated loading/editing RAM.
+34. `zgh/ui_each_px_px_percent_is_relative_to_the` **H**: Reads percent as corresponding to the largest dimension, rather than calculated from it; use the explicit phrasing in width/height help.
+35. `zgh/ui_estimated_memory_current_working_budget` **K**: Preserves estimate versus current working limit with both distinct variables.
+36. `zgh/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **H**: Crediting the artwork becomes naming the creator alone; this omits other applicable attribution elements.
+37. `zgh/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Hexagonal swatches and separate black-to-white row are both represented.
+38. `zgh/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **K**: Original, decoded RGBA at four bytes per pixel, and estimated edit memory without resizing remain distinct.
+39. `zgh/ui_pale_violet` **H**: Violet term reads as a leaf/wing-type noun; cannot clear as a colour name without an attested violet sense.
+40. `zgh/ui_spectrum` **K**: Colour spectrum label matches its spectrum accessibility description.
+41. `zgh/ui_crop_preview_images` **K**: Both plural forms keep one versus multiple images, preview dimensions, and possible attached-image movement.
+42. `zgh/formats22_page_description` **K**: Keeps page count separate from page selection; selected page is edited as an image.
+43. `zgh/formats22_base64_description` **K**: Retains exact Base64 prefix, reopening to recover image, and size relative to encoded PNG.
+44. `zgh/save20_unsupported_tagged_colour` **K**: Colour metadata unavailable for conversion now; user is directed to sRGB PNG through a colour-managed editor.
+45. `zgh/ui_normalize_width_info` **K**: Explicitly calculates percent from greatest current width and names reflow after resizing.
+46. `zgh/ui_normalize_height_info` **K**: Uses greatest current height as the percent base, keeping the width interval distinct.
+47. `zgh/commons_import_svg_changes` **K**: SVG to PNG and original size conveyed, with exact rasterization parameters retained.
+48. `zgh/commons_import_raster_changes` **K**: Keeps white background token and the qualification that it is alpha compositing.
+49. `zgh/commons_credit_copy_failed` **K**: Failure is to copy full image attribution, not the bitmap.
+50. `zgh/commons_credit_copy_failed_reason` **K**: Same copy failure with the actual why field inserted after the colon.
+51. `zgh/commons_credit_copy_out_of_memory` **K**: Separates RAM shortage from generic failure, and names attribution as copied content.
+52. `zgh/commons_metadata_response_too_large` **K**: Metadata response exceeds size limit; no claim that image download failed.
+53. `zgh/commons_metadata_query_failed` **K**: Reads as request for Commons file metadata failed, not inability to open the file.
+54. `zgh/gallery_external_link_no_handler` **K**: Says Android cannot find a handler for this specific link, not that link is broken.
+55. `zgh/commons_metadata_ambiguous_file` **K**: Ambiguity lies in which file the metadata resolved to.
+56. `zgh/commons_metadata_original_mismatch` **K**: The whole attribution record is compared against the selected original, not merely its creator.
+57. `zgh/commons_metadata_invalid_page` **K**: Labels an invalid Commons attribution page, not a general network error.
+58. `zgh/commons_metadata_field_too_large` **K**: One Commons attribution field exceeds text limit, not the entire response.
+59. `zgh/commons_metadata_cache_failed` **K**: Retaining attribution failed; no suggestion the metadata query itself failed.
+60. `zgh/commons_download_original_mismatch` **K**: Gives transfer redirection to a different original, distinct from metadata mismatch.
+61. `zgh/commons_svg_png_encode_failed` **H**: Blank map is constrained to no writing; verify against the UI meaning, since map linework survives.
+62. `zgh/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **K**: Keeps estimated buffers, varying actual use, smaller copy losing detail, opaque background, and original file untouched.
+63. `zgh/gallery_description` **H**: Preserve full navigation wording against the exact paired labels before clearing this long licensing instruction. 
+64. `zgh/gallery_credit_edit_hint` **K**: Preserves names and copyright notices, change description, removing absent sources, and that text is editable.
+65. `zgh/ui_irasutoya_help34` **H**: The term used for free and required fee is not established as payment here; verify the commercial 21-item clause and matched path.
+66. `zgh/ui_openclipart_help34` **H**: Check the exact menu path and keep CC0 a specific dedication, not an ordinary licence category.
+67. `zgh/ui_assembly_position_help` **K**: Whole-pixel X/Y start at zero; other images remain fixed, overlap is allowed, canvas expands, no crop/size change.
+68. `zgh/ui_add_up_to_20_images_with_android_s` **H**: Reset crop is called Use whole image; reconcile with the exact control label and make non-destructive crop distinct from restoring original size.
+69. `zgh/ui_help23` **H**: Two-tap gesture wording can read tap and hold; check against the actual long-press and short-tap contrast, and reconcile menu captions.
+70. `zgh/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: Keeps hue/saturation in the field and distinguishes HSL lightness on the right.
+71. `zgh/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: Separates circular hue/saturation wheel from the HSV value slider on the right.
+72. `zgh/ui_the_arrow_on_the_left_directly_below_the` **H**: Duplicates the word for Draw and Drawing and calls Watercolor by a label different from the existing dedicated tool; align navigation throughout.
+73. `chr/commons_blank_maps` **H**: Blank maps must be distinguished from a map with an empty background; verify the parenthetical term and use a clear map-category label.
+74. `chr/ui_about_copyright` **H**: The possessive writing formulation is not established as the copyright term; verify against a Cherokee rights notice.
+75. `chr/ui_about_copyright_licence` **H**: Keep copyright distinct from licence. The final term matches the draft licence convention but the copyright phrase remains ambiguous.
+76. `chr/ui_add_images` **K**: Uses the established insert/add verb with images as the object.
+77. `chr/ui_add_images_first` **K**: Preserves the same action with an explicit first step.
+78. `chr/ui_add_images_then_drag_a_thumbnail_here` **H**: Small picture hints at thumbnail but mini-preview is important, especially when placed and unplaced images are both visible; verify that the action reads drag it here.
+79. `chr/ui_add_to_custom_colours` **H**: The same-colour phrase could read add a colour generally; reconcile personal/custom terminology and the verb with the locale’s save-colour action.
+80. `chr/ui_an_assembly_can_contain_up_to_20_images` **K**: Retains the 20-image maximum and the remove-one-before-adding-another instruction.
+81. `chr/ui_an_assembly_can_contain_up_to_20_images_86d995` **K**: Maximum of 20 images retained without adding the remove action from the adjacent variant.
+82. `chr/ui_an_paint_assembly_image` **K**: Uses established assembly term and identifies the image as its output label.
+83. `chr/ui_an_paint_image_assembly` **K**: Holds the brand separate from the assembly workspace title.
+84. `chr/ui_an_paint_image_assembly_20_images_placed` **K**: Progress and placed counts stay distinct, in the existing assembly title and two-line layout.
+85. `chr/ui_apply_to_all` **K**: All is explicitly scoped, with the same apply/use verb as other confirmations.
+86. `chr/ui_apply_to_these_images` **K**: Demonstrative narrows the action to these images, not the entire workspace.
+87. `chr/ui_assembly_decoded_output_estimated_editing_render_memory_at` **H**: Pixel arrow alone does not read as decoded output; make the rendering-memory estimate explicit and keep it at original size.
+88. `chr/ui_assembly_output_size` **H**: The arrow into generic size does not unambiguously name the dimensions of the output rather than those of the input files.
+89. `chr/ui_assembly_png` **K**: Filename stem follows assembly term and retains the .png suffix.
+90. `chr/ui_batch_crop` **K**: Uses the established crop action with multiple images as its scope, not one image’s crop.
+91. `chr/ui_batch_crop_images` **K**: Explicitly puts images in the plural as the objects of cropping, consistent with shorter batch action.
+92. `chr/ui_by_pixels_hold_and_drag_to_place` **H**: Action reads hold and move alongside drag/place; remove duplicate competing verbs but preserve the hold-before-drag gesture.
+93. `chr/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **H**: Attribution clause juxtaposes pictures and credited names but does not clearly say those named creators made the artwork.
+94. `chr/ui_common_in` **K**: Shared value label keeps the axis and the dynamic unit separate.
+95. `chr/ui_common_in_pixels` **K**: Same common-axis label, with pixels specified explicitly rather than a dynamic unit.
+96. `chr/ui_copy_an_area_or_use_file_insert_image` **H**: Uses an area-selection phrase without a clear copy imperative; match the Draw tab and exact nested button captions before accepting.
+97. `chr/ui_copy_decoded_image_at_this_size_estimated_loading` **H**: Same-made can be the wrong meaning of copy here; make the copy/decoded size/memory distinction and explicit loading versus editing.
+98. `chr/ui_corners_and_edges_resize_round_handle_rotates` **K**: Keeps which handles resize and which handle rotates in separate instructions.
+99. `chr/ui_could_not_create_the_assembly` **K**: Uses the established assembly and failure frame but identifies creation, not saving, with the reason retained.
+100. `chr/ui_could_not_decode_the_cropped_region_of` **H**: Pixel arrow does not clearly identify decoding as the failed action; explicitly retain the cropped subregion scope.
