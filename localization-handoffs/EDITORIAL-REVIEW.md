@@ -116,3 +116,108 @@ The 16 summary drafts kept the axis swap, literal units and two newline escapes.
 Cherokee: the 2024 [Cherokee Language Consortium list](https://language.cherokee.gov/media/vdiic5hr/2024consortium.pdf) lists `igadvi` (percent) and `nayadvv` (width), supporting the lexical choices `ᎢᎦᏛᎢ` and `ᎾᏯᏛᎥ`; the syllabary in indexed PDF extraction is unreliable, so use the Romanized entries as cross-checks. The two Cherokee percent-mode accessibility names (`ui_normalize_width_input_percent`, `ui_normalize_height_input_percent`) put the pixel reference in parentheses after “percent.” Hold them for an explicit and idiomatic “percent of this reference size” relation when heard on their own. The supported words do not validate entire phrases, the height label, or the percentage construction.
 
 New translations accepted or written: **0**. New integration/device verification: **0**. Combined candidate file unchanged.
+
+## Independent wording review: batch 1 (100 `za` draft keys)
+
+Compared each keyed draft with the pinned source in the combined handoff (blob `4ec048d12a74dd312d9dfd99801b5fd0a403f053`). K = keep current wording at editorial pass; H = hold for the stated issue. Keep is not native-speaker certification, integration, or device verification. No metadata changes. **69 keep, 31 hold, 0 new drafts, 0 integrated.**
+
+1. `ui_drag_a_line_then_drag_twice_to_set` **K**: Two bends and early commit are both present.
+2. `ui_drag_a_selection_drag_inside_to_move_square` **K**: Distinguishes move, resize, rotate and aspect lock.
+3. `ui_drag_across_the_ellipse_s_bounding_box` **H**: The bounding rectangle is implied but the ellipse label is not established; align with the actual shape caption.
+4. `ui_drag_between_opposite_corners_to_draw_a_five` **K**: Keeps corner-to-corner gesture, five points and outline/fill choice.
+5. `ui_drag_from_the_start_to_the_end_of` **K**: Keeps the ordered start and end points.
+6. `ui_drag_from_the_tail_towards_the_arrowhead_choose` **H**: Verify the tail term against the app’s arrow label; the first anchor should unambiguously be the non-head end.
+7. `ui_drag_out_to_expand_in_to_trim_drag` **K**: Keeps expand/trim, move, view assistance and BG fill distinct.
+8. `ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Panning is non-drawing; preserves the separate two-finger gesture.
+9. `ui_draw_a_crisp_one_pixel_line` **K**: Correctly retains the inclusive 1–100 pixel range and crisp edge.
+10. `ui_draw_around_an_area_drag_inside_to_move` **K**: Preserves drawn selection plus all manipulations and commit.
+11. `ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **H**: Verify the soft-stroke and blending terms against the watercolor tool, not a hard outline.
+12. `ui_pinch_to_zoom_drag_to_pan` **K**: Distinguishes the two gestures and names both zoom directions.
+13. `ui_set_radius_px_then_drag_between_opposite_corners` **K**: Radius and half-of-shorter-side limit are preserved.
+14. `ui_smooth_freehand_strokes` **K**: Refers to freehand strokes rather than pixel boundaries.
+15. `ui_smooth_pixel_edges_anti_aliasing` **K**: Refers to pixel boundaries and retains technical anti-aliasing.
+16. `ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Enclosed region, tolerance and similar colors retained.
+17. `ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **K**: Explicitly says any selected width, not one pixel.
+18. `ui_pencil_crisp_adjustable_strokes` **K**: Intentional identical corresponding source for the pencil caption.
+19. `ui_cursor_settings31` **K**: Keeps drawing-cursor settings distinct from brush settings.
+20. `ui_cursor_marker_help31` **K**: Marker enlarges without changing painted stroke size.
+21. `ui_cursor_pan_draw32` **K**: Preserves drag-and-start followed by the later stop tap.
+22. `ui_cursor_pan_move32` **K**: Preserves positioning followed by the drawing-button tap.
+23. `ui_cursor_tap_hint37` **K**: Cursor tap toggles the drawing action.
+24. `ui_toolbox_and_tool_options_scroll_for_more` **K**: Toolbox and options followed by scroll cue.
+25. `ui_pixel_grid_help33` **K**: Inclusive 800% threshold and ruler units preserved.
+26. `ui_an_image_cannot_attach_to_itself_or_one` **H**: Translation adds edge wording to a graph rule; keep the prohibition on attaching to self or an attached image without limiting it to an edge.
+27. `ui_cropped_thumbnail` **K**: Thumbnail and crop state distinguished; format slot retained.
+28. `ui_drop_at_a_highlighted_edge_right_top_aligned` **K**: Both drop directions and their different alignment edges are preserved.
+29. `ui_image_assembly_workspace_drag_placed_images_or_drop` **K**: Distinguishes moving placed items, snapping thumbnails and view gestures.
+30. `ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **K**: Thumbnails, filenames and horizontal direction all remain.
+31. `ui_invalid_image_attachments` **H**: The phrase for invalid risks reading as unlawful; use operational incompatibility rather than a legal characterization.
+32. `ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Distinct X/Y bound and practical smaller-image remedy.
+33. `ui_some_previews_could_not_be_decoded_you_can` **H**: Confirm the removal verb means removing these assembly items, not cutting pixels or deleting source files.
+34. `ui_sort_tray` **K**: Sorting thumbnails conveys the tray operation in this UI.
+35. `ui_that_arrangement_overlaps_another_image_use_a_different` **H**: The source allows unplacing the attached images; edge-specific wording narrows the remedy.
+36. `ui_the_assembly_exceeds_android_s_coordinate_range` **K**: Keeps the assembly-wide Android coordinate limitation.
+37. `ui_the_attachment_image_is_missing` **K**: Identifies the missing attached image rather than the base image.
+38. `ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Keeps coordinate fit and the smaller-size remedy.
+39. `ui_the_normalized_image_dimensions_are_outside_android_s` **K**: Preserves that the computed dimensions are outside Android’s range.
+40. `ui_trim_from_the_original_edges_drag_the_handles` **K**: Explicitly starts at original edges and preserves source files.
+41. `ui_unplace` **K**: Removes from its placed position; not deleting the image.
+42. `ui_give_all_images_the_same_each_image_keeps` **H**: The generic supporting string needs an unequivocal per-image aspect-ratio guarantee and exact crop-settings wording; placeholders are intact.
+43. `ui_normalize_width_input_percent` **H**: Make the percent-of-reference relationship explicit independently of the visible summary.
+44. `ui_normalize_height_input_percent` **H**: Same accessible percent-of-reference requirement on the height axis.
+45. `ui_about_copyright_licence` **H**: Check the About/credits menu family against the current visible captions; avoid using general information as a navigation label if the button differs.
+46. `ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: Keeps provider, online gallery, and attribution to named creators.
+47. `ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: Check all referenced menu captions in order and preserve separate attribution and licence terms as distinct obligations.
+48. `ui_icons_artwork` **K**: The draft distinguishes icons from artwork.
+49. `ui_icons_fonts_artwork_credits` **K**: Retains icons, fonts and artwork as separate credited classes.
+50. `ui_open_source_credits_and_notices` **H**: Verify the open-source term modifies the credited software, not the notices.
+51. `ui_source_code_exported_including_build_scripts_and_licence` **K**: Includes source code, build scripts and licence notices in the completed export.
+52. `ui_the_gallery_redirected_outside_its_supported_hosts` **K**: Unsupported URL after redirection distinguished from general network failure.
+53. `ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Retains restriction to explicitly supported Catrobat gallery images.
+54. `ui_too_many_gallery_redirects` **K**: Excessive redirect count, not a refused initial address.
+55. `gallery_image_component_unavailable` **H**: Draft narrows the required component to opening; the generic import error does not specify which component was missing.
+56. `formats22_tiff_compression` **K**: Lossless behavior and Deflate name retained.
+57. `formats22_tiff_description` **K**: Preserves one RGB page, optional lossless compression and turning it off.
+58. `formats22_dib_description` **K**: Keeps 24-bit, uncompressed DIB and BMP-header exception distinct.
+59. `formats22_preview_memory` **K**: No memory only for preview; reduced opening dimensions are conditional.
+60. `formats22_pdf_invalid` **K**: Preserves damaged-file vs unsupported-Android-feature alternatives.
+61. `formats22_pdf_encrypted` **K**: Password or unsupported encryption, with an unprotected copy as remedy.
+62. `formats22_pdf_memory` **K**: Explicit PDF rendering and the image memory limit.
+63. `formats22_base64_description` **K**: Exact Base64 PNG prefix, losslessness, reopen operation and size tradeoff preserved.
+64. `gallery_copy_credit` **H**: Check the clipboard action as a natural Copy command; wording risks sounding like duplicating text in place or preparing to paste.
+65. `gallery_edit_credits` **K**: Editing the creator credits is clear and distinct from copying.
+66. `gallery_credit_copied` **H**: Recognizable completion marker, but review together with the clipboard command before clearing either string.
+67. `gallery_credit_edit_hint` **H**: Keep any required names and copyright notices, but make clear sources absent from the published image are removed from the editable credits, not source files.
+68. `gallery_credit_title` **K**: Artwork and title-value placeholder retained.
+69. `gallery_credit_publisher` **K**: Explicit named Catrobat project in publisher role.
+70. `gallery_credit_gallery` **K**: Gallery and its value retained.
+71. `gallery_credit_licence` **K**: Original artwork, licence and URL slot retained.
+72. `gallery_credit_saved` **K**: Feedback is past/completed and specifies the credit text.
+73. `formats22_ico_description` **H**: Transparent square refers to alpha, not merely a visible light background; verify the term before integrating.
+74. `formats22_ico_decode_budget` **K**: Decoding this icon and the available image-memory budget.
+75. `formats22_ico_dimensions_error` **H**: Say directory entry rather than a vague record/sample; it is the ICO-internal entry corresponding to that image.
+76. `save20_bmp_description` **K**: Exact RGB depth and distinction between fidelity and file size.
+77. `ui_creator_on_source34` **K**: Source page directs the reader to the person who contributed.
+78. `ui_irasutoya_credit34` **K**: Preserves creator copyright, terms of use and non-CC distinction.
+79. `legacy_credits_title` **K**: Identifies already-saved credits, not a new action.
+80. `legacy_credits_hint` **K**: Warns credits can belong to other images and keeps both add and save options.
+81. `legacy_credits_add` **K**: Selected attribution added to this specific image.
+82. `legacy_credits_save_text` **K**: Selected attribution saved as text rather than inserted.
+83. `legacy_credits_existing` **K**: Preserves specific source and unchanged existing text.
+84. `legacy_credits_added` **K**: Completed add action and target image.
+85. `gallery_external_link_no_handler` **K**: Android could not find a link handler; not error from the link itself.
+86. `ui_casual` **H**: Verify casual refers to informal lettering, not normal/default type.
+87. `ui_cursive` **K**: Connected-letter description distinguishes cursive in a font chooser.
+88. `ui_monospace` **H**: Make explicit that individual characters have fixed advance width; text itself does not have a fixed overall width.
+89. `ui_sans_condensed` **H**: Width condensation depends on a precise shared sans-serif term; review with other font-family variants.
+90. `ui_sans_light` **H**: Confirm light stroke weight against thin and against condensed width; hold the matched family.
+91. `ui_sans_medium` **H**: Confirm medium stroke weight against light/thin; hold the matched family.
+92. `ui_sans_serif` **H**: Literal missing edges is ambiguous; name the small terminal strokes that distinguish sans from serif.
+93. `ui_sans_thin` **H**: Comparative thinner wording depends on clear stroke weight and the light counterpart.
+94. `ui_serif` **H**: Literal with edges is ambiguous; resolve together with sans-serif.
+95. `ui_pale_violet` **H**: Verify hue as pale violet rather than generic pale purple or blue and match the help/swatches.
+96. `ui_spectrum` **K**: Colors as a range is workable in the palette context.
+97. `ui_honeycomb` **H**: Verify the honeycomb analogy denotes the cell pattern and not a general beehive; keep wording consistent across all three keys.
+98. `ui_honeycomb_colour_06x` **H**: Hex format is preserved; hold until the shared honeycomb caption is resolved.
+99. `ui_honeycomb_colour_swatches_with_a_greyscale_row` **H**: Grayscale row is described, but hold pending shared honeycomb wording.
+100. `ui_colour_hsv_hue_range` **K**: HSV hue letter and 0–360° domain remain; the extra descriptive label does not change the numeric operation.
