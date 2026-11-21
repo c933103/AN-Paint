@@ -2228,3 +2228,108 @@ Personally reviewed 100 distinct wording records. Batch: **73 keep, 27 hold**. O
 98. `nhw/ui_sans_condensed` **K**: Describes narrower glyph width and leaves the parenthetic typeface identifier clear.
 99. `nhw/ui_sans_light` **H**: “Not very thin” can describe medium rather than light. Verify light stroke weight very clearly relative to Medium and Thin.
 100. `nhw/ui_sans_medium` **K**: Describes a stroke neither very thin nor thick and keeps Medium visibly distinct.
+
+## Batch 21: Western Huasteca Nahuatl
+
+Personally reviewed 100 distinct wording records. Batch: **91 keep, 9 hold**. Overall: **2100 reviewed, 1519 keep, 581 hold**. This changes only the review ledger, not Android resources.
+
+1. `nhw/ui_sans_thin` **K**: Explicitly labels the very thin Sans stroke weight and keeps the family identifier.
+2. `nhw/ui_set_radius_px_then_drag_between_opposite_corners` **H**: Retains corner radius, opposite-corner drag and half the shorter side; confirm the long quoted label is exact and does not imply the radius of the whole rectangle.
+3. `nhw/ui_show_pixel_grid_800` **K**: Matches Hide using the same pixel-grid term and preserves 800%-and-above.
+4. `nhw/ui_shows_the_whole_assembly_image_and_output_sizes` **K**: Displays the whole layout without resizing the images or the output.
+5. `nhw/ui_silver` **K**: Clear conventional silver preset loan, parallel to gold and copper.
+6. `nhw/ui_smooth_freehand_strokes` **K**: Describes smoothing strokes drawn by hand rather than smoothing pixel boundaries.
+7. `nhw/ui_smooth_pixel_edges_anti_aliasing` **K**: Names edge smoothing and retains anti-aliasing explicitly.
+8. `nhw/ui_some_previews_could_not_be_decoded_you_can` **K**: Preview decode failure and both available responses survive, without claiming the app deleted anything.
+9. `nhw/ui_sort_images_by_filename_or_modification_time` **K**: Sorts by each filename or its modification time as separate options.
+10. `nhw/ui_sort_tray` **H**: Says sort pictures generally; identify the tray to avoid implying it rearranges placed images.
+11. `nhw/ui_source_code_exported_including_build_scripts_and_licence` **K**: Preserves source code export, build scripts for this version and licence notices.
+12. `nhw/ui_spectrum` **K**: Clear spectrum selector name, distinct from the colour wheel.
+13. `nhw/ui_strikethrough` **K**: A line placed in the middle of text distinguishes strikethrough from underline.
+14. `nhw/ui_tap_a_pixel` **K**: One-pixel touch and immediate release are explicit.
+15. `nhw/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Names tapping inside the enclosed space and tolerance for including similar colour values.
+16. `nhw/ui_tap_an_image_thumbnail_first` **K**: The initial touch targets a preview thumbnail, not the placed image.
+17. `nhw/ui_tap_the_canvas_to_place_text_and_choose` **K**: Preserves touch on the canvas, text placement, then typeface/size selection.
+18. `nhw/ui_tap_the_image_to_sample_the_foreground_colour` **K**: Uses the established foreground concept and takes the sampled value from the image.
+19. `nhw/ui_tap_vertices_then_double_tap_the_last_vertex` **K**: Retains vertex taps, double-tap to close, Finish alternative and an open connected line setting.
+20. `nhw/ui_that_arrangement_overlaps_another_image_use_a_different` **K**: Names the overlap and offers another edge or unplacing only the attachments.
+21. `nhw/ui_the_attachment_image_is_missing` **K**: Identifies the attached image as missing, distinct from mere absence of a placement.
+22. `nhw/ui_the_first_image_starts_at_the_top_left` **K**: Correct first-image origin at the upper-left corner.
+23. `nhw/ui_the_gallery_download_is_too_large` **K**: The item from the gallery is too large, not the gallery or its index.
+24. `nhw/ui_the_gallery_redirected_outside_its_supported_hosts` **K**: The changed image URL is not supported by the app. No claim of bad file extension.
+25. `nhw/ui_the_image_could_not_be_downloaded` **K**: Uses the same internet acquisition verb as the Download progress state to indicate failure.
+26. `nhw/ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Names X/Y coordinate feasibility and the option to choose smaller images.
+27. `nhw/ui_the_normalized_image_dimensions_are_outside_android_s` **K**: Correctly names normalized dimensions beyond the Android range.
+28. `nhw/ui_the_online_gallery_could_not_be_loaded_check` **K**: Distinguishes online gallery load failure from checking internet and retrying.
+29. `nhw/ui_third_party_notices` **H**: Restricts the third parties to those who made this project; third-party material can include external dependencies and other rightsholders.
+30. `nhw/ui_sans_serif` **K**: Describes lack of small stroke-end details, a correct sans/serif distinction.
+31. `nhw/ui_serif` **K**: Matches the sans counterpart, here with small terminal strokes.
+32. `nhw/ui_credits_terms` **H**: Credit should cover source and notices as well as who made the work; retain the conditions heading.
+33. `nhw/ui_modified_oldest_first` **K**: Records the oldest modification first with wording aligned to newest-first.
+34. `nhw/ui_pale_violet` **H**: The modifier can mean clean or clear rather than pale; verify the intended light violet shade.
+35. `nhw/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Keeps an image outside the supported Catrobat gallery, not outside Catrobat as a whole.
+36. `nhw/ui_time_unavailable` **H**: Can imply that no hour exists; identify unavailable timestamp metadata in this sorter.
+37. `nhw/ui_too_many_gallery_redirects` **K**: Too many redirects are clear and app no longer follows them; no unverified claim about any one destination.
+38. `nhw/ui_tool_option` **K**: Names the setting the user can vary for this tool.
+39. `nhw/ui_toolbox_and_tool_options_scroll_for_more` **K**: Retains toolbox and options plus dragging to see more.
+40. `nhw/ui_top` **K**: Correct short vertical location label for the upper side.
+41. `nhw/ui_trim_from_the_original_edges_drag_the_handles` **K**: Trim starts at original edges, drag/number entry are separate, source file untouched.
+42. `nhw/ui_trim_in_pixels` **K**: Correct unit and retains exact side or measurement label slot.
+43. `nhw/ui_unplace` **K**: Removes the placement rather than deleting the source image.
+44. `nhw/ui_wheel` **K**: Concise colour wheel name, consistent with the nearby H/S controls.
+45. `nhw/ui_widths` **K**: The width noun is clear for a group of values in this UI.
+46. `nhw/ui_agpl_licence` **K**: Exact AGPL identifier and clear licence subject.
+47. `nhw/ui_jpeg_xl_codec_licences` **K**: Correct JPEG XL codec licences, not a licence for images.
+48. `nhw/ui_gnu_agpl_licence` **K**: GNU AGPL exact with the licence context.
+49. `nhw/ui_preview_memory_error` **K**: Retains the formatted item and insufficient memory for its preview.
+50. `nhw/ui_trim_in_percent` **K**: Names the trim amount in percent rather than in pixels.
+51. `nhw/ui_crop_preview_images` **K**: Both plural forms preserve the transferred dimensions/count and the conditional repositioning of images attached to placed inputs.
+52. `nhw/ui_add_palette23` **K**: Explicit save into the palette collection, not selecting colour with the picker.
+53. `nhw/ui_added_palette23` **K**: Completion is distinguished from the action and names the same palette.
+54. `nhw/ui_replace_palette23` **K**: The palette is already full and user is told to select a colour to replace.
+55. `nhw/ui_edit_palette23` **K**: Names changing contents of the palette rather than a brush option.
+56. `nhw/ui_replace_with_active23` **K**: The active colour is the replacement value, not the value being discarded.
+57. `nhw/ui_remove_palette23` **K**: Removes from the palette rather than deleting a colour in the image.
+58. `nhw/ui_add_active23` **K**: Save/add targets the currently active colour.
+59. `nhw/ui_horizontal23` **H**: “On its side” can denote a glyph orientation rather than the horizontal text layout; distinguish from the Sideways glyph setting.
+60. `nhw/ui_vertical_rl23` **K**: Correct downwards glyph flow and right-to-left progression for successive columns.
+61. `nhw/ui_vertical_lr23` **K**: Matched variant switches only the order of columns.
+62. `nhw/ui_vertical_letters23` **K**: Identifies glyphs inside top-to-bottom text, not UI layout direction.
+63. `nhw/ui_vertical_mixed23` **K**: Retains automatic choice with upright CJK and sideways words.
+64. `nhw/ui_vertical_sideways23` **K**: Words stay intact when turned on their sides.
+65. `nhw/ui_vertical_upright23` **K**: The character-by-character qualifier covers more than alphabetic letters and retains upright meaning.
+66. `nhw/ui_vertical_hint23` **K**: Keeps new columns, Mongolian and joining, and grouped combining marks and emoji in upright mode.
+67. `nhw/ui_top23` **K**: Aligns to the top edge and does not use horizontal left/right terms.
+68. `nhw/ui_bottom23` **K**: Bottom counterpart is explicit and terminology matches the top version.
+69. `nhw/ui_webp_codec_licences` **K**: Accurate WebP codec-licence caption.
+70. `nhw/ui_heic_avif_codec_licences` **K**: Both HEIC and AVIF remain distinct named codecs in one licensing heading.
+71. `nhw/colour20_custom_selected_slot` **K**: Personal colour collection and selected slot number are separately identified.
+72. `nhw/colour20_stored_slot` **K**: Distinct tap to use, edit, and Replace to save; both exact slots remain.
+73. `nhw/colour20_empty_slot` **K**: The numbered slot is empty, and tap chooses where to save the current colour rather than performing the save.
+74. `nhw/colour20_save_slot` **K**: Save goes to the exact numbered slot.
+75. `nhw/colour20_replace_slot` **K**: Replaces the colour in the identified slot rather than deleting the slot.
+76. `nhw/colour20_saved_slot` **K**: Completion confirms both colour and numbered destination.
+77. `nhw/gallery_image_component_unavailable` **H**: The phrasing says a required component is missing; preserve unavailable even when it exists, and distinguish the skipped import from a failed placement.
+78. `nhw/ui_lossless_format` **K**: The formatted codec name and exact unchanged-pixels meaning survive.
+79. `nhw/ui_image_codec_licences` **K**: Specifies image codec licences, separate from copyright of the imported image.
+80. `nhw/formats22_tiff_compression` **K**: The compression option preserves pixels, and the exact Deflate method is named.
+81. `nhw/formats22_tiff_description` **K**: Single RGB page, smaller possible bytes without changing pixels and optional uncompressed output survive.
+82. `nhw/formats22_dib_description` **K**: Exact bit depth, uncompressed Windows DIB and a conditional BMP header interpretation.
+83. `nhw/formats22_select_page` **K**: Clear one-page selection label for the multipage picker.
+84. `nhw/formats22_page_description` **K**: Keeps metadata, total pages and selecting one page as an image in order.
+85. `nhw/formats22_page_number` **K**: Explicit current page identifier rather than total pages.
+86. `nhw/formats22_previous_page` **K**: Clear backward navigation wording; paired with Next page.
+87. `nhw/formats22_next_page` **K**: Paired forward navigation term explicitly names page.
+88. `nhw/formats22_open_page` **K**: Open is scoped to the already selected page.
+89. `nhw/formats22_page_preview` **H**: The phrase is an instruction to look early, rather than the selected-page preview heading. Use a noun or screen label.
+90. `nhw/formats22_page_range` **K**: Correct inclusive numbered range and dynamic endpoint.
+91. `nhw/formats22_loading_page` **K**: Clearly an in-progress operation for previewing, retaining both page numbers.
+92. `nhw/formats22_page_dimensions` **K**: All four placeholders and directions/units properly ordered.
+93. `nhw/formats22_preview_unavailable` **K**: Preview cannot be shown and the error/detail slot survives.
+94. `nhw/formats22_preview_memory` **K**: Keeps preview memory shortfall distinct from the offer of smaller dimensions when opening.
+95. `nhw/formats22_pdf_invalid` **K**: Distinguishes likely file damage from features not supported by this Android version.
+96. `nhw/formats22_pdf_encrypted` **K**: Password and unsupported encryption remain separate, with an unprotected copy needed before import.
+97. `nhw/formats22_pdf_page_count` **K**: Keeps the first page and exact dynamic maximum.
+98. `nhw/formats22_pdf_page_index` **K**: Old selection no longer works and replacement must be from this very document.
+99. `nhw/formats22_pdf_dimensions` **K**: Both invalid and too-large page dimensions are separately preserved.
+100. `nhw/formats22_pdf_crop` **K**: The crop must contain part of the page and the full rectangle is confined to the selected page.
