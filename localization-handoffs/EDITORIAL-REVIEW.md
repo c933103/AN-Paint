@@ -2018,3 +2018,108 @@ Personally reviewed 100 distinct wording records. Batch: **90 keep, 10 hold**. O
 98. `tdd/gallery_credit_publisher` **K**: States Catrobat as the publishing project, distinct from attribution to the maker of each work.
 99. `tdd/gallery_credit_gallery` **K**: Short gallery label preserves the field’s value and does not confuse it with the origin or publisher.
 100. `tdd/gallery_credit_licence` **K**: Original Catrobat artwork, exact CC BY-SA 4.0 and the dynamic licence detail are preserved.
+
+## Batch 19: Tai Nüa
+
+Personally reviewed 100 distinct wording records. Batch: **93 keep, 7 hold**. Overall: **1900 reviewed, 1355 keep, 545 hold**. This changes only the review ledger, not Android resources.
+
+1. `tdd/gallery_credit_saved` **K**: Uses the same broad attribution/text wording as the matching controls and marks saved completion.
+2. `tdd/formats22_ico_size` **K**: Clearly sizes the icon image, not the canvas.
+3. `tdd/formats22_ico_description` **K**: Retains selected size, one compressed PNG, fixed range, original proportions and centered transparent square.
+4. `tdd/formats22_ico_decode_budget` **K**: Distinguishes icon decode RAM from the allowed image-memory amount.
+5. `tdd/formats22_ico_dimensions_error` **K**: The mismatch is with the corresponding picture’s row in the ICO file, not with the file extension.
+6. `tdd/formats22_ico_invalid_size` **K**: Every allowed value and the pixel unit are retained.
+7. `tdd/save20_dither` **K**: Specifies pixels of differing neighbouring colours and keeps dithering exact rather than mixing colours indiscriminately.
+8. `tdd/save20_bmp_description` **K**: Preserves 24-bit RGB, no compression, exact colours and larger files.
+9. `tdd/save20_bmp_size_limit` **K**: Identifies the BMP file-size limit rather than a per-side dimension limit.
+10. `tdd/save20_gif_size_limit` **K**: Exact 65,535 px cap applies to each GIF side.
+11. `tdd/save20_unsupported_tagged_colour` **K**: Preserves both input formats, unsupported profile, and conversion to sRGB PNG in a colour-managed editor before importing.
+12. `tdd/ui_cursor_ink30` **K**: Points to drawing with the existing cursor marker rather than general drawing.
+13. `tdd/ui_cursor_help31` **K**: Drag, tap the on-screen button, drag/draw and tap to stop are all preserved; both Draw and Drawing match the pinned short action caption.
+14. `tdd/ui_cursor_settings31` **K**: Identifies the cursor drawing settings and preserves the invocation ellipsis.
+15. `tdd/ui_cursor_marker_help31` **K**: Enlarges only the cursor marker and preserves the width of the brush stroke.
+16. `tdd/ui_gimp_translations31` **K**: Explicit translator information alongside the licence heading; not art attribution.
+17. `tdd/ui_cursor_pan_draw32` **K**: Indicates moving the cursor while initiating drawing, then a further tap to stop.
+18. `tdd/ui_cursor_pan_move32` **K**: Positions the cursor first and identifies the drawing button as the separate start action.
+19. `tdd/ui_cursor_tap_hint37` **K**: Specifies tapping the cursor itself, for both start and stop.
+20. `tdd/ui_normalize_width_intro` **K**: Equalizes width while keeping each ratio, exact image count, original files and crop settings unchanged.
+21. `tdd/ui_normalize_height_intro` **K**: Parallel height variant preserves count, ratios and the unchanged-source/crop qualification.
+22. `tdd/ui_normalize_width_info` **K**: Preserves per-image width, range of heights, percentage of the current maximum width and reflow.
+23. `tdd/ui_normalize_height_info` **K**: Keeps counterpart height and width order, and bases the percentage on the largest current height.
+24. `tdd/ui_normalize_width_input_percent` **K**: Explicit shared width input as a percentage of the typed pixel base.
+25. `tdd/ui_normalize_height_input_percent` **K**: Matched height counterpart changes only the dimension.
+26. `tdd/ui_pixel_grid_help33` **H**: The phrase can be understood as showing pixel outlines rather than the grid overlay. Resolve terminology with the paired grid controls; retain 800% and ruler positions.
+27. `tdd/ui_search_english34` **K**: Clearly a search command using either named language.
+28. `tdd/gallery_description` **K**: Quoted uses match the candidate controls; the copyable title, publisher, origin and licence, creator notices and compatible-licence requirement are distinguished.
+29. `tdd/gallery_credit_edit_hint` **K**: Retains notice and creator obligations, recording edits, removing unused source entries and editing the text below.
+30. `tdd/ui_irasutoya_help34` **K**: Keeps Use image, the search languages and Japanese page text, 21-or-more commercial threshold and special collaboration terms; credits destination matches the current labels and kept candidate.
+31. `tdd/ui_openclipart_help34` **K**: The next-to-Large-PNG action, CC0 and the exact source/credits route are retained.
+32. `tdd/ui_gallery_unsupported34` **K**: The image is outside the selected source; does not assert impossible decoding.
+33. `tdd/ui_open_artwork34` **K**: Artwork page first, then the exact Use image action.
+34. `tdd/ui_creator_on_source34` **K**: Explicitly points to the source page to identify the contributor.
+35. `tdd/ui_irasutoya_credit34` **K**: Keeps creator rights, Irasutoya’s own terms and non-CC status separate.
+36. `tdd/legacy_credits_title` **K**: References the previously saved broad credit records, not just recently added names.
+37. `tdd/legacy_credits_hint` **K**: Explains possible other-image origin and offers adding the chosen source record or exporting the complete text.
+38. `tdd/legacy_credits_add` **K**: Names the selected credit information and specific destination image.
+39. `tdd/legacy_credits_save_text` **K**: Saves selected credit as text, not as an image.
+40. `tdd/legacy_credits_existing` **K**: Reports prior credit for that source and that its text was retained.
+41. `tdd/legacy_credits_added` **K**: The added action is complete and modifies the credit on this image rather than claiming a source import.
+42. `tdd/commons_import_svg_changes` **K**: Preserves exact SVG-to-PNG, Boolean and other machine-like tokens; original dimensions clear.
+43. `tdd/commons_import_raster_changes` **K**: Technical alpha is retained alongside image compositing and exact white background.
+44. `tdd/commons_credit_copy_failed` **K**: Copy failure references the same complete attribution as the corresponding action.
+45. `tdd/commons_credit_copy_failed_reason` **K**: Matching copy failure with exact reason slot included.
+46. `tdd/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **K**: Keeps Catrobat, named creators, default source licence exception and obligations when sharing modified artwork.
+47. `tdd/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: Names H and S plus right-side lightness L, distinct from the V setting.
+48. `tdd/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: Names circular H/S selector and the right slider’s value V, distinct from the lightness variant.
+49. `tdd/ui_pale_violet` **H**: English Violet is retained, but verify the pale qualifier and a consistent term with the pinned purple colour options.
+50. `tdd/ui_spectrum` **K**: A descriptive colour spectrum label remains distinct from the wheel.
+51. `tdd/ui_vertical_hint23` **K**: Preserves new columns, unbroken joined scripts including Mongolian, and combining marks and emoji sequences kept together in upright mode.
+52. `tdd/ui_casual` **H**: Daily-use lettering is not necessarily a casual style; distinguish it from the default and cursive alternatives.
+53. `tdd/ui_cursive` **K**: Joined handwritten glyphs explain cursive rather than simply its italic angle.
+54. `tdd/ui_monospace` **K**: Every written character has the same width, not merely narrow outlines.
+55. `tdd/ui_sans_condensed` **K**: Sans construction stays unadorned and the qualifier identifies narrow glyphs, not thin strokes.
+56. `tdd/ui_sans_light` **K**: Light stroke weight is indicated as thinner relative to other options but not the thinnest.
+57. `tdd/ui_sans_medium` **K**: Middle stroke weight is clear from its position in the matched series.
+58. `tdd/ui_sans_serif` **K**: Describes lack of small end strokes, distinguishing the sans family.
+59. `tdd/ui_sans_thin` **K**: The thinnest-stroke qualifier distinguishes it from the Light option.
+60. `tdd/ui_serif` **K**: Describes letters with small terminal strokes rather than a decorative underline.
+61. `tdd/ui_lossless_format` **K**: The candidate explicitly keeps all data and the formatted codec name.
+62. `tdd/ui_image_codec_licences` **K**: The read/write tools and purpose identify image codecs and their licences.
+63. `tdd/formats22_ascii_label` **K**: Names picture made of ASCII characters rather than ordinary text.
+64. `tdd/formats22_dib_size_limit` **K**: The limit belongs to DIB file size, not image dimensions.
+65. `tdd/formats22_page_description` **K**: Two metadata slots and total count survive, and the selected page is edited as an image.
+66. `tdd/commons_credit_copy_out_of_memory` **K**: Reports not enough RAM to copy the same broad credit record named by the action.
+67. `tdd/commons_metadata_http_error` **K**: Identifies Commons metadata and preserves HTTP and its status placeholder.
+68. `tdd/commons_metadata_response_too_large` **K**: Names the returned metadata exceeding the allowed response limit, not a size cap on the requested map.
+69. `tdd/commons_metadata_query_failed` **K**: Reports failure to obtain Commons file metadata, not a corrupted page.
+70. `tdd/ui_assembly_target_x` **K**: X coordinate explicitly uses pixels measured from the left.
+71. `tdd/ui_assembly_target_y` **K**: Y coordinate explicitly uses pixels measured from the top.
+72. `tdd/ui_assembly_unknown_image` **K**: Selected image no longer present in this assembly, rather than a general read failure.
+73. `tdd/commons_metadata_not_file_page` **K**: Denies the specific Commons file-page type.
+74. `tdd/commons_metadata_original_mismatch` **K**: Uses the complete attribution category in a mismatch against the selected original file.
+75. `tdd/commons_metadata_field_too_large` **K**: Specific attribution field and text-length cap survive; not the byte size of a download.
+76. `tdd/commons_metadata_cache_failed` **K**: The failed save/retain object is the full Commons attribution record.
+77. `tdd/commons_download_original_mismatch` **K**: Explicitly says the download switched to a different original file.
+78. `tdd/commons_blank_maps` **K**: Describes blank maps as an empty or blank map figure, without limiting it to labels.
+79. `tdd/commons_check_file_licence` **K**: Keeps per-file creator, licence and required attribution separate, and says modifications may be adaptations.
+80. `tdd/ui_an_image_cannot_attach_to_itself_or_one` **K**: Prohibits attaching the image both to itself and to an image already attached to it.
+81. `tdd/ui_catrobat_s_own_artwork_uses_cc_by_sa` **K**: Preserves licence, proper creator credit, adaptations under the same terms, separate notices and consistent exact file route.
+82. `tdd/ui_could_not_export_source_code` **K**: Identifies source-code export as the thing that failed, not constructing a build.
+83. `tdd/ui_credits_terms` **H**: The credits heading can mean only creator information; check broader source and notice terms alongside the usage terms heading.
+84. `tdd/ui_drag_from_the_tail_towards_the_arrowhead_choose` **K**: Preserves arrow-tail to arrowhead direction and the outline/fill choice.
+85. `tdd/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **H**: The cue reads like background overlap percent; verify the exact Strength control label rather than changing the intended Watercolor setting.
+86. `tdd/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **K**: Preserves source and clipboard, sampled decode/working buffers, variable use, smaller copies losing details, selected opaque BG and untouched original file.
+87. `tdd/ui_export_this_version_s_source_code` **K**: Names export, this app version and source code, retaining ellipsis.
+88. `tdd/ui_icon_licences` **K**: Icon licence uses the same icon-image term as the format and credits screens.
+89. `tdd/ui_icon_licences_kde_breeze` **K**: Uses exact KDE Breeze and distinguishes the specific licence from the generic icon heading.
+90. `tdd/ui_icons_artwork` **K**: Lists icons and created artwork as separate classes.
+91. `tdd/ui_icons_fonts_artwork_credits` **H**: The creator-focused wording needlessly narrows credits for fonts, artwork and icons; keep categories and broaden the attribution heading.
+92. `tdd/ui_open_source_credits_and_notices` **K**: The exact open source qualifier is retained; credit and notices are separately named.
+93. `tdd/ui_source_code_exported_including_build_scripts_and_licence` **K**: Source code export success, build scripts and bundled licence notices are all distinct.
+94. `tdd/gallery_external_link_no_handler` **K**: Android could not locate an app to open this link, not a failed page download.
+95. `tdd/commons_metadata_ambiguous_file` **K**: Returned metadata does not identify which file, retaining ambiguity instead of alleging corruption.
+96. `tdd/commons_metadata_unavailable` **H**: May say file metadata does not exist; preserve the unavailable state without overclaiming.
+97. `tdd/commons_metadata_invalid_page` **K**: Names the Commons page for origin, authorship and usage terms and labels it invalid.
+98. `tdd/commons_svg_png_encode_failed` **K**: Failed to make a PNG file from the blank map; consistent map-category wording.
+99. `tdd/formats22_tiff_compression` **K**: Names reducing file size without losing data, and keeps Deflate exact.
+100. `tdd/formats22_tiff_description` **K**: Keeps one RGB page, unchanged pixels, a possible reduction of size, and disabling compression for uncompressed TIFF.
