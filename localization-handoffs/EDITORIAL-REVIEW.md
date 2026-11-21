@@ -1703,3 +1703,108 @@ Reviewed 100 previously unreviewed drafts. K = keep the exact candidate for sepa
 98. `nv/save20_bmp_size_limit` **K**: Names the BMP file-size limit rather than the per-side limit.
 99. `nv/save20_gif_size_limit` **K**: Sets the same precise inclusive pixel limit on both width and height.
 100. `nv/gallery_description` **H**: Hold this legal/help paragraph until the complete credits route, copy captions, publisher vs creator, and compatible-licence wording agree with the pinned controls.
+
+## Batch 16: Navajo
+
+Personally reviewed 100 distinct wording records. Batch: **60 keep, 40 hold**. Overall: **1600 reviewed, 1082 keep, 518 hold**. This changes only the review ledger, not Android resources.
+
+1. `nv/gallery_credit_edit_hint` **H**: The clause for removing unused sources risks describing good provenance rather than the entry to remove; legal notices and editability survive, but check that clause before clearance.
+2. `nv/formats22_ico_dimensions_error` **H**: The text gives disagreement with information stored inside ICO without clearly naming the corresponding internal directory entry associated with this image.
+3. `nv/save20_unsupported_tagged_colour` **K**: Preserves BMP/GIF input, colour-profile conversion failure, colour-managed editor, sRGB PNG and the subsequent import step.
+4. `nv/ui_pencil_crisp_adjustable_strokes` **H**: The pencil term differs from the existing tool caption; the edge phrase also needs to mean crispness at all widths rather than visibility alone.
+5. `nv/ui_cursor_ink30` **K**: The marker and drawing wording matches existing Cursor drawing terminology.
+6. `nv/ui_cursor_help31` **H**: All gestures remain, but the second quoted Drawing caption differs from the current Drawing label; align the route.
+7. `nv/ui_cursor_settings31` **K**: Uses the same marker/drawing settings caption as the existing corresponding control, with ellipsis.
+8. `nv/ui_cursor_marker_help31` **K**: Makes the cursor marker bigger without resizing the rendered stroke.
+9. `nv/ui_gimp_translations31` **H**: Verify the contributor phrase means people who translated the app rather than simply altered words; retain the licence part.
+10. `nv/ui_cursor_pan_draw32` **K**: Moves the cursor to start drawing and separates the second tap that stops it.
+11. `nv/ui_cursor_pan_move32` **K**: Explicitly separates positioning the cursor from tapping the drawing button to start.
+12. `nv/ui_cursor_tap_hint37` **K**: Names the cursor itself as the touch target and retains both actions.
+13. `nv/ui_normalize_width_intro` **K**: Keeps equal width, numbered count, each image’s ratio, and unchanged originals and crop settings.
+14. `nv/ui_normalize_height_intro` **K**: Parallel equal-height action keeps the count, width-height ratio and unchanged originals/settings.
+15. `nv/ui_normalize_width_info` **H**: Dimensions, largest current width and reflow survive; percentage wording needs the same verification as the other percentage labels.
+16. `nv/ui_normalize_height_info` **H**: Height and width slots are correctly transposed, but hold until the percentage wording is approved with its width counterpart.
+17. `nv/ui_normalize_width_input_percent` **H**: Verify the per-hundred construction explicitly means percentage of the formatted pixel quantity.
+18. `nv/ui_normalize_height_input_percent` **H**: Same percentage issue as width; retain the shared height and typed pixel base.
+19. `nv/ui_pixel_grid_help33` **H**: Clarify this is zoom level, specifically the pixel grid, and that rulers rather than generic marks show image-pixel positions.
+20. `nv/ui_search_english34` **K**: Names English and Japanese as alternative search languages rather than translation of returned titles.
+21. `nv/ui_gallery_back34` **K**: Concise return action for gallery navigation.
+22. `nv/ui_irasutoya_help34` **H**: The legal threshold is present; verify commercial-purpose wording and the exact Image credits route.
+23. `nv/ui_openclipart_help34` **H**: Art-page sequence, Large PNG and CC0 survive; hold until the exact final credits caption is settled.
+24. `nv/ui_assembly_position_help` **K**: Specifies top-left, whole pixels from zero, unchanged other positions, overlap and newest-on-top priority, expansion and unchanged crop/size.
+25. `nv/ui_gallery_unsupported34` **K**: Image is not from the selected source; does not claim it cannot be loaded or is nonexistent.
+26. `nv/ui_open_artwork34` **K**: Page-before-Use order and the existing Navajo Use image wording.
+27. `nv/ui_creator_on_source34` **K**: Points to the source for the credited contributor, not the app publisher.
+28. `nv/ui_irasutoya_credit34` **K**: Keeps creator-held rights, service terms and explicit non-Creative-Commons status.
+29. `nv/legacy_credits_title` **K**: Identifies formerly saved credit information, distinguishing it from a new credit.
+30. `nv/legacy_credits_hint` **K**: Prior-save and other-image warning survive, as do selecting a source and adding its information or exporting full text.
+31. `nv/legacy_credits_add` **K**: The selected credit information is added to this image, not used to insert a second image.
+32. `nv/legacy_credits_save_text` **K**: Names the selected information as text and aligns Save with the same credit object.
+33. `nv/legacy_credits_existing` **K**: Indicates a credit for that same source already exists and its wording was not overwritten.
+34. `nv/legacy_credits_added` **K**: Reports the completed attachment of credit information to this image.
+35. `nv/commons_import_svg_changes` **K**: Keeps original width/height and all machine-style tokens, including exact background and SVG-to-PNG operation.
+36. `nv/commons_import_raster_changes` **H**: The parenthetical does not clearly distinguish alpha compositing from redrawing or layering an image; preserve the exact white-background token.
+37. `nv/commons_credit_copy_failed` **H**: Use broad attribution wording from the corrected Copy credit action; this can mean only creator information.
+38. `nv/commons_credit_copy_failed_reason` **H**: Same broader credit object as the base failure; keep the formatted reason.
+39. `nv/commons_credit_copy_out_of_memory` **H**: The memory shortage is clear but the object needs the fuller attribution term used in related copy errors.
+40. `nv/commons_metadata_http_error` **K**: Correct file-information context, provider, HTTP label and status slot.
+41. `nv/commons_metadata_response_too_large` **K**: The incoming response exceeds allowed size, not the image or map dimensions.
+42. `nv/commons_metadata_query_failed` **K**: Reports failure to look up Commons file information without calling the file corrupt.
+43. `nv/ui_assembly_exact_position` **K**: Names precise position distinctly from image dimensions.
+44. `nv/ui_assembly_target_x` **K**: Preserves the x direction and the left pixel reference.
+45. `nv/ui_assembly_target_y` **K**: Preserves the y direction and the top pixel reference.
+46. `nv/ui_assembly_position_nonnegative` **K**: Shows whole-number progression from zero to the precise upper limit for both coordinates.
+47. `nv/ui_assembly_unknown_image` **K**: The selection is no longer in this assembly rather than simply unplaced.
+48. `nv/gallery_external_link_no_handler` **K**: No Android application is available to open this link; it is not a network outage.
+49. `nv/commons_metadata_not_file_page` **K**: Denies the Commons file-page type rather than any Commons link.
+50. `nv/commons_metadata_ambiguous_file` **K**: Describes uncertainty about which file the metadata means rather than invalid decoding.
+51. `nv/commons_metadata_unavailable` **H**: The draft may assert no Commons metadata exists, rather than being presently unavailable; retain the file-information distinction.
+52. `nv/commons_metadata_original_mismatch` **H**: The mismatch is against the selected original file, but the other side can read as who made it rather than the full attribution record.
+53. `nv/commons_metadata_invalid_page` **H**: The line calls the maker information invalid without identifying the Commons attribution page; include page and full credit record.
+54. `nv/commons_metadata_field_too_large` **H**: Retains a text-length ceiling, but clarify the individual attribution field and broaden creator-only wording.
+55. `nv/commons_metadata_cache_failed` **H**: The ability to retain/save is clear; use the broader Commons attribution record as the object.
+56. `nv/commons_download_original_mismatch` **K**: Correctly identifies a redirect to a different original file, not just to another address.
+57. `nv/commons_svg_png_encode_failed` **H**: Blank-map terminology needs verification because the wording limits it to maps lacking text; PNG encode failure itself is present.
+58. `nv/ui_about_copyright` **K**: Identifies the application’s About information and preserves a distinct creator-rights component.
+59. `nv/ui_about_copyright_licence` **K**: Distinguishes copyright from permission to use/licence rather than merging them into one pointer.
+60. `nv/ui_corners_and_edges_resize_round_handle_rotates` **K**: Correctly separates corner/edge resizing from circular-handle rotation.
+61. `nv/ui_could_not_load_gallery_image` **K**: Keeps the image from the gallery as the item that failed to load and preserves the diagnostic.
+62. `nv/ui_credits_terms` **H**: The credits phrase leans toward the creators as the only credit subject; make it broad enough for source and other notices separately from terms.
+63. `nv/ui_current_safe_editing_budget_s_up_to_2f` **K**: Preserves current available editing RAM, exact megapixel bound and exclusion of additional decode RAM from the estimate.
+64. `nv/ui_custom_colour` **H**: Qualifies the colour as selected, not a specific custom colour; align it with the rest of the custom palette controls.
+65. `nv/ui_drag_out_to_expand_in_to_trim_drag` **K**: Outward and inward drags are distinguished from moving the whole bounds, with pinch/Fit and background fill retained.
+66. `nv/ui_hold_or_drag_to_spray_colour` **K**: Hold or drag activates spraying colour with the already established Airbrush terminology.
+67. `nv/ui_smooth_pixel_edges_anti_aliasing` **K**: Preserves explicit anti-aliasing, and smoothing the stepped pixel edges is distinguishable from freehand stroke smoothing.
+68. `nv/ui_sort_images_by_filename_or_modification_time` **K**: File name and modification time remain separate sort options.
+69. `nv/ui_sort_tray` **K**: Identifies the bottom thumbnail tray as the sorted collection, rather than sorting placements.
+70. `nv/ui_webp_codec_licences` **K**: Names WebP read/write tools and their licensing, not the licence of a source image.
+71. `nv/ui_heic_avif_codec_licences` **K**: Same codec wording covers both named HEIC and AVIF formats.
+72. `nv/ui_image_codec_licences` **K**: Generic encoder/decoder licence heading is clearly tied to image tooling.
+73. `nv/formats22_dib_description` **K**: Includes Windows DIB, exact bit depth and no compression, and recommends BMP only when the receiving app needs its header.
+74. `nv/formats22_pdf_encrypted` **H**: The password wording is recognizable; the second alternative needs explicit unsupported encryption rather than general inability to open the PDF.
+75. `nv/ui_add_up_to_20_images_with_android_s` **H**: Hold the full assembly guide until preview, Batch crop, aspect/percentage and placement captions agree with the actual UI; preserve non-destructive removal.
+76. `nv/ui_help23` **H**: Hold the compact guide pending the exact View/Draw/navigation labels and verification of Save/overwrite and credits routes.
+77. `nv/ui_the_arrow_on_the_left_directly_below_the` **H**: Hold the ten-paragraph guide until paths, controls, source/rights wording and image transparency versus opaque canvas are checked against the current app.
+78. `nv/commons_check_file_licence` **H**: Creator, licence and adaptation are mentioned; confirm that required attribution is broader than creator information in this compliance text.
+79. `nv/ui_casual` **H**: The descriptive term can indicate ordinary handwriting, not a casual font; distinguish from Cursive and the default.
+80. `nv/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: Separates Catrobat’s gallery from artwork made by its credited contributors.
+81. `nv/ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: Licence stays exact, but align the final menu caption to a broad Image credits term and make separate attribution more explicit than another maker name.
+82. `nv/ui_catrobat_sticker_gallery` **K**: The small/insertable-image description matches the sticker-gallery entry and carries the ellipsis.
+83. `nv/ui_could_not_export_source_code` **H**: The failure names saving the app’s text generally; distinguish exporting actual source code to an external file rather than saving text.
+84. `nv/ui_cursive` **K**: Describes joining handwritten glyphs, distinct from the unqualified handwriting or normal families.
+85. `nv/ui_export_this_version_s_source_code` **H**: Describes saving app text; make both the exact app version and source-code export meaning clear.
+86. `nv/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **H**: The legal text retains default licence and exceptions; confirm full artwork attribution rather than creator-only information before publishing.
+87. `nv/ui_open_source_credits_and_notices` **H**: Being readable by all does not itself mean open source; preserve both source-licence notices and credit objects.
+88. `nv/ui_sans_condensed` **K**: Specifies narrower horizontal spacing rather than a lighter stroke or smaller point size.
+89. `nv/ui_sans_light` **H**: “Not very thick” can overlap the medium option; establish a stable named relative weight.
+90. `nv/ui_sans_medium` **K**: Names an intermediate stroke weight instead of the middle alignment.
+91. `nv/ui_sans_thin` **H**: Marks small lines, not necessarily very thin strokes; check alongside Light and Medium.
+92. `nv/ui_source_code_exported_including_build_scripts_and_licence` **H**: Describes saved app text and text to make the app, but ensure exported source code and included build scripts are recognized as distinct.
+93. `nv/ui_the_gallery_redirected_outside_its_supported_hosts` **K**: Keeps both the redirect and the new URL being unsupported by the app.
+94. `nv/ui_too_many_gallery_redirects` **K**: Reports excessive repetition of URL redirects without recasting it as an unsupported image type.
+95. `nv/ui_sans_serif` **K**: Small terminal strokes are explicitly absent, distinguishing the Sans serif family.
+96. `nv/ui_serif` **K**: Matched counterpart explicitly describes the presence of fan/terminal small strokes.
+97. `nv/ui_draw_around_an_area_drag_inside_to_move` **K**: Preserves free-form boundary, interior movement, square edge/corner handles, round rotation and the existing Commit selection button.
+98. `nv/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **K**: Water is part of the brush action, with softer strokes and Strength adjusting colour blending into the canvas.
+99. `nv/ui_each_px_px_percent_is_relative_to_the` **H**: All dimension slots and placed reflow survive, but the mathematical phrase is the same unverified percentage expression.
+100. `nv/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **H**: Keeps current image, sampled decode/edit memory, lost detail and unchanged original, but verify current clipboard terminology and explicitly that the selected background is opaque.
