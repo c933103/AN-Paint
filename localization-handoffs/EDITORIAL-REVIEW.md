@@ -1178,3 +1178,108 @@ Reviewed 100 previously unreviewed wording candidates: 83 `nhe` (Eastern Huastec
 98. `nch/ui_apply_to_all` **K**: Direct imperative with the target “all,” not a select-all command.
 99. `nch/ui_apply_to_these_images` **K**: Matches the all-images counterpart while constraining the action to these images.
 100. `nch/ui_assembly_decoded_output_estimated_editing_render_memory_at` **H**: The second field is “image the app reads,” not decoded output memory; the third needs to distinguish estimated editing/render allocation at original size.
+
+## Batch 11: Central Huasteca Nahuatl
+
+Reviewed 100 previously unreviewed `nch` candidates. K = keep exact candidate for separate integration; H = hold for a wording fix or quality check. Batch: **69 keep, 31 hold**. Cumulative **1,100 reviewed, 734 keep, 366 hold**. Merge checkpoint for the next cleared cohort is 1,500 reviewed; this batch does not change Android resources.
+
+1. `nch/ui_assembly_output_size` **K**: Names the output image dimensions, not the size of the workspace or assembly file.
+2. `nch/ui_assembly_png` **K**: Descriptive filename keeps its exact PNG extension and identifies assembled imagery.
+3. `nch/ui_batch_crop` **H**: Could mean keep one identical part in every image; distinguish a crop applied to multiple images from using identical selected pixels.
+4. `nch/ui_batch_crop_images` **H**: Use the same unambiguous batch-crop wording as the paired action rather than suggesting images keep one identical portion.
+5. `nch/ui_by_pixels_hold_and_drag_to_place` **K**: Keeps four typed slots, dimension order, and both the hold and drag gestures for placement.
+6. `nch/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: Retains the online gallery identity and separately named creators.
+7. `nch/ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: Licence and source link are present, but the destination denotes only the person who made the image; match the complete credits caption and explicitly retain any separate attribution.
+8. `nch/ui_catrobat_sticker_gallery` **K**: Names the sticker gallery and retains the ellipsis for its next screen.
+9. `nch/ui_common_in` **K**: The two placeholders still denote the shared dimension and its chosen units.
+10. `nch/ui_common_in_pixels` **K**: Pixel-unit counterpart uses the same shared-value wording as the generic-units caption.
+11. `nch/ui_copper` **K**: Unambiguous standard colour/material loan, short enough for a preset.
+12. `nch/ui_copy_an_area_or_use_file_insert_image` **H**: Says make an image from part of something instead of Copy. Also verify that all three route labels match their controls.
+13. `nch/ui_copy_decoded_image_at_this_size_estimated_loading` **H**: The decoded-image row speaks of an image the app reads, not the footprint at that size; distinguish bytes from the separate estimated loading/editing RAM row.
+14. `nch/ui_corners_and_edges_resize_round_handle_rotates` **K**: Corner and side handles resize; the round handle rotates, with both physical drag gestures retained.
+15. `nch/ui_could_not_create_the_assembly` **K**: The app could not create the image-assembly workspace, with the diagnostic field still visible.
+16. `nch/ui_could_not_decode_the_cropped_region_of` **K**: Reads as inability to decode the retained region and preserves the source-image identifying slot.
+17. `nch/ui_could_not_export_source_code` **K**: Saving the specified source code to another destination conveys export, rather than failing to compile.
+18. `nch/ui_could_not_load_gallery_image` **K**: Open/load failure still points to a gallery image rather than an unavailable gallery, with detail slot.
+19. `nch/ui_create_output` **K**: Names creating the output image, not saving over a source file.
+20. `nch/ui_credits_terms` **H**: The first half names only who made the project; credits must also cover contributions, sources and notices. The terms half should not imply only steps to run it.
+21. `nch/ui_cropped_thumbnail` **K**: Identifies a thumbnail of the cropped image and retains the association through its slot.
+22. `nch/ui_current_safe_budget_2f_mp` **K**: Preserves an up-to current safe limit and the two-decimal megapixel token.
+23. `nch/ui_current_safe_editing_budget_s_up_to_2f` **K**: Clearly distinguishes current editing RAM, its MP estimate and the excluded additional decode memory.
+24. `nch/ui_cursive` **K**: Concise established typography loan for the cursive choice.
+25. `nch/ui_custom_colour` **H**: Says colour previously chosen rather than an explicit custom-colour slot; align it with the custom palette and its Add/Replace flow.
+26. `nch/ui_custom_colours_hold_a_swatch_to_replace_it` **H**: Hold-to-replace is right, but saved custom swatches should not be confused with previously selected colours.
+27. `nch/ui_disable_cursor_drawing` **K**: Matches the pinned cursor-drawing disable caption and preserves the scope of the toggle.
+28. `nch/ui_downloading_image` **H**: Taking an image could mean selection or capture; name an in-progress download.
+29. `nch/ui_drag_a_line_then_drag_twice_to_set` **H**: Two separate curves are implied, not two bends of a single curve. The early Finish action is present but needs exact caption alignment.
+30. `nch/ui_drag_a_selection_drag_inside_to_move_square` **K**: Retains draw/drag selection, interior movement, square resize handles, round rotation handle and aspect locking.
+31. `nch/ui_drag_across_the_ellipse_s_bounding_box` **K**: Explains the diagonal as a drag from one corner of the ellipse’s enclosing rectangle to the opposite corner.
+32. `nch/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Retains opposite-corner gesture and the separate below-control choice between outline and fill.
+33. `nch/ui_drag_between_opposite_corners_to_draw_a_five` **K**: Five points, opposite corners and outline versus filled interior all survive.
+34. `nch/ui_drag_between_opposite_corners_to_draw_a_heart` **K**: Correct heart gesture and optional outline versus filled interior.
+35. `nch/ui_drag_from_the_start_to_the_end_of` **K**: Clear start-to-end line drag, not tapping an endpoint twice.
+36. `nch/ui_drag_from_the_tail_towards_the_arrowhead_choose` **H**: Itsonco can describe the broad top or tip; distinguish the arrowhead from the tail with a term consistent with the arrow tool.
+37. `nch/ui_drag_out_to_expand_in_to_trim_drag` **H**: Pinch and Fit are recognizable, but the final “colour behind” needs explicit BG terminology and matching Fit caption in the revised bounds help.
+38. `nch/ui_drag_placed_images_to_move_them_hold_and` **H**: The first phrase can mean images merely loaded into the workspace. Specify already placed images to distinguish them from thumbnails.
+39. `nch/ui_drag_to_erase_with_the_background_colour` **K**: Erasure is explicitly performed with the background colour, not transparency.
+40. `nch/ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Preserves non-drawing pan and combined two-finger zoom/pan even with a drawing tool active.
+41. `nch/ui_draw_a_crisp_one_pixel_line` **H**: The line is described as clear, not crisp-edged; distinguish pencil from antialiased drawing while preserving the 1–100 range.
+42. `nch/ui_draw_around_an_area_drag_inside_to_move` **H**: Gesture details survive, but confirm that the quoted action matches the actual Commit selection caption instead of sounding like inserting a separate image.
+43. `nch/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **K**: Keeps the soft water-and-colour stroke and strength controlling how the colour mixes into the canvas.
+44. `nch/ui_draw_with_the_selected_brush_tip_and_size` **K**: Preserves both selected brush-tip shape and selected size.
+45. `nch/ui_drop_at_a_highlighted_edge_right_top_aligned` **H**: Clarify the two attachment edges and that top/left are alignment targets, not two independent movement directions.
+46. `nch/ui_each_px_px_percent_is_relative_to_the` **K**: Preserves all seven slots, relative percentage base and reflow of placed images, with line structure intact.
+47. `nch/ui_edit_in_paint` **K**: Names the action and Paint destination; no confusion with saving the assembly.
+48. `nch/ui_enable_android_s_files_or_documents_app_then` **K**: Specifies the Android app to enable and directs a retry rather than asking the user to find a file.
+49. `nch/ui_estimated_memory_current_working_budget` **K**: Keeps estimated RAM and present working allowance as different numbers with both line breaks.
+50. `nch/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **K**: Keeps sampled decode, current canvas, clipboard, editing buffers, possible variation, reduced-copy detail loss, opaque background and unchanged original.
+51. `nch/ui_export_this_version_s_source_code` **K**: Names the current version, source code and export to another destination; retains ellipsis.
+52. `nch/ui_filename_a_z` **K**: Uses the pinned filename term and ascending A–Z order.
+53. `nch/ui_filename_z_a` **K**: Uses the same filename term and descending Z–A order.
+54. `nch/ui_fill_text_box_with_bg_colour` **K**: Clearly fills the text box with the behind/background colour, not the lettering itself.
+55. `nch/ui_fits_the_current_budget` **K**: Says the operation can use the currently available RAM, not that it necessarily uses all of it.
+56. `nch/ui_font_licences` **K**: The licence object is the appearance/form of letters, distinguishing fonts from image and codec licences.
+57. `nch/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **K**: Retains identification of creators, the default licence and source-specific exceptions, including creator credit and description of modifications when sharing.
+58. `nch/ui_gallery_image` **K**: Names an image from the gallery without implying a download or insertion has already occurred.
+59. `nch/ui_give_all_images_the_same_each_image_keeps` **H**: The final crop clause can be read as the selected material rather than crop settings; preserve both original files and each saved crop setting unchanged.
+60. `nch/ui_gold` **K**: Concise standard colour/material loan that matches the preset meaning.
+61. `nch/ui_hide_pixel_grid_800` **K**: Hides the pixel grid, preserving the 800%-and-up shorthand.
+62. `nch/ui_hold_a_thumbnail_and_drag_it_here_or` **H**: The second “tap workspace” is left implicit; make both taps explicit and distinguish the tap alternative from hold-and-drag.
+63. `nch/ui_hold_or_drag_to_spray_colour` **K**: Retains both hold and drag for colour application via the established airbrush description.
+64. `nch/ui_honeycomb` **K**: Concise equivalent for the honeycomb palette option.
+65. `nch/ui_honeycomb_colour_06x` **K**: Honeycomb colour name and exact uppercase, zero-padded hexadecimal token retained.
+66. `nch/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Describes individual honeycomb swatches and a separate grey-scale row.
+67. `nch/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: Keeps hue/saturation and the lightness adjustment on the right; does not confuse with HSV value.
+68. `nch/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: Keeps the wheel and numeric V adjustment on the right, distinguishing it from HSL lightness.
+69. `nch/ui_icon_licences` **K**: Correct plural licences for icons, distinct from the visual icons themselves.
+70. `nch/ui_icon_licences_kde_breeze` **K**: Preserves the exact KDE Breeze name and the same icon-licence terminology.
+71. `nch/ui_icons_artwork` **K**: Both icons and artwork remain listed as separate parts of this credit section.
+72. `nch/ui_icons_fonts_artwork_credits` **H**: Only asks who made the items; credit may include source, ownership and related notices. Keep the heading broad and align with the credits/terms labels.
+73. `nch/ui_image_assembly_workspace_drag_placed_images_or_drop` **K**: Right/bottom targets, snap effect, separate thumbnail/placed drag, pinch zoom and empty-space panning are all expressed.
+74. `nch/ui_image_credits` **H**: “Who made the image” omits source and licence; revise the heading alongside the related routes pointing to it.
+75. `nch/ui_image_placed_drag_it_to_move_or_hold` **H**: “The image is already there” fails to distinguish placement on the canvas from having loaded a thumbnail; align with both placement status captions.
+76. `nch/ui_image_shown_in_crop_preview` **K**: Identifies the image visible in the before-commit crop view.
+77. `nch/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **K**: Clear thumbnail/file-name description and horizontal-scroll directions for accessing more.
+78. `nch/ui_insert_gallery_image` **K**: Asks whether to insert this gallery image, without suggesting it will replace the entire canvas.
+79. `nch/ui_invalid_image_attachments` **K**: Conveys the arrangement of image attachments is not valid, not an image decode failure.
+80. `nch/ui_largest` **K**: Clear superlative for selecting the largest candidate.
+81. `nch/ui_lossless_jpeg_xl` **H**: “Saved everything visible” is not expressly bit-/pixel-preserving; use the established lossless formulation.
+82. `nch/ui_magnified_preview` **H**: The imperative “look beforehand in larger size” is recognizable but reads as an instruction, not the magnified preview setting.
+83. `nch/ui_magnified_preview_ea9209` **H**: Keep this plain variant aligned with the corrected magnified-preview noun phrase.
+84. `nch/ui_modified_newest_first` **K**: Orders by most recently modified, not by capture or creation date.
+85. `nch/ui_modified_oldest_first` **K**: Orders by earliest modification with wording parallel to the newest-first option.
+86. `nch/ui_monospace` **K**: A readable explanation of equal-width glyphs captures the monospace choice.
+87. `nch/ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Keeps current coordinate-range constraint and recommends smaller images rather than retrying blindly.
+88. `nch/ui_no_gallery_images_have_been_inserted` **H**: Implies that no creator text is available; the source can also mean no source/licensing credit text regardless of creator.
+89. `nch/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: Specifies RAM and the gallery image inspection action, not save, import or network failure.
+90. `nch/ui_not_placed` **H**: “Not yet there” could mean not loaded; use a placement-specific negative state.
+91. `nch/ui_open_source_credits_and_notices` **H**: Says who created software and “this writing”; it does not reliably distinguish open-source attribution from required notices.
+92. `nch/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **H**: Formula, three values and no-resize qualifier survive, but the second row should name decoded-image memory rather than the decoded image itself.
+93. `nch/ui_other_terms` **H**: “Other things you must do” can read as setup steps; make clear these are additional terms of use.
+94. `nch/ui_pale_violet` **H**: “Chipahuac” may suggest clean rather than pale/light; align the colour modifier with the other pastel names.
+95. `nch/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **K**: Names exact Lápiz label, crisp edges, and the fact that the property applies at any selected width.
+96. `nch/ui_percent_of_pixels` **K**: Percentage wording preserves the dynamic pixel reference rather than a literal number.
+97. `nch/ui_pinch_to_zoom_drag_to_pan` **K**: Distinguishes two-finger zoom from dragging the view.
+98. `nch/ui_place_at_least_one_image_in_the_workspace` **K**: Explicit first-step minimum of one placed image in the workspace.
+99. `nch/ui_placed` **H**: “It is already there” is too generic for the placed status; pair the revision with its negative form to distinguish from loaded.
+100. `nch/ui_px_drag_an_image_to_move_hold_a` **K**: Exact dimension order/unit plus the separate image move and thumbnail-hold actions remain intact.
