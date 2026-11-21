@@ -1493,3 +1493,108 @@ Reviewed 100 previously unreviewed `nch` candidates. K = keep exact candidate fo
 98. `nch/commons_metadata_field_too_large` **H**: The limit is applied to part of creator text; identify the attribution field without dropping why it was rejected.
 99. `nch/commons_metadata_cache_failed` **H**: Reports a failure to retain creator text only; use the broader Commons attribution record term.
 100. `nch/commons_download_original_mismatch` **K**: States the download led to a different original file, not just a different URL.
+
+## Batch 14: Central Huasteca Nahuatl and Navajo
+
+Reviewed 100 previously unreviewed drafts. K = keep the exact candidate for separate integration; H = hold for wording revision or verification. Batch: **67 keep, 33 hold**. Cumulative: **1400 reviewed, 945 keep, 455 hold**. This pass does not change Android resources.
+
+1. `nch/commons_svg_png_encode_failed` **H**: Maps without writing is narrower than blank maps; name the blank-map category without treating every label-free map as the same.
+2. `nch/ui_help23` **H**: The short guide needs exact UI caption verification for Save/Undo/Redo and the changed Image credits terminology; the route currently uses the restricted “maps without writing” phrase.
+3. `nch/ui_the_arrow_on_the_left_directly_below_the` **H**: Hold the full ten-paragraph guide pending a control-caption audit, particularly Image credits, the non-destructive Unplace action, and opacity against the actual build.
+4. `nv/commons_blank_maps` **H**: Kéyah and the picture phrase identify pictured land but the parenthetical restricts blank to absence of words; confirm the accepted map-category term.
+5. `nv/ui_add_images` **K**: Concise add-to-container directive uses the existing picture and insertion vocabulary.
+6. `nv/ui_add_images_first` **K**: The same add-images action is retained, with Áłtsé making it a prerequisite.
+7. `nv/ui_add_to_custom_colours` **H**: The parenthetical describes colours you choose rather than the separate persistent custom palette; align the palette name first.
+8. `nv/ui_an_assembly_can_contain_up_to_20_images` **H**: The wording shifts between first-person assembly/removal and a user-directed insertion; verify both removal and 20-image capacity without implying source deletion.
+9. `nv/ui_an_assembly_can_contain_up_to_20_images_86d995` **H**: This paired capacity label needs a clear upper limit and the established assembly object, rather than resembling a first-person operation.
+10. `nv/ui_an_paint_assembly_image` **K**: The already-combined image phrasing differentiates the output from the workspace title.
+11. `nv/ui_an_paint_image_assembly` **K**: Uses the exact established Image assembly wording, with app branding retained.
+12. `nv/ui_an_paint_image_assembly_20_images_placed` **K**: Matches the established assembly title and keeps distinct loaded and placed counts with the exact indices and line structure.
+13. `nv/ui_apply_to_all` **K**: “All” and the existing use/apply verb convey the all-target action.
+14. `nv/ui_apply_to_these_images` **K**: Specifies these images as the recipients of the apply action, unlike its all-target counterpart.
+15. `nv/ui_batch_crop` **H**: Says crop the selected material; it does not identify multiple selected images or a batch operation.
+16. `nv/ui_batch_crop_images` **H**: Mentions selected images but does not make the shared batch operation clear; pair its revision with the short caption.
+17. `nv/ui_common_in_pixels` **K**: Retains a generic common dimension and a clear px unit marker.
+18. `nv/ui_could_not_create_the_assembly` **K**: Names failure to create the assembly and retains the dynamic error detail.
+19. `nv/ui_create_output` **H**: The generic action makes an image; name the assembly output specifically so it is not mistaken for creating a new input.
+20. `nv/ui_current_safe_budget_2f_mp` **H**: Retains the numerical cap but the first phrase is generic available allowance, not clearly the safe working limit.
+21. `nv/ui_add_images_then_drag_a_thumbnail_here` **K**: Add images first, then drag a small image/thumbnail here; action order is explicit.
+22. `nv/ui_an_image_cannot_attach_to_itself_or_one` **H**: The first-person verb makes the attachment prohibition harder to interpret; verify phrasing that precludes both self-attachment and attachment to an existing child image.
+23. `nv/ui_assembly_decoded_output_estimated_editing_render_memory_at` **H**: Labels decoded output as pixels, but the slot represents decoded output memory; distinguish it from dimensions and estimated working RAM.
+24. `nv/ui_assembly_output_size` **K**: Explicit output width and height match the dimensions terminology used elsewhere.
+25. `nv/ui_by_pixels_hold_and_drag_to_place` **K**: All placeholders survive, in sequence; both hold and drag are required for placement.
+26. `nv/ui_common_in` **K**: Retains the generic dimension and the separately supplied unit.
+27. `nv/ui_copy_decoded_image_at_this_size_estimated_loading` **H**: The decoded-image row adds px even though its dynamic value is a decoded-memory estimate, not pixel count; keep all three quantities distinct.
+28. `nv/ui_could_not_decode_the_cropped_region_of` **H**: The same inbound load wording can mean opening the whole image rather than decoding a selected region; retain both crop region and decode.
+29. `nv/ui_cropped_thumbnail` **K**: Identifies a small cropped image and preserves its value slot.
+30. `nv/ui_custom_colours_hold_a_swatch_to_replace_it` **H**: Hold and replacement survive but the colour qualifier still names a chosen colour, not a stored custom swatch.
+31. `nv/ui_downloading_image` **H**: The phrase indicates incoming imagery, which can mean loading or inserting; name the download operation distinctly.
+32. `nv/ui_drag_a_line_then_drag_twice_to_set` **H**: Clarify that two later drags set two bends of the same line, and verify the exact Finish curve caption.
+33. `nv/ui_drag_a_selection_drag_inside_to_move_square` **K**: Preserves selection, interior movement, square corner/edge resizing, round rotation and aspect locking.
+34. `nv/ui_drag_across_the_ellipse_s_bounding_box` **K**: Describes the rectangle enclosing the ellipse and the corner-to-opposite-corner drag.
+35. `nv/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Retains opposing corners and the below-control outline/fill choice.
+36. `nv/ui_drag_between_opposite_corners_to_draw_a_five` **K**: The five-point star, diagonal drag and outline/fill choice are present.
+37. `nv/ui_drag_between_opposite_corners_to_draw_a_heart` **H**: The proposed shape term needs confirmation for a heart, rather than just a long form; do not rely on the correct gesture alone.
+38. `nv/ui_drag_from_the_start_to_the_end_of` **K**: Retains a drag along the line from start to end.
+39. `nv/ui_drag_from_the_tail_towards_the_arrowhead_choose` **K**: Retains tail-to-head direction and the outline/fill option as separate concepts.
+40. `nv/ui_drag_placed_images_to_move_them_hold_and` **K**: Biiʼ hééł ályaa identifies placed images; hold and drag a smaller thumbnail to add it.
+41. `nv/ui_drag_to_erase_with_the_background_colour` **K**: Matches the fixed background-colour and erase terms, so this is not alpha clearing.
+42. `nv/ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Distinguishes non-drawing pan, two-finger zoom/pan, and two-finger use with a drawing tool selected.
+43. `nv/ui_draw_a_crisp_one_pixel_line` **H**: Describes the line as good rather than crisp-edged; keep the correct width range when revising.
+44. `nv/ui_draw_with_the_selected_brush_tip_and_size` **K**: Uses the established brush term and refers to both the selected tip and selected size.
+45. `nv/ui_drop_at_a_highlighted_edge_right_top_aligned` **K**: Identifies the highlight, the right/top alternative and below/left alternative in the intended edge order.
+46. `nv/ui_edit_in_paint` **K**: Clearly edits in Paint, not a source image or assembly-save command.
+47. `nv/ui_enable_android_s_files_or_documents_app_then` **H**: App name alternatives and retry survive, but the enable instruction should read as enabling those Android apps, not just opening or launching them.
+48. `nv/ui_estimated_memory_current_working_budget` **K**: Correct distinct rows for estimated and currently available working RAM, with newline and slot positions.
+49. `nv/ui_fill_text_box_with_bg_colour` **K**: Matches the pinned behind/background-colour term and fills the inside of the text box rather than the lettering.
+50. `nv/ui_fits_the_current_budget` **K**: States the current working RAM limit is not exceeded.
+51. `nv/ui_font_licences` **K**: Refers to diverse forms of lettering as the licensing object, separate from icons and images.
+52. `nv/ui_gallery_image` **K**: Recognizable image from the gallery, using the catalogue’s image vocabulary.
+53. `nv/ui_give_all_images_the_same_each_image_keeps` **K**: Keeps both typed slots, per-image aspect ratio, original files and unchanged cropping settings.
+54. `nv/ui_hide_pixel_grid_800` **H**: Preserves Hide and threshold, but the draft uses a different grid phrase from Show; review both as a pair so each indicates the same overlay.
+55. `nv/ui_hold_a_thumbnail_and_drag_it_here_or` **K**: Both transfer methods are explicit: hold and drag the thumbnail here, or tap it and then tap the workspace.
+56. `nv/ui_icon_licences` **K**: Describes small tool images as the licence subject, distinguishable from artwork and fonts.
+57. `nv/ui_icon_licences_kde_breeze` **K**: Exact KDE Breeze name and the same icon-licence term as the generic caption.
+58. `nv/ui_image_credits` **H**: “About the people who made the image” can omit source and licence; establish the broader image-attribution label.
+59. `nv/ui_image_placed_drag_it_to_move_or_hold` **K**: Uses the pinned placement wording and separates dragging the placed image from holding and dragging a new thumbnail.
+60. `nv/ui_image_shown_in_crop_preview` **K**: Identifies an image, the crop and its projected view without implying the crop already applied.
+61. `nv/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **K**: Identifies thumbnails and names, then explicitly offers left/right dragging to see more.
+62. `nv/ui_insert_gallery_image` **K**: A clear gallery-image insertion question, not replacing the canvas.
+63. `nv/ui_icons_artwork` **K**: Distinguishes small tool icons from drawn artwork.
+64. `nv/ui_icons_fonts_artwork_credits` **H**: The heading can limit credits to creator information alone; preserve distinct icons, font and artwork categories with a broader credit term.
+65. `nv/ui_image_assembly_workspace_drag_placed_images_or_drop` **H**: Retains pinch and empty-space pan, but clarify attachment as snapping to right/bottom targets rather than just putting thumbnails on those sides.
+66. `nv/ui_invalid_image_attachments` **K**: Keeps the attachment-specific invalidity, rather than blaming the source image format.
+67. `nv/ui_largest` **K**: An unambiguous largest option matching the scale choices.
+68. `nv/ui_lossless_jpeg_xl` **H**: “No image information missing” is promising but the negative scope needs checking for literal losslessness versus unavailable metadata.
+69. `nv/ui_magnified_preview` **K**: Consistent with the pinned magnified drawing-preview wording and retains ellipsis when it opens a control.
+70. `nv/ui_magnified_preview_ea9209` **K**: The no-ellipsis counterpart keeps the same preview terminology.
+71. `nv/ui_modified_newest_first` **K**: Uses modification as the ordering basis and newest first.
+72. `nv/ui_modified_oldest_first` **K**: Uses the same modification basis and earliest first.
+73. `nv/ui_monospace` **K**: Defines monospace as equal widths for all writing symbols.
+74. `nv/ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Names the current X/Y limit and advises smaller image sizes rather than implying all attachment is disabled.
+75. `nv/ui_no_gallery_images_have_been_inserted` **H**: Could suggest absence of creator information alone; use the same broad text-based attribution term as Image credits.
+76. `nv/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: The RAM limit is specific to inspecting the gallery image, not downloading it.
+77. `nv/ui_not_placed` **K**: Negative placement counterpart clearly means not yet placed in the workspace, not missing a file.
+78. `nv/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **K**: Keeps the source/decoded/estimated rows distinct with RGBA and 4 bytes per pixel; editing estimate explicitly assumes no resize.
+79. `nv/ui_other_terms` **K**: Uses the established terms/licence vocabulary for remaining conditions.
+80. `nv/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **H**: Uses the right pencil and width but describes edges as “good”; describe crisp edges in contrast with smoothed or antialiased edges.
+81. `nv/ui_percent_of_pixels` **H**: The percentage phrasing needs verification that it reads as a fraction of the typed pixel quantity and not in multiples of one hundred pixels.
+82. `nv/ui_pinch_to_zoom_drag_to_pan` **K**: Starts with two-finger zoom and separately specifies dragging the view to pan.
+83. `nv/ui_place_at_least_one_image_in_the_workspace` **K**: Makes one image the minimum and retains workspace placement as the prerequisite.
+84. `nv/ui_placed` **K**: Simple completed placement state matches the negative counterpart and instruction text.
+85. `nv/ui_px_drag_an_image_to_move_hold_a` **K**: Keeps exact width/height slots and px, along with separate move and thumbnail-hold gestures.
+86. `nv/ui_rendering_images` **H**: The status counts prepared items; clarify it means completed processing rather than loaded or already saved images, while retaining both counters.
+87. `nv/ui_restore_original_sizes` **K**: Restores original width and height, not a fixed default size.
+88. `nv/ui_right_arrow_expand` **K**: Right-arrow glyph and direction are explicit and distinguish the expansion action.
+89. `nv/ui_same` **K**: Generic same-dimension pattern keeps its dynamic dimension slot.
+90. `nv/ui_same_height` **K**: Clearly identifies shared height, distinct from width.
+91. `nv/ui_same_width` **K**: Clearly identifies shared width, consistent with counterpart.
+92. `nv/ui_set_radius_px_then_drag_between_opposite_corners` **H**: Opposite corners and half-short-side limit survive, but verify the quoted radius label exactly and confirm the center-to-edge wording is read as corner radius.
+93. `nv/ui_show_pixel_grid_800` **H**: Preserves 800%+ but uses a different term than Hide for the overlay; establish the shared grid terminology.
+94. `nv/ui_shows_the_whole_assembly_image_and_output_sizes` **K**: The whole assembly becomes visible, without changing size of input or output images.
+95. `nv/ui_smallest` **K**: Clear smallest choice matching the other extreme.
+96. `nv/ui_some_previews_could_not_be_decoded_you_can` **H**: Removal action is first-person in form and the save alternative reads as a direct command; clarify both permitted options without implying the app already deleted images.
+97. `nv/ui_strikethrough` **K**: Specifies a line through the middle of the text, distinct from underline.
+98. `nv/ui_tap_a_pixel` **K**: Clear direct tap gesture on one pixel.
+99. `nv/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Preserves tapping an enclosed region and modifying settings for similar colours.
+100. `nv/ui_tap_an_image_thumbnail_first` **K**: Requires first tapping the thumbnail, not a placed image or the workspace.
