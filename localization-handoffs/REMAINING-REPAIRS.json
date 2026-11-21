@@ -4612,6 +4612,132 @@
       "wording": "%1$s (Lossless) — ᏗᏟᎶᏍᏔᏅ ᏗᎪᏪᎵ ᎦᎷᎶᎠ ᎥᏝ",
       "decision": "repair_candidate",
       "reason": "Matches Lossless JPEG XL wording and preserves the dynamic format argument."
+    },
+    "chr/formats22_base64_label": {
+      "source": "Base64 text",
+      "previous": "Base64 — ᎠᎪᎵᏰᏗ",
+      "wording": "Base64 — ᎪᏪᎵ (text)",
+      "decision": "repair_candidate",
+      "reason": "Explicitly names text output, not preview or decoding."
+    },
+    "chr/formats22_tiff_compression": {
+      "source": "Lossless compression (Deflate)",
+      "previous": "ᎦᏟᏌᏅᎯ — ᎦᎷᎶᎠ ᎥᏝ (Deflate)",
+      "wording": "Deflate — ᏗᏟᎶᏍᏔᏅ ᏗᎪᏪᎵ ᎦᎷᎶᎠ ᎥᏝ (lossless compression)",
+      "decision": "repair_candidate",
+      "reason": "Names the Deflate algorithm and exact lossless compression rather than suggesting only that bitmap data are present."
+    },
+    "chr/formats22_preview_memory": {
+      "source": "There is not enough memory for this preview. Opening the page will offer smaller dimensions when possible.",
+      "previous": "ᎯᎠ ᎠᏓᎪᏩᏛᏗᏍᎩ — ᎠᏅᏓᏗᏍᏙ ᏰᎵ ᏱᎩᎾ. ᎤᏆᎸ ᎯᏍᏚᎢ — ᏰᎵᏊ ᎦᏲᎵᎨ ᎢᎩᏓ ᎠᏑᏰᏍᏗ.",
+      "wording": "ᎯᎠ ᎠᏓᎪᏩᏛᏗᏍᎩ — ᎠᏅᏓᏗᏍᏙ ᏰᎵ ᏱᎩᎾ. ᎤᏆᎸ ᎯᏢᎦ — ᏰᎵᏊ ᎦᏲᎵᎨ ᎢᎩᏓ ᎠᏑᏰᏍᏗ (if available).",
+      "decision": "repair_candidate",
+      "reason": "Keeps preview memory distinct and uses Open, not Close. Smaller size is a conditional offer, not guaranteed or automatic."
+    },
+    "chr/formats22_pdf_invalid": {
+      "source": "PDF could not be read. The file may be damaged or use features unsupported by this Android version.",
+      "previous": "PDF — ᎠᎪᎵᏰᏗ: ᎤᏄᎸᎲᎦ. ᎠᏍᏆᏂᎪᏙᏗ ᎤᏲᏨᎯ ᏰᎵᏊ, ᎠᎴ ᎯᎠ Android — ᎢᎦᏛ ᎬᏙᏗ: Ꮭ ᏰᎵ ᏱᎩ.",
+      "wording": "PDF — ᎠᎪᎵᏰᏗ: ᎤᏄᎸᎲᎦ. ᎠᏍᏆᏂᎪᏙᏗ ᎤᏲᏨᎯ ᏰᎵᏊ; ᎠᎴ PDF ᎭᏫᏂᏗᏢ ᎢᎦᏛ ᎬᏙᏗ ᎯᎠ Android (version) Ꮭ ᏰᎵ ᏱᎩ.",
+      "decision": "repair_candidate",
+      "reason": "Distinguishes reading failure, a possibly damaged file, and PDF features unsupported by this Android version."
+    },
+    "chr/formats22_pdf_page_index": {
+      "source": "PDF page selection is no longer valid. Choose a page from this document.",
+      "previous": "PDF — ᎤᏆᎸ ᎠᏑᏰᏓ: Ꮭ ᎬᏙᏗ ᏱᎩ. ᎯᎠ ᎪᏪᎳᏅᎢ — ᎤᏆᎸ ᎭᏑᏯᎩ.",
+      "wording": "PDF — ᎤᏆᎸ ᎠᏑᏰᏓ ᏃᏊ Ꮭ ᎬᏙᏗ ᏱᎩ. ᎯᎠ ᎪᏪᎳᏅᎢ ᎭᏫᏂᏗᏢ — ᎤᏆᎸ ᎭᏑᏯᎩ.",
+      "decision": "repair_candidate",
+      "reason": "Marks the selection now invalid and advises choosing a page from within the same document."
+    },
+    "chr/formats22_pdf_dimensions": {
+      "source": "PDF page dimensions are invalid or too large to import.",
+      "previous": "PDF — ᎤᏆᎸ ᎢᎩᏓ: Ꮭ ᎬᏙᏗ ᏱᎩ, ᎠᎴ ᎤᏔᏅᎯᎦ — ᎰᏣᎸᎥᎦ ᏰᎵ ᏱᎩᎾ.",
+      "wording": "PDF — ᎤᏆᎸ ᎢᎩᏓ: Ꮭ ᎬᏙᏗ ᏱᎩ / ᎤᏔᏅᎯᎦ — ᎰᏣᎸᎥᎦ ᏰᎵ ᏱᎩᎾ.",
+      "decision": "repair_candidate",
+      "reason": "Separates the two independently sufficient causes: invalid dimensions or too large to import."
+    },
+    "chr/formats22_ascii_invert": {
+      "source": "Invert light and dark characters",
+      "previous": "ᏗᏙᏪᎵᏍᎩ — ᎤᏍᏗ ᎠᎦᏙᎲᏍᏗ ᎠᎴ ᎤᎵᏏᎩ ᎯᏁᏟᏴᎾ",
+      "wording": "ᏗᏙᏪᎵᏍᎩ — ᎠᎦᏙᎲᏍᏗ ↔ ᎤᎵᏏᎩ (light ↔ dark) ᎯᏁᏟᏴᎾ",
+      "decision": "repair_candidate",
+      "reason": "Makes the inversion two-way, rather than editing the glyphs themselves."
+    },
+    "chr/gallery_copy_credit": {
+      "source": "Copy credit",
+      "previous": "ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ ᎠᎪᎵᏰᏗ — ᎤᏠᏱ ᎪᏢᏅᏗ",
+      "wording": "ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ / ᎠᏓᎵᏍᎪᎸᏓᏁᎯ — ᏗᏟᎶᏍᏔᏅᎯ",
+      "decision": "repair_candidate",
+      "reason": "Uses the existing Copy caption and discloses creator, source and licence in the object."
+    },
+    "chr/gallery_edit_credits": {
+      "source": "Edit credits",
+      "previous": "ᏧᏬᏪᎳᏅᎯ — ᎦᏁᏟᏴᏓ ᎰᏪᎸᎦ",
+      "wording": "ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ / ᎠᏓᎵᏍᎪᎸᏓᏁᎯ — ᎦᏁᏟᏴᏓ ᎰᏪᎸᎦ",
+      "decision": "repair_candidate",
+      "reason": "Edits the same full credit record that Copy copies."
+    },
+    "chr/gallery_credit_copied": {
+      "source": "Credit copied",
+      "previous": "ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ ᎠᎪᎵᏰᏗ: ᏗᏟᎶᏍᏔᏅᎯ (ᎠᏍᏆᏛᎯ)",
+      "wording": "ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ / ᎠᏓᎵᏍᎪᎸᏓᏁᎯ — ᏗᏟᎶᏍᏔᏅᎯ",
+      "decision": "repair_candidate",
+      "reason": "Uses the same clipboard action result without a Save qualifier."
+    },
+    "chr/gallery_credit_saved": {
+      "source": "Credit text saved",
+      "previous": "ᏧᏬᏪᎳᏅᎯ ᎠᎪᎵᏰᏗ — ᎠᏍᏆᏛᎯ",
+      "wording": "ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ / ᎠᏓᎵᏍᎪᎸᏓᏁᎯ — ᎪᏪᎵ ᎠᏍᏆᏛᎯ",
+      "decision": "repair_candidate",
+      "reason": "Distinct saved-text result for the complete selected attribution."
+    },
+    "chr/formats22_ico_size": {
+      "source": "Icon size",
+      "previous": "ᏗᎦᏟᏌᏅᎯ — ᎢᎩᏓ",
+      "wording": "ᏗᎦᏟᏌᏅᎯ (ICO) — ᎢᎩᏓ",
+      "decision": "repair_candidate",
+      "reason": "Labels the icon format rather than a generic bitmap control."
+    },
+    "chr/formats22_ico_decode_budget": {
+      "source": "Decoding this icon exceeds the available image memory budget.",
+      "previous": "ᎯᎠ ᏗᎦᏟᏌᏅᎯ → pixel — ᎠᏅᏓᏗᏍᏙ > ᏃᏊ ᏗᏟᎶᏍᏔᏅ ᎠᏅᏓᏗᏍᏙ ᎠᏎᎸᎯ.",
+      "wording": "ᎯᎠ ᏗᎦᏟᏌᏅᎯ (ICO decode) — ᎠᏅᏓᏗᏍᏙ > ᏃᏊ ᏗᏟᎶᏍᏔᏅ ᎠᏅᏓᏗᏍᏙ ᎠᏎᎸᎯ.",
+      "decision": "repair_candidate",
+      "reason": "Explicitly ties this icon’s decoding to the available image RAM threshold."
+    },
+    "chr/formats22_ico_invalid_size": {
+      "source": "Choose an icon size of 16, 24, 32, 48, 64, 128 or 256 pixels.",
+      "previous": "ᏗᎦᏟᏌᏅᎯ ᎢᎩᏓ ᎭᏑᏯᎩ: 16, 24, 32, 48, 64, 128 ᎠᎴ 256 pixel.",
+      "wording": "ᏗᎦᏟᏌᏅᎯ (ICO) ᎢᎩᏓ ᎭᏑᏯᎩ: 16, 24, 32, 48, 64, 128 ᎠᎴ 256 pixel.",
+      "decision": "repair_candidate",
+      "reason": "Matches ICO size picker and checks the exact seven allowed sizes."
+    },
+    "chr/ui_cursor_marker_help31": {
+      "source": "Enlarges the cursor marker without changing the size of the painted brush stroke.",
+      "previous": "ᎥᎪᏪᎵᏍᎬ ᎠᎴᏅᏙᏗ — ᎤᏁᏉᎥᎢ ᎢᎩᏓ. ᏗᎦᎶᏁᏙᏗ ᎠᏍᏓᏅᏅ ᎢᎩᏓ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "wording": "ᎥᎪᏪᎵᏍᎬ ᎠᎴᏅᏙᏗ ᏗᎦᏟᏌᏅᎯ (cursor marker) — ᎤᏁᏉᎥᎢ ᎢᎩᏓ. ᏗᎦᎶᏁᏙᏗ ᎠᏍᏓᏅᏅ ᎢᎩᏓ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "decision": "repair_candidate",
+      "reason": "Names the visible marker, not the pointer or tool geometry; painted stroke size stays unchanged."
+    },
+    "chr/ui_cursor_pan_draw32": {
+      "source": "Drag to move the cursor and start drawing. Tap again to stop drawing.",
+      "previous": "ᎥᎪᏪᎵᏍᎬ ᎠᎴᏅᏙᏗ ᎦᎾᏏᏁᎦ — ᎯᎲᎾ ᎠᎴ ᎠᏍᏓᏅᎿᏂᏙᎸ ᎭᏂᎩᏍᏓ. ᎠᏏᏉ ᎤᏟᏍᏓ ᎠᏒᏂᎸ — ᎭᎴᏫᏍᏓ.",
+      "wording": "ᎥᎪᏪᎵᏍᎬ ᎠᎴᏅᏙᏗ ᎯᎾᏍᎦ — ᎢᎬᎾᏕᎾ ᎦᏁᏟᏴᏍᏗ ᎠᎴ ᎯᏟᎶᏍᏓ. ᎠᏏᏉ ᎤᏟᏍᏓ ᎠᏒᏂᎸ — ᎭᎴᏫᏍᏓ.",
+      "decision": "repair_candidate",
+      "reason": "Uses positioning terminology and preserves drag-to-draw and repeat-tap-to-stop."
+    },
+    "chr/ui_normalize_width_intro": {
+      "source": "Give all images the same width. Number of images: %1$d. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
+      "previous": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎾᏯᏛᎥ ᎤᏠᏱ ᎲᏓ. ᏗᏟᎶᏍᏔᏅ ᏎᏍᏗ: %1$d. ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎾᏯᏛᎥ / ᎢᎦᏘ ᎤᏠᏱ ᏂᎦᏰᏙᎲ. ᎠᎴᏅᏗᏍᎬ ᎠᏍᏆᏂᎪᏙᏗ ᎠᎴ ᎦᎸᏓᎸᏗ ᏕᎦᎧᎲᎢ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "wording": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎾᏯᏛᎥ ᎤᏠᏱ ᎲᏓ. ᏗᏟᎶᏍᏔᏅ ᏎᏍᏗ: %1$d. ᏗᏟᎶᏍᏔᏅ ᎢᏧᎳ — ᏧᏓᎴᏅᏓ ᎾᏯᏛᎥ / ᎢᎦᏘ (own aspect ratio) ᎤᏠᏱ ᏂᎦᏰᏙᎲ. ᎠᎴᏅᏗᏍᎬ ᎠᏍᏆᏂᎪᏙᏗ ᎠᎴ ᎦᎸᏓᎸᏗ ᏕᎦᎧᎲᎢ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "decision": "repair_candidate",
+      "reason": "Makes it explicit that each image keeps its own ratio, not two unchanging dimensions. Count, original files and crop settings remain."
+    },
+    "chr/ui_normalize_height_intro": {
+      "source": "Give all images the same height. Number of images: %1$d. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
+      "previous": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎢᎦᏘ ᎤᏠᏱ ᎲᏓ. ᏗᏟᎶᏍᏔᏅ ᏎᏍᏗ: %1$d. ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎾᏯᏛᎥ / ᎢᎦᏘ ᎤᏠᏱ ᏂᎦᏰᏙᎲ. ᎠᎴᏅᏗᏍᎬ ᎠᏍᏆᏂᎪᏙᏗ ᎠᎴ ᎦᎸᏓᎸᏗ ᏕᎦᎧᎲᎢ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "wording": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎢᎦᏘ ᎤᏠᏱ ᎲᏓ. ᏗᏟᎶᏍᏔᏅ ᏎᏍᏗ: %1$d. ᏗᏟᎶᏍᏔᏅ ᎢᏧᎳ — ᏧᏓᎴᏅᏓ ᎾᏯᏛᎥ / ᎢᎦᏘ (own aspect ratio) ᎤᏠᏱ ᏂᎦᏰᏙᎲ. ᎠᎴᏅᏗᏍᎬ ᎠᏍᏆᏂᎪᏙᏗ ᎠᎴ ᎦᎸᏓᎸᏗ ᏕᎦᎧᎲᎢ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "decision": "repair_candidate",
+      "reason": "Makes it explicit that each image keeps its own ratio, not two unchanging dimensions. Count, original files and crop settings remain."
     }
   }
 }
