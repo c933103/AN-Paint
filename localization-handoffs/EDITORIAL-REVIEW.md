@@ -1388,3 +1388,108 @@ Reviewed 100 previously unreviewed `nch` candidates. K = keep exact candidate fo
 98. `nch/formats22_dib_description` **K**: Keeps the exact Windows DIB bit depth and recommends BMP only when the receiving application needs its header.
 99. `nch/formats22_dib_size_limit` **K**: Recognizable file-capacity message tied to DIB, not to width or height.
 100. `nch/formats22_select_page` **K**: Clear one-page selection command, not a page-number range error.
+
+## Batch 13: Central Huasteca Nahuatl
+
+Reviewed 100 previously unreviewed `nch` candidates. K = keep exact candidate for separate integration; H = hold for a wording fix or quality check. Batch: **68 keep, 32 hold**. Cumulative **1,300 reviewed, 878 keep, 422 hold**. This batch does not change Android resources.
+
+1. `nch/formats22_page_description` **K**: Both metadata values and total page count remain in order, and the selected page becomes an editable image.
+2. `nch/formats22_page_number` **K**: Names the number of this page, not total pages.
+3. `nch/formats22_previous_page` **K**: Clear backwards-page action paired with Next.
+4. `nch/formats22_next_page` **K**: Clear forwards-page action paired with Previous.
+5. `nch/formats22_open_page` **K**: Open targets the chosen page, not a new file.
+6. `nch/formats22_page_preview` **H**: Reads as “look at this page beforehand,” an instruction rather than the title of its preview; align with the rest of the preview dialog.
+7. `nch/formats22_page_range` **K**: Correct inclusive first page and dynamic maximum, with a number-entry instruction.
+8. `nch/formats22_loading_page` **K**: Opening for a preview is clearly ongoing and both page counters are retained.
+9. `nch/formats22_page_dimensions` **K**: Retains both page counters and width × height in pixels.
+10. `nch/formats22_preview_unavailable` **K**: Briefly reports inability to preview and retains the reason placeholder.
+11. `nch/formats22_preview_memory` **K**: Preserves insufficient preview RAM and the conditional smaller-dimension choice on opening.
+12. `nch/formats22_pdf_invalid` **K**: Distinguishes potentially damaged files and features this version of Android does not support.
+13. `nch/formats22_pdf_encrypted` **K**: Keeps password/encryption alternatives and the need to save an unprotected copy before opening/importing.
+14. `nch/formats22_pdf_file_size` **K**: Requires content in the PDF and preserves the inclusive 512 MiB maximum.
+15. `nch/formats22_pdf_page_count` **K**: Keeps the first page and typed upper bound.
+16. `nch/formats22_pdf_page_index` **K**: Says the selected page is no longer usable, and asks for another from this same document.
+17. `nch/formats22_pdf_dimensions` **K**: Both unusable dimensions and oversized dimensions are preserved as import failures.
+18. `nch/formats22_pdf_crop` **K**: Requires a nonempty rectangular retained region entirely inside the selected page.
+19. `nch/formats22_pdf_memory` **H**: The draft mentions generic available RAM rather than the separate budget for rendering image data; distinguish the two.
+20. `nch/formats22_base64_description` **H**: “Stores all that is visible” does not guarantee unchanged pixels; retain the intact prefix, reopening behavior and size overhead in the revision.
+21. `nch/formats22_ascii_columns` **K**: Letters and written symbols correctly distinguish columns from pixel width.
+22. `nch/formats22_ascii_invert` **K**: Explicitly swaps both brightness classes in both directions, reducing ambiguity about inversion.
+23. `nch/formats22_text_not_image` **K**: Restricts the failure to images the app supports, not to all Base64 text.
+24. `nch/gallery_description` **H**: Button/route names narrow the broad credit to the creator alone, even though the paragraph lists other fields; update the linked captions together before clearing.
+25. `nch/gallery_copy_credit` **H**: Names copying information about who created the art only; preserve title, publisher, source and licence scope in the action label.
+26. `nch/gallery_edit_credits` **H**: Editing concerns broader credits and changes, not only biography or creator text.
+27. `nch/gallery_credit_copied` **H**: The confirmation inherits the creator-only ambiguity; use the same broad credit term as the corrected copy action.
+28. `nch/gallery_credit_edit_hint` **K**: Keeps required creator/copyright notices and modification description, removes only sources absent from the published image, and says the field is editable.
+29. `nch/gallery_credit_title` **K**: Names the artwork field and preserves its identifying slot.
+30. `nch/gallery_credit_publisher` **K**: Distinguishes the Catrobat project publisher from the creator and source fields.
+31. `nch/gallery_credit_source` **K**: Identifies where the work came from and preserves the value slot.
+32. `nch/gallery_credit_gallery` **K**: Keeps the gallery field distinct from publisher and source.
+33. `nch/gallery_credit_licence` **K**: Exact Catrobat original-work wording, licence ID and dynamic value all survive.
+34. `nch/gallery_credit_saved` **H**: Creator-only focus misstates what was saved; align with the broader credit terminology.
+35. `nch/formats22_ico_size` **K**: Clearly names icon size rather than document or canvas dimensions.
+36. `nch/formats22_ico_description` **K**: Preserves PNG compression, selected size range, aspect ratio and centring on a see-through square.
+37. `nch/formats22_ico_decode_budget` **H**: Generic available RAM does not expressly identify the image decoding budget; retain the decoding actor and scope.
+38. `nch/formats22_ico_dimensions_error` **K**: Identifies the corresponding recorded ICO directory entry, rather than an arbitrary image or directory.
+39. `nch/formats22_ico_invalid_size` **K**: All seven allowed icon sizes and the unit are retained.
+40. `nch/save20_dither` **K**: The exact dithering loan disambiguates the short colour-mixing description from a blending toggle.
+41. `nch/ui_add_up_to_20_images_with_android_s` **H**: Preserve as draft until assembly menu/crop/sort captions and the Unplace effect are checked together against the current application.
+42. `nch/ui_casual` **H**: “As writing usually is” does not clearly denote a casual font style; distinguish from the cursive and normal families.
+43. `nch/save20_bmp_description` **K**: Preserves uncompressed 24-bit RGB, unchanged colours and larger files.
+44. `nch/save20_bmp_size_limit` **K**: Applies the size constraint to BMP file capacity, not a width/height cap.
+45. `nch/save20_gif_size_limit` **K**: Each side is limited to the precise 65,535 pixels.
+46. `nch/save20_unsupported_tagged_colour` **K**: Keeps the BMP/GIF alternatives, unsupported embedded profile, colour-managed sRGB PNG conversion and subsequent import.
+47. `nch/ui_pencil_crisp_adjustable_strokes` **K**: Uses the pinned pencil label and describes crisp edges for any chosen width.
+48. `nch/ui_cursor_ink30` **K**: Explicitly enables drawing with the cursor, not merely moving it.
+49. `nch/ui_cursor_help31` **K**: Sequence is drag, tap the on-screen button, drag to draw and tap to stop. Both route labels match the pinned nch Draw and Drawing captions.
+50. `nch/ui_cursor_settings31` **K**: Identifies cursor-drawing settings and retains ellipsis.
+51. `nch/ui_cursor_marker_help31` **K**: Correctly changes only the cursor marker, not the painted stroke width.
+52. `nch/ui_gimp_translations31` **H**: The wording can mean whoever altered speech; make credit for translating text explicit alongside licences.
+53. `nch/ui_cursor_pan_draw32` **K**: Moves the cursor to start drawing, with the separate tap-to-stop instruction.
+54. `nch/ui_cursor_pan_move32` **K**: Positions the cursor without drawing first; explicitly taps the drawing button to start.
+55. `nch/ui_cursor_tap_hint37` **K**: Correct toggle target is the cursor itself; both start and stop survive.
+56. `nch/ui_normalize_width_intro` **H**: The last clause can mean the actual crop content rather than settings; state originals and saved crop settings remain unchanged.
+57. `nch/ui_normalize_height_intro` **H**: The same crop-settings issue affects the height version; preserve the ratio and count in the revision.
+58. `nch/ui_normalize_width_info` **K**: Preserves per-image width, a range of resulting heights, largest current width as percentage base, and reflow to fit.
+59. `nch/ui_normalize_height_info` **K**: Preserves per-image height, a range of widths, largest current height as percentage base, and reflow.
+60. `nch/ui_normalize_width_input_percent` **K**: Uses the shared width and typed pixel base for its percentage.
+61. `nch/ui_normalize_height_input_percent` **K**: Parallel shared height entry with the typed pixel reference and percentage.
+62. `nch/ui_pixel_grid_help33` **H**: Makes an image appear at 800% rather than explicitly tying activation to the current zoom setting; use the same zoom term as the view controls.
+63. `nch/ui_search34` **K**: Concise command to search rather than requesting help from a person.
+64. `nch/ui_search_english34` **K**: Clearly restricts query input to English or Japanese.
+65. `nch/ui_gallery_back34` **K**: Clear back-navigation imperative.
+66. `nch/ui_irasutoya_help34` **H**: Keep as draft until Image credits route is aligned to broad attribution; verify the commercial-design and special-collaboration conditions against the existing source wording.
+67. `nch/ui_openclipart_help34` **H**: CC0 and Large PNG are preserved, but the last destination reduces Image credits to who created the image; update with the common caption.
+68. `nch/ui_gallery_unsupported34` **K**: Identifies that the selected source does not contain the image, not a download failure.
+69. `nch/ui_open_artwork34` **K**: Artwork page opens before tapping the exact existing Use image caption.
+70. `nch/ui_creator_on_source34` **K**: Directs the user to the source page to learn who supplied the image.
+71. `nch/ui_irasutoya_credit34` **K**: Creator retains copyright, Irasutoya’s terms apply and this is not Creative Commons.
+72. `nch/legacy_credits_title` **H**: The label narrows old credits to creator text; keep its earlier-saved time qualifier but use the broader credit term.
+73. `nch/legacy_credits_hint` **H**: Keeps file export, but align the source-specific credit wording and the destination image without relying on a pronoun for the full record.
+74. `nch/legacy_credits_add` **H**: Selected text could be any text; identify the specific attribution/credit record being added.
+75. `nch/legacy_credits_save_text` **H**: Does not name what is selected; explicitly preserve that the credit is exported as a text file, rather than choosing an image.
+76. `nch/legacy_credits_existing` **K**: Existing source credit remains and its original text is kept; no overwrite implied.
+77. `nch/legacy_credits_added` **H**: Says only creator text was inserted, while the app adds the full attribution; match corrected action.
+78. `nch/commons_import_svg_changes` **K**: Preserves developer tokens, output direction, exact white colour, and explicitly states original dimensions.
+79. `nch/commons_import_raster_changes` **H**: “Attach everything with alpha” can imply attachment or keeping transparencies, not composition onto white. Preserve exact background token and specify blending by transparency.
+80. `nch/commons_credit_copy_failed` **H**: The copy failure says only creator attribution failed; align with the corrected broad credit label.
+81. `nch/commons_credit_copy_failed_reason` **H**: Reason slot is correct; retain it while replacing the narrow creator-only object.
+82. `nch/commons_credit_copy_out_of_memory` **H**: Memory failure is properly described but use the same broad credit object as the other copy failures.
+83. `nch/commons_metadata_http_error` **K**: Clear file information heading retains HTTP and the exact dynamic status slot.
+84. `nch/commons_metadata_response_too_large` **K**: Describes the size of the Commons response exceeding what the app can receive.
+85. `nch/commons_metadata_query_failed` **K**: Accurately describes an unsuccessful request for file information, not a broken image.
+86. `nch/ui_assembly_exact_position` **K**: Names precise position rather than moving relative to an attached image.
+87. `nch/ui_assembly_target_x` **K**: X is correctly measured from the left edge in pixels.
+88. `nch/ui_assembly_target_y` **K**: Y is correctly measured from the top edge in pixels.
+89. `nch/ui_assembly_position_help` **H**: Top-left, integer zero-based coordinates, overlap and stacking survive; name the output canvas distinctly from the workspace and explicitly distinguish placed images from loaded thumbnails.
+90. `nch/ui_assembly_position_nonnegative` **K**: Retains inclusive zero to 2147483647 and integer-only X and Y.
+91. `nch/ui_assembly_unknown_image` **K**: The selected image is no longer part of this assembly rather than simply unplaced.
+92. `nch/gallery_external_link_no_handler` **K**: Android cannot find a handler app for this link; not a network error.
+93. `nch/commons_metadata_not_file_page` **K**: Clearly denies the Commons file-page type, not Commons access generally.
+94. `nch/commons_metadata_ambiguous_file` **K**: Preserves the inability of returned metadata to identify which file.
+95. `nch/commons_metadata_unavailable` **H**: Phrase asserts no information exists, not that it cannot currently be obtained; preserve the broader unavailable condition.
+96. `nch/commons_metadata_original_mismatch` **H**: Broaden creator wording to all source attribution and keep the mismatch tied to the selected original file.
+97. `nch/commons_metadata_invalid_page` **H**: The author-only page description narrows the expected Commons attribution page and does not clearly report invalid data.
+98. `nch/commons_metadata_field_too_large` **H**: The limit is applied to part of creator text; identify the attribution field without dropping why it was rejected.
+99. `nch/commons_metadata_cache_failed` **H**: Reports a failure to retain creator text only; use the broader Commons attribution record term.
+100. `nch/commons_download_original_mismatch` **K**: States the download led to a different original file, not just a different URL.
