@@ -732,6 +732,139 @@
       "wording": "Sans · i råya gi entalu’",
       "decision": "repair_candidate",
       "reason": "Anchors the medium level to the stroke, not horizontal alignment or character width."
+    },
+    "za/ui_colour_hsv_saturation_range": {
+      "source": "HSV S · 0–100%",
+      "previous": "HSV S · Saek na 0–100%",
+      "wording": "HSV S · 0–100%",
+      "decision": "preserve_exact",
+      "reason": "Removed the ambiguous prose gloss from this compact picker/accessibility label; the exact HSV S channel and its full allowed interval identify the field without conflating HSV and HSL."
+    },
+    "za/ui_colour_hsv_value_range": {
+      "source": "HSV V · 0–100%",
+      "previous": "HSV V · Doq rongh 0–100%",
+      "wording": "HSV V · 0–100%",
+      "decision": "preserve_exact",
+      "reason": "Removed the ambiguous prose gloss from this compact picker/accessibility label; the exact HSV V channel and its full allowed interval identify the field without conflating HSV and HSL."
+    },
+    "za/ui_colour_hsl_hue_range": {
+      "source": "HSL H · 0–360°",
+      "previous": "HSL H · Loih saek 0–360°",
+      "wording": "HSL H · 0–360°",
+      "decision": "preserve_exact",
+      "reason": "Removed the ambiguous prose gloss from this compact picker/accessibility label; the exact HSL H channel and its full allowed interval identify the field without conflating HSV and HSL."
+    },
+    "za/ui_colour_hsl_saturation_range": {
+      "source": "HSL S · 0–100%",
+      "previous": "HSL S · Saek na 0–100%",
+      "wording": "HSL S · 0–100%",
+      "decision": "preserve_exact",
+      "reason": "Removed the ambiguous prose gloss from this compact picker/accessibility label; the exact HSL S channel and its full allowed interval identify the field without conflating HSV and HSL."
+    },
+    "za/ui_colour_hsl_lightness_range": {
+      "source": "HSL L · 0–100%",
+      "previous": "HSL L · Doq singq 0–100%",
+      "wording": "HSL L · 0–100%",
+      "decision": "preserve_exact",
+      "reason": "Removed the ambiguous prose gloss from this compact picker/accessibility label; the exact HSL L channel and its full allowed interval identify the field without conflating HSV and HSL."
+    },
+    "za/ui_drag_from_the_tail_towards_the_arrowhead_choose": {
+      "source": "Drag from the tail towards the arrowhead. Choose an outline or fill.",
+      "previous": "Rag daj baih duenh naq bae gyaeuj naq. Senj veh henz roxnaeuz coq saek rim ndaw.",
+      "wording": "Rag daj doeklaeng naq bae gyaeuj naq. Senj sienqdiuz henz roxnaeuz coq saek ndaw.",
+      "decision": "repair_candidate",
+      "reason": "Makes the start the arrow’s rear end; reuses the actual outline caption and keeps the fill alternative."
+    },
+    "za/ui_some_previews_could_not_be_decoded_you_can": {
+      "source": "Some previews could not be decoded. You can remove those images or try saving the assembly.",
+      "previous": "Miz geij aen dozsiengq iq doeg mbouj ndaej. Mwngz ndaej duz gij dozsiengq haenx, roxnaeuz swq rom gij dozsiengq doxcomz.",
+      "wording": "Miz geij aen dozsiengq yawj gonq doeg mbouj ndaej. Yungh «Duz» daeuj duz gij dozsiengq haenx ok daj buek neix, roxnaeuz swq rom gij buek dozsiengq neix.",
+      "decision": "repair_candidate",
+      "reason": "Identifies previews, quotes the actual Remove control, and explicitly removes from the assembly rather than deleting original files."
+    },
+    "za/ui_that_arrangement_overlaps_another_image_use_a_different": {
+      "source": "That arrangement overlaps another image. Use a different edge or unplace the attached images first.",
+      "previous": "Gij baiz neix dap gvaq lingh aen dozsiengq. Yungh lingh henz ndeu, roxnaeuz sien gaij ok gij dozsiengq daeb youq henz haenx, mbouj duz dozsiengq.",
+      "wording": "Gij baiz neix dap gvaq lingh aen dozsiengq. Yungh lingh henz ndeu, roxnaeuz sien yungh «Gaij ok daj gij vih fongq» doiq gij dozsiengq daeb caeuq haenx.",
+      "decision": "repair_candidate",
+      "reason": "Removes the invented requirement to unplace only from the edge; quotes Unplace and preserves the other-edge choice."
+    },
+    "za/ui_give_all_images_the_same_each_image_keeps": {
+      "source": "Give all %1$s images the same %2$s. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
+      "previous": "Hawj %1$s aen dozsiengq gij %2$s doxdoengz. Moix aen dozsiengq baeujcij beijlaeh gvangq / sang bonjfaenh. Vwnzgen yienzlaiz caeuq gij seizdin daet henz mbouj bienq.",
+      "wording": "Hawj %1$s aen dozsiengq gij %2$s doxdoengz. Moix aen dozsiengq baeujcij beijlaeh gvangq caeuq sang bonjfaenh de. Vwnzgen yienzlaiz caeuq gij dinghdeih daet dozsiengq mbouj bienq.",
+      "decision": "repair_candidate",
+      "reason": "Keeps both arguments, each image’s own width-to-height ratio, and the unchanged original files and crop settings."
+    },
+    "za/ui_normalize_width_input_percent": {
+      "source": "Common width as a percentage of %1$d px",
+      "previous": "Gvangq doxdoengz (beijlaeh moix bak faenh %1$d px)",
+      "wording": "Gvangq doxdoengz (moix bak faenh, ciuq %1$d px)",
+      "decision": "repair_candidate",
+      "reason": "Makes %1$d px the base for the percentage rather than a percentage unit."
+    },
+    "za/ui_normalize_height_input_percent": {
+      "source": "Common height as a percentage of %1$d px",
+      "previous": "Sang doxdoengz (beijlaeh moix bak faenh %1$d px)",
+      "wording": "Sang doxdoengz (moix bak faenh, ciuq %1$d px)",
+      "decision": "repair_candidate",
+      "reason": "Uses the same explicit percentage base on the height axis."
+    },
+    "za/ui_monospace": {
+      "source": "Monospace",
+      "previous": "Aen saw doengz gvangq",
+      "wording": "Cih moix aen gvangq doxdoengz",
+      "decision": "repair_candidate",
+      "reason": "Qualifies every individual character, not the width of an entire text box."
+    },
+    "za/ui_sans_serif": {
+      "source": "Sans serif",
+      "previous": "Saw mbouj miz henz",
+      "wording": "Saw sans-serif",
+      "decision": "repair_candidate",
+      "reason": "Uses the standard font category name in the localized font family labels rather than the ambiguous phrase about missing edges."
+    },
+    "za/ui_serif": {
+      "source": "Serif",
+      "previous": "Saw miz henz",
+      "wording": "Saw serif",
+      "decision": "repair_candidate",
+      "reason": "Pairs with Saw sans-serif using the recognized category term without implying a visible border."
+    },
+    "za/ui_sans_condensed": {
+      "source": "Sans condensed",
+      "previous": "Saw mbouj miz henz, hep",
+      "wording": "Saw sans-serif · cih hep",
+      "decision": "repair_candidate",
+      "reason": "Makes the width distinction explicit for characters, as opposed to stroke weight."
+    },
+    "za/ui_sans_light": {
+      "source": "Sans light",
+      "previous": "Saw mbouj miz henz, bang",
+      "wording": "Saw sans-serif · sienq cih bang",
+      "decision": "repair_candidate",
+      "reason": "Describes relatively light strokes, not narrow characters."
+    },
+    "za/ui_sans_medium": {
+      "source": "Sans medium",
+      "previous": "Saw mbouj miz henz, cung",
+      "wording": "Saw sans-serif · sienq cih cung",
+      "decision": "repair_candidate",
+      "reason": "Qualifies medium as stroke weight, alongside Light and Thin."
+    },
+    "za/ui_sans_thin": {
+      "source": "Sans thin",
+      "previous": "Saw mbouj miz henz, bang lai",
+      "wording": "Saw sans-serif · sienq cih bang lai",
+      "decision": "repair_candidate",
+      "reason": "Gives the thinner weight an explicit comparison within the same stroke vocabulary."
+    },
+    "za/commons_import_raster_changes": {
+      "source": "AN Paint: background=#FFFFFF (alpha compositing).",
+      "previous": "AN Paint: background=#FFFFFF (cazgyaep dozsiengq cawq doeksaek ciuq alpha).",
+      "wording": "AN Paint: background=#FFFFFF (cazgyaep dozsiengq ciuq alpha youq gwnz saek hau #FFFFFF).",
+      "decision": "repair_candidate",
+      "reason": "Preserves the machine-like background token and specifies compositing onto the white background rather than changing opacity."
     }
   }
 }
