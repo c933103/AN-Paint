@@ -3891,6 +3891,174 @@
       "wording": "Niteelíjįʼgo tʼáá átʼéego · Neeznádiinjįʼ ałtsʼájíniłgo (%) · %1$d px bikʼehgo",
       "decision": "repair_candidate",
       "reason": "Uses the verified percent selector and makes the formatted pixel quantity its basis."
+    },
+    "nv/ui_normalize_height_input_percent": {
+      "source": "Common height as a percentage of %1$d px",
+      "previous": "Deigo ánízáád tʼáá átʼéego: %1$d px bikʼehgo (neeznádiinjįʼ ałtsʼájíniłgo)",
+      "wording": "Deigo ánízáád tʼáá átʼéego · Neeznádiinjįʼ ałtsʼájíniłgo (%) · %1$d px bikʼehgo",
+      "decision": "repair_candidate",
+      "reason": "Matches the corrected width-axis construction; uses the entered pixel quantity as the base."
+    },
+    "nv/ui_pixel_grid_help33": {
+      "source": "Pixel grid appears at 800% zoom or above. Rulers show positions in image pixels.",
+      "previous": "Eʼelyaaígíí ntsaago yiiłtsá (800% doodago biłááh) ládą́ą́ʼ, px bitaʼgi ídzoh yiiłtsá. Haa jįʼgo éí eʼelyaaígíí biyiʼ hólǫ́ǫgo, px bee yiiłtsá.",
+      "wording": "Eʼelyaaígíí ntsaago yiiłtsá (zoom; 800% doodago biłááh) ládą́ą́ʼ, dah alzhin yázhí (px) bitaʼgi ídzoh (pixel grid) yiiłtsá. Haa jįʼgo éí eʼelyaaígíí biyiʼ hólǫ́ǫgo, px bee yiiłtsá.",
+      "decision": "repair_candidate",
+      "reason": "Activates at the actual zoom value, not image size; names the same grid as Show/Hide and leaves image-pixel position units."
+    },
+    "nv/commons_import_raster_changes": {
+      "source": "AN Paint: background=#FFFFFF (alpha compositing).",
+      "previous": "AN Paint: background=#FFFFFF (eʼelyaaígíí bikááʼgi łahgo yiiłtsáago naadą́ą́ʼ ałtsʼą́ą́ʼ ályaa).",
+      "wording": "AN Paint: background=#FFFFFF (łigai bikááʼgi eʼelyaaígíí ałtsʼą́ą́ʼ ályaa; alpha compositing).",
+      "decision": "repair_candidate",
+      "reason": "Preserves exact white-background token and makes the compositing onto white explicit, not redrawing."
+    },
+    "nv/commons_credit_copy_failed": {
+      "source": "Could not copy image credit.",
+      "previous": "Eʼelyaaígíí áyiilaii baa haneʼ beʼeshłééh: doo bííníshghah da.",
+      "wording": "Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii beʼeshłééh: doo bííníshghah da.",
+      "decision": "repair_candidate",
+      "reason": "Uses the full credit record as the object of a copy failure."
+    },
+    "nv/commons_credit_copy_failed_reason": {
+      "source": "Could not copy image credit: %1$s",
+      "previous": "Eʼelyaaígíí áyiilaii baa haneʼ beʼeshłééh: doo bííníshghah da. %1$s",
+      "wording": "Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii beʼeshłééh: doo bííníshghah da. %1$s",
+      "decision": "repair_candidate",
+      "reason": "Matches the paired failure and retains the reason."
+    },
+    "nv/commons_credit_copy_out_of_memory": {
+      "source": "Not enough memory to copy image credit.",
+      "previous": "Eʼelyaaígíí áyiilaii baa haneʼ beʼeshłééh: RAM biʼoh neelʼą́.",
+      "wording": "Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii beʼeshłééh: RAM biʼoh neelʼą́.",
+      "decision": "repair_candidate",
+      "reason": "Preserves RAM as the reason and complete attribution as the affected content."
+    },
+    "nv/commons_metadata_unavailable": {
+      "source": "Commons file metadata is unavailable",
+      "previous": "Commons · Díí naaltsoos baa haneʼ ádin.",
+      "wording": "Commons · Díí naaltsoos baa haneʼ kʼad doo bee naanish da.",
+      "decision": "repair_candidate",
+      "reason": "File metadata cannot currently be used; does not claim it does not exist."
+    },
+    "nv/commons_metadata_original_mismatch": {
+      "source": "Commons attribution does not match the selected original file",
+      "previous": "Commons · Eʼelyaaígíí áyiilaii baa haneʼ doo tʼáá átʼéego da naaltsoos (áłtséédą́ą́ʼ) bikʼidiilnííhígíí bił.",
+      "wording": "Commons · Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii doo tʼáá átʼéego da naaltsoos (áłtséédą́ą́ʼ) bikʼidiilnííhígíí bił.",
+      "decision": "repair_candidate",
+      "reason": "Compares complete attribution with the selected original file."
+    },
+    "nv/commons_metadata_invalid_page": {
+      "source": "Invalid Commons attribution page",
+      "previous": "Commons · Eʼelyaaígíí áyiilaii baa haneʼ: doo ákótʼée da.",
+      "wording": "Commons · Naaltsoos («Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii»): doo ákótʼée da.",
+      "decision": "repair_candidate",
+      "reason": "Names the Commons attribution page, not just a bad creator record."
+    },
+    "nv/commons_metadata_field_too_large": {
+      "source": "Commons attribution field exceeds the text limit",
+      "previous": "Commons · Eʼelyaaígíí áyiilaii baa haneʼ łaʼ: saad ánéeltʼeʼ bee hazʼą́ą́góó biłááh ayóó ntsaa.",
+      "wording": "Commons · «Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii» biyiʼ saad łaʼ ánéeltʼeʼ bee hazʼą́ą́góó biłááh ayóó ntsaa.",
+      "decision": "repair_candidate",
+      "reason": "Identifies one attribution field’s text-limit failure."
+    },
+    "nv/commons_metadata_cache_failed": {
+      "source": "Could not retain Commons attribution",
+      "previous": "Commons · Eʼelyaaígíí áyiilaii baa haneʼ hashtʼeʼ niníłtsóós: doo bííníshghah da.",
+      "wording": "Commons · Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii hashtʼeʼ niníłtsóós: doo bííníshghah da.",
+      "decision": "repair_candidate",
+      "reason": "Identifies the full Commons attribution record as the affected object."
+    },
+    "nv/commons_svg_png_encode_failed": {
+      "source": "Could not encode blank map as PNG",
+      "previous": "Kéyah bee haneʼí biyiʼ saad ádinígíí (PNG) hashtʼeeshlééh: doo bííníshghah da.",
+      "wording": "Kéyah beʼelyaaígíí (Blank maps) PNG ánílééh: doo bííníshghah da.",
+      "decision": "repair_candidate",
+      "reason": "Uses the same named collection and distinguishes encoding to PNG from fetching or stripping labels."
+    },
+    "nv/ui_credits_terms": {
+      "source": "Credits & terms",
+      "previous": "Áyiilaii baa haneʼ dóó bee hazʼáanii",
+      "wording": "Áyiilaii baa haneʼ, háádę́ęʼ, dóó bee hazʼáanii",
+      "decision": "repair_candidate",
+      "reason": "Adds source information to creator and terms in the credit heading."
+    },
+    "nv/ui_custom_colour": {
+      "source": "Custom colour %1$s",
+      "previous": "Nidaashchʼąąʼígíí (ní choiníłʼį́ʼígíí) · %1$s",
+      "wording": "Nidaashchʼąąʼígíí hashtʼeʼ siłtsoozígíí · %1$s",
+      "decision": "repair_candidate",
+      "reason": "Matches the persistent custom-palette vocabulary and keeps the swatch placeholder."
+    },
+    "nv/formats22_pdf_encrypted": {
+      "source": "PDF requires a password or uses unsupported encryption. Save an unprotected copy before importing it.",
+      "previous": "PDF ąą ánílééh biniiyé saad bee ąą ályaaígíí bee hazʼą́, doodago PDF bee ąą ályaaígíí díí bee naʼanishí doo choyoołʼį́ da. PDF beʼelyaaígíí tʼáadoo saad bee ąą ályaaígíí bee hazʼą́ąí áłtsé hashtʼeʼ niníłtsóós, áádóó biiʼ hééł ánílééh.",
+      "wording": "PDF ąą ánílééh biniiyé saad bee ąą ályaaígíí bee hazʼą́, doodago PDF biyiʼ bee naʼanishígíí (encryption) díí bee naʼanishí doo choyoołʼį́ da. PDF beʼelyaaígíí tʼáadoo saad bee ąą ályaaígíí bee hazʼą́ąí áłtsé hashtʼeʼ niníłtsóós, áádóó biiʼ hééł ánílééh.",
+      "decision": "repair_candidate",
+      "reason": "Names unsupported encryption as distinct from requesting a password; preserves the instruction to save the unprotected copy."
+    },
+    "nv/ui_casual": {
+      "source": "Casual",
+      "previous": "Saad bee álʼíní (tʼáá íiyisíígo akʼeʼeshchííʼígíí nahalin)",
+      "wording": "Saad bee álʼíní (Casual)",
+      "decision": "repair_candidate",
+      "reason": "Names the recognizable Casual font family distinctly without substituting ordinary handwriting."
+    },
+    "nv/ui_could_not_export_source_code": {
+      "source": "Could not export source code",
+      "previous": "Bee naʼanishí bee ályaaígíí saad hashtʼeʼ niníłtsóós: doo bííníshghah da.",
+      "wording": "Bee naʼanishí bee ályaaígíí saad (source code) yáʼátʼéehígo adiníłʼį́ (export): doo bííníshghah da.",
+      "decision": "repair_candidate",
+      "reason": "Identifies actual code and export as distinct from ordinary Save."
+    },
+    "nv/ui_export_this_version_s_source_code": {
+      "source": "Export this version's source code…",
+      "previous": "Díí bee naʼanishí bee ályaaígíí saad hashtʼeʼ niníłtsóós…",
+      "wording": "Díí version bee naʼanishí bee ályaaígíí saad (source code) adiníłʼį́ (export)…",
+      "decision": "repair_candidate",
+      "reason": "Names the exact app version’s source and distinguishes export from ordinary saving."
+    },
+    "nv/ui_open_source_credits_and_notices": {
+      "source": "Open-source credits and notices",
+      "previous": "Bee naʼanishí bee ályaaígíí saad tʼáá ałtso yíníłtaʼ átʼéígíí · Áyiilaii baa haneʼ dóó bee hazʼáanii baa haneʼ",
+      "wording": "Bee naʼanishí bee ályaaígíí saad (open source) · Áyiilaii baa haneʼ, háádę́ęʼ, dóó bee hazʼáanii baa haneʼ",
+      "decision": "repair_candidate",
+      "reason": "Open source is explicit, not merely source text everyone can read; keeps credits and notices."
+    },
+    "nv/ui_sans_light": {
+      "source": "Sans light",
+      "previous": "Sans · Saad bee álʼíní doo ayóó ditą́ą da",
+      "wording": "Sans light · Saad bee álʼíní",
+      "decision": "repair_candidate",
+      "reason": "Uses the canonical weight rather than ambiguous not-very-thick phrasing; differentiates from the Thin option."
+    },
+    "nv/ui_sans_thin": {
+      "source": "Sans thin",
+      "previous": "Sans · Saad bee álʼíní ayóó áłtsʼíísígo ídzoh",
+      "wording": "Sans thin · Saad bee álʼíní",
+      "decision": "repair_candidate",
+      "reason": "Uses the canonical same-family Thin weight, not a description of small letters."
+    },
+    "nv/ui_source_code_exported_including_build_scripts_and_licence": {
+      "source": "Source code exported, including build scripts and licence notices.",
+      "previous": "Bee naʼanishí bee ályaaígíí saad hashtʼeʼ siłtsooz. Bee naʼanishí ádoolnííł biniiyé saad dóó bee hazʼáanii baa haneʼ biyiʼ hólǫ́.",
+      "wording": "Bee naʼanishí bee ályaaígíí saad (source code) adiníłʼį́ (export). Bee naʼanishí ádoolnííł biniiyé saad (build scripts) dóó bee hazʼáanii baa haneʼ biyiʼ hólǫ́.",
+      "decision": "repair_candidate",
+      "reason": "Names the exported source and keeps included build scripts and licence notices distinct."
+    },
+    "nv/ui_each_px_px_percent_is_relative_to_the": {
+      "source": "Each %1$s: %2$s px\\n%3$s: %4$s–%5$s px\\nPercent is relative to the largest current %6$s: %7$s px. Placed images reflow to make room.",
+      "previous": "Tʼááłáʼí %1$s: %2$s px\\n%3$s: %4$s–%5$s px\\nNeeznádiinjįʼ ałtsʼájíniłgo: kʼad %6$s tʼáá áłtsé ntsaígíí (%7$s px) bikʼehgo. Eʼelyaaígíí biiʼ hééł ályaaígíí daʼnáánáshood, ádinígíí hólǫ́ǫ dooleeł.",
+      "wording": "Tʼááłáʼí %1$s: %2$s px\\n%3$s: %4$s–%5$s px\\nNeeznádiinjįʼ ałtsʼájíniłgo (%): kʼad %6$s tʼáá áłtsé ntsaígíí (%7$s px) bikʼehgo. Eʼelyaaígíí biiʼ hééł ályaaígíí daʼnáánáshood, ádinígíí hólǫ́ǫ dooleeł.",
+      "decision": "repair_candidate",
+      "reason": "Matches the current percentage selector; retains all seven substitutions, reference to the largest current size and reflow."
+    },
+    "nv/ui_pale_violet": {
+      "source": "Pale Violet",
+      "previous": "Tsédídééh (łigai nahalin)",
+      "wording": "Pale Violet (#5B67FF) · Nidaashchʼąąʼígíí",
+      "decision": "repair_candidate",
+      "reason": "Uses the exact named swatch and a supported colour heading without asserting an unverified shade word."
     }
   }
 }
