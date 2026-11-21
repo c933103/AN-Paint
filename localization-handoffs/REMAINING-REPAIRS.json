@@ -865,6 +865,125 @@
       "wording": "AN Paint: background=#FFFFFF (cazgyaep dozsiengq ciuq alpha youq gwnz saek hau #FFFFFF).",
       "decision": "repair_candidate",
       "reason": "Preserves the machine-like background token and specifies compositing onto the white background rather than changing opacity."
+    },
+    "za/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly": {
+      "source": "Draw soft watercolor strokes. Strength controls how strongly the colour blends into the canvas.",
+      "previous": "Yungh mauzbit veh henz myox daeuj veh sienq ngonq. Gaij “Rengz” daeuj dingh saek doxhwnj caeuq benq dieg veh lai noix.",
+      "wording": "Yungh «Mauzbit veh henz myox (watercolor)» veh gij sienq onq. «Rengz (%)» dingh gij saek camj haeuj ndaw benq dieg veh lai noix.",
+      "decision": "repair_candidate",
+      "reason": "Uses the current tool and strength captions; the strength controls blending into the canvas, not outline hardness."
+    },
+    "za/ui_open_source_credits_and_notices": {
+      "source": "Open-source credits and notices",
+      "previous": "Mingz boux guh caeuq gij goenggau daihmaj hai ok",
+      "wording": "Mingz boux guh caeuq gij cihsih gij yonjgen hai daimaex laiyenz",
+      "decision": "repair_candidate",
+      "reason": "Attaches open source to the software, not the notices; keeps credits and notices distinct."
+    },
+    "za/gallery_copy_credit": {
+      "source": "Copy credit",
+      "previous": "Lingh guh gij mingz boux guh daeuj nem",
+      "wording": "Lingh guh cihsih laiyenz dozsiengq daeuj nem",
+      "decision": "repair_candidate",
+      "reason": "Matches the clipboard construction already used by Copy while broadening maker name to the image’s source-credit information."
+    },
+    "za/gallery_credit_copied": {
+      "source": "Credit copied",
+      "previous": "Lingh guh gij mingz boux guh daeuj nem lo",
+      "wording": "Lingh guh cihsih laiyenz dozsiengq daeuj nem lo",
+      "decision": "repair_candidate",
+      "reason": "Uses the same object as Copy credit; marks the action completed."
+    },
+    "za/gallery_credit_edit_hint": {
+      "source": "Before publishing, keep any named creator or copyright notices and add a description of changes you made. Remove sources that are absent from the published image. The text below is editable.",
+      "previous": "Gonq faenghbu, baeujcij mingz gij boux guh caeuq gij goenggau banjgienz miz haenx, caiq gangj mwngz gaij gijmaz. Duz gij laiyenz mbouj yungh ndaw dozsiengq faenghbu haenx. Gij saw laj neix gaij ndaej.",
+      "wording": "Gonq faenghbu, baeujcij mingz gij boux guh caeuq gij cihsih banjgienz miz haenx, caiq sij cingcuj mwngz gaij gijmaz. Ndaw gij cihsih laj neix, duz gij laiyenz mbouj miz ndaw dozsiengq mwngz yaek faenghbu haenx. Gij saw laj neix gaij ndaej.",
+      "decision": "repair_candidate",
+      "reason": "Explicitly removes absent sources from the editable text, never deleting the files; keeps names, copyright, and the edit description."
+    },
+    "za/ui_casual": {
+      "source": "Casual",
+      "previous": "Beixmaenh",
+      "wording": "Yiengh cih mbouj cingqsik",
+      "decision": "repair_candidate",
+      "reason": "Labels the lettering style as informal rather than normal/default."
+    },
+    "za/ui_third_party_notices": {
+      "source": "Third-party notices",
+      "previous": "Goenggoq boux daih sam",
+      "wording": "Cihsih daj bouxwnq caeuq gizgvan wnq",
+      "decision": "repair_candidate",
+      "reason": "Identifies notices from other persons or entities, not a literal ordinal third person."
+    },
+    "za/ui_gimp_translations31": {
+      "source": "Translation credits & licences",
+      "previous": "Mingz boux hoiz saw caeuq gij hawj yungh",
+      "wording": "Cihsih mingz boux hoiz saw caeuq gij diuzgienh hawj yungh",
+      "decision": "repair_candidate",
+      "reason": "Keeps both translation attribution and licence terms, not just an informal grant of permission."
+    },
+    "za/ui_hue_and_saturation_spectrum_lightness_slider_on_the": {
+      "source": "Hue and saturation spectrum; lightness slider on the right",
+      "previous": "Fanhbouh loih saek caeuq gij saek na; rag diauz dingh gij saek rongh youq baih gvaz",
+      "wording": "Fanhbouh loih saek caeuq gij saek na; diauz rag dingh HSL L youq baih gvaz",
+      "decision": "repair_candidate",
+      "reason": "Keeps spectrum and its two axes, and identifies the right control by the exact HSL lightness channel."
+    },
+    "za/ui_hue_and_saturation_wheel_value_slider_on_the": {
+      "source": "Hue and saturation wheel; value slider on the right",
+      "previous": "Vongz loih saek caeuq gij saek na; rag diauz dingh gij saek rongh youq baih gvaz",
+      "wording": "Vongz loih saek caeuq gij saek na; diauz rag dingh HSV V youq baih gvaz",
+      "decision": "repair_candidate",
+      "reason": "Keeps wheel and its two axes, and identifies HSV value rather than reusing HSL lightness wording."
+    },
+    "za/commons_credit_copy_failed": {
+      "source": "Could not copy image credit.",
+      "previous": "Lingh guh gij mingz boux guh dozsiengq mbouj ndaej.",
+      "wording": "Lingh guh cihsih laiyenz dozsiengq daeuj nem mbouj ndaej.",
+      "decision": "repair_candidate",
+      "reason": "Same full credit object as the command, with clear failure."
+    },
+    "za/commons_credit_copy_failed_reason": {
+      "source": "Could not copy image credit: %1$s",
+      "previous": "Lingh guh gij mingz boux guh dozsiengq mbouj ndaej: %1$s",
+      "wording": "Lingh guh cihsih laiyenz dozsiengq daeuj nem mbouj ndaej: %1$s",
+      "decision": "repair_candidate",
+      "reason": "Same full credit object as the preceding error and retains the reason placeholder."
+    },
+    "za/commons_credit_copy_out_of_memory": {
+      "source": "Not enough memory to copy image credit.",
+      "previous": "RAM mbouj gaeuq yungh daeuj lingh guh gij mingz boux guh dozsiengq.",
+      "wording": "RAM mbouj gaeuq daeuj lingh guh cihsih laiyenz dozsiengq.",
+      "decision": "repair_candidate",
+      "reason": "Reports insufficient RAM to copy the overall credit rather than just the creator name."
+    },
+    "za/commons_metadata_original_mismatch": {
+      "source": "Commons attribution does not match the selected original file",
+      "previous": "Gij mingz boux guh Commons mbouj doiq cawq aen vwnzgen yienzlaiz deng senj.",
+      "wording": "Gij cihsih laiyenz daj Commons mbouj doiq cawq aen vwnzgen yienzlaiz deng senj.",
+      "decision": "repair_candidate",
+      "reason": "Compares the Commons attribution record with the selected original file, not only the maker’s name."
+    },
+    "za/commons_metadata_invalid_page": {
+      "source": "Invalid Commons attribution page",
+      "previous": "Yieb mingz boux guh Commons mbouj hab yungh.",
+      "wording": "Yieb cihsih laiyenz Commons mbouj hab yungh.",
+      "decision": "repair_candidate",
+      "reason": "Names the attribution page as a whole and uses operational invalidity rather than legal disapproval."
+    },
+    "za/commons_metadata_field_too_large": {
+      "source": "Commons attribution field exceeds the text limit",
+      "previous": "Cih youq aen dieg sij mingz boux guh Commons lai gvaq soq dingh.",
+      "wording": "Cih youq aen giz sij cihsih laiyenz Commons lai gvaq soqmwd dingh.",
+      "decision": "repair_candidate",
+      "reason": "Points to a specific attribution field’s text limit, not a particular creator name."
+    },
+    "za/commons_metadata_cache_failed": {
+      "source": "Could not retain Commons attribution",
+      "previous": "Rom gij mingz boux guh Commons mbouj ndaej.",
+      "wording": "Rom gij cihsih laiyenz daj Commons mbouj ndaej.",
+      "decision": "repair_candidate",
+      "reason": "Keeps the whole Commons attribution as the object of the retention failure."
     }
   }
 }
