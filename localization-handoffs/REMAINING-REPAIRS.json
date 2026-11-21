@@ -2531,6 +2531,118 @@
       "wording": "Iselti · tajkuiloli CJK moquetza, tlahtoli moteca",
       "decision": "repair_candidate",
       "reason": "Contrasts upright CJK characters with sideways words in the automatic orientation mode."
+    },
+    "nch/ui_vertical_upright23": {
+      "source": "Upright · character by character",
+      "previous": "Melauac · se ica se letra",
+      "wording": "Moquetza · sesen letra, número o machiotl",
+      "decision": "repair_candidate",
+      "reason": "Uses the paired upright orientation and explicitly includes numbers and signs rather than letters alone."
+    },
+    "nch/ui_vertical_hint23": {
+      "source": "New lines start new columns. Sideways words preserve joining scripts, including Mongolian. Upright characters keep combining marks and emoji sequences together.",
+      "previous": "Yankuik pamitl quipehualtía yankuik columna. Tlahtoli cati moteca quicahua letras cati mosentilíaj, quen ipan tlajkuiloli Mongol. Letras cati eltoc melauac quicahuaj ininmachiotl huan emoji cati motoca se ica seyoc san sejco.",
+      "wording": "Yankuik pamitl quipehualtía yankuik columna. Tlahtoli cati moteca quicahua letras cati mosentilíaj, quen ipan tlajkuiloli Mongol. Sinta sesen letra o machiotl moquetza, amo moxelohua ten ininmachiotl cati mopepechoa, huan emoji cati mosentilíaj mocahuaj san sejco.",
+      "decision": "repair_candidate",
+      "reason": "Retains new columns and joined scripts including Mongolian; explains that combining marks and sequences of emoji stay attached."
+    },
+    "nch/colour20_custom_selected_slot": {
+      "source": "Custom colours · Slot %1$d selected",
+      "previous": "Tapali cati tijtapejpenijtoc · lugar %1$d cati tijtapejpenijtoc",
+      "wording": "Motapali tiiselti · lugar %1$d cati tijtapejpenijtoc",
+      "decision": "repair_candidate",
+      "reason": "Uses the saved palette term, and preserves the argument identifying the selected slot."
+    },
+    "nch/gallery_image_component_unavailable": {
+      "source": "A required image component is unavailable. The image was not imported.",
+      "previous": "Amo onca se parte cati monequi para ni ixkopinali. AN Paint amo quicalaquij.",
+      "wording": "Se parte cati monequi para ni ixkopinali amo hueli motequihuis namantsi. AN Paint amo quicalaquij nopa ixkopinali.",
+      "decision": "repair_candidate",
+      "reason": "Reports unavailable required component and failed import without claiming the component does not exist."
+    },
+    "nch/ui_lossless_format": {
+      "source": "Lossless %1$s",
+      "previous": "%1$s cati quiajocui nochi cati nesi",
+      "wording": "%1$s cati quicahua nochi cati quipiya ixkopinali (Lossless)",
+      "decision": "repair_candidate",
+      "reason": "Uses exact data preservation, not visual resemblance, and retains the dynamic format."
+    },
+    "nch/formats22_tiff_compression": {
+      "source": "Lossless compression (Deflate)",
+      "previous": "Compresión cati quiajocui nochi (Deflate)",
+      "wording": "Compresión cati quicahua nochi cati quipiya ixkopinali (Deflate)",
+      "decision": "repair_candidate",
+      "reason": "Matches the general lossless description and preserves Deflate."
+    },
+    "nch/formats22_page_preview": {
+      "source": "Selected page preview",
+      "previous": "Achtohui xiquita página cati tijtapejpenijtoc",
+      "wording": "Achtohui xiquita nopa página cati tijtapejpenijtoc (mostra)",
+      "decision": "repair_candidate",
+      "reason": "Uses the existing Preview term and makes it a specific selected-page preview."
+    },
+    "nch/formats22_pdf_memory": {
+      "source": "PDF rendering exceeds the available image memory budget.",
+      "previous": "Para AN Paint quichihuas ixkopinali ten PDF monequi más RAM que cati onca.",
+      "wording": "Para AN Paint quimanextis página ten PDF monequi más RAM que cati hueli quitequihuis para ixkopinali.",
+      "decision": "repair_candidate",
+      "reason": "Identifies the memory available specifically for image rendering, not overall RAM."
+    },
+    "nch/formats22_base64_description": {
+      "source": "Stores a lossless PNG as Base64 text, beginning with data:image/png;base64,. Open this text file again to recover the image. Base64 is larger than the PNG it contains.",
+      "previous": "Quiajocui se PNG cati quiajocui nochi cati nesi quen tlajkuiloli Base64, cati pehua ica data:image/png;base64,. Sempa xijtapo ni amatl ten tlajkuiloli para tijcuis ixkopinali. Base64 más hueyi que nopa PNG cati eltoc itic.",
+      "wording": "Quiajocui se PNG cati quicahua nochi cati quipiya ixkopinali quen tlajkuiloli Base64, cati pehua ica data:image/png;base64,. Sempa xijtapo ni amatl ten tlajkuiloli para tijcuis ixkopinali. Base64 más hueyi que nopa PNG cati eltoc itic.",
+      "decision": "repair_candidate",
+      "reason": "Changes visible-only preservation to full image data, retaining the exact prefix, reopening behavior and size overhead."
+    },
+    "nch/gallery_copy_credit": {
+      "source": "Copy credit",
+      "previous": "Xijchiua se copia ten ajquiya quichijqui",
+      "wording": "Xijchiua se copia ten nopa información ten ajquiya quichijqui ixkopinali huan canque mocui",
+      "decision": "repair_candidate",
+      "reason": "Copies a broad image attribution record, not just someone’s name."
+    },
+    "nch/gallery_edit_credits": {
+      "source": "Edit credits",
+      "previous": "Xijpata tajcuiloli ten ajquiya quichijqui",
+      "wording": "Xijpata nopa información ten ajquiya quichijqui ixkopinali huan canque mocui",
+      "decision": "repair_candidate",
+      "reason": "Uses the same full attribution object as Copy credit."
+    },
+    "nch/gallery_credit_copied": {
+      "source": "Credit copied",
+      "previous": "Mochijqui se copia ten ajquiya quichijqui",
+      "wording": "Mochijqui se copia ten nopa información ten ajquiya quichijqui ixkopinali huan canque mocui",
+      "decision": "repair_candidate",
+      "reason": "Reports successful copying of that same record."
+    },
+    "nch/gallery_credit_saved": {
+      "source": "Credit text saved",
+      "previous": "Mocajocui tajcuiloli ten ajquiya quichijqui",
+      "wording": "Mocajocui nopa información ten ajquiya quichijqui ixkopinali huan canque mocui",
+      "decision": "repair_candidate",
+      "reason": "Reports saving the complete credit text rather than just creator information."
+    },
+    "nch/formats22_ico_decode_budget": {
+      "source": "Decoding this icon exceeds the available image memory budget.",
+      "previous": "Para AN Paint quipohuas ni icono monequi más RAM que cati onca.",
+      "wording": "Para AN Paint quitapos ni icono (decode) monequi más RAM que cati hueli quitequihuis para ixkopinali.",
+      "decision": "repair_candidate",
+      "reason": "Identifies icon decoding and the image-specific RAM limit."
+    },
+    "nch/ui_casual": {
+      "source": "Casual",
+      "previous": "Quen tlajcuilol momati",
+      "wording": "Tlamantli tlajkuiloli cati amo formal (Casual)",
+      "decision": "repair_candidate",
+      "reason": "Names an informal font category, not the default style."
+    },
+    "nch/ui_gimp_translations31": {
+      "source": "Translation credits & licences",
+      "previous": "Ajquiya quipatac tlahtoli huan licencias",
+      "wording": "Información ten ajquiya quipatac tajcuiloli ipan seyoc tlahtoli huan licencias",
+      "decision": "repair_candidate",
+      "reason": "Makes translation attribution explicit rather than broadly altering speech, and keeps licences."
     }
   }
 }
