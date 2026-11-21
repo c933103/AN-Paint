@@ -16,12 +16,7 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         # Android can run under a device locale that the app does not offer.
         # No offered locale now lacks both notes, so use unbundled Nuosu (ii-CN).
         self.assertFalse(any(tag.split('-')[0] == 'ii' for tag in offered | paths.keys()))
-        for tag in ('nch', 'nv'):
-            with self.subTest(mixed=tag):
-                self.assertIn(tag, offered)
-                messages = catalogues.read_strings(paths[tag])
-                self.assertEqual({'commons_import_svg_changes'}, KEYS & messages.keys())
-        for tag in ('cy', 'shn', 'yua', 'zgh', 'nhe', 'tdd', 'nhw'):
+        for tag in ('cy', 'shn', 'yua', 'zgh', 'nhe', 'tdd', 'nhw', 'nch', 'nv'):
             with self.subTest(translated=tag):
                 self.assertIn(tag, offered)
                 self.assertTrue(KEYS <= catalogues.read_strings(paths[tag]).keys())
