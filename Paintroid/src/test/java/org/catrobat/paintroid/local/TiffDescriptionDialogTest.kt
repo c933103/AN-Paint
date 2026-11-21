@@ -61,12 +61,13 @@ class TiffDescriptionDialogTest {
 
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
-    private fun open(tag: String, compressed: Boolean): AlertDialog {
+    private fun open(tag: String, compressed: Boolean, deviceResources: Resources? = null): AlertDialog {
         assertFalse(currentDialog?.isShowing == true)
         requests.clear(); cancellations = 0
         AppLanguage.select(activity, tag)
         AppLanguage.refresh(activity)
         assertEquals(tag, AppLanguage.selectedTag(activity))
+        if (deviceResources != null) PaintApplication.currentResources = deviceResources
         return SaveOptionsDialog(activity, ExportOptions(ImageFormat.TIFF, tiffCompressed = compressed),
             confirm = { requests += it }, cancel = { cancellations++ }, initialFilename = "scan.tif")
             .show().also { currentDialog = it; idle() }
@@ -106,11 +107,21 @@ class TiffDescriptionDialogTest {
     private fun expected(tag: String) = PriorityWordingExpectations.resources(tag)
         .getString(R.string.formats22_tiff_description)
 
-    @Test fun missingNavajoDescriptionFallsBackToQualifiedEnglishForBothChoices() {
+    @Test fun navajoDescriptionAndUnbundledFallbackKeepBothCompressionChoices() {
+        val navajo = expected("nv")
+        val english = expected("en-GB")
+        val unbundled = PriorityWordingExpectations.resources("ii-CN")
+        assertNotEquals(english, navajo)
+        assertFalse("ii-CN" in AppLanguage.tags(activity))
+        assertEquals("ii", unbundled.configuration.locales[0].language)
+        assertEquals(english, unbundled.getString(R.string.formats22_tiff_description))
         for (compressed in listOf(false, true)) {
-            val dialog = open("nv", compressed)
-            assertTiff(dialog, expected("en-GB"), compressed)
-            confirm(dialog, compressed)
+            val directDialog = open("nv", compressed)
+            assertTiff(directDialog, navajo, compressed)
+            confirm(directDialog, compressed)
+            val fallbackDialog = open("en-GB", compressed, deviceResources = unbundled)
+            assertTiff(fallbackDialog, english, compressed)
+            confirm(fallbackDialog, compressed)
         }
     }
 

@@ -44,11 +44,11 @@ class CommonsImportChangeTranslationTest {
     }
 
     @Test fun selectedLocaleSuppliesWholeMessagesWithExactTechnicalLiterals() {
-        for(tag in listOf("en-US","fr","ja","bn","cy","wo","se","shn","yua")) withLanguage(tag) {
+        for(tag in listOf("en-US","fr","ja","bn","cy","wo","se","shn","yua","zgh","nhe","tdd","nhw","nch","nv")) withLanguage(tag) {
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
             val notes=PaintApplication.currentResources.getString(R.string.commons_import_svg_changes) to
                 PaintApplication.currentResources.getString(R.string.commons_import_raster_changes)
-            if(tag in listOf("cy","wo","se","shn","yua")) {
+            if(tag in listOf("cy","wo","se","shn","yua","zgh","nhe","tdd","nhw","nch","nv")) {
                 val english=PriorityWordingExpectations.resources("en-GB")
                 assertNotEquals(english.getString(R.string.commons_import_svg_changes),notes.first)
                 assertNotEquals(english.getString(R.string.commons_import_raster_changes),notes.second)
@@ -79,17 +79,27 @@ class CommonsImportChangeTranslationTest {
         }
     }
 
-    @Test fun absentUnscopedCatalogueUsesRealEnglishFallback() {
-        // Compare the selected fallback with current source resources, not a frozen caption.
+    @Test fun unbundledLocaleUsesRealEnglishFallbackForBothNotes() {
+        // An unbundled device locale still uses the default Android resources.
+        // Exercise the attribution consumer with those resources, without mocks.
+        val tag="ii-CN"
+        assertFalse(AppLanguage.tags(context).contains(tag))
+        val fallback=PriorityWordingExpectations.resources(tag)
+        assertEquals("ii",fallback.configuration.locales[0].language)
         val english=PriorityWordingExpectations.resources("en-GB")
         val englishSvg=english.getString(R.string.commons_import_svg_changes)
         val englishRaster=english.getString(R.string.commons_import_raster_changes)
-        for(tag in listOf("zgh","nv","tdd")) withLanguage(tag) {
-            assertEquals(englishSvg,PaintApplication.currentResources.getString(R.string.commons_import_svg_changes))
-            assertEquals(englishRaster,PaintApplication.currentResources.getString(R.string.commons_import_raster_changes))
+        val previousResources=PaintApplication.currentResources
+        try {
+            PaintApplication.currentResources=fallback
+            assertEquals(englishSvg,fallback.getString(R.string.commons_import_svg_changes))
+            assertEquals(englishRaster,fallback.getString(R.string.commons_import_raster_changes))
             val record=CommonsAttribution.parse(CommonsTestMetadata.response(source,page),source)
             assertTrue(record.text(true).lines().contains(englishSvg))
+            assertTrue(record.copy(source=source.replace(".svg",".png")).text(true).lines().contains(englishRaster))
             assertFalse(record.text(false).contains("AN Paint:"))
+        } finally {
+            PaintApplication.currentResources=previousResources
         }
     }
 

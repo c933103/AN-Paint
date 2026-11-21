@@ -42,7 +42,7 @@
     <string name="ui_canvas_bounds" formatted="false">畫布邊界</string>
     <string name="ui_delete_selection" formatted="false">刪除揀咗嘅範圍</string>
     <string name="ui_canvas_size" formatted="false">畫布大小…</string>
-    <string name="ui_crop_to_selection" formatted="false">裁剪到揀咗嘅範圍</string>
+    <string name="ui_crop_to_selection" formatted="false">裁剪至揀選範圍</string>
     <string name="ui_resize_image" formatted="false">改圖片大小…</string>
     <string name="ui_flip_horizontal" formatted="false">左右反轉</string>
     <string name="ui_flip_vertical" formatted="false">上下反轉</string>
@@ -152,7 +152,7 @@
     <string name="ui_heart">心形</string>
     <string name="ui_solid_fill">填滿</string>
     <string name="ui_outline">輪廓</string>
-    <string name="ui_smooth_freehand_strokes">平滑自由手繪筆觸</string>
+    <string name="ui_smooth_freehand_strokes">平滑手繪筆觸</string>
     <string name="ui_smooth_pixel_edges_anti_aliasing">平滑像素邊緣（反鋸齒）</string>
     <string name="ui_quality" formatted="false">質素（%）</string>
     <string name="save20_file_format">檔案格式</string>
@@ -273,8 +273,8 @@
     <string name="ui_create_output">建立輸出</string>
     <string name="ui_credits_terms">鳴謝及條款</string>
     <string name="ui_crop">裁剪%1$s</string>
-    <string name="ui_crop_must_stay_inside_the_canvas">裁剪範圍必須喺畫布內。</string>
-    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">裁剪預覽。拖邊緣或者角位調整大小；喺裁剪範圍入面拖動，就可以移動個範圍。</string>
+    <string name="ui_crop_must_stay_inside_the_canvas">裁剪範圍唔可以超出畫布。</string>
+    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">裁剪預覽。拖邊或者角位可以改大小；喺範圍入面拖就可以成個範圍一齊移。</string>
     <string name="ui_cropped_thumbnail">已裁剪縮圖：%1$s</string>
     <string name="ui_current_safe_budget_2f_mp">而家安全上限：%1$.2f MP。</string>
     <string name="ui_current_safe_editing_budget_s_up_to_2f">而家安全編輯上限：%1$s · 最多 %2$.2f MP（呢個 MP 估算未計解碼器額外所需記憶體）</string>
@@ -403,7 +403,7 @@
     <string name="ui_original_decoded_image_rgba_4_bytes_pixel_estimated">原圖：%1$s\n解碼後圖片：%2$s（RGBA，每像素 4 位元組）\n不調整大小時嘅估算編輯記憶體：%3$s</string>
     <string name="ui_other_terms">其他條款</string>
     <string name="ui_pale_violet">淡紫色</string>
-    <string name="ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing">鉛筆喺任何揀咗嘅闊度下都會保持清晰邊緣。</string>
+    <string name="ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing">無論揀咩闊度，鉛筆筆觸嘅邊緣都會保持清晰。</string>
     <string name="ui_percent">百分比</string>
     <string name="ui_percent_fd8671">百分比</string>
     <string name="ui_percent_of_pixels">%1$s 像素嘅百分比</string>
@@ -422,7 +422,7 @@
     <string name="ui_recent_colour_d_06x_tap_foreground_hold_background">最近用嘅顏色 %1$d：#%2$06X。撳設為前景色，撳住設為背景色。</string>
     <string name="ui_recent_colour_empty">最近用嘅顏色 %1$s：空白</string>
     <string name="ui_recovered_image">已復原圖片</string>
-    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">已匯出復原副本。請從 ZIP 解壓 canvas.png，並用「檔案」&gt;「開圖片」打開。ZIP 亦包含草稿設定及任何浮動揀選範圍。</string>
+    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">已經匯出復原副本。請喺 ZIP 入面解壓出 canvas.png，再用「檔案 → 開圖片…」開返張圖。ZIP 入面仲有草稿設定；如果有浮動揀選範圍，亦會一併儲存。</string>
     <string name="ui_rendering_images">已處理 %1$s / %2$s 張圖片…</string>
     <string name="ui_reset_crop">重設裁剪</string>
     <string name="ui_reset_to_black_white">重設為黑／白</string>
@@ -527,8 +527,8 @@
     <string name="ui_top">頂部</string>
     <string name="ui_trim_amounts_must_be_zero_or_greater">裁減量必須為 0 或者以上。</string>
     <string name="ui_trim_amounts_must_fit_inside_each_image_use">裁減量必須喺每張圖片範圍內；請用整數像素或者百分比。</string>
-    <string name="ui_trim_expand_canvas_by_touch">以觸控裁減／擴展畫布…</string>
-    <string name="ui_trim_from_the_original_edges_drag_the_handles">由原始邊緣裁減。拖控制點或者喺下面輸入數值。來源檔案唔會改。</string>
+    <string name="ui_trim_expand_canvas_by_touch">拖拉裁減／擴展畫布…</string>
+    <string name="ui_trim_from_the_original_edges_drag_the_handles">由原本嘅邊緣開始裁減。可以拖控制點，或者喺下面輸入數值。原檔唔會改。</string>
     <string name="ui_trim_in_pixels">%1$s裁減量（像素）</string>
     <string name="ui_type_text">輸入文字</string>
     <string name="ui_underline">底線</string>
@@ -660,7 +660,7 @@
     <string name="ui_expand_tool_category">%1$s：已揀 %2$s。展開工具及選項</string>
     <string name="ui_collapse_tool_category">%1$s：已揀 %2$s。收起工具及選項</string>
     <string name="ui_tool_categories">工具分類。捲動查看更多工具</string>
-    <string name="ui_pencil_crisp_adjustable_strokes">鉛筆喺任何揀咗嘅闊度下都會保持清晰邊緣。</string>
+    <string name="ui_pencil_crisp_adjustable_strokes">無論揀咩闊度，鉛筆筆觸嘅邊緣都會保持清晰。</string>
     <string name="ui_cursor_help29">@string/ui_cursor_help31</string>
     <string name="ui_cursor_ink30">用游標繪圖</string>
     <string name="ui_cursor_settings31">游標繪圖設定…</string>
