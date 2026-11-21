@@ -3688,6 +3688,104 @@
       "wording": "Eʼelyaaígíí łaʼ bee tʼááłáʼí áláaígíí kʼad doo bee naanish da. Nááná «Eʼelyaaígíí łaʼ bee tʼááłáʼí áshłééh…» ąą ánílééh, áádóó nááná shąʼ.",
       "decision": "repair_candidate",
       "reason": "Reports current unavailability, quotes the exact current assembly menu, and explicitly retries after reopening."
+    },
+    "nv/ui_the_gallery_image_is_unavailable": {
+      "source": "The gallery image is unavailable.",
+      "previous": "Eʼelyaaígíí daʼóltaʼígíídę́ę́ʼ eʼelyaaígíí ádin.",
+      "wording": "Eʼelyaaígíí daʼóltaʼígíídę́ęʼ eʼelyaaígíí kʼad doo bee naanish da.",
+      "decision": "repair_candidate",
+      "reason": "Says currently unavailable rather than absent or deleted from the gallery."
+    },
+    "nv/ui_the_image_could_not_be_downloaded": {
+      "source": "The image could not be downloaded.",
+      "previous": "Eʼelyaaígíí ąą ánílééh: doo bííníshghah da.",
+      "wording": "Eʼelyaaígíí internet bikááʼdę́ęʼ ąą ánílééh (download): doo bííníshghah da.",
+      "decision": "repair_candidate",
+      "reason": "Matches the explicit network transfer in the progress label and distinguishes it from opening/decoding."
+    },
+    "nv/ui_third_party_notices": {
+      "source": "Third-party notices",
+      "previous": "Tʼááłáʼí náánáłaʼí baa haneʼ",
+      "wording": "Tʼááłáʼí náánáłaʼí bee hazʼáanii baa haneʼ",
+      "decision": "repair_candidate",
+      "reason": "Frames notices from other parties as legal/licence information rather than ordinary external content."
+    },
+    "nv/ui_trim_in_percent": {
+      "source": "%1$s trim in percent",
+      "previous": "%1$s (neeznádiinjįʼ ałtsʼájíniłgo) · Bibąąh aniłgéésh",
+      "wording": "%1$s · Neeznádiinjįʼ ałtsʼájíniłgo (%) · Bibąąh aniłgéésh",
+      "decision": "repair_candidate",
+      "reason": "Reuses the exact verified percent control in the margin field and retains the edge argument."
+    },
+    "nv/colour20_custom_selected_slot": {
+      "source": "Custom colours · Slot %1$d selected",
+      "previous": "Nidaashchʼąąʼígíí (ní choiníłʼį́ʼígíí) · Kweʼé %1$d bikʼidiilnííh.",
+      "wording": "Nidaashchʼąąʼígíí hashtʼeʼ siłtsoozígíí · Kweʼé %1$d bikʼidiilnííh.",
+      "decision": "repair_candidate",
+      "reason": "Uses the saved custom palette term, and keeps the selected slot substitution."
+    },
+    "nv/gallery_image_component_unavailable": {
+      "source": "A required image component is unavailable. The image was not imported.",
+      "previous": "Eʼelyaaígíí baa haneʼ łaʼ bee naanish dooleełígíí ádin. Eʼelyaaígíí doo biiʼ hééł ályaa da.",
+      "wording": "Eʼelyaaígíí biiʼ łaʼ bee naanish dooleełígíí kʼad doo bee naanish da. Eʼelyaaígíí doo biiʼ hééł ályaa da.",
+      "decision": "repair_candidate",
+      "reason": "Names an unavailable required component rather than a detail about an image, and preserves no-import outcome."
+    },
+    "nv/formats22_tiff_compression": {
+      "source": "Lossless compression (Deflate)",
+      "previous": "Naaltsoos áłtsʼíísígo ánílééh (Deflate; doo eʼelyaaígíí baa haneʼ łaʼ ádin da)",
+      "wording": "Naaltsoos áłtsʼíísígo ánílééh (Deflate, Lossless) · eʼelyaaígíí bee ályaaígíí (px) tʼáá ałtso",
+      "decision": "repair_candidate",
+      "reason": "Links exact Deflate and lossless to retaining all pixel data, not only appearance."
+    },
+    "nv/formats22_tiff_description": {
+      "source": "Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.",
+      "previous": "RGB naaltsoos tʼááłáʼí hashtʼeʼ siłtsooz. Naaltsoos áłtsʼíísígo ánílééhgo, daatsʼí áłtsʼíísígo ádoolnííł; eʼelyaaígíí (px) doo łahgo ádoolnííł da. Naaltsoos áłtsʼíísígo ánílééhígíí choiníłʼį́ dóó TIFF ádoolééł, tʼáadoo áłtsʼíísígo ályaaí, tʼóó ánássįįh.",
+      "wording": "RGB naaltsoos tʼááłáʼí hashtʼeʼ siłtsooz. Naaltsoos áłtsʼíísígo ánílééhgo, daatsʼí áłtsʼíísígo ádoolnííł; eʼelyaaígíí (px) doo łahgo ádoolnííł da. TIFF tʼáadoo áłtsʼíísígo ályaaí biniiyé, «Compression» doo ánílééh da (Off).",
+      "decision": "repair_candidate",
+      "reason": "Fixes the final polarity to explicitly switch compression Off; preserves one RGB page, possible size reduction, and unchanged pixels."
+    },
+    "nv/formats22_page_number": {
+      "source": "Page number",
+      "previous": "Naaltsoos ánéeltʼeʼ",
+      "wording": "Naaltsoos kʼad yíníłtaʼígíí ánéeltʼeʼ",
+      "decision": "repair_candidate",
+      "reason": "Adds current/read page, distinguishing its number from the total number of pages."
+    },
+    "nv/formats22_previous_page": {
+      "source": "Previous page",
+      "previous": "Naaltsoos níwohdę́ę́ʼ",
+      "wording": "Naaltsoos tʼáá ałʼą́ą́dę́ęʼ (Previous)",
+      "decision": "repair_candidate",
+      "reason": "Identifies the adjacent earlier page, not any old page or arbitrary page."
+    },
+    "nv/formats22_pdf_invalid": {
+      "source": "PDF could not be read. The file may be damaged or use features unsupported by this Android version.",
+      "previous": "PDF yíníłtaʼ: doo bííníshghah da. Naaltsoos daatsʼí yíchxǫʼ, doodago Android díí bee naʼanishí doo choyoołʼį́ da.",
+      "wording": "PDF yíníłtaʼ: doo bííníshghah da. Naaltsoos daatsʼí yíchxǫʼ, doodago PDF biiʼ łaʼ bee naanishígíí Android díí version doo choyoołʼį́ da.",
+      "decision": "repair_candidate",
+      "reason": "Keeps unreadable PDF and two possible causes, and limits incompatibility to features and this Android version."
+    },
+    "nv/formats22_pdf_memory": {
+      "source": "PDF rendering exceeds the available image memory budget.",
+      "previous": "PDF eʼelyaaígíí ánílééh: RAM biʼoh neelʼą́.",
+      "wording": "PDF eʼelyaaígíí ánílééh biniiyé, eʼelyaaígíí bichʼįʼ RAM biʼoh neelʼą́.",
+      "decision": "repair_candidate",
+      "reason": "Names the image RAM cap specifically, rather than a generic shortage of device RAM."
+    },
+    "nv/formats22_base64_description": {
+      "source": "Stores a lossless PNG as Base64 text, beginning with data:image/png;base64,. Open this text file again to recover the image. Base64 is larger than the PNG it contains.",
+      "previous": "PNG tʼáadoo eʼelyaaígíí baa haneʼ łaʼ ádiní Base64 saad bikʼeʼíłchí bee hashtʼeʼ siłtsooz. Áłtsé díí bee hazʼą́: data:image/png;base64,. Eʼelyaaígíí nináánídlé dooleeł biniiyé díí naaltsoos nááná ąą ánílééh. Base64 naaltsoos PNG biyiʼ siłtsoozígíí biłááh ntsaa.",
+      "wording": "PNG (Lossless; eʼelyaaígíí bee ályaaígíí (px) tʼáá ałtso) Base64 saad bikʼeʼíłchí bee hashtʼeʼ siłtsooz. Áłtsé díí bee hazʼą́: data:image/png;base64,. Eʼelyaaígíí nináánídlé dooleeł biniiyé díí naaltsoos nááná ąą ánílééh. Base64 naaltsoos PNG biyiʼ siłtsoozígíí biłááh ntsaa.",
+      "decision": "repair_candidate",
+      "reason": "Makes lossless refer to retaining all pixels and preserves the unchanged exact URI prefix, reopen-to-recover behavior and size overhead."
+    },
+    "nv/formats22_ascii_invert": {
+      "source": "Invert light and dark characters",
+      "previous": "Saad bikʼeʼíłchí łigai dóó łizhin binaashii ánílééh",
+      "wording": "Saad bikʼeʼíłchí łigai łahgo dóó łizhin łahgo binaashii ánílééh (light ↔ dark)",
+      "decision": "repair_candidate",
+      "reason": "Makes the two tonal groups exchange places, not necessarily pure white versus black."
     }
   }
 }
