@@ -1283,3 +1283,108 @@ Reviewed 100 previously unreviewed `nch` candidates. K = keep exact candidate fo
 98. `nch/ui_place_at_least_one_image_in_the_workspace` **K**: Explicit first-step minimum of one placed image in the workspace.
 99. `nch/ui_placed` **H**: “It is already there” is too generic for the placed status; pair the revision with its negative form to distinguish from loaded.
 100. `nch/ui_px_drag_an_image_to_move_hold_a` **K**: Exact dimension order/unit plus the separate image move and thumbnail-hold actions remain intact.
+
+## Batch 12: Central Huasteca Nahuatl
+
+Reviewed 100 previously unreviewed `nch` candidates. K = keep exact candidate for separate integration; H = hold for a wording fix or quality check. Batch: **76 keep, 24 hold**. Cumulative **1,200 reviewed, 810 keep, 390 hold**. This batch does not change Android resources.
+
+1. `nch/ui_quality` **K**: Quality remains an explicit percentage; the concise loan matches the existing setting context.
+2. `nch/ui_rendering_images` **H**: “Images the app made” suggests creation rather than processing progress; preserve both counters for the revision.
+3. `nch/ui_restore_original_sizes` **K**: Returns every image to its original dimensions rather than reverting the whole workspace.
+4. `nch/ui_right_arrow_expand` **K**: Right arrow and opening the controls accurately describe expansion, not moving an image rightward.
+5. `nch/ui_same` **K**: Keeps the generic shared-dimension slot.
+6. `nch/ui_same_height` **K**: Names the shared height distinctly from width.
+7. `nch/ui_same_width` **K**: Names shared width and matches the height counterpart.
+8. `nch/ui_sans_condensed` **K**: Describes narrower Sans glyphs, independent of font weight.
+9. `nch/ui_sans_light` **K**: The thinner-than-usual phrasing conveys the light weight.
+10. `nch/ui_sans_medium` **K**: Intermediate weight distinguishes medium from light and thin.
+11. `nch/ui_sans_thin` **K**: Especially thin weight remains distinguishable from light.
+12. `nch/ui_set_radius_px_then_drag_between_opposite_corners` **K**: Explains the corner radius in pixels, the diagonal gesture, and the per-rectangle half-short-side limit.
+13. `nch/ui_show_pixel_grid_800` **K**: Retains show action, pixel grid and threshold notation; compatible with its hide counterpart.
+14. `nch/ui_shows_the_whole_assembly_image_and_output_sizes` **K**: All of the assembly becomes visible without changing source or output sizes.
+15. `nch/ui_sans_serif` **K**: Explains absence of serifs at stroke ends instead of a specific font family.
+16. `nch/ui_serif` **K**: Stroke-end marks distinguish the serif family from Sans serif.
+17. `nch/ui_silver` **K**: Clear standard colour/material loan for the preset.
+18. `nch/ui_smallest` **K**: Clear superlative for the smallest option.
+19. `nch/ui_smooth_freehand_strokes` **H**: “Look good” is not specific to smoothing freehand motion, and fails to distinguish the anti-alias control.
+20. `nch/ui_smooth_pixel_edges_anti_aliasing` **H**: The technical label survives but “look good” does not describe smoothing jagged pixel edges.
+21. `nch/ui_some_previews_could_not_be_decoded_you_can` **K**: Preserves the preview decode failure and offers removing affected images or trying Save.
+22. `nch/ui_sort_images_by_filename_or_modification_time` **K**: Identifies the two separate filename and modification-time sort criteria.
+23. `nch/ui_sort_tray` **K**: Names sorting the thumbnail tray, not sorting a list of source folders.
+24. `nch/ui_source_code_exported_including_build_scripts_and_licence` **K**: Retains source export, build scripts and licensing notices.
+25. `nch/ui_spectrum` **K**: Clearly names the colour spectrum, not the hue-wheel alternative.
+26. `nch/ui_strikethrough` **K**: Explicitly places a line through the middle of text.
+27. `nch/ui_tap_a_pixel` **K**: Clear single-finger contact and release on one pixel.
+28. `nch/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Keeps the enclosed-region tap and adjustment to admit more or fewer similar colours.
+29. `nch/ui_tap_an_image_thumbnail_first` **K**: Correctly asks to tap the thumbnail before the next action.
+30. `nch/ui_tap_the_canvas_to_place_text_and_choose` **K**: Tap canvas, place text, choose its appearance/font and size remain in the proper order.
+31. `nch/ui_tap_the_image_to_sample_the_foreground_colour` **K**: Samples colour from the image to the foreground.
+32. `nch/ui_tap_vertices_then_double_tap_the_last_vertex` **K**: Double-tap last vertex, Finish alternative, and turning off closure for joined open segments all survive.
+33. `nch/ui_that_arrangement_overlaps_another_image_use_a_different` **H**: The remedy can imply removing the attached images themselves; distinguish unplacing from deletion or removing source files.
+34. `nch/ui_the_assembly_exceeds_android_s_coordinate_range` **K**: The assembly exceeds the allowable Android coordinate range, not necessarily device RAM.
+35. `nch/ui_the_assembly_needs_about_choose_a_smaller_output` **K**: Preserves estimated requirement and recommends reducing output dimensions.
+36. `nch/ui_the_assembly_output_is_unavailable_reopen_image_assembly` **H**: Says no image exists rather than output is unavailable; align the action with the exact Image assembly caption.
+37. `nch/ui_the_attachment_image_is_missing` **K**: Reports a missing attached image, not permission to detach it.
+38. `nch/ui_the_attachment_image_is_not_placed` **H**: “Not there yet” can describe an unloaded item. Reuse the explicit placed/unplaced terminology from the paired status.
+39. `nch/ui_the_first_image_starts_at_the_top_left` **K**: Correct first-image origin at the upper left.
+40. `nch/ui_the_gallery_download_is_too_large` **K**: Reports excessive size of the gallery download rather than the source gallery itself.
+41. `nch/ui_the_gallery_image_is_unavailable` **H**: Says there is no image; temporary unavailability must not imply nonexistence.
+42. `nch/ui_the_gallery_redirected_outside_its_supported_hosts` **K**: Distinguishes a redirect to an unsupported image URL from an unsupported file format.
+43. `nch/ui_the_image_could_not_be_downloaded` **H**: “Could not take the image” could mean choose, capture or import; use the same explicit download term as progress.
+44. `nch/ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Retains coordinate constraint and advises smaller image sizes.
+45. `nch/ui_the_normalized_image_dimensions_are_outside_android_s` **K**: Names normalized width and height outside Android’s limit.
+46. `nch/ui_the_online_gallery_could_not_be_loaded_check` **K**: Keeps gallery load failure, connection check and retry as separate instructions.
+47. `nch/ui_third_party_notices` **H**: “Writing from others” does not give the legal-notice meaning or distinguish it from general third-party content.
+48. `nch/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Preserves the Catrobat gallery allowlist context rather than implying every URL outside Catrobat is broken.
+49. `nch/ui_time_unavailable` **H**: “There is no hour” can imply clock time does not exist. Identify unavailable time metadata in the sort context.
+50. `nch/ui_too_many_gallery_redirects` **K**: Clearly reports the gallery repeatedly redirected to other URLs rather than claiming it redirected outside the site.
+51. `nch/ui_tool_option` **K**: A setting the user can change for this tool, not a switch for selecting the tool itself.
+52. `nch/ui_toolbox_and_tool_options_scroll_for_more` **K**: Keeps the tools, adjustable options and scroll-for-more hint, without specifying the wrong direction.
+53. `nch/ui_trim_from_the_original_edges_drag_the_handles` **K**: Measurement starts at original edges; both handles and numeric entry survive, with original files unchanged.
+54. `nch/ui_trim_in_pixels` **K**: Retains the side/dimension slot and makes clear the amount removed is in pixels.
+55. `nch/ui_unplace` **H**: May imply removing the image rather than removing only its placement; keep the thumbnail/source-image distinction.
+56. `nch/ui_wheel` **K**: Clear colour-wheel control name consistent with surrounding hue-wheel wording.
+57. `nch/ui_width_in` **K**: Explicit width and its dynamic unit in parentheses.
+58. `nch/ui_widths` **K**: A bare dimension noun works as the widths heading above a range; nothing introduces a single-image constraint.
+59. `nch/ui_you_can_add_more_images_select_fewer_files` **K**: Preserves the number of remaining slots and asks the user to select fewer files.
+60. `nch/ui_agpl_licence` **K**: Exact standard licence identifier and proper object.
+61. `nch/ui_jpeg_xl_codec_licences` **K**: The descriptive read/write term preserves JPEG XL codec licensing rather than image licences.
+62. `nch/ui_gnu_agpl_licence` **K**: Retains both GNU and AGPL identifiers.
+63. `nch/ui_preview_memory_error` **K**: Identifies insufficient RAM for preview and preserves the specific item slot.
+64. `nch/ui_trim_in_percent` **K**: Matches the pixel trim row but correctly switches to percent.
+65. `nch/ui_crop_preview_images` **H**: Both plural variants retain all slots, but “images already there” is ambiguous and the attached-image pronoun can be read as singular; specify placed images and their attachments.
+66. `nch/ui_add_palette23` **H**: Palette is phrased as a place to select colours, which can be confused with the colour picker; establish consistent palette terminology.
+67. `nch/ui_added_palette23` **H**: “Already there where you choose” does not state that the colour was added to the saved palette.
+68. `nch/ui_replace_palette23` **H**: The replacement action is clear but “the place you choose colour is full” is easily confused with the picker; use the same palette term as Add/Edit.
+69. `nch/ui_edit_palette23` **H**: Do not describe editing the picker; name the palette consistently with the corresponding Add and Remove actions.
+70. `nch/ui_replace_with_active23` **K**: Replace clearly uses the currently selected colour.
+71. `nch/ui_remove_palette23` **H**: “Remove from where you choose colours” is underspecified; match the palette term from the other captions.
+72. `nch/ui_add_active23` **K**: Add the currently selected colour, without conflating it with a palette replacement.
+73. `nch/ui_horizontal23` **K**: Describes a row lying across, distinct from the two vertical column directions.
+74. `nch/ui_vertical_rl23` **K**: Correctly combines top-to-bottom progression with right-to-left column order.
+75. `nch/ui_vertical_lr23` **K**: Correctly combines top-to-bottom progression with left-to-right column order.
+76. `nch/ui_vertical_letters23` **K**: Makes clear that the options are about glyphs within top-to-bottom text.
+77. `nch/ui_vertical_mixed23` **H**: “CJK comes out straight, words lie down” needs more distinct vertical-orientation wording and consistency with the neighboring settings.
+78. `nch/ui_vertical_sideways23` **K**: Keeps sideways words as joined units rather than individually rotated letters.
+79. `nch/ui_vertical_upright23` **H**: “One letter at a time” may exclude digits, punctuation and emoji; use character/glyph language consistent with the mode.
+80. `nch/ui_vertical_hint23` **H**: Columns and Mongolian example survive, but the terms for combining marks and emoji sequences are vague; retain that each unit stays intact in upright mode.
+81. `nch/ui_top23` **K**: Aligns relative to the top edge, not left/right within a column.
+82. `nch/ui_bottom23` **K**: Correct bottom-edge counterpart with neutral wording.
+83. `nch/ui_webp_codec_licences` **K**: Accurately identifies codec licences by WebP read/write support.
+84. `nch/ui_heic_avif_codec_licences` **K**: The exact HEIC and AVIF names and both codec licence scopes remain.
+85. `nch/colour20_custom_selected_slot` **H**: Custom colours and the selected slot each use the same selected-colour wording; distinguish the saved palette section from the slot currently selected.
+86. `nch/colour20_stored_slot` **K**: Preserves slot number and colour, tap to use, and Replace as a separate save action.
+87. `nch/colour20_empty_slot` **K**: Identifies an empty numbered slot and tap-to-choose-a-destination rather than tap-to-complete.
+88. `nch/colour20_save_slot` **K**: Save targets the numbered slot explicitly.
+89. `nch/colour20_replace_slot` **K**: Replace targets the numbered slot with the same verb as the adjacent action.
+90. `nch/colour20_saved_slot` **K**: Clear completed save including the colour and destination.
+91. `nch/gallery_image_component_unavailable` **H**: Says the component does not exist. Preserve its broader unavailability and make the failed import equally clear.
+92. `nch/ui_lossless_format` **H**: “Everything visible” suggests perceptual equivalence, not unchanged pixels; align lossless wording with the TIFF explanation.
+93. `nch/ui_image_codec_licences` **K**: The read/write description denotes image codec licences rather than general copyright.
+94. `nch/formats22_base64_label` **K**: Identifies Base64 as text, not as a separate picture format.
+95. `nch/formats22_ascii_label` **K**: Unambiguously says the image is made of ASCII writing.
+96. `nch/formats22_tiff_compression` **H**: “Saves everything” does not establish identical pixels; align with the explicit unchanged-pixel TIFF description and keep Deflate exact.
+97. `nch/formats22_tiff_description` **K**: Single RGB page, smaller file without pixel changes, and the uncompressed option are distinct.
+98. `nch/formats22_dib_description` **K**: Keeps the exact Windows DIB bit depth and recommends BMP only when the receiving application needs its header.
+99. `nch/formats22_dib_size_limit` **K**: Recognizable file-capacity message tied to DIB, not to width or height.
+100. `nch/formats22_select_page` **K**: Clear one-page selection command, not a page-number range error.
