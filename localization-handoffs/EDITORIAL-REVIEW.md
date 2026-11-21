@@ -1073,3 +1073,108 @@ Results: **58 keep, 42 hold**. Running total: **500 distinct drafts reviewed, 32
 98. `nhe/formats22_open_page` **K**: Open refers to the selected page, not a separate file picker.
 99. `nhe/formats22_page_preview` **K**: Uses the established preview expression and keeps the selected-page qualification.
 100. `nhe/formats22_page_range` **K**: Inclusive limits and dynamic maximum are preserved, with a clear page-number entry instruction.
+
+## Batch 10: Eastern Huasteca Nahuatl and Central Huasteca Nahuatl
+
+Reviewed 100 previously unreviewed wording candidates: 83 `nhe` (Eastern Huasteca Nahuatl) and 17 `nch` (Central Huasteca Nahuatl). Decision codes: K = keep exact candidate for separate integration; H = hold for wording revision or stronger supporting evidence. This pass does not modify Android resources. Batch: **65 keep, 35 hold**. Cumulative: **1,000 reviewed, 665 keep, 335 hold**.
+
+1. `nhe/formats22_loading_page` **H**: The progress indicator says the app makes something you will see first, without clearly naming an in-progress preview consistent with the neighboring captions.
+2. `nhe/formats22_page_dimensions` **K**: Correct current page, total pages, and width-by-height order with all four typed placeholders.
+3. `nhe/formats22_preview_unavailable` **K**: Concise “cannot see it beforehand” message with the diagnostic detail retained.
+4. `nhe/formats22_preview_memory` **K**: Keeps the preview RAM failure separate from the smaller dimensions offered on opening and retains the condition.
+5. `nhe/formats22_pdf_invalid` **K**: Distinguishes a possibly damaged PDF from features the current Android version cannot handle.
+6. `nhe/formats22_pdf_encrypted` **K**: Retains both password and unsupported encryption, and instructs saving an unprotected copy before import.
+7. `nhe/formats22_pdf_file_size` **K**: Requires readable content and retains 512 MiB as an inclusive maximum, not a pixel limit.
+8. `nhe/formats22_pdf_page_count` **K**: Keeps one page as the inclusive floor and the dynamic upper page count.
+9. `nhe/formats22_pdf_page_index` **K**: Despite the provisional provenance, explicitly says the selected page is no longer usable and asks for a page from this document.
+10. `nhe/formats22_pdf_dimensions` **K**: Preserves both invalid and too large dimensions as alternative import failures.
+11. `nhe/formats22_pdf_crop` **K**: The rectangle must have dimensions and be inside the selected page; nothing implies resizing the PDF.
+12. `nhe/formats22_pdf_memory` **K**: Rendering the PDF is described as needing more RAM than is available for images.
+13. `nhe/formats22_base64_description` **K**: Preserves lossless PNG, the data URI prefix, reopening to recover the image, and the size overhead.
+14. `nhe/formats22_ascii_columns` **K**: Width is expressed in written characters, not in image pixels.
+15. `nhe/formats22_ascii_invert` **H**: The adjectives can read as clean and dark; use less ambiguous bright/dark terms and ensure the two categories exchange roles.
+16. `nhe/formats22_text_not_image` **K**: Says the Base64 lacks an image the app can open, without declaring all Base64 invalid.
+17. `nhe/gallery_description` **H**: The text never names the Copy credit control and alternates interpretations of the credit route; align button captions and preserve source, licence and attribution distinctions.
+18. `nhe/gallery_copy_credit` **H**: The caption narrows credit to a creator’s writing; the action copies source and licensing information as well.
+19. `nhe/gallery_edit_credits` **H**: Names only who created it; editing credits also includes source and changes. Use the same broader term as Copy credit and Image credits.
+20. `nhe/gallery_credit_copied` **H**: The first-person completion and creator-only phrase conflict with the app’s broader copied attribution text.
+21. `nhe/gallery_credit_edit_hint` **H**: “Remove those that are not visible” is underspecified; explicitly remove source entries not used in the final image, not parts of the image.
+22. `nhe/gallery_credit_title` **K**: Labels artwork and its title value without conflating it with publisher or source.
+23. `nhe/gallery_credit_publisher` **K**: Retains the app’s Catrobat project attribution as the publisher.
+24. `nhe/gallery_credit_source` **K**: Identifies where the image was obtained and preserves the value slot.
+25. `nhe/gallery_credit_gallery` **K**: Keeps the separate gallery field and its placeholder.
+26. `nhe/gallery_credit_licence` **K**: Keeps Catrobat as creator of original artwork, the exact licence ID, and its dynamic value.
+27. `nhe/gallery_credit_saved` **H**: Preserving the app subject is fine, but the phrase still limits the saved text to the creator rather than all credits.
+28. `nhe/formats22_ico_size` **K**: Clearly identifies the icon size setting, not canvas size.
+29. `nhe/formats22_ico_description` **H**: PNG remains, but the text only says “with PNG”; explicitly retain PNG compression and avoid making the visible-through square sound like the image is transparent.
+30. `nhe/formats22_ico_decode_budget` **K**: The RAM shortfall applies to decoding the icon, not saving it or to a format size cap.
+31. `nhe/formats22_ico_dimensions_error` **H**: The phrase addresses “what is inside ICO” generally; it omits the corresponding internal directory item, which matters when multiple entries exist.
+32. `nhe/formats22_ico_invalid_size` **K**: Every supported numerical size and the pixel unit survive in order.
+33. `nhe/save20_dither` **H**: The phrase suggests bringing colours close with differently coloured pixels but does not clearly denote dithering; align the setting caption and its Save GIF help.
+34. `nhe/save20_bmp_description` **K**: Keeps 24-bit RGB, uncompressed storage, exact colours and larger files.
+35. `nhe/save20_bmp_size_limit` **K**: Identifies the BMP file-byte limit, not its width or height.
+36. `nhe/save20_gif_size_limit` **K**: Clearly caps each GIF side at 65,535 pixels.
+37. `nhe/save20_unsupported_tagged_colour` **K**: Keeps unsupported colour profile and directs the user to a colour-managed editor to make a PNG in sRGB before importing.
+38. `nhe/ui_pencil_crisp_adjustable_strokes` **H**: “Looks good” loses crisp/non-antialiased edges, and the tool caption should match the pinned Lapiz label.
+39. `nhe/ui_cursor_help31` **H**: The physical tap/drag/tap sequence survives, but Draw and Drawing currently share Xicpa and the draft does not identify the second exact route label.
+40. `nhe/ui_cursor_marker_help31` **K**: Distinguishes a larger cursor marker from the unchanged brush stroke width.
+41. `nhe/ui_gimp_translations31` **K**: Separates the attribution for translations from licences rather than treating them as image credits.
+42. `nhe/ui_normalize_width_intro` **H**: The aspect ratio survives, but the closing clause describes the crop result, not the saved crop settings; name both unchanged settings and originals.
+43. `nhe/ui_normalize_height_intro` **H**: Same crop-settings ambiguity as the width counterpart; keep the equal-height and per-image ratio statements.
+44. `nhe/ui_normalize_width_info` **K**: Retains width for each image, differing heights, maximum current width for the percentage reference, and layout reflow.
+45. `nhe/ui_normalize_height_info` **K**: Retains height for each image, differing widths, maximum current height for percentage and layout reflow.
+46. `nhe/ui_normalize_width_input_percent` **K**: The input clearly asks for shared width as a percentage of the typed pixel reference.
+47. `nhe/ui_normalize_height_input_percent` **K**: The vertical counterpart consistently asks for shared height using the same typed reference.
+48. `nhe/ui_pixel_grid_help33` **H**: 800% is retained but the condition describes a large-looking image, not the active zoom value; name zoom explicitly.
+49. `nhe/ui_search_english34` **K**: Short instruction distinguishes the two supported search languages.
+50. `nhe/ui_gallery_back34` **K**: Clear return/navigation imperative; does not imply canceling an edit.
+51. `nhe/ui_irasutoya_help34` **H**: The 21-item threshold is present, but commercial design is narrower than the phrase used for selling, and the exact Image credits route needs alignment before publishing legal wording.
+52. `nhe/ui_openclipart_help34` **H**: CC0, larger PNG and tap direction are retained; hold until the final quoted Image credits destination matches the actual caption.
+53. `nhe/ui_gallery_unsupported34` **K**: Says the image is not part of the selected source; does not imply service or network failure.
+54. `nhe/ui_open_artwork34` **K**: Clear page-first sequence; the quoted action matches the existing gallery_use_image caption exactly.
+55. `nhe/ui_creator_on_source34` **K**: Directs the user to the source page to identify who supplied the artwork, not to a generic external search.
+56. `nhe/ui_irasutoya_credit34` **K**: Keeps creator-held rights, conditions of use and explicit non-CC status separate.
+57. `nhe/legacy_credits_title` **K**: Says the app saved the attribution earlier, distinguishing it from credits newly associated with this image.
+58. `nhe/legacy_credits_hint` **H**: The instruction to put “its writing here” is less precise than adding that source’s credit to this specific image; align vocabulary with the legacy action captions.
+59. `nhe/legacy_credits_add` **H**: The button says add the selected thing to the image; name the credit so the user does not expect the source image itself to be inserted.
+60. `nhe/legacy_credits_save_text` **H**: The button says save “the selected thing” as text; name attribution explicitly and distinguish exporting the text from saving the source image.
+61. `nhe/legacy_credits_existing` **K**: Correctly says the existing credit corresponds to that source and its earlier wording was left unchanged.
+62. `nhe/legacy_credits_added` **H**: The result reports only creator information despite the source credit containing broader attribution; match the corrected action and other credit confirmations.
+63. `nhe/commons_import_svg_changes` **K**: Translates only the original-size description; preserves API names, Boolean literal, colour value and SVG-to-PNG transformation.
+64. `nhe/commons_import_raster_changes` **K**: Preserves exact background token and gives a descriptive explanation of alpha compositing instead of implying shape transparency survives.
+65. `nhe/commons_credit_copy_failed` **H**: First person (“I could not copy”) is inconsistent with app notifications, and the wording still limits the credit to creator information.
+66. `nhe/commons_credit_copy_failed_reason` **H**: Use the broader credit term and neutral app phrasing from the corrected copy-failure counterpart; retain the reason slot.
+67. `nhe/commons_credit_copy_out_of_memory` **H**: Memory cause is clear, but this still limits the affected text to a creator’s writing; align all three credit-copy errors.
+68. `nhe/commons_metadata_http_error` **K**: Keeps HTTP exact and leaves the dynamic status slot intact for a file-metadata message.
+69. `nhe/commons_metadata_response_too_large` **K**: Distinguishes Commons response byte size from the requested image’s pixel dimensions.
+70. `nhe/commons_metadata_query_failed` **K**: Reports failure to retrieve file information rather than claiming the file is corrupt or missing.
+71. `nhe/ui_assembly_position_help` **K**: Retains top-left reference, integer coordinates from zero, no movement of other images, stacking order, expansion, and unchanged size/crop.
+72. `nhe/ui_assembly_position_nonnegative` **K**: All numbers must be integral and within inclusive 0–2147483647 bounds.
+73. `nhe/gallery_external_link_no_handler` **K**: Names Android and the absence of an app that can open this link; no browser-specific claim.
+74. `nhe/commons_metadata_not_file_page` **K**: Identifies the expected Commons file-page type, not any page on that site.
+75. `nhe/commons_metadata_ambiguous_file` **K**: Says the returned file information fails to identify which file; ambiguity rather than a broken or missing file.
+76. `nhe/commons_metadata_unavailable` **H**: The phrase says there is no file information, which can assert nonexistence rather than information not being available now.
+77. `nhe/commons_metadata_original_mismatch` **H**: Attribution is reduced to the creator’s wording; the matcher also compares source information to the selected original.
+78. `nhe/commons_metadata_invalid_page` **H**: Same creator-only issue; identify an invalid Commons attribution page without implying no artist is named.
+79. `nhe/commons_metadata_field_too_large` **H**: Says a piece of creator text is long; identify an attribution field exceeding its text limit, not a general length judgment.
+80. `nhe/commons_metadata_cache_failed` **H**: The app inability to save is clear, but the object is the Commons attribution record, not just creator text.
+81. `nhe/commons_download_original_mismatch` **H**: The wording says it leads somewhere else but drops that the redirect goes to a different original file; distinguish from a generic link redirect.
+82. `nhe/commons_svg_png_encode_failed` **K**: Clearly reports inability to make the blank map into PNG; no suggestion that Commons refused the download.
+83. `nhe/ui_the_arrow_on_the_left_directly_below_the` **H**: Keep the complete guide as draft: quoted control paths must match exact current captions, and the guide should not equate transparency to cleanliness or omit controls such as the width/height unit selectors’ actual labels.
+84. `nch/commons_blank_maps` **H**: “Maps without writing” narrows blank maps to unlabeled maps; verify the category’s geography/base-map meaning before using it as the picker caption.
+85. `nch/commons_check_file_licence` **K**: Retains the separate per-file creator, licence and required attribution checks and the possibility edits count as adaptation.
+86. `nch/ui_about_copyright` **K**: A clear short about-app label with a distinct copyright component.
+87. `nch/ui_about_copyright_licence` **K**: Retains both copyright and licence rather than collapsing either into app information.
+88. `nch/ui_add_images` **K**: Concise Add images instruction; ixkopinali aligns with the locale’s existing image vocabulary.
+89. `nch/ui_add_images_first` **K**: Uses the same action as Add images and keeps the prerequisite marker.
+90. `nch/ui_add_images_then_drag_a_thumbnail_here` **K**: Keeps order, the drag action, smaller thumbnail, and the destination here.
+91. `nch/ui_add_to_custom_colours` **H**: Describes the place where selected colours are saved but can be mistaken for recently chosen colours; name the editable custom palette consistently with its other actions.
+92. `nch/ui_an_assembly_can_contain_up_to_20_images` **K**: Keeps the assembly capacity and explicitly requires removing one image before another can be added.
+93. `nch/ui_an_assembly_can_contain_up_to_20_images_86d995` **K**: Short limit copy matches the same 20-or-fewer condition without introducing a remove action.
+94. `nch/ui_an_image_cannot_attach_to_itself_or_one` **K**: Retains both attachment exclusions: itself and an image already attached to it.
+95. `nch/ui_an_paint_assembly_image` **K**: Uses the established assembly-workspace term and identifies the image generated there, not the workspace itself.
+96. `nch/ui_an_paint_image_assembly` **K**: Uses the same established assembly-workspace expression as the picker and keeps the exact app name.
+97. `nch/ui_an_paint_image_assembly_20_images_placed` **K**: Preserves the title, inserted line break and separate loaded-versus-placed placeholder counts.
+98. `nch/ui_apply_to_all` **K**: Direct imperative with the target “all,” not a select-all command.
+99. `nch/ui_apply_to_these_images` **K**: Matches the all-images counterpart while constraining the action to these images.
+100. `nch/ui_assembly_decoded_output_estimated_editing_render_memory_at` **H**: The second field is “image the app reads,” not decoded output memory; the third needs to distinguish estimated editing/render allocation at original size.
