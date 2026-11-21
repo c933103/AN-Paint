@@ -2438,3 +2438,28 @@ Personally reviewed 100 distinct wording records. Batch: **68 keep, 32 hold**. O
 98. `ch/ui_honeycomb` **K**: Descriptive six-sided palette heading, not a claim of a universal name for this category.
 99. `ch/ui_honeycomb_colour_06x` **K**: Matches the exact six-sided palette term and preserves the uppercase zero-padded hexadecimal placeholder.
 100. `ch/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Distinguishes the six-sided swatches and a separate white-through-grey-to-black row.
+
+## Batch 23: CHamoru and archived Cherokee wording
+
+Personally reviewed 20 distinct wording records. Batch: **10 keep, 10 hold**. Overall: **2220 reviewed, 1597 keep, 623 hold**. This changes only the review ledger, not Android resources.
+
+1. `ch/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: The wording distinguishes hue and saturation from the right-hand lightness control, with explicit HSL L to avoid ambiguity with HSV V.
+2. `ch/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: The wheel wording is distinct from spectrum and the right-hand slider is specifically HSV V, not HSL lightness.
+3. `ch/ui_spectrum` **K**: A concise colour-display term in the rectangular picker context, distinct from the separately named wheel.
+4. `ch/ui_pale_violet` **K**: Kulot lila identifies violet and the whiter/lighter qualifier gives the pale shade; this is not a generic white preset.
+5. `ch/ui_casual` **K**: Everyday lettering is a clear informal style label here and remains distinct from the joined Cursive setting.
+6. `ch/ui_sans_condensed` **K**: The narrower qualifier denotes glyph width rather than thickness or font size.
+7. `ch/ui_sans_light` **H**: Libiånu can indicate literal low weight without clarifying light stroke weight relative to Thin and Medium; verify the typography sense.
+8. `ch/ui_sans_medium` **H**: The middle-place wording may refer to alignment rather than stroke weight; qualify the weight alongside Light and Thin.
+9. `ch/ui_sans_serif` **K**: Clearly identifies absence of serif terminal strokes, retaining the recognizable style-family term.
+10. `ch/ui_sans_thin` **K**: Explicitly names finer strokes rather than narrow letter width, distinguishing Thin from Condensed.
+11. `ch/ui_serif` **K**: The parallel heading explicitly identifies letters with serif and contrasts with the Sans serif option.
+12. `ch/ui_colour_red_range` **H**: The translation keeps the R and exact range; leave out until the expanded colour label is checked for both visible fit and accessibility in the actual control.
+13. `ch/ui_colour_green_range` **H**: Keeps G and exact range, but the longer translated heading needs rendered and accessibility checks together with its RGB siblings.
+14. `ch/ui_colour_blue_range` **H**: Keeps B and exact range; retain the same held layout treatment for the full RGB label trio.
+15. `ch/ui_help23` **H**: Preserves most feature details, but the Fit image wording describes size while the source emphasizes placement; verify this and the exact Gallery/Commons paths before integrating.
+16. `ch/ui_add_up_to_20_images_with_android_s` **H**: The guide still needs a cross-check of snap alignments, the temporary-reflow versus Remove distinction, and preview and output control captions; do not clear a long guide piecemeal.
+17. `ch/ui_crop_preview_images` **K**: Both quantity branches preserve dimension/count slots, appropriate singular/plural caption and the conditional move of attached images when placed inputs are cropped.
+18. `ch/ui_the_arrow_on_the_left_directly_below_the` **H**: Hold the full editor guide until all named controls including Watercolor and Fit are matched, visibility of opaque and floating surfaces is checked, and the three fixed licence buttons are confirmed together.
+19. `chr/ui_cropped_thumbnail` **H**: The archived phrase mentions crop and a small picture but is not a confirmed label for the preview of the retained result. Do not revive it automatically.
+20. `chr/ui_downloading_image` **H**: The archived wording’s network-transfer phrase is unconfirmed for an ongoing image download rather than a load or acquisition; leave out until a current verified candidate exists.
