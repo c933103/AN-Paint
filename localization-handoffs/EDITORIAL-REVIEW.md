@@ -2123,3 +2123,108 @@ Personally reviewed 100 distinct wording records. Batch: **93 keep, 7 hold**. Ov
 98. `tdd/commons_svg_png_encode_failed` **K**: Failed to make a PNG file from the blank map; consistent map-category wording.
 99. `tdd/formats22_tiff_compression` **K**: Names reducing file size without losing data, and keeps Deflate exact.
 100. `tdd/formats22_tiff_description` **K**: Keeps one RGB page, unchanged pixels, a possible reduction of size, and disabling compression for uncompressed TIFF.
+
+## Batch 20: Tai Nüa and Western Huasteca Nahuatl
+
+Personally reviewed 100 distinct wording records. Batch: **73 keep, 27 hold**. Overall: **2000 reviewed, 1428 keep, 572 hold**. This changes only the review ledger, not Android resources.
+
+1. `tdd/formats22_dib_description` **K**: Keeps uncompressed Windows DIB, exact 24-bit depth and conditional BMP-header alternative.
+2. `tdd/ui_pencil_crisp_adjustable_strokes` **K**: Matches the pinned pencil term and describes clearly defined edges at any picked width.
+3. `tdd/ui_assembly_exact_position` **K**: Concise exact-position heading without a claim about image size.
+4. `tdd/ui_assembly_position_help` **K**: Retains top-left, integer X/Y from zero, unchanged other positions, later images on top, expansion and unchanged crops/sizes.
+5. `tdd/ui_assembly_position_nonnegative` **K**: Both coordinates must be whole numbers within the exact inclusive bounds.
+6. `tdd/ui_add_up_to_20_images_with_android_s` **H**: Hold the long assembly guide until named sorting, crop, placement, Unplace and output controls match the pinned screen labels.
+7. `tdd/ui_help23` **H**: Hold this compact help until the exact Draw/Navigation, source-credit and save routes are reconciled; preserved paragraph/technical values are not sufficient.
+8. `tdd/ui_the_arrow_on_the_left_directly_below_the` **H**: Hold the full editor guide pending control-path and terminology audit, especially imported transparency versus the opaque canvas and the three licence controls.
+9. `nhw/commons_blank_maps` **H**: The phrase describes maps without place names, narrowing the blank-map category; verify intended meaning against the catalogue.
+10. `nhw/ui_about_copyright_licence` **K**: Matches the existing About/copyright phrase and adds a distinct licence item.
+11. `nhw/ui_an_image_cannot_attach_to_itself_or_one` **K**: Both exclusions are explicit: itself and an image already attached to it.
+12. `nhw/ui_an_paint_assembly_image` **K**: Refers to the image AN Paint made by combining inputs, not the working area.
+13. `nhw/ui_assembly_decoded_output_estimated_editing_render_memory_at` **H**: The decoded row reads as the picture the app opens; distinguish its measured footprint from the estimated editing/render footprint at original size.
+14. `nhw/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: Preserves online Catrobat gallery and the separately credited makers.
+15. `nhw/ui_catrobat_sticker_gallery` **H**: Sticker is left as an English loan; confirm the insert/gallery scope and acceptable labelling before clearing.
+16. `nhw/ui_common_in` **K**: Preserves the common measurement and dynamic unit as separate slots.
+17. `nhw/ui_common_in_pixels` **K**: Retains the common measurement with pixels rather than the general unit slot.
+18. `nhw/ui_copper` **K**: Clear colour/material loan consistent with the preset family.
+19. `nhw/ui_copy_decoded_image_at_this_size_estimated_loading` **H**: The first and second rows refer to pictures rather than size of the copy and its decoded footprint; keep all three measurements and RAM distinct.
+20. `nhw/ui_could_not_decode_the_cropped_region_of` **K**: Reports a decoding failure of the retained part of the formatted image, not the whole file.
+21. `nhw/ui_could_not_export_source_code` **H**: Generic saving of source code may miss export to a separate destination; align with the paired export command and result.
+22. `nhw/ui_current_safe_editing_budget_s_up_to_2f` **K**: Keeps current safe editing RAM and MP bounds distinct, explicitly excluding the additional decode RAM from the latter estimate.
+23. `nhw/ui_cursive` **K**: Clear standard typography loan for cursive, distinct from casual lettering.
+24. `nhw/ui_custom_colour` **K**: Personal/custom colour qualifier and exact swatch identifier retained.
+25. `nhw/ui_downloading_image` **K**: Names the image arriving over the internet and ongoing download, not inserting a local file.
+26. `nhw/ui_drag_a_line_then_drag_twice_to_set` **K**: Both committed bends plus earlier Finish curve are explicit; the quoted action matches the existing label.
+27. `nhw/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Opposite-corner gesture and the exact existing Outline and Fill choices survive.
+28. `nhw/ui_drag_between_opposite_corners_to_draw_a_five` **K**: Five-pointed star plus diagonal and same two exact fill/outline choices.
+29. `nhw/ui_drag_between_opposite_corners_to_draw_a_heart` **K**: Heart gesture and both exact options are present.
+30. `nhw/ui_drag_from_the_start_to_the_end_of` **K**: Preserves dragging from the line’s beginning to its end.
+31. `nhw/ui_drag_from_the_tail_towards_the_arrowhead_choose` **K**: Arrow tail to arrowhead is clear and both confirmed outline/fill captions match.
+32. `nhw/ui_add_images_then_drag_a_thumbnail_here` **K**: Adds images first and then drags a small image/thumbnail here.
+33. `nhw/ui_add_to_custom_colours` **K**: Saves the current colour specifically to the personal colour collection.
+34. `nhw/ui_batch_crop` **H**: Could mean identical image content is kept across all inputs; use wording for applying one crop operation to multiple selected images.
+35. `nhw/ui_batch_crop_images` **H**: Selected inputs are named, but same-portion wording remains ambiguous; pair with the short Batch crop label.
+36. `nhw/ui_by_pixels_hold_and_drag_to_place` **K**: All four placeholders retain width/height order, followed by hold plus drag to place.
+37. `nhw/ui_corners_and_edges_resize_round_handle_rotates` **K**: Corner/edge handles resize and circular handle rotates; actions remain separate.
+38. `nhw/ui_cropped_thumbnail` **K**: Identifies thumbnail and retained crop portion and keeps the exact formatted value.
+39. `nhw/ui_custom_colours_hold_a_swatch_to_replace_it` **K**: Uses consistent custom-colour wording and commands holding a single swatch to replace it.
+40. `nhw/ui_drag_a_selection_drag_inside_to_move_square` **K**: Preserves selection, inside movement, square resize and round rotation handles, then maintains proportions.
+41. `nhw/ui_drag_across_the_ellipse_s_bounding_box` **K**: Clear diagonal across the enclosing rectangle, not a line along the ellipse itself.
+42. `nhw/ui_drag_out_to_expand_in_to_trim_drag` **H**: Gestures and BG use survive, but Fit stays in English rather than the actual Ma nochi nesi button caption.
+43. `nhw/ui_drag_placed_images_to_move_them_hold_and` **K**: Distinguishes images already placed from holding and dragging a thumbnail to add it.
+44. `nhw/ui_drag_to_erase_with_the_background_colour` **K**: Uses the established background colour and makes erasure through that colour clear.
+45. `nhw/ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Retains pan without drawing and two-finger zoom/pan even when drawing tools are selected.
+46. `nhw/ui_draw_a_crisp_one_pixel_line` **H**: “Clearly visible” can mean attractive or readable, not crisp-edged. Preserve the exact 1–100 px range and name the pencil edge behavior.
+47. `nhw/ui_draw_around_an_area_drag_inside_to_move` **K**: Free-form outline and each handle gesture survive; exact Commit selection is expressed as applying the edit.
+48. `nhw/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **H**: Strength wording closely matches the slider, but check the user-visible caption includes its existing percentage qualifier and that the blend interaction remains explicit.
+49. `nhw/ui_draw_with_the_selected_brush_tip_and_size` **K**: Uses the selected brush tip and size, not an instruction to select a different brush.
+50. `nhw/ui_drop_at_a_highlighted_edge_right_top_aligned` **K**: The highlighted edge is the drop target and the right/top and below/left alignments are distinct.
+51. `nhw/ui_each_px_px_percent_is_relative_to_the` **K**: Preserves all seven slots and identifies the largest current selected dimension as the percentage basis, with placed-image reflow.
+52. `nhw/ui_enable_android_s_files_or_documents_app_then` **K**: Clearly enables one of the two exact Android applications and then directs a retry.
+53. `nhw/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **H**: Check that the decode is explicitly sampled, not merely an ordinary open. Retain the English technical annotations only if necessary, and preserve opaque BG and unchanged source.
+54. `nhw/ui_export_this_version_s_source_code` **K**: Clear code export for this exact version, with ellipsis.
+55. `nhw/ui_fill_text_box_with_bg_colour` **K**: Uses the pinned background-colour phrase and targets the text box rather than the glyphs.
+56. `nhw/ui_font_licences` **K**: Licence object is the typeface family, distinct from artwork and icon licences.
+57. `nhw/ui_give_all_images_the_same_each_image_keeps` **H**: The closing clause speaks of the portion already kept, not the crop settings themselves; preserve both unchanged settings and originals.
+58. `nhw/ui_gold` **K**: Common concise gold preset loan consistent with the copper/silver family.
+59. `nhw/ui_hide_pixel_grid_800` **K**: Clear hide action, pixel grid and 800%-and-above parameter.
+60. `nhw/ui_hold_a_thumbnail_and_drag_it_here_or` **K**: Both alternatives remain: drag while holding, or tap thumbnail and then tap the workspace.
+61. `nhw/ui_hold_or_drag_to_spray_colour` **K**: Both gestures use the colour spray through air, aligned with airbrush behavior.
+62. `nhw/ui_honeycomb` **K**: Concise transparent descriptor for the honeycomb control.
+63. `nhw/ui_honeycomb_colour_06x` **K**: Same palette term and exact hexadecimal token.
+64. `nhw/ui_honeycomb_colour_swatches_with_a_greyscale_row` **H**: The greyscale qualifier may be understood as dark-to-clear or clean rather than black through grey to white; use the greyscale contrast explicitly.
+65. `nhw/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: Names hue and saturation spectrum and the right lightness control without mixing it with HSV value.
+66. `nhw/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: Names the wheel and explicitly marks the right control HSV value.
+67. `nhw/ui_icon_licences` **K**: Separate licences for icons; concise and distinct from fonts/artwork.
+68. `nhw/ui_icon_licences_kde_breeze` **K**: Keeps exact KDE Breeze name and consistent licence wording.
+69. `nhw/ui_icons_artwork` **H**: The artwork noun requires evidence for visual art in this context rather than a generic craft term.
+70. `nhw/ui_icons_fonts_artwork_credits` **H**: Heading limits the record to who made items, and the art term needs the same check as Icons & artwork.
+71. `nhw/ui_image_assembly_workspace_drag_placed_images_or_drop` **K**: Retains movement of placed images and snapping thumbnails at right/bottom, plus pinch zoom and panning in empty space.
+72. `nhw/ui_image_credits` **H**: The draft says maker or origin but omits the licence and broader credit contents; align this heading and references to it.
+73. `nhw/ui_image_placed_drag_it_to_move_or_hold` **K**: Completed placement is explicit and distinct from moving it or dragging a new held thumbnail.
+74. `nhw/ui_image_shown_in_crop_preview` **K**: Identifies the image during preview of the retained crop portion.
+75. `nhw/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **K**: Names the previews and individual filenames, and directions for horizontal scrolling.
+76. `nhw/ui_invalid_image_attachments` **K**: The error describes inability to connect images in the requested way, not corrupted source data.
+77. `nhw/ui_lossless_jpeg_xl` **K**: Explicitly states JPEG XL does not change pixels.
+78. `nhw/ui_magnified_preview` **H**: Imperative “first look bigger” reads as an instruction; use a noun/setting phrase for the enlarged preview.
+79. `nhw/ui_magnified_preview_ea9209` **H**: No-ellipsis variant needs the same title grammar as the ellipsis counterpart.
+80. `nhw/ui_modified_newest_first` **K**: Sorts by modification time, newest first rather than newest file creation.
+81. `nhw/ui_monospace` **K**: Clear each glyph has the same width; use of letra can serve as a concise typography label.
+82. `nhw/ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Keeps attachment and X/Y coordinate limit and suggests smaller sizes.
+83. `nhw/ui_no_gallery_images_have_been_inserted` **H**: Limits absence to author or origin text; the app is reporting no complete credit record including usage terms.
+84. `nhw/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: RAM shortage is explicitly for inspecting an image from the gallery.
+85. `nhw/ui_open_source_credits_and_notices` **H**: “Source code everyone can see” does not establish open source; name its notices and give attribution its full scope.
+86. `nhw/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **H**: RGBA, four bytes per pixel and no resize survive but the decoded row reads as an image, not its decoded memory amount.
+87. `nhw/ui_other_terms` **K**: Concise additional conditions, appropriate to a terms tab.
+88. `nhw/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **H**: “Well visible” does not specify a crisp edge distinct from smoothed/antialiased; keep the correct pencil label and any width.
+89. `nhw/ui_percent_of_pixels` **K**: Preserves percentage of the exact formatted pixel base.
+90. `nhw/ui_pinch_to_zoom_drag_to_pan` **K**: Separates two-finger zoom from dragging to pan, without changing actual image size.
+91. `nhw/ui_px_drag_an_image_to_move_hold_a` **K**: Keeps the formatted dimension pair and separate move/hold actions.
+92. `nhw/ui_quality` **K**: Contextually clear save quality setting including percent notation.
+93. `nhw/ui_rendering_images` **H**: The phrase can indicate images already made; distinguish processing progress and retain both counters and ellipsis.
+94. `nhw/ui_right_arrow_expand` **K**: Identifies the right arrow and expansion/opening of the panel.
+95. `nhw/ui_same` **K**: Common dimension heading retains the specific dynamic dimension.
+96. `nhw/ui_same_height` **K**: Short shared height caption distinct from width.
+97. `nhw/ui_same_width` **K**: Matching shared width counterpart uses the width term.
+98. `nhw/ui_sans_condensed` **K**: Describes narrower glyph width and leaves the parenthetic typeface identifier clear.
+99. `nhw/ui_sans_light` **H**: “Not very thin” can describe medium rather than light. Verify light stroke weight very clearly relative to Medium and Thin.
+100. `nhw/ui_sans_medium` **K**: Describes a stroke neither very thin nor thick and keeps Medium visibly distinct.
