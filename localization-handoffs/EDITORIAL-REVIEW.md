@@ -1598,3 +1598,108 @@ Reviewed 100 previously unreviewed drafts. K = keep the exact candidate for sepa
 98. `nv/ui_tap_a_pixel` **K**: Clear direct tap gesture on one pixel.
 99. `nv/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Preserves tapping an enclosed region and modifying settings for similar colours.
 100. `nv/ui_tap_an_image_thumbnail_first` **K**: Requires first tapping the thumbnail, not a placed image or the workspace.
+
+## Batch 15: Navajo
+
+Reviewed 100 previously unreviewed drafts. K = keep the exact candidate for separate integration; H = hold for wording revision or verification. Batch: **77 keep, 23 hold**. Cumulative: **1500 reviewed, 1022 keep, 478 hold**. This pass does not change Android resources.
+
+1. `nv/ui_tap_the_canvas_to_place_text_and_choose` **K**: The touch and placement vocabulary matches the existing canvas prompt, followed by selecting font and size.
+2. `nv/ui_tap_the_image_to_sample_the_foreground_colour` **K**: Uses the established Foreground term and identifies the image as the sampled surface.
+3. `nv/ui_that_arrangement_overlaps_another_image_use_a_different` **K**: Overlap and alternate-edge remedy survive; the matched Unplace wording means taking the attached images out of the layout, not erasing the inputs.
+4. `nv/ui_the_assembly_needs_about_choose_a_smaller_output` **K**: Preserves the approximate requirements slot and the suggestion to make a smaller output.
+5. `nv/ui_the_assembly_output_is_unavailable_reopen_image_assembly` **H**: Says the combined output is absent, not just unavailable, and does not explicitly say to retry after reopening.
+6. `nv/ui_the_attachment_image_is_missing` **K**: Reports the specific attached image is missing, distinct from a merely unplaced source.
+7. `nv/ui_the_attachment_image_is_not_placed` **K**: Uses the same placement distinction as the adjacent positive and negative status labels.
+8. `nv/ui_the_first_image_starts_at_the_top_left` **K**: Explicitly matches the top-left origin for the first image.
+9. `nv/ui_the_gallery_download_is_too_large` **K**: Applies excessive size to the incoming file from the gallery, not to the gallery as a whole.
+10. `nv/ui_the_gallery_image_is_unavailable` **H**: Absence does not cover temporary unavailability; keep the gallery term and avoid implying deletion.
+11. `nv/ui_the_image_could_not_be_downloaded` **H**: “Cannot open/load” can describe a decode or import failure rather than a failed download; align with downloading terminology.
+12. `nv/ui_the_online_gallery_could_not_be_loaded_check` **K**: Identifies the online gallery, checks the internet connection and directs another attempt.
+13. `nv/ui_third_party_notices` **H**: The description of another person’s information does not distinguish third-party legal notices from ordinary external content.
+14. `nv/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Keeps Catrobat exact and identifies an image not within that gallery.
+15. `nv/ui_time_unavailable` **K**: States the data about when the event occurred are unavailable, not that system time itself has failed.
+16. `nv/ui_tool_option` **K**: An option belonging to the tool is distinct from a new tool or external app.
+17. `nv/ui_toolbox_and_tool_options_scroll_for_more` **K**: Names tools and tool choices and tells the user to scroll for more.
+18. `nv/ui_trim_from_the_original_edges_drag_the_handles` **K**: Original image edges, drag versus numeric entry, and unchanged source files are all expressed.
+19. `nv/ui_trim_in_pixels` **K**: Matches the established trim action and retains the typed amount/side slot with px.
+20. `nv/ui_unplace` **K**: Removal from the interior/workspace matches non-destructive removal of a placement; distinct from erase.
+21. `nv/ui_wheel` **K**: Describes the circular colour control, separate from the spectrum.
+22. `nv/ui_widths` **K**: Keeps the width heading used above multiple dimensions and does not add a unit.
+23. `nv/ui_you_can_add_more_images_select_fewer_files` **K**: Keeps the remaining-image count and the need to select a smaller batch of files.
+24. `nv/ui_agpl_licence` **K**: Exact AGPL identifier and established licence phrasing.
+25. `nv/ui_jpeg_xl_codec_licences` **K**: Names the specific JPEG XL codec rather than file attribution or the app licence.
+26. `nv/ui_gnu_agpl_licence` **K**: Retains exact GNU AGPL identifier and consistent licence wording.
+27. `nv/ui_preview_memory_error` **K**: Preserves the item slot and RAM constraint specifically for previewing it.
+28. `nv/ui_trim_in_percent` **H**: Same unverified mathematical percentage wording as the pixel-reference caption; compare with native usage before replacing the verified px trim label.
+29. `nv/ui_crop_preview_images` **K**: Both quantity variants retain the preview dimensions/count, application of cropping, and conditional move of attached images.
+30. `nv/ui_add_palette23` **K**: Consistent palette and insertion wording with the existing toolbar label.
+31. `nv/ui_added_palette23` **K**: Completed addition parallels the palette action and does not imply replacing another colour.
+32. `nv/ui_replace_palette23` **K**: Indicates no free palette slots and instructs selecting one to replace.
+33. `nv/ui_edit_palette23` **K**: Names editing the palette rather than opening the picker.
+34. `nv/ui_replace_with_active23` **K**: The current colour is the replacement value, not the slot to remove.
+35. `nv/ui_remove_palette23` **K**: Specifies taking a colour out of the palette, not erasing a pixel.
+36. `nv/ui_add_active23` **K**: Adds the current colour using the existing palette insertion terminology.
+37. `nv/ui_horizontal23` **K**: The left-right direction and double arrow distinguish horizontal writing.
+38. `nv/ui_vertical_rl23` **K**: Both direction axes are correct: glyphs down, successive columns right to left.
+39. `nv/ui_vertical_lr23` **K**: The matched counterpart switches only the column direction.
+40. `nv/ui_vertical_letters23` **K**: The writing-symbol qualifier and top-to-bottom arrow identify the glyph options.
+41. `nv/ui_the_assembly_exceeds_android_s_coordinate_range` **K**: Reports that assembly X/Y bounds exceed Android’s coordinate range, not device memory.
+42. `nv/ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Names the same Android X/Y limit for input images and advises choosing smaller images.
+43. `nv/ui_the_normalized_image_dimensions_are_outside_android_s` **K**: Specifies the normalized dimension and the Android restriction rather than saying the images cannot be loaded at all.
+44. `nv/ui_vertical_mixed23` **K**: Preserves automatic selection and separate upright CJK and sideways-word conditions.
+45. `nv/ui_vertical_sideways23` **K**: Retains the sideways setting and keeping words together as units.
+46. `nv/ui_vertical_upright23` **K**: Uses symbols rather than letters-only terminology for the one-by-one upright mode.
+47. `nv/ui_top23` **K**: Matches the upper alignment term used for snapped layouts.
+48. `nv/ui_bottom23` **K**: Keeps the corresponding lower alignment distinct from top.
+49. `nv/colour20_custom_selected_slot` **H**: The chosen-colours parenthetical can describe any user-picked colour; distinguish the stored Custom section and currently selected slot.
+50. `nv/colour20_stored_slot` **K**: Preserves both placeholders, tap-to-use, adjustment and explicit separate Replace-to-save action.
+51. `nv/colour20_empty_slot` **K**: Identifies an empty numbered slot and tapping to choose where to save the current colour.
+52. `nv/colour20_save_slot` **K**: Saves to the uniquely numbered slot rather than opening a generic picker.
+53. `nv/colour20_replace_slot` **K**: Replacement phrase matches the adjacent Replace-to-save instruction and names its slot.
+54. `nv/colour20_saved_slot` **K**: Completed save message identifies both colour and slot.
+55. `nv/gallery_image_component_unavailable` **H**: Mentions image information that is needed, which is narrower than an unavailable required image component; keep the import-not-performed outcome.
+56. `nv/formats22_base64_label` **K**: Clear distinction of Base64 text from PNG or ASCII art.
+57. `nv/formats22_ascii_label` **K**: Keeps ASCII and a meaningful “made by drawing” art distinction.
+58. `nv/formats22_tiff_compression` **H**: Verify the no-information-loss expression for strict reversible compression rather than appearance or metadata; retain Deflate exact.
+59. `nv/formats22_tiff_description` **H**: The RGB page, unchanged pixel caveat and possible smaller file survive, but the final instruction uses the enable/use verb where the source asks to disable compression.
+60. `nv/formats22_dib_size_limit` **K**: Applies the limit to the DIB file size, not its dimensions.
+61. `nv/formats22_select_page` **K**: Selects exactly one page using the same noun as the page dialog.
+62. `nv/formats22_page_description` **K**: Both metadata slots, total page count and choice to edit one page as an image survive.
+63. `nv/formats22_page_number` **H**: The phrase also labels the total page count on the previous row; distinguish the current page number from number of pages.
+64. `nv/formats22_previous_page` **H**: Níwohdę́ę́ʼ can evoke an earlier or old page, not necessarily the immediately previous page. Establish consistent neighboring-page controls.
+65. `nv/formats22_next_page` **K**: Bikʼijįʼ denotes the following page and aligns with forward navigation.
+66. `nv/formats22_open_page` **K**: Open action targets the current choice rather than a general file picker.
+67. `nv/formats22_page_preview` **K**: Describes preview of the selected page, not the already-open document.
+68. `nv/formats22_page_range` **K**: Retains one as the minimum and the formatted maximum page number.
+69. `nv/formats22_loading_page` **K**: Both page counters and ongoing preview load remain distinct.
+70. `nv/formats22_page_dimensions` **K**: Keeps all four slots in order and identifies the two ending slots as pixel dimensions.
+71. `nv/formats22_preview_unavailable` **K**: States the preview is unavailable and preserves the diagnostic token.
+72. `nv/formats22_preview_memory` **K**: Explains the preview memory problem and makes the smaller-dimension offer conditional on opening the page and availability.
+73. `nv/formats22_pdf_invalid` **H**: The second alternative can read as Android not recognizing the entire file rather than this Android version not supporting features used by the PDF.
+74. `nv/formats22_pdf_file_size` **K**: Numeric notation precisely states both nonempty and capped at 512 MiB.
+75. `nv/formats22_pdf_page_count` **K**: Inclusive page-count range retains 1 and the typed upper bound.
+76. `nv/formats22_pdf_page_index` **K**: Keeps the invalid selection and asks for a different page within this PDF.
+77. `nv/formats22_pdf_dimensions` **K**: Retains either invalid page dimensions or dimensions too large to import.
+78. `nv/formats22_pdf_crop` **K**: Keeps rectangle wholly inside the selected page and explicitly requires strictly positive width and height.
+79. `nv/formats22_pdf_memory` **H**: A generic RAM shortage does not distinguish the specific image memory budget from available device RAM.
+80. `nv/formats22_base64_description` **H**: Check strict lossless wording here as in the TIFF label; URI prefix, recover-by-reopen direction and Base64 size overhead are otherwise intact.
+81. `nv/formats22_ascii_columns` **K**: Explicitly uses width in writing units, not pixels.
+82. `nv/formats22_ascii_invert` **H**: Uses white and black, which narrow light and dark character groups to exact extrema; revise so contrast inversion applies to all characters.
+83. `nv/formats22_text_not_image` **K**: No supported image is contained in the Base64 text; it does not assert no valid Base64.
+84. `nv/gallery_copy_credit` **H**: The object of copying is framed principally as creator information; use the same broader attribution term as the corrected gallery credit heading.
+85. `nv/gallery_edit_credits` **H**: Creator-oriented phrasing risks excluding editing licence/source and change information; revise with matching terminology.
+86. `nv/gallery_credit_copied` **H**: The completion has the same creator-only ambiguity; use the corrected copy action term.
+87. `nv/gallery_credit_title` **K**: Identifies artwork rather than gallery or publisher and retains the title slot.
+88. `nv/gallery_credit_publisher` **H**: The phrase suggests the creator of a document, not its publisher; state the Catrobat project’s publication role explicitly.
+89. `nv/gallery_credit_source` **K**: Concise provenance label preserves dynamic source value.
+90. `nv/gallery_credit_gallery` **K**: Clear gallery field and separate value slot.
+91. `nv/gallery_credit_licence` **K**: Names Catrobat original artwork and preserves both CC BY-SA 4.0 and the licence placeholder.
+92. `nv/gallery_credit_saved` **H**: Retain the saved outcome using the corrected term for complete credit text rather than creator information alone.
+93. `nv/formats22_ico_size` **K**: A specific icon-size question distinct from sizing the whole canvas.
+94. `nv/formats22_ico_description` **H**: Aspect ratio, size and centre survive, but explicitly describe PNG compression and the transparent square instead of only something visible behind the image.
+95. `nv/formats22_ico_decode_budget` **H**: Reads as opening/loading the icon with insufficient RAM; distinguish decoding from the available image-specific memory limit.
+96. `nv/formats22_ico_invalid_size` **K**: Retains every supported icon size and the exact pixel unit.
+97. `nv/save20_bmp_description` **K**: Retains RGB and 24-bit, no compression, unchanged colours and larger file size.
+98. `nv/save20_bmp_size_limit` **K**: Names the BMP file-size limit rather than the per-side limit.
+99. `nv/save20_gif_size_limit` **K**: Sets the same precise inclusive pixel limit on both width and height.
+100. `nv/gallery_description` **H**: Hold this legal/help paragraph until the complete credits route, copy captions, publisher vs creator, and compatible-licence wording agree with the pinned controls.
