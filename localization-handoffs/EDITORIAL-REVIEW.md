@@ -1808,3 +1808,108 @@ Personally reviewed 100 distinct wording records. Batch: **60 keep, 40 hold**. O
 98. `nv/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly` **K**: Water is part of the brush action, with softer strokes and Strength adjusting colour blending into the canvas.
 99. `nv/ui_each_px_px_percent_is_relative_to_the` **H**: All dimension slots and placed reflow survive, but the mathematical phrase is the same unverified percentage expression.
 100. `nv/ui_estimates_include_the_current_canvas_and_clipboard_sampled` **H**: Keeps current image, sampled decode/edit memory, lost detail and unchanged original, but verify current clipboard terminology and explicitly that the selected background is opaque.
+
+## Batch 17: Navajo and Tai Nüa
+
+Personally reviewed 100 distinct wording records. Batch: **90 keep, 10 hold**. Overall: **1700 reviewed, 1172 keep, 528 hold**. This changes only the review ledger, not Android resources.
+
+1. `nv/ui_honeycomb_colour_06x` **K**: Keeps the honeycomb swatch category as a descriptive qualifier and preserves the exact uppercase hexadecimal format token.
+2. `nv/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Uses the honeycomb descriptor consistently and explicitly includes the black-to-white row.
+3. `nv/ui_hue_and_saturation_spectrum_lightness_slider_on_the` **K**: Labels the right control HSL L and retains hue and saturation, distinguishing it from HSV value.
+4. `nv/ui_hue_and_saturation_wheel_value_slider_on_the` **K**: Names a circular colour control with H/S and the right slider as HSV V, distinct from lightness.
+5. `nv/ui_pale_violet` **H**: Verify the named purple hue and the light/pale qualifier for this preset rather than assuming that “like white” is sufficiently specific.
+6. `nv/ui_smooth_freehand_strokes` **K**: The wording describes making hand-drawn strokes less uneven rather than only smoothing individual pixels.
+7. `nv/ui_spectrum` **K**: Names the organized colour variety and does not identify it as the wheel alternative.
+8. `nv/ui_tap_vertices_then_double_tap_the_last_vertex` **H**: Gestures and open segments survive, but confirm that the long quoted Close polygon label and Finish label exactly match the shipped controls.
+9. `nv/ui_vertical_hint23` **K**: New columns, joined sideways scripts including Mongolian and the integrity of upright combining marks/emoji runs are all separately described.
+10. `tdd/ui_about_copyright` **K**: Explicit about-app wording and a separate creator-rights heading.
+11. `tdd/ui_about_copyright_licence` **K**: Keeps copyright and licence distinct; licence matches the pinned licence terminology.
+12. `tdd/ui_add_images` **K**: Concise add-images action with a picture as the item and insertion as the action.
+13. `tdd/ui_add_images_first` **K**: Parallel caption adds the requirement to do this first.
+14. `tdd/ui_add_images_then_drag_a_thumbnail_here` **K**: Two sequential actions are explicit; the small preview is the item dragged here after adding images.
+15. `tdd/ui_add_to_custom_colours` **K**: Uses the palette/colour vocabulary and qualifies it as the user's own, not simply the currently selected colour.
+16. `tdd/ui_an_assembly_can_contain_up_to_20_images` **H**: The second sentence uses a removal verb that can imply discarding a source image; keep the 20-image limit while clarifying which assembly item is removed.
+17. `tdd/ui_an_assembly_can_contain_up_to_20_images_86d995` **K**: Short form keeps the inclusive upper limit and the assembly's image group.
+18. `tdd/ui_an_paint_assembly_image` **K**: Describes the resulting assembled image and preserves the app name, rather than naming a workspace action.
+19. `tdd/ui_an_paint_image` **K**: Short caption identifies an AN Paint image without implying it is necessarily assembled.
+20. `tdd/ui_an_paint_image_assembly` **H**: It says image group, but the top-level Image assembly action uses a longer arrangement expression; align the screen title and help routes with that convention.
+21. `tdd/ui_an_paint_image_assembly_20_images_placed` **H**: Keeps count of loaded and placed images; hold until the assembly heading is aligned with the exact paired title.
+22. `tdd/ui_apply_to_all` **K**: The action is applied to all, not selection of all.
+23. `tdd/ui_apply_to_these_images` **K**: Targets these specific images and matches the apply-to-all wording where the scope is not replaced.
+24. `tdd/ui_assembly_decoded_output_estimated_editing_render_memory_at` **K**: Three measurements stay distinct and in order; names decoded output and approximate editing/render RAM at original size.
+25. `tdd/ui_assembly_output_size` **K**: Identifies size of the combined output, not the specific source file size.
+26. `tdd/ui_assembly_png` **K**: Clear descriptive assembly-image filename retaining the exact extension.
+27. `tdd/ui_batch_crop` **K**: Expressly crops multiple images together, not merely every selected rectangle in one image.
+28. `tdd/ui_batch_crop_images` **K**: Identical matching wording is appropriate for the action and its explanatory caption in this context.
+29. `tdd/ui_by_pixels_hold_and_drag_to_place` **K**: Dimensions and placeholders remain in order; hold and drag are both specified.
+30. `tdd/ui_catrobat_online_gallery_artwork_by_its_credited_creators` **K**: The gallery remains identified as online, and the artwork is assigned to its named creators.
+31. `tdd/ui_catrobat_sticker_gallery` **H**: Sticker remains an English loan with no other distinguishing phrase; confirm it matches the existing source/picker vocabulary.
+32. `tdd/ui_common_in` **K**: Keeps a shared dimension followed by its typed unit in the correct order.
+33. `tdd/ui_common_in_pixels` **K**: Same shared-dimension label with explicit px rather than the formatted generic unit.
+34. `tdd/ui_copy_decoded_image_at_this_size_estimated_loading` **K**: Copy, decoded image at the given size and estimated load/edit RAM stay in separate rows with their slots.
+35. `tdd/ui_corners_and_edges_resize_round_handle_rotates` **K**: Corner and edge handles resize, while the round handle rotates.
+36. `tdd/ui_could_not_create_the_assembly` **K**: Assembly-creation failure still provides the formatted cause/details slot.
+37. `tdd/ui_could_not_decode_the_cropped_region_of` **K**: Refers to decoding the cropped area rather than the whole image; preserves the item slot.
+38. `tdd/ui_could_not_load_gallery_image` **K**: Gallery image load failure with a detail slot, not a failed gallery list.
+39. `tdd/ui_create_output` **K**: Makes creating the output image explicit rather than starting a new document.
+40. `tdd/ui_cropped_thumbnail` **K**: Names a reduced preview image that was cropped and preserves the requested placeholder.
+41. `tdd/ui_current_safe_budget_2f_mp` **K**: Clearly a current safe available limit and preserves exact fixed-precision MP format.
+42. `tdd/ui_current_safe_editing_budget_s_up_to_2f` **K**: Two formatted quantities stay distinct; excludes extra decoder RAM from the MP estimate.
+43. `tdd/ui_custom_colour` **K**: Uses the same personal-colour qualifier as Add to custom colours, and retains the swatch identifier.
+44. `tdd/ui_custom_colours_hold_a_swatch_to_replace_it` **K**: Specifies hold-to-replace and keeps the object an individual swatch rather than the whole palette.
+45. `tdd/ui_downloading_image` **K**: The temporal wording and explicit downloading action distinguish from completed insertion.
+46. `tdd/ui_drag_a_line_then_drag_twice_to_set` **H**: The two dragged bends are present, but verify that the quoted early Finish curve control matches the actual localized caption.
+47. `tdd/ui_drag_a_selection_drag_inside_to_move_square` **K**: Retains select/drag, interior move, square handles, circular rotation and width:height lock.
+48. `tdd/ui_drag_across_the_ellipse_s_bounding_box` **K**: The diagonal is described as opposite corners of the four-sided box surrounding the oval.
+49. `tdd/ui_drag_between_opposite_corners_choose_outline_or_fill` **K**: Opposite corners and a below-control choice of perimeter only or filled interior both survive.
+50. `tdd/ui_drag_between_opposite_corners_to_draw_a_five` **K**: Correctly includes five-pointed star and separate outline/fill choice.
+51. `tdd/ui_drag_between_opposite_corners_to_draw_a_heart` **K**: The heart figure, diagonal gesture and outline/fill options remain distinct.
+52. `tdd/ui_drag_from_the_start_to_the_end_of` **K**: Direct line-start-to-line-end drag, with no extra tap step.
+53. `tdd/ui_drag_out_to_expand_in_to_trim_drag` **K**: Outward expands and inward trims; interior drag moves the bounds, Fit/pinch are offered, and the new area uses BG.
+54. `tdd/ui_drag_placed_images_to_move_them_hold_and` **K**: Already placed images can move; holding and dragging a small preview is the separate add operation.
+55. `tdd/ui_drag_to_erase_with_the_background_colour` **K**: The background-colour phrase matches the existing UI and is clearly used for erasure.
+56. `tdd/ui_drag_to_pan_without_drawing_pinch_with_two` **K**: Pan does not draw, and two-finger pan/zoom still works while a drawing tool is active.
+57. `tdd/ui_draw_a_crisp_one_pixel_line` **K**: Retains a crisp/visible edge contrast and the exact 1–100 px width range.
+58. `tdd/ui_draw_around_an_area_drag_inside_to_move` **H**: The gestures are accurate, but the closing instruction must quote the actual Commit selection control and state it applies the edit.
+59. `tdd/ui_draw_with_the_selected_brush_tip_and_size` **K**: Names the selected brush tip and size as separate properties, using the existing brush tool terminology.
+60. `tdd/ui_drop_at_a_highlighted_edge_right_top_aligned` **K**: The highlighted perimeter and both right/top and below/left alignment alternatives remain.
+61. `tdd/ui_each_px_px_percent_is_relative_to_the` **K**: Preserves all seven slots, the largest-current dimension as percentage basis, and reflow of placed images.
+62. `tdd/ui_edit_in_paint` **K**: Clearly specifies transferring the assembly into Paint for editing, not saving it in place.
+63. `tdd/ui_enable_android_s_files_or_documents_app_then` **K**: Specifies enabling either exact Android application, followed by another attempt.
+64. `tdd/ui_estimated_memory_current_working_budget` **K**: Two independent memory values retain the exact slot order and newline layout.
+65. `tdd/ui_fill_text_box_with_bg_colour` **K**: The background-colour term matches the control and targets the text box, not the text.
+66. `tdd/ui_fits_the_current_budget` **K**: Says the operation does not exceed the current limit rather than claiming RAM is generally plentiful.
+67. `tdd/ui_font_licences` **K**: Matches established licence wording and specifically refers to typeface forms.
+68. `tdd/ui_gallery_image` **K**: Identifies the image as coming from the gallery, without suggesting it is already imported.
+69. `tdd/ui_give_all_images_the_same_each_image_keeps` **K**: Preserves both dynamic values, each image’s width/height ratio, and unchanged originals and crop settings.
+70. `tdd/ui_hide_pixel_grid_800` **H**: Can read as hiding pixel outlines rather than an overlay grid; verify Show and Hide together using the same term.
+71. `tdd/ui_hold_a_thumbnail_and_drag_it_here_or` **K**: Both alternatives retain the required gestures: hold-drag, or tap thumbnail then tap workspace.
+72. `tdd/ui_hold_or_drag_to_spray_colour` **K**: Names spraying colour and both gestures, matching the Airbrush action.
+73. `tdd/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Uses the pinned honeycomb term and explicitly describes a separate black-to-white row.
+74. `tdd/ui_image_assembly_workspace_drag_placed_images_or_drop` **K**: Covers moving placed imagery, dropping thumbnails to attach right/bottom, pinch zoom and empty workspace pan.
+75. `tdd/ui_image_credits` **K**: Explicitly includes origin, creator and usage terms, not only who drew the picture.
+76. `tdd/ui_image_placed_drag_it_to_move_or_hold` **K**: States it was placed and distinguishes move by dragging from adding another held thumbnail.
+77. `tdd/ui_image_shown_in_crop_preview` **K**: Names the image shown in crop preview and does not state the crop has been committed.
+78. `tdd/ui_image_thumbnails_and_filenames_scroll_horizontally_for_more` **K**: Uses filenames and previews with explicit left/right drag for the rest.
+79. `tdd/ui_insert_gallery_image` **K**: A question about inserting an image from the gallery rather than replacing a document.
+80. `tdd/ui_invalid_image_attachments` **K**: The error is about image attachments, not a bad file or a failed download.
+81. `tdd/ui_lossless_jpeg_xl` **K**: Clear no-data-loss qualifier and exact JPEG XL name.
+82. `tdd/ui_magnified_preview` **K**: The enlarged preview is recognizable; ellipsis retained for the setting variant.
+83. `tdd/ui_magnified_preview_ea9209` **K**: Same preview wording without ellipsis for the plain caption.
+84. `tdd/ui_modified_newest_first` **K**: Keeps modification as the sort basis and newest as a first choice.
+85. `tdd/ui_modified_oldest_first` **K**: Oldest-first counterpart changes direction without changing sort criteria.
+86. `tdd/ui_no_attachment_fits_within_the_current_coordinate_range` **K**: Preserves current X/Y range and smaller dimensions as remedy, not deleting images.
+87. `tdd/ui_no_gallery_images_have_been_inserted` **K**: Uses the established broad image-credit term and says its text is unavailable.
+88. `tdd/ui_not_enough_memory_to_inspect_the_gallery_image` **K**: RAM deficiency is for inspecting an image from the gallery, not the whole gallery's load.
+89. `tdd/ui_not_placed` **K**: Negative status uses the same placement verb as the completed state.
+90. `tdd/ui_original_decoded_image_rgba_4_bytes_pixel_estimated` **K**: All slots, RGBA, four bytes per pixel and the no-resize editing estimate survive in order.
+91. `tdd/ui_other_terms` **K**: Indicates additional terms, not another licence identifier or technical options.
+92. `tdd/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing` **K**: Consistent pencil term with sharp edges across any selected width.
+93. `tdd/ui_percent_of_pixels` **K**: Keeps percentage as a proportion of the formatted pixel reference.
+94. `tdd/ui_pinch_to_zoom_drag_to_pan` **K**: Separates pinch to resize view from drag to pan; no change to actual image size implied.
+95. `tdd/ui_place_at_least_one_image_in_the_workspace` **K**: Requires at least one placed image in the workspace first, distinct from loading thumbnails.
+96. `tdd/ui_placed` **K**: Short placed status is the positive counterpart of Not placed.
+97. `tdd/ui_px_drag_an_image_to_move_hold_a` **K**: Exact width/height notation plus dragging an image to move and holding the thumbnail to add.
+98. `tdd/ui_quality` **K**: Short quality label keeps the percentage marker and matches save quality meaning.
+99. `tdd/ui_rendering_images` **H**: The phrase can denote images already made, not processed; keep both typed counts and ellipsis when revising.
+100. `tdd/ui_restore_original_sizes` **K**: Clearly restores original dimensions rather than applying a common fixed size.
