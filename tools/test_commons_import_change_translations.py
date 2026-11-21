@@ -10,22 +10,21 @@ KEYS = {'commons_import_svg_changes', 'commons_import_raster_changes'}
 
 class CommonsImportChangeTranslationsTest(unittest.TestCase):
 
-    def test_fallback_samples_are_offered_and_missing_while_welsh_is_present(self):
-        # Fixture validity: a newly translated sample must not masquerade as fallback.
+    def test_direct_and_fallback_fixtures_match_catalogue_presence(self):
         paths = catalogues.catalogue_paths()
         offered = set(catalogues.offered_tags())
-        for tag in ('nv', 'tdd'):
-            with self.subTest(tag=tag):
+        # Android can run under a device locale that the app does not offer.
+        # No offered locale now lacks both notes, so use unbundled Nuosu (ii-CN).
+        self.assertFalse(any(tag.split('-')[0] == 'ii' for tag in offered | paths.keys()))
+        for tag in ('nch', 'nv'):
+            with self.subTest(mixed=tag):
                 self.assertIn(tag, offered)
-                self.assertTrue(KEYS.isdisjoint(catalogues.read_strings(paths[tag])))
-        for tag in ('cy', 'shn', 'yua', 'zgh', 'nhe'):
+                messages = catalogues.read_strings(paths[tag])
+                self.assertEqual({'commons_import_svg_changes'}, KEYS & messages.keys())
+        for tag in ('cy', 'shn', 'yua', 'zgh', 'nhe', 'tdd', 'nhw'):
             with self.subTest(translated=tag):
+                self.assertIn(tag, offered)
                 self.assertTrue(KEYS <= catalogues.read_strings(paths[tag]).keys())
-
-    def test_central_huasteca_has_direct_svg_and_fallback_raster(self):
-        self.assertIn('nch', catalogues.offered_tags())
-        messages = catalogues.read_strings(catalogues.catalogue_paths()['nch'])
-        self.assertEqual({'commons_import_svg_changes'}, KEYS & messages.keys())
 
     def test_all_published_notes_preserve_literals_and_formatting(self):
         paths = {'default': catalogues.RES / 'values/strings.xml', **catalogues.catalogue_paths()}
