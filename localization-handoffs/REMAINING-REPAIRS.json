@@ -4234,6 +4234,118 @@
       "wording": "ᏃᏊ — ᎦᏁᏟᏴᏍᏗ — ᏄᎾᏰᎯᏍᏛᎾ — ᎠᏅᏓᏗᏍᏙ ᎠᏎᎸᎯ: %1$s · ≤ %2$.2f MP (MP ᎠᎦᏎᏍᏔᏅᎯ — ᏧᏓᎴᎿᎢᎭ ᎠᏅᓓᏗᏍᏙ, additional decoder RAM: ᎥᏝ)",
       "decision": "repair_candidate",
       "reason": "Keeps both quantities and explicitly excludes extra decoder RAM from the MP estimate."
+    },
+    "chr/ui_drag_a_selection_drag_inside_to_move_square": {
+      "source": "Drag a selection. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Lock proportions keeps its shape.",
+      "previous": "ᏗᏑᏰᏓ ᎦᎾᏏᏁᎦ. ᎭᏫᏂᏗᏢ — ᎯᎲᎾ; ᎤᏅᏏᏴ / ᎠᏍᏛᎢ — ᏂᎬ ᎯᏁᏟᏴᎾ; ᎦᏌᏆᎸᎢ — ᎯᏗᏆᎸᏕᏯᏍᏓ. ᎤᏠᏱ ᏂᎦᏰᏙᎲ — ᎤᏙᏢᏒᎢ ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "wording": "ᏗᏑᏰᏓ ᎯᎾᏍᎦ. ᎭᏫᏂᏗᏢ — ᎯᎲᎾ; ᎤᏅᏏᏴ / ᎠᏍᏛᎢ ᎠᏒᏂᎸ (square handles) — ᏂᎬ ᎯᏁᏟᏴᎾ; ᎦᏌᏆᎸᎢ — ᎯᏗᏆᎸᏕᏯᏍᏓ. «ᎢᏯᏖᎾ ᎢᎦᎵᏍᏗᏍᎩ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ» — ᎤᏙᏢᏒᎢ ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "decision": "repair_candidate",
+      "reason": "Names the resize handles explicitly and the exact Lock proportions control; keeps rotate separate."
+    },
+    "chr/ui_drag_across_the_ellipse_s_bounding_box": {
+      "source": "Drag across the ellipse's bounding box.",
+      "previous": "ᎠᏯᏆᎶᎢ — ᎤᏅᏏᏴ ᏗᏓᏍᏓᏩᏛᎢ ᎦᎾᏏᏁᎦ.",
+      "wording": "ᎠᏯᏆᎶᎢ — ᎤᏅᏏᏴ ᏗᏓᏍᏓᏩᏛᎢ (bounding rectangle) ᎯᎾᏍᎦ.",
+      "decision": "repair_candidate",
+      "reason": "Identifies the ellipse’s enclosing rectangle, not the curve’s own edge, with the app’s Ellipse label."
+    },
+    "chr/ui_drag_from_the_tail_towards_the_arrowhead_choose": {
+      "source": "Drag from the tail towards the arrowhead. Choose an outline or fill.",
+      "previous": "ᎦᏟᏓ — ᎠᏍᏆᏂ → ᎠᏍᎪᎵ ᎦᎾᏏᏁᎦ. ᎭᏑᏯᎩ: ᎠᏍᏓᏅᏅ ᎠᎴ ᎧᎵ.",
+      "wording": "ᎦᏟᏓ — ᎠᏍᏆᏂ (tail) → ᎠᏍᎪᎵ (arrowhead) ᎯᎾᏍᎦ. ᎭᏑᏯᎩ: ᎠᏍᏓᏅᏅ ᎠᎴ ᎧᎵ.",
+      "decision": "repair_candidate",
+      "reason": "Matches the Arrow label and explicitly identifies the drag’s start and end; preserves outline/fill."
+    },
+    "chr/ui_drag_placed_images_to_move_them_hold_and": {
+      "source": "Drag placed images to move them. Hold and drag a thumbnail to add it.",
+      "previous": "ᏗᏟᎶᏍᏔᏅ ᏗᎬᏔᏅᎯ — ᎦᎾᏏᏁᎦ ᎠᎴ ᎯᎲᎾ. ᎦᏲᎵᎨ ᏗᏟᎶᏍᏔᏅ ᎭᏒᏂᎦ ᎠᎴ ᎯᎾᎯᏍᏓ; ᎦᎾᏏᏁᎦ — ᎰᏣᎸᎥᎦ.",
+      "wording": "ᏗᏟᎶᏍᏔᏅ ᏗᎬᏔᏅᎯ — ᎯᎾᏍᎦ. ᎦᏲᎵᎨ ᏗᏟᎶᏍᏔᏅ (thumbnail) ᎭᏒᏂᎦ ᎠᎴ ᎯᎾᏍᎦ — ᎰᏣᎸᎥᎦ.",
+      "decision": "repair_candidate",
+      "reason": "Uses one Drag verb and keeps already placed images separate from adding by holding a thumbnail."
+    },
+    "chr/ui_drag_to_pan_without_drawing_pinch_with_two": {
+      "source": "Drag to pan without drawing. Pinch with two fingers to zoom and pan. Two-finger navigation also works with drawing tools.",
+      "previous": "ᎦᎾᏏᏁᎦ — ᎠᎲᏏᏓᏍᏙᏗ, ᎠᏍᏓᏅᎿᏂᏙᎸ: ᎥᏝ. ᏔᎵ ᏗᏰᎩ — ᎠᏇᏄᎩᏍᏗ: ᎾᎥ / ᎢᎾ ᏅᎦ, ᎠᎴ ᎯᎲᎾ. ᏔᎵ ᏗᏰᎩ ᎾᏍᏉ ᎬᏙᏗ ᎠᏍᏓᏅᎿᏂᏙᎸ ᎬᏔᏂᏓᏍᏗ.",
+      "wording": "ᎯᎾᏍᎦ — ᎠᎲᏏᏓᏍᏙᏗ (pan); ᏗᏟᎶᏍᏔᏅ ᎥᏝ. ᏔᎵ ᏗᏰᎩ — ᎠᏇᏄᎩᏍᏗ: ᎾᎥ / ᎢᎾ ᏅᎦ, ᎠᎴ ᎯᎲᎾ. ᏔᎵ ᏗᏰᎩ ᎾᏍᏉ ᎬᏙᏗ ᎠᏍᏓᏅᎿᏂᏙᎸ ᎬᏔᏂᏓᏍᏗ.",
+      "decision": "repair_candidate",
+      "reason": "Says pan leaves no mark, rather than forbidding being in Draw, and retains the two-finger exception."
+    },
+    "chr/ui_draw_a_crisp_one_pixel_line": {
+      "source": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
+      "previous": "ᎦᏅᎯᏓ ᎠᏍᏓᏅᏅ ᎯᏟᎶᏍᏓ. ᎾᏯᏛᎥ ᎯᏁᏟᏴᎾ: 1–100 pixel.",
+      "wording": "ᎠᏍᏓᏅᏅ ᎠᏍᏛᎢ (crisp edges; no anti-aliasing) ᎯᏟᎶᏍᏓ. ᎾᏯᏛᎥ ᎯᏁᏟᏴᎾ: 1–100 pixel.",
+      "decision": "repair_candidate",
+      "reason": "The phrasing now names the line edge rather than using an unsupported crisp adjective; retains exact width range."
+    },
+    "chr/ui_draw_around_an_area_drag_inside_to_move": {
+      "source": "Draw around an area. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Commit selection applies the edit.",
+      "previous": "ᎤᎿ ᎢᎬᎾᏕᎾ — ᎤᏚᏫᏛ ᎯᏟᎶᏍᏓ. ᎭᏫᏂᏗᏢ ᎦᎾᏏᏁᎦ — ᎯᎲᎾ; ᎤᏅᏏᏴ / ᎠᏍᏛᎢ — ᏂᎬ ᎯᏁᏟᏴᎾ; ᎦᏌᏆᎸᎢ — ᎯᏗᏆᎸᏕᏯᏍᏓ. ᏗᏑᏰᏓ ᎯᏍᏆᏓ — ᎦᏁᏟᏴᏍᏗ ᎲᏓ.",
+      "wording": "ᎤᎿ ᎢᎬᎾᏕᎾ — ᎤᏚᏫᏛ ᎯᏟᎶᏍᏓ. ᎭᏫᏂᏗᏢ ᎯᎾᏍᎦ — ᎯᎲᎾ; ᎤᏅᏏᏴ / ᎠᏍᏛᎢ ᎠᏒᏂᎸ (square handles) — ᏂᎬ ᎯᏁᏟᏴᎾ; ᎦᏌᏆᎸᎢ — ᎯᏗᏆᎸᏕᏯᏍᏓ. «ᏗᏑᏰᏓ: ᎲᏓ» — ᎦᏁᏟᏴᏍᏗ ᎲᏓ.",
+      "decision": "repair_candidate",
+      "reason": "Adds the square handles to the instructions and quotes the actual Commit selection button."
+    },
+    "chr/ui_draw_soft_watercolor_strokes_strength_controls_how_strongly": {
+      "source": "Draw soft watercolor strokes. Strength controls how strongly the colour blends into the canvas.",
+      "previous": "ᎠᎹ ᏗᏑᏫᏍᏗ — ᎦᎵᎦ ᎠᏍᏓᏅᏅ ᎯᏟᎶᏍᏓ. ᏄᏟᏂᎬᎬ ᎠᏑᏰᏍᏗ — ᎠᏑᏫᏓ ᎤᏠᏯᏍᏗ ᎠᎪᎵᏰᎢᏓᏍᏗ.",
+      "wording": "«ᎠᎹ ᏗᏑᏫᏍᏗ» — ᎦᎵᎦ ᎠᏍᏓᏅᏅ ᎯᏟᎶᏍᏓ. «ᎠᎹ ᏗᏑᏫᏍᏗ — ᏄᏟᏂᎬᎬ (%)» — ᎠᏑᏫᏓ ᎤᏠᏯᏍᏗ ᏗᏟᎶᏍᏗ (blend into canvas).",
+      "decision": "repair_candidate",
+      "reason": "Uses the exact Watercolor and Strength controls and explicitly identifies canvas blending."
+    },
+    "chr/ui_draw_with_the_selected_brush_tip_and_size": {
+      "source": "Draw with the selected brush tip and size.",
+      "previous": "ᎯᏟᎶᏍᏓ — ᏗᎦᎶᏁᏙᏗ ᎠᏑᏰᏓ ᎠᏍᏛᎢ ᎠᎴ ᎢᎩᏓ.",
+      "wording": "ᎯᏟᎶᏍᏓ — «ᏗᎦᎶᏁᏙᏗ» ᎠᏑᏰᏓ ᎠᏍᏛᎢ (brush tip) ᎠᎴ ᎢᎩᏓ.",
+      "decision": "repair_candidate",
+      "reason": "Quotes verified Brush and distinguishes the selected tip from the brush edge or size."
+    },
+    "chr/ui_drop_at_a_highlighted_edge_right_top_aligned": {
+      "source": "Drop at a highlighted edge: right/top aligned or below/left aligned.",
+      "previous": "ᎠᏍᏛᎢ ᎪᎯᏳᎯ ᏱᎬᏅᏕᏍᏗ: ᎠᏘᏏ / ᎦᎸᎳᏗ ᎦᏥᏃᏍᏓ, ᎠᎴ ᎭᏫᏂ / ᎠᎦᏍᎦᏂ ᎦᏥᏃᏍᏓ.",
+      "wording": "ᎠᏍᏛᎢ ᎪᎯᏳᎯ ᏱᎬᏅᏕᏍᏗ: ᎠᏘᏏ → ᎦᎸᎳᏗ ᎦᏥᏃᏍᏓ; ᎭᏫᏂ → ᎠᎦᏍᎦᏂ ᎦᏥᏃᏍᏓ.",
+      "decision": "repair_candidate",
+      "reason": "Arrow pairs distinguish the two alignment rules and do not imply the user moves twice in unrelated directions."
+    },
+    "chr/ui_each_px_px_percent_is_relative_to_the": {
+      "source": "Each %1$s: %2$s px\\n%3$s: %4$s–%5$s px\\nPercent is relative to the largest current %6$s: %7$s px. Placed images reflow to make room.",
+      "previous": "ᏂᎦᏓ %1$s: %2$s px\\n%3$s: %4$s–%5$s px\\nᎢᎦᏛᎢ — ᏃᏊ %6$s ᎤᏔᏂᎢᏍᏗ: %7$s px. ᏗᏟᎶᏍᏔᏅ ᏗᎬᏔᏅᎯ — ᏙᏓᏅᏏᏓ ᎤᏁᏉᎥᎢ ᎤᎿ ᎢᎬᎾᏕᎾ.",
+      "wording": "ᏂᎦᏓ %1$s: %2$s px\\n%3$s: %4$s–%5$s px\\nᎢᎦᏛᎢ (%) — ᏃᏊ ᎤᏔᏂᎢᏍᏗ %6$s ᎬᏗ: %7$s px. ᏗᏟᎶᏍᏔᏅ ᏗᎬᏔᏅᎯ — ᏙᏓᏅᏏᏓ ᎤᏁᏉᎥᎢ ᎤᎿ ᎢᎬᎾᏕᎾ.",
+      "decision": "repair_candidate",
+      "reason": "Uses the existing percentage term and identifies the largest current dimension as base; retains all tokens and the reflow clause."
+    },
+    "chr/ui_export_this_version_s_source_code": {
+      "source": "Export this version's source code…",
+      "previous": "ᎯᎠ ᎢᏳᏍᏗ — ᏅᏓᏳᏓᎴᏅᎯ ᏗᎪᏪᎵ — ᏫᎦᏌᏙᎣᏍᏗ…",
+      "wording": "ᎯᎠ ᎢᏳᏍᏗ (version) — ᏅᏓᏳᏓᎴᏅᎯ ᏗᎪᏪᎵ (source code) — ᏫᎦᏌᏙᎣᏍᏗ (export)…",
+      "decision": "repair_candidate",
+      "reason": "Identifies the exact version’s source code export and matches the related failure wording."
+    },
+    "chr/ui_give_all_images_the_same_each_image_keeps": {
+      "source": "Give all %1$s images the same %2$s. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.",
+      "previous": "ᏂᎦᏓ %1$s ᏗᏟᎶᏍᏔᏅ — ᎤᏠᏱ %2$s ᎲᏓ. ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅ — ᎾᏯᏛᎥ / ᎢᎦᏘ ᎤᏠᏱ ᏂᎦᏰᏙᎲ. ᎠᎴᏅᏗᏍᎬ ᎠᏍᏆᏂᎪᏙᏗ ᎠᎴ ᎦᎸᏓᎸᏗ ᏕᎦᎧᎲᎢ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "wording": "ᏂᎦᏓ %1$s ᏗᏟᎶᏍᏔᏅ — ᎤᏠᏱ %2$s ᎲᏓ. ᏗᏟᎶᏍᏔᏅ ᎢᏧᎳ — ᏧᏓᎴᏅᏓ ᎾᏯᏛᎥ / ᎢᎦᏘ (own aspect ratio) ᎤᏠᏱ ᏂᎦᏰᏙᎲ. ᎠᎴᏅᏗᏍᎬ ᎠᏍᏆᏂᎪᏙᏗ ᎠᎴ ᎦᎸᏓᎸᏗ ᏕᎦᎧᎲᎢ — ᎤᏠᏱ ᏂᎦᏰᏙᎲ.",
+      "decision": "repair_candidate",
+      "reason": "Separates a common target size from each image’s own aspect ratio and keeps source files and crop settings unchanged."
+    },
+    "chr/ui_hold_a_thumbnail_and_drag_it_here_or": {
+      "source": "Hold a thumbnail and drag it here, or tap it then tap the workspace.",
+      "previous": "ᎦᏲᎵᎨ ᏗᏟᎶᏍᏔᏅ ᎭᏒᏂᎦ ᎠᎴ ᎯᎾᎯᏍᏓ; ᎠᏂ ᎦᎾᏏᏁᎦ. ᎠᎴ ᎤᏟᏍᏓ ᎠᏒᏂᎸ — ᏗᏟᎶᏍᏔᏅ, ᎾᏉᏃ ᎦᎪᏗᏱ.",
+      "wording": "ᎦᏲᎵᎨ ᏗᏟᎶᏍᏔᏅ (thumbnail) ᎭᏒᏂᎦ ᎠᎴ ᎠᏂ ᎯᎾᏍᎦ. ᎠᎴ ᎤᏟᏍᏓ ᎠᏒᏂᎸ (tap) — ᎦᏲᎵᎨ ᏗᏟᎶᏍᏔᏅ; ᎾᏉᏃ ᎤᏟᏍᏓ ᎠᏒᏂᎸ — ᎦᎪᏗᏱ.",
+      "decision": "repair_candidate",
+      "reason": "States separate and ordered taps, first thumbnail then workspace, as an alternative to hold and drag."
+    },
+    "chr/ui_icon_licences": {
+      "source": "Icon licences",
+      "previous": "ᏗᎦᏟᏌᏅᎯ — ᎠᏓᎵᏍᎪᎸᏓᏁᎯ",
+      "wording": "ᏗᎦᏟᏌᏅᎯ (icons) — ᎠᏓᎵᏍᎪᎸᏓᏁᎯ",
+      "decision": "repair_candidate",
+      "reason": "Names interface icons explicitly to distinguish ordinary marks from licensed assets."
+    },
+    "chr/ui_icon_licences_kde_breeze": {
+      "source": "Icon licences — KDE Breeze",
+      "previous": "ᏗᎦᏟᏌᏅᎯ — ᎠᏓᎵᏍᎪᎸᏓᏁᎯ (KDE Breeze)",
+      "wording": "ᏗᎦᏟᏌᏅᎯ (icons) — ᎠᏓᎵᏍᎪᎸᏓᏁᎯ (KDE Breeze)",
+      "decision": "repair_candidate",
+      "reason": "Matches the general Icon licences heading and preserves the exact asset pack name."
     }
   }
 }
