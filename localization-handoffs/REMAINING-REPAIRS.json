@@ -3587,9 +3587,107 @@
     "nv/ui_draw_a_crisp_one_pixel_line": {
       "source": "Draw a crisp line. Adjust Width from 1 to 100 pixels.",
       "previous": "Ídzoh yáʼátʼéehgo naashchʼąąʼ. Niteelíjįʼgo (1–100 px) łahgo áshłééh.",
-      "wording": "Ídzoh bąąh doo dóʼtłʼizhda (crisp edges) naashchʼąąʼ. Niteelíjįʼgo (1–100 px) łahgo áshłééh.",
+      "wording": "Ídzoh bibąąh (crisp edges, no anti-aliasing) naashchʼąąʼ. Niteelíjįʼgo (1–100 px) łahgo áshłééh.",
       "decision": "repair_candidate",
-      "reason": "Ties the wording explicitly to edges rather than generic goodness and retains exact Width range; keeps a technical gloss pending fluent-speaker review."
+      "reason": "Anchors the description in the line's edge; uses a recognizable technical gloss rather than an unsupported local edge-quality term. Retains exact width range."
+    },
+    "nv/ui_enable_android_s_files_or_documents_app_then": {
+      "source": "Enable Android's Files or Documents app, then try again.",
+      "previous": "Android «Files» doodago «Documents» naanish dooleeł ánílééh. Áádóó bikʼijįʼ, nááná shąʼ.",
+      "wording": "Android «Files» doodago «Documents» naanish nááná dooleeł ánílééh (Enable). Áádóó nááná shąʼ.",
+      "decision": "repair_candidate",
+      "reason": "Specifies system Enable, not normal launch; keeps both Android app names and retries after enabling."
+    },
+    "nv/ui_hide_pixel_grid_800": {
+      "source": "Hide pixel grid (800%+)",
+      "previous": "Px bee ałchʼįʼ ídzohígíí doo yishʼį́ nisin da (800%+)",
+      "wording": "Dah alzhin yázhí (px) bitaʼgi ídzoh (pixel grid) doo yishʼį́ nisin da (800%+)",
+      "decision": "repair_candidate",
+      "reason": "Uses the same overlay noun as Show; keeps the hide polarity and threshold."
+    },
+    "nv/ui_image_credits": {
+      "source": "Image credits",
+      "previous": "Eʼelyaaígíí áyiilaii baa haneʼ",
+      "wording": "Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii",
+      "decision": "repair_candidate",
+      "reason": "Spells out maker, origin and licence instead of only people who made the image."
+    },
+    "nv/ui_icons_fonts_artwork_credits": {
+      "source": "Icons, fonts & artwork credits",
+      "previous": "Eʼelyaaígíí áłtsʼíísígíí (bee naʼanishí), saad bee álʼíní dóó naashchʼąąʼ bee ályaaígíí: áyiilaii baa haneʼ",
+      "wording": "Eʼelyaaígíí áłtsʼíísígíí (bee naʼanishí), saad bee álʼíní dóó naashchʼąąʼ bee ályaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii",
+      "decision": "repair_candidate",
+      "reason": "Retains separate icon, font and artwork groups and adds provenance and licence to the creator credits."
+    },
+    "nv/ui_image_assembly_workspace_drag_placed_images_or_drop": {
+      "source": "Image assembly workspace. Drag placed images or drop thumbnails to snap at right or bottom targets. Pinch to zoom; drag empty space to pan.",
+      "previous": "Eʼelyaaígíí łaʼ bee tʼááłáʼí áshłééh biniiyé. Eʼelyaaígíí biiʼ hééł ályaaígíí nanishood, doodago eʼelyaaígíí áłtsʼíísígíí nishʼnáájígo doodago bitłʼááh ałtsʼįʼ ánílééh. Nílázhoozh naaki ałchʼįʼ doodago ałtʼąą nanishood: ntsaago doodago áłtsʼíísígo yishʼį́ nisin. Ádinígíígi nanishood: eʼelyaaígíí yishʼį́ nisin.",
+      "wording": "Eʼelyaaígíí łaʼ bee tʼááłáʼí áshłééh biniiyé. Eʼelyaaígíí biiʼ hééł ályaaígíí nanishood, doodago eʼelyaaígíí áłtsʼíísígíí nishʼnáájígo doodago bitłʼááh ałtsʼįʼ ánílééh (snap). Nílázhoozh naaki ałchʼįʼ doodago ałtʼąą nanishood: ntsaago doodago áłtsʼíísígo yishʼį́ nisin. Ádinígíígi nanishood: eʼelyaaígíí yishʼį́ nisin.",
+      "decision": "repair_candidate",
+      "reason": "Distinguishes positioned images from thumbnails and marks the right/bottom operation as snapping; keeps pinch and pan."
+    },
+    "nv/ui_lossless_jpeg_xl": {
+      "source": "Lossless JPEG XL",
+      "previous": "JPEG XL (doo eʼelyaaígíí baa haneʼ łaʼ ádin da)",
+      "wording": "JPEG XL (Lossless) · eʼelyaaígíí bee ályaaígíí (px) tʼáá ałtso",
+      "decision": "repair_candidate",
+      "reason": "Specifies retention of the input pixels rather than only retaining perceptually visible detail or metadata."
+    },
+    "nv/ui_no_gallery_images_have_been_inserted": {
+      "source": "No image credit text is available.",
+      "previous": "Eʼelyaaígíí áyiilaii baa haneʼ ádin.",
+      "wording": "Eʼelyaaígíí: áyiilaii, háádę́ęʼ, dóó bee hazʼáanii — saad ádin.",
+      "decision": "repair_candidate",
+      "reason": "Refers to the complete image attribution record rather than only creators."
+    },
+    "nv/ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing": {
+      "source": "Pencil keeps crisp edges at any selected width.",
+      "previous": "Bee akʼeʼelchíhí bee ídzohígíí bibąąh yáʼátʼéehgo ályaa, niteelíjįʼgo haʼátʼíí bikʼidiilnííhgo ałdóʼ.",
+      "wording": "Bee akʼeʼelchíhí bee ídzohígíí bibąąh (crisp edges, no anti-aliasing) ályaa, niteelíjįʼgo haʼátʼíí bikʼidiilnííhgo ałdóʼ.",
+      "decision": "repair_candidate",
+      "reason": "Exact Pencil label and any selected width remain; the edge behavior is named explicitly with the technical gloss."
+    },
+    "nv/ui_percent_of_pixels": {
+      "source": "percent of %1$s pixels",
+      "previous": "%1$s px: neeznádiinjįʼ ałtsʼájíniłgo",
+      "wording": "Neeznádiinjįʼ ałtsʼájíniłgo (%) bichʼįʼ %1$s px",
+      "decision": "repair_candidate",
+      "reason": "Reuses current percent control and keeps the typed pixel count as the reference quantity."
+    },
+    "nv/ui_rendering_images": {
+      "source": "Images processed: %1$s / %2$s…",
+      "previous": "Eʼelyaaígíí hashtʼeelyaaígíí: %1$s / %2$s…",
+      "wording": "Eʼelyaaígíí bee naanish ałtso ályaaígíí: %1$s / %2$s…",
+      "decision": "repair_candidate",
+      "reason": "Counts processing completed, not loaded or saved items; preserves both counters and ellipsis."
+    },
+    "nv/ui_set_radius_px_then_drag_between_opposite_corners": {
+      "source": "Set Radius (px), then drag between opposite corners. The radius is limited to half the shorter side of each rectangle.",
+      "previous": "«Binástłʼah · Ałnííʼ dóó bibąąhjįʼ ídzooígíí (px)» bikááʼ ánílééh. Áádóó binástłʼahdę́ę́ʼ ałtʼą́ą́ binástłʼahjįʼ nanishood. Tʼááłáʼí dikʼą́ągo heeneezígíí bibąąh yázhígíí ałnííʼ bichʼą́ąhjiʼ doo bee hazʼą́ą da.",
+      "wording": "«Binástłʼah · Ałnííʼ dóó bibąąhjįʼ ídzooígíí (px)» bikááʼ ánílééh. Áádóó binástłʼahdę́ę́ʼ ałtʼą́ą́ binástłʼahjįʼ nanishood. Dikʼą́ągo heeneezígíí tʼáá ałtso bibąąh yázhígíí ałnííʼ bichʼą́ąhjiʼ doo bee hazʼą́ą da.",
+      "decision": "repair_candidate",
+      "reason": "Verified the exact corner-radius label; makes the per-rectangle scope explicit and preserves the opposite-corner gesture."
+    },
+    "nv/ui_show_pixel_grid_800": {
+      "source": "Show pixel grid (800%+)",
+      "previous": "Dah alzhin yázhí (px) bitaʼgi ídzoh yishʼį́ nisin (800%+)",
+      "wording": "Dah alzhin yázhí (px) bitaʼgi ídzoh (pixel grid) yishʼį́ nisin (800%+)",
+      "decision": "repair_candidate",
+      "reason": "Uses the same overlay noun as Hide with opposite polarity and same threshold."
+    },
+    "nv/ui_some_previews_could_not_be_decoded_you_can": {
+      "source": "Some previews could not be decoded. You can remove those images or try saving the assembly.",
+      "previous": "Dooleełígíí łaʼ daʼąą ánílééh: doo bííníshghah da. Eʼelyaaígíí éí yóóʼ ahishhan, doodago eʼelyaaígíí łaʼ bee tʼááłáʼí ályaaígíí hashtʼeʼ niníłtsóós.",
+      "wording": "Dooleełígíí łaʼ daʼąą ánílééh (decode): doo bííníshghah da. Eʼelyaaígíí éí díí biyiʼdę́ęʼ yóóʼ ahílhan doodago tʼááłáʼí ályaaígíí hashtʼeʼ niníłtsóós bee áłtsʼą́ą́ʼ.",
+      "decision": "repair_candidate",
+      "reason": "Keeps preview decode distinct and gives removal from the current assembly or trying Save, not deletion of the source."
+    },
+    "nv/ui_the_assembly_output_is_unavailable_reopen_image_assembly": {
+      "source": "The assembly output is unavailable. Reopen Image assembly and try again.",
+      "previous": "Eʼelyaaígíí łaʼ bee tʼááłáʼí áláaígíí ádin. Nááná «Eʼelyaaígíí łaʼ bee tʼááłáʼí áshłééh» ąą ánílééh.",
+      "wording": "Eʼelyaaígíí łaʼ bee tʼááłáʼí áláaígíí kʼad doo bee naanish da. Nááná «Eʼelyaaígíí łaʼ bee tʼááłáʼí áshłééh…» ąą ánílééh, áádóó nááná shąʼ.",
+      "decision": "repair_candidate",
+      "reason": "Reports current unavailability, quotes the exact current assembly menu, and explicitly retries after reopening."
     }
   }
 }
