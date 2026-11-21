@@ -2333,3 +2333,108 @@ Personally reviewed 100 distinct wording records. Batch: **91 keep, 9 hold**. Ov
 98. `nhw/formats22_pdf_page_index` **K**: Old selection no longer works and replacement must be from this very document.
 99. `nhw/formats22_pdf_dimensions` **K**: Both invalid and too-large page dimensions are separately preserved.
 100. `nhw/formats22_pdf_crop` **K**: The crop must contain part of the page and the full rectangle is confined to the selected page.
+
+## Batch 22: Western Huasteca Nahuatl and CHamoru
+
+Personally reviewed 100 distinct wording records. Batch: **68 keep, 32 hold**. Overall: **2200 reviewed, 1587 keep, 613 hold**. This changes only the review ledger, not Android resources.
+
+1. `nhw/formats22_pdf_memory` **K**: Distinguishes RAM needed to render PDF from RAM the app makes available for images.
+2. `nhw/formats22_base64_description` **K**: Preserves unchanged pixels, exact Base64 prefix, reopening to recover the image, and larger text representation.
+3. `nhw/formats22_ascii_columns` **K**: Character count is distinguished from pixel width.
+4. `nhw/formats22_ascii_invert` **H**: Bright/clean can be read as clean, though both directions are present; clarify the exact light/dark categories.
+5. `nhw/gallery_copy_credit` **H**: The object is only who made the picture; the copied record also includes title, publisher, origin and licence.
+6. `nhw/gallery_edit_credits` **H**: Editing affects more than the maker’s name, including source and changes; use the same broad credits term as Copy.
+7. `nhw/gallery_credit_copied` **H**: Completion wording inherits the creator-only scope; align with the full copy-credit object.
+8. `nhw/gallery_credit_title` **H**: The proposed artwork noun is not established for visual art in this catalogue; use a verified art/image term and retain the slot.
+9. `nhw/gallery_credit_publisher` **K**: Identifies Catrobat as who published or displayed the artwork, rather than conflating it with its credited makers.
+10. `nhw/gallery_credit_source` **K**: Clear item provenance wording and retains the value.
+11. `nhw/gallery_credit_gallery` **K**: The gallery field is separate from source and publisher and retains its typed value.
+12. `nhw/gallery_credit_licence` **H**: Preserve exact Catrobat and CC BY-SA 4.0 but require the same confirmed visual-art term as the artwork title.
+13. `nhw/gallery_credit_saved` **H**: Save completion itself is clear; broaden creator-only text to the full selected credit.
+14. `nhw/formats22_ico_size` **K**: Specific icon-sizing label, not canvas dimensions.
+15. `nhw/formats22_ico_description` **K**: Explicit PNG compression, range, unchanged proportions and central placement on a see-through square.
+16. `nhw/formats22_ico_decode_budget` **K**: The memory constraint is for decoding an icon under the image-specific RAM budget.
+17. `nhw/formats22_ico_dimensions_error` **K**: Confines the mismatch to the recorded size for the relevant row in the internal ICO list.
+18. `nhw/save20_dither` **K**: Parenthetic Dither disambiguates positioning differently coloured pixels to make a smoother perceived colour.
+19. `nhw/save20_bmp_description` **K**: Preserves uncompressed 24-bit RGB, exact colours and larger file size.
+20. `nhw/save20_unsupported_tagged_colour` **K**: Keeps the two formats, current unsupported profile, colour-managed sRGB PNG conversion and doing that before import.
+21. `nhw/ui_pencil_crisp_adjustable_strokes` **H**: The existing Lápiz caption survives, but “clearly visible” does not necessarily describe crisp edges as opposed to antialiasing.
+22. `nhw/ui_cursor_ink30` **K**: Uses the cursor terminology from the corresponding controls and explicitly denotes drawing, not navigation.
+23. `nhw/ui_cursor_help31` **K**: The move, tap, draw, and tap-again sequence survives. Brush and stroke settings are identified under the same pinned Draw/Drawing terminology.
+24. `nhw/ui_cursor_settings31` **K**: Clearly refers to settings for cursor drawing and preserves ellipsis.
+25. `nhw/ui_cursor_marker_help31` **K**: Larger marker is distinct from the unchanged width of the resulting stroke.
+26. `nhw/ui_gimp_translations31` **K**: Describes translating text into another language and licences, distinct from image credits.
+27. `nhw/ui_cursor_pan_draw32` **K**: Moves cursor to start drawing, retaining the further tap that stops it.
+28. `nhw/ui_cursor_pan_move32` **K**: Positions the cursor first and explicitly targets the drawing button for a separate start step.
+29. `nhw/ui_cursor_tap_hint37` **K**: Names the cursor as the target and either starting or stopping.
+30. `nhw/ui_normalize_width_intro` **H**: The closing clause says the retained crop area is unchanged, not the actual crop settings; keep ratio, count and originals.
+31. `nhw/ui_normalize_height_intro` **H**: Same crop-settings distinction for the height variant; keep unchanged source and individual ratio.
+32. `nhw/ui_normalize_width_info` **K**: Exact width, range of heights, current largest width as percentage base and reflow are explicit.
+33. `nhw/ui_normalize_height_info` **K**: Height counterpart correctly switches width/height roles and keeps layout reflow.
+34. `nhw/ui_normalize_width_input_percent` **K**: Names the shared width and its percentage of the typed pixel basis.
+35. `nhw/ui_normalize_height_input_percent` **K**: Parallel common height input, with the exact typed pixel reference.
+36. `nhw/ui_pixel_grid_help33` **H**: Make the 800% threshold explicitly a zoom setting and rulers specifically mark positions in image pixels.
+37. `nhw/ui_search34` **K**: Short search command, not requesting help or downloading.
+38. `nhw/ui_search_english34` **K**: Both query languages are clear and distinct.
+39. `nhw/ui_gallery_back34` **K**: Clear back action for gallery navigation.
+40. `nhw/ui_gallery_unsupported34` **K**: The source currently selected is distinct from the source the image actually came from.
+41. `nhw/ui_open_artwork34` **H**: The Use image caption matches the pinned app, but the proposed art noun for the page needs verification.
+42. `nhw/ui_creator_on_source34` **K**: Directs the user to the source page to learn who supplied the artwork.
+43. `nhw/legacy_credits_title` **H**: Previously saved is explicit, but the object includes usage/licence terms, not just maker/origin.
+44. `nhw/legacy_credits_hint` **K**: Earlier save, possible other-image origin and adding chosen source or exporting full text both survive.
+45. `nhw/legacy_credits_add` **K**: Selected credit text is attached to this image; no ambiguity with adding a source image.
+46. `nhw/legacy_credits_save_text` **K**: The selected information is saved as text rather than image; matches the menu context.
+47. `nhw/legacy_credits_existing` **K**: Same-source credit already existed and that text was not replaced.
+48. `nhw/legacy_credits_added` **K**: Completed addition of the referenced credit information to the current image.
+49. `nhw/commons_import_svg_changes` **K**: Only the original-size description is translated; all developer literals, direction and colour value remain exact.
+50. `nhw/commons_check_file_licence` **K**: Per-file maker, licence and required attribution are separately preserved, as is possible adaptation status if changed.
+51. `nhw/ui_casual` **K**: Plain informal typeface label distinguishes Casual from Cursive and default.
+52. `nhw/ui_catrobat_s_own_artwork_uses_cc_by_sa` **H**: Rights obligations remain, but the art term and broad Image credits destination need verification; do not promote legal/help copy whose route can be misleading.
+53. `nhw/ui_gallery_artwork_catrobat_and_its_credited_creators_cc` **H**: The licensing and exception clauses survive; use a verified artwork noun and broader attribution language before publishing against this copyright label.
+54. `nhw/gallery_description` **H**: Hold until compatible terms, copy/edit controls and the actual credits route are aligned to the full attribution record, not just the maker.
+55. `nhw/gallery_credit_edit_hint` **K**: Retains original maker/copyright notices, documenting changes, removing entries for unused images and editing the text below.
+56. `nhw/ui_irasutoya_help34` **H**: The marketing-use threshold and names survive; artwork noun and credit path must match corrected controls before clearance.
+57. `nhw/ui_openclipart_help34` **H**: Keeps CC0 and Large PNG, but the source/credits destination and local art term need the same paired verification.
+58. `nhw/ui_irasutoya_credit34` **K**: Preserves creator-held copyright, use under Irasutoya’s terms and explicit non-Creative-Commons status.
+59. `nhw/commons_import_raster_changes` **K**: Retains exact developer key and colour and explicitly identifies alpha as the means of compositing.
+60. `nhw/commons_credit_copy_failed` **H**: Maker or origin still omits usage/licence data; align the failure with the full credit action.
+61. `nhw/commons_credit_copy_failed_reason` **H**: Names generic text rather than credit; preserve the exact reason slot after aligning with the broad term.
+62. `nhw/commons_credit_copy_out_of_memory` **H**: RAM failure survives but the copied record needs to include source and licensing, not just who made it or where it came from.
+63. `nhw/commons_metadata_http_error` **K**: File metadata wording matches its context and preserves exact HTTP/status slot.
+64. `nhw/commons_metadata_response_too_large` **K**: The limit applies to the Commons metadata response size, not the source image itself.
+65. `nhw/commons_metadata_query_failed` **K**: Reports failed metadata request, rather than no source file or a decode error.
+66. `nhw/ui_assembly_exact_position` **K**: Identifies choosing the desired position, not translating an attached image relative to its neighbour.
+67. `nhw/ui_assembly_target_x` **K**: Retains X measured from left in pixels.
+68. `nhw/ui_assembly_target_y` **K**: Retains Y measured from top in pixels.
+69. `nhw/ui_assembly_position_help` **K**: Keeps top-left reference, whole pixels from zero, unaffected other placements, overlap/stack order and canvas expansion, with crop and size unchanged.
+70. `nhw/gallery_external_link_no_handler` **K**: Android is unable to find a handler application for this link; no network cause asserted.
+71. `nhw/commons_metadata_not_file_page` **K**: Clearly says not a Commons file page and does not assert Commons is down.
+72. `nhw/commons_metadata_ambiguous_file` **K**: Reports ambiguity about which file the data refers to.
+73. `nhw/commons_metadata_unavailable` **H**: Can assert no metadata exists rather than it being unavailable; retain scope of that specific file.
+74. `nhw/commons_metadata_original_mismatch` **H**: The record includes more than maker identity; keep mismatch against the selected original file and broaden the attribution term.
+75. `nhw/commons_metadata_invalid_page` **H**: The page is not simply a page naming the maker; identify it as invalid attribution metadata in the broader source/licence sense.
+76. `nhw/commons_metadata_field_too_large` **H**: Identify a single attribution field and text cap rather than merely some creator paragraph that is too long.
+77. `nhw/commons_metadata_cache_failed` **H**: The operation could not retain the full attribution, which includes more than maker and source origin.
+78. `nhw/commons_download_original_mismatch` **K**: Correctly reports a redirect to a different original file, not just an HTTP location change.
+79. `nhw/commons_svg_png_encode_failed` **H**: The phrase limits blank maps to maps without place names, rather than the actual category name.
+80. `nhw/ui_add_up_to_20_images_with_android_s` **H**: Hold full assembly instructions until the exact crop, scale, placement, snap and Unplace captions and terms are checked together.
+81. `nhw/ui_help23` **H**: The compact guide quotes English View/Draw/Navigate where the current interface is localized; check all menu and Save labels.
+82. `nhw/ui_the_arrow_on_the_left_directly_below_the` **H**: The editor guide quotes English View/Draw/Edit/Color, divergent from the current catalog; check the remaining paths before integrating.
+83. `ch/ui_catrobat_s_own_artwork_uses_cc_by_sa` **K**: Rechecked the historical wording: preserves default CC BY-SA 4.0 and adaptation, separate required credit and exact pinned three-part file route.
+84. `ch/ui_icons_artwork` **K**: Separates icons and artwork; pinenta is established for drawing/painting in CHamoru references.
+85. `ch/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Matches the exact stored tolerance caption, asks for an enclosed region and permits small colour differences.
+86. `ch/ui_tap_vertices_then_double_tap_the_last_vertex` **K**: The legacy wording matches both exact polygon controls; last-point double tap and the alternative connected open segments are explicit.
+87. `ch/ui_third_party_notices` **K**: Respectfully distinguishes notices from other persons and organizations, in contrast with the main licence.
+88. `ch/save20_unsupported_tagged_colour` **H**: Legacy format-specific branch is not the neutral current import path. Do not promote a normal release wording that might imply profile failure exists only for BMP/GIF.
+89. `ch/ui_source_code_exported_including_build_scripts_and_licence` **K**: Explicit exported source code plus build scripts for the app and associated licence notices.
+90. `ch/ui_gimp_translations31` **K**: Names translation credits and their licences, separate from art provenance.
+91. `ch/ui_pixel_grid_help33` **K**: Preserves actual zoom threshold 800% and rulers indicating positions measured in image pixels.
+92. `ch/ui_irasutoya_help34` **K**: Retains Use image, English/Japanese scope, 21-or-more commercial designs and special-collaboration terms; real route labels checked.
+93. `ch/ui_openclipart_help34` **K**: CC0 exact; Large PNG and Use image sequence and pinned credits route verified.
+94. `ch/ui_creator_on_source34` **K**: The source page is where to look up the contributor, not exclusively the publisher.
+95. `ch/ui_aa_bb_0123` **K**: CHamoru greeting is attested and adds a local specimen without removing Latin case, numerals or Japanese glyphs.
+96. `ch/ui_gnu_affero_general_public_license` **K**: A translated UI heading keeps both GNU and Affero and does not alter the authoritative licence text.
+97. `ch/save20_dither` **H**: “Join coloured dots” can sound like actually mixing or connecting points; settle precise colour-dithering behavior with its save/export toggle.
+98. `ch/ui_honeycomb` **K**: Descriptive six-sided palette heading, not a claim of a universal name for this category.
+99. `ch/ui_honeycomb_colour_06x` **K**: Matches the exact six-sided palette term and preserves the uppercase zero-padded hexadecimal placeholder.
+100. `ch/ui_honeycomb_colour_swatches_with_a_greyscale_row` **K**: Distinguishes the six-sided swatches and a separate white-through-grey-to-black row.
