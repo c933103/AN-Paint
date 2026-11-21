@@ -1913,3 +1913,108 @@ Personally reviewed 100 distinct wording records. Batch: **90 keep, 10 hold**. O
 98. `tdd/ui_quality` **K**: Short quality label keeps the percentage marker and matches save quality meaning.
 99. `tdd/ui_rendering_images` **H**: The phrase can denote images already made, not processed; keep both typed counts and ellipsis when revising.
 100. `tdd/ui_restore_original_sizes` **K**: Clearly restores original dimensions rather than applying a common fixed size.
+
+## Batch 18: Tai Nüa
+
+Personally reviewed 100 distinct wording records. Batch: **90 keep, 10 hold**. Overall: **1800 reviewed, 1262 keep, 538 hold**. This changes only the review ledger, not Android resources.
+
+1. `tdd/ui_right_arrow_expand` **K**: Identifies the right-pointing arrow as a control that opens or expands the panel.
+2. `tdd/ui_same` **K**: Keeps the dynamic name of the dimension being made common.
+3. `tdd/ui_same_height` **K**: Short shared-height wording stays distinct from width.
+4. `tdd/ui_same_width` **K**: Short shared-width wording matches the height counterpart.
+5. `tdd/ui_set_radius_px_then_drag_between_opposite_corners` **H**: Opposite corners and per-rectangle half-short-side limit are present; validate the very long quoted radius label against the actual control and ensure this means corner radius.
+6. `tdd/ui_show_pixel_grid_800` **H**: The noun can describe pixel outlines rather than the grid overlay; resolve both Show and Hide together using a shared term.
+7. `tdd/ui_shows_the_whole_assembly_image_and_output_sizes` **K**: Shows all assembled imagery without resizing sources or output.
+8. `tdd/ui_smooth_freehand_strokes` **K**: Describes making strokes drawn by hand smooth, rather than anti-aliasing individual edges.
+9. `tdd/ui_smooth_pixel_edges_anti_aliasing` **K**: Explicitly names smoothing pixel edges and retains the anti-aliasing term, distinct from freehand smoothing.
+10. `tdd/ui_some_previews_could_not_be_decoded_you_can` **H**: The delete-like verb can imply deleting file inputs; distinguish removing the affected images from the assembly while keeping the save alternative.
+11. `tdd/ui_sort_images_by_filename_or_modification_time` **K**: Keeps filename and modification time as interchangeable sort keys.
+12. `tdd/ui_sort_tray` **K**: Specifically identifies sorting the image tray, not the already placed arrangement.
+13. `tdd/ui_tap_a_pixel` **K**: Clear touch on exactly one pixel, without a drag gesture.
+14. `tdd/ui_tap_an_enclosed_area_adjust_tolerance_for_similar` **K**: Tap inside the enclosing boundary and adjust tolerance around similar colours rather than changing the active fill colour.
+15. `tdd/ui_tap_an_image_thumbnail_first` **K**: The thumbnail is the item to tap first, not a placed image.
+16. `tdd/ui_tap_the_canvas_to_place_text_and_choose` **K**: Uses the canvas term and preserves placement, choice of typeface and choice of size.
+17. `tdd/ui_tap_the_image_to_sample_the_foreground_colour` **K**: Correctly derives foreground colour from the touched image point.
+18. `tdd/ui_tap_vertices_then_double_tap_the_last_vertex` **H**: Both double-tap and connected open segments survive; verify exact quoted Finish and Close control labels and make switching off the closure rule clear.
+19. `tdd/ui_the_assembly_exceeds_android_s_coordinate_range` **K**: Identifies Android’s X/Y limit rather than file size or memory.
+20. `tdd/ui_the_assembly_needs_about_choose_a_smaller_output` **K**: Preserves estimated requirement and smaller output size as remedy.
+21. `tdd/ui_the_assembly_output_is_unavailable_reopen_image_assembly` **H**: The wording can assert no output exists and the quoted reopen caption differs from the existing assembly action; distinguish unavailability and use the exact menu name.
+22. `tdd/ui_the_attachment_image_is_missing` **K**: States the image required for attachment is missing rather than unplaced.
+23. `tdd/ui_the_attachment_image_is_not_placed` **K**: Not-yet-placed wording is consistent with the separate Placed status.
+24. `tdd/ui_that_arrangement_overlaps_another_image_use_a_different` **K**: Names overlap and separately allows another edge or removing attached images only from their placement.
+25. `tdd/ui_the_first_image_starts_at_the_top_left` **K**: Correct location of the first image at the top left.
+26. `tdd/ui_the_gallery_download_is_too_large` **K**: Excessive size refers to the downloaded file, not the gallery itself.
+27. `tdd/ui_the_gallery_image_is_unavailable` **K**: Expresses inability to obtain the particular image from the gallery rather than its deletion.
+28. `tdd/ui_the_gallery_redirected_outside_its_supported_hosts` **K**: Clearly shows the URL changed to one the app cannot use.
+29. `tdd/ui_the_image_could_not_be_downloaded` **K**: Matches the download-progress term and reports that obtaining the image failed.
+30. `tdd/ui_the_images_cannot_fit_within_android_s_coordinate` **K**: Names the Android X/Y constraint and advises smaller image sizes.
+31. `tdd/ui_the_normalized_image_dimensions_are_outside_android_s` **K**: Specifies the dimensions after equalizing as exceeding Android’s limit.
+32. `tdd/ui_the_online_gallery_could_not_be_loaded_check` **K**: Identifies the gallery load failure, internet connection and retry in order.
+33. `tdd/ui_third_party_notices` **H**: “Notices from others” is close but can be confused with user notifications; align legal third-party notices with the related licence captions.
+34. `tdd/ui_this_image_is_outside_the_supported_catrobat_gallery` **K**: Keeps supported Catrobat gallery as the boundary, not a generic network problem.
+35. `tdd/ui_time_unavailable` **H**: Can be read as no time available rather than no timestamp for sorting; identify modification metadata as the thing unavailable.
+36. `tdd/ui_too_many_gallery_redirects` **K**: Clearly reports excessive repeat URL redirection, rather than one disallowed domain.
+37. `tdd/ui_tool_option` **K**: A selectable option belonging to the tool, not a different tool.
+38. `tdd/ui_toolbox_and_tool_options_scroll_for_more` **K**: Names the tools and options, and the ability to drag/scroll for more.
+39. `tdd/ui_trim_from_the_original_edges_drag_the_handles` **K**: Starts measuring at original image edges, allows drag or entry, and explicitly says source files do not change.
+40. `tdd/ui_trim_in_pixels` **K**: Uses trim action, dynamic side/amount slot and px unit.
+41. `tdd/ui_unplace` **K**: Specifies taking the image out of its placement rather than deleting the underlying source.
+42. `tdd/ui_width_in` **K**: Existing width term with a placeholder for the unit.
+43. `tdd/ui_widths` **K**: The unmarked noun works as the heading for a series of width values.
+44. `tdd/ui_you_can_add_more_images_select_fewer_files` **K**: Retains remaining capacity and instructs choosing fewer files.
+45. `tdd/ui_jpeg_xl_codec_licences` **K**: Exact JPEG XL name with the licence object explicitly identified as its codec.
+46. `tdd/ui_preview_memory_error` **K**: Preserves the item’s detail slot and states the RAM shortfall is specifically for preview.
+47. `tdd/ui_trim_in_percent` **K**: Uses the same trim wording as pixels, but with the percent unit instead.
+48. `tdd/ui_crop_preview_images` **K**: Both typed quantity variants preserve the dimensions/count and potential movement of attached images if placed inputs are cropped.
+49. `tdd/ui_add_palette23` **K**: The terminology matches the pinned colour palette and specifies adding to it.
+50. `tdd/ui_added_palette23` **K**: Distinguishes completed addition from the action by retaining the completion marker.
+51. `tdd/ui_replace_palette23` **K**: Indicates full palette and specifies selecting the colour to replace.
+52. `tdd/ui_edit_palette23` **K**: Names editing the palette without suggesting a different picker.
+53. `tdd/ui_replace_with_active23` **K**: Uses the current colour as replacement, rather than treating it as the item replaced.
+54. `tdd/ui_remove_palette23` **K**: Makes removal from the palette explicit; does not imply erasing the drawing.
+55. `tdd/ui_add_active23` **K**: Identifies adding the active colour, without conflating it with Replace.
+56. `tdd/ui_horizontal23` **K**: Describes writing along the width, distinct from the column modes.
+57. `tdd/ui_vertical_rl23` **K**: Retains top-to-bottom progression and right-to-left column order.
+58. `tdd/ui_vertical_lr23` **K**: Matched alternative switches only the column direction.
+59. `tdd/ui_vertical_letters23` **K**: Indicates the settings are about glyphs within vertical text rather than the layout of the whole canvas.
+60. `tdd/ui_vertical_mixed23` **K**: Clearly contrasts upright CJK characters and other words turned sideways, with automatic wording.
+61. `tdd/ui_vertical_sideways23` **K**: Preserves right-angle sideways rotation and joining the word’s glyphs together.
+62. `tdd/ui_vertical_upright23` **K**: Clearly pairs upright orientation with handling each character, not only alphabetic letters.
+63. `tdd/ui_top23` **K**: Explicitly aligns the top edge, not the right edge of a vertical line.
+64. `tdd/ui_bottom23` **K**: Matches top alignment while naming the distinct bottom edge.
+65. `tdd/ui_webp_codec_licences` **K**: Exact WebP name and its codec as the licence object.
+66. `tdd/ui_heic_avif_codec_licences` **K**: Both HEIC and AVIF remain in the same codec-licence heading.
+67. `tdd/colour20_custom_selected_slot` **K**: Matches the established personal/custom-colour phrase and the exact numbered selection.
+68. `tdd/colour20_stored_slot` **K**: Both slots survive and tapping to use is distinguished from the later Replace action saving changes.
+69. `tdd/colour20_empty_slot` **K**: Indicates an empty numbered slot and a touch to choose where to save the current colour.
+70. `tdd/colour20_save_slot` **K**: Direct save action points at its specific numbered slot.
+71. `tdd/colour20_replace_slot` **K**: Explicitly changes the colour in the numbered slot rather than selecting a new slot.
+72. `tdd/colour20_saved_slot` **K**: Reports that the colour was already saved to the specified slot.
+73. `tdd/gallery_image_component_unavailable` **H**: The component is called absent, which does not cover present but unavailable components. Keep the fact that import did not occur.
+74. `tdd/formats22_page_number` **K**: Names the current page number rather than total number of pages.
+75. `tdd/formats22_page_preview` **K**: Preview identifies the selected page rather than the active file.
+76. `tdd/formats22_page_range` **K**: Instructs entering a number between one and the exact formatted maximum.
+77. `tdd/formats22_loading_page` **K**: Preserves page counters and clearly identifies an ongoing preview load.
+78. `tdd/formats22_page_dimensions` **K**: All four typed slots and the pixel unit remain in the expected order.
+79. `tdd/formats22_preview_unavailable` **K**: Inability to see the preview is clear, with the provided diagnostic intact.
+80. `tdd/formats22_preview_memory` **K**: The lack of preview RAM is distinct from opening with smaller available dimensions.
+81. `tdd/formats22_pdf_invalid` **K**: Potential file damage and features unsupported by the current Android version remain separate failure reasons.
+82. `tdd/formats22_pdf_encrypted` **K**: Preserves required password versus unsupported encryption and saving an unprotected copy before import.
+83. `tdd/formats22_pdf_file_size` **K**: Requires some content in the file and retains 512 MiB as its exact inclusive limit.
+84. `tdd/formats22_pdf_page_count` **K**: The first page and typed upper bound are retained.
+85. `tdd/formats22_pdf_page_index` **K**: Indicates the old selection is no longer usable and asks for a page in this document.
+86. `tdd/formats22_pdf_dimensions` **K**: Correctly distinguishes invalid dimensions and dimensions too large to import.
+87. `tdd/formats22_pdf_crop` **H**: The wording adds a minimum of 1 px, which the source does not specify. Preserve a nonempty rectangle within the selected page without inventing coordinates or units.
+88. `tdd/formats22_pdf_memory` **K**: Distinguishes memory for rendering PDF as an image from the allowed image RAM.
+89. `tdd/formats22_base64_description` **K**: Retains lossless content, precise URI prefix, recovery by reopening and the Base64 size overhead.
+90. `tdd/formats22_ascii_columns` **K**: Width unit is individual characters, not pixels.
+91. `tdd/formats22_ascii_invert` **H**: Bright and black can imply only blacks rather than all dark glyphs; make light and dark groups symmetric.
+92. `tdd/formats22_text_not_image` **K**: Says the text lacks a supported image, not that every Base64 string is invalid.
+93. `tdd/gallery_use_image` **K**: Concise instruction to use an image, consistent with gallery insertion.
+94. `tdd/gallery_copy_credit` **K**: Broad attribution wording includes source, maker and permitted use and is clearly an action to copy.
+95. `tdd/gallery_edit_credits` **K**: Edits the same broad record rather than restricting editing to the name of the creator.
+96. `tdd/gallery_credit_copied` **K**: Keeps the completion marker in contrast with the Copy action and uses the same exact credits vocabulary.
+97. `tdd/gallery_credit_title` **K**: Identifies artwork and retains the associated title slot.
+98. `tdd/gallery_credit_publisher` **K**: States Catrobat as the publishing project, distinct from attribution to the maker of each work.
+99. `tdd/gallery_credit_gallery` **K**: Short gallery label preserves the field’s value and does not confuse it with the origin or publisher.
+100. `tdd/gallery_credit_licence` **K**: Original Catrobat artwork, exact CC BY-SA 4.0 and the dynamic licence detail are preserved.
