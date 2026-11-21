@@ -14,13 +14,18 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         # Fixture validity: a newly translated sample must not masquerade as fallback.
         paths = catalogues.catalogue_paths()
         offered = set(catalogues.offered_tags())
-        for tag in ('nch', 'nv', 'tdd'):
+        for tag in ('nv', 'tdd'):
             with self.subTest(tag=tag):
                 self.assertIn(tag, offered)
                 self.assertTrue(KEYS.isdisjoint(catalogues.read_strings(paths[tag])))
-        for tag in ('cy', 'shn', 'yua', 'zgh'):
+        for tag in ('cy', 'shn', 'yua', 'zgh', 'nhe'):
             with self.subTest(translated=tag):
                 self.assertTrue(KEYS <= catalogues.read_strings(paths[tag]).keys())
+
+    def test_central_huasteca_has_direct_svg_and_fallback_raster(self):
+        self.assertIn('nch', catalogues.offered_tags())
+        messages = catalogues.read_strings(catalogues.catalogue_paths()['nch'])
+        self.assertEqual({'commons_import_svg_changes'}, KEYS & messages.keys())
 
     def test_all_published_notes_preserve_literals_and_formatting(self):
         paths = {'default': catalogues.RES / 'values/strings.xml', **catalogues.catalogue_paths()}
