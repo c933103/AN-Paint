@@ -2419,6 +2419,118 @@
       "wording": "Ixkopinali cati AN Paint ya quitequihuijtoc: %1$s / %2$s…",
       "decision": "repair_candidate",
       "reason": "Uses processing, not creation, and retains the current and total counters."
+    },
+    "nch/ui_smooth_freehand_strokes": {
+      "source": "Smooth freehand strokes",
+      "previous": "Ma nesi cuali tlahuasantli cati tijchiua ica momaj",
+      "wording": "Xijyamanili inojhui tlahuasantli cati tijchiua ica momaj (stroke smoothing)",
+      "decision": "repair_candidate",
+      "reason": "Smooths the freehand stroke path, not pixel edges."
+    },
+    "nch/ui_smooth_pixel_edges_anti_aliasing": {
+      "source": "Smooth pixel edges (anti-aliasing)",
+      "previous": "Ma nesi cuali iteno sesen pixel (antialiasing)",
+      "wording": "Xijyamanili ininteno pixels (antialiasing)",
+      "decision": "repair_candidate",
+      "reason": "Smooths jagged pixel edges, distinct from freehand stroke path smoothing."
+    },
+    "nch/ui_that_arrangement_overlaps_another_image_use_a_different": {
+      "source": "That arrangement overlaps another image. Use a different edge or unplace the attached images first.",
+      "previous": "Quej nopa, se ixkopinali mocahua ipan seyoc ixkopinali. Xijtequihui seyoc iteno o achtohui xijquixti campa eltoc ixkopinali cati mopepechojtoc.",
+      "wording": "Quej nopa, se ixkopinali mocahua ipan seyoc ixkopinali. Xijtequihui seyoc iteno o achtohui xijquixti campa eltoc ixkopinali cati mopepechojtoc; xijcahua nochi ixkopinali ipan tequit.",
+      "decision": "repair_candidate",
+      "reason": "Explicitly keeps all assembly inputs while removing their placements; preserves the different-edge option."
+    },
+    "nch/ui_the_assembly_output_is_unavailable_reopen_image_assembly": {
+      "source": "The assembly output is unavailable. Reopen Image assembly and try again.",
+      "previous": "Amo onca ixkopinali cati AN Paint quichihuas ica ni tequit. Sempa xijtapo campa mosentilia ixkopinali huan sempa xijchihua.",
+      "wording": "Amo hueli motequihuis namantsi ixkopinali cati quisa ten ni tequit. Sempa xijtapo «Tequit campa mosentilia ixkopinali» huan xijyeyeco sempa.",
+      "decision": "repair_candidate",
+      "reason": "Reports unavailable output rather than claiming it does not exist; distinguishes opening assembly from retrying output."
+    },
+    "nch/ui_the_attachment_image_is_not_placed": {
+      "source": "The image has not been placed.",
+      "previous": "Ayemo eltoc ixkopinali campa titequiti.",
+      "wording": "Ixkopinali amo tlalijtok ipan tequit.",
+      "decision": "repair_candidate",
+      "reason": "Matches the negative placement state rather than merely missing from the workspace."
+    },
+    "nch/ui_the_gallery_image_is_unavailable": {
+      "source": "The gallery image is unavailable.",
+      "previous": "Amo onca ixkopinali ten galería.",
+      "wording": "Ixkopinali ten galería amo hueli motequihuis namantsi.",
+      "decision": "repair_candidate",
+      "reason": "Describes current unavailability, not nonexistence or removal."
+    },
+    "nch/ui_the_image_could_not_be_downloaded": {
+      "source": "The image could not be downloaded.",
+      "previous": "AN Paint amo huelqui quicuis ixkopinali.",
+      "wording": "AN Paint amo huelqui quicui ixkopinali ten Internet.",
+      "decision": "repair_candidate",
+      "reason": "Pairs with the download progress state and identifies the network transfer."
+    },
+    "nch/ui_third_party_notices": {
+      "source": "Third-party notices",
+      "previous": "Tajcuiloli ten sequinoc",
+      "wording": "Tlanahuatili ten sequinoc masehualmej o organizaciones",
+      "decision": "repair_candidate",
+      "reason": "Names notices from other people or organizations, not arbitrary third-party writing."
+    },
+    "nch/ui_time_unavailable": {
+      "source": "Time unavailable",
+      "previous": "Amo onca hora",
+      "wording": "Amo hueli moitas hora ten quipataj amatl",
+      "decision": "repair_candidate",
+      "reason": "Identifies the unavailable modification time metadata."
+    },
+    "nch/ui_unplace": {
+      "source": "Unplace",
+      "previous": "Xijquixti campa eltoc",
+      "wording": "Xijquixti campa eltoc; xijcahua ixkopinali ipan tequit",
+      "decision": "repair_candidate",
+      "reason": "Removes the placement while keeping the image in the assembly."
+    },
+    "nch/ui_add_palette23": {
+      "source": "Add to palette",
+      "previous": "Xijtlali campa tictapejpenis tapali",
+      "wording": "Xijtlali ipan paleta ten tapali",
+      "decision": "repair_candidate",
+      "reason": "Uses a palette loan so this is an addition to the saved collection, not an instruction to open the picker."
+    },
+    "nch/ui_added_palette23": {
+      "source": "Added to palette",
+      "previous": "Ya eltoc campa tictapejpenis tapali",
+      "wording": "Tlalijtok ipan paleta ten tapali",
+      "decision": "repair_candidate",
+      "reason": "Reports completed addition using the same palette term."
+    },
+    "nch/ui_replace_palette23": {
+      "source": "Palette full — choose a color to replace",
+      "previous": "Campa tictapejpenis tapali ya tentoc. Xijtapejpeni se tapali para tijpatas.",
+      "wording": "Paleta ten tapali ya tentoc. Xijtapejpeni se tapali para tijpatas.",
+      "decision": "repair_candidate",
+      "reason": "Uses the shared palette term and clearly says existing capacity is full and a colour must be replaced."
+    },
+    "nch/ui_edit_palette23": {
+      "source": "Edit palette",
+      "previous": "Xijpata campa tijtapejpenis tapali",
+      "wording": "Xijpata paleta ten tapali",
+      "decision": "repair_candidate",
+      "reason": "Names editing the palette rather than altering the picker."
+    },
+    "nch/ui_remove_palette23": {
+      "source": "Remove from palette",
+      "previous": "Xijquixti campa tijtapejpenis tapali",
+      "wording": "Xijquixti ten paleta ten tapali",
+      "decision": "repair_candidate",
+      "reason": "Uses the same palette term and explicitly names the removal destination."
+    },
+    "nch/ui_vertical_mixed23": {
+      "source": "Automatic · upright CJK, sideways words",
+      "previous": "Iselti · CJK quisa melauac, tlahtoli moteca",
+      "wording": "Iselti · tajkuiloli CJK moquetza, tlahtoli moteca",
+      "decision": "repair_candidate",
+      "reason": "Contrasts upright CJK characters with sideways words in the automatic orientation mode."
     }
   }
 }
