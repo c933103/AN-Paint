@@ -1423,5 +1423,87 @@ class EditorDeviceTest {
         }
     }
 
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun czechPickerFitUsesNativeAccessibleControlAndPreservesImageAcrossRotation() {
+        chooseAppLanguage("cs")
+        val expected=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        }).getString(R.string.ui_fit_entire_canvas_in_view)
+        val english=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        }).getString(R.string.ui_fit_entire_canvas_in_view)
+        assertNotEquals("Czech Fit resource must not fall back to English",english,expected)
+        var originalOrientation=0
+        val pixels=IntArray(120*80) {index ->
+            if(index%120 in 20..58 && index/120 in 30..42) Color.BLUE else Color.WHITE
+        }
+        onMain {
+            originalOrientation=it.requestedOrientation
+            it.document.newImage(120,80)
+            it.document.bitmap.setPixels(pixels,0,120,0,0,120,80)
+            it.document.markSaved()
+        }
+        fun verifyProfile(landscape: Boolean) {
+            val orientation=if(landscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                else android.content.res.Configuration.ORIENTATION_PORTRAIT
+            onMain {it.requestedOrientation=if(landscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}
+            awaitState("installed Czech Fit profile landscape=$landscape") {
+                val config=it.resources.configuration
+                it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
+                    config.orientation==orientation && config.locales[0].toLanguageTag()=="cs" &&
+                    it.paintCanvas.width>0 && it.paintCanvas.height>0
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val config=it.resources.configuration
+                assertEquals("System-retained Czech locale","cs",
+                    it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                android.util.Log.i("InstalledCzechFit","landscape=$landscape widthDp=${config.screenWidthDp} heightDp=${config.screenHeightDp} fontScale=${config.fontScale}")
+                val fit=it.window.decorView.findViewWithTag<View>("zoom_fit_view")
+                assertNotNull("Mounted Fit icon",fit)
+                assertEquals("Complete Czech accessibility name",expected,fit.contentDescription.toString())
+                val bounds=Rect()
+                assertTrue("Full Fit hit target",fit.getLocalVisibleRect(bounds) &&
+                    bounds.contains(Rect(0,0,fit.width,fit.height)))
+            }
+            val button=device.findObject(UiSelector().description(expected))
+            assertTrue("Czech Fit is exposed through native accessibility",button.waitForExists(5000))
+            assertTrue("Real Fit tap establishes the fitted baseline",button.click())
+            instrumentation.waitForIdleSync()
+            var fitted=0f
+            var beforeTap=0f
+            onMain {
+                fitted=it.paintCanvas.zoom
+                // Set only the viewport precondition. The Fit action happens through
+                // the installed view and no test code calls fit() to make it pass.
+                it.paintCanvas.zoomAt(fitted*0.5f)
+                beforeTap=it.paintCanvas.zoom
+                assertTrue("Prepared a visibly different zoom",beforeTap<fitted-.01f)
+            }
+            assertTrue("Real Fit tap changes the viewport",button.click())
+            awaitState("tap restores the fitted viewport") {kotlin.math.abs(it.paintCanvas.zoom-fitted)<.001f}
+            onMain {
+                assertNotEquals("Fit did not leave the pre-tap viewport unchanged",beforeTap,it.paintCanvas.zoom)
+                val bitmap=it.document.bitmap
+                val canvas=it.paintCanvas
+                val topLeft=canvas.toScreen(0f,0f)
+                val bottomRight=canvas.toScreen(bitmap.width.toFloat(),bitmap.height.toFloat())
+                assertTrue("Fit brings the entire fixture into the canvas view",
+                    topLeft.x>=-.01f && topLeft.y>=-.01f &&
+                        bottomRight.x<=canvas.width+.01f && bottomRight.y<=canvas.height+.01f)
+                assertEquals(120,bitmap.width);assertEquals(80,bitmap.height)
+                val actual=IntArray(pixels.size)
+                bitmap.getPixels(actual,0,120,0,0,120,80)
+                assertArrayEquals("Fit and rotation preserve all fixture pixels",pixels,actual)
+                assertFalse("Fit must not dirty the drawing",it.document.dirty)
+            }
+        }
+        try {
+            verifyProfile(false)
+            verifyProfile(true)
+        } finally {onMain {it.requestedOrientation=originalOrientation}}
+    }
+
 
 }
