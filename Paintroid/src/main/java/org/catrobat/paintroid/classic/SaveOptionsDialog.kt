@@ -174,7 +174,9 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
                 if(control is LinearLayout && control !is NumericSlider) VerticalUi.panel(control,tall)
                 if(control is TextView) VerticalUi.caption(control,tall)
                 if(control is FlowTextView) control.columnHeightDp=tall
-                form.addView(control,LinearLayout.LayoutParams(if(control is NumericSlider) (176*d).toInt() else -2,-2).apply {setMargins((8*d).toInt(),0,(8*d).toInt(),0)})
+                // A localized readout can need more than the space left beside the native SeekBar.
+                if(control is NumericSlider) control.minimumWidth=(176*d).toInt()
+                form.addView(control,LinearLayout.LayoutParams(-2,-2).apply {setMargins((8*d).toInt(),0,(8*d).toInt(),0)})
             }
             // Credits contain original names and URLs. Keep selectable native text in a bounded
             // scrolling column even when the surrounding interface uses vertical text.
