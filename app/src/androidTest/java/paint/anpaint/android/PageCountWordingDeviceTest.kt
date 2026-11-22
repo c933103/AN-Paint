@@ -181,6 +181,26 @@ class PageCountWordingDeviceTest {
                     assertTrue("Visible action: $label", action.waitForExists(5_000L))
                     assertTrue("Tapped action: $label", action.click())
                 }
+
+                fun tapChooserButton(id: Int, label: String) {
+                    val screen = android.graphics.Rect()
+                    scenario.onActivity {
+                        val root = requireNotNull(chooserRoot())
+                        val button = requireNotNull(root.findViewById<android.widget.Button>(id))
+                        val local = android.graphics.Rect()
+                        val location = IntArray(2)
+                        button.getLocationOnScreen(location)
+                        android.util.Log.i("CzechAssemblyPdfTest",
+                            "footer id=$id label=${button.text} shown=${button.isShown} enabled=${button.isEnabled} screen=${location.toList()}")
+                        assertEquals("Native footer label", label, button.text.toString())
+                        assertTrue("Native footer action is enabled and fully visible",
+                            button.isShown && button.isEnabled && button.width > 0 && button.height > 0 &&
+                                button.getLocalVisibleRect(local) &&
+                                local.contains(0, 0, button.width, button.height))
+                        screen.set(location[0], location[1], location[0] + button.width, location[1] + button.height)
+                    }
+                    assertTrue("Injected native footer tap: $label", device.click(screen.centerX(), screen.centerY()))
+                }
                 fun openChooser() {
                     pressLabel(cs.getString(org.catrobat.paintroid.R.string.ui_add_images))
                     await("Assembly PDF chooser", failure) {
@@ -215,7 +235,7 @@ class PageCountWordingDeviceTest {
                         assertEquals(open, openButton.text.toString())
                         assertFalse("An invalid page cannot be opened", openButton.isEnabled)
                     }
-                    pressLabel(cs.getString(org.catrobat.paintroid.R.string.ui_cancel))
+                    tapChooserButton(android.R.id.button2, cs.getString(org.catrobat.paintroid.R.string.ui_cancel))
                     await("cancelled import leaves Assembly idle", failure) {
                         var ready = false
                         scenario.onActivity { ready = !it.busy && chooserRoot() == null }
@@ -234,7 +254,7 @@ class PageCountWordingDeviceTest {
                         }
                         ready
                     }
-                    pressLabel(open)
+                    tapChooserButton(android.R.id.button1, open)
                     await("selected PDF page committed to Assembly", failure) {
                         var ready = false
                         scenario.onActivity { ready = !it.busy && it.assembly.images.size == original.size + 1 }
