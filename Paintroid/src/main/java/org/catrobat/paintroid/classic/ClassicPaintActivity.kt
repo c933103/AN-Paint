@@ -778,7 +778,13 @@ class ClassicPaintActivity : Activity() {
                 options.addView(label(ui(R.string.ui_pinch_to_zoom_drag_to_pan),12f))
                 options.addView(button(ui(R.string.ui_draw_again), "navigate_draw") { chooseTool(drawingTool) },LinearLayout.LayoutParams(-1,dp(48)))
                 options.addView(button(ui(R.string.ui_100), "zoom_actual") { paintCanvas.zoomAt(1f) },LinearLayout.LayoutParams(-1,dp(44)))
-                options.addView(button(ui(R.string.ui_fit), "zoom_fit") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))
+                val fit = button(ui(R.string.ui_fit), "zoom_fit") { paintCanvas.fit() }
+                // Keep the vertical-script sizing. Horizontal labels may wrap at large text sizes.
+                val fitHeight = if (VerticalText.uiVertical(this)) dp(44) else {
+                    fit.minHeight = dp(44)
+                    android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+                }
+                options.addView(fit, LinearLayout.LayoutParams(-1, fitHeight))
             }
             PaintTool.PENCIL -> addSlider(ui(R.string.ui_size_px),paintCanvas.pencilSize.toInt(),100,1,"pencil_size") {paintCanvas.pencilSize=it.toFloat()}
             PaintTool.TEXT -> options.addView(label(ui(R.string.ui_tap_canvas_to_type), 12f))
