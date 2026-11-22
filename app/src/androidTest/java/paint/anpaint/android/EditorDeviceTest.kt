@@ -1444,6 +1444,10 @@ class EditorDeviceTest {
         val originalFontScale=android.provider.Settings.System.getFloat(context.contentResolver,
             android.provider.Settings.System.FONT_SCALE,1f)
         val font=GalleryViewportDeviceTest()
+        val panelExpected=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        }).getString(R.string.ui_fit)
+        val clippedProfiles=mutableListOf<String>()
         fun verifyProfile(landscape: Boolean, scale: Float) {
             val orientation=if(landscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
                 else android.content.res.Configuration.ORIENTATION_PORTRAIT
@@ -1501,6 +1505,63 @@ class EditorDeviceTest {
                 assertArrayEquals("Fit and rotation preserve all fixture pixels",pixels,actual)
                 assertFalse("Fit must not dirty the drawing",it.document.dirty)
             }
+            // The fixed corner shortcut and the text command are different surfaces.
+            click("tool_ZOOM")
+            onMain { editor ->
+                val panel=editor.window.decorView.findViewWithTag<TextView>("zoom_fit")
+                assertNotNull("Mounted Navigate panel Fit command",panel)
+                panel.requestRectangleOnScreen(Rect(0,0,panel.width,panel.height),true)
+            }
+            instrumentation.waitForIdleSync()
+            val tap=IntArray(2)
+            onMain { editor ->
+                val panel=editor.window.decorView.findViewWithTag<TextView>("zoom_fit")
+                val visible=Rect()
+                assertTrue("Full panel command is visible",panel.isShown &&
+                    panel.getLocalVisibleRect(visible) &&
+                    visible.contains(Rect(0,0,panel.width,panel.height)))
+                assertEquals("Panel Czech wording",panelExpected,panel.text.toString())
+                val layout=requireNotNull(panel.layout)
+                assertTrue("Panel caption has a native line layout",layout.lineCount>0)
+                val available=panel.height-panel.compoundPaddingTop-panel.compoundPaddingBottom
+                val last=layout.lineCount-1
+                val textHeight=layout.getLineBottom(last)-layout.getLineTop(0)
+                val full=layout.getLineEnd(last)==layout.text.length &&
+                    (0..last).none { layout.getEllipsisCount(it)>0 } &&
+                    (0..last).all { layout.getLineLeft(it)>=-.5f && layout.getLineRight(it)<=layout.width+.5f } &&
+                    textHeight<=available
+                val evidence="landscape=$landscape fontScale=$scale lines=${layout.lineCount} textHeight=$textHeight available=$available full=$full"
+                android.util.Log.i("InstalledCzechFitPanel",evidence)
+                if(!full) clippedProfiles.add(evidence)
+                panel.getLocationOnScreen(tap)
+                tap[0]+=panel.width/2
+                tap[1]+=panel.height/2
+            }
+            assertTrue("Tap panel Fit to establish its fitted baseline",device.click(tap[0],tap[1]))
+            instrumentation.waitForIdleSync()
+            onMain {
+                fitted=it.paintCanvas.zoom
+                it.paintCanvas.zoomAt(fitted*0.5f)
+                beforeTap=it.paintCanvas.zoom
+                assertTrue("Panel test prepared a distinct zoom",beforeTap<fitted-.01f)
+            }
+            assertTrue("Tap the visible Czech panel Fit again",device.click(tap[0],tap[1]))
+            awaitState("panel Fit restores the fitted viewport") {kotlin.math.abs(it.paintCanvas.zoom-fitted)<.001f}
+            onMain {
+                val canvas=it.paintCanvas
+                val bitmap=it.document.bitmap
+                val topLeft=canvas.toScreen(0f,0f)
+                val bottomRight=canvas.toScreen(bitmap.width.toFloat(),bitmap.height.toFloat())
+                assertTrue("Panel Fit brings the entire image into the viewport",
+                    topLeft.x>=-.01f && topLeft.y>=-.01f &&
+                        bottomRight.x<=canvas.width+.01f && bottomRight.y<=canvas.height+.01f)
+                assertEquals(120,bitmap.width);assertEquals(80,bitmap.height)
+                val actual=IntArray(pixels.size)
+                bitmap.getPixels(actual,0,120,0,0,120,80)
+                assertArrayEquals("Panel Fit preserves all pixels",pixels,actual)
+                assertFalse("Panel Fit does not dirty the drawing",it.document.dirty)
+            }
+            click("navigate_draw")
         }
         var failure: Throwable?=null
         try {
@@ -1518,6 +1579,8 @@ class EditorDeviceTest {
                 verifyProfile(false,scale)
                 verifyProfile(true,scale)
             }
+            assertTrue("Czech panel caption must render in full: ${clippedProfiles.joinToString("; ")}",
+                clippedProfiles.isEmpty())
         } catch(error: Throwable) {
             failure=error
         } finally {
