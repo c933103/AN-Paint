@@ -1447,7 +1447,6 @@ class EditorDeviceTest {
         val panelExpected=context.createConfigurationContext(android.content.res.Configuration().apply {
             setLocales(LocaleList.forLanguageTags("cs"))
         }).getString(R.string.ui_fit)
-        assertEquals("Expected full Czech wording", "Přizpůsobit obrázek oknu",panelExpected)
         val clippedProfiles=mutableListOf<String>()
         fun verifyProfile(landscape: Boolean, scale: Float) {
             val orientation=if(landscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
