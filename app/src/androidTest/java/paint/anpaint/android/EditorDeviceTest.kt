@@ -1425,6 +1425,9 @@ class EditorDeviceTest {
 
     @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
     fun czechPickerFitUsesNativeAccessibleControlAndPreservesImageAcrossRotation() {
+        assertTrue("This test changes font scale only on a disposable emulator",
+            Build.FINGERPRINT.contains("generic") || Build.MODEL.contains("sdk",ignoreCase=true) ||
+                Build.MODEL.contains("Emulator"))
         chooseAppLanguage("cs")
         val expected=context.createConfigurationContext(android.content.res.Configuration().apply {
             setLocales(LocaleList.forLanguageTags("cs"))
@@ -1437,26 +1440,26 @@ class EditorDeviceTest {
         val pixels=IntArray(120*80) {index ->
             if(index%120 in 20..58 && index/120 in 30..42) Color.BLUE else Color.WHITE
         }
-        onMain {
-            originalOrientation=it.requestedOrientation
-            it.document.newImage(120,80)
-            it.document.bitmap.setPixels(pixels,0,120,0,0,120,80)
-            it.document.markSaved()
-        }
-        fun verifyProfile(landscape: Boolean) {
+        onMain {originalOrientation=it.requestedOrientation}
+        val originalFontScale=android.provider.Settings.System.getFloat(context.contentResolver,
+            android.provider.Settings.System.FONT_SCALE,1f)
+        val font=GalleryViewportDeviceTest()
+        fun verifyProfile(landscape: Boolean, scale: Float) {
             val orientation=if(landscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
                 else android.content.res.Configuration.ORIENTATION_PORTRAIT
             onMain {it.requestedOrientation=if(landscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
                 else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}
-            awaitState("installed Czech Fit profile landscape=$landscape") {
+            awaitState("installed Czech Fit profile landscape=$landscape fontScale=$scale") {
                 val config=it.resources.configuration
                 it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
                     config.orientation==orientation && config.locales[0].toLanguageTag()=="cs" &&
+                    kotlin.math.abs(config.fontScale-scale)<.001f &&
                     it.paintCanvas.width>0 && it.paintCanvas.height>0
             }
             instrumentation.waitForIdleSync()
             onMain {
                 val config=it.resources.configuration
+                assertEquals("Mounted editor uses the requested font scale",scale,config.fontScale,0.001f)
                 assertEquals("System-retained Czech locale","cs",
                     it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
                 android.util.Log.i("InstalledCzechFit","landscape=$landscape widthDp=${config.screenWidthDp} heightDp=${config.screenHeightDp} fontScale=${config.fontScale}")
@@ -1499,10 +1502,35 @@ class EditorDeviceTest {
                 assertFalse("Fit must not dirty the drawing",it.document.dirty)
             }
         }
+        var failure: Throwable?=null
         try {
-            verifyProfile(false)
-            verifyProfile(true)
-        } finally {onMain {it.requestedOrientation=originalOrientation}}
+            for(scale in listOf(1f,2f)) {
+                font.transitionFontScale(scale)
+                awaitState("Czech editor at font scale $scale") {
+                    it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
+                        kotlin.math.abs(it.resources.configuration.fontScale-scale)<.001f
+                }
+                onMain {
+                    it.document.newImage(120,80)
+                    it.document.bitmap.setPixels(pixels,0,120,0,0,120,80)
+                    it.document.markSaved()
+                }
+                verifyProfile(false,scale)
+                verifyProfile(true,scale)
+            }
+        } catch(error: Throwable) {
+            failure=error
+        } finally {
+            fun cleanup(block: ()->Unit) {
+                try {block()} catch(error: Throwable) {
+                    val primary=failure
+                    if(primary==null) failure=error else primary.addSuppressed(error)
+                }
+            }
+            cleanup {onMain {it.requestedOrientation=originalOrientation}}
+            cleanup {font.transitionFontScale(originalFontScale)}
+        }
+        failure?.let {throw it}
     }
 
 
