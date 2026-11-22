@@ -108,6 +108,7 @@ class PageCountWordingDeviceTest {
                     scenario.onActivity { it.onConfigurationChanged(Configuration(it.resources.configuration)) }
                 }
             }
+            if (Build.VERSION.SDK_INT == 35) exerciseCzechAssemblyPdfImport(launch)
         } finally {
             try {
                 // Settle platform callbacks with migration guarded, then restore each
@@ -125,6 +126,143 @@ class PageCountWordingDeviceTest {
                 worker.shutdownNow()
                 assertTrue(worker.awaitTermination(10, TimeUnit.SECONDS))
             }
+        }
+    }
+
+
+    // The locale is configured by the same harness as the English/French cases.
+    // This verifies Assembly's real Add Images route, not the system Files UI.
+    @androidx.annotation.RequiresApi(35)
+    private fun exerciseCzechAssemblyPdfImport(launch: Intent) {
+        languageFixture("cs")
+        val cs = context.createConfigurationContext(Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en = context.createConfigurationContext(Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        val directory = File(context.cacheDir, "images").apply { mkdirs() }
+        val file = File.createTempFile("czech-assembly-", ".pdf", directory)
+        val fixtureUri = androidx.core.content.FileProvider.getUriForFile(context,
+            "${context.packageName}.fileprovider", file)
+        val intercepted = java.util.concurrent.atomic.AtomicInteger()
+        val monitor = object : android.app.Instrumentation.ActivityMonitor() {
+            override fun onStartActivity(intent: Intent): android.app.Instrumentation.ActivityResult? {
+                if (intent.action != Intent.ACTION_OPEN_DOCUMENT ||
+                    !intent.hasCategory(Intent.CATEGORY_OPENABLE) ||
+                    !intent.getBooleanExtra(Intent.EXTRA_ALLOW_MULTIPLE, false)) return null
+                intercepted.incrementAndGet()
+                return android.app.Instrumentation.ActivityResult(android.app.Activity.RESULT_OK,
+                    Intent().setData(fixtureUri).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION))
+            }
+        }
+        val failure = AtomicReference<Throwable>()
+        val pdf = PdfDocument()
+        try {
+            try {
+                for ((index, size) in listOf(24 to 32, 40 to 28).withIndex()) {
+                    val page = pdf.startPage(PdfDocument.PageInfo.Builder(size.first, size.second, index + 1).create())
+                    pdf.finishPage(page)
+                }
+                file.outputStream().use { pdf.writeTo(it) }
+            } finally { pdf.close() }
+            assertEquals(2, PdfCodec.pageCount(file))
+            instrumentation.addMonitor(monitor)
+            ActivityScenario.launch<AssemblyActivity>(launch).use { scenario ->
+                var original = emptySet<String>()
+                var capturedOriginal = false
+                val device = androidx.test.uiautomator.UiDevice.getInstance(instrumentation)
+                fun chooserRoot(): View? =
+                    android.view.inspector.WindowInspector.getGlobalWindowViews().asReversed().firstOrNull {
+                        it.findViewWithTag<EditText>("import_page_number")?.isShown == true
+                    }
+                fun pressLabel(label: String) {
+                    val action = device.findObject(androidx.test.uiautomator.UiSelector().text(label).clickable(true))
+                    assertTrue("Visible action: $label", action.waitForExists(5_000L))
+                    assertTrue("Tapped action: $label", action.click())
+                }
+                fun openChooser() {
+                    pressLabel(cs.getString(org.catrobat.paintroid.R.string.ui_add_images))
+                    await("Assembly PDF chooser", failure) {
+                        var ready = false
+                        scenario.onActivity { ready = chooserRoot() != null }
+                        ready
+                    }
+                }
+                try {
+                    await("initial Czech assembly", failure) {
+                        var ready = false
+                        scenario.onActivity { ready = !it.busy && it.window.decorView.hasWindowFocus() }
+                        ready
+                    }
+                    scenario.onActivity {
+                        original = it.assembly.images.map { item -> item.id }.toSet()
+                        capturedOriginal = true
+                        assertEquals("cs", it.resources.configuration.locales[0].toLanguageTag())
+                        assertTrue("The fixture needs one free assembly slot", original.size < 20)
+                    }
+                    val range = cs.getString(org.catrobat.paintroid.R.string.formats22_page_range, 2)
+                    val open = cs.getString(org.catrobat.paintroid.R.string.formats22_open_page)
+                    assertNotEquals(en.getString(org.catrobat.paintroid.R.string.formats22_page_range, 2), range)
+                    assertNotEquals(en.getString(org.catrobat.paintroid.R.string.formats22_open_page), open)
+                    openChooser()
+                    scenario.onActivity {
+                        val root = requireNotNull(chooserRoot())
+                        val page = root.findViewWithTag<EditText>("import_page_number")
+                        page.setText("3") // Exercise the real input watcher, not an injected validation state.
+                        assertEquals(range, root.findViewWithTag<TextView>("import_page_status").text.toString())
+                        val openButton = root.findViewById<android.widget.Button>(android.R.id.button1)
+                        assertEquals(open, openButton.text.toString())
+                        assertFalse("An invalid page cannot be opened", openButton.isEnabled)
+                    }
+                    pressLabel(cs.getString(org.catrobat.paintroid.R.string.ui_cancel))
+                    await("cancelled import leaves Assembly idle", failure) {
+                        var ready = false
+                        scenario.onActivity { ready = !it.busy && chooserRoot() == null }
+                        ready
+                    }
+                    scenario.onActivity { assertEquals(original, it.assembly.images.map { item -> item.id }.toSet()) }
+                    openChooser()
+                    scenario.onActivity {
+                        requireNotNull(chooserRoot()).findViewWithTag<EditText>("import_page_number").setText("2")
+                    }
+                    val secondPage = cs.getString(org.catrobat.paintroid.R.string.formats22_page_dimensions, 2, 2, 80, 56)
+                    await("second PDF page decoded", failure) {
+                        var ready = false
+                        scenario.onActivity {
+                            ready = chooserRoot()?.findViewWithTag<TextView>("import_page_status")?.text?.toString() == secondPage
+                        }
+                        ready
+                    }
+                    pressLabel(open)
+                    await("selected PDF page committed to Assembly", failure) {
+                        var ready = false
+                        scenario.onActivity { ready = !it.busy && it.assembly.images.size == original.size + 1 }
+                        ready
+                    }
+                    scenario.onActivity { activity ->
+                        val inserted = activity.assembly.images.single { it.id !in original }
+                        assertEquals(file.name, inserted.name)
+                        assertEquals(1, inserted.pageIndex)
+                        assertEquals(80, inserted.dimensions.width)
+                        assertEquals(56, inserted.dimensions.height)
+                        assertNotNull(activity.window.decorView.findViewWithTag<View>("assembly_item_${inserted.id}"))
+                        val stored = ImageAssembly(activity.assembly.directory).images.single { it.id == inserted.id }
+                        assertEquals(inserted.pageIndex, stored.pageIndex)
+                        assertEquals(inserted.dimensions, stored.dimensions)
+                    }
+                    assertEquals("Both imports used Assembly's external picker contract", 2, intercepted.get())
+                    android.util.Log.i("CzechAssemblyPdfTest", "range, cancel and persisted second PDF page passed")
+                } finally {
+                    if (capturedOriginal) scenario.onActivity { activity ->
+                        activity.assembly.images.filter { it.id !in original && it.name == file.name }
+                            .forEach { activity.assembly.remove(it.id) }
+                    }
+                }
+            }
+        } finally {
+            instrumentation.removeMonitor(monitor)
+            file.delete()
         }
     }
 
