@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
+from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -38,7 +38,7 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'ordinary':21, 'dialog':15, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':20, 'dialog':15, 'gallery-draft':4, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
@@ -48,6 +48,9 @@ class AppPartitionTest(unittest.TestCase):
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             czech_fit = ('paint.anpaint.android.EditorDeviceTest',
                          'czechPickerFitUsesNativeAccessibleControlAndPreservesImageAcrossRotation')
+            viewport = (GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD)
+            self.assertIn(viewport, app_partition(expected, sdk)['gallery-draft' if sdk == 35 else 'ordinary'])
+            self.assertNotIn(viewport, app_partition(expected, sdk)['ordinary' if sdk == 35 else 'gallery-draft'])
             if sdk == 35:
                 self.assertIn(czech_fit, app_partition(expected, sdk)['ordinary'])
             else:
@@ -110,7 +113,8 @@ class AppPartitionTest(unittest.TestCase):
         future=('paint.anpaint.android.FutureTest','newCase')
         self.assertIn(future,app_partition(expected|{future},35)['ordinary'])
         with self.assertRaises(ValueError): verify_app_reports(expected|{future},35,reports,digest,suppressed)
-        for changed in (expected|{(POSITION,'newPositionCase')}, expected-{next(iter(POSITION_SHARDS['position-ainu-manchu']))}, expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(DIALOG,'newDialogCase')}, expected|{(COLOUR,'unknownColour')},
+        for changed in (expected|{(POSITION,'newPositionCase')}, expected-{next(iter(POSITION_SHARDS['position-ainu-manchu']))}, expected|{(GALLERY_DRAFT,'newGalleryCase')}, expected|{(GALLERY_VIEWPORT,'newViewportCase')},
+                        expected-{(GALLERY_VIEWPORT,GALLERY_VIEWPORT_METHOD)}, expected|{(DIALOG,'newDialogCase')}, expected|{(COLOUR,'unknownColour')},
                         expected-{(COLOUR,next(iter(COLOUR_METHODS)))},
                         expected-{(DIALOG,next(iter(DIALOG_METHODS)))},
                         expected-{(PAGE_COUNT,next(iter(PAGE_COUNT_METHODS)))},
@@ -248,6 +252,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     if ordinary:
                         self.assertIn('--timeout-seconds 180',ordinary[0])
                         self.assertEqual('--exclude-class '+PAGE_COUNT in ordinary[0],sdk==35)
+                        self.assertEqual('--exclude-class '+GALLERY_VIEWPORT in ordinary[0],sdk==35)
                         for owner in (POSITION,GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
                             self.assertIn('--exclude-class '+owner,ordinary[0])
                     if sdk<35:
@@ -329,12 +334,14 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
 
 class SelectedInvocationTest(unittest.TestCase):
     def test_gallery_wrapper_runs_one_exact_selection_without_retries(self):
-        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS}, 'gallery_draft', 'app-gallery-draft', 90)
+        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS}, 'gallery_draft', 'app-gallery-draft', 90, sdk=30)
+        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS,GALLERY_VIEWPORT:{GALLERY_VIEWPORT_METHOD}},
+                           'gallery_draft', 'app-gallery-draft', 90, sdk=35)
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
         self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,PAGE_COUNT:PAGE_COUNT_METHODS}, 'dialog', 'app-dialog', 300)
 
-    def check_wrapper(self, classes, function, suite, deadline):
+    def check_wrapper(self, classes, function, suite, deadline, sdk=35):
         for fault in ('', 'missing', 'extra', 'skipped', 'truncated'):
             with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
                 root=Path(directory)
@@ -355,7 +362,7 @@ import json, os, sys
 from pathlib import Path
 args=sys.argv[1:];root=Path(os.environ['TEST_ROOT'])
 with (root/'commands.jsonl').open('a') as out:out.write(json.dumps(args)+'\\n')
-if args==['shell','getprop','ro.build.version.sdk']: print('35')
+if args==['shell','getprop','ro.build.version.sdk']: print(os.environ['TEST_API'])
 elif args[0]=='install': print('Success')
 elif args==['shell','pm','list','instrumentation']:
     print('instrumentation:paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner (target=paint.anpaint.android)')
@@ -377,7 +384,7 @@ else:raise SystemExit('Unexpected adb command: '+repr(args))
                 run=subprocess.run(['bash','-c',
                     'source "$CI_SCRIPT"; report="$TEST_ROOT/report"; adb="$TEST_ROOT/adb"; variant=debug; run_'+function+'_regression'],
                     cwd=root,env={**os.environ,'CI_SCRIPT':str(ROOT/'tools/ci_emulator.sh'),
-                                  'TEST_ROOT':str(root),'TEST_FAULT':fault},text=True,capture_output=True,timeout=15)
+                                  'TEST_ROOT':str(root),'TEST_FAULT':fault,'TEST_API':str(sdk)},text=True,capture_output=True,timeout=15)
                 report=json.loads((root/'report'/suite/'androidTest-results/summary.json').read_text())
                 commands=[json.loads(line) for line in (root/'commands.jsonl').read_text().splitlines()]
                 instrumentation=[args for args in commands if args[:3]==['shell','am','instrument']]

@@ -188,6 +188,12 @@ run_vertical_locale_matrix() {
 # existing 180s ordinary-app ceiling; CI.md models the enclosing budget.
 run_gallery_draft_regression() {
   local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
+  local -a viewport=()
+  # On API 35 the ordinary phase repeatedly ran out of time before the
+  # viewport test finished. Keep the identical test in the bounded gallery invocation.
+  if test "$TEST_API" = 35; then
+    viewport+=(--include-test "paint.anpaint.android.GalleryViewportDeviceTest#realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation")
+  fi
   phase='Gallery-draft instrumentation (90s maximum)'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
@@ -197,7 +203,7 @@ run_gallery_draft_regression() {
     --suite app-gallery-draft --timeout-seconds 90 \
     --include-test "$gallery_class#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits" \
     --include-test "$gallery_class#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor" \
-    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft" "${viewport[@]}"
 }
 
 # Explicit API35 dialog workload; ordinary retains its original 180s cap.
@@ -434,7 +440,8 @@ main() {
     # keeps it in ordinary; no source test, deadline or process proof is removed.
     local -a ordinary_extra=()
     if test "$TEST_API" = 35; then
-      ordinary_extra+=(--exclude-class paint.anpaint.android.PageCountWordingDeviceTest)
+      ordinary_extra+=(--exclude-class paint.anpaint.android.PageCountWordingDeviceTest
+        --exclude-class paint.anpaint.android.GalleryViewportDeviceTest)
     fi
     phase='Editor instrumentation'
     progress "$phase"
