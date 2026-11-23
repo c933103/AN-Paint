@@ -236,7 +236,8 @@ run_dialog_regression() {
     --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
     --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle" \
     --include-test "$page_class#oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench" \
-    --include-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+    --include-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker" \
+    --include-test "paint.anpaint.android.CzechSaveAsViewportDeviceTest#czechSaveAsRetainsDraftAtDoubleTextAcrossRotation"
 }
 
 cleanup() {
@@ -459,6 +460,7 @@ main() {
       --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
       --exclude-class paint.anpaint.android.GalleryDraftDeviceTest \
       --exclude-class paint.anpaint.android.LocalizedDialogDeviceTest \
+    --exclude-class paint.anpaint.android.CzechSaveAsViewportDeviceTest \
       --exclude-class paint.anpaint.android.AssemblyPositionDeviceTest \
       --exclude-class paint.anpaint.android.ColourViewportDeviceTest || editor_failed=1
   else

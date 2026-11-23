@@ -186,18 +186,38 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             form.layoutDirection=if(VerticalText.uiDirection(activity)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR
             form
         } else ScrollView(activity).apply {addView(body)}
-        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))
+        val title=if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title)
+        dialog=EditorDialogBuilder(activity).setTitle(title)
             .setView(content)
             .setPositiveButton(ui(R.string.ui_choose_location),null)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()
         dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            val positive=dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positive.setOnClickListener {
                 val name=filename.text.toString()
                 if(!ExportNames.valid(name,format)) filename.error=ui(R.string.save20_invalid_name)
                 else {
                     confirm(SaveRequest(ExportOptions(format,quality,format.supportsLossless && lossless,ditherBox.isChecked,tiffCompressionBox.isChecked,icoSize,asciiColumns,asciiInvert.isChecked),ExportNames.withExtension(name,format)))
                     dialog.dismiss()
                 }
+            }
+            if(!VerticalText.uiVertical(activity) && activity.resources.configuration.fontScale>=1.5f) {
+                // Keep the actual alert buttons and their validation/cancel listeners.
+                // The scrollable form must not crowd the native footer off-screen.
+                val actions=ResponsiveDialogActions(activity).apply {
+                    action(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
+                    action(positive)
+                }
+                val titleView=TextView(activity).apply {
+                    text=title;textSize=20f;setTextColor(EditorColours.onSurface)
+                    fun dp(n: Int)=(resources.displayMetrics.density*n+.5f).toInt()
+                    setPadding(dp(24),dp(16),dp(24),dp(12))
+                }
+                dialog.setContentView(ResponsiveDialogLayout(activity).apply {
+                    region(titleView,.23f,"save_options_heading")
+                    body(VerticalUi.detach(content))
+                    region(actions,.56f,"save_options_actions")
+                })
             }
         }
         dialog.show();return dialog

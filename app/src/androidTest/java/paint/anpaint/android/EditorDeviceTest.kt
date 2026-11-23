@@ -283,6 +283,12 @@ class EditorDeviceTest {
         if (Build.VERSION.SDK_INT == 35) {
             chooseAppLanguage("cs")
             assertEquals("cs", context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+            // The picker callback can complete before the replacement editor has
+            // initialized its document.
+            awaitState("Czech editor ready after locale picker") {
+                it.startupReady && !it.busy && it.resources.configuration.locales[0].toLanguageTag()=="cs" &&
+                    it.window.decorView.hasWindowFocus()
+            }
             exerciseSaveAndSharePng(czech = true)
             exerciseCzechCancelledSaveAsKeepsSavedTarget()
         }
