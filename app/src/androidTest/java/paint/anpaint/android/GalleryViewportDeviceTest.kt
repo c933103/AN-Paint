@@ -226,6 +226,7 @@ class GalleryViewportDeviceTest {
         val requestProblem = AtomicReference<String>()
         val disconnects = java.util.concurrent.atomic.AtomicInteger()
         val fixtureReads = java.util.concurrent.atomic.AtomicInteger()
+        val copyNavigations = java.util.concurrent.atomic.AtomicInteger()
         val attemptedRead = java.util.concurrent.atomic.AtomicBoolean()
         val connection: (java.net.URL) -> java.net.HttpURLConnection = { url ->
             val uri = android.net.Uri.parse(url.toExternalForm())
@@ -303,11 +304,17 @@ class GalleryViewportDeviceTest {
                         }
 
                         override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest):
-                            Boolean = productionClient.shouldOverrideUrlLoading(view, request)
+                            Boolean {
+                            if (request.url.scheme == "anpaint-gallery-credit") copyNavigations.incrementAndGet()
+                            return productionClient.shouldOverrideUrlLoading(view, request)
+                        }
 
                         @Suppress("DEPRECATION")
                         override fun shouldOverrideUrlLoading(view: WebView, url: String):
-                            Boolean = productionClient.shouldOverrideUrlLoading(view, url)
+                            Boolean {
+                            if (android.net.Uri.parse(url).scheme == "anpaint-gallery-credit") copyNavigations.incrementAndGet()
+                            return productionClient.shouldOverrideUrlLoading(view, url)
+                        }
 
                         override fun onReceivedError(view: WebView, request: android.webkit.WebResourceRequest,
                             error: android.webkit.WebResourceError) {
@@ -365,13 +372,28 @@ class GalleryViewportDeviceTest {
                                     // Its union box may have a center outside all clickable fragments.
                                     result.label = link.textContent;
                                     result.href = link.getAttribute('href');
-                                    result.height = innerHeight;
+                                    const viewport = window.visualViewport;
+                                    const vx = viewport ? viewport.offsetLeft : 0;
+                                    const vy = viewport ? viewport.offsetTop : 0;
+                                    const vw = viewport ? viewport.width : innerWidth;
+                                    const vh = viewport ? viewport.height : innerHeight;
+                                    result.visual = [vx, vy, vw, vh];
+                                    if (!window.__anPaintTestTouch) {
+                                      window.__anPaintTestTouch = {};
+                                      for (const type of ['pointerdown', 'click']) {
+                                        document.addEventListener(type, function(event) {
+                                          const target = event.target;
+                                          window.__anPaintTestTouch[type] = [event.clientX, event.clientY,
+                                            target && target.tagName, !!(target && link.contains(target))];
+                                        }, true);
+                                      }
+                                    }
                                     const fragments = Array.from(link.getClientRects());
                                     result.fragments = fragments.map(r => [r.left, r.top, r.width, r.height]);
                                     result.hit = false;
                                     for (const rect of fragments) {
-                                      const left = Math.max(0, rect.left), right = Math.min(innerWidth, rect.right);
-                                      const top = Math.max(0, rect.top), bottom = Math.min(innerHeight, rect.bottom);
+                                      const left = Math.max(vx, rect.left), right = Math.min(vx + vw, rect.right);
+                                      const top = Math.max(vy, rect.top), bottom = Math.min(vy + vh, rect.bottom);
                                       if (right <= left || bottom <= top) continue;
                                       const x = (left + right) / 2, y = (top + bottom) / 2;
                                       const target = document.elementFromPoint(x, y);
@@ -412,9 +434,10 @@ class GalleryViewportDeviceTest {
                 val css = requireNotNull(copyTarget)
                 val copy = onMain {
                     val location = IntArray(2).also { web.getLocationOnScreen(it) }
-                    val scale = web.width / css.getDouble("width")
-                    val x = location[0] + (css.getDouble("x") * scale).toInt()
-                    val y = location[1] + (css.getDouble("y") * scale).toInt()
+                    val viewport = css.getJSONArray("visual")
+                    val scale = web.width / viewport.getDouble(2)
+                    val x = location[0] + ((css.getDouble("x") - viewport.getDouble(0)) * scale).toInt()
+                    val y = location[1] + ((css.getDouble("y") - viewport.getDouble(1)) * scale).toInt()
                     val visible = Rect()
                     assertTrue(web.getGlobalVisibleRect(visible) && visible.contains(x, y))
                     if (fontScale == 2f) {
@@ -424,7 +447,22 @@ class GalleryViewportDeviceTest {
                     intArrayOf(x, y)
                 }
                 assertTrue(device.click(copy[0], copy[1]))
-                verify(R.string.commons_credit_copy_failed_reason, 1)
+                try {
+                    verify(R.string.commons_credit_copy_failed_reason, 1)
+                } catch (error: AssertionError) {
+                    val touch = AtomicReference<String>()
+                    val done = CountDownLatch(1)
+                    val state = onMain {
+                        web.evaluateJavascript("JSON.stringify(window.__anPaintTestTouch)") {
+                            touch.set(it); done.countDown()
+                        }
+                        "shown=${status.isShown}, text=${status.text}, layout=${status.layout?.text}, " +
+                            "layoutPending=${status.isLayoutRequested}, busy=${downloading.getBoolean(gallery)}"
+                    }
+                    done.await(500, TimeUnit.MILLISECONDS)
+                    throw AssertionError("Copy at ${copy.contentToString()}, CSS=$css, browser=${touch.get()}, " +
+                        "navigations=${copyNavigations.get()}, HTTP requests=${count.get()}, $state", error)
+                }
                 val insert = onMain {
                     gallery.window.decorView.findViewWithTag<TextView>("gallery_use_selected").also {
                         assertEquals(gallery.getString(R.string.gallery_use_image), it.text.toString())
