@@ -458,7 +458,7 @@ class GalleryViewportDeviceTest {
             }
         }
         for ((line, box) in lines.withIndex()) {
-            onMain { status.requestRectangleOnScreen(box, true) }
+            onMain { status.requestRectangleOnScreen(Rect(box), true) }
             await("Czech Commons status line $line reachable at doubled text") { onMain {
                 val visible = Rect()
                 status.getLocalVisibleRect(visible) && visible.contains(box)
