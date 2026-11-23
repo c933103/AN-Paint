@@ -473,6 +473,99 @@ class EditorDeviceTest {
         onMain {assertNull(it.lastIoError);assertEquals(100,it.document.bitmap.width)}
     }
 
+    @SdkSuppress(minSdkVersion = 35, maxSdkVersion = 35)
+    @Test fun czechAsciiExportAppliesInstalledColumnsAndInversionWithoutSavingTheDrawing() {
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        chooseAppLanguage("cs")
+        onMain {editor ->
+            assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+            for(y in 0 until 100) for(x in 0 until 100)
+                editor.document.bitmap.setPixel(x,y,if(x<50) Color.BLACK else Color.WHITE)
+            editor.document.edited()
+            assertTrue(editor.document.dirty)
+        }
+        val formatLabel=cs.getString(R.string.formats22_ascii_label)
+        val columnsLabel=cs.getString(R.string.formats22_ascii_columns)
+        val invertLabel=cs.getString(R.string.formats22_ascii_invert)
+        assertNotEquals(en.getString(R.string.formats22_ascii_columns),columnsLabel)
+        assertNotEquals(en.getString(R.string.formats22_ascii_invert),invertLabel)
+        for(invert in listOf(false,true)) {
+            menu("File",cs.getString(R.string.ui_export_as23))
+            assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+            tapFormatChoice(formatLabel)
+            awaitState("visible Czech ASCII controls") {
+                creditDialogRoot()?.findViewWithTag<View>("export_ascii_invert")?.isShown == true
+            }
+            onMain {
+                val root=requireNotNull(creditDialogRoot())
+                val spinner=root.findViewWithTag<android.widget.Spinner>("export_format")
+                assertEquals(formatLabel,spinner.selectedItem.toString())
+                val toggle=root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert")
+                assertEquals(invertLabel,toggle.text.toString())
+                assertFalse("Inversion stays off until explicitly toggled",toggle.isChecked)
+                val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                val slider=columns.slider
+                assertTrue("Czech width slider is mounted and enabled",slider.isShown && slider.isEnabled)
+                assertEquals(columnsLabel,slider.contentDescription.toString())
+                val initialWidth=slider.progress+columns.minimum
+                assertEquals(if(invert) "Reopen at the persisted width" else "Start at the default width",
+                    if(invert) 64 else 100,initialWidth)
+                assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,initialWidth),
+                    columns.number.text.toString())
+                if(!invert) {
+                    // Android returns false on a no-op Set Progress. Only the
+                    // first pass changes width; the second verifies persistence.
+                    val accessibility=android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS
+                    assertTrue(slider.performAccessibilityAction(accessibility.id,android.os.Bundle().apply {
+                        putFloat(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,
+                            (64-columns.minimum).toFloat())
+                    }))
+                }
+                assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,64),columns.number.text.toString())
+            }
+            if(invert) tapCreditDialogControl("export_ascii_invert")
+            onMain {
+                val root=requireNotNull(creditDialogRoot())
+                val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                assertEquals(64,columns.slider.progress+columns.minimum)
+                assertEquals(invert,root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert").isChecked)
+            }
+            val destination=fixture("device-cs-ascii-$invert.txt")
+            val before=monitor.requests.size
+            monitor.nextResult.set(resultFor(destination))
+            val exportBounds=Rect()
+            onMain {
+                val export=requireNotNull(creditDialogRoot()).findViewById<android.widget.Button>(android.R.id.button1)
+                assertTrue("Export action is enabled and reachable",export.isEnabled && export.getGlobalVisibleRect(exportBounds))
+                offsetToScreen(export,exportBounds)
+            }
+            assertTrue("Export action tap injected",device.click(exportBounds.centerX(),exportBounds.centerY()))
+            awaitState("completed Czech ASCII export") {!it.busy && destination.length()>0}
+            val request=monitor.requests.drop(before).single {it.action==Intent.ACTION_CREATE_DOCUMENT}
+            assertEquals("text/plain",request.type)
+            assertTrue(request.hasCategory(Intent.CATEGORY_OPENABLE))
+            assertTrue(request.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(".txt"))
+            val rows=destination.readLines(Charsets.US_ASCII)
+            assertEquals(32,rows.size)
+            assertTrue(rows.all {it.length==64})
+            for(row in rows) {
+                assertEquals(if(invert) ' ' else '@',row[5])
+                assertEquals(if(invert) '@' else ' ',row[58])
+            }
+            onMain {
+                assertTrue("Derived export does not mark the drawing saved",it.document.dirty)
+                assertEquals(Color.BLACK,it.document.bitmap.getPixel(5,7))
+                assertEquals(Color.WHITE,it.document.bitmap.getPixel(95,7))
+                assertNull(it.lastIoError)
+            }
+        }
+    }
+
     @Test fun watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer() {
         click("tool_BRUSH");click("brush_size_value")
         setNumber("101");positive()
