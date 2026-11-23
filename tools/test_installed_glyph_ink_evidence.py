@@ -131,6 +131,8 @@ class InstalledGlyphTransportTests(unittest.TestCase):
         raw, summary = capture()
         receipt, records = ink.verify_capture(raw, SOURCE, summary)
         self.assertTrue(receipt['success'])
+        self.assertIn('gallery-draft producer partition', receipt['runner_inventory_scope'])
+        self.assertEqual(4, receipt['runner_completed_tests'])
         self.assertEqual(ink.sha256(raw), receipt['raw_output_sha256'])
         self.assertEqual(set(ink.ROUTES), set(records))
         for record in records.values():
@@ -384,7 +386,7 @@ class InstalledGlyphTransportTests(unittest.TestCase):
         summary = parse_protocol(raw.decode(), {ink.PRODUCER_TEST})
         self.assertTrue(summary['success'])
         summary.update(source_tests_sha256=SOURCE, device_sdk=35)
-        with self.assertRaisesRegex(ink.EvidenceError, 'source-derived ordinary-app partition'):
+        with self.assertRaisesRegex(ink.EvidenceError, 'source-derived gallery-draft producer partition'):
             ink.verify_capture(raw, SOURCE, summary)
 
     def test_changed_local_source_digest_rejects_otherwise_consistent_capture(self):

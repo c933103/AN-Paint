@@ -420,14 +420,23 @@ def verify_record(record: dict, route: str, expected_source_sha256: str) -> Veri
     return VerifiedRecord(record, actual_raw, reference_raw, observed)
 
 
-def source_expected_inventory(expected_source_sha256: str, source_tests: Path = DEFAULT_SOURCE_TESTS) -> set[tuple[str, str]]:
-    """Derive the exact ordinary-app phase from the same SDK-aware source inventory."""
+def source_producer_partition(expected_source_sha256: str, source_tests: Path = DEFAULT_SOURCE_TESTS
+                              ) -> tuple[str, set[tuple[str, str]]]:
+    """Find the one complete API35 phase that owns the exact glyph producer."""
+    require(source_tests_sha256(source_tests) == expected_source_sha256,
+            'checked-out app test source does not match expected source digest')
     try:
-        require(source_tests_sha256(source_tests) == expected_source_sha256,
-                'checked-out app test source does not match expected source digest')
-        return app_partition(declared_tests(source_tests, sdk_level=35), 35)['ordinary']
+        partitions = app_partition(declared_tests(source_tests, sdk_level=35), 35)
     except ValueError as exc:
-        raise EvidenceError(f'cannot establish exact ordinary-app source inventory: {exc}') from exc
+        raise EvidenceError(f'cannot establish exact glyph producer source inventory: {exc}') from exc
+    matches = [(phase, identities) for phase, identities in partitions.items() if PRODUCER_TEST in identities]
+    require(len(matches) == 1, 'exactly one source-derived phase must own the glyph producer test')
+    return matches[0]
+
+
+def source_expected_inventory(expected_source_sha256: str, source_tests: Path = DEFAULT_SOURCE_TESTS
+                              ) -> set[tuple[str, str]]:
+    return source_producer_partition(expected_source_sha256, source_tests)[1]
 
 
 def verify_runner(raw: bytes, summary: dict, expected_source_sha256: str,
@@ -452,8 +461,8 @@ def verify_runner(raw: bytes, summary: dict, expected_source_sha256: str,
         require(identity not in reported, 'duplicate runner case')
         reported.add(identity)
     require(PRODUCER_TEST in reported, 'producer test is absent from successful runner cases')
-    expected = source_expected_inventory(expected_source_sha256, source_tests)
-    require(reported == expected, 'runner cases differ from exact source-derived ordinary-app partition')
+    phase, expected = source_producer_partition(expected_source_sha256, source_tests)
+    require(reported == expected, f'runner cases differ from exact source-derived {phase} producer partition')
     for field in ('expected_tests', 'completed_tests'):
         require(type(summary.get(field)) is int and summary[field] == len(expected), 'runner inventory count mismatch')
     try:
@@ -464,7 +473,7 @@ def verify_runner(raw: bytes, summary: dict, expected_source_sha256: str,
     require(parsed['success'] is True, 'raw instrumentation did not pass')
     for field, value in parsed.items():
         require(summary.get(field) == value, f'runner summary/raw protocol disagree: {field}')
-    return parsed
+    return {**parsed, 'producer_phase': phase}
 
 
 def verify_capture(raw: bytes, expected_source_sha256: str, runner_summary: dict,
@@ -480,7 +489,8 @@ def verify_capture(raw: bytes, expected_source_sha256: str, runner_summary: dict
     receipt = {'schema': 1, 'success': True, 'raw_output_sha256': sha256(raw),
                'source_tests_sha256': expected_source_sha256, 'device_sdk': 35,
                'producer_test': list(PRODUCER_TEST), 'runner_completed_tests': protocol['completed_tests'],
-               'runner_inventory_scope': 'Exact API35 source-derived ordinary-app partition only; combined matrix remains separate',
+               'runner_inventory_scope': (f"Exact API35 source-derived {protocol['producer_phase']} producer partition only; "
+                                          'combined matrix remains separate'),
                'evidence_kind': EVIDENCE_KIND,
                'scope': 'Full native software rasters; exact alpha>0 containment and whole-view raw ARGB. '
                         'Complete Layout/text comes from reviewed source-bound producer assertions; '
@@ -498,7 +508,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--expected-source-sha256', required=True)
     parser.add_argument('--runner-summary', type=Path, required=True)
     parser.add_argument('--source-tests', type=Path, default=DEFAULT_SOURCE_TESTS,
-                        help='Exact checkout app/src/androidTest used to derive ordinary-app inventory')
+                        help='Exact checkout app/src/androidTest used to derive the glyph producer inventory')
     parser.add_argument('--output-dir', type=Path, required=True)
     parser.add_argument('--receipt', type=Path, help='Default: OUTPUT_DIR/receipt.json')
     args = parser.parse_args(argv)
