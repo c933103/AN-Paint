@@ -529,12 +529,19 @@ class EditorDeviceTest {
                 }
                 assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,64),columns.number.text.toString())
             }
-            if(invert) tapCreditDialogControl("export_ascii_invert")
             onMain {
                 val root=requireNotNull(creditDialogRoot())
                 val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                val toggle=root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert")
                 assertEquals(64,columns.slider.progress+columns.minimum)
-                assertEquals(invert,root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert").isChecked)
+                if(invert) {
+                    // Exercise the installed checkbox's accessibility action, not a
+                    // screen coordinate that can be obscured by the input method.
+                    assertTrue("Invert checkbox is mounted and enabled",toggle.isShown && toggle.isEnabled)
+                    val click=android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK
+                    assertTrue("Invert checkbox handles accessibility Click",toggle.performAccessibilityAction(click.id,null))
+                }
+                assertEquals("Invert checkbox reflects the requested export option",invert,toggle.isChecked)
             }
             val destination=fixture("device-cs-ascii-$invert.txt")
             val before=monitor.requests.size
