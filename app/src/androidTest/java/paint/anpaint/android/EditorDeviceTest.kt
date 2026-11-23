@@ -279,17 +279,79 @@ class EditorDeviceTest {
     }
 
     @Test fun saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser() {
-        onMain {it.document.bitmap.setPixel(5,7,Color.BLUE)}
-        val destination=fixture("device-share.png")
+        exerciseSaveAndSharePng()
+        if (Build.VERSION.SDK_INT == 35) {
+            chooseAppLanguage("cs")
+            assertEquals("cs", context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+            exerciseSaveAndSharePng(czech = true)
+        }
+    }
+
+    private fun exerciseSaveAndSharePng(czech: Boolean = false) {
+        val initialRequests=monitor.requests.size
+        val cs = context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en = context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        fun optionsRoot(): View? = WindowInspector.getGlobalWindowViews().asReversed().firstOrNull {
+            it.findViewWithTag<View>("export_filename")?.isShown == true
+        }
+        fun openOptions() {
+            menu("File",if (czech) cs.getString(R.string.ui_save_and_share) else text(R.string.ui_save_and_share))
+            if (czech) {
+                awaitState("Czech Save and Share options") {optionsRoot() != null}
+                onMain { editor ->
+                    assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+                    val root=requireNotNull(optionsRoot())
+                    val filename=root.findViewWithTag<View>("export_filename")
+                    val format=root.findViewWithTag<View>("export_format")
+                    for ((view,id) in listOf(filename to R.string.save20_file_name,format to R.string.save20_file_format)) {
+                        assertTrue(view.isShown)
+                        assertEquals(cs.getString(id),view.contentDescription.toString())
+                        assertNotEquals(en.getString(id),view.contentDescription.toString())
+                    }
+                    val location=root.findViewById<android.widget.Button>(android.R.id.button1)
+                    assertTrue(location.isShown)
+                    assertEquals(cs.getString(R.string.ui_choose_location),location.text.toString())
+                    assertNotEquals(en.getString(R.string.ui_choose_location),location.text.toString())
+                }
+            }
+        }
+        onMain {it.document.bitmap.setPixel(5,7,Color.BLUE);if(czech) it.document.edited()}
+        if (czech) {
+            openOptions()
+            val cancel=device.findObject(UiSelector().resourceId("android:id/button2"))
+            assertTrue(cancel.waitForExists(5000))
+            onMain {
+                val button=requireNotNull(optionsRoot()).findViewById<android.widget.Button>(android.R.id.button2)
+                assertEquals(cs.getString(R.string.ui_cancel),button.text.toString())
+            }
+            val bounds=cancel.visibleBounds
+            assertFalse(bounds.isEmpty)
+            assertTrue(device.click(bounds.centerX(),bounds.centerY()))
+            awaitState("cancelled options return to the dirty canvas") {
+                !it.busy && optionsRoot()==null && it.window.decorView.hasWindowFocus() && it.document.dirty
+            }
+            assertEquals("Cancel must not request a picker or share recipient",initialRequests,monitor.requests.size)
+            onMain {assertEquals(Color.BLUE,it.document.bitmap.getPixel(5,7))}
+        }
+        val destination=fixture(if (czech) "device-share-cs.png" else "device-share.png")
         monitor.nextResult.set(resultFor(destination))
-        menu("File",text(R.string.ui_save_and_share))
+        openOptions()
         clickText("PNG") // Open the format spinner, then explicitly choose PNG.
         clickText("PNG")
         positive()
-        awaitState("saved image and share request") {!it.busy && monitor.requests.any {request -> request.action==Intent.ACTION_CHOOSER}}
-        val create=monitor.requests.single {it.action==Intent.ACTION_CREATE_DOCUMENT}
+        awaitState("saved image and share request") {!it.busy && monitor.requests.drop(initialRequests).any {request -> request.action==Intent.ACTION_CHOOSER}}
+        val create=monitor.requests.drop(initialRequests).single {it.action==Intent.ACTION_CREATE_DOCUMENT}
         assertEquals("image/png",create.type)
-        val chooser=monitor.requests.single {it.action==Intent.ACTION_CHOOSER}
+        val chooser=monitor.requests.drop(initialRequests).single {it.action==Intent.ACTION_CHOOSER}
+        if (czech) {
+            val title=chooser.getCharSequenceExtra(Intent.EXTRA_TITLE).toString()
+            assertEquals(cs.getString(R.string.ui_share_saved_image),title)
+            assertNotEquals(en.getString(R.string.ui_share_saved_image),title)
+        }
         val send=chooser.getParcelableExtra<Intent>(Intent.EXTRA_INTENT)!!
         assertEquals(Intent.ACTION_SEND,send.action);assertEquals("image/png",send.type)
         assertTrue(send.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION!=0)
@@ -305,7 +367,11 @@ class EditorDeviceTest {
                 assertEquals(Color.BLUE,output.getPixel(5,7));assertEquals(255,Color.alpha(output.getPixel(0,0)))
             } finally {output?.recycle()}
         }
-        onMain {assertFalse(it.document.dirty);assertNull(it.lastIoError)}
+        onMain {
+            // Save and Share exports a copy; it does not mark the editable document saved.
+            assertEquals("Copy export preserves the initial dirty state",czech,it.document.dirty)
+            assertNull(it.lastIoError)
+        }
     }
 
     @Test fun jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker() {
