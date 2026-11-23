@@ -507,20 +507,25 @@ class EditorDeviceTest {
                 assertEquals(formatLabel,spinner.selectedItem.toString())
                 val toggle=root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert")
                 assertEquals(invertLabel,toggle.text.toString())
-                if(!invert) assertFalse(toggle.isChecked)
+                assertFalse("Inversion stays off until explicitly toggled",toggle.isChecked)
                 val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
                 val slider=columns.slider
                 assertTrue("Czech width slider is mounted and enabled",slider.isShown && slider.isEnabled)
                 assertEquals(columnsLabel,slider.contentDescription.toString())
-                assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,slider.progress+columns.minimum),
+                val initialWidth=slider.progress+columns.minimum
+                assertEquals(if(invert) "Reopen at the persisted width" else "Start at the default width",
+                    if(invert) 64 else 100,initialWidth)
+                assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,initialWidth),
                     columns.number.text.toString())
-                // Change the installed control through its native accessibility action,
-                // rather than racing a second dialog or assigning SeekBar.progress directly.
-                val accessibility=android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS
-                assertTrue(slider.performAccessibilityAction(accessibility.id,android.os.Bundle().apply {
-                    putFloat(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,
-                        (64-columns.minimum).toFloat())
-                }))
+                if(!invert) {
+                    // Android returns false on a no-op Set Progress. Only the
+                    // first pass changes width; the second verifies persistence.
+                    val accessibility=android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS
+                    assertTrue(slider.performAccessibilityAction(accessibility.id,android.os.Bundle().apply {
+                        putFloat(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,
+                            (64-columns.minimum).toFloat())
+                    }))
+                }
                 assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,64),columns.number.text.toString())
             }
             if(invert) tapCreditDialogControl("export_ascii_invert")
