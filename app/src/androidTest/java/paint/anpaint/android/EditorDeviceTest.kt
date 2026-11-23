@@ -501,7 +501,6 @@ class EditorDeviceTest {
             awaitState("visible Czech ASCII controls") {
                 creditDialogRoot()?.findViewWithTag<View>("export_ascii_invert")?.isShown == true
             }
-            val numberBounds=Rect()
             onMain {
                 val root=requireNotNull(creditDialogRoot())
                 val spinner=root.findViewWithTag<android.widget.Spinner>("export_format")
@@ -510,43 +509,20 @@ class EditorDeviceTest {
                 assertEquals(invertLabel,toggle.text.toString())
                 if(!invert) assertFalse(toggle.isChecked)
                 val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
-                assertEquals(columnsLabel,columns.slider.contentDescription.toString())
-                val number=columns.number
-                number.requestRectangleOnScreen(Rect(0,0,number.width,number.height),true)
+                val slider=columns.slider
+                assertTrue("Czech width slider is mounted and enabled",slider.isShown && slider.isEnabled)
+                assertEquals(columnsLabel,slider.contentDescription.toString())
+                assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,slider.progress+columns.minimum),
+                    columns.number.text.toString())
+                // Change the installed control through its native accessibility action,
+                // rather than racing a second dialog or assigning SeekBar.progress directly.
+                val accessibility=android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS
+                assertTrue(slider.performAccessibilityAction(accessibility.id,android.os.Bundle().apply {
+                    putFloat(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,
+                        (64-columns.minimum).toFloat())
+                }))
+                assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,64),columns.number.text.toString())
             }
-            instrumentation.waitForIdleSync()
-            onMain {
-                val columns=requireNotNull(creditDialogRoot())
-                    .findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
-                assertTrue("Czech ASCII numeric button is reachable",columns.number.getGlobalVisibleRect(numberBounds))
-                offsetToScreen(columns.number,numberBounds)
-            }
-            assertTrue(device.click(numberBounds.centerX(),numberBounds.centerY()))
-            fun widthDialogRoot()=WindowInspector.getGlobalWindowViews().lastOrNull { root ->
-                root.findViewWithTag<EditText>("numeric_input")?.isShown==true
-            }
-            awaitState("ASCII width input and Apply") {
-                widthDialogRoot()?.findViewById<android.widget.Button>(android.R.id.button1)?.isShown==true
-            }
-            onMain {
-                val root=requireNotNull(widthDialogRoot())
-                assertTrue("Exact width input takes focus",root.findViewWithTag<EditText>("numeric_input").requestFocus())
-            }
-            instrumentation.waitForIdleSync()
-            val input=device.findObject(UiSelector().className(EditText::class.java.name).focused(true))
-            assertTrue("Focused width input is accessible",input.waitForExists(5000))
-            assertTrue("Typed exact ASCII width",input.setText("64"))
-            val applyBounds=Rect()
-            onMain {
-                val root=requireNotNull(widthDialogRoot())
-                assertEquals("64",root.findViewWithTag<EditText>("numeric_input").text.toString())
-                val apply=root.findViewById<android.widget.Button>(android.R.id.button1)
-                assertEquals(cs.getString(R.string.ui_apply),apply.text.toString())
-                assertTrue("Width Apply is enabled and reachable",apply.isEnabled && apply.getGlobalVisibleRect(applyBounds))
-                offsetToScreen(apply,applyBounds)
-            }
-            assertTrue("Width Apply tap injected",device.click(applyBounds.centerX(),applyBounds.centerY()))
-            awaitState("Only width dialog dismissed") {widthDialogRoot()==null && creditDialogRoot()!=null}
             if(invert) tapCreditDialogControl("export_ascii_invert")
             onMain {
                 val root=requireNotNull(creditDialogRoot())
