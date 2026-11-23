@@ -17,7 +17,7 @@ from test_vertical_control_reachability import fixture as reachability_fixture
 from vertical_locale_matrix import (VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, EXPECTED_SCREENSHOTS,
                                    app_partition, verify_app_reports, verify_screenshots, report_paths, read_app_reports)
 
-from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, SELECTED_PHASES, POSITION_SHARDS
+from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, SELECTED_PHASES, POSITION_SHARDS
 
 ROOT = Path(__file__).resolve().parents[1]
 EDITOR = 'paint.anpaint.android.EditorDeviceTest'
@@ -30,6 +30,7 @@ def expected(sdk=35):
     result |= set.union(*POSITION_SHARDS.values())
     result |= {(RESTART_SEED, 'seed'), (RESTART_VERIFY, 'verify')}
     result |= {(GALLERY_DRAFT, name) for name in GALLERY_METHODS}
+    result.add((GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD))
     result |= {(PAGE_COUNT, name) for name in PAGE_COUNT_METHODS}
     if sdk == 35:
         result |= {(DIALOG, name) for name in DIALOG_METHODS} | {(COLOUR, name) for name in COLOUR_METHODS}
@@ -76,8 +77,12 @@ class MatrixInventoryTest(unittest.TestCase):
     def test_complete_current_and_future_methods_form_disjoint_sdk_partitions(self):
         for sdk in (30, 35):
             result = verify_app_reports(expected(sdk), sdk, reports(sdk), SOURCE_DIGEST)
-            self.assertEqual(result['completed_tests'], 17 if sdk == 30 else 33)
-            self.assertIn((FUTURE, 'future'), app_partition(expected(sdk), sdk)['ordinary'])
+            self.assertEqual(result['completed_tests'], 18 if sdk == 30 else 34)
+            parts = app_partition(expected(sdk), sdk)
+            self.assertIn((FUTURE, 'future'), parts['ordinary'])
+            viewport = (GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD)
+            self.assertIn(viewport, parts['ordinary' if sdk == 30 else 'gallery-draft'])
+            self.assertNotIn(viewport, parts['gallery-draft' if sdk == 30 else 'ordinary'])
             self.assertEqual({phase: result['phases'][phase] for phase in VERTICAL_SHARDS},
                              {phase: 2 for phase in VERTICAL_SHARDS})
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk == 30 else 0)
@@ -201,10 +206,10 @@ class MatrixInventoryTest(unittest.TestCase):
                     self.assertEqual(result.returncode, 0, result.stdout+result.stderr)
                     receipt = json.loads((root/'report/app/coverage.json').read_text())
                     self.assertEqual(receipt['device_sdk'], sdk)
-                    self.assertEqual(receipt['declared_tests'], 33)
-                    self.assertEqual(receipt['completed_tests'], (33 if sdk == 35 else 17) - (not eligible))
+                    self.assertEqual(receipt['declared_tests'], 34)
+                    self.assertEqual(receipt['completed_tests'], (34 if sdk == 35 else 18) - (not eligible))
                     self.assertEqual([FUTURE, 'future'] in receipt['completed'], eligible)
-                    self.assertEqual(receipt['phases']['ordinary'], (3 if sdk == 30 else 2) - (not eligible))
+                    self.assertEqual(receipt['phases']['ordinary'], (4 if sdk == 30 else 2) - (not eligible))
                     self.assertEqual({phase: receipt['phases'][phase] for phase in VERTICAL_SHARDS},
                                      {phase: 2 for phase in VERTICAL_SHARDS})
                     self.assertEqual(receipt['source_tests_sha256'], source_tests_sha256(source))
