@@ -472,6 +472,7 @@ class EditorDeviceTest {
         if(czech) {
             chooseAppLanguage("cs")
             assertEquals("cs",context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+            awaitReadyCzechEditor()
         }
         onMain {a ->
             for(y in 0 until 100) for(x in 0 until 100) a.document.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))
@@ -568,6 +569,7 @@ class EditorDeviceTest {
             setLocales(LocaleList.forLanguageTags("en-US"))
         })
         chooseAppLanguage("cs")
+        awaitReadyCzechEditor()
         onMain {editor ->
             assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
             for(y in 0 until 100) for(x in 0 until 100)
@@ -961,7 +963,10 @@ class EditorDeviceTest {
 
     @Test @SdkSuppress(minSdkVersion=29)
     fun insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport() {
-        checkSaveAndExportCredits(insertCreditedGalleryFixture())
+        // Keep the original checks on all supported APIs. On the current
+        // API-35 matrix, run them once after the mounted Czech edit checks.
+        if(Build.VERSION.SDK_INT==35) checkCzechImageCreditsBackAndCopy()
+        else checkSaveAndExportCredits(insertCreditedGalleryFixture())
     }
 
     @Test @SdkSuppress(minSdkVersion=29)
@@ -993,6 +998,71 @@ class EditorDeviceTest {
             }
             restoreOriginalLanguage()
         }
+    }
+
+    private fun checkCzechImageCreditsBackAndCopy() {
+        chooseAppLanguage("cs")
+        awaitReadyCzechEditor()
+        val original=insertCreditedGalleryFixture()
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        val about=activityText(R.string.ui_about_credits23)
+        val credits=activityText(R.string.ui_image_credits)
+        assertNotEquals(en.getString(R.string.ui_image_credits),credits)
+        fun root(): View?=WindowInspector.getGlobalWindowViews().lastOrNull {
+            it.isShown && it.findViewWithTag<View>("gallery_credit_text")?.isShown==true
+        }
+        fun reopen(expected: String) {
+            menu("File",about)
+            // The credit entry may be below the fold in the native About list.
+            val option=androidx.test.uiautomator.UiScrollable(UiSelector().className(ListView::class.java.name))
+            assertTrue("Find Czech Image credits within the About list",option.scrollTextIntoView(credits))
+            val region=device.findObject(UiSelector().text(credits)).visibleBounds
+            assertFalse("Czech Image credits row is visible",region.isEmpty)
+            assertTrue(device.click(region.centerX(),region.centerY()))
+            awaitState("Czech image credit editor") {root()!=null}
+            onMain {
+                val window=requireNotNull(root())
+                assertEquals(expected,window.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+                assertEquals(it.getString(R.string.gallery_copy_credit),window.findViewWithTag<TextView>("gallery_credit_copy").text.toString())
+                assertEquals(it.getString(R.string.ui_save),window.findViewWithTag<TextView>("gallery_credit_save").text.toString())
+                assertEquals(it.getString(R.string.ui_done),window.findViewWithTag<TextView>("gallery_credit_done").text.toString())
+            }
+        }
+        fun edit(text: String) {
+            onMain {
+                requireNotNull(root()).findViewWithTag<EditText>("gallery_credit_text").setText(text)
+                assertEquals("The open field is still only a draft",original,it.document.imageCredits.single().text)
+            }
+        }
+        reopen(original)
+        edit(original+"\nTento návrh nezachovat.")
+        instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+        awaitState("Back closed Image credits without a footer action") {root()==null}
+        onMain {assertEquals(original,it.document.imageCredits.single().text)}
+        reopen(original)
+        val revised=original+"\nZměna: oříznuto."
+        edit(revised)
+        val copyBounds=Rect()
+        onMain {
+            val button=requireNotNull(root()).findViewWithTag<android.widget.Button>("gallery_credit_copy")
+            assertTrue("Visible and enabled Czech attribution Copy",button.isEnabled && button.getGlobalVisibleRect(copyBounds))
+            offsetToScreen(button,copyBounds)
+        }
+        assertTrue(device.click(copyBounds.centerX(),copyBounds.centerY()))
+        awaitState("editable Copy saved the note without closing credits") {
+            root()!=null && it.document.imageCredits.single().text==revised
+        }
+        onMain {
+            val clip=(it.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).primaryClip
+            assertEquals(revised,requireNotNull(clip).getItemAt(0).text.toString())
+            assertTrue("Copy leaves the inserted image pending",it.document.selection?.floating==true)
+        }
+        dismissClipboardOverlay(waitForAppearance=true)
+        instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+        awaitState("closed editable credits") {root()==null}
+        checkSaveAndExportCredits(revised)
     }
 
     private fun insertCreditedGalleryFixture(): String {
@@ -1580,6 +1650,11 @@ class EditorDeviceTest {
         }
         instrumentation.waitForIdleSync()
     }
+    private fun awaitReadyCzechEditor() = awaitState("focused, initialized Czech editor after locale change") {
+        it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
+            it.resources.configuration.locales[0].toLanguageTag()=="cs"
+    }
+
     private fun awaitState(description: String,condition: (ClassicPaintActivity)->Boolean) {
         val done=CountDownLatch(1);val error=AtomicReference<Throwable?>();val handler=Handler(Looper.getMainLooper())
         val until=SystemClock.uptimeMillis()+15000
@@ -1775,10 +1850,7 @@ class EditorDeviceTest {
             setLocales(LocaleList.forLanguageTags("en-US"))
         })
         chooseAppLanguage("cs")
-        awaitState("Czech editor initialized after locale selection") {
-            it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
-                it.resources.configuration.locales[0].toLanguageTag()=="cs"
-        }
+        awaitReadyCzechEditor()
         val helpLabel=cs.getString(R.string.ui_how_to_use)
         assertNotEquals(en.getString(R.string.ui_how_to_use),helpLabel)
 
@@ -1862,7 +1934,12 @@ class EditorDeviceTest {
         assertTrue("native Assembly Help tap",device.click(target.centerX(),target.centerY()))
         instrumentation.waitForIdleSync()
         assertHelp(R.string.ui_add_up_to_20_images_with_android_s,"assembly")
-        assertTrue(device.pressBack())
+        // Alert dismissal and restoration of the underlying Window's input
+        // focus are separate events; Back must target Assembly, not its dialog.
+        awaitState("Assembly owns input focus after closing Help") {
+            assembly()?.let {owner -> !owner.busy && owner.window.decorView.hasWindowFocus()}==true
+        }
+        instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
         awaitState("editor resumes after Czech Assembly Help") {
             assembly()==null && it.startupReady && !it.busy && it.window.decorView.hasWindowFocus()
         }
