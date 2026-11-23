@@ -17,6 +17,8 @@ from run_android_instrumentation import (Identity, RESTART_SEED, RESTART_VERIFY,
 from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS
 
 GALLERY_DRAFT = 'paint.anpaint.android.GalleryDraftDeviceTest'
+GALLERY_VIEWPORT = 'paint.anpaint.android.GalleryViewportDeviceTest'
+GALLERY_VIEWPORT_METHOD = 'realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation'
 GALLERY_METHODS = {
     'cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits',
     'confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor',
@@ -72,7 +74,10 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     """Keep future ordinary methods; require an explicit update for new gallery cases."""
     if type(sdk) is not int or sdk not in SUPPORTED_SDKS:
         raise ValueError('The emulator matrix supports SDK 21, 24, 30 or 35')
-    gallery = {item for item in expected if item[0] == GALLERY_DRAFT}
+    gallery = {item for item in expected if item[0] == GALLERY_DRAFT or (sdk == 35 and item[0] == GALLERY_VIEWPORT)}
+    required_gallery = {(GALLERY_DRAFT, method) for method in GALLERY_METHODS}
+    if sdk == 35:
+        required_gallery.add((GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD))
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
@@ -91,8 +96,8 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
             or len(shards) != 2 or any(len(part) != 2 for part in shards)
             or shards[0] & shards[1] or set.union(*shards) != vertical):
         raise ValueError('Vertical shards must be an exact disjoint two-by-two source inventory')
-    if sdk >= 30 and (gallery != {(GALLERY_DRAFT, method) for method in GALLERY_METHODS} or not ordinary):
-        raise ValueError('The exact three gallery-draft methods and ordinary app tests are required')
+    if sdk >= 30 and (gallery != required_gallery or not ordinary):
+        raise ValueError('The exact SDK-specific gallery methods and ordinary app tests are required')
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
