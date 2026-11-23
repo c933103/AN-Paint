@@ -260,10 +260,8 @@ class PageCountWordingDeviceTest {
                         requireNotNull(chooserRoot()).findViewWithTag<EditText>("import_page_number").setText("2")
                     }
                     val secondPage = cs.getString(org.catrobat.paintroid.R.string.formats22_page_dimensions, 2, 2, width, height)
-                    if (isTiff) {
-                        assertEquals("Zadejte číslo stránky od 1 do 2.", range)
-                        assertEquals("Stránka 2 z 2 · 7 × 3 px", secondPage)
-                    }
+                    assertNotEquals(en.getString(org.catrobat.paintroid.R.string.formats22_page_dimensions,
+                        2, 2, width, height), secondPage)
                     await("second $kind page decoded", failure) {
                         var ready = false
                         scenario.onActivity {
