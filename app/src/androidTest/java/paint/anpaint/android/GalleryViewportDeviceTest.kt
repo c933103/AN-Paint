@@ -361,12 +361,30 @@ class GalleryViewportDeviceTest {
                                     original: !!document.querySelector('.fullMedia a.internal'),
                                     actionRow: !!document.querySelector('#anpaint-commons-actions')};
                                   if (link) {
-                                    const bounds = link.getBoundingClientRect();
-                                    const x = bounds.left + bounds.width / 2, y = bounds.top + bounds.height / 2;
+                                    // Large text can wrap an inline anchor across several fragments.
+                                    // Its union box may have a center outside all clickable fragments.
                                     result.label = link.textContent;
                                     result.href = link.getAttribute('href');
-                                    result.x = x; result.y = y;
-                                    result.hit = document.elementFromPoint(x, y) === link;
+                                    result.height = innerHeight;
+                                    const fragments = Array.from(link.getClientRects());
+                                    result.fragments = fragments.map(r => [r.left, r.top, r.width, r.height]);
+                                    result.hit = false;
+                                    for (const rect of fragments) {
+                                      const left = Math.max(0, rect.left), right = Math.min(innerWidth, rect.right);
+                                      const top = Math.max(0, rect.top), bottom = Math.min(innerHeight, rect.bottom);
+                                      if (right <= left || bottom <= top) continue;
+                                      const x = (left + right) / 2, y = (top + bottom) / 2;
+                                      const target = document.elementFromPoint(x, y);
+                                      result.hitTag = target && target.tagName;
+                                      if (target && link.contains(target)) {
+                                        result.x = x; result.y = y;
+                                        result.hit = true;
+                                        break;
+                                      }
+                                    }
+                                    if (!result.hit && fragments.length > 0) {
+                                      link.scrollIntoView({block: 'nearest', inline: 'nearest'});
+                                    }
                                   }
                                   return result;
                                 })())
