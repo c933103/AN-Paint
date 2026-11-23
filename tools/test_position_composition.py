@@ -113,7 +113,7 @@ class PositionCompositionTest(unittest.TestCase):
                 for group in ('core','position'):
                     result=verify_reports(SOURCE,root/group,sdk,group)
                     self.assertEqual(result['receipt_scope'],f'partial-{group}-app-union')
-                    self.assertEqual(result['completed_tests'],7 if group=='position' else (23 if sdk==30 else 46))
+                    self.assertEqual(result['completed_tests'],7 if group=='position' else (23 if sdk==30 else 47))
                     self.assertTrue(result['deferred_tests'])
                     self.assertTrue(all(not path.exists() for path in coverage_paths(root/group)))
                     with self.assertRaises(ValueError): verify_reports(SOURCE,root/group,sdk)
