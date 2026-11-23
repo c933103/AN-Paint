@@ -95,6 +95,12 @@ class GalleryViewportDeviceTest {
                 network.assertHealthy();network.requests().any {it.startsWith("CONNECT gallery-viewport.invalid:443 ")}
             }
             onMain {probe!!.stopLoading();probe!!.destroy();probe=null}
+            if (Build.VERSION.SDK_INT >= 35) {
+                selectLanguage("cs")
+                setFontScale(1f)
+                checkCzechCommonsFailure(browsers)
+                instrumentation.waitForIdleSync()
+            }
             for(tag in if(Build.VERSION.SDK_INT>=35) listOf("fr","mn-Mong","ar") else listOf("fr","mn-Mong")) {
                 selectLanguage(tag)
                 // A real system configuration transition also refreshes the
@@ -195,6 +201,215 @@ class GalleryViewportDeviceTest {
                 } finally {
                     onMain {ActivityLifecycleMonitorRegistry.getInstance().removeLifecycleCallback(lifecycle)}
                     network.close()
+                }
+            }
+        }
+    }
+
+    /**
+     * Real WebView action and native File-page button. Chromium is already behind
+     * the rejecting proxy; the separate native connection has no network fallback.
+     */
+    private fun checkCzechCommonsFailure(browsers: MutableList<WebView>) {
+        val source = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Czech_gallery_fixture.svg"
+        val page = "https://commons.wikimedia.org/wiki/File:Czech_gallery_fixture.svg"
+        val prior = org.catrobat.paintroid.classic.ImageCredit("https://example.invalid/previous", "Prior credit")
+        val action = Intent(context, MediaGalleryActivity::class.java)
+            .putExtra("gallery_provider", "COMMONS")
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            .putExtra("document_image_credits",
+                org.catrobat.paintroid.classic.ImageCredit.write(listOf(prior)).toString())
+        val device = androidx.test.uiautomator.UiDevice.getInstance(instrumentation)
+        val count = java.util.concurrent.atomic.AtomicInteger()
+        val requestProblem = AtomicReference<String>()
+        val disconnects = java.util.concurrent.atomic.AtomicInteger()
+        val fixtureReads = java.util.concurrent.atomic.AtomicInteger()
+        val attemptedRead = java.util.concurrent.atomic.AtomicBoolean()
+        val connection: (java.net.URL) -> java.net.HttpURLConnection = { url ->
+            val uri = android.net.Uri.parse(url.toExternalForm())
+            if (url.protocol != "https" || url.host != "commons.wikimedia.org" ||
+                url.path != "/w/api.php" || uri.getQueryParameter("action") != "query" ||
+                uri.getQueryParameter("prop") != "imageinfo" ||
+                uri.getQueryParameter("titles") != "File:Czech_gallery_fixture.svg") {
+                requestProblem.set(url.toExternalForm())
+                throw java.io.IOException("Unexpected native fixture request")
+            }
+            count.incrementAndGet()
+            object : java.net.HttpURLConnection(url) {
+                override fun connect() = Unit
+                override fun usingProxy() = false
+                override fun disconnect() { disconnects.incrementAndGet() }
+                override fun getResponseCode() = 503
+                override fun getInputStream(): java.io.InputStream {
+                    attemptedRead.set(true)
+                    throw java.io.IOException("The 503 response body must not be read")
+                }
+                override fun getErrorStream(): java.io.InputStream? {
+                    attemptedRead.set(true)
+                    return null
+                }
+            }
+        }
+        ActivityScenario.launch<MediaGalleryActivity>(action).use { scenario ->
+            val holder = AtomicReference<MediaGalleryActivity>()
+            scenario.onActivity { holder.set(it) }
+            val gallery = holder.get()
+            val connectionField = MediaGalleryActivity::class.java.getDeclaredField("openConnection")
+                .apply { isAccessible = true }
+            val downloading = MediaGalleryActivity::class.java.getDeclaredField("downloading")
+                .apply { isAccessible = true }
+            val sessionField = MediaGalleryActivity::class.java.getDeclaredField("creditSession")
+                .apply { isAccessible = true }
+            fun credits(): Any? {
+                val session = sessionField.get(gallery)
+                return session.javaClass.getDeclaredField("credits").apply { isAccessible = true }.get(session)
+            }
+            await("Czech gallery input focus") { onMain { gallery.window.decorView.hasWindowFocus() } }
+            val clipboard = context.getSystemService(android.content.ClipboardManager::class.java)
+            val status = onMain { gallery.window.decorView.findViewWithTag<TextView>("gallery_status") }
+            val oldClip = onMain {
+                assertEquals("cs", gallery.resources.configuration.locales[0].toLanguageTag())
+                assertEquals(listOf(prior), credits())
+                connectionField.set(gallery, connection)
+                clipboard.primaryClip
+            }
+            try {
+                val web = onMain {
+                    clipboard.setPrimaryClip(android.content.ClipData.newPlainText("fixture", "Prior clipboard"))
+                    val web = descendants(gallery.window.decorView).filterIsInstance<WebView>().single()
+                    browsers.add(web)
+                    // Serve exactly the fixture URL as a real main-frame navigation.
+                    // loadDataWithBaseURL gave the page an origin but did not exercise
+                    // the production onPageFinished injection on the Android 15 runner.
+                    val productionClient = web.webViewClient
+                    val html = """
+                        <html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+                        <body><div class="fullMedia"><a class="internal" href="$source">Original</a></div></body></html>
+                    """.trimIndent().toByteArray(Charsets.UTF_8)
+                    web.stopLoading()
+                    web.webViewClient = object : android.webkit.WebViewClient() {
+                        override fun shouldInterceptRequest(view: WebView, request: android.webkit.WebResourceRequest):
+                            android.webkit.WebResourceResponse? =
+                            if (request.isForMainFrame && request.url.toString() == page) {
+                                fixtureReads.incrementAndGet()
+                                android.webkit.WebResourceResponse("text/html", "utf-8", html.inputStream())
+                            } else productionClient.shouldInterceptRequest(view, request)
+
+                        override fun onPageFinished(view: WebView, url: String) {
+                            productionClient.onPageFinished(view, url)
+                        }
+
+                        override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest):
+                            Boolean = productionClient.shouldOverrideUrlLoading(view, request)
+
+                        @Suppress("DEPRECATION")
+                        override fun shouldOverrideUrlLoading(view: WebView, url: String):
+                            Boolean = productionClient.shouldOverrideUrlLoading(view, url)
+
+                        override fun onReceivedError(view: WebView, request: android.webkit.WebResourceRequest,
+                            error: android.webkit.WebResourceError) {
+                            productionClient.onReceivedError(view, request, error)
+                        }
+                    }
+                    web.loadUrl(page)
+                    web
+                }
+                val reason = gallery.getString(R.string.commons_metadata_http_error, "503")
+                assertTrue(reason.contains("HTTP 503"))
+                val english = gallery.createConfigurationContext(Configuration(gallery.resources.configuration).apply {
+                    setLocale(Locale.UK)
+                })
+                fun verify(key: Int, requests: Int) {
+                    val expected = gallery.getString(key, reason)
+                    assertNotEquals(english.getString(key,
+                        english.getString(R.string.commons_metadata_http_error, "503")), expected)
+                    await("Czech Commons status $requests") { onMain {
+                        status.isShown && status.text.toString() == expected && !downloading.getBoolean(gallery)
+                    } }
+                    onMain {
+                        assertEquals(expected, status.createAccessibilityNodeInfo().text.toString())
+                        assertEquals(View.ACCESSIBILITY_LIVE_REGION_POLITE, status.accessibilityLiveRegion)
+                        assertFalse(gallery.isFinishing)
+                        assertEquals(listOf(prior), credits())
+                        assertEquals("Prior clipboard", clipboard.primaryClip?.getItemAt(0)?.text.toString())
+                        assertEquals(requests, count.get())
+                        assertTrue(disconnects.get() >= requests)
+                        assertNull(requestProblem.get())
+                        assertFalse(attemptedRead.get())
+                    }
+                }
+                // The platform accessibility bridge may expose a WebView link's caption
+                // as a description instead of node text. Verify the actual injected anchor
+                // and hit-test it in Chromium, then send a real screen tap at its center.
+                var copyTarget: JSONObject? = null
+                var observation = "No WebView callback yet"
+                val copyLabel = gallery.getString(R.string.gallery_copy_credit)
+                try {
+                    await("production Czech Copy anchor is visible and hittable") {
+                        val answer = AtomicReference<String>()
+                        val done = CountDownLatch(1)
+                        onMain {
+                            web.evaluateJavascript("""
+                                JSON.stringify((function() {
+                                  const link = document.querySelector('#anpaint-commons-actions > a:nth-child(2)');
+                                  const result = {page: location.href, ready: document.readyState, width: innerWidth,
+                                    original: !!document.querySelector('.fullMedia a.internal'),
+                                    actionRow: !!document.querySelector('#anpaint-commons-actions')};
+                                  if (link) {
+                                    const bounds = link.getBoundingClientRect();
+                                    const x = bounds.left + bounds.width / 2, y = bounds.top + bounds.height / 2;
+                                    result.label = link.textContent;
+                                    result.href = link.getAttribute('href');
+                                    result.x = x; result.y = y;
+                                    result.hit = document.elementFromPoint(x, y) === link;
+                                  }
+                                  return result;
+                                })())
+                            """.trimIndent()) { answer.set(it); done.countDown() }
+                        }
+                        if (!done.await(500, TimeUnit.MILLISECONDS)) false
+                        else {
+                            observation = answer.get().orEmpty()
+                            val data = runCatching {
+                                JSONObject(org.json.JSONTokener(observation).nextValue() as String)
+                            }.getOrNull()
+                            if (data != null && data.optString("page") == page && data.optString("label") == copyLabel &&
+                                data.optBoolean("hit") && data.optInt("width") > 0 &&
+                                android.net.Uri.parse(data.optString("href")).getQueryParameter("page") == page &&
+                                android.net.Uri.parse(data.optString("href")).getQueryParameter("source") == source) {
+                                copyTarget = data
+                                true
+                            } else false
+                        }
+                    }
+                } catch (error: AssertionError) {
+                    throw AssertionError("Last Chromium fixture observation: $observation", error)
+                }
+                assertEquals("Exactly one intercepted main-frame fixture", 1, fixtureReads.get())
+                val css = requireNotNull(copyTarget)
+                val copy = onMain {
+                    val location = IntArray(2).also { web.getLocationOnScreen(it) }
+                    val scale = web.width / css.getDouble("width")
+                    val x = location[0] + (css.getDouble("x") * scale).toInt()
+                    val y = location[1] + (css.getDouble("y") * scale).toInt()
+                    val visible = Rect()
+                    assertTrue(web.getGlobalVisibleRect(visible) && visible.contains(x, y))
+                    intArrayOf(x, y)
+                }
+                assertTrue(device.click(copy[0], copy[1]))
+                verify(R.string.commons_credit_copy_failed_reason, 1)
+                val insert = onMain {
+                    gallery.window.decorView.findViewWithTag<TextView>("gallery_use_selected").also {
+                        assertEquals(gallery.getString(R.string.gallery_use_image), it.text.toString())
+                    }
+                }
+                onMain { insert.requestRectangleOnScreen(Rect(0, 0, insert.width, insert.height), true) }
+                val bounds = onMain { Rect().also { assertTrue(insert.getGlobalVisibleRect(it)) } }
+                assertTrue(device.click(bounds.centerX(), bounds.centerY()))
+                verify(R.string.ui_could_not_load_gallery_image, 2)
+            } finally {
+                onMain {
+                    if (oldClip == null) clipboard.clearPrimaryClip() else clipboard.setPrimaryClip(oldClip)
                 }
             }
         }
