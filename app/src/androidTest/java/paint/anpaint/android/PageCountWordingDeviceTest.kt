@@ -108,7 +108,10 @@ class PageCountWordingDeviceTest {
                     scenario.onActivity { it.onConfigurationChanged(Configuration(it.resources.configuration)) }
                 }
             }
-            if (Build.VERSION.SDK_INT == 35) exerciseCzechAssemblyPdfImport(launch)
+            if (Build.VERSION.SDK_INT == 35) {
+                exerciseCzechAssemblyPagedImport(launch, "PDF")
+                exerciseCzechAssemblyPagedImport(launch, "TIFF")
+            }
         } finally {
             try {
                 // Settle platform callbacks with migration guarded, then restore each
@@ -133,8 +136,11 @@ class PageCountWordingDeviceTest {
     // The locale is configured by the same harness as the English/French cases.
     // This verifies Assembly's real Add Images route, not the system Files UI.
     @androidx.annotation.RequiresApi(35)
-    private fun exerciseCzechAssemblyPdfImport(launch: Intent) {
+    private fun exerciseCzechAssemblyPagedImport(launch: Intent, kind: String) {
         languageFixture("cs")
+        val isTiff = kind == "TIFF"
+        val width = if (isTiff) 7 else 80
+        val height = if (isTiff) 3 else 56
         val cs = context.createConfigurationContext(Configuration().apply {
             setLocales(LocaleList.forLanguageTags("cs"))
         })
@@ -142,7 +148,7 @@ class PageCountWordingDeviceTest {
             setLocales(LocaleList.forLanguageTags("en-US"))
         })
         val directory = File(context.cacheDir, "images").apply { mkdirs() }
-        val file = File.createTempFile("czech-assembly-", ".pdf", directory)
+        val file = File.createTempFile("czech-assembly-", if (isTiff) ".tif" else ".pdf", directory)
         val fixtureUri = androidx.core.content.FileProvider.getUriForFile(context,
             "${context.packageName}.fileprovider", file)
         val intercepted = java.util.concurrent.atomic.AtomicInteger()
@@ -157,16 +163,23 @@ class PageCountWordingDeviceTest {
             }
         }
         val failure = AtomicReference<Throwable>()
-        val pdf = PdfDocument()
         try {
-            try {
-                for ((index, size) in listOf(24 to 32, 40 to 28).withIndex()) {
-                    val page = pdf.startPage(PdfDocument.PageInfo.Builder(size.first, size.second, index + 1).create())
-                    pdf.finishPage(page)
-                }
-                file.outputStream().use { pdf.writeTo(it) }
-            } finally { pdf.close() }
-            assertEquals(2, PdfCodec.pageCount(file))
+            if (isTiff) {
+                val encoded = instrumentation.context.assets.open("count-wording/two.tif.b64")
+                    .bufferedReader().use { it.readText() }
+                file.writeBytes(Base64.decode(encoded, Base64.DEFAULT))
+                assertEquals(2, TiffCodec.pageCount(file))
+            } else {
+                val pdf = PdfDocument()
+                try {
+                    for ((index, size) in listOf(24 to 32, 40 to 28).withIndex()) {
+                        val page = pdf.startPage(PdfDocument.PageInfo.Builder(size.first, size.second, index + 1).create())
+                        pdf.finishPage(page)
+                    }
+                    file.outputStream().use { pdf.writeTo(it) }
+                } finally { pdf.close() }
+                assertEquals(2, PdfCodec.pageCount(file))
+            }
             instrumentation.addMonitor(monitor)
             ActivityScenario.launch<AssemblyActivity>(launch).use { scenario ->
                 var original = emptySet<String>()
@@ -190,7 +203,7 @@ class PageCountWordingDeviceTest {
                         val local = android.graphics.Rect()
                         val location = IntArray(2)
                         button.getLocationOnScreen(location)
-                        android.util.Log.i("CzechAssemblyPdfTest",
+                        android.util.Log.i("CzechAssemblyPageTest",
                             "footer id=$id label=${button.text} shown=${button.isShown} enabled=${button.isEnabled} screen=${location.toList()}")
                         assertEquals("Native footer label", label, button.text.toString())
                         assertTrue("Native footer action is enabled and fully visible",
@@ -203,7 +216,7 @@ class PageCountWordingDeviceTest {
                 }
                 fun openChooser() {
                     pressLabel(cs.getString(org.catrobat.paintroid.R.string.ui_add_images))
-                    await("Assembly PDF chooser", failure) {
+                    await("Assembly $kind chooser", failure) {
                         var ready = false
                         scenario.onActivity { ready = chooserRoot() != null }
                         ready
@@ -246,16 +259,28 @@ class PageCountWordingDeviceTest {
                     scenario.onActivity {
                         requireNotNull(chooserRoot()).findViewWithTag<EditText>("import_page_number").setText("2")
                     }
-                    val secondPage = cs.getString(org.catrobat.paintroid.R.string.formats22_page_dimensions, 2, 2, 80, 56)
-                    await("second PDF page decoded", failure) {
+                    val secondPage = cs.getString(org.catrobat.paintroid.R.string.formats22_page_dimensions, 2, 2, width, height)
+                    if (isTiff) {
+                        assertEquals("Zadejte číslo stránky od 1 do 2.", range)
+                        assertEquals("Stránka 2 z 2 · 7 × 3 px", secondPage)
+                    }
+                    await("second $kind page decoded", failure) {
                         var ready = false
                         scenario.onActivity {
                             ready = chooserRoot()?.findViewWithTag<TextView>("import_page_status")?.text?.toString() == secondPage
                         }
                         ready
                     }
+                    if (isTiff) scenario.onActivity {
+                        val image = requireNotNull(chooserRoot()).findViewWithTag<android.widget.ImageView>("import_page_preview")
+                        val preview = requireNotNull((image.drawable as? android.graphics.drawable.BitmapDrawable)?.bitmap)
+                        assertEquals(width, preview.width)
+                        assertEquals(height, preview.height)
+                        assertEquals("Page 2 has the red TIFF fixture pixels", android.graphics.Color.RED,
+                            preview.getPixel(preview.width / 2, preview.height / 2))
+                    }
                     tapChooserButton(android.R.id.button1, open)
-                    await("selected PDF page committed to Assembly", failure) {
+                    await("selected $kind page committed to Assembly", failure) {
                         var ready = false
                         scenario.onActivity { ready = !it.busy && it.assembly.images.size == original.size + 1 }
                         ready
@@ -264,15 +289,15 @@ class PageCountWordingDeviceTest {
                         val inserted = activity.assembly.images.single { it.id !in original }
                         assertEquals(file.name, inserted.name)
                         assertEquals(1, inserted.pageIndex)
-                        assertEquals(80, inserted.dimensions.width)
-                        assertEquals(56, inserted.dimensions.height)
+                        assertEquals(width, inserted.dimensions.width)
+                        assertEquals(height, inserted.dimensions.height)
                         assertNotNull(activity.window.decorView.findViewWithTag<View>("assembly_item_${inserted.id}"))
                         val stored = ImageAssembly(activity.assembly.directory).images.single { it.id == inserted.id }
                         assertEquals(inserted.pageIndex, stored.pageIndex)
                         assertEquals(inserted.dimensions, stored.dimensions)
                     }
                     assertEquals("Both imports used Assembly's external picker contract", 2, intercepted.get())
-                    android.util.Log.i("CzechAssemblyPdfTest", "range, cancel and persisted second PDF page passed")
+                    android.util.Log.i("CzechAssemblyPageTest", "range, cancel and persisted second $kind page passed")
                 } finally {
                     if (capturedOriginal) scenario.onActivity { activity ->
                         activity.assembly.images.filter { it.id !in original && it.name == file.name }
