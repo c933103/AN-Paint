@@ -132,7 +132,7 @@ class InstalledGlyphTransportTests(unittest.TestCase):
         receipt, records = ink.verify_capture(raw, SOURCE, summary)
         self.assertTrue(receipt['success'])
         self.assertIn('gallery-draft producer partition', receipt['runner_inventory_scope'])
-        self.assertEqual(4, receipt['runner_completed_tests'])
+        self.assertEqual(5, receipt['runner_completed_tests'])
         self.assertEqual(ink.sha256(raw), receipt['raw_output_sha256'])
         self.assertEqual(set(ink.ROUTES), set(records))
         for record in records.values():
