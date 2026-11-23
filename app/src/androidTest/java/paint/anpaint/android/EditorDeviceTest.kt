@@ -522,11 +522,31 @@ class EditorDeviceTest {
                 offsetToScreen(columns.number,numberBounds)
             }
             assertTrue(device.click(numberBounds.centerX(),numberBounds.centerY()))
-            awaitState("ASCII width numeric input") {
-                WindowInspector.getGlobalWindowViews().any {it.findViewWithTag<EditText>("numeric_input")?.isShown==true}
+            fun widthDialogRoot()=WindowInspector.getGlobalWindowViews().lastOrNull { root ->
+                root.findViewWithTag<EditText>("numeric_input")?.isShown==true
             }
-            setNumber("64")
-            positive()
+            awaitState("ASCII width input and Apply") {
+                widthDialogRoot()?.findViewById<android.widget.Button>(android.R.id.button1)?.isShown==true
+            }
+            onMain {
+                val root=requireNotNull(widthDialogRoot())
+                assertTrue("Exact width input takes focus",root.findViewWithTag<EditText>("numeric_input").requestFocus())
+            }
+            instrumentation.waitForIdleSync()
+            val input=device.findObject(UiSelector().className(EditText::class.java.name).focused(true))
+            assertTrue("Focused width input is accessible",input.waitForExists(5000))
+            assertTrue("Typed exact ASCII width",input.setText("64"))
+            val applyBounds=Rect()
+            onMain {
+                val root=requireNotNull(widthDialogRoot())
+                assertEquals("64",root.findViewWithTag<EditText>("numeric_input").text.toString())
+                val apply=root.findViewById<android.widget.Button>(android.R.id.button1)
+                assertEquals(cs.getString(R.string.ui_apply),apply.text.toString())
+                assertTrue("Width Apply is enabled and reachable",apply.isEnabled && apply.getGlobalVisibleRect(applyBounds))
+                offsetToScreen(apply,applyBounds)
+            }
+            assertTrue("Width Apply tap injected",device.click(applyBounds.centerX(),applyBounds.centerY()))
+            awaitState("Only width dialog dismissed") {widthDialogRoot()==null && creditDialogRoot()!=null}
             if(invert) tapCreditDialogControl("export_ascii_invert")
             onMain {
                 val root=requireNotNull(creditDialogRoot())
@@ -537,7 +557,13 @@ class EditorDeviceTest {
             val destination=fixture("device-cs-ascii-$invert.txt")
             val before=monitor.requests.size
             monitor.nextResult.set(resultFor(destination))
-            positive()
+            val exportBounds=Rect()
+            onMain {
+                val export=requireNotNull(creditDialogRoot()).findViewById<android.widget.Button>(android.R.id.button1)
+                assertTrue("Export action is enabled and reachable",export.isEnabled && export.getGlobalVisibleRect(exportBounds))
+                offsetToScreen(export,exportBounds)
+            }
+            assertTrue("Export action tap injected",device.click(exportBounds.centerX(),exportBounds.centerY()))
             awaitState("completed Czech ASCII export") {!it.busy && destination.length()>0}
             val request=monitor.requests.drop(before).single {it.action==Intent.ACTION_CREATE_DOCUMENT}
             assertEquals("text/plain",request.type)
