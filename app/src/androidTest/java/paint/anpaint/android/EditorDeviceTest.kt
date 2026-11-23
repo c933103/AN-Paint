@@ -1767,6 +1767,108 @@ class EditorDeviceTest {
     }
 
     @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun czechEditorAndAssemblyHelpReachTheirCompleteInstalledText() {
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        chooseAppLanguage("cs")
+        awaitState("Czech editor initialized after locale selection") {
+            it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
+                it.resources.configuration.locales[0].toLanguageTag()=="cs"
+        }
+        val helpLabel=cs.getString(R.string.ui_how_to_use)
+        assertNotEquals(en.getString(R.string.ui_how_to_use),helpLabel)
+
+        fun message(): TextView?=WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {root ->
+            root.findViewById<TextView>(android.R.id.message)?.takeIf {it.isShown && it.layout!=null}
+        }
+        fun visible(view: View): Rect?=Rect().takeIf {
+            view.isShown && view.getGlobalVisibleRect(it) && !it.isEmpty
+        }?.also {offsetToScreen(view,it)}
+        fun assertHelp(resource: Int, route: String) {
+            val expected=cs.getString(resource)
+            assertNotEquals(en.getString(resource),expected)
+            awaitState("native Czech $route Help message") {message()!=null}
+            var region=Rect()
+            onMain {
+                val field=requireNotNull(message())
+                assertEquals("complete Czech text from the installed $route route",expected,field.text.toString())
+                val layout=requireNotNull(field.layout)
+                assertEquals("native layout includes the end of the Help text",expected.length,layout.getLineEnd(layout.lineCount-1))
+                assertTrue("no Help line is ellipsized",(0 until layout.lineCount).all {layout.getEllipsisCount(it)==0})
+                region=requireNotNull(visible(field))
+            }
+            fun finalLineVisible(): Boolean {
+                val field=message() ?: return false
+                val layout=field.layout ?: return false
+                val bounds=visible(field) ?: return false
+                val y=IntArray(2);field.getLocationOnScreen(y)
+                val line=layout.lineCount-1
+                val start=y[1]+field.totalPaddingTop+layout.getLineTop(line)-field.scrollY
+                val end=y[1]+field.totalPaddingTop+layout.getLineBottom(line)-field.scrollY
+                region=bounds
+                return start>=bounds.top && end<=bounds.bottom
+            }
+            var reached=false
+            for(attempt in 0..9) {
+                onMain {reached=finalLineVisible()}
+                if(reached) break
+                assertTrue("Help has a usable native scroll area",region.height()>=50)
+                assertTrue(device.swipe(region.centerX(),region.bottom-15,region.centerX(),region.top+15,18))
+                instrumentation.waitForIdleSync()
+            }
+            assertTrue("the last Czech Help line is physically reachable by scrolling: $route",reached)
+            val dismiss=Rect()
+            onMain {
+                val root=requireNotNull(message()).rootView
+                val ok=requireNotNull(root.findViewById<android.widget.Button>(android.R.id.button1))
+                assertEquals("Czech OK label in $route Help",cs.getString(R.string.ui_ok),ok.text.toString())
+                assertTrue("native OK is enabled and clickable in $route Help",ok.isEnabled && ok.isClickable)
+                dismiss.set(requireNotNull(visible(ok)) {"Visible OK in $route Help"})
+                assertEquals("full OK height visible in $route Help: $dismiss",ok.height,dismiss.height())
+                assertEquals("full OK width visible in $route Help: $dismiss",ok.width,dismiss.width())
+            }
+            // Tap the active Help window's own button, not an unscoped
+            // accessibility selector that may return stale bounds after a swipe.
+            assertTrue("native OK tap in $route Help: $dismiss",device.click(dismiss.centerX(),dismiss.centerY()))
+            awaitState("closed $route Help") {message()==null}
+            android.util.Log.i("CzechActiveHelp","route=$route locale=cs complete=true finalLineVisible=true")
+        }
+
+        menu("File",helpLabel)
+        assertHelp(R.string.ui_help23,"editor")
+        menu("File",cs.getString(R.string.ui_image_assembly))
+        fun assembly()=ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)
+            .filterIsInstance<org.catrobat.paintroid.classic.AssemblyActivity>().singleOrNull()
+        awaitState("actual Czech Assembly launched from File") {
+            assembly()?.window?.decorView?.findViewWithTag<View>("assembly_help")?.isShown==true
+        }
+        val target=Rect()
+        onMain {
+            val activity=requireNotNull(assembly())
+            assertEquals("cs",activity.resources.configuration.locales[0].toLanguageTag())
+            val button=activity.window.decorView.findViewWithTag<TextView>("assembly_help")
+            assertEquals(helpLabel,button.text.toString())
+            button.requestRectangleOnScreen(Rect(0,0,button.width,button.height),true)
+        }
+        instrumentation.waitForIdleSync()
+        onMain {
+            val button=requireNotNull(assembly()).window.decorView.findViewWithTag<TextView>("assembly_help")
+            target.set(requireNotNull(visible(button)))
+        }
+        assertTrue("native Assembly Help tap",device.click(target.centerX(),target.centerY()))
+        instrumentation.waitForIdleSync()
+        assertHelp(R.string.ui_add_up_to_20_images_with_android_s,"assembly")
+        assertTrue(device.pressBack())
+        awaitState("editor resumes after Czech Assembly Help") {
+            assembly()==null && it.startupReady && !it.busy && it.window.decorView.hasWindowFocus()
+        }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
     fun czechPickerFitUsesNativeAccessibleControlAndPreservesImageAcrossRotation() {
         assertTrue("This test changes font scale only on a disposable emulator",
             Build.FINGERPRINT.contains("generic") || Build.MODEL.contains("sdk",ignoreCase=true) ||
