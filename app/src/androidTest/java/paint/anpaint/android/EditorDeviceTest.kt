@@ -284,6 +284,7 @@ class EditorDeviceTest {
             chooseAppLanguage("cs")
             assertEquals("cs", context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
             exerciseSaveAndSharePng(czech = true)
+            exerciseCzechCancelledSaveAsKeepsSavedTarget()
         }
     }
 
@@ -372,6 +373,85 @@ class EditorDeviceTest {
             assertEquals("Copy export preserves the initial dirty state",czech,it.document.dirty)
             assertNull(it.lastIoError)
         }
+    }
+
+    private fun exerciseCzechCancelledSaveAsKeepsSavedTarget() {
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        val destination=fixture("czech-retained-target.png")
+        val target=uriFor(destination)
+        fun pickerRequests()=monitor.requests.filter {it.action==Intent.ACTION_CREATE_DOCUMENT}
+        fun saveAs(filename: String) {
+            val command=cs.getString(R.string.save20_title)
+            assertNotEquals(en.getString(R.string.save20_title),command)
+            menu("File",command)
+            awaitState("mounted Czech Save As options") {
+                creditDialogRoot()?.findViewWithTag<View>("export_filename")?.isShown==true
+            }
+            onMain {
+                assertEquals("cs",it.resources.configuration.locales[0].toLanguageTag())
+                val root=requireNotNull(creditDialogRoot())
+                val field=root.findViewWithTag<EditText>("export_filename")
+                assertEquals(cs.getString(R.string.save20_file_name),field.contentDescription.toString())
+                field.setText(filename)
+                val format=root.findViewWithTag<android.widget.Spinner>("export_format")
+                assertEquals("PNG",format.selectedItem.toString())
+                val location=root.findViewById<android.widget.Button>(android.R.id.button1)
+                assertTrue(location.isShown)
+                assertEquals(cs.getString(R.string.ui_choose_location),location.text.toString())
+            }
+            positive()
+        }
+        fun assertSavedPixel(expected: Int) {
+            val bitmap=requireNotNull(context.contentResolver.openInputStream(target).use {BitmapFactory.decodeStream(it)})
+            try {
+                assertEquals(100,bitmap.width);assertEquals(100,bitmap.height)
+                assertEquals(expected,bitmap.getPixel(5,7))
+            } finally {bitmap.recycle()}
+        }
+
+        val start=pickerRequests().size
+        monitor.nextResult.set(resultFor(destination))
+        saveAs("czech-retained-target")
+        awaitState("first Czech PNG Save As completes") {!it.busy && !it.document.dirty && destination.length()>0}
+        val first=pickerRequests().drop(start).single()
+        assertEquals("image/png",first.type)
+        assertEquals("czech-retained-target.png",first.getStringExtra(Intent.EXTRA_TITLE))
+        assertSavedPixel(Color.BLUE)
+        val original=destination.readBytes()
+
+        onMain {
+            it.document.bitmap.setPixel(5,7,Color.MAGENTA)
+            it.document.edited()
+            assertTrue(it.document.dirty)
+        }
+        assertNull("The next external picker must return RESULT_CANCELED",monitor.nextResult.get())
+        saveAs("czech-discarded-target")
+        awaitState("cancelled picker returns to the editor") {
+            pickerRequests().size==start+2 && !it.busy && creditDialogRoot()==null && it.window.decorView.hasWindowFocus()
+        }
+        val cancelled=pickerRequests().last()
+        assertEquals("image/png",cancelled.type)
+        assertEquals("czech-discarded-target.png",cancelled.getStringExtra(Intent.EXTRA_TITLE))
+        assertArrayEquals("Cancel must not write over the prior file",original,destination.readBytes())
+        onMain {
+            assertTrue("Cancel keeps the edited drawing dirty",it.document.dirty)
+            assertEquals(Color.MAGENTA,it.document.bitmap.getPixel(5,7))
+            assertNull(it.lastIoError)
+        }
+
+        val requestsBeforeSave=monitor.requests.size
+        val save=cs.getString(R.string.ui_save)
+        assertNotEquals(en.getString(R.string.ui_save),save)
+        menu("File",save)
+        awaitState("ordinary Save writes to the retained target") {!it.busy && !it.document.dirty}
+        assertEquals("Ordinary Save must reuse the original URI without opening another picker",requestsBeforeSave,monitor.requests.size)
+        assertSavedPixel(Color.MAGENTA)
+        onMain {assertNull(it.lastIoError)}
     }
 
     @Test fun jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker() {
