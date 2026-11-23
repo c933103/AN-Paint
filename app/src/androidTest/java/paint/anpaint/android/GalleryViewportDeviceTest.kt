@@ -98,7 +98,9 @@ class GalleryViewportDeviceTest {
             if (Build.VERSION.SDK_INT >= 35) {
                 selectLanguage("cs")
                 setFontScale(1f)
-                checkCzechCommonsFailure(browsers)
+                checkCzechCommonsFailure(browsers, 1f)
+                setFontScale(2f)
+                checkCzechCommonsFailure(browsers, 2f)
                 instrumentation.waitForIdleSync()
             }
             for(tag in if(Build.VERSION.SDK_INT>=35) listOf("fr","mn-Mong","ar") else listOf("fr","mn-Mong")) {
@@ -210,7 +212,7 @@ class GalleryViewportDeviceTest {
      * Real WebView action and native File-page button. Chromium is already behind
      * the rejecting proxy; the separate native connection has no network fallback.
      */
-    private fun checkCzechCommonsFailure(browsers: MutableList<WebView>) {
+    private fun checkCzechCommonsFailure(browsers: MutableList<WebView>, fontScale: Float) {
         val source = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Czech_gallery_fixture.svg"
         val page = "https://commons.wikimedia.org/wiki/File:Czech_gallery_fixture.svg"
         val prior = org.catrobat.paintroid.classic.ImageCredit("https://example.invalid/previous", "Prior credit")
@@ -269,6 +271,7 @@ class GalleryViewportDeviceTest {
             val status = onMain { gallery.window.decorView.findViewWithTag<TextView>("gallery_status") }
             val oldClip = onMain {
                 assertEquals("cs", gallery.resources.configuration.locales[0].toLanguageTag())
+                assertEquals(fontScale, gallery.resources.configuration.fontScale, 0f)
                 assertEquals(listOf(prior), credits())
                 connectionField.set(gallery, connection)
                 clipboard.primaryClip
@@ -324,7 +327,8 @@ class GalleryViewportDeviceTest {
                     assertNotEquals(english.getString(key,
                         english.getString(R.string.commons_metadata_http_error, "503")), expected)
                     await("Czech Commons status $requests") { onMain {
-                        status.isShown && status.text.toString() == expected && !downloading.getBoolean(gallery)
+                        status.isShown && status.text.toString() == expected && !downloading.getBoolean(gallery) &&
+                            status.layout?.text?.toString() == expected && !status.isLayoutRequested
                     } }
                     onMain {
                         assertEquals(expected, status.createAccessibilityNodeInfo().text.toString())
@@ -337,6 +341,7 @@ class GalleryViewportDeviceTest {
                         assertNull(requestProblem.get())
                         assertFalse(attemptedRead.get())
                     }
+                    if (fontScale == 2f) assertStatusReadable(status, expected)
                 }
                 // The platform accessibility bridge may expose a WebView link's caption
                 // as a description instead of node text. Verify the actual injected anchor
@@ -394,6 +399,10 @@ class GalleryViewportDeviceTest {
                     val y = location[1] + (css.getDouble("y") * scale).toInt()
                     val visible = Rect()
                     assertTrue(web.getGlobalVisibleRect(visible) && visible.contains(x, y))
+                    if (fontScale == 2f) {
+                        assertTrue("Chromium must honor the larger system text", web.settings.textZoom > 100)
+                        android.util.Log.i("CzechCommonsLargeText", "textZoom=${web.settings.textZoom}; link=$css")
+                    }
                     intArrayOf(x, y)
                 }
                 assertTrue(device.click(copy[0], copy[1]))
@@ -407,11 +416,53 @@ class GalleryViewportDeviceTest {
                 val bounds = onMain { Rect().also { assertTrue(insert.getGlobalVisibleRect(it)) } }
                 assertTrue(device.click(bounds.centerX(), bounds.centerY()))
                 verify(R.string.ui_could_not_load_gallery_image, 2)
+                if (fontScale == 2f) {
+                    try {
+                        onMain { gallery.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
+                        await("Czech Commons rotated layout") { onMain {
+                            val root = gallery.window.decorView
+                            gallery.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                                root.width > root.height && !root.isLayoutRequested
+                        } }
+                        scenario.onActivity { assertSame("Gallery must retain its mounted failure", gallery, it) }
+                        onMain {
+                            assertEquals(2f, gallery.resources.configuration.fontScale, 0f)
+                            assertSame(web, descendants(gallery.window.decorView).filterIsInstance<WebView>().single())
+                        }
+                        verify(R.string.ui_could_not_load_gallery_image, 2)
+                    } finally {
+                        onMain { gallery.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
+                    }
+                }
             } finally {
                 onMain {
                     if (oldClip == null) clipboard.clearPrimaryClip() else clipboard.setPrimaryClip(oldClip)
                 }
             }
+        }
+    }
+
+    /** Check actual native text layout and scroll each complete line into view. */
+    private fun assertStatusReadable(status: TextView, expected: String) {
+        val lines = onMain {
+            val layout = requireNotNull(status.layout)
+            assertEquals(expected.length, layout.getLineEnd(layout.lineCount - 1))
+            assertTrue(layout.lineCount > 0)
+            (0 until layout.lineCount).map { line ->
+                assertEquals("Czech status line $line is not ellipsized", 0, layout.getEllipsisCount(line))
+                assertTrue("Czech status line $line fits horizontally", layout.getLineWidth(line) <= layout.width + 1f)
+                val top = status.totalPaddingTop + layout.getLineTop(line)
+                val bottom = status.totalPaddingTop + layout.getLineBottom(line)
+                assertTrue("Czech line $line is within the native text height", top >= 0 && bottom <= status.height)
+                Rect(status.totalPaddingLeft, top, status.width - status.totalPaddingRight, bottom)
+            }
+        }
+        for ((line, box) in lines.withIndex()) {
+            onMain { status.requestRectangleOnScreen(box, true) }
+            await("Czech Commons status line $line reachable at doubled text") { onMain {
+                val visible = Rect()
+                status.getLocalVisibleRect(visible) && visible.contains(box)
+            } }
         }
     }
 
