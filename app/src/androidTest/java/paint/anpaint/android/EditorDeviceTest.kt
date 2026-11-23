@@ -413,8 +413,23 @@ class EditorDeviceTest {
             assertTrue(qualityButton.click())
             if(czech) {
                 assertTrue("Czech numeric dialog title",device.findObject(UiSelector().text(label)).waitForExists(5000))
-                val apply=device.findObject(UiSelector().resourceId("android:id/button1").text(cs.getString(R.string.ui_apply)))
-                assertTrue("Czech numeric dialog Apply",apply.waitForExists(5000))
+                awaitState("visible numeric dialog action") {
+                    WindowInspector.getGlobalWindowViews().any { root ->
+                        root.findViewWithTag<EditText>("numeric_input")?.isShown==true &&
+                            root.findViewById<android.widget.Button>(android.R.id.button1)?.isShown==true
+                    }
+                }
+                onMain {
+                    // Assert the mounted native button's label, not the
+                    // accessibility selector's theme-transformed text.
+                    val root=WindowInspector.getGlobalWindowViews().last {
+                        it.findViewWithTag<EditText>("numeric_input")?.isShown==true
+                    }
+                    val apply=root.findViewById<android.widget.Button>(android.R.id.button1)
+                    assertTrue(apply.isShown && apply.isEnabled)
+                    assertEquals(cs.getString(R.string.ui_apply),apply.text.toString())
+                    assertNotEquals(en.getString(R.string.ui_apply),apply.text.toString())
+                }
             }
             setNumber(quality.toString());positive();positive()
             awaitState("JPEG file output") {!it.busy && destination.length()>0}
