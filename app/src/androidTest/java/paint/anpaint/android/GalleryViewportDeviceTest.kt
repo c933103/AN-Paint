@@ -353,6 +353,25 @@ class GalleryViewportDeviceTest {
                 // The platform accessibility bridge may expose a WebView link's caption
                 // as a description instead of node text. Verify the actual injected anchor
                 // and hit-test it in Chromium, then send a real screen tap at its center.
+                // Seeding Android's clipboard can put a touchable SystemUI
+                // overlay above the WebView, even while the activity has focus.
+                val clipboardOverlay = androidx.test.uiautomator.By.res("com.android.systemui", "clipboard_ui")
+                val clipboardPreview = androidx.test.uiautomator.By.res("com.android.systemui", "clipboard_preview")
+                var overlaySeen = false
+                var clearSince: Long? = null
+                await("clipboard fixture overlay clear at font scale $fontScale") {
+                    val covered = device.hasObject(clipboardOverlay) || device.hasObject(clipboardPreview)
+                    val now = SystemClock.uptimeMillis()
+                    if (covered) {
+                        overlaySeen = true
+                        clearSince = null
+                        false
+                    } else {
+                        val since = clearSince ?: now.also { clearSince = it }
+                        now - since >= 750
+                    }
+                }
+                android.util.Log.i("CzechCommonsLargeText", "Clipboard overlay observed=$overlaySeen at $fontScale")
                 var copyTarget: JSONObject? = null
                 var observation = "No WebView callback yet"
                 val copyLabel = gallery.getString(R.string.gallery_copy_credit)
