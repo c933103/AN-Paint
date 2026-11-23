@@ -15,7 +15,7 @@ from unittest.mock import Mock, patch
 from run_android_instrumentation import declared_tests, restart_partition, source_tests_sha256
 from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, app_partition, report_paths
 from test_vertical_locale_matrix import report_for
-from app_instrumentation_matrix import GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS
+from app_instrumentation_matrix import GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS
 
 SCRIPT = Path(__file__).with_name('ci_emulator.sh').resolve()
 # This is infrastructure cleanup protection, not the behavior under test. Setup
@@ -158,6 +158,10 @@ class AcceptedCreditBoundaryTest(unittest.TestCase):
                                 ('AcceptedCreditRestartSeedTest','seed'),('AcceptedCreditRestartVerifyTest','verify')):
                 annotation=f'@SdkSuppress({future_sdk_bound}) ' if name=='FutureTest' and future_sdk_bound else ''
                 (source/(name+'.kt')).write_text(f'package paint.anpaint.android\nclass {name} {{ @Test {annotation}fun {method}() {{}} }}\n')
+            editor=source/'EditorDeviceTest.kt'
+            editor.write_text(editor.read_text().rsplit('}',1)[0]+'\n'+''.join(
+                f'@Test @SdkSuppress(minSdkVersion=35) fun {method}() {{}}\n'
+                for _, method in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR))+'}\n')
             apk=root/'build/prebuilt/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
             apk.parent.mkdir(parents=True);apk.touch()
             (source/'VerticalLocaleDeviceTest.kt').write_text('package paint.anpaint.android\nclass VerticalLocaleDeviceTest {\n'+
@@ -338,12 +342,12 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],34)
-                self.assertEqual(coverage['sdk_eligible_tests'],33)
-                self.assertEqual(coverage['completed_tests'],33)
+                self.assertEqual(coverage['declared_tests'],36)
+                self.assertEqual(coverage['sdk_eligible_tests'],35)
+                self.assertEqual(coverage['completed_tests'],35)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
-                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':4, 'dialog':15, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
+                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':5, 'dialog':16, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -353,7 +357,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],34)
+        self.assertEqual(coverage['completed_tests'],36)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -422,13 +426,13 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],34)
-        self.assertEqual(coverage['completed_tests'],34)
+        self.assertEqual(coverage['declared_tests'],36)
+        self.assertEqual(coverage['completed_tests'],36)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),
             ('paint.anpaint.android.AcceptedCreditRestartSeedTest','seed'),
-            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(VERTICAL,name) for name in VERTICAL_METHODS} | {(GALLERY_DRAFT,name) for name in GALLERY_METHODS} | {(GALLERY_VIEWPORT,GALLERY_VIEWPORT_METHOD)} | {(DIALOG,name) for name in DIALOG_METHODS} | {(COLOUR,name) for name in COLOUR_METHODS} | {(PAGE_COUNT,name) for name in PAGE_COUNT_METHODS} | set.union(*POSITION_SHARDS.values()))
+            ('paint.anpaint.android.AcceptedCreditRestartVerifyTest','verify')} | {(VERTICAL,name) for name in VERTICAL_METHODS} | {(GALLERY_DRAFT,name) for name in GALLERY_METHODS} | {(GALLERY_VIEWPORT,GALLERY_VIEWPORT_METHOD)} | {(DIALOG,name) for name in DIALOG_METHODS} | {(COLOUR,name) for name in COLOUR_METHODS} | {(PAGE_COUNT,name) for name in PAGE_COUNT_METHODS} | {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR} | set.union(*POSITION_SHARDS.values()))
 
     def test_secondary_cleanup_timeout_still_retains_partial_diagnostics(self):
         process=Mock(pid=-1)

@@ -165,8 +165,8 @@ Focused checks do not turn an incomplete aggregate into a pass.
   it in ordinary. The exact disjoint composed inventory still includes every
   eligible method.
 - Native and ordinary app phases: 180 seconds each; gallery-draft: 90 seconds
-  (includes the gallery viewport/rotation test on API 35 only; API 30 keeps it in ordinary);
-  API35 dialog phase: 300 seconds; each vertical shard: 180 seconds; seed and
+  (on API 35 also includes the gallery viewport/rotation and vertical-English credit tests);
+  API35 dialog phase: 300 seconds (includes format/quality picker coverage); each vertical shard: 180 seconds; seed and
   verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,050 seconds on API35.
   Including native gives 810 / 1,230 seconds before setup/collection.
 - Separate position job: two 180-second invocations, a 16-minute execution step,

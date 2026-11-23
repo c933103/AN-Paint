@@ -101,21 +101,21 @@ def source_tests_sha256(directory: Path) -> str:
     return hashlib.sha256(json.dumps(files, separators=(',', ':')).encode('utf-8')).hexdigest()
 
 
-def requested_tests(values: list[str], declared: set[Identity], excluded: list[str]) -> set[Identity]:
+def requested_tests(values: list[str], declared: set[Identity], excluded: list[str], *, option: str = '--include-test') -> set[Identity]:
     """Reject ambiguous, duplicate, undeclared or conflicting method selectors."""
     requested: set[Identity] = set()
     identifier = r'[A-Za-z_$][A-Za-z0-9_$]*'
     for value in values:
         if not re.fullmatch(identifier + r'(?:\.' + identifier + r')*#' + identifier, value):
-            raise ValueError(f'--include-test requires one literal CLASS#METHOD identity: {value!r}')
+            raise ValueError(f'{option} requires one literal CLASS#METHOD identity: {value!r}')
         owner, method = value.split('#')
         identity = (owner, method)
         if identity in requested:
-            raise ValueError(f'Duplicate --include-test identity: {value}')
+            raise ValueError(f'Duplicate {option} identity: {value}')
         if identity not in declared:
-            raise ValueError(f'Included test not found in source inventory: {value}')
+            raise ValueError(f'{option} test not found in source inventory: {value}')
         if owner in excluded:
-            raise ValueError(f'Included test conflicts with --exclude-class: {value}')
+            raise ValueError(f'{option} conflicts with --exclude-class: {value}')
         requested.add(identity)
     return requested
 
@@ -341,6 +341,8 @@ def main() -> int:
     parser.add_argument('--suite', required=True)
     parser.add_argument('--component', help='test.package/androidx.test.runner.AndroidJUnitRunner')
     parser.add_argument('--exclude-class', action='append', default=[])
+    parser.add_argument('--exclude-test', action='append', default=[], metavar='CLASS#METHOD',
+                        help='Omit this exact declared method from a class-based run')
     parser.add_argument('--include-test', action='append', default=[], metavar='CLASS#METHOD',
                         help='Run only these exact declared, SDK-eligible methods; repeat for each method')
     parser.add_argument('--leave-target-running', action='store_true',
@@ -367,6 +369,9 @@ def main() -> int:
         unknown_exclusions = set(args.exclude_class) - {owner for owner, _ in expected}
         if unknown_exclusions:
             raise ValueError(f'Excluded class not found in source inventory: {sorted(unknown_exclusions)}')
+        if args.include_test and args.exclude_test:
+            raise ValueError('--include-test and --exclude-test cannot be combined')
+        omitted = requested_tests(args.exclude_test, expected, args.exclude_class, option='--exclude-test')
         requested = requested_tests(args.include_test, expected, args.exclude_class)
         device_sdk = subprocess.run([args.adb, 'shell', 'getprop', 'ro.build.version.sdk'],
                                     capture_output=True, text=True, timeout=15, check=True)
@@ -377,7 +382,9 @@ def main() -> int:
         sdk_suppressed = expected - eligible
         if requested - eligible:
             raise ValueError(f'Included tests are not eligible for device SDK {sdk_level}: {sorted(requested-eligible)}')
-        expected = {item for item in eligible if item[0] not in args.exclude_class}
+        if omitted - eligible:
+            raise ValueError(f'Excluded methods are not eligible for device SDK {sdk_level}: {sorted(omitted-eligible)}')
+        expected = {item for item in eligible if item[0] not in args.exclude_class} - omitted
         if args.include_test:
             expected = requested
         if not expected:
@@ -413,7 +420,9 @@ def main() -> int:
                 raise ValueError('Accepted-credit seed requires exactly one already-running target PID')
             target_pid = int(live.stdout.strip())
             command += ['--no-restart', '-e', 'waitForActivitiesToComplete', 'false']
-        if args.exclude_class:
+        if args.exclude_test:
+            command += ['-e', 'class', ','.join(f'{owner}#{method}' for owner, method in sorted(expected))]
+        elif args.exclude_class:
             command += ['-e', 'notClass', ','.join(args.exclude_class)]
         if args.include_test:
             command += ['-e', 'class', ','.join(sorted(args.include_test))]
@@ -432,6 +441,8 @@ def main() -> int:
                                 timed_out=timed_out, run_errors=errors)
         result['component'] = component
         result['excluded_classes'] = args.exclude_class
+        if args.exclude_test:
+            result['excluded_tests'] = sorted(args.exclude_test)
         result['included_tests'] = sorted(args.include_test)
         result['source_tests_sha256'] = source_digest
         result['timeout_seconds'] = args.timeout_seconds

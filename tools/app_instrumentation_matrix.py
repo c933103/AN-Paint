@@ -16,6 +16,9 @@ from run_android_instrumentation import (Identity, RESTART_SEED, RESTART_VERIFY,
 
 from vertical_locale_matrix import VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS
 
+EDITOR = 'paint.anpaint.android.EditorDeviceTest'
+GALLERY_CREDIT_EDITOR = (EDITOR, 'insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish')
+EXPORT_PICKER_EDITOR = (EDITOR, 'jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker')
 GALLERY_DRAFT = 'paint.anpaint.android.GalleryDraftDeviceTest'
 GALLERY_VIEWPORT = 'paint.anpaint.android.GalleryViewportDeviceTest'
 GALLERY_VIEWPORT_METHOD = 'realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation'
@@ -77,11 +80,14 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     gallery = {item for item in expected if item[0] == GALLERY_DRAFT or (sdk == 35 and item[0] == GALLERY_VIEWPORT)}
     required_gallery = {(GALLERY_DRAFT, method) for method in GALLERY_METHODS}
     if sdk == 35:
-        required_gallery.add((GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD))
+        required_gallery.update({(GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD), GALLERY_CREDIT_EDITOR})
+        gallery.update(expected & {GALLERY_CREDIT_EDITOR})
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
     dialog = {item for item in expected if item[0] in (DIALOG, COLOUR) or (sdk == 35 and item[0] == PAGE_COUNT)}
+    if sdk == 35:
+        dialog.update(expected & {EXPORT_PICKER_EDITOR})
     position = {item for item in expected if item[0] == POSITION}
     ordinary = expected - gallery - dialog - vertical - seed - verify - position
     if position != (set.union(*POSITION_SHARDS.values()) if sdk >= 30 else set()):
@@ -102,8 +108,9 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
                   {(COLOUR, method) for method in COLOUR_METHODS} |
-                  {(PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} if sdk == 35 else set()):
-        raise ValueError('The exact fifteen API35 method/class pairs and lower-SDK suppression are required')
+                  {(PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} |
+                  {EXPORT_PICKER_EDITOR} if sdk == 35 else set()):
+        raise ValueError('The exact sixteen API35 method/class pairs and lower-SDK suppression are required')
     parts = {}
     if sdk >= 30:
         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})
@@ -126,10 +133,12 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
         report = reports[phase]
         identities = [(case['classname'], case['name']) for case in report['cases']]
         requested = sorted(f'{owner}#{name}' for owner, name in wanted) if phase in SELECTED_PHASES else []
+        omitted = sorted(f'{owner}#{name}' for owner, name in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR)) if phase == 'ordinary' and sdk == 35 else []
         if (report.get('success') is not True or type(report.get('device_sdk')) is not int
                 or report['device_sdk'] != sdk or report.get('source_tests_sha256') != source_digest
                 or report.get('sdk_suppressed_tests') != [list(item) for item in sorted(suppressed)]
                 or report.get('included_tests') != requested
+                or report.get('excluded_tests', []) != omitted
                 or report.get('timeout_seconds') != PHASE_TIMEOUTS[phase]
                 or report.get('timed_out') is not False or report.get('returncode') != 0
                 or report.get('errors') != [] or report.get('missing') != [] or report.get('unexpected') != []

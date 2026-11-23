@@ -16,7 +16,7 @@ import tempfile
 import zipfile
 
 from vertical_evidence_transport import bounded_digest, require, strict_object
-from app_instrumentation_matrix import PAGE_COUNT, PAGE_COUNT_METHODS
+from app_instrumentation_matrix import PAGE_COUNT, PAGE_COUNT_METHODS, EXPORT_PICKER_EDITOR
 
 OWNER = 'paint.anpaint.android'
 TEST_CLASS = OWNER + '.LocalizedDialogDeviceTest'
@@ -85,10 +85,10 @@ MAX_MANIFEST = 64 * 1024
 PNG = b'\x89PNG\r\n\x1a\n'
 
 
-# The page-chooser shares this bounded run but does not produce capture exports.
-# Its exact successful identity is still mandatory in the source report.
+# The page chooser and export picker share this run but produce no capture exports.
+# Both exact successful identities are still mandatory in the source report.
 REPORT_IDENTITIES = {(owner, method) for method, owner in METHOD_CLASSES.items()} | {
-    (PAGE_COUNT, method) for method in PAGE_COUNT_METHODS}
+    (PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} | {EXPORT_PICKER_EDITOR}
 
 
 def source_binding(summary):
@@ -110,7 +110,7 @@ def source_binding(summary):
             and type(summary.get('completed_tests')) is int and summary['completed_tests'] == len(expected)
             and summary.get('missing') == [] and summary.get('unexpected') == [] and summary.get('errors') == []
             and summary.get('included_tests') == sorted(owner + '#' + method for owner, method in expected),
-            'Exact selected fifteen-method dialog phase required')
+            'Exact selected sixteen-method dialog phase required')
     return digest
 
 

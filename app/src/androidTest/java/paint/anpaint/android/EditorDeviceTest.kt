@@ -501,6 +501,7 @@ class EditorDeviceTest {
             awaitState("visible Czech ASCII controls") {
                 creditDialogRoot()?.findViewWithTag<View>("export_ascii_invert")?.isShown == true
             }
+            if(!invert) checkCzechAsciiTypedWidthInMountedDialog()
             onMain {
                 val root=requireNotNull(creditDialogRoot())
                 val spinner=root.findViewWithTag<android.widget.Spinner>("export_format")
@@ -513,8 +514,8 @@ class EditorDeviceTest {
                 assertTrue("Czech width slider is mounted and enabled",slider.isShown && slider.isEnabled)
                 assertEquals(columnsLabel,slider.contentDescription.toString())
                 val initialWidth=slider.progress+columns.minimum
-                assertEquals(if(invert) "Reopen at the persisted width" else "Start at the default width",
-                    if(invert) 64 else 100,initialWidth)
+                assertEquals(if(invert) "Reopen at the persisted width" else "Typed width reaches the options slider",
+                    if(invert) 64 else 68,initialWidth)
                 assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,initialWidth),
                     columns.number.text.toString())
                 if(!invert) {
@@ -528,12 +529,19 @@ class EditorDeviceTest {
                 }
                 assertEquals(cs.getString(R.string.ui_numeric_slider_value,columnsLabel,64),columns.number.text.toString())
             }
-            if(invert) tapCreditDialogControl("export_ascii_invert")
             onMain {
                 val root=requireNotNull(creditDialogRoot())
                 val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                val toggle=root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert")
                 assertEquals(64,columns.slider.progress+columns.minimum)
-                assertEquals(invert,root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert").isChecked)
+                if(invert) {
+                    // Exercise the installed checkbox's accessibility action, not a
+                    // screen coordinate that can be obscured by the input method.
+                    assertTrue("Invert checkbox is mounted and enabled",toggle.isShown && toggle.isEnabled)
+                    val click=android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK
+                    assertTrue("Invert checkbox handles accessibility Click",toggle.performAccessibilityAction(click.id,null))
+                }
+                assertEquals("Invert checkbox reflects the requested export option",invert,toggle.isChecked)
             }
             val destination=fixture("device-cs-ascii-$invert.txt")
             val before=monitor.requests.size
@@ -564,6 +572,48 @@ class EditorDeviceTest {
                 assertNull(it.lastIoError)
             }
         }
+    }
+
+    @android.annotation.TargetApi(29)
+    private fun checkCzechAsciiTypedWidthInMountedDialog() {
+        fun inputRoot(): View?=WindowInspector.getGlobalWindowViews().lastOrNull {
+            it.isShown && it.findViewWithTag<EditText>("numeric_input")?.isShown==true
+        }
+        val requestsBefore=monitor.requests.size
+        onMain {
+            val columns=requireNotNull(creditDialogRoot())
+                .findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+            assertEquals(100,columns.slider.progress+columns.minimum)
+            // Use the mounted widget’s listeners; touch/IME reachability is separate.
+            assertTrue(columns.number.isShown && columns.number.performClick())
+        }
+        awaitState("mounted Czech ASCII numeric dialog") {inputRoot()!=null}
+        onMain { editor ->
+            val outer=requireNotNull(creditDialogRoot())
+            val numeric=requireNotNull(inputRoot())
+            assertNotSame(outer,numeric)
+            val columns=outer.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+            val input=numeric.findViewWithTag<EditText>("numeric_input")
+            val apply=numeric.findViewById<android.widget.Button>(android.R.id.button1)
+            assertEquals(editor.getString(R.string.ui_apply),apply.text.toString())
+            assertTrue(apply.isShown && apply.isEnabled)
+            assertEquals("100",input.text.toString())
+            for(invalid in listOf("1,5",(columns.minimum-1).toString(),(columns.maximum+1).toString())) {
+                input.setText(invalid)
+                assertTrue(apply.performClick())
+                assertEquals(editor.getString(R.string.ui_enter_a_number_from_to,columns.minimum,columns.maximum),
+                    input.error.toString())
+                assertTrue(numeric.isShown)
+                assertEquals("Rejected input must not change the width",100,columns.slider.progress+columns.minimum)
+            }
+            input.setText("68")
+            assertTrue(apply.performClick())
+            assertEquals(68,columns.slider.progress+columns.minimum)
+            assertEquals(editor.getString(R.string.ui_numeric_slider_value,
+                editor.getString(R.string.formats22_ascii_columns),68),columns.number.text.toString())
+        }
+        awaitState("only the numeric dialog closes after Apply") {inputRoot()==null && creditDialogRoot()!=null}
+        assertEquals("Editing an option does not open the file picker",requestsBefore,monitor.requests.size)
     }
 
     @Test fun watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer() {

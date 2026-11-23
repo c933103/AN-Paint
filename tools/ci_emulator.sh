@@ -188,11 +188,12 @@ run_vertical_locale_matrix() {
 # existing 180s ordinary-app ceiling; CI.md models the enclosing budget.
 run_gallery_draft_regression() {
   local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
-  local -a viewport=()
+  local -a api35_gallery=()
   # On API 35 the ordinary phase repeatedly ran out of time before the
-  # viewport test finished. Keep the identical test in the bounded gallery invocation.
+  # viewport test finished. Keep it and the vertical-English credit check in the bounded gallery invocation.
   if test "$TEST_API" = 35; then
-    viewport+=(--include-test "paint.anpaint.android.GalleryViewportDeviceTest#realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation")
+    api35_gallery+=(--include-test "paint.anpaint.android.GalleryViewportDeviceTest#realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation" \
+      --include-test "paint.anpaint.android.EditorDeviceTest#insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish")
   fi
   phase='Gallery-draft instrumentation (90s maximum)'
   progress "$phase"
@@ -203,7 +204,7 @@ run_gallery_draft_regression() {
     --suite app-gallery-draft --timeout-seconds 90 \
     --include-test "$gallery_class#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits" \
     --include-test "$gallery_class#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor" \
-    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft" "${viewport[@]}"
+    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft" "${api35_gallery[@]}"
 }
 
 # Explicit API35 dialog workload; ordinary retains its original 180s cap.
@@ -234,7 +235,8 @@ run_dialog_regression() {
     --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable" \
     --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
     --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle" \
-    --include-test "$page_class#oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+    --include-test "$page_class#oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench" \
+    --include-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
 }
 
 cleanup() {
@@ -436,12 +438,14 @@ main() {
   rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-dialog" "$report/app-vertical"
   editor_failed=0
   if (( TEST_API >= 26 )); then
-    # API35 page-chooser wording runs in the existing dialog budget. API30
-    # keeps it in ordinary; no source test, deadline or process proof is removed.
+    # API35 moves existing gallery-credit and export-picker methods into their
+    # bounded gallery and dialog invocations; API30 keeps its own inventory.
     local -a ordinary_extra=()
     if test "$TEST_API" = 35; then
       ordinary_extra+=(--exclude-class paint.anpaint.android.PageCountWordingDeviceTest
-        --exclude-class paint.anpaint.android.GalleryViewportDeviceTest)
+        --exclude-class paint.anpaint.android.GalleryViewportDeviceTest \
+        --exclude-test "paint.anpaint.android.EditorDeviceTest#insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish" \
+        --exclude-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker")
     fi
     phase='Editor instrumentation'
     progress "$phase"
