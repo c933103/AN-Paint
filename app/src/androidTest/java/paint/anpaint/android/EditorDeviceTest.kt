@@ -367,7 +367,11 @@ class EditorDeviceTest {
                 assertEquals(Color.BLUE,output.getPixel(5,7));assertEquals(255,Color.alpha(output.getPixel(0,0)))
             } finally {output?.recycle()}
         }
-        onMain {assertFalse(it.document.dirty);assertNull(it.lastIoError)}
+        onMain {
+            // Save and Share exports a copy; it does not mark the editable document saved.
+            assertEquals("Copy export preserves the initial dirty state",czech,it.document.dirty)
+            assertNull(it.lastIoError)
+        }
     }
 
     @Test fun jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker() {
