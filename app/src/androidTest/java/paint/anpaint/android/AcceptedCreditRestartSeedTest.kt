@@ -3,12 +3,14 @@ package paint.anpaint.android
 
 import android.app.Activity
 import android.app.Instrumentation
+import android.app.LocaleManager
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
+import android.os.LocaleList
 import android.os.Process
 import android.os.SystemClock
 import android.util.AtomicFile
@@ -17,6 +19,7 @@ import android.view.ViewGroup
 import android.view.inspector.WindowInspector
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.test.core.app.ActivityScenario
@@ -59,6 +62,7 @@ class AcceptedCreditRestartSeedTest {
         // Intentionally no use/close/finalizer: a normal teardown would deliver
         // Gallery's result and autosave the parent before the host can kill it.
         val scenario=f.launchEditor()
+        f.selectCzechThroughInstalledPicker()
         val editor=f.editor
         f.onMain {
             editor.document.background=Color.WHITE
@@ -272,6 +276,68 @@ internal object AcceptedCreditRestartFixture {
         await("ordinary editor ready") {editor.startupReady && !editor.busy && editor.paintCanvas.width>0}
         return scenario
     }
+    fun selectCzechThroughInstalledPicker() {
+        val platform=context.getSystemService(LocaleManager::class.java)
+        assertNotEquals("Seed must exercise an actual locale change","cs",platform.applicationLocales.toLanguageTags())
+        menu("View",R.string.ui_languages23)
+        val bounds=Rect()
+        var index=0
+        var picker: ListView?=null
+        onMain {
+            val tags=editor.resources.getStringArray(R.array.app_language_tags).toList()
+            val cs=tags.indexOf("cs")
+            assertTrue("The installed picker offers Czech",cs>=0)
+            index=cs+1
+            fun find(parent: View): ListView? {
+                if(parent is ListView && parent.isShown && parent.count==tags.size+1) return parent
+                if(parent is ViewGroup) for(i in 0 until parent.childCount)
+                    find(parent.getChildAt(i))?.let {return it}
+                return null
+            }
+            picker=WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {find(it)}
+            requireNotNull(picker) {"Visible native language list"}.setSelection(index)
+        }
+        instrumentation.waitForIdleSync()
+        onMain {
+            val list=requireNotNull(picker)
+            val row=list.getChildAt(index-list.firstVisiblePosition) as TextView
+            assertTrue("The exact Czech picker row is visible",row.text.toString().endsWith("[cs]"))
+            assertTrue(row.getGlobalVisibleRect(bounds))
+            val root=IntArray(2);row.rootView.getLocationOnScreen(root)
+            bounds.offset(root[0],root[1])
+        }
+        assertTrue("Tap the real Czech row",device.click(bounds.centerX(),bounds.centerY()))
+        await("replacement Czech editor is focused and ready") {
+            val active=ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)
+                .filterIsInstance<ClassicPaintActivity>().firstOrNull()
+            val ready=active!=null && active.startupReady && !active.busy && active.hasWindowFocus() &&
+                active.resources.configuration.locales[0].toLanguageTag()=="cs" &&
+                platform.applicationLocales.toLanguageTags()=="cs"
+            if(ready) editor=requireNotNull(active)
+            ready
+        }
+    }
+
+    fun assertMountedCzechFileAndSave() {
+        tap("menu_File")
+        onMain {
+            val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+                setLocales(LocaleList.forLanguageTags("cs"))
+            })
+            val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+                setLocales(LocaleList.forLanguageTags("en-US"))
+            })
+            assertEquals("First editor after force-stop uses Czech","cs",editor.resources.configuration.locales[0].toLanguageTag())
+            for((tag,id) in mapOf("menu_File" to R.string.ui_menu_file,"command_File_2" to R.string.ui_save)) {
+                val expected=cs.getString(id)
+                assertNotEquals("Mounted $tag must differ from the English fallback",en.getString(id),expected)
+                val control=view(tag) as TextView
+                assertEquals("Mounted $tag after real process restart",expected,control.text.toString())
+                assertEquals("Accessibility label for $tag",expected,control.contentDescription?.toString())
+            }
+        }
+    }
+
     fun <T: Activity> resumed(type: Class<T>): T {
         var result: T?=null
         await("resumed ${type.simpleName}") {
