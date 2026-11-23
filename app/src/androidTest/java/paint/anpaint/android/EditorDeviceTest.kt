@@ -519,6 +519,7 @@ class EditorDeviceTest {
                 val columns=requireNotNull(creditDialogRoot())
                     .findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
                 assertTrue("Czech ASCII numeric button is reachable",columns.number.getGlobalVisibleRect(numberBounds))
+                offsetToScreen(columns.number,numberBounds)
             }
             assertTrue(device.click(numberBounds.centerX(),numberBounds.centerY()))
             awaitState("ASCII width numeric input") {
