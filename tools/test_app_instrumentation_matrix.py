@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
+from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -29,6 +29,7 @@ def receipts(source, sdk):
         reports[phase] = dict(success=True, device_sdk=sdk, source_tests_sha256=digest,
             sdk_suppressed_tests=[list(item) for item in sorted(suppressed)],
             included_tests=sorted(f'{owner}#{name}' for owner, name in wanted) if phase in SELECTED_PHASES else [],
+            excluded_tests=sorted('#'.join(item) for item in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR)) if sdk == 35 and phase == 'ordinary' else [],
             timeout_seconds=PHASE_TIMEOUTS[phase], timed_out=False, returncode=0, errors=[], missing=[], unexpected=[],
             leave_target_running=(phase=='seed'), expected_tests=len(wanted), completed_tests=len(wanted),
             cases=[dict(classname=owner, name=name, status='passed') for owner, name in sorted(wanted)])
@@ -38,7 +39,7 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'ordinary':21, 'dialog':15, 'gallery-draft':4, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':19, 'dialog':16, 'gallery-draft':5, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
@@ -56,6 +57,8 @@ class AppPartitionTest(unittest.TestCase):
             if sdk == 35:
                 self.assertIn(czech_fit, app_partition(expected, sdk)['ordinary'])
                 self.assertIn(czech_ascii, app_partition(expected, sdk)['ordinary'])
+                self.assertIn(GALLERY_CREDIT_EDITOR, app_partition(expected, sdk)['gallery-draft'])
+                self.assertIn(EXPORT_PICKER_EDITOR, app_partition(expected, sdk)['dialog'])
             else:
                 self.assertIn(czech_fit, suppressed)
                 self.assertIn(czech_ascii, suppressed)
@@ -201,6 +204,8 @@ class AppPartitionTest(unittest.TestCase):
         self.assertEqual(set(re.findall(r'--include-test \"\$dialog_class#(\w+)\"',dialog)),DIALOG_METHODS)
         self.assertEqual(set(re.findall(r'--include-test \"\$colour_class#(\w+)\"',dialog)),COLOUR_METHODS)
         self.assertEqual(set(re.findall(r'--include-test "\$page_class#(\w+)"',dialog)),PAGE_COUNT_METHODS)
+        self.assertIn('--include-test "' + '#'.join(GALLERY_CREDIT_EDITOR) + '"',body)
+        self.assertIn('--include-test "' + '#'.join(EXPORT_PICKER_EDITOR) + '"',dialog)
         self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
         self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
         self.assertIn('if test \"$TEST_API\" = 35; then run_dialog_regression || editor_failed=1; fi',main)
@@ -255,6 +260,8 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     self.assertEqual(len(ordinary),int(sdk>=30))
                     if ordinary:
                         self.assertIn('--timeout-seconds 180',ordinary[0])
+                        for item in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR):
+                            self.assertEqual('--exclude-test '+'#'.join(item) in ordinary[0],sdk==35)
                         self.assertEqual('--exclude-class '+PAGE_COUNT in ordinary[0],sdk==35)
                         self.assertEqual('--exclude-class '+GALLERY_VIEWPORT in ordinary[0],sdk==35)
                         for owner in (POSITION,GALLERY_DRAFT,DIALOG,'paint.anpaint.android.VerticalLocaleDeviceTest',RESTART_SEED,RESTART_VERIFY):
@@ -339,11 +346,13 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
 class SelectedInvocationTest(unittest.TestCase):
     def test_gallery_wrapper_runs_one_exact_selection_without_retries(self):
         self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS}, 'gallery_draft', 'app-gallery-draft', 90, sdk=30)
-        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS,GALLERY_VIEWPORT:{GALLERY_VIEWPORT_METHOD}},
+        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS,GALLERY_VIEWPORT:{GALLERY_VIEWPORT_METHOD},
+                            GALLERY_CREDIT_EDITOR[0]:{GALLERY_CREDIT_EDITOR[1]}},
                            'gallery_draft', 'app-gallery-draft', 90, sdk=35)
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
-        self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,PAGE_COUNT:PAGE_COUNT_METHODS}, 'dialog', 'app-dialog', 300)
+        self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,PAGE_COUNT:PAGE_COUNT_METHODS,
+                            EXPORT_PICKER_EDITOR[0]:{EXPORT_PICKER_EDITOR[1]}}, 'dialog', 'app-dialog', 300)
 
     def check_wrapper(self, classes, function, suite, deadline, sdk=35):
         for fault in ('', 'missing', 'extra', 'skipped', 'truncated'):

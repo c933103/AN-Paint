@@ -167,7 +167,7 @@ class SdkInventoryTest(unittest.TestCase):
 
 
 class MethodSelectionTest(unittest.TestCase):
-    def invoke(self, includes=(), excludes=(), *, sdk='35', timed_out=False, output_methods=None):
+    def invoke(self, includes=(), excludes=(), *, sdk='35', timed_out=False, output_methods=None, omitted=()):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); source = root/'sources'; source.mkdir()
             (source/'EditorTest.kt').write_text('package example\nclass EditorTest {\n'
@@ -177,6 +177,7 @@ class MethodSelectionTest(unittest.TestCase):
                     '--suite', 'selection', '--component', 'test/Runner', '--timeout-seconds', '180']
             for value in includes: args += ['--include-test', value]
             for value in excludes: args += ['--exclude-class', value]
+            for value in omitted: args += ['--exclude-test', value]
             commands = []
             def run(command, **kwargs):
                 commands.append(command)
@@ -214,6 +215,20 @@ class MethodSelectionTest(unittest.TestCase):
             self.assertEqual(report['included_tests'], sorted(includes))
             self.assertEqual(report['expected_tests'], len(includes))
             self.assertEqual(report['source_tests_sha256'], digest)
+
+    def test_method_omission_executes_a_positive_exact_inventory(self):
+        status, commands, report, _ = self.invoke(omitted=(OWNER+'#save',), output_methods=['draw'])
+        self.assertEqual(status, 0, report)
+        self.assertEqual(commands[-1][-4:], ['-e', 'class', OWNER+'#draw', 'test/Runner'])
+        self.assertEqual(report['excluded_tests'], [OWNER+'#save'])
+        self.assertEqual(report['included_tests'], [])
+        self.assertEqual(report['expected_tests'], 1)
+        bad = (((), (OWNER+'#missing',), '35'), ((), (OWNER+'#save',), '30'),
+               ((OWNER+'#draw',), (OWNER+'#save',), '35'))
+        for includes, omitted, sdk in bad:
+            status, commands, report, _ = self.invoke(includes, omitted=omitted, sdk=sdk)
+            self.assertEqual(status, 1, report)
+            self.assertFalse(any(command[1]=='install' for command in commands))
 
     def test_unknown_duplicate_malformed_and_conflicting_requests_fail_before_install(self):
         bad = [((OWNER+'#missing',), ()), (('example.Missing#draw',), ()),
