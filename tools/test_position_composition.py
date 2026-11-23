@@ -119,7 +119,7 @@ class PositionCompositionTest(unittest.TestCase):
                     with self.assertRaises(ValueError): verify_reports(SOURCE,root/group,sdk)
                 result=compose(SOURCE,root/'core',root/'position',sdk,ENV)
                 self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                self.assertEqual(result['completed_tests'],30 if sdk==30 else 53)
+                self.assertEqual(result['completed_tests'],30 if sdk==30 else 54)
                 self.assertEqual(result['deferred_tests'],[])
                 self.assertTrue((root/'core/app/coverage.json').is_file())
 

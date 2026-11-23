@@ -474,6 +474,66 @@ class EditorDeviceTest {
     }
 
     @SdkSuppress(minSdkVersion = 35, maxSdkVersion = 35)
+    @Test fun czechAsciiTypedWidthValidatesAndAppliesInTheInstalledDialog() {
+        chooseAppLanguage("cs")
+        onMain { editor ->
+            assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+            editor.document.bitmap.setPixel(8,9,Color.MAGENTA)
+            editor.document.edited()
+        }
+        menu("File",activityText(R.string.ui_export_as23))
+        assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+        tapFormatChoice(activityText(R.string.formats22_ascii_label))
+        awaitState("visible Czech ASCII width field") {
+            creditDialogRoot()?.findViewWithTag<View>("export_ascii_columns")?.isShown==true
+        }
+        fun inputRoot(): View?=WindowInspector.getGlobalWindowViews().lastOrNull {
+            it.isShown && it.findViewWithTag<EditText>("numeric_input")?.isShown==true
+        }
+        val requestsBefore=monitor.requests.size
+        onMain {
+            val root=requireNotNull(creditDialogRoot())
+            val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+            assertEquals(100,columns.slider.progress+columns.minimum)
+            // Enter through the mounted widget's own listeners. These assertions
+            // do not certify touch/IME reachability or large-font layout.
+            assertTrue(columns.number.isShown && columns.number.performClick())
+        }
+        awaitState("mounted Czech ASCII numeric dialog") {inputRoot()!=null}
+        onMain { editor ->
+            val outer=requireNotNull(creditDialogRoot())
+            val numeric=requireNotNull(inputRoot())
+            assertNotSame(outer,numeric)
+            val columns=outer.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+            val input=numeric.findViewWithTag<EditText>("numeric_input")
+            val apply=numeric.findViewById<android.widget.Button>(android.R.id.button1)
+            assertEquals(editor.getString(R.string.ui_apply),apply.text.toString())
+            assertTrue(apply.isShown && apply.isEnabled)
+            assertEquals("100",input.text.toString())
+            for(invalid in listOf("1,5",(columns.minimum-1).toString(),(columns.maximum+1).toString())) {
+                input.setText(invalid)
+                assertTrue("Use this numeric dialog’s Apply listener",apply.performClick())
+                assertEquals(editor.getString(R.string.ui_enter_a_number_from_to,columns.minimum,columns.maximum),
+                    input.error.toString())
+                assertTrue(numeric.isShown)
+                assertEquals("Rejected input must not change the width",100,columns.slider.progress+columns.minimum)
+            }
+            input.setText("68")
+            assertTrue(apply.performClick())
+            assertEquals(68,columns.slider.progress+columns.minimum)
+            assertEquals(editor.getString(R.string.ui_numeric_slider_value,
+                editor.getString(R.string.formats22_ascii_columns),68),columns.number.text.toString())
+        }
+        awaitState("only the numeric dialog closes after Apply") {inputRoot()==null && creditDialogRoot()!=null}
+        onMain { editor ->
+            assertTrue(editor.document.dirty)
+            assertEquals(Color.MAGENTA,editor.document.bitmap.getPixel(8,9))
+            assertNull(editor.lastIoError)
+        }
+        assertEquals("Editing an option does not open the file picker",requestsBefore,monitor.requests.size)
+    }
+
+    @SdkSuppress(minSdkVersion = 35, maxSdkVersion = 35)
     @Test fun czechAsciiExportAppliesInstalledColumnsAndInversionWithoutSavingTheDrawing() {
         val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
             setLocales(LocaleList.forLanguageTags("cs"))
