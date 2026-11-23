@@ -1,6 +1,7 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package paint.anpaint.android
 
+import android.app.LocaleManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Process
@@ -41,8 +42,13 @@ class AcceptedCreditRestartVerifyTest {
         f.assertCreditJson(f.json(session),source,expected)
         f.assertCreditJson(f.json(snapshot),source,expected)
         f.assertOriginalArchive(source)
+        // Read the framework state directly before opening the editor. Do
+        // not reselect Czech or call a locale helper that can migrate prefs.
+        assertEquals("Selected Czech survived the host force-stop","cs",
+            f.context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
         val scenario=f.launchEditor()
         try {
+            f.assertMountedCzechFileAndSave()
             f.onMain {f.assertOriginalDrawing(f.editor,source)}
             f.openArchive(source,expected)
             f.tap("legacy_credit_done")
