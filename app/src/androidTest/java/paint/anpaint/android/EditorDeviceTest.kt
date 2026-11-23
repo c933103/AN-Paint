@@ -473,6 +473,91 @@ class EditorDeviceTest {
         onMain {assertNull(it.lastIoError);assertEquals(100,it.document.bitmap.width)}
     }
 
+    @SdkSuppress(minSdkVersion = 35, maxSdkVersion = 35)
+    @Test fun czechAsciiExportAppliesInstalledColumnsAndInversionWithoutSavingTheDrawing() {
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        chooseAppLanguage("cs")
+        onMain {editor ->
+            assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+            for(y in 0 until 100) for(x in 0 until 100)
+                editor.document.bitmap.setPixel(x,y,if(x<50) Color.BLACK else Color.WHITE)
+            editor.document.edited()
+            assertTrue(editor.document.dirty)
+        }
+        val formatLabel=cs.getString(R.string.formats22_ascii_label)
+        val columnsLabel=cs.getString(R.string.formats22_ascii_columns)
+        val invertLabel=cs.getString(R.string.formats22_ascii_invert)
+        assertNotEquals(en.getString(R.string.formats22_ascii_columns),columnsLabel)
+        assertNotEquals(en.getString(R.string.formats22_ascii_invert),invertLabel)
+        for(invert in listOf(false,true)) {
+            menu("File",cs.getString(R.string.ui_export_as23))
+            assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+            tapFormatChoice(formatLabel)
+            awaitState("visible Czech ASCII controls") {
+                creditDialogRoot()?.findViewWithTag<View>("export_ascii_invert")?.isShown == true
+            }
+            val numberBounds=Rect()
+            onMain {
+                val root=requireNotNull(creditDialogRoot())
+                val spinner=root.findViewWithTag<android.widget.Spinner>("export_format")
+                assertEquals(formatLabel,spinner.selectedItem.toString())
+                val toggle=root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert")
+                assertEquals(invertLabel,toggle.text.toString())
+                if(!invert) assertFalse(toggle.isChecked)
+                val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                assertEquals(columnsLabel,columns.slider.contentDescription.toString())
+                val number=columns.number
+                number.requestRectangleOnScreen(Rect(0,0,number.width,number.height),true)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val columns=requireNotNull(creditDialogRoot())
+                    .findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                assertTrue("Czech ASCII numeric button is reachable",columns.number.getGlobalVisibleRect(numberBounds))
+            }
+            assertTrue(device.click(numberBounds.centerX(),numberBounds.centerY()))
+            awaitState("ASCII width numeric input") {
+                WindowInspector.getGlobalWindowViews().any {it.findViewWithTag<EditText>("numeric_input")?.isShown==true}
+            }
+            setNumber("64")
+            positive()
+            if(invert) tapCreditDialogControl("export_ascii_invert")
+            onMain {
+                val root=requireNotNull(creditDialogRoot())
+                val columns=root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_ascii_columns")
+                assertEquals(64,columns.slider.progress+columns.minimum)
+                assertEquals(invert,root.findViewWithTag<android.widget.CheckBox>("export_ascii_invert").isChecked)
+            }
+            val destination=fixture("device-cs-ascii-$invert.txt")
+            val before=monitor.requests.size
+            monitor.nextResult.set(resultFor(destination))
+            positive()
+            awaitState("completed Czech ASCII export") {!it.busy && destination.length()>0}
+            val request=monitor.requests.drop(before).single {it.action==Intent.ACTION_CREATE_DOCUMENT}
+            assertEquals("text/plain",request.type)
+            assertTrue(request.hasCategory(Intent.CATEGORY_OPENABLE))
+            assertTrue(request.getStringExtra(Intent.EXTRA_TITLE)!!.endsWith(".txt"))
+            val rows=destination.readLines(Charsets.US_ASCII)
+            assertEquals(32,rows.size)
+            assertTrue(rows.all {it.length==64})
+            for(row in rows) {
+                assertEquals(if(invert) ' ' else '@',row[5])
+                assertEquals(if(invert) '@' else ' ',row[58])
+            }
+            onMain {
+                assertTrue("Derived export does not mark the drawing saved",it.document.dirty)
+                assertEquals(Color.BLACK,it.document.bitmap.getPixel(5,7))
+                assertEquals(Color.WHITE,it.document.bitmap.getPixel(95,7))
+                assertNull(it.lastIoError)
+            }
+        }
+    }
+
     @Test fun watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer() {
         click("tool_BRUSH");click("brush_size_value")
         setNumber("101");positive()
