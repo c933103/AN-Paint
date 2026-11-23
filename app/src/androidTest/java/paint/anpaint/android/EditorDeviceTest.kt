@@ -375,19 +375,67 @@ class EditorDeviceTest {
     }
 
     @Test fun jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker() {
+        // Keep the existing JPEG/format journey and test its real Czech controls on API 35.
+        val czech=Build.VERSION.SDK_INT==35
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        })
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        })
+        if(czech) {
+            chooseAppLanguage("cs")
+            assertEquals("cs",context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+        }
         onMain {a ->
             for(y in 0 until 100) for(x in 0 until 100) a.document.bitmap.setPixel(x,y,Color.rgb((x*13+y*7)%256,(x*3+y*29)%256,(x*19+y*5)%256))
         }
         fun jpeg(quality: Int): ByteArray {
             val destination=fixture("device-quality-$quality.jpg")
             monitor.nextResult.set(resultFor(destination))
-            menu("File",text(R.string.save20_title))
-            device.findObject(UiSelector().className("android.widget.Spinner")).click()
-            device.findObject(UiSelector().text("JPEG")).click()
-            val qualityButton=device.findObject(UiSelector().className("android.widget.Button").textContains(text(R.string.ui_quality)))
-            assertTrue(qualityButton.waitForExists(5000));qualityButton.click()
+            val before=monitor.requests.size
+            menu("File",activityText(R.string.save20_title))
+            assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
+            assertTrue(device.findObject(UiSelector().text("JPEG")).click())
+            val label=if(czech) cs.getString(R.string.ui_quality) else activityText(R.string.ui_quality)
+            val qualityButton=device.findObject(UiSelector().className("android.widget.Button").textContains(label))
+            assertTrue("JPEG quality control is reachable",qualityButton.waitForExists(5000))
+            if(czech) onMain { editor ->
+                assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+                val slider=requireNotNull(creditDialogRoot()
+                    ?.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_quality"))
+                val shownQuality=slider.slider.progress+slider.minimum
+                assertTrue(slider.number.isShown)
+                assertEquals(cs.getString(R.string.ui_numeric_slider_value,label,shownQuality),slider.number.text.toString())
+                assertEquals(label,slider.slider.contentDescription.toString())
+                assertNotEquals(en.getString(R.string.ui_quality),label)
+            }
+            assertTrue(qualityButton.click())
+            if(czech) {
+                assertTrue("Czech numeric dialog title",device.findObject(UiSelector().text(label)).waitForExists(5000))
+                awaitState("visible numeric dialog action") {
+                    WindowInspector.getGlobalWindowViews().any { root ->
+                        root.findViewWithTag<EditText>("numeric_input")?.isShown==true &&
+                            root.findViewById<android.widget.Button>(android.R.id.button1)?.isShown==true
+                    }
+                }
+                onMain {
+                    // Assert the mounted native button's label, not the
+                    // accessibility selector's theme-transformed text.
+                    val root=WindowInspector.getGlobalWindowViews().last {
+                        it.findViewWithTag<EditText>("numeric_input")?.isShown==true
+                    }
+                    val apply=root.findViewById<android.widget.Button>(android.R.id.button1)
+                    assertTrue(apply.isShown && apply.isEnabled)
+                    assertEquals(cs.getString(R.string.ui_apply),apply.text.toString())
+                    assertNotEquals(en.getString(R.string.ui_apply),apply.text.toString())
+                }
+            }
             setNumber(quality.toString());positive();positive()
             awaitState("JPEG file output") {!it.busy && destination.length()>0}
+            val request=monitor.requests.drop(before).single {it.action==Intent.ACTION_CREATE_DOCUMENT}
+            assertEquals("image/jpeg",request.type)
+            assertTrue(request.hasCategory(Intent.CATEGORY_OPENABLE))
             val output=BitmapFactory.decodeFile(destination.path)
             assertNotNull(output)
             try {assertEquals(100,output.width);assertEquals(100,output.height)} finally {output?.recycle()}
@@ -397,7 +445,7 @@ class EditorDeviceTest {
         assertTrue(high.size>low.size);assertFalse(low.contentEquals(high))
         for(format in ImageFormat.values().filter {it.name in listOf("JPEG_XL","WEBP","HEIC","AVIF","BMP","GIF")}) {
             val before=monitor.requests.count {it.action==Intent.ACTION_CREATE_DOCUMENT}
-            menu("File",text(if(!format.isDerivedExport) R.string.save20_title else R.string.ui_export_as23))
+            menu("File",activityText(if(!format.isDerivedExport) R.string.save20_title else R.string.ui_export_as23))
             assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
             tapFormatChoice(format.label)
             // Confirm the popup actually completed selection. Ignoring a failed
