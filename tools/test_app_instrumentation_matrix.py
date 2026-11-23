@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
+from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -39,13 +39,13 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'ordinary':19, 'dialog':16, 'gallery-draft':5, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':19, 'dialog':17, 'gallery-draft':5, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
-            self.assertEqual(result['declared_tests'], 53)
-            self.assertEqual(result['completed_tests'], 30 if sdk==30 else 53)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 21 if sdk==30 else 0)
+            self.assertEqual(result['declared_tests'], 54)
+            self.assertEqual(result['completed_tests'], 30 if sdk==30 else 54)
+            self.assertEqual(len(result['sdk_suppressed_tests']), 22 if sdk==30 else 0)
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             czech_fit = ('paint.anpaint.android.EditorDeviceTest',
                          'czechPickerFitUsesNativeAccessibleControlAndPreservesImageAcrossRotation')
@@ -59,9 +59,11 @@ class AppPartitionTest(unittest.TestCase):
                 self.assertIn(czech_ascii, app_partition(expected, sdk)['ordinary'])
                 self.assertIn(GALLERY_CREDIT_EDITOR, app_partition(expected, sdk)['gallery-draft'])
                 self.assertIn(EXPORT_PICKER_EDITOR, app_partition(expected, sdk)['dialog'])
+                self.assertIn(CZECH_SAVE_AS, app_partition(expected, sdk)['dialog'])
             else:
                 self.assertIn(czech_fit, suppressed)
                 self.assertIn(czech_ascii, suppressed)
+                self.assertIn(CZECH_SAVE_AS, suppressed)
             self.assertIn(('paint.anpaint.android.EditorDeviceTest',
                 'mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation'), app_partition(expected,sdk)['ordinary'])
             self.assertIn(('paint.anpaint.android.PageCountWordingDeviceTest',
@@ -206,6 +208,7 @@ class AppPartitionTest(unittest.TestCase):
         self.assertEqual(set(re.findall(r'--include-test "\$page_class#(\w+)"',dialog)),PAGE_COUNT_METHODS)
         self.assertIn('--include-test "' + '#'.join(GALLERY_CREDIT_EDITOR) + '"',body)
         self.assertIn('--include-test "' + '#'.join(EXPORT_PICKER_EDITOR) + '"',dialog)
+        self.assertIn('--include-test "' + '#'.join(CZECH_SAVE_AS) + '"',dialog)
         self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
         self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
         self.assertIn('if test \"$TEST_API\" = 35; then run_dialog_regression || editor_failed=1; fi',main)
@@ -304,7 +307,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(len({path.read_bytes() for path in selected}),1)
                         result=json.loads(selected[0].read_text())
                         self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                        self.assertEqual(result['completed_tests'],30 if sdk==30 else 53)
+                        self.assertEqual(result['completed_tests'],30 if sdk==30 else 54)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
                         for subtree in ('app','app-gallery-draft','app-dialog','app-vertical','app-position'):
@@ -352,7 +355,7 @@ class SelectedInvocationTest(unittest.TestCase):
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
         self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,PAGE_COUNT:PAGE_COUNT_METHODS,
-                            EXPORT_PICKER_EDITOR[0]:{EXPORT_PICKER_EDITOR[1]}}, 'dialog', 'app-dialog', 300)
+                            EXPORT_PICKER_EDITOR[0]:{EXPORT_PICKER_EDITOR[1]}, CZECH_SAVE_AS[0]:{CZECH_SAVE_AS[1]}}, 'dialog', 'app-dialog', 300)
 
     def check_wrapper(self, classes, function, suite, deadline, sdk=35):
         for fault in ('', 'missing', 'extra', 'skipped', 'truncated'):
