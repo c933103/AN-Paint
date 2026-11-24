@@ -57,7 +57,7 @@ class PullEvidenceTest(unittest.TestCase):
                 if fault == 'dialog_truncated':
                     kwargs['stdout'].seek(-1, os.SEEK_END)
                     kwargs['stdout'].write(b'X')
-                if fault == 'dialog_exit_nonzero':
+                if fault in ('dialog_sync_fallback', 'dialog_no_transport'):
                     result.returncode = 1
             elif args[3] == 'shell':
                 identities[0] += 1
@@ -79,8 +79,8 @@ class PullEvidenceTest(unittest.TestCase):
                 target = Path(args[-1])
                 self.assertFalse(target.exists(), 'Never merge attempts or reuse old exports')
                 target.mkdir()
-                if ((pulls[0] == 1 and fault not in ('', 'after_pull_identity', 'initial_offline'))
-                        or fault == 'permanent'):
+                if ((pulls[0] == 1 and fault not in ('', 'after_pull_identity',
+                        'initial_offline', 'dialog_sync_fallback')) or fault == 'permanent'):
                     (target / 'partial.zip').write_bytes(b'original incomplete transfer')
                     kwargs['stdout'].write('original transport failure\n')
                     result.returncode = 1
@@ -126,26 +126,33 @@ class PullEvidenceTest(unittest.TestCase):
         self.assertEqual(receipt['accepted_attempt'], 2)
         self.assertEqual([e['exit_status'] for e in receipt['commands']], [0, 1, 0, 0, 0, 0])
 
-    def test_partial_dialog_sync_falls_back_to_an_isolated_shell_archive(self):
-        result, output, calls, receipt = self.run_collection('dialog_partial', remote=pull.DIALOG_EXPORT)
+    def test_dialog_uses_the_shell_stream_and_preserves_original_zip_bytes(self):
+        result, output, calls, receipt = self.run_collection(remote=pull.DIALOG_EXPORT)
+        self.assertEqual(result, 0)
+        self.assertEqual(receipt['accepted_attempt'], 1)
+        self.assertEqual([c[0] for c in calls], ['shell', 'shell', 'shell'])
+        self.assertEqual(receipt['commands'][1]['command'], 'shell-archive-1')
+        self.assertEqual([p.read_bytes() for p in output.iterdir()], [b'new complete transfer'])
+
+    def test_dialog_nonzero_shell_uses_an_isolated_sync_fallback(self):
+        result, output, calls, receipt = self.run_collection('dialog_sync_fallback', remote=pull.DIALOG_EXPORT)
         self.assertEqual(result, 0)
         self.assertEqual(receipt['accepted_attempt'], 2)
-        self.assertEqual([c[0] for c in calls], ['shell', 'pull', 'wait-for-device', 'shell', 'shell', 'shell'])
-        self.assertEqual(receipt['commands'][4]['command'], 'shell-archive-2')
-        self.assertEqual([p.read_bytes() for p in output.iterdir()], [b'new complete transfer'])
-        self.assertEqual((output.with_name('export-attempts')/'attempt-1/partial.zip').read_bytes(),
-                         b'original incomplete transfer')
+        self.assertEqual([c[0] for c in calls], ['shell', 'shell', 'wait-for-device', 'shell', 'pull', 'shell'])
+        self.assertEqual([p.name for p in output.iterdir()], ['complete.zip'])
+        self.assertTrue((output.with_name('export-attempts')/'attempt-1.tar').is_file())
 
-    def test_dialog_fallback_rejects_failure_escape_duplicates_links_and_missing_tail(self):
+    def test_dialog_rejects_invalid_archives_without_retrying_validation(self):
         for fault in ('dialog_traversal', 'dialog_duplicate', 'dialog_link',
-                      'dialog_truncated', 'dialog_exit_nonzero', 'dialog_timeout'):
+                      'dialog_truncated', 'dialog_no_transport', 'dialog_timeout'):
             with self.subTest(fault=fault):
                 result, output, calls, receipt = self.run_collection(fault, remote=pull.DIALOG_EXPORT)
                 self.assertEqual(result, 124 if fault == 'dialog_timeout' else 1)
                 self.assertFalse(output.exists())
                 self.assertFalse(output.with_name('escaped.zip').exists())
                 self.assertFalse(receipt['transport_complete'])
-                self.assertEqual(sum(c[0]=='pull' or c[:2]==['shell','-T'] for c in calls), 2)
+                attempts = sum(c[0]=='pull' or c[:2]==['shell','-T'] for c in calls)
+                self.assertEqual(attempts, 2 if fault == 'dialog_no_transport' else 1)
 
     def test_deadline_or_late_success_never_recovers_or_promotes(self):
         for fault in ('deadline', 'late_success', 'wait_deadline'):

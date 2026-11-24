@@ -255,7 +255,7 @@ cleanup() {
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
   # Mandatory app-owned exports come before the best-effort bulk diagnostic.
   # A logcat transport failure must not prevent an otherwise available capture.
-  # At most two isolated transfers share the original deadline; dialog retries use shell tar.
+  # Dialog starts with a shell archive; an isolated sync pull may follow within the same deadline.
   # Passive same-boot recovery never reruns tests/captures or relaxes validation.
   : > "$report/collection-status.log"
   if (( ${dialog_started:-0} )); then

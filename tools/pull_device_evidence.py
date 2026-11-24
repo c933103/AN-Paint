@@ -164,19 +164,19 @@ def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
             recover_transport()
         for number in (1, 2):
             target = attempts / f'attempt-{number}'
-            shell_retry = number == 2 and remote == DIALOG_EXPORT
-            label = 'shell-archive-2' if shell_retry else f'pull-{number}'
-            if shell_retry:
-                # Avoid retrying the same ADB sync read path after a partial
-                # dialog transfer. Stream the existing files, never recapture.
-                archive = attempts / 'attempt-2.tar'
+            shell_archive = number == 1 and remote == DIALOG_EXPORT
+            label = 'shell-archive-1' if shell_archive else f'pull-{number}'
+            if shell_archive:
+                # Read existing screenshots on the shell stream first. The
+                # original sync protocol remains an isolated second attempt.
+                archive = attempts / 'attempt-1.tar'
                 result = command(label, ['shell', '-T', 'toybox', 'tar', '-cf', '-', '-C', remote, '.'],
                                  binary=archive)
             else:
                 result = command(label, ['pull', remote, str(target)])
             if result.returncode == 0:
                 identity(f'after-{label}-identity')
-                if shell_retry:
+                if shell_archive:
                     unpack_dialog_archive(archive, target, remaining)
                 require(target.is_dir() and not target.is_symlink(), 'Missing regular export directory')
                 remaining()

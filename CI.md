@@ -260,8 +260,10 @@ can leave partial evidence. Keep passed, failed, timed out and unrun distinct.
 Mandatory dialog and vertical exports are pulled and fully validated before
 best-effort bulk logcat collection. Each export retains one outer 15-second
 collection deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
-A failed transfer may passively await the same emulator and re-pull once into a
-fresh isolated directory, using only the original remaining monotonic deadline.
+Dialog evidence starts with a non-PTY shell archive; the ordinary ADB sync
+pull is its fallback. Vertical evidence keeps sync pulls. A failed transfer may
+passively await the same emulator and collect once more into a fresh isolated
+directory, using only the original remaining monotonic deadline.
 An initially offline identity query can instead consume that same single recovery
 allowance; it does not permit another recovery after a later transfer failure.
 Serial, original live emulator PID, boot UUID, SDK and ABI must still match;
