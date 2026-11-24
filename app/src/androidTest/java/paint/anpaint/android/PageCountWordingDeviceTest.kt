@@ -197,20 +197,32 @@ class PageCountWordingDeviceTest {
 
                 fun tapChooserButton(id: Int, label: String) {
                     val screen = android.graphics.Rect()
-                    scenario.onActivity {
-                        val root = requireNotNull(chooserRoot())
-                        val button = requireNotNull(root.findViewById<android.widget.Button>(id))
-                        val local = android.graphics.Rect()
-                        val location = IntArray(2)
-                        button.getLocationOnScreen(location)
-                        android.util.Log.i("CzechAssemblyPageTest",
-                            "footer id=$id label=${button.text} shown=${button.isShown} enabled=${button.isEnabled} screen=${location.toList()}")
-                        assertEquals("Native footer label", label, button.text.toString())
-                        assertTrue("Native footer action is enabled and fully visible",
-                            button.isShown && button.isEnabled && button.width > 0 && button.height > 0 &&
-                                button.getLocalVisibleRect(local) &&
-                                local.contains(0, 0, button.width, button.height))
-                        screen.set(location[0], location[1], location[0] + button.width, location[1] + button.height)
+                    var geometry = "chooser not ready"
+                    try {
+                        await("focused and fully visible Assembly $kind footer: $label", failure) {
+                            var ready = false
+                            scenario.onActivity {
+                                val root = chooserRoot() ?: return@onActivity
+                                val button = root.findViewById<android.widget.Button>(id) ?: return@onActivity
+                                val local = android.graphics.Rect()
+                                val location = IntArray(2)
+                                button.getLocationOnScreen(location)
+                                val visible = button.getLocalVisibleRect(local)
+                                assertEquals("Native footer label", label, button.text.toString())
+                                geometry = "id=$id focus=${root.hasWindowFocus()} layout=${root.isLayoutRequested} " +
+                                    "shown=${button.isShown} enabled=${button.isEnabled} " +
+                                    "size=${button.width}x${button.height} visible=$visible local=$local " +
+                                    "screen=${location.toList()}"
+                                ready = root.hasWindowFocus() && !root.isLayoutRequested &&
+                                    button.isShown && button.isEnabled && button.width > 0 && button.height > 0 &&
+                                    visible && local.contains(0, 0, button.width, button.height)
+                                if (ready) screen.set(location[0], location[1],
+                                    location[0] + button.width, location[1] + button.height)
+                            }
+                            ready
+                        }
+                    } finally {
+                        android.util.Log.i("CzechAssemblyPageTest", "$kind $label: $geometry")
                     }
                     assertTrue("Injected native footer tap: $label", device.click(screen.centerX(), screen.centerY()))
                 }
