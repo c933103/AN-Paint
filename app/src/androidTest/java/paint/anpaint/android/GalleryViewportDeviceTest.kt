@@ -76,6 +76,10 @@ class GalleryViewportDeviceTest {
                 assertEquals(oldInitialization,preferences.getBoolean("platform-initialized",false))
             }
         }
+        val startedAt = SystemClock.uptimeMillis()
+        fun stage(name: String) = android.util.Log.i("GalleryViewportDeviceTest",
+            "viewport stage=$name elapsed_ms=${SystemClock.uptimeMillis() - startedAt}")
+        stage("start")
         val network=LocalRejectingProxy()
         val browsers=mutableListOf<WebView>()
         val galleries=mutableListOf<MediaGalleryActivity>()
@@ -98,12 +102,16 @@ class GalleryViewportDeviceTest {
             if (Build.VERSION.SDK_INT >= 35) {
                 selectLanguage("cs")
                 setFontScale(1f)
+                stage("Czech Commons 1x")
                 checkCzechCommonsFailure(browsers, 1f)
                 setFontScale(2f)
+                stage("Czech Commons 2x")
                 checkCzechCommonsFailure(browsers, 2f)
                 instrumentation.waitForIdleSync()
+                stage("Czech Commons complete")
             }
             for(tag in if(Build.VERSION.SDK_INT>=35) listOf("fr","mn-Mong","ar") else listOf("fr","mn-Mong")) {
+                stage("layout $tag")
                 selectLanguage(tag)
                 // A real system configuration transition also refreshes the
                 // app-wide selected-language resources on pre-LocaleManager APIs.
@@ -176,6 +184,7 @@ class GalleryViewportDeviceTest {
                 instrumentation.waitForIdleSync()
             }
         } finally {
+            stage("restore original configuration")
             // Track PRE_ON_CREATE too, so even a failed launch cannot leave an
             // unobserved gallery behind when the rejecting proxy is restored.
             try {
