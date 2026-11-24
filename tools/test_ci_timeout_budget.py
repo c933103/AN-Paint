@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / '.github/workflows/android.yml').read_text()
 SHELL = (ROOT / 'tools/ci_emulator.sh').read_text()
 RUNNER = (ROOT / 'tools/run_android_instrumentation.py').read_text()
-PHASES = {'Paintroid': 180, 'app': 180, 'app-gallery-draft': 90, 'app-gallery-viewport': 45, 'app-dialog': 300, 'app-page-chooser': 60,
+PHASES = {'Paintroid': 180, 'app': 210, 'app-gallery-draft': 90, 'app-gallery-viewport': 45, 'app-dialog': 300, 'app-page-chooser': 60,
           'app-vertical-english-manchu': 180, 'app-vertical-literary-chinese-emoji': 180,
           'app-credit-restart-seed': 60, 'app-credit-restart-verify': 60}
 
@@ -158,7 +158,7 @@ class TimeoutBudgetTest(unittest.TestCase):
     def test_actual_source_arithmetic_and_outer_hard_caps(self):
         model, limits, required = validate_budget(WORKFLOW)
         self.assertEqual({k: v for k, v in model.items() if k != 'paths'},
-                         dict(startup=270, instrumentation=1335, preparation=900, seed_pid=10,
+                         dict(startup=270, instrumentation=1365, preparation=900, seed_pid=10,
                               boundary=90, reset=10, tails=50, cleanup=72, recovery=40,
                               preparation_per_phase=90, tail_per_phase=5, recovery_per_phase=10))
         self.assertEqual(limits, (48, 6, 58))
@@ -167,9 +167,9 @@ class TimeoutBudgetTest(unittest.TestCase):
     def test_failure_gates_and_exclusive_tail_paths_are_not_double_counted(self):
         model = controlled_model(SHELL, RUNNER)
         self.assertEqual(model['paths'], {
-            'api35_success': 2737, 'api35_all_ten_with_four_recoveries': 2777,
-            'api35_ordinary_gallery_dialog_or_page_failure': 2407, 'api35_seed_failure': 2572,
-            'api35_last_boundary_failure': 2613, 'api30_five_with_five_recoveries': 1669})
+            'api35_success': 2767, 'api35_all_ten_with_four_recoveries': 2807,
+            'api35_ordinary_gallery_dialog_or_page_failure': 2437, 'api35_seed_failure': 2602,
+            'api35_last_boundary_failure': 2643, 'api30_five_with_five_recoveries': 1699})
         main = body(SHELL, 'main')
         self.assertIn('if (( editor_failed )); then', main)
         self.assertIn('run_credit_restart_regression || failed=1', main)
@@ -188,7 +188,8 @@ class TimeoutBudgetTest(unittest.TestCase):
 
     def test_phase_deadline_or_invocation_changes_cannot_bypass_model(self):
         for changed in (SHELL.replace('--timeout-seconds 90', '--timeout-seconds 91'),
-                        SHELL.replace('--suite app --timeout-seconds 180', '--suite changed --timeout-seconds 180')):
+                        SHELL.replace('--suite app --timeout-seconds 210', '--suite changed --timeout-seconds 210'),
+                        SHELL.replace('--suite app --timeout-seconds 210', '--suite app --timeout-seconds 180')):
             with self.assertRaises(ValueError):
                 validate_budget(WORKFLOW, changed)
 
@@ -208,8 +209,8 @@ class TimeoutBudgetTest(unittest.TestCase):
         canonical = docs.split('## Deadlines and evidence', 1)[1].split('## How to conclude work', 1)[0]
         for text in ('58 minutes, including a 48-minute execution step',
                      'API35 dialog phase: 300 seconds',
-                     '630 seconds on API30 and 1,155 seconds on API35',
-                     '810 / 1,335', 'current 48-minute step'):
+                     '660 seconds on API30 and 1,185 seconds on API35',
+                     '840 / 1,365', 'current 48-minute step'):
             self.assertIn(text, canonical)
         for stale in ('46 minutes', '36-minute', '750 seconds', '810 / 930'):
             self.assertNotIn(stale, canonical)

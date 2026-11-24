@@ -499,7 +499,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('if test "$TEST_API" = 35',source)
         for phase in ('seed', 'verify'):
             self.assertIn(f'--suite app-credit-restart-{phase} --timeout-seconds 60', source)
-        self.assertEqual(source.count('--timeout-seconds 180'),4)
+        self.assertEqual(source.count('--timeout-seconds 180'),3)
         self.assertEqual(source.count('--timeout-seconds 90'),1)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
 

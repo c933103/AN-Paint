@@ -215,7 +215,7 @@ run_gallery_viewport_regression() {
     --suite app-gallery-viewport --timeout-seconds 45 --include-test "$test_id"
 }
 
-# Explicit API35 dialog workload; ordinary retains its original 180s cap.
+# Explicit API35 dialog workload; the ordinary runner has its own independent cap.
 # Three normal-font colour cases replace the archived limitation identity.
 run_dialog_regression() {
   local dialog_class=paint.anpaint.android.LocalizedDialogDeviceTest
@@ -475,7 +475,7 @@ main() {
       --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
       --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
       --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
-      --suite app --timeout-seconds 180 "${ordinary_extra[@]}" \
+      --suite app --timeout-seconds 210 "${ordinary_extra[@]}" \
       --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
       --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
       --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \

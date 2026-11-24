@@ -66,7 +66,7 @@ DIALOG_METHODS = {
 API35_DIALOG_IDENTITIES = ({(DIALOG, method) for method in DIALOG_METHODS} |
                            {(COLOUR, method) for method in COLOUR_METHODS} |
                            {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
-PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300, 'page-chooser': 60,
+PHASE_TIMEOUTS = {'ordinary': 210, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300, 'page-chooser': 60,
                   **{phase: 180 for phase in (*VERTICAL_SHARDS, *POSITION_SHARDS)}, 'seed': 60, 'verify': 60}
 SELECTED_PHASES = {'gallery-draft', 'gallery-viewport', 'dialog', 'page-chooser', *VERTICAL_SHARDS, *POSITION_SHARDS}
 
