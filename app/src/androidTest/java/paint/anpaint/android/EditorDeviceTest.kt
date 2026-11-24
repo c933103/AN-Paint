@@ -483,21 +483,37 @@ class EditorDeviceTest {
             val before=monitor.requests.size
             menu("File",activityText(R.string.save20_title))
             assertTrue(device.findObject(UiSelector().className("android.widget.Spinner")).click())
-            assertTrue(device.findObject(UiSelector().text("JPEG")).click())
+            tapFormatChoice("JPEG")
             val label=if(czech) cs.getString(R.string.ui_quality) else activityText(R.string.ui_quality)
-            val qualityButton=device.findObject(UiSelector().className("android.widget.Button").textContains(label))
-            assertTrue("JPEG quality control is reachable",qualityButton.waitForExists(5000))
-            if(czech) onMain { editor ->
-                assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+            awaitState("focused JPEG export dialog and native quality control ($quality)") {
+                val root=creditDialogRoot()
+                root?.hasWindowFocus()==true &&
+                    root.findViewWithTag<android.widget.Spinner>("export_format")?.selectedItem?.toString()=="JPEG" &&
+                    root.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_quality")
+                        ?.number?.isShown==true
+            }
+            onMain { editor ->
                 val slider=requireNotNull(creditDialogRoot()
                     ?.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_quality"))
-                val shownQuality=slider.slider.progress+slider.minimum
-                assertTrue(slider.number.isShown)
-                assertEquals(cs.getString(R.string.ui_numeric_slider_value,label,shownQuality),slider.number.text.toString())
-                assertEquals(label,slider.slider.contentDescription.toString())
-                assertNotEquals(en.getString(R.string.ui_quality),label)
+                val number=slider.number
+                if(czech) {
+                    assertEquals("cs",editor.resources.configuration.locales[0].toLanguageTag())
+                    val shownQuality=slider.slider.progress+slider.minimum
+                    assertEquals(cs.getString(R.string.ui_numeric_slider_value,label,shownQuality),number.text.toString())
+                    assertEquals(label,slider.slider.contentDescription.toString())
+                    assertNotEquals(en.getString(R.string.ui_quality),label)
+                }
+                number.requestRectangleOnScreen(Rect(0,0,number.width,number.height),true)
             }
-            assertTrue(qualityButton.click())
+            val qualityBounds=Rect()
+            awaitState("JPEG quality control visible after scrolling ($quality)") {
+                val root=creditDialogRoot()
+                val number=root?.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_quality")?.number
+                if(root?.hasWindowFocus()!=true || number==null || !number.isEnabled ||
+                    !number.getGlobalVisibleRect(qualityBounds) || qualityBounds.height()<number.height/2) false
+                else {offsetToScreen(number,qualityBounds);true}
+            }
+            assertTrue("Real JPEG quality input tap ($quality)",device.click(qualityBounds.centerX(),qualityBounds.centerY()))
             if(czech) {
                 assertTrue("Czech numeric dialog title",device.findObject(UiSelector().text(label)).waitForExists(5000))
                 awaitState("visible numeric dialog action") {
