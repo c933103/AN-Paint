@@ -212,6 +212,7 @@ class GalleryViewportDeviceTest {
      * Real WebView action and native File-page button. Chromium is already behind
      * the rejecting proxy; the separate native connection has no network fallback.
      */
+    @androidx.annotation.RequiresApi(35)
     private fun checkCzechCommonsFailure(browsers: MutableList<WebView>, fontScale: Float) {
         val source = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Czech_gallery_fixture.svg"
         val page = "https://commons.wikimedia.org/wiki/File:Czech_gallery_fixture.svg"
@@ -518,14 +519,19 @@ class GalleryViewportDeviceTest {
     }
 
     /** Check actual native text layout and scroll each complete line into view. */
+    @androidx.annotation.RequiresApi(35)
     private fun assertStatusReadable(status: TextView, expected: String) {
         val lines = onMain {
             val layout = requireNotNull(status.layout)
-            assertEquals(expected.length, layout.getLineEnd(layout.lineCount - 1))
             assertTrue(layout.lineCount > 0)
+            assertEquals(expected.length, layout.getLineEnd(layout.lineCount - 1))
+            // Advance width includes trailing spaces. Prove the complete native
+            // layout's painted glyphs fit and survive the actual TextView clip.
+            capturePaintedInk(status, expectedLocale = "cs").use { frame ->
+                assertPaintedInk(frame, "installed Czech Commons status")
+            }
             (0 until layout.lineCount).map { line ->
                 assertEquals("Czech status line $line is not ellipsized", 0, layout.getEllipsisCount(line))
-                assertTrue("Czech status line $line fits horizontally", layout.getLineWidth(line) <= layout.width + 1f)
                 val top = status.totalPaddingTop + layout.getLineTop(line)
                 val bottom = status.totalPaddingTop + layout.getLineBottom(line)
                 assertTrue("Czech line $line is within the native text height", top >= 0 && bottom <= status.height)
@@ -688,9 +694,12 @@ class GalleryViewportDeviceTest {
     /** API35, plain horizontal status only. Unsupported drawing features fail closed. */
     @androidx.annotation.RequiresApi(35)
     private fun capturePaintedInk(view: TextView,translationX: Int=0,
-        clipLeft: Int=0,clipRight: Int=view.width,expectedBoundsWidth: Boolean=true): PaintedInkFrame {
+        clipLeft: Int=0,clipRight: Int=view.width,expectedBoundsWidth: Boolean=true,
+        expectedLocale: String="ar"): PaintedInkFrame {
         val layout=requireNotNull(view.layout)
-        assertEquals("Installed oracle is explicitly the horizontal Arabic profile","ar",view.resources.configuration.locales[0].language)
+        require(expectedLocale in setOf("ar","cs"))
+        assertEquals("Installed oracle is bound to a reviewed horizontal locale",
+            expectedLocale,view.resources.configuration.locales[0].language)
         assertEquals("gallery_status",view.tag)
         assertEquals("Reference must contain the complete actual text",view.text.toString(),layout.text.toString())
         assertTrue(view.text.isNotEmpty());assertTrue(layout.lineCount>0)
