@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Re-pull immutable CI exports once after passive same-session ADB recovery.
+"""Collect immutable CI exports with at most one same-session recovery.
 
 The caller retains its 15s timeout/3s kill envelope. This helper shares one
 monotonic 15s deadline across every command; it never runs tests or validators.
@@ -12,11 +12,17 @@ from pathlib import Path
 import re
 import signal
 import subprocess
+import tarfile
+import shutil
 import sys
 import tempfile
 import time
 
 BUDGET_SECONDS = 15
+DIALOG_EXPORT = '/sdcard/Download/anpaint-ci-dialog-evidence'
+VERTICAL_EXPORT = '/sdcard/Download/anpaint-ci-vertical-evidence'
+MAX_ARCHIVE = 72 * 1024 * 1024 + 128 * 1024
+MAX_MEMBER = 24 * 1024 * 1024
 IDENTITY_COMMAND = ('cat /proc/sys/kernel/random/boot_id && '
                     'getprop ro.build.version.sdk && getprop ro.product.cpu.abi')
 
@@ -32,6 +38,36 @@ class TransportUnavailable(ValueError):
 def require(condition, message):
     if not condition:
         raise ValueError(message)
+
+
+def unpack_dialog_archive(archive, target, remaining):
+    # Shell transport cannot bypass the installed-evidence validator. In this
+    # staging parser, allow only bounded, flat regular method ZIPs.
+    length = archive.stat().st_size
+    require(1024 <= length <= MAX_ARCHIVE and length % 512 == 0,
+            'Invalid dialog transfer archive size')
+    with archive.open('rb') as stream:
+        stream.seek(-1024, os.SEEK_END)
+        require(stream.read() == b'\0' * 1024, 'Incomplete dialog transfer archive')
+    target.mkdir()
+    names = set()
+    with tarfile.open(archive, 'r:') as members:
+        for member in members:
+            remaining()
+            if member.name == '.' and member.isdir() and not names:
+                continue
+            name = member.name.removeprefix('./')
+            require(member.isreg() and re.fullmatch(r'[A-Za-z][A-Za-z0-9]{0,127}\.zip', name)
+                    and name not in names and len(names) < 32
+                    and 0 < member.size <= MAX_MEMBER, 'Unexpected dialog archive member')
+            require(member.offset_data + member.size <= length - 1024,
+                    'Truncated dialog archive member')
+            names.add(name)
+            with members.extractfile(member) as stream, (target / name).open('xb') as out:
+                shutil.copyfileobj(stream, out, 128 * 1024)
+            require((target / name).stat().st_size == member.size, 'Truncated extracted dialog ZIP')
+    require(names, 'No dialog ZIPs in transfer archive')
+    remaining()
 
 
 def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
@@ -59,7 +95,7 @@ def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
             raise DeadlineExpired('Original collection deadline exhausted')
         return left
 
-    def command(label, args, capture=False):
+    def command(label, args, capture=False, binary=None):
         left = remaining()
         # A replacement device on the same serial must not supply old evidence.
         os.kill(emulator_pid, 0)
@@ -70,11 +106,16 @@ def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
         log = attempts / (label + '.log')
         try:
             with log.open('w') as stream:
-                result = subprocess.run([adb, '-s', serial, *args],
-                                        stdout=subprocess.PIPE if capture else stream,
-                                        stderr=stream, text=True, timeout=remaining())
-                if capture:
-                    stream.write(result.stdout)
+                if binary is not None:
+                    with binary.open('xb') as out:
+                        result = subprocess.run([adb, '-s', serial, *args], stdout=out,
+                                                stderr=stream, timeout=remaining())
+                else:
+                    result = subprocess.run([adb, '-s', serial, *args],
+                                            stdout=subprocess.PIPE if capture else stream,
+                                            stderr=stream, text=True, timeout=remaining())
+                    if capture:
+                        stream.write(result.stdout)
             event['exit_status'] = result.returncode
         except subprocess.TimeoutExpired:
             event['exit_status'] = 124
@@ -108,8 +149,7 @@ def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
                 'Original emulator boot UUID required')
         require(type(emulator_pid) is int and emulator_pid > 0, 'Original emulator PID required')
         require(sdk in (30, 35) and abi in ('x86', 'x86_64'), 'Expected capture SDK/ABI required')
-        require(remote in ('/sdcard/Download/anpaint-ci-dialog-evidence',
-                           '/sdcard/Download/anpaint-ci-vertical-evidence'), 'Unknown export source')
+        require(remote in (DIALOG_EXPORT, VERTICAL_EXPORT), 'Unknown export source')
         require(not os.path.lexists(output) and not os.path.lexists(attempts)
                 and not os.path.lexists(receipt_path), 'Collection destinations must be fresh')
         output.parent.mkdir(parents=True, exist_ok=True)
@@ -124,9 +164,20 @@ def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
             recover_transport()
         for number in (1, 2):
             target = attempts / f'attempt-{number}'
-            result = command(f'pull-{number}', ['pull', remote, str(target)])
+            shell_archive = number == 1 and remote == DIALOG_EXPORT
+            label = 'shell-archive-1' if shell_archive else f'pull-{number}'
+            if shell_archive:
+                # Read existing screenshots on the shell stream first. The
+                # original sync protocol remains an isolated second attempt.
+                archive = attempts / 'attempt-1.tar'
+                result = command(label, ['shell', '-T', 'toybox', 'tar', '-cf', '-', '-C', remote, '.'],
+                                 binary=archive)
+            else:
+                result = command(label, ['pull', remote, str(target)])
             if result.returncode == 0:
-                identity(f'after-pull-{number}-identity')
+                identity(f'after-{label}-identity')
+                if shell_archive:
+                    unpack_dialog_archive(archive, target, remaining)
                 require(target.is_dir() and not target.is_symlink(), 'Missing regular export directory')
                 remaining()
                 os.kill(emulator_pid, 0)
@@ -142,7 +193,7 @@ def collect(adb, serial, boot_id, sdk, abi, emulator_pid, remote, output):
             else:
                 break
         raise ValueError('Evidence transfer failed; recovery allowance exhausted')
-    except (ValueError, OSError, DeadlineExpired) as error:
+    except (ValueError, OSError, DeadlineExpired, tarfile.TarError) as error:
         receipt['error'] = str(error)
         # Do not overwrite a stale receipt or follow a pre-existing destination.
         if owned:
