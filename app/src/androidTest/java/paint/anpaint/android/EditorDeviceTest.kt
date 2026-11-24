@@ -509,7 +509,7 @@ class EditorDeviceTest {
             awaitState("JPEG quality control visible after scrolling ($quality)") {
                 val root=creditDialogRoot()
                 val number=root?.findViewWithTag<org.catrobat.paintroid.classic.NumericSlider>("export_quality")?.number
-                if(root?.hasWindowFocus()!=true || number==null || !number.isEnabled ||
+                if(root==null || !root.hasWindowFocus() || number==null || !number.isEnabled ||
                     !number.getGlobalVisibleRect(qualityBounds) || qualityBounds.height()<number.height/2) false
                 else {offsetToScreen(number,qualityBounds);true}
             }
@@ -651,13 +651,32 @@ class EditorDeviceTest {
             val before=monitor.requests.size
             monitor.nextResult.set(resultFor(destination))
             val exportBounds=Rect()
-            onMain {
-                val export=requireNotNull(creditDialogRoot()).findViewById<android.widget.Button>(android.R.id.button1)
-                assertTrue("Export action is enabled and reachable",export.isEnabled && export.getGlobalVisibleRect(exportBounds))
-                offsetToScreen(export,exportBounds)
+            val pass=if(invert) "inverted" else "normal"
+            fun exportState(): String {
+                val root=creditDialogRoot()
+                val button=root?.findViewById<android.widget.Button>(android.R.id.button1)
+                return "pass=$pass focused=${root?.hasWindowFocus()} shown=${button?.isShown} " +
+                    "laidOut=${button?.isLaidOut} ime=${root?.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())} " +
+                    "pickerRequests=${monitor.requests.drop(before).count { it.action==Intent.ACTION_CREATE_DOCUMENT }} " +
+                    "pickerResultPending=${monitor.nextResult.get()!=null} outputBytes=${destination.length()}"
             }
-            assertTrue("Export action tap injected",device.click(exportBounds.centerX(),exportBounds.centerY()))
-            awaitState("completed Czech ASCII export") {!it.busy && destination.length()>0}
+            // The numeric dialog, its keyboard and Android's window focus can
+            // settle after the underlying Export button becomes isShown. Keep
+            // the real touch, but target the focused window after IME teardown.
+            awaitState("focused Czech ASCII Export action ($pass)", ::exportState) {
+                val root=creditDialogRoot()
+                val export=root?.findViewById<android.widget.Button>(android.R.id.button1)
+                if(root==null || !root.hasWindowFocus() ||
+                    root.rootWindowInsets?.isVisible(android.view.WindowInsets.Type.ime())!=false ||
+                    export==null || !export.isShown || !export.isEnabled || !export.isLaidOut ||
+                    !export.getGlobalVisibleRect(exportBounds)) false
+                else {
+                    offsetToScreen(export,exportBounds)
+                    !exportBounds.isEmpty
+                }
+            }
+            assertTrue("Export action tap injected ($pass)",device.click(exportBounds.centerX(),exportBounds.centerY()))
+            awaitState("completed Czech ASCII export ($pass)", ::exportState) {!it.busy && destination.length()>0}
             val request=monitor.requests.drop(before).single {it.action==Intent.ACTION_CREATE_DOCUMENT}
             assertEquals("text/plain",request.type)
             assertTrue(request.hasCategory(Intent.CATEGORY_OPENABLE))
@@ -1671,7 +1690,7 @@ class EditorDeviceTest {
             it.resources.configuration.locales[0].toLanguageTag()=="cs"
     }
 
-    private fun awaitState(description: String,condition: (ClassicPaintActivity)->Boolean) {
+    private fun awaitState(description: String,diagnostic: (() -> String)? = null,condition: (ClassicPaintActivity)->Boolean) {
         val done=CountDownLatch(1);val error=AtomicReference<Throwable?>();val handler=Handler(Looper.getMainLooper())
         val until=SystemClock.uptimeMillis()+15000
         val check=object: Runnable {
@@ -1679,7 +1698,8 @@ class EditorDeviceTest {
                 try {
                     if(condition(activity)) {done.countDown();return}
                     if(SystemClock.uptimeMillis()<until) {handler.postDelayed(this,25);return}
-                    error.set(AssertionError("Timed out: $description; last I/O error: ${activity.lastIoError}"))
+                    val detail=diagnostic?.invoke()?.let {"; $it"}.orEmpty()
+                    error.set(AssertionError("Timed out: $description; last I/O error: ${activity.lastIoError}$detail"))
                 } catch(failure: Throwable) {error.set(failure)}
                 done.countDown()
             }
