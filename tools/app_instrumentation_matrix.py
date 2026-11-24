@@ -63,9 +63,9 @@ DIALOG_METHODS = {
     'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
 }
-PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300,
+PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300, 'page-chooser': 60,
                   **{phase: 180 for phase in (*VERTICAL_SHARDS, *POSITION_SHARDS)}, 'seed': 60, 'verify': 60}
-SELECTED_PHASES = {'gallery-draft', 'gallery-viewport', 'dialog', *VERTICAL_SHARDS, *POSITION_SHARDS}
+SELECTED_PHASES = {'gallery-draft', 'gallery-viewport', 'dialog', 'page-chooser', *VERTICAL_SHARDS, *POSITION_SHARDS}
 
 
 def selected_phases(parts: dict, group: str) -> dict:
@@ -90,11 +90,12 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
     vertical = {item for item in expected if item[0] == VERTICAL}
-    dialog = {item for item in expected if item[0] in (DIALOG, COLOUR) or (sdk == 35 and item[0] == PAGE_COUNT)}
+    dialog = {item for item in expected if item[0] in (DIALOG, COLOUR)}
     if sdk == 35:
         dialog.update(expected & {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
+    page_chooser = {item for item in expected if sdk == 35 and item[0] == PAGE_COUNT}
     position = {item for item in expected if item[0] == POSITION}
-    ordinary = expected - gallery - viewport - dialog - vertical - seed - verify - position
+    ordinary = expected - gallery - viewport - dialog - page_chooser - vertical - seed - verify - position
     if position != (set.union(*POSITION_SHARDS.values()) if sdk >= 30 else set()):
         raise ValueError('Position shards require the exact seven source identities and lower-SDK suppression')
     shards = list(VERTICAL_SHARDS.values())
@@ -113,14 +114,15 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The app inventory requires exactly one seed and one verify method')
     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
                   {(COLOUR, method) for method in COLOUR_METHODS} |
-                  {(PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} |
                   {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS} if sdk == 35 else set()):
-        raise ValueError('The exact seventeen API35 method/class pairs and lower-SDK suppression are required')
+        raise ValueError('The exact sixteen API35 dialog method/class pairs and lower-SDK suppression are required')
+    if page_chooser != ({(PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} if sdk == 35 else set()):
+        raise ValueError('The exact API35 page chooser method is required')
     parts = {}
     if sdk >= 30:
         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})
     if sdk == 35:
-        parts.update({'gallery-viewport': viewport, 'dialog': dialog, 'seed': seed, 'verify': verify})
+        parts.update({'gallery-viewport': viewport, 'dialog': dialog, 'page-chooser': page_chooser, 'seed': seed, 'verify': verify})
     return parts
 
 
@@ -197,6 +199,7 @@ def report_paths(root: Path, sdk: int, group: str = 'all') -> dict[str, Path]:
     if sdk == 35:
         paths['gallery-viewport'] = root/'app-gallery-viewport/androidTest-results/summary.json'
         paths['dialog'] = root/'app-dialog/androidTest-results/summary.json'
+        paths['page-chooser'] = root/'app-page-chooser/androidTest-results/summary.json'
         paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
                       for phase in ('seed', 'verify')})
     return selected_phases(paths, group)
@@ -206,7 +209,7 @@ def read_app_reports(root: Path, sdk: int, group: str = 'all') -> dict[str, dict
     paths = report_paths(root, sdk, group)
     wanted = set(paths.values())
     actual = set().union(*((root/name).rglob('summary.json')
-                          for name in ('app', 'app-gallery-draft', 'app-gallery-viewport', 'app-dialog', 'app-vertical', 'app-position')))
+                          for name in ('app', 'app-gallery-draft', 'app-gallery-viewport', 'app-dialog', 'app-page-chooser', 'app-vertical', 'app-position')))
     if actual != wanted:
         raise ValueError(f'Exact composed app report inventory required: missing={sorted(map(str, wanted-actual))}, '
                          f'unexpected={sorted(map(str, actual-wanted))}')

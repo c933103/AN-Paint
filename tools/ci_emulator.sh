@@ -220,7 +220,6 @@ run_gallery_viewport_regression() {
 run_dialog_regression() {
   local dialog_class=paint.anpaint.android.LocalizedDialogDeviceTest
   local colour_class=paint.anpaint.android.ColourViewportDeviceTest
-  local page_class=paint.anpaint.android.PageCountWordingDeviceTest
   phase='Installed dialog phase (300s maximum)'
   progress "$phase"
   dialog_started=1
@@ -243,9 +242,22 @@ run_dialog_regression() {
     --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable" \
     --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
     --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle" \
-    --include-test "$page_class#oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench" \
     --include-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker" \
     --include-test "paint.anpaint.android.CzechSaveAsViewportDeviceTest#czechSaveAsRetainsDraftAtDoubleTextAcrossRotation"
+}
+
+# Keep the PDF/TIFF consumer in the required union, but don't let earlier
+# dialog paths spend the page chooser's entire cancellation budget.
+run_page_chooser_regression() {
+  local page_class=paint.anpaint.android.PageCountWordingDeviceTest
+  phase='Installed PDF/TIFF page chooser (60s maximum)'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-page-chooser/androidTest-results" \
+    --suite app-page-chooser --timeout-seconds 60 \
+    --include-test "$page_class#oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
 }
 
 cleanup() {
@@ -444,7 +456,8 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-gallery-viewport" "$report/app-dialog" "$report/app-vertical"
+  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-gallery-viewport" \
+    "$report/app-dialog" "$report/app-page-chooser" "$report/app-vertical"
   editor_failed=0
   if (( TEST_API >= 26 )); then
     # API35 moves existing gallery-credit and export-picker methods into their
@@ -486,6 +499,7 @@ main() {
   if test "$TEST_API" = 35; then
     run_gallery_viewport_regression || editor_failed=1
     run_dialog_regression || editor_failed=1
+    run_page_chooser_regression || editor_failed=1
   fi
   if (( editor_failed )); then failed=1; fi
   phase='Vertical locale native-input matrix'

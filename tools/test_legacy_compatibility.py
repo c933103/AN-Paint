@@ -79,7 +79,7 @@ class LegacyInventoryTest(unittest.TestCase):
                         self.assertEqual(result['completed_tests'], 0)
                         self.assertEqual(list(root.rglob('summary.json')), [])
                         self.assertTrue(all(not path.exists() for path in coverage_paths(root)[1:]))
-                        for subtree in ('app', 'app-gallery-draft', 'app-dialog', 'app-vertical'):
+                        for subtree in ('app', 'app-gallery-draft', 'app-dialog', 'app-page-chooser', 'app-vertical'):
                             stale = root/subtree/'old/summary.json'
                             stale.parent.mkdir(parents=True, exist_ok=True); stale.write_text('{"success":true}')
                             run = subprocess.run(command, env=env, text=True, capture_output=True, timeout=10)

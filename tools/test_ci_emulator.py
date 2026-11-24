@@ -350,7 +350,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
                 self.assertEqual(coverage['completed_tests'],36)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
-                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':4, 'gallery-viewport':1, 'dialog':17, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
+                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':4, 'gallery-viewport':1, 'dialog':16, 'page-chooser':1, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -497,7 +497,8 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
     def test_restart_and_instrumentation_phase_deadlines_are_explicit(self):
         source=SCRIPT.read_text()
         self.assertIn('if test "$TEST_API" = 35',source)
-        self.assertEqual(source.count('--timeout-seconds 60'),2)
+        for phase in ('seed', 'verify'):
+            self.assertIn(f'--suite app-credit-restart-{phase} --timeout-seconds 60', source)
         self.assertEqual(source.count('--timeout-seconds 180'),4)
         self.assertEqual(source.count('--timeout-seconds 90'),1)
         self.assertIn('credit_restart_command \"Force-stop',source.replace('"','\"'))
