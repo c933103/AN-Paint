@@ -66,7 +66,7 @@ class CaptureCleanupTest(unittest.TestCase):
             server.write_bytes(server_bytes)
         adb = root / 'adb'
         adb.write_text('#!' + sys.executable + '\n' + r'''
-import json, os, shutil, sys, time
+import json, os, shutil, sys, tarfile, time
 from pathlib import Path
 root = Path(os.environ['CLEANUP_ROOT'])
 fault = os.environ['CLEANUP_FAULT']
@@ -75,7 +75,16 @@ if args[:2] == ['-s', 'emulator-5554']:
     args = args[2:]
 with (root / 'events.jsonl').open('a') as out:
     out.write(json.dumps(args) + '\n')
-if args[0] == 'shell':
+if args[:2] == ['shell', '-T']:
+    assert args == ['shell', '-T', 'toybox', 'tar', '-cf', '-', '-C',
+                    '/sdcard/Download/anpaint-ci-dialog-evidence', '.']
+    if fault in ('dialog_pull', 'both_pulls', 'dialog_transient'):
+        sys.stdout.buffer.write(b'partial synthetic shell archive')
+        print('adb: error: incomplete shell stream', file=sys.stderr)
+        sys.exit(1)
+    with tarfile.open(fileobj=sys.stdout.buffer, mode='w|') as archive:
+        archive.add(root / 'dialog', arcname='.')
+elif args[0] == 'shell':
     assert args[1] == 'cat /proc/sys/kernel/random/boot_id && getprop ro.build.version.sdk && getprop ro.product.cpu.abi'
     print('12345678-1234-1234-1234-123456789abc\n35\nx86_64')
 elif args == ['wait-for-device']:
@@ -88,7 +97,7 @@ elif args[0] == 'pull':
     target = Path(args[2])
     target.mkdir(parents=True)
     if (fault in (group + '_pull', 'both_pulls') or (root / 'offline').exists()
-            or fault == group + '_transient' and count == 1):
+            or fault == 'vertical_transient' and group == 'vertical' and count == 1):
         (target / 'partial-export.zip').write_bytes(b'partial synthetic transfer')
         print('adb: error: failed to get feature set: device offline', file=sys.stderr)
         sys.exit(1)
@@ -134,10 +143,23 @@ exit "$CLEANUP_INCOMING"
                                     'CLEANUP_STARTED': str(int(started)), 'TMPDIR': str(root)})
         events = [json.loads(line) for line in (root / 'events.jsonl').read_text().splitlines()]
         timeouts = (root / 'timeouts.log').read_text().splitlines()
-        operations = [event[0] for event in events if event[0] not in ('shell', 'wait-for-device')]
-        retries = (2 if fault == 'both_pulls' else int(fault.endswith(('_pull', '_transient')))) if started else 0
-        expected = ['pull'] * (2 + retries) + ['logcat', 'emu'] if started else ['logcat', 'emu']
-        self.assertEqual(operations, expected)
+        operations = []
+        for event in events:
+            if event[:2] == ['shell', '-T']:
+                operations.append('dialog-shell')
+            elif event[0] == 'pull':
+                operations.append('dialog-sync' if event[1].endswith('dialog-evidence') else 'vertical-sync')
+            elif event[0] not in ('shell', 'wait-for-device'):
+                operations.append(event[0])
+        expected = []
+        if started:
+            expected.append('dialog-shell')
+            if fault in ('dialog_pull', 'dialog_transient', 'both_pulls'):
+                expected.append('dialog-sync')
+            expected.append('vertical-sync')
+            if fault in ('vertical_pull', 'vertical_transient', 'both_pulls'):
+                expected.append('vertical-sync')
+        self.assertEqual(operations, expected + ['logcat', 'emu'])
         self.assertEqual([line.split()[:2] for line in timeouts],
                          ([['--kill-after=3s', '15s']] * 2 if started else []) +
                          [['--kill-after=3s', '10s']] * 2)
@@ -156,6 +178,10 @@ exit "$CLEANUP_INCOMING"
         result, _, report, _, server_bytes = self.run_cleanup()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assert_successful_captures(report)
+        transport = json.loads((report / 'dialog-export-transfer.json').read_text())
+        self.assertEqual(transport['accepted_attempt'], 1)
+        self.assertEqual([c['command'] for c in transport['commands']],
+                         ['initial-identity', 'shell-archive-1', 'after-shell-archive-1-identity'])
         self.assertEqual((report / 'collection-status.log').read_text(),
                          'dialog_pull_exit=0\nvertical_pull_exit=0\nlogcat_exit=0\nresult=0\n')
         self.assertEqual((report / 'adb-server-tail.log').read_bytes(), server_bytes[-65536:])
@@ -184,9 +210,13 @@ exit "$CLEANUP_INCOMING"
                                                ('vertical', 'vertical-locale-export', 'vertical-locale-export.json')]:
                     if fault in (group + '_pull', 'both_pulls'):
                         self.assertFalse((report / folder).exists())
-                        for number in (1, 2):
-                            self.assertEqual((report / (folder + '-attempts') / f'attempt-{number}/partial-export.zip').read_bytes(),
-                                             b'partial synthetic transfer')
+                        attempts = report / (folder + '-attempts')
+                        if group == 'dialog':
+                            self.assertEqual((attempts / 'attempt-1.tar').read_bytes(), b'partial synthetic shell archive')
+                            self.assertFalse((attempts / 'attempt-1').exists())
+                        else:
+                            self.assertEqual((attempts / 'attempt-1/partial-export.zip').read_bytes(), b'partial synthetic transfer')
+                        self.assertEqual((attempts / 'attempt-2/partial-export.zip').read_bytes(), b'partial synthetic transfer')
                         self.assertFalse((report / receipt).exists())
                         self.assertIn(group + '_pull_exit=1', (report / 'collection-status.log').read_text())
                     else:
@@ -202,7 +232,15 @@ exit "$CLEANUP_INCOMING"
                 receipt = json.loads((report / (folder + '-transfer.json')).read_text())
                 self.assertEqual(receipt['accepted_attempt'], 2)
                 self.assertEqual([c['exit_status'] for c in receipt['commands']], [0, 1, 0, 0, 0, 0])
-                self.assertTrue((report / (folder + '-attempts') / 'attempt-1/partial-export.zip').is_file())
+                attempts = report / (folder + '-attempts')
+                if group == 'dialog':
+                    self.assertEqual((attempts / 'attempt-1.tar').read_bytes(), b'partial synthetic shell archive')
+                    self.assertEqual([c['command'] for c in receipt['commands']],
+                                     ['initial-identity', 'shell-archive-1', 'passive-wait',
+                                      'recovered-identity', 'pull-2', 'after-pull-2-identity'])
+                    self.assertFalse((attempts / 'attempt-1').exists())
+                else:
+                    self.assertTrue((attempts / 'attempt-1/partial-export.zip').is_file())
 
     def test_incomplete_exports_fail_real_validators_without_removing_raw_files(self):
         for group, folder, receipt in [('dialog', 'dialog-export', 'dialog-evidence.json'),
