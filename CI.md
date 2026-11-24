@@ -166,21 +166,24 @@ Focused checks do not turn an incomplete aggregate into a pass.
   retains it in ordinary. This keeps the PDF/TIFF selection test from inheriting
   the time remaining after preceding UI tests. Composition still requires every
   eligible method exactly once.
-- Native and ordinary app phases: 180 seconds each; gallery-draft: 90 seconds
+- Native phase: 180 seconds; ordinary app phase: 210 seconds; gallery-draft: 90 seconds
   (API35 includes the vertical-English credit test); API35 Gallery viewport/rotation: 45 seconds,
   in a separate exact-report phase;
   API35 dialog phase: 300 seconds (includes format/quality picker coverage); each vertical shard: 180 seconds; seed and
-  verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,155 seconds on API35.
-  Including native gives 810 / 1,335 seconds before setup/collection.
+  verify: 60 seconds each. Core app ceilings total 660 seconds on API30 and 1,185 seconds on API35.
+  Including native gives 840 / 1,365 seconds before setup/collection.
 - Separate position job: two 180-second invocations, a 16-minute execution step,
   6-minute image step and 26-minute job cap. Its controlled path is 270 seconds
   startup + 360 instrumentation + 180 preparation + 10 capture tails + 20 failure
   recovery + 36 cleanup = 876 seconds; a 60-second processing allowance rounds
   up to 16 minutes. These are cancellation budgets, not proven runtime bounds.
-  Across both jobs, app ceilings total 990 / 1,515 seconds on API30 / API35.
+  Across both jobs, app ceilings total 1,020 / 1,545 seconds on API30 / API35.
 - The current 48-minute step includes separately bounded setup, processing and
-  cleanup allowances. Inner deadlines and failure behavior must not be relaxed
-  to obtain green results. Test/installation failures are not automatically retried.
+  cleanup allowances. The ordinary phase budget accommodates the unchanged
+  installed workload: run 45481036963 completed all 25 methods in 153.518 seconds;
+  post-merge run 45484955752 reached the former 180-second deadline in its last
+  method. A timeout still fails the phase and cannot satisfy the composed gate.
+  Per-method assertions and all other phase and job caps are unchanged.
 
 The expanded regression suite exceeded its former 4-minute Python and 12-minute
 JVM caps in [run 39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235):
@@ -447,7 +450,7 @@ and landscape. Native focus/input, invalid-value rejection, Apply, saved-project
 reload, Cancel and Back are separate assertions. Manchu must mount the
 left-to-right vertical shell and retain its complete vertical caption spans.
 
-The ordinary 180-second phase cap remains unchanged. The seven position methods
+The separate position shards do not use the ordinary app phase budget. The seven position methods
 run once in a separate emulator job: Ainu Kana/Latin + Manchu (three), and
 Tibetan/Dzongkha + Jeju + Nôm (four), each capped at 180 seconds. Each method keeps
 its 45-second interaction bound. Native Back dismisses a previous field's IME

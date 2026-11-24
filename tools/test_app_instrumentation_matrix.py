@@ -85,7 +85,7 @@ class AppPartitionTest(unittest.TestCase):
             }
             self.assertEqual({(position, method) for method in position_methods},
                              set.union(*(app_partition(expected,sdk)[phase] for phase in POSITION_SHARDS)))
-            self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],315 if sdk==35 else 270)
+            self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],345 if sdk==35 else 300)
             valencian=('paint.anpaint.android.EditorDeviceTest',
                 'valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation')
             if sdk==35:
@@ -117,7 +117,7 @@ class AppPartitionTest(unittest.TestCase):
             else:
                 self.assertNotIn(reported,expected)
                 self.assertIn(reported,suppressed)
-            self.assertEqual(result['all_app_total_timeout_seconds'],990 if sdk==30 else 1515)
+            self.assertEqual(result['all_app_total_timeout_seconds'],1020 if sdk==30 else 1545)
             if sdk == 35:
                 self.assertIn('API35 en-US/hu 2x 640x320 mdpi', result['colour_scope'])
                 self.assertIn('preview-rail reachability and Cancel only', result['colour_scope'])
@@ -208,7 +208,7 @@ class AppPartitionTest(unittest.TestCase):
         self.assertIn(GALLERY_VIEWPORT+'#'+GALLERY_VIEWPORT_METHOD,viewport)
         self.assertNotIn(GALLERY_VIEWPORT_METHOD,body)
         self.assertNotIn('--leave-target-running',body)
-        self.assertEqual(shell.count('--timeout-seconds 180'),4)
+        self.assertEqual(shell.count('--timeout-seconds 180'),3)
         self.assertEqual(shell.count('--timeout-seconds 60'),3)
         main=shell.split('main() {',1)[1]
         self.assertIn('--exclude-class paint.anpaint.android.GalleryDraftDeviceTest',main)
@@ -280,7 +280,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     ordinary=[line for line in lines if ' --suite app ' in line]
                     self.assertEqual(len(ordinary),int(sdk>=30))
                     if ordinary:
-                        self.assertIn('--timeout-seconds 180',ordinary[0])
+                        self.assertIn('--timeout-seconds 210',ordinary[0])
                         for item in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR):
                             self.assertEqual('--exclude-test '+'#'.join(item) in ordinary[0],sdk==35)
                         self.assertEqual('--exclude-class '+PAGE_COUNT in ordinary[0],sdk==35)
