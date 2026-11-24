@@ -496,8 +496,15 @@ class AssemblyActivityTest {
         for(tag in listOf("en","en-001","en-AU","en-CA","en-GB","en-IN","en-SG","en-US","en-XV","fr","qaa-Zsye-XV")) withLanguage(tag) {
             for(count in listOf(0,1,2,20)) {
                 val text=activity.resources.getQuantityString(org.catrobat.paintroid.R.plurals.ui_crop_preview_images,count,24,16,count)
-                val singular=if(tag=="fr") count<=1 else count==1
-                assertTrue(tag,text.contains("$count " + if(singular) "image." else "images."))
+                if (tag == "fr") {
+                    // French reports the selection, including zero, rather than
+                    // conjugating an instruction to apply the crop.
+                    val selection=text.lineSequence().drop(1).first().substringBefore('.')
+                    assertTrue("$tag/$count: $selection", selection.contains("sélectionnées") &&
+                        selection.trimEnd().endsWith(": $count"))
+                } else {
+                    assertTrue(tag,text.contains("$count " + if(count==1) "image." else "images."))
+                }
                 if(tag=="qaa-Zsye-XV") assertTrue(text.startsWith("✅ "))
             }
         }
