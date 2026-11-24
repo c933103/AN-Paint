@@ -35,8 +35,9 @@ those prebuilt binaries through `adb shell am instrument -w -r`, without Gradle
 or native-codec rebuilds. SDK-aware source discovery determines the expected
 identities and explicit exclusions; never freeze a past test count as a source
 oracle. API30 omits SDK-ineligible tests and the explicitly API35 restart pair.
-API35 includes ordinary, gallery draft, gallery viewport, dialog, two vertical shards, two position
-shards and the external force-stop seed/verify phases. A missing or excluded test is not a pass.
+API35 includes ordinary, gallery draft, gallery viewport, dialog, page chooser,
+two vertical shards, two position shards and the external force-stop seed/verify
+phases. A missing or excluded test is not a pass.
 
 The exact-script job tests clean debug/release resource merges, release-first,
 producer-before-consumer order, identical generated XML, an unchanged up-to-date
@@ -157,26 +158,27 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 - Regression job: 84 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 25 minutes (24-minute owned-process execution deadline);
   build job: 45 minutes;
-  universal assembly: 30 minutes; emulator jobs: 55 minutes, including a 45-minute execution step.
+  universal assembly: 30 minutes; emulator jobs: 58 minutes, including a 48-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
   shared 120 seconds, each transient probe at most 10 seconds within that budget.
   Main and each test APK installation: 60 seconds; runner discovery: 15 seconds.
-- API35 page-chooser wording runs with the existing dialog phase; API30 retains
-  it in ordinary. The exact disjoint composed inventory still includes every
-  eligible method.
+- API35 page-chooser wording has its own required 60-second phase. API30
+  retains it in ordinary. This keeps the PDF/TIFF selection test from inheriting
+  the time remaining after preceding UI tests. Composition still requires every
+  eligible method exactly once.
 - Native and ordinary app phases: 180 seconds each; gallery-draft: 90 seconds
   (API35 includes the vertical-English credit test); API35 Gallery viewport/rotation: 45 seconds,
   in a separate exact-report phase;
   API35 dialog phase: 300 seconds (includes format/quality picker coverage); each vertical shard: 180 seconds; seed and
-  verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,095 seconds on API35.
-  Including native gives 810 / 1,275 seconds before setup/collection.
+  verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,155 seconds on API35.
+  Including native gives 810 / 1,335 seconds before setup/collection.
 - Separate position job: two 180-second invocations, a 16-minute execution step,
   6-minute image step and 26-minute job cap. Its controlled path is 270 seconds
   startup + 360 instrumentation + 180 preparation + 10 capture tails + 20 failure
   recovery + 36 cleanup = 876 seconds; a 60-second processing allowance rounds
   up to 16 minutes. These are cancellation budgets, not proven runtime bounds.
-  Across both jobs, app ceilings total 990 / 1,455 seconds on API30 / API35.
-- The current 45-minute step includes separately bounded setup, processing and
+  Across both jobs, app ceilings total 990 / 1,515 seconds on API30 / API35.
+- The current 48-minute step includes separately bounded setup, processing and
   cleanup allowances. Inner deadlines and failure behavior must not be relaxed
   to obtain green results. Test/installation failures are not automatically retried.
 

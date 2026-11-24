@@ -14,9 +14,10 @@ import textwrap
 import unittest
 import zipfile
 
-from dialog_evidence_transport import (REPORT_IDENTITIES, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, PAGE_COUNT, PAGE_COUNT_METHODS, METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, KOREAN_METHODS, korean_captions, OWNER, TEST_CLASS, PNG,
+from dialog_evidence_transport import (REPORT_IDENTITIES, METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, KOREAN_METHODS, korean_captions, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
+from app_instrumentation_matrix import CZECH_SAVE_AS, EXPORT_PICKER_EDITOR, PAGE_COUNT, PAGE_COUNT_METHODS
 from synthetic_colour_receipts import geometry, synthetic_colour_receipt, synthetic_colour_endpoint
 
 DIGEST = 'a' * 64
@@ -24,7 +25,7 @@ DIGEST = 'a' * 64
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=17, completed_tests=17, missing=[], unexpected=[], errors=[],
+                source_tests_sha256=DIGEST, expected_tests=len(REPORT_IDENTITIES), completed_tests=len(REPORT_IDENTITIES), missing=[], unexpected=[], errors=[],
                 included_tests=sorted(owner + '#' + name for owner, name in REPORT_IDENTITIES),
                 cases=[dict(classname=owner, name=m, status='passed') for owner, m in sorted(REPORT_IDENTITIES)])
 
@@ -413,9 +414,10 @@ class DialogEvidenceTransportTest(unittest.TestCase):
     def test_noncapture_pickers_must_pass_without_replacing_capture_requirements(self):
         data=summary()
         self.assertEqual(source_binding(data),DIGEST)
-        self.assertEqual(len(REPORT_IDENTITIES),17)
+        self.assertEqual(REPORT_IDENTITIES, {(owner, method) for method, owner in METHOD_CLASSES.items()} |
+                         {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
         self.assertEqual(len(METHOD_CLASSES),14)
-        for owner, name in ((PAGE_COUNT,next(iter(PAGE_COUNT_METHODS))), EXPORT_PICKER_EDITOR, CZECH_SAVE_AS):
+        for owner, name in (EXPORT_PICKER_EDITOR, CZECH_SAVE_AS):
             self.assertIn((owner,name),REPORT_IDENTITIES)
             for status in ('failed','skipped','running'):
                 broken=copy.deepcopy(data)
@@ -423,10 +425,19 @@ class DialogEvidenceTransportTest(unittest.TestCase):
                 with self.subTest(name=name,status=status),self.assertRaises(ValueError):source_binding(broken)
             broken=copy.deepcopy(data)
             broken['cases']=[c for c in broken['cases'] if (c['classname'],c['name'])!=(owner,name)]
-            broken['expected_tests']=broken['completed_tests']=16
+            broken['expected_tests']=broken['completed_tests']=len(REPORT_IDENTITIES)-1
             broken['included_tests'].remove(owner+'#'+name)
             with self.assertRaises(ValueError):source_binding(broken)
             with self.assertRaises(ValueError):verify_receipt({},name,DIGEST)
+
+    def test_old_combined_dialog_receipt_cannot_stand_in_for_split_reports(self):
+        data = summary()
+        name, = PAGE_COUNT_METHODS
+        data['cases'].append(dict(classname=PAGE_COUNT, name=name, status='passed'))
+        data['included_tests'] = sorted([*data['included_tests'], f'{PAGE_COUNT}#{name}'])
+        data['expected_tests'] = data['completed_tests'] = len(data['cases'])
+        with self.assertRaises(ValueError):
+            source_binding(data)
 
     def test_source_summary_rejects_failed_wrong_sdk_missing_duplicate_and_unbound(self):
         changes = [lambda d: d.update(success=False), lambda d: d.update(device_sdk=30),
