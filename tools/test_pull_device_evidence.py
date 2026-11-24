@@ -1,4 +1,6 @@
 """Deterministic deadline/session/partial-transfer tests, not device evidence."""
+import io
+import tarfile
 import json
 import os
 from pathlib import Path
@@ -16,7 +18,7 @@ REMOTE = '/sdcard/Download/anpaint-ci-vertical-evidence'
 
 
 class PullEvidenceTest(unittest.TestCase):
-    def run_collection(self, fault='', *, stale=False):
+    def run_collection(self, fault='', *, stale=False, remote=REMOTE):
         temporary = tempfile.TemporaryDirectory()
         self.addCleanup(temporary.cleanup)
         root = Path(temporary.name)
@@ -34,7 +36,30 @@ class PullEvidenceTest(unittest.TestCase):
             self.assertLessEqual(kwargs['timeout'], pull.BUDGET_SECONDS - now[0])
             calls.append(args[3:])
             result = subprocess.CompletedProcess(args, 0, '')
-            if args[3] == 'shell':
+            if args[3:5] == ['shell', '-T']:
+                self.assertEqual(args[5:], ['toybox', 'tar', '-cf', '-', '-C', pull.DIALOG_EXPORT, '.'])
+                if fault == 'dialog_timeout':
+                    now[0] += kwargs['timeout']
+                    raise subprocess.TimeoutExpired(args, kwargs['timeout'])
+                with tarfile.open(fileobj=kwargs['stdout'], mode='w') as stream:
+                    name = 'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation.zip'
+                    contents = b'new complete transfer'
+                    names = [name] if fault not in ('dialog_traversal', 'dialog_duplicate') else (
+                        ['../escaped.zip'] if fault == 'dialog_traversal' else [name,name])
+                    for filename in names:
+                        member = tarfile.TarInfo('./' + filename)
+                        member.size = len(contents)
+                        if fault == 'dialog_link':
+                            member.type = tarfile.SYMTYPE
+                            member.linkname = '../outside.zip'
+                            member.size = 0
+                        stream.addfile(member, io.BytesIO(contents))
+                if fault == 'dialog_truncated':
+                    kwargs['stdout'].seek(-1, os.SEEK_END)
+                    kwargs['stdout'].write(b'X')
+                if fault == 'dialog_exit_nonzero':
+                    result.returncode = 1
+            elif args[3] == 'shell':
                 identities[0] += 1
                 result.stdout = f'{BOOT}\n35\nx86_64\n'
                 if fault == 'wrong_session' and identities[0] == 2:
@@ -78,7 +103,7 @@ class PullEvidenceTest(unittest.TestCase):
         with patch.object(pull.time, 'monotonic', side_effect=lambda: now[0]), \
                 patch.object(pull.subprocess, 'run', side_effect=command):
             result = pull.collect('adb', 'emulator-5554', BOOT, 35, 'x86_64',
-                                  os.getpid(), REMOTE, output)
+                                  os.getpid(), remote, output)
         receipt = output.with_name('export-transfer.json')
         return result, output, calls, json.loads(receipt.read_text()) if receipt.exists() else None
 
@@ -100,6 +125,27 @@ class PullEvidenceTest(unittest.TestCase):
         self.assertIn('original transport failure', (attempts / 'pull-1.log').read_text())
         self.assertEqual(receipt['accepted_attempt'], 2)
         self.assertEqual([e['exit_status'] for e in receipt['commands']], [0, 1, 0, 0, 0, 0])
+
+    def test_partial_dialog_sync_falls_back_to_an_isolated_shell_archive(self):
+        result, output, calls, receipt = self.run_collection('dialog_partial', remote=pull.DIALOG_EXPORT)
+        self.assertEqual(result, 0)
+        self.assertEqual(receipt['accepted_attempt'], 2)
+        self.assertEqual([c[0] for c in calls], ['shell', 'pull', 'wait-for-device', 'shell', 'shell', 'shell'])
+        self.assertEqual(receipt['commands'][4]['command'], 'shell-archive-2')
+        self.assertEqual([p.read_bytes() for p in output.iterdir()], [b'new complete transfer'])
+        self.assertEqual((output.with_name('export-attempts')/'attempt-1/partial.zip').read_bytes(),
+                         b'original incomplete transfer')
+
+    def test_dialog_fallback_rejects_failure_escape_duplicates_links_and_missing_tail(self):
+        for fault in ('dialog_traversal', 'dialog_duplicate', 'dialog_link',
+                      'dialog_truncated', 'dialog_exit_nonzero', 'dialog_timeout'):
+            with self.subTest(fault=fault):
+                result, output, calls, receipt = self.run_collection(fault, remote=pull.DIALOG_EXPORT)
+                self.assertEqual(result, 124 if fault == 'dialog_timeout' else 1)
+                self.assertFalse(output.exists())
+                self.assertFalse(output.with_name('escaped.zip').exists())
+                self.assertFalse(receipt['transport_complete'])
+                self.assertEqual(sum(c[0]=='pull' or c[:2]==['shell','-T'] for c in calls), 2)
 
     def test_deadline_or_late_success_never_recovers_or_promotes(self):
         for fault in ('deadline', 'late_success', 'wait_deadline'):
