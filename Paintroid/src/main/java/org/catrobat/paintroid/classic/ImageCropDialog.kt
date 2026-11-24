@@ -82,15 +82,41 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
                 field.setText(String.format(Locale.ROOT,"%.4f",n).trimEnd('0').trimEnd('.'))
             }; syncing = false
         }
+        fun clearPreview() {
+            preview.bitmap = null
+            preview.crop = null
+            preview.invalidate()
+        }
         fun refresh(updatePreview: Boolean = true) {
             if (syncing) return
+            val m = margins()
+            if (m == null) {
+                clearPreview()
+                status.text = ui(R.string.ui_enter_a_trim_amount_for_every_edge)
+                return
+            }
+            // The image in the preview is independent of the batch selection.
+            // A bad reference crop must not leave the previous image/overlay active.
+            var previewError: String? = null
+            val crop = try { m.rect(reference.dimensions) } catch (error: IllegalArgumentException) {
+                previewError = error.message
+                null
+            }
+            if (crop == null) clearPreview()
+            else if (updatePreview) {
+                preview.bitmap = previewBitmap(reference)
+                preview.crop = CropOverlay(reference.dimensions,crop)
+                preview.invalidate()
+            }
+            val targets = images.filter { it.id in selected }
             try {
-                val m = margins() ?: throw IllegalArgumentException(ui(R.string.ui_enter_a_trim_amount_for_every_edge))
-                val crop = m.rect(reference.dimensions)
-                if (updatePreview) { preview.bitmap = previewBitmap(reference); preview.crop = CropOverlay(reference.dimensions,crop); preview.invalidate() }
-                val count = images.count { it.id in selected }
-                images.filter { it.id in selected }.forEach { m.rect(it.dimensions) }
-                status.text = uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,crop.width(),crop.height(),count)
+                targets.forEach { m.rect(it.dimensions) }
+                status.text = if (crop != null) {
+                    val count = targets.size
+                    uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,crop.width(),crop.height(),count)
+                } else {
+                    ui(R.string.ui_image_shown_in_crop_preview) + "\n" + previewError.orEmpty()
+                }
             } catch (error: IllegalArgumentException) { status.text = error.message }
         }
         listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent)).forEachIndexed { index, name ->
