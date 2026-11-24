@@ -63,6 +63,9 @@ DIALOG_METHODS = {
     'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
 }
+API35_DIALOG_IDENTITIES = ({(DIALOG, method) for method in DIALOG_METHODS} |
+                           {(COLOUR, method) for method in COLOUR_METHODS} |
+                           {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
 PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300, 'page-chooser': 60,
                   **{phase: 180 for phase in (*VERTICAL_SHARDS, *POSITION_SHARDS)}, 'seed': 60, 'verify': 60}
 SELECTED_PHASES = {'gallery-draft', 'gallery-viewport', 'dialog', 'page-chooser', *VERTICAL_SHARDS, *POSITION_SHARDS}
@@ -112,9 +115,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The exact SDK-specific gallery methods and ordinary app tests are required')
     if len(seed) != 1 or len(verify) != 1:
         raise ValueError('The app inventory requires exactly one seed and one verify method')
-    if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
-                  {(COLOUR, method) for method in COLOUR_METHODS} |
-                  {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS} if sdk == 35 else set()):
+    if dialog != (API35_DIALOG_IDENTITIES if sdk == 35 else set()):
         raise ValueError('The exact sixteen API35 dialog method/class pairs and lower-SDK suppression are required')
     if page_chooser != ({(PAGE_COUNT, method) for method in PAGE_COUNT_METHODS} if sdk == 35 else set()):
         raise ValueError('The exact API35 page chooser method is required')
