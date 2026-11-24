@@ -183,17 +183,14 @@ run_vertical_locale_matrix() {
   return "$failed"
 }
 
-# Same unchanged class, fixtures and method bodies, now a separate ordinary
-# instrumentation process. The explicit 90s budget adds to (never extends) the
-# existing 180s ordinary-app ceiling; CI.md models the enclosing budget.
+# Keep the existing gallery draft and credit coverage under its original cap.
+# The viewport proof has a separate, shorter cap and exact receipt on API35.
 run_gallery_draft_regression() {
   local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
   local -a api35_gallery=()
-  # On API 35 the ordinary phase repeatedly ran out of time before the
-  # viewport test finished. Keep it and the vertical-English credit check in the bounded gallery invocation.
+  # API35 also verifies that an accepted credit survives vertical English.
   if test "$TEST_API" = 35; then
-    api35_gallery+=(--include-test "paint.anpaint.android.GalleryViewportDeviceTest#realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation" \
-      --include-test "paint.anpaint.android.EditorDeviceTest#insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish")
+    api35_gallery+=(--include-test "paint.anpaint.android.EditorDeviceTest#insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish")
   fi
   phase='Gallery-draft instrumentation (90s maximum)'
   progress "$phase"
@@ -205,6 +202,17 @@ run_gallery_draft_regression() {
     --include-test "$gallery_class#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits" \
     --include-test "$gallery_class#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor" \
     --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft" "${api35_gallery[@]}"
+}
+
+run_gallery_viewport_regression() {
+  local test_id=paint.anpaint.android.GalleryViewportDeviceTest#realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation
+  phase='Gallery viewport instrumentation (45s maximum)'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-gallery-viewport/androidTest-results" \
+    --suite app-gallery-viewport --timeout-seconds 45 --include-test "$test_id"
 }
 
 # Explicit API35 dialog workload; ordinary retains its original 180s cap.
@@ -436,7 +444,7 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-dialog" "$report/app-vertical"
+  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-gallery-viewport" "$report/app-dialog" "$report/app-vertical"
   editor_failed=0
   if (( TEST_API >= 26 )); then
     # API35 moves existing gallery-credit and export-picker methods into their
@@ -475,7 +483,10 @@ main() {
     printf 'NOT RUN: gallery-draft class requires API 30; actual API %s\n' "$TEST_API" \
       > "$report/app-gallery-draft/status.txt"
   fi
-  if test "$TEST_API" = 35; then run_dialog_regression || editor_failed=1; fi
+  if test "$TEST_API" = 35; then
+    run_gallery_viewport_regression || editor_failed=1
+    run_dialog_regression || editor_failed=1
+  fi
   if (( editor_failed )); then failed=1; fi
   phase='Vertical locale native-input matrix'
   progress "$phase"
@@ -489,7 +500,7 @@ main() {
   if test "$TEST_API" = 35; then
     if (( editor_failed )); then
       mkdir -p "$report/app/accepted-credit-restart"
-      printf 'NOT RUN: ordinary editor, gallery-draft or dialog suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
+      printf 'NOT RUN: ordinary editor, gallery draft/viewport or dialog suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
     else
       run_credit_restart_regression || failed=1
     fi

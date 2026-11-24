@@ -131,8 +131,8 @@ class InstalledGlyphTransportTests(unittest.TestCase):
         raw, summary = capture()
         receipt, records = ink.verify_capture(raw, SOURCE, summary)
         self.assertTrue(receipt['success'])
-        self.assertIn('gallery-draft producer partition', receipt['runner_inventory_scope'])
-        self.assertEqual(5, receipt['runner_completed_tests'])
+        self.assertIn('gallery-viewport producer partition', receipt['runner_inventory_scope'])
+        self.assertEqual(1, receipt['runner_completed_tests'])
         self.assertEqual(ink.sha256(raw), receipt['raw_output_sha256'])
         self.assertEqual(set(ink.ROUTES), set(records))
         for record in records.values():
@@ -381,12 +381,17 @@ class InstalledGlyphTransportTests(unittest.TestCase):
         with self.assertRaisesRegex(ink.EvidenceError, 'duplicate runner case'):
             ink.verify_capture(raw, SOURCE, altered)
 
-    def test_self_consistent_producer_only_subset_fails_exact_source_inventory(self):
-        raw = (event(1, count=1) + event(0, count=1) + results() + 'INSTRUMENTATION_CODE: -1\n').encode()
-        summary = parse_protocol(raw.decode(), {ink.PRODUCER_TEST})
+    def test_self_consistent_cross_phase_capture_fails_exact_source_inventory(self):
+        partitions = ink.app_partition(ink.declared_tests(ink.DEFAULT_SOURCE_TESTS, sdk_level=35), 35)
+        wrong_phase = min(partitions['gallery-draft'])
+        mixed = {ink.PRODUCER_TEST, wrong_phase}
+        tests = ''.join(event(1, identity, count=len(mixed)) + event(0, identity, count=len(mixed))
+                        for identity in sorted(mixed))
+        raw = (tests + results() + 'INSTRUMENTATION_CODE: -1\n').encode()
+        summary = parse_protocol(raw.decode(), mixed)
         self.assertTrue(summary['success'])
         summary.update(source_tests_sha256=SOURCE, device_sdk=35)
-        with self.assertRaisesRegex(ink.EvidenceError, 'source-derived gallery-draft producer partition'):
+        with self.assertRaisesRegex(ink.EvidenceError, 'source-derived gallery-viewport producer partition'):
             ink.verify_capture(raw, SOURCE, summary)
 
     def test_changed_local_source_digest_rejects_otherwise_consistent_capture(self):

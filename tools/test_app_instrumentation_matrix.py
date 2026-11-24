@@ -39,7 +39,7 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'ordinary':20, 'dialog':17, 'gallery-draft':5, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'ordinary':20, 'dialog':17, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             self.assertEqual(result['phases'], counts)
@@ -52,8 +52,9 @@ class AppPartitionTest(unittest.TestCase):
             czech_ascii = ('paint.anpaint.android.EditorDeviceTest',
                            'czechAsciiExportAppliesInstalledColumnsAndInversionWithoutSavingTheDrawing')
             viewport = (GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD)
-            self.assertIn(viewport, app_partition(expected, sdk)['gallery-draft' if sdk == 35 else 'ordinary'])
+            self.assertIn(viewport, app_partition(expected, sdk)['gallery-viewport' if sdk == 35 else 'ordinary'])
             self.assertNotIn(viewport, app_partition(expected, sdk)['ordinary' if sdk == 35 else 'gallery-draft'])
+            self.assertNotIn(viewport, app_partition(expected,sdk)['gallery-draft'])
             if sdk == 35:
                 self.assertIn(czech_fit, app_partition(expected, sdk)['ordinary'])
                 self.assertIn(czech_ascii, app_partition(expected, sdk)['ordinary'])
@@ -77,7 +78,7 @@ class AppPartitionTest(unittest.TestCase):
             }
             self.assertEqual({(position, method) for method in position_methods},
                              set.union(*(app_partition(expected,sdk)[phase] for phase in POSITION_SHARDS)))
-            self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],270)
+            self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],315 if sdk==35 else 270)
             valencian=('paint.anpaint.android.EditorDeviceTest',
                 'valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation')
             if sdk==35:
@@ -109,7 +110,7 @@ class AppPartitionTest(unittest.TestCase):
             else:
                 self.assertNotIn(reported,expected)
                 self.assertIn(reported,suppressed)
-            self.assertEqual(result['all_app_total_timeout_seconds'],990 if sdk==30 else 1410)
+            self.assertEqual(result['all_app_total_timeout_seconds'],990 if sdk==30 else 1455)
             if sdk == 35:
                 self.assertIn('API35 en-US/hu 2x 640x320 mdpi', result['colour_scope'])
                 self.assertIn('preview-rail reachability and Cancel only', result['colour_scope'])
@@ -195,6 +196,10 @@ class AppPartitionTest(unittest.TestCase):
         self.assertEqual(selected,GALLERY_METHODS)
         self.assertEqual(body.count('tools/run_android_instrumentation.py'),1)
         self.assertIn('--timeout-seconds 90',body)
+        viewport=shell.split('run_gallery_viewport_regression() {',1)[1].split('\n}\n',1)[0]
+        self.assertIn('--suite app-gallery-viewport --timeout-seconds 45',viewport)
+        self.assertIn(GALLERY_VIEWPORT+'#'+GALLERY_VIEWPORT_METHOD,viewport)
+        self.assertNotIn(GALLERY_VIEWPORT_METHOD,body)
         self.assertNotIn('--leave-target-running',body)
         self.assertEqual(shell.count('--timeout-seconds 180'),4)
         self.assertEqual(shell.count('--timeout-seconds 60'),2)
@@ -211,14 +216,14 @@ class AppPartitionTest(unittest.TestCase):
         self.assertIn('--include-test "' + '#'.join(CZECH_SAVE_AS) + '"',dialog)
         self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
         self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
-        self.assertIn('if test \"$TEST_API\" = 35; then run_dialog_regression || editor_failed=1; fi',main)
+        self.assertIn('if test "$TEST_API" = 35; then\n    run_gallery_viewport_regression || editor_failed=1\n    run_dialog_regression || editor_failed=1',main)
         self.assertIn('run_gallery_draft_regression || editor_failed=1',main)
         self.assertLess(main.index('run_gallery_draft_regression'),main.index('run_credit_restart_regression'))
         self.assertLess(main.index('run_credit_restart_regression'),main.index('tools/app_instrumentation_matrix.py'))
         workflow=(ROOT/'.github/workflows/android.yml').read_text()
         # Identifier retained; inner phase deadlines remain unchanged under the corrected outer cap.
-        self.assertIn('timeout-minutes: 53',workflow)
-        self.assertIn('timeout-minutes: 43',workflow)
+        self.assertIn('timeout-minutes: 55',workflow)
+        self.assertIn('timeout-minutes: 45',workflow)
 
 
 class ComposedDriverTest(unittest.TestCase):
@@ -238,24 +243,26 @@ python3() {
   else [[ "$TEST_FAULT" != ordinary ]]; fi
 }
 run_gallery_draft_regression() { echo gallery; [[ "$TEST_FAULT" != gallery ]]; }
+run_gallery_viewport_regression() { echo viewport; [[ "$TEST_FAULT" != viewport ]]; }
 run_dialog_regression() { echo dialog; [[ "$TEST_FAULT" != dialog ]]; }
 run_vertical_locale_matrix() { echo vertical; [[ "$TEST_FAULT" != vertical ]]; }
 run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; }
 """
         for sdk in (21,24,30,35):
-            for fault in ('', 'native', 'ordinary', 'gallery', 'dialog', 'vertical', 'restart', 'verifier'):
+            for fault in ('', 'native', 'ordinary', 'gallery', 'viewport', 'dialog', 'vertical', 'restart', 'verifier'):
                 with self.subTest(sdk=sdk,fault=fault),tempfile.TemporaryDirectory() as directory:
                     run=subprocess.run(['bash','-c',harness+'\nrun_driver() {\n'+driver+'\n}; run_driver'],cwd=ROOT,
                         env={**os.environ,'TEST_ROOT':directory,'TEST_API':str(sdk),'TEST_FAULT':fault},
                         text=True,capture_output=True,timeout=10)
                     expected_failure=(fault in ('native','verifier') if sdk<30 else
-                                      bool(fault) and not (sdk==30 and fault in ('restart','dialog')))
+                                      bool(fault) and not (sdk==30 and fault in ('restart','dialog','viewport')))
                     self.assertEqual(run.returncode,int(expected_failure),run.stdout+run.stderr)
                     lines=run.stdout.splitlines()
                     self.assertEqual(lines.count('gallery'),int(sdk>=30))
                     self.assertEqual(lines.count('vertical'),int(sdk>=30))
                     self.assertEqual(lines.count('dialog'),int(sdk==35))
-                    self.assertEqual(lines.count('restart'),int(sdk==35 and fault not in ('ordinary','gallery','dialog')))
+                    self.assertEqual(lines.count('viewport'),int(sdk==35))
+                    self.assertEqual(lines.count('restart'),int(sdk==35 and fault not in ('ordinary','gallery','viewport','dialog')))
                     native=next(line for line in lines if ' --suite Paintroid ' in line)
                     self.assertEqual('--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest' in native,sdk<35)
                     self.assertIn('--timeout-seconds 180',native)
@@ -310,7 +317,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(result['completed_tests'],30 if sdk==30 else 55)
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
-                        for subtree in ('app','app-gallery-draft','app-dialog','app-vertical','app-position'):
+                        for subtree in ('app','app-gallery-draft','app-gallery-viewport','app-dialog','app-vertical','app-position'):
                             extra=root/subtree/'old/summary.json';extra.parent.mkdir(parents=True)
                             extra.write_text('{}')
                             for output in outputs:
@@ -349,9 +356,13 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
 class SelectedInvocationTest(unittest.TestCase):
     def test_gallery_wrapper_runs_one_exact_selection_without_retries(self):
         self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS}, 'gallery_draft', 'app-gallery-draft', 90, sdk=30)
-        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS,GALLERY_VIEWPORT:{GALLERY_VIEWPORT_METHOD},
+        self.check_wrapper({GALLERY_DRAFT:GALLERY_METHODS,
                             GALLERY_CREDIT_EDITOR[0]:{GALLERY_CREDIT_EDITOR[1]}},
                            'gallery_draft', 'app-gallery-draft', 90, sdk=35)
+
+    def test_gallery_viewport_requires_one_complete_receipt(self):
+        self.check_wrapper({GALLERY_VIEWPORT:{GALLERY_VIEWPORT_METHOD}},
+                           'gallery_viewport', 'app-gallery-viewport', 45, sdk=35)
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
         self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,PAGE_COUNT:PAGE_COUNT_METHODS,
