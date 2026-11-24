@@ -29,7 +29,22 @@ import java.util.Locale
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
 class CropSelectionCountDeviceTest {
-    @Test fun brazilianPortugueseCropSelectionCountIsExposedAtZeroOneAndTwo() {
+    @Test fun brazilianPortugueseCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("pt-BR", "Imagens selecionadas para recorte: ")
+
+    @Test fun hindiCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("hi", "काट-छाँट के लिए चुनी गई छवियों की संख्या: ")
+
+    @Test fun gujaratiCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("gu", "કાપવા માટે પસંદ કરેલાં ચિત્રોની સંખ્યા: ")
+
+    @Test fun kannadaCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("kn", "ಕ್ರಾಪ್ ಮಾಡಲು ಆಯ್ಕೆ ಮಾಡಿದ ಚಿತ್ರಗಳ ಸಂಖ್ಯೆ: ")
+
+    @Test fun indiaPunjabiCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("pa-IN", "ਕਰੋਪ ਕਰਨ ਲਈ ਚੁਣੇ ਚਿੱਤਰਾਂ ਦੀ ਗਿਣਤੀ: ")
+
+    private fun verifyCropCount(tag: String, selectionLabel: String) {
         val instrumentation=InstrumentationRegistry.getInstrumentation()
         val context=instrumentation.targetContext
         val prefs=context.getSharedPreferences("app-language",0)
@@ -39,7 +54,6 @@ class CropSelectionCountDeviceTest {
         val manager=context.getSystemService(LocaleManager::class.java)
         val savedLocales=manager.applicationLocales
         val savedDefault=Locale.getDefault()
-        val tag="pt-BR"
         val locale=Locale.forLanguageTag(tag)
 
         try {
@@ -76,6 +90,9 @@ class CropSelectionCountDeviceTest {
                         fun verify(count: Int) {
                             val expected=activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,24,16,count)
                             assertEquals("Visible crop count $count",expected,status.text.toString())
+                            val formattedCount=String.format(locale,"%d",count)
+                            assertTrue("$tag must display its own count label at $count",
+                                status.text.lineSequence().drop(1).first().startsWith(selectionLabel+formattedCount))
                             val node=status.createAccessibilityNodeInfo()
                             try { assertEquals("Accessible crop count $count",expected,node.text.toString()) }
                             finally { node.recycle() }
