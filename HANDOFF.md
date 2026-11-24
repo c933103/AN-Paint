@@ -2,9 +2,9 @@
 
 - Build, test and delivery rules: [CI.md](CI.md).
 - Current localization regression data: `tools/fixtures/current_localization/`.
-  Exact wording coverage is not native-speaker acceptance. The picker offers
-  171 locales: 59 scoped catalogues and 112 other offered locales outside the
-  bounded work, with explicit English fallback.
+  See [current direct catalogue coverage](TRANSLATING.md#current-catalogue-coverage).
+  [Remaining wording and installed verification](https://github.com/c933103/AN-Paint/pull/56)
+  are separate from catalogue presence; do not reopen the bulk drafting task.
 - PR55's typed Commons query failures, full accessible localized status text,
   and native/installed lifecycle and rendering regressions are integrated through
   PR52. Use the project board and current child receipts for remaining work.
