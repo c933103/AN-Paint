@@ -136,7 +136,8 @@ def controlled_model(shell, runner):
     }
     return dict(startup=startup, instrumentation=sum(phases.values()), preparation=prep * len(phases),
                 seed_pid=preparation['live'], boundary=boundary, reset=reset, tails=tail * len(phases),
-                cleanup=collection, recovery=4 * extra_failure, paths=paths)
+                cleanup=collection, recovery=4 * extra_failure, paths=paths,
+                preparation_per_phase=prep, tail_per_phase=tail, recovery_per_phase=extra_failure)
 
 
 def validate_budget(workflow, shell=SHELL, runner=RUNNER):
@@ -158,7 +159,8 @@ class TimeoutBudgetTest(unittest.TestCase):
         model, limits, required = validate_budget(WORKFLOW)
         self.assertEqual({k: v for k, v in model.items() if k != 'paths'},
                          dict(startup=270, instrumentation=1275, preparation=810, seed_pid=10,
-                              boundary=90, reset=10, tails=45, cleanup=72, recovery=40))
+                              boundary=90, reset=10, tails=45, cleanup=72, recovery=40,
+                              preparation_per_phase=90, tail_per_phase=5, recovery_per_phase=10))
         self.assertEqual(limits, (45, 6, 55))
         self.assertEqual(required, 45)
 
