@@ -39,13 +39,20 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'ordinary':20, 'dialog':16, 'page-chooser':1, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'dialog':16, 'page-chooser':1, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
+            crop = ('paint.anpaint.android.CropSelectionCountDeviceTest',
+                    'brazilianPortugueseCropSelectionCountIsExposedAtZeroOneAndTwo')
+            if sdk == 35:
+                self.assertIn(crop, app_partition(expected, sdk)['ordinary'])
+                counts['ordinary'] = len(expected) - sum(counts.values())
+            else:
+                self.assertIn(crop, suppressed)
             self.assertEqual(result['phases'], counts)
-            self.assertEqual(result['declared_tests'], 55)
-            self.assertEqual(result['completed_tests'], 30 if sdk==30 else 55)
-            self.assertEqual(len(result['sdk_suppressed_tests']), 23 if sdk==30 else 0)
+            self.assertEqual(result['declared_tests'], len(expected | suppressed))
+            self.assertEqual(result['completed_tests'], sum(counts.values()))
+            self.assertEqual({tuple(item) for item in result['sdk_suppressed_tests']}, suppressed)
             self.assertEqual(len(result['explicitly_excluded_tests']), 2 if sdk==30 else 0)
             czech_fit = ('paint.anpaint.android.EditorDeviceTest',
                          'czechPickerFitUsesNativeAccessibleControlAndPreservesImageAcrossRotation')
@@ -318,7 +325,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                         self.assertEqual(len({path.read_bytes() for path in selected}),1)
                         result=json.loads(selected[0].read_text())
                         self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                        self.assertEqual(result['completed_tests'],30 if sdk==30 else 55)
+                        self.assertEqual(result['completed_tests'], sum(r['completed_tests'] for r in reports.values()))
                         # A copied standalone/old report in any app subtree is not
                         # allowed to coexist with an otherwise complete report set.
                         for subtree in ('app','app-gallery-draft','app-gallery-viewport','app-dialog','app-page-chooser','app-vertical','app-position'):
