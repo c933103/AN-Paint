@@ -236,7 +236,7 @@ run_position_regression
         pulls=re.findall(r'timeout --kill-after=(\d+)s (\d+)s [^\n]*\bpull\b',cleanup)
         collection=model['cleanup']-sum(int(grace)+int(seconds) for grace,seconds in pulls)
         total=model['startup']+sum(int(cap) for _,cap in caps)+2*(
-            model['preparation']/8+model['tails']/8+model['recovery']/4)+collection
+            model['preparation_per_phase']+model['tail_per_phase']+model['recovery_per_phase'])+collection
         self.assertEqual(total,876)
         position=job(WORKFLOW,'position')
         self.assertEqual(step_minutes(position,'Run prebuilt tests with deadlines and live logs'),math.ceil((total+60)/60))

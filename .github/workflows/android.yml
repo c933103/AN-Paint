@@ -351,7 +351,7 @@ jobs:
     if: ${{ inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release ')) }}
     runs-on: ubuntu-22.04
     # 43-minute execution + 6-minute image step + existing 4-minute job overhead.
-    timeout-minutes: 53
+    timeout-minutes: 55
     strategy:
       fail-fast: false
       matrix:
@@ -381,7 +381,7 @@ jobs:
       - name: Run prebuilt tests with deadlines and live logs
         # 2,482s controlled path + 60s processing allowance, rounded up; see CI.md.
         # Hard cancellation ceiling, not a target runtime or universal liveness bound.
-        timeout-minutes: 43
+        timeout-minutes: 45
         env:
           TEST_API: ${{ matrix.api }}
           APP_TEST_GROUP: core

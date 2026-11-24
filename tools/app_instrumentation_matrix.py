@@ -63,9 +63,9 @@ DIALOG_METHODS = {
     'aboutGimpTranslationNoticeCompletesNativeFooterFlow',
     'retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation',
 }
-PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'dialog': 300,
+PHASE_TIMEOUTS = {'ordinary': 180, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300,
                   **{phase: 180 for phase in (*VERTICAL_SHARDS, *POSITION_SHARDS)}, 'seed': 60, 'verify': 60}
-SELECTED_PHASES = {'gallery-draft', 'dialog', *VERTICAL_SHARDS, *POSITION_SHARDS}
+SELECTED_PHASES = {'gallery-draft', 'gallery-viewport', 'dialog', *VERTICAL_SHARDS, *POSITION_SHARDS}
 
 
 def selected_phases(parts: dict, group: str) -> dict:
@@ -79,10 +79,13 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     """Keep future ordinary methods; require an explicit update for new gallery cases."""
     if type(sdk) is not int or sdk not in SUPPORTED_SDKS:
         raise ValueError('The emulator matrix supports SDK 21, 24, 30 or 35')
-    gallery = {item for item in expected if item[0] == GALLERY_DRAFT or (sdk == 35 and item[0] == GALLERY_VIEWPORT)}
+    gallery = {item for item in expected if item[0] == GALLERY_DRAFT}
+    viewport = {item for item in expected if sdk == 35 and item[0] == GALLERY_VIEWPORT}
+    if sdk == 35 and viewport != {(GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD)}:
+        raise ValueError('The exact API35 gallery viewport method is required')
     required_gallery = {(GALLERY_DRAFT, method) for method in GALLERY_METHODS}
     if sdk == 35:
-        required_gallery.update({(GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD), GALLERY_CREDIT_EDITOR})
+        required_gallery.add(GALLERY_CREDIT_EDITOR)
         gallery.update(expected & {GALLERY_CREDIT_EDITOR})
     seed = {item for item in expected if item[0] == RESTART_SEED}
     verify = {item for item in expected if item[0] == RESTART_VERIFY}
@@ -91,7 +94,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     if sdk == 35:
         dialog.update(expected & {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
     position = {item for item in expected if item[0] == POSITION}
-    ordinary = expected - gallery - dialog - vertical - seed - verify - position
+    ordinary = expected - gallery - viewport - dialog - vertical - seed - verify - position
     if position != (set.union(*POSITION_SHARDS.values()) if sdk >= 30 else set()):
         raise ValueError('Position shards require the exact seven source identities and lower-SDK suppression')
     shards = list(VERTICAL_SHARDS.values())
@@ -117,7 +120,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     if sdk >= 30:
         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})
     if sdk == 35:
-        parts.update(dialog=dialog, seed=seed, verify=verify)
+        parts.update({'gallery-viewport': viewport, 'dialog': dialog, 'seed': seed, 'verify': verify})
     return parts
 
 
@@ -167,7 +170,7 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
                               'simultaneous IME/field/footer fit, whole-dialog and universal 2x not accepted'
                               if sdk == 35 else 'installed colour not selected on this SDK; model coverage is separate'),
                 ordinary_and_gallery_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts
-                                                               if phase in ('ordinary', 'gallery-draft')),
+                                                               if phase in ('ordinary', 'gallery-draft', 'gallery-viewport')),
                 vertical_timeout_seconds_per_shard=180 if sdk >= 30 else None,
                 vertical_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts if phase in VERTICAL_SHARDS),
                 receipt_scope=("complete-composed-app-union" if group == 'all' else f"partial-{group}-app-union")
@@ -192,6 +195,7 @@ def report_paths(root: Path, sdk: int, group: str = 'all') -> dict[str, Path]:
         paths.update({phase: root/'app-position'/phase.removeprefix('position-')/'androidTest-results/summary.json'
                       for phase in POSITION_SHARDS})
     if sdk == 35:
+        paths['gallery-viewport'] = root/'app-gallery-viewport/androidTest-results/summary.json'
         paths['dialog'] = root/'app-dialog/androidTest-results/summary.json'
         paths.update({phase: root/f'app/accepted-credit-restart/{phase}/summary.json'
                       for phase in ('seed', 'verify')})
@@ -202,7 +206,7 @@ def read_app_reports(root: Path, sdk: int, group: str = 'all') -> dict[str, dict
     paths = report_paths(root, sdk, group)
     wanted = set(paths.values())
     actual = set().union(*((root/name).rglob('summary.json')
-                          for name in ('app', 'app-gallery-draft', 'app-dialog', 'app-vertical', 'app-position')))
+                          for name in ('app', 'app-gallery-draft', 'app-gallery-viewport', 'app-dialog', 'app-vertical', 'app-position')))
     if actual != wanted:
         raise ValueError(f'Exact composed app report inventory required: missing={sorted(map(str, wanted-actual))}, '
                          f'unexpected={sorted(map(str, actual-wanted))}')

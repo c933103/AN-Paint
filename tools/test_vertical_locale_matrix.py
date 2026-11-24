@@ -83,7 +83,7 @@ class MatrixInventoryTest(unittest.TestCase):
             parts = app_partition(expected(sdk), sdk)
             self.assertIn((FUTURE, 'future'), parts['ordinary'])
             viewport = (GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD)
-            self.assertIn(viewport, parts['ordinary' if sdk == 30 else 'gallery-draft'])
+            self.assertIn(viewport, parts['ordinary' if sdk == 30 else 'gallery-viewport'])
             self.assertNotIn(viewport, parts['gallery-draft' if sdk == 30 else 'ordinary'])
             self.assertEqual({phase: result['phases'][phase] for phase in VERTICAL_SHARDS},
                              {phase: 2 for phase in VERTICAL_SHARDS})
