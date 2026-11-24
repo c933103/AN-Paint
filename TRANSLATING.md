@@ -2,7 +2,13 @@
 
 **Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The 59 scoped catalogues and 112 fallback catalogues were the 14 October 2026 work split, not the current resource inventory. The 81-locale scope in withdrawn audits refers to the earlier 140-choice inventory.
+
+## Current catalogue coverage
+
+As of 24 November 2026, all 171 offered language catalogues contain all 719 direct typed source entries (122,949 total). Aliases count as presence, not independent translated prose. This is not a claim of independent language review, complete installed rendering or release acceptance. [Current coverage and remaining wording review](https://github.com/c933103/AN-Paint/pull/56) are tracked separately.
+
+To reproduce the inventory, run `python3 tools/string_importance.py --all-locales --json` from the repository root.
 
 ## Translation importance tiers
 
@@ -111,7 +117,7 @@ retained test/review evidence is historical and does not accept this successor.
 
 Four individually registered selectable tags bring the inventory to **171**: Old English (`ang`, Ænglisc), Old Norse (`non`, Norrœna), Moroccan Arabic (`ary`, الدارجة المغربية) and Standard Moroccan Tamazight (`zgh`, ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco)). Moroccan Arabic is distinct from `ar`; `zgh` is not all Amazigh languages, including the existing separate Kabyle `kab`. The first two are historical languages, not variants of modern English or Norwegian.
 
-These four have empty exact canonical XML catalogues with **0 strings and 0 plurals translated**, default-English fallback, no linguistic review, and no claim of historical phrasing or script/font acceptance. See `tools/fixtures/language_option_additions_20261014.json`. The `tl` Tagalog menu identity is replaced with **Filipino (`fil`)**. Its pre-existing translations are transferred byte-identically to `values-b+fil/strings.xml`, and saved `tl` preferences and Android 13 choices migrate to `fil`. This is **not** independent linguistic review for Filipino. Historical `tl` import/provenance files remain, but `tl` is not a duplicate selectable option. The 59 scoped catalogues now include `fil` instead of `tl`; fallback count rises to **112**. All previous review obligations remain open.
+At that October checkpoint these four had empty exact canonical XML catalogues with **0 strings and 0 plurals translated**, default-English fallback, no linguistic review, and no claim of historical phrasing or script/font acceptance. See `tools/fixtures/language_option_additions_20261014.json`. The `tl` Tagalog menu identity is replaced with **Filipino (`fil`)**. Its pre-existing translations are transferred byte-identically to `values-b+fil/strings.xml`, and saved `tl` preferences and Android 13 choices migrate to `fil`. This is **not** independent linguistic review for Filipino. Historical `tl` import/provenance files remain, but `tl` is not a duplicate selectable option. The 59 scoped catalogues now include `fil` instead of `tl`; the October fallback count rose to **112**. All previous review obligations remain open.
 
 ## Editing a translation
 

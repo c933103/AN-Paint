@@ -94,25 +94,16 @@ See [illustration source notes](docs/ILLUSTRATION_SOURCES.md).
 
 **Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The 59 scoped catalogues and 112 fallback catalogues were the 14 October 2026 work split, not the current resource inventory. The 81-locale scope in withdrawn audits refers to the earlier 140-choice inventory.
 
-Every localization assertion below is a prior claim pending full recheck.
+All 171 offered language choices have a complete set of direct source entries. See [current catalogue coverage](TRANSLATING.md#current-catalogue-coverage) for what this counts and what remains under review.
 
 Choose **View > Languages** to override the device language. The system-default
 choice is labelled in the device's language, independently of the selected app
 language. Android 13 and newer also expose the setting in system App languages.
 
-The main tabs, first-level commands, Edit groups and Other images controls have explicit translations
-for `ja`, `zh-TW`, `zh-HK`, `zh-CN`, `yue-Hant`, `yue-Latn`, `lzh-Hant`, `ar`,
-`de`, `pl`, `ru`, `es-419`, `es-ES`, `pt-PT`, `pt-BR`, `it`, `fr`, `he`, `ko-KR`,
-`ko-KP`, `id`, `ms`, `vi`, `fil`, `th`, `el`, `sr-Cyrl`, `sr-Latn`, `tr` and `hy`.
-Other languages and deeper dialogs have varying partial coverage, with English
-fallback. Translation completeness is not a claim of independent native review.
-
 Existing Paintroid, Android, GIMP, Krita, LibreOffice and MediaWiki vocabulary retains its
-provenance and translator credits. Krita fills selected gaps for languages absent
-from the GIMP import, including eight additional partial language choices. LibreOffice
-and MediaWiki fill further common-command gaps in 21 existing language choices. See the
+provenance and translator credits. For the historical sourcing and vocabulary work, see the
 [mainstream source audit](translations/MAINSTREAM_SOURCE_AUDIT.md).
 Armenian, both Tatar scripts and both Ainu scripts are
 available. See [translation notes](translations/README.md) and
