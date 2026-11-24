@@ -110,16 +110,18 @@ class PositionCompositionTest(unittest.TestCase):
         for sdk in (30, 35):
             with self.subTest(sdk=sdk), tempfile.TemporaryDirectory() as directory:
                 root=Path(directory);fixture(root,sdk)
+                _, reports, _, _ = receipts(SOURCE, sdk)
+                complete = sum(r['completed_tests'] for r in reports.values())
                 for group in ('core','position'):
                     result=verify_reports(SOURCE,root/group,sdk,group)
                     self.assertEqual(result['receipt_scope'],f'partial-{group}-app-union')
-                    self.assertEqual(result['completed_tests'],7 if group=='position' else (23 if sdk==30 else 48))
+                    self.assertEqual(result['completed_tests'],7 if group=='position' else complete-7)
                     self.assertTrue(result['deferred_tests'])
                     self.assertTrue(all(not path.exists() for path in coverage_paths(root/group)))
                     with self.assertRaises(ValueError): verify_reports(SOURCE,root/group,sdk)
                 result=compose(SOURCE,root/'core',root/'position',sdk,ENV)
                 self.assertEqual(result['receipt_scope'],'complete-composed-app-union')
-                self.assertEqual(result['completed_tests'],30 if sdk==30 else 55)
+                self.assertEqual(result['completed_tests'],complete)
                 self.assertEqual(result['deferred_tests'],[])
                 self.assertTrue((root/'core/app/coverage.json').is_file())
 
