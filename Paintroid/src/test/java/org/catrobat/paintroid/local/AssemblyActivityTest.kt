@@ -447,7 +447,7 @@ class AssemblyActivityTest {
         dialog.dismiss()
     }
 
-    @Test fun incompatibleUnselectedPreviewDoesNotShowStaleCropOrPreventValidBatch() {
+    @Test fun incompatibleUnselectedPreviewDoesNotShowStaleCropOrChangeBatchUnits() {
         load(2)
         click("assembly_batch_crop")
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
@@ -457,7 +457,10 @@ class AssemblyActivityTest {
         val picker=root.findViewWithTag<Spinner>("crop_preview_image")
         val small=root.findViewWithTag<android.widget.CheckBox>("crop_include_${image("a.png").id}")
         val trim=root.findViewWithTag<EditText>("crop_left")
+        val pixels=root.findViewWithTag<android.widget.RadioButton>("crop_pixels")
+        val percent=root.findViewWithTag<android.widget.RadioButton>("crop_percent")
         val apply=dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        val originalTrimDescription=trim.contentDescription.toString()
         small.isChecked=false; trim.setText("13"); idle()
         assertEquals(Rect(13,0,24,16),preview.crop!!.rect)
         picker.setSelection(1); idle()
@@ -472,8 +475,17 @@ class AssemblyActivityTest {
         small.isChecked=false; idle()
         picker.setSelection(0); idle()
         assertEquals(Rect(13,0,24,16),preview.crop!!.rect)
+        percent.performClick(); idle()
+        assertTrue(percent.isChecked)
+        assertEquals("54.1667",trim.text.toString())
+        pixels.performClick(); idle()
+        assertEquals("13",trim.text.toString())
         picker.setSelection(1); idle()
         assertNull(preview.crop)
+        percent.performClick(); idle()
+        assertTrue(pixels.isChecked); assertFalse(percent.isChecked)
+        assertEquals("13",trim.text.toString())
+        assertEquals(originalTrimDescription,trim.contentDescription.toString())
         apply.performClick(); idle()
         assertFalse(dialog.isShowing)
         assertEquals(Rect(13,0,24,16),image("b.png").crop)

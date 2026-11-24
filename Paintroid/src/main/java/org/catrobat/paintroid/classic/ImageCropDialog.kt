@@ -119,19 +119,31 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
                 }
             } catch (error: IllegalArgumentException) { status.text = error.message }
         }
+        val units = IntArray(2) { View.generateViewId() }
         listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent)).forEachIndexed { index, name ->
             unitRow.addView(RadioButton(activity).apply {
-                text = name; id = View.generateViewId(); tag = "crop_${if (index == 0) "pixels" else "percent"}"; isChecked = index == 0
+                text = name; id = units[index]; tag = "crop_${if (index == 0) "pixels" else "percent"}"
                 setOnClickListener {
-                    unitRow.check(id)
-                    val previous = try { margins()?.rect(reference.dimensions) } catch (_: IllegalArgumentException) { null }
-                    percent = index == 1
-                    if (previous != null) displayValues(previous)
-                    fields.forEach { (key,field) -> field.contentDescription = ui(if(percent) R.string.ui_trim_in_percent else R.string.ui_trim_in_pixels,ui(edges.getValue(key))) }
-                    refresh()
+                    val requestedPercent = index == 1
+                    if (percent != requestedPercent) {
+                        val previous = try { margins()?.rect(reference.dimensions) } catch (_: IllegalArgumentException) { null }
+                        if (previous != null) {
+                            percent = requestedPercent
+                            displayValues(previous)
+                            fields.forEach { (key,field) ->
+                                field.contentDescription = ui(if(percent) R.string.ui_trim_in_percent else R.string.ui_trim_in_pixels,ui(edges.getValue(key)))
+                            }
+                        }
+                        // RadioButton selects itself before this listener runs. Restore the
+                        // old unit if conversion failed instead of reinterpreting the fields.
+                        refresh()
+                    }
+                    unitRow.check(units[if (percent) 1 else 0])
                 }
             },LinearLayout.LayoutParams(0,-2,1f))
-        }; body.addView(unitRow)
+        }
+        unitRow.check(units[0])
+        body.addView(unitRow)
         edges.entries.chunked(2).forEach { pair ->
             val row = LinearLayout(activity)
             pair.forEach { (key,label) ->
