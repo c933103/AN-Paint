@@ -76,6 +76,10 @@ class GalleryViewportDeviceTest {
                 assertEquals(oldInitialization,preferences.getBoolean("platform-initialized",false))
             }
         }
+        val startedAt = SystemClock.uptimeMillis()
+        fun stage(name: String) = android.util.Log.i("GalleryViewportDeviceTest",
+            "viewport stage=$name elapsed_ms=${SystemClock.uptimeMillis() - startedAt}")
+        stage("start")
         val network=LocalRejectingProxy()
         val browsers=mutableListOf<WebView>()
         val galleries=mutableListOf<MediaGalleryActivity>()
@@ -98,10 +102,16 @@ class GalleryViewportDeviceTest {
             if (Build.VERSION.SDK_INT >= 35) {
                 selectLanguage("cs")
                 setFontScale(1f)
-                checkCzechCommonsFailure(browsers)
+                stage("Czech Commons 1x")
+                checkCzechCommonsFailure(browsers, 1f)
+                setFontScale(2f)
+                stage("Czech Commons 2x")
+                checkCzechCommonsFailure(browsers, 2f)
                 instrumentation.waitForIdleSync()
+                stage("Czech Commons complete")
             }
             for(tag in if(Build.VERSION.SDK_INT>=35) listOf("fr","mn-Mong","ar") else listOf("fr","mn-Mong")) {
+                stage("layout $tag")
                 selectLanguage(tag)
                 // A real system configuration transition also refreshes the
                 // app-wide selected-language resources on pre-LocaleManager APIs.
@@ -174,6 +184,7 @@ class GalleryViewportDeviceTest {
                 instrumentation.waitForIdleSync()
             }
         } finally {
+            stage("restore original configuration")
             // Track PRE_ON_CREATE too, so even a failed launch cannot leave an
             // unobserved gallery behind when the rejecting proxy is restored.
             try {
@@ -210,7 +221,8 @@ class GalleryViewportDeviceTest {
      * Real WebView action and native File-page button. Chromium is already behind
      * the rejecting proxy; the separate native connection has no network fallback.
      */
-    private fun checkCzechCommonsFailure(browsers: MutableList<WebView>) {
+    @androidx.annotation.RequiresApi(35)
+    private fun checkCzechCommonsFailure(browsers: MutableList<WebView>, fontScale: Float) {
         val source = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Czech_gallery_fixture.svg"
         val page = "https://commons.wikimedia.org/wiki/File:Czech_gallery_fixture.svg"
         val prior = org.catrobat.paintroid.classic.ImageCredit("https://example.invalid/previous", "Prior credit")
@@ -224,6 +236,7 @@ class GalleryViewportDeviceTest {
         val requestProblem = AtomicReference<String>()
         val disconnects = java.util.concurrent.atomic.AtomicInteger()
         val fixtureReads = java.util.concurrent.atomic.AtomicInteger()
+        val copyNavigations = java.util.concurrent.atomic.AtomicInteger()
         val attemptedRead = java.util.concurrent.atomic.AtomicBoolean()
         val connection: (java.net.URL) -> java.net.HttpURLConnection = { url ->
             val uri = android.net.Uri.parse(url.toExternalForm())
@@ -269,6 +282,7 @@ class GalleryViewportDeviceTest {
             val status = onMain { gallery.window.decorView.findViewWithTag<TextView>("gallery_status") }
             val oldClip = onMain {
                 assertEquals("cs", gallery.resources.configuration.locales[0].toLanguageTag())
+                assertEquals(fontScale, gallery.resources.configuration.fontScale, 0f)
                 assertEquals(listOf(prior), credits())
                 connectionField.set(gallery, connection)
                 clipboard.primaryClip
@@ -300,11 +314,17 @@ class GalleryViewportDeviceTest {
                         }
 
                         override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest):
-                            Boolean = productionClient.shouldOverrideUrlLoading(view, request)
+                            Boolean {
+                            if (request.url.scheme == "anpaint-gallery-credit") copyNavigations.incrementAndGet()
+                            return productionClient.shouldOverrideUrlLoading(view, request)
+                        }
 
                         @Suppress("DEPRECATION")
                         override fun shouldOverrideUrlLoading(view: WebView, url: String):
-                            Boolean = productionClient.shouldOverrideUrlLoading(view, url)
+                            Boolean {
+                            if (android.net.Uri.parse(url).scheme == "anpaint-gallery-credit") copyNavigations.incrementAndGet()
+                            return productionClient.shouldOverrideUrlLoading(view, url)
+                        }
 
                         override fun onReceivedError(view: WebView, request: android.webkit.WebResourceRequest,
                             error: android.webkit.WebResourceError) {
@@ -324,7 +344,8 @@ class GalleryViewportDeviceTest {
                     assertNotEquals(english.getString(key,
                         english.getString(R.string.commons_metadata_http_error, "503")), expected)
                     await("Czech Commons status $requests") { onMain {
-                        status.isShown && status.text.toString() == expected && !downloading.getBoolean(gallery)
+                        status.isShown && status.text.toString() == expected && !downloading.getBoolean(gallery) &&
+                            status.layout?.text?.toString() == expected && !status.isLayoutRequested
                     } }
                     onMain {
                         assertEquals(expected, status.createAccessibilityNodeInfo().text.toString())
@@ -337,10 +358,30 @@ class GalleryViewportDeviceTest {
                         assertNull(requestProblem.get())
                         assertFalse(attemptedRead.get())
                     }
+                    if (fontScale == 2f) assertStatusReadable(status, expected)
                 }
                 // The platform accessibility bridge may expose a WebView link's caption
                 // as a description instead of node text. Verify the actual injected anchor
                 // and hit-test it in Chromium, then send a real screen tap at its center.
+                // Seeding Android's clipboard can put a touchable SystemUI
+                // overlay above the WebView, even while the activity has focus.
+                val clipboardOverlay = androidx.test.uiautomator.By.res("com.android.systemui", "clipboard_ui")
+                val clipboardPreview = androidx.test.uiautomator.By.res("com.android.systemui", "clipboard_preview")
+                var overlaySeen = false
+                var clearSince: Long? = null
+                await("clipboard fixture overlay clear at font scale $fontScale") {
+                    val covered = device.hasObject(clipboardOverlay) || device.hasObject(clipboardPreview)
+                    val now = SystemClock.uptimeMillis()
+                    if (covered) {
+                        overlaySeen = true
+                        clearSince = null
+                        false
+                    } else {
+                        val since = clearSince ?: now.also { clearSince = it }
+                        now - since >= 750
+                    }
+                }
+                android.util.Log.i("CzechCommonsLargeText", "Clipboard overlay observed=$overlaySeen at $fontScale")
                 var copyTarget: JSONObject? = null
                 var observation = "No WebView callback yet"
                 val copyLabel = gallery.getString(R.string.gallery_copy_credit)
@@ -356,12 +397,45 @@ class GalleryViewportDeviceTest {
                                     original: !!document.querySelector('.fullMedia a.internal'),
                                     actionRow: !!document.querySelector('#anpaint-commons-actions')};
                                   if (link) {
-                                    const bounds = link.getBoundingClientRect();
-                                    const x = bounds.left + bounds.width / 2, y = bounds.top + bounds.height / 2;
+                                    // Large text can wrap an inline anchor across several fragments.
+                                    // Its union box may have a center outside all clickable fragments.
                                     result.label = link.textContent;
                                     result.href = link.getAttribute('href');
-                                    result.x = x; result.y = y;
-                                    result.hit = document.elementFromPoint(x, y) === link;
+                                    const viewport = window.visualViewport;
+                                    const vx = viewport ? viewport.offsetLeft : 0;
+                                    const vy = viewport ? viewport.offsetTop : 0;
+                                    const vw = viewport ? viewport.width : innerWidth;
+                                    const vh = viewport ? viewport.height : innerHeight;
+                                    result.visual = [vx, vy, vw, vh];
+                                    if (!window.__anPaintTestTouch) {
+                                      window.__anPaintTestTouch = {};
+                                      for (const type of ['pointerdown', 'click']) {
+                                        document.addEventListener(type, function(event) {
+                                          const target = event.target;
+                                          window.__anPaintTestTouch[type] = [event.clientX, event.clientY,
+                                            target && target.tagName, !!(target && link.contains(target))];
+                                        }, true);
+                                      }
+                                    }
+                                    const fragments = Array.from(link.getClientRects());
+                                    result.fragments = fragments.map(r => [r.left, r.top, r.width, r.height]);
+                                    result.hit = false;
+                                    for (const rect of fragments) {
+                                      const left = Math.max(vx, rect.left), right = Math.min(vx + vw, rect.right);
+                                      const top = Math.max(vy, rect.top), bottom = Math.min(vy + vh, rect.bottom);
+                                      if (right <= left || bottom <= top) continue;
+                                      const x = (left + right) / 2, y = (top + bottom) / 2;
+                                      const target = document.elementFromPoint(x, y);
+                                      result.hitTag = target && target.tagName;
+                                      if (target && link.contains(target)) {
+                                        result.x = x; result.y = y;
+                                        result.hit = true;
+                                        break;
+                                      }
+                                    }
+                                    if (!result.hit && fragments.length > 0) {
+                                      link.scrollIntoView({block: 'nearest', inline: 'nearest'});
+                                    }
                                   }
                                   return result;
                                 })())
@@ -389,15 +463,35 @@ class GalleryViewportDeviceTest {
                 val css = requireNotNull(copyTarget)
                 val copy = onMain {
                     val location = IntArray(2).also { web.getLocationOnScreen(it) }
-                    val scale = web.width / css.getDouble("width")
-                    val x = location[0] + (css.getDouble("x") * scale).toInt()
-                    val y = location[1] + (css.getDouble("y") * scale).toInt()
+                    val viewport = css.getJSONArray("visual")
+                    val scale = web.width / viewport.getDouble(2)
+                    val x = location[0] + ((css.getDouble("x") - viewport.getDouble(0)) * scale).toInt()
+                    val y = location[1] + ((css.getDouble("y") - viewport.getDouble(1)) * scale).toInt()
                     val visible = Rect()
                     assertTrue(web.getGlobalVisibleRect(visible) && visible.contains(x, y))
+                    if (fontScale == 2f) {
+                        assertTrue("Chromium must honor the larger system text", web.settings.textZoom > 100)
+                        android.util.Log.i("CzechCommonsLargeText", "textZoom=${web.settings.textZoom}; link=$css")
+                    }
                     intArrayOf(x, y)
                 }
                 assertTrue(device.click(copy[0], copy[1]))
-                verify(R.string.commons_credit_copy_failed_reason, 1)
+                try {
+                    verify(R.string.commons_credit_copy_failed_reason, 1)
+                } catch (error: AssertionError) {
+                    val touch = AtomicReference<String>()
+                    val done = CountDownLatch(1)
+                    val state = onMain {
+                        web.evaluateJavascript("JSON.stringify(window.__anPaintTestTouch)") {
+                            touch.set(it); done.countDown()
+                        }
+                        "shown=${status.isShown}, text=${status.text}, layout=${status.layout?.text}, " +
+                            "layoutPending=${status.isLayoutRequested}, busy=${downloading.getBoolean(gallery)}"
+                    }
+                    done.await(500, TimeUnit.MILLISECONDS)
+                    throw AssertionError("Copy at ${copy.contentToString()}, CSS=$css, browser=${touch.get()}, " +
+                        "navigations=${copyNavigations.get()}, HTTP requests=${count.get()}, $state", error)
+                }
                 val insert = onMain {
                     gallery.window.decorView.findViewWithTag<TextView>("gallery_use_selected").also {
                         assertEquals(gallery.getString(R.string.gallery_use_image), it.text.toString())
@@ -407,11 +501,58 @@ class GalleryViewportDeviceTest {
                 val bounds = onMain { Rect().also { assertTrue(insert.getGlobalVisibleRect(it)) } }
                 assertTrue(device.click(bounds.centerX(), bounds.centerY()))
                 verify(R.string.ui_could_not_load_gallery_image, 2)
+                if (fontScale == 2f) {
+                    try {
+                        onMain { gallery.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
+                        await("Czech Commons rotated layout") { onMain {
+                            val root = gallery.window.decorView
+                            gallery.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                                root.width > root.height && !root.isLayoutRequested
+                        } }
+                        scenario.onActivity { assertSame("Gallery must retain its mounted failure", gallery, it) }
+                        onMain {
+                            assertEquals(2f, gallery.resources.configuration.fontScale, 0f)
+                            assertSame(web, descendants(gallery.window.decorView).filterIsInstance<WebView>().single())
+                        }
+                        verify(R.string.ui_could_not_load_gallery_image, 2)
+                    } finally {
+                        onMain { gallery.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
+                    }
+                }
             } finally {
                 onMain {
                     if (oldClip == null) clipboard.clearPrimaryClip() else clipboard.setPrimaryClip(oldClip)
                 }
             }
+        }
+    }
+
+    /** Check actual native text layout and scroll each complete line into view. */
+    @androidx.annotation.RequiresApi(35)
+    private fun assertStatusReadable(status: TextView, expected: String) {
+        val lines = onMain {
+            val layout = requireNotNull(status.layout)
+            assertTrue(layout.lineCount > 0)
+            assertEquals(expected.length, layout.getLineEnd(layout.lineCount - 1))
+            // Advance width includes trailing spaces. Prove the complete native
+            // layout's painted glyphs fit and survive the actual TextView clip.
+            capturePaintedInk(status, expectedLocale = "cs").use { frame ->
+                assertPaintedInk(frame, "installed Czech Commons status")
+            }
+            (0 until layout.lineCount).map { line ->
+                assertEquals("Czech status line $line is not ellipsized", 0, layout.getEllipsisCount(line))
+                val top = status.totalPaddingTop + layout.getLineTop(line)
+                val bottom = status.totalPaddingTop + layout.getLineBottom(line)
+                assertTrue("Czech line $line is within the native text height", top >= 0 && bottom <= status.height)
+                Rect(status.totalPaddingLeft, top, status.width - status.totalPaddingRight, bottom)
+            }
+        }
+        for ((line, box) in lines.withIndex()) {
+            onMain { status.requestRectangleOnScreen(Rect(box), true) }
+            await("Czech Commons status line $line reachable at doubled text") { onMain {
+                val visible = Rect()
+                status.getLocalVisibleRect(visible) && visible.contains(box)
+            } }
         }
     }
 
@@ -562,9 +703,12 @@ class GalleryViewportDeviceTest {
     /** API35, plain horizontal status only. Unsupported drawing features fail closed. */
     @androidx.annotation.RequiresApi(35)
     private fun capturePaintedInk(view: TextView,translationX: Int=0,
-        clipLeft: Int=0,clipRight: Int=view.width,expectedBoundsWidth: Boolean=true): PaintedInkFrame {
+        clipLeft: Int=0,clipRight: Int=view.width,expectedBoundsWidth: Boolean=true,
+        expectedLocale: String="ar"): PaintedInkFrame {
         val layout=requireNotNull(view.layout)
-        assertEquals("Installed oracle is explicitly the horizontal Arabic profile","ar",view.resources.configuration.locales[0].language)
+        require(expectedLocale in setOf("ar","cs"))
+        assertEquals("Installed oracle is bound to a reviewed horizontal locale",
+            expectedLocale,view.resources.configuration.locales[0].language)
         assertEquals("gallery_status",view.tag)
         assertEquals("Reference must contain the complete actual text",view.text.toString(),layout.text.toString())
         assertTrue(view.text.isNotEmpty());assertTrue(layout.lineCount>0)
