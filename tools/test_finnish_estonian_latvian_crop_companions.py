@@ -15,8 +15,10 @@ class FinnishEstonianLatvianCropCompanionTests(unittest.TestCase):
                 self.assertEqual({'%1$d': 1, '%2$d': 1, '%3$d': 1}, catalogues.placeholders(item.text))
                 for clause in clauses:
                     self.assertIn(clause, item.text)
-                noun = 'kuvaan' if tag == 'fi' else ('attēlam' if item.get('quantity') == 'one' else 'attēliem')
-                self.assertIn('%3$d ' + noun, item.text)
+                status = item.text.split(r'\n', 1)[1].split('%3$d', 1)[0]
+                # This is a selection count even at zero, not the inflected
+                # object of an Apply command.
+                self.assertIn('valitut' if tag == 'fi' else 'atlasīto', status)
 
     def test_side_template_requires_argument_separator_and_complete_unit(self):
         for tag, pixel_unit, percent_unit in (
