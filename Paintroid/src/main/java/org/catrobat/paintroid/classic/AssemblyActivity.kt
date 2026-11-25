@@ -61,15 +61,15 @@ class AssemblyActivity : Activity() {
         savedInstanceState?.getString("pending_output")?.let { name -> File(filesDir,name).takeIf { it.parentFile == filesDir && name.startsWith("assembly-output-") && it.isFile }?.let { pendingOutput = it } }
         sort = AssemblySort.values().getOrElse(savedInstanceState?.getInt("sort") ?: 0) { AssemblySort.NAME_ASC }
         selected = savedInstanceState?.getString("selected")
-        buildInterface()
+        buildInterface(savedInstanceState?.getString("workspace_selection"))
     }
     override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
         super.onConfigurationChanged(newConfig)
         AppLanguage.refresh(this, newConfig)
-        if (::assembly.isInitialized) buildInterface()
+        if (::assembly.isInitialized) buildInterface(if (::board.isInitialized) board.selectedId else null)
     }
     private fun compact() = resources.configuration.screenHeightDp < 600
-    private fun buildInterface() {
+    private fun buildInterface(workspaceSelection: String?) {
         val root = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; fitsSystemWindows = true; setBackgroundColor(EditorColours.surface) }
         setContentView(root)
         LocaleTypography.install(root)
@@ -112,6 +112,9 @@ class AssemblyActivity : Activity() {
         if (compact()) editingActions.addView(sortRow,LinearLayout.LayoutParams(dp(280),dp(46))) else root.addView(sortRow)
         tray = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; tag = "assembly_thumbnails" }
         root.addView(HorizontalScrollView(this).apply { tag = "assembly_tray"; contentDescription = ui(R.string.ui_image_thumbnails_and_filenames_scroll_horizontally_for_more); addView(tray) },LinearLayout.LayoutParams(-1,dp(if (compact()) 108 else 154)))
+        // A tray selection can survive a completed placement even though its
+        // workspace targets were dismissed. Restore the two states separately.
+        board.select(workspaceSelection?.takeIf { id -> assembly.images.any { it.id == id } },fitView = false)
         assembly.changed = { refresh() }; refresh(); loadMissingPreviews()
     }
     private fun perform(action: () -> Unit) { try { action() } catch (error: Exception) { message(error.message ?: ui(R.string.ui_could_not_complete_the_operation)) } catch (_: OutOfMemoryError) { message(ui(R.string.ui_not_enough_memory_for_this_operation_the_assembly)) } }
@@ -345,7 +348,13 @@ class AssemblyActivity : Activity() {
         }
     }
     private fun showHelp() = message(ui(R.string.ui_add_up_to_20_images_with_android_s))
-    override fun onSaveInstanceState(outState: Bundle) { outState.putString("pending_output",pendingOutput?.name); outState.putInt("sort",sort.ordinal); outState.putString("selected",selected); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("pending_output",pendingOutput?.name)
+        outState.putInt("sort",sort.ordinal)
+        outState.putString("selected",selected)
+        if (::board.isInitialized) outState.putString("workspace_selection",board.selectedId)
+        super.onSaveInstanceState(outState)
+    }
     override fun onBackPressed() { if (!busy) finish() }
     override fun onDestroy() { importSelection?.dispose();importSelection=null;cancelImportBatch?.invoke();cancelImportBatch=null; if (::assembly.isInitialized) assembly.changed = {}; previews.values.forEach { it.recycle() }; previews.clear(); worker.shutdown(); super.onDestroy() }
 }
