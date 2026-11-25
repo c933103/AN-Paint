@@ -18,7 +18,9 @@ class TraditionalChineseAssemblyHelpTests(unittest.TestCase):
             self.assertIn('如檔案提供者有提供修改時間，', value)
             self.assertNotIn('下方托盤會在檔案提供者有提供資料時', value)
             crop = '裁剪' if tag == 'zh-HK' else '裁切'
-            self.assertIn(crop + '母圖片時，連接到它的圖片可能會移動。', value)
+            snapped = value.split(r'\n\n')[2]
+            self.assertIn(crop + '作為連接基準的圖片時', snapped)
+            self.assertIn('接在這張圖片上的圖片可能會移動', snapped)
             self.assertIn('相連的圖片可能會移動以填補空位。', value)
             self.assertNotIn('後面的圖片會填補空位', value)
             self.assertNotIn('現有連接會隨母圖片移動', value)

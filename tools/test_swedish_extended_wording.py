@@ -25,8 +25,13 @@ class SwedishExtendedWordingTests(unittest.TestCase):
         for value in entry['sv'].values():
             self.assertIn('kan bilder som är fästa vid dem flyttas.', value)
             self.assertEqual(1, value.count('\\n'))
-        self.assertIn('%3$d bild.', entry['sv']['one'])
-        self.assertIn('%3$d bilder.', entry['sv']['other'])
+        # Both quantity branches now use a count label, not an apply command,
+        # so the noun agrees with the label instead of a following numeral.
+        for quantity, count in (('one', 1), ('other', 0), ('other', 2)):
+            line = entry['sv'][quantity].split(r'\n')[1]
+            self.assertIn('Valda bilder', line)
+            self.assertIn(f': {count}.', line.replace('%3$d', str(count)))
+            self.assertNotIn('Verkställ', line)
 
     def test_active_help_navigation_matches_actual_controls(self):
         s = {k: v.strip('"') for k, v in self.strings.items()}
