@@ -33,6 +33,15 @@ object ExportNames {
             .firstOrNull {trimmed.endsWith(it,true)}
         return (if(suffix==null) trimmed else trimmed.dropLast(suffix.length))+format.extension
     }
+    // Common document providers replace FAT-reserved punctuation when creating a file.
+    private const val reservedPunctuation = "<>:\"|?*"
+    fun suggestedName(name: String, format: ImageFormat): String? {
+        val cleaned = buildString {
+            for (character in name.trim()) append(if (character in reservedPunctuation) '_' else character)
+        }
+        return if (cleaned == name) null else withExtension(cleaned, format)
+    }
+
     fun valid(name: String,format: ImageFormat): Boolean {
         val stem=withExtension(name,format).removeSuffix(format.extension)
         return stem.isNotBlank() && stem!="." && stem!=".." && name.none {it=='/' || it=='\\' || it.isISOControl()}
@@ -112,8 +121,10 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             onItemSelectedListener=object: AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?)=Unit
                 override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
+                    if (format == formats[position]) return
                     format=formats[position]
-                    if(filename.text.isNotBlank()) filename.setText(ExportNames.withExtension(filename.text.toString(),format))
+                    val draft = filename.text.toString()
+                    if(draft.isNotBlank() && draft == draft.trim()) filename.setText(ExportNames.withExtension(filename.text.toString(),format))
                     update()
                 }
             }
@@ -195,10 +206,25 @@ class SaveOptionsDialog(private val activity: Activity,private val initial: Expo
             val positive=dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             positive.setOnClickListener {
                 val name=filename.text.toString()
-                if(!ExportNames.valid(name,format)) filename.error=ui(R.string.save20_invalid_name)
-                else {
-                    confirm(SaveRequest(ExportOptions(format,quality,format.supportsLossless && lossless,ditherBox.isChecked,tiffCompressionBox.isChecked,icoSize,asciiColumns,asciiInvert.isChecked),ExportNames.withExtension(name,format)))
+                fun proceed(approvedName: String) {
+                    confirm(SaveRequest(ExportOptions(format,quality,format.supportsLossless && lossless,ditherBox.isChecked,tiffCompressionBox.isChecked,icoSize,asciiColumns,asciiInvert.isChecked),approvedName))
                     dialog.dismiss()
+                }
+                if (!ExportNames.valid(name, format)) {
+                    filename.requestFocus()
+                    filename.error = ui(R.string.save20_invalid_name)
+                    return@setOnClickListener
+                }
+                val suggestion = ExportNames.suggestedName(name, format)
+                if (suggestion == null) {
+                    proceed(ExportNames.withExtension(name, format))
+                } else {
+                    EditorDialogBuilder(activity)
+                        .setTitle(ui(R.string.save20_file_name))
+                        .setMessage(ui(R.string.save_filename_replacement, suggestion))
+                        .setPositiveButton(ui(R.string.save_use_filename)) { _, _ -> proceed(suggestion) }
+                        .setNegativeButton(ui(R.string.save_edit_filename)) { _, _ -> filename.requestFocus() }
+                        .show()
                 }
             }
             if(!VerticalText.uiVertical(activity) && activity.resources.configuration.fontScale>=1.5f) {
