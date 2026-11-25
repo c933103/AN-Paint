@@ -3,9 +3,12 @@ package paint.anpaint.android
 
 import android.app.LocaleManager
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Build
 import android.os.Process
 import android.widget.EditText
+import android.widget.Button
+import android.view.inspector.WindowInspector
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
@@ -64,12 +67,25 @@ class AcceptedCreditRestartVerifyTest {
             f.onMain {f.assertCommittedPatch(f.editor,source)}
             // The committed edit leaves the document dirty. Use the actual
             // localized discard action before creating the uncredited document.
+            f.await("focused, dirty editor ready to handle New") {
+                f.editor.hasWindowFocus() && f.editor.document.dirty && !f.autosaveObservation().autosaving
+            }
             f.menu("File",R.string.ui_new)
-            var discard=""
-            f.onMain {discard=f.editor.getString(R.string.ui_discard_changes23)}
-            val button=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).findObject(UiSelector().text(discard))
-            assertTrue("Localized Discard action",button.waitForExists(5000))
-            assertTrue(button.click())
+            val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+            val discard=device.findObject(UiSelector().resourceId("android:id/button3"))
+            assertTrue("Native neutral Discard action",discard.waitForExists(5000))
+            f.onMain {
+                val neutral=WindowInspector.getGlobalWindowViews().asReversed()
+                    .firstNotNullOfOrNull {it.findViewById<Button>(android.R.id.button3)?.takeIf {v->v.isShown}}
+                    ?: error("No visible neutral button in the unsaved-changes dialog")
+                assertEquals("The neutral action is localized",
+                    f.editor.getString(R.string.ui_discard_changes23),neutral.text.toString())
+                assertTrue("Discard is enabled and visible",neutral.isEnabled && neutral.getGlobalVisibleRect(Rect()))
+            }
+            val discardBounds=discard.visibleBounds
+            assertFalse(discardBounds.isEmpty)
+            assertTrue(device.click(discardBounds.centerX(),discardBounds.centerY()))
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
             f.onMain {
                 (f.view("size_width") as EditText).setText("19")
                 (f.view("size_height") as EditText).setText("13")
