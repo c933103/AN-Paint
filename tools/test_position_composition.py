@@ -115,7 +115,8 @@ class PositionCompositionTest(unittest.TestCase):
                 for group in ('core','position'):
                     result=verify_reports(SOURCE,root/group,sdk,group)
                     self.assertEqual(result['receipt_scope'],f'partial-{group}-app-union')
-                    self.assertEqual(result['completed_tests'],7 if group=='position' else complete-7)
+                    position_count=8 if sdk==35 else 7
+                    self.assertEqual(result['completed_tests'],position_count if group=='position' else complete-position_count)
                     self.assertTrue(result['deferred_tests'])
                     self.assertTrue(all(not path.exists() for path in coverage_paths(root/group)))
                     with self.assertRaises(ValueError): verify_reports(SOURCE,root/group,sdk)
@@ -201,6 +202,9 @@ run_position_regression
                 calls=[shlex.split(line) for line in events.read_text().splitlines()]
                 self.assertEqual(len(calls),3)
                 for args,(phase,wanted) in zip(calls,POSITION_SHARDS.items()):
+                    if phase=='position-ainu-manchu':
+                        wanted=wanted|{('paint.anpaint.android.EditorDeviceTest',
+                                        'czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder')}
                     self.assertEqual(args[args.index('--suite')+1],'app-'+phase)
                     self.assertEqual(args[args.index('--timeout-seconds')+1],'180')
                     self.assertEqual({args[i+1] for i,value in enumerate(args) if value=='--include-test'},

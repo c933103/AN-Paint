@@ -2,8 +2,12 @@
 # Sourced only by the separate position job after ci_emulator.sh startup/install.
 run_position_regression() {
   local position_class=paint.anpaint.android.AssemblyPositionDeviceTest failed=0
+  local -a api35_placement=()
+  if [[ "$TEST_API" == 35 ]]; then
+    api35_placement+=(--include-test "paint.anpaint.android.EditorDeviceTest#czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder")
+  fi
   rm -rf "$report/app-position"
-  phase='Position dialog: Ainu Kana/Latin + Manchu'
+  phase='Position dialog: Ainu Kana/Latin + Manchu, plus API35 Czech Assembly placement'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \
     --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
@@ -12,7 +16,7 @@ run_position_regression() {
     --suite app-position-ainu-manchu --timeout-seconds 180 \
     --include-test "$position_class#ainuKanaPositionTextAndNativeEditing" \
     --include-test "$position_class#ainuLatinPositionTextAndNativeEditing" \
-    --include-test "$position_class#manchuPositionColumnsAndNativeEditing" || failed=1
+    --include-test "$position_class#manchuPositionColumnsAndNativeEditing" "${api35_placement[@]}" || failed=1
   phase='Position dialog: Tibetan/Dzongkha + Jeju + Nôm'
   progress "$phase"
   python3 tools/run_android_instrumentation.py --adb "$adb" \

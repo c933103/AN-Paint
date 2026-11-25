@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
+from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, API35_ORDINARY_EXCLUSIONS, CZECH_ASSEMBLY_PLACEMENT, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -29,7 +29,7 @@ def receipts(source, sdk):
         reports[phase] = dict(success=True, device_sdk=sdk, source_tests_sha256=digest,
             sdk_suppressed_tests=[list(item) for item in sorted(suppressed)],
             included_tests=sorted(f'{owner}#{name}' for owner, name in wanted) if phase in SELECTED_PHASES else [],
-            excluded_tests=sorted('#'.join(item) for item in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR)) if sdk == 35 and phase == 'ordinary' else [],
+            excluded_tests=sorted('#'.join(item) for item in API35_ORDINARY_EXCLUSIONS) if sdk == 35 and phase == 'ordinary' else [],
             timeout_seconds=PHASE_TIMEOUTS[phase], timed_out=False, returncode=0, errors=[], missing=[], unexpected=[],
             leave_target_running=(phase=='seed'), expected_tests=len(wanted), completed_tests=len(wanted),
             cases=[dict(classname=owner, name=name, status='passed') for owner, name in sorted(wanted)])
@@ -39,7 +39,7 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'dialog':16, 'page-chooser':1, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'dialog':16, 'page-chooser':1, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v)+(p=='position-ainu-manchu') for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             crop = ('paint.anpaint.android.CropSelectionCountDeviceTest',
@@ -83,7 +83,13 @@ class AppPartitionTest(unittest.TestCase):
                 'dzongkhaPositionTextAndNativeEditing', 'jejuPositionTextAndNativeEditing',
                 'nomPositionTextAndNativeEditing',
             }
-            self.assertEqual({(position, method) for method in position_methods},
+            expected_position = {(position, method) for method in position_methods}
+            if sdk==35:
+                expected_position.add(CZECH_ASSEMBLY_PLACEMENT)
+                self.assertIn(CZECH_ASSEMBLY_PLACEMENT,app_partition(expected,sdk)['position-ainu-manchu'])
+            else:
+                self.assertIn(CZECH_ASSEMBLY_PLACEMENT,suppressed)
+            self.assertEqual(expected_position,
                              set.union(*(app_partition(expected,sdk)[phase] for phase in POSITION_SHARDS)))
             self.assertEqual(result['ordinary_and_gallery_total_timeout_seconds'],345 if sdk==35 else 300)
             valencian=('paint.anpaint.android.EditorDeviceTest',
@@ -281,7 +287,7 @@ run_credit_restart_regression() { echo restart; [[ "$TEST_FAULT" != restart ]]; 
                     self.assertEqual(len(ordinary),int(sdk>=30))
                     if ordinary:
                         self.assertIn('--timeout-seconds 210',ordinary[0])
-                        for item in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR):
+                        for item in API35_ORDINARY_EXCLUSIONS:
                             self.assertEqual('--exclude-test '+'#'.join(item) in ordinary[0],sdk==35)
                         self.assertEqual('--exclude-class '+PAGE_COUNT in ordinary[0],sdk==35)
                         self.assertEqual('--exclude-class '+GALLERY_VIEWPORT in ordinary[0],sdk==35)

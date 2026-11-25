@@ -30,6 +30,8 @@ GALLERY_METHODS = {
     'savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft',
 }
 POSITION = 'paint.anpaint.android.AssemblyPositionDeviceTest'
+CZECH_ASSEMBLY_PLACEMENT = (EDITOR, 'czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder')
+API35_ORDINARY_EXCLUSIONS = {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_ASSEMBLY_PLACEMENT}
 POSITION_SHARDS = {
     'position-ainu-manchu': {(POSITION, method) for method in (
         'ainuKanaPositionTextAndNativeEditing', 'ainuLatinPositionTextAndNativeEditing',
@@ -98,9 +100,13 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         dialog.update(expected & {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
     page_chooser = {item for item in expected if sdk == 35 and item[0] == PAGE_COUNT}
     position = {item for item in expected if item[0] == POSITION}
+    position_shards = {phase: set(tests) for phase, tests in POSITION_SHARDS.items()}
+    if sdk == 35:
+        position.update(expected & {CZECH_ASSEMBLY_PLACEMENT})
+        position_shards['position-ainu-manchu'].add(CZECH_ASSEMBLY_PLACEMENT)
     ordinary = expected - gallery - viewport - dialog - page_chooser - vertical - seed - verify - position
-    if position != (set.union(*POSITION_SHARDS.values()) if sdk >= 30 else set()):
-        raise ValueError('Position shards require the exact seven source identities and lower-SDK suppression')
+    if position != (set.union(*position_shards.values()) if sdk >= 30 else set()):
+        raise ValueError('Position shards require the exact SDK-specific source identities and lower-SDK suppression')
     shards = list(VERTICAL_SHARDS.values())
     if sdk < 30:
         # These whole classes are SDK-suppressed by their source annotations.
@@ -121,7 +127,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
         raise ValueError('The exact API35 page chooser method is required')
     parts = {}
     if sdk >= 30:
-        parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})
+        parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **position_shards})
     if sdk == 35:
         parts.update({'gallery-viewport': viewport, 'dialog': dialog, 'page-chooser': page_chooser, 'seed': seed, 'verify': verify})
     return parts
@@ -141,7 +147,7 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
         report = reports[phase]
         identities = [(case['classname'], case['name']) for case in report['cases']]
         requested = sorted(f'{owner}#{name}' for owner, name in wanted) if phase in SELECTED_PHASES else []
-        omitted = sorted(f'{owner}#{name}' for owner, name in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR)) if phase == 'ordinary' and sdk == 35 else []
+        omitted = sorted(f'{owner}#{name}' for owner, name in API35_ORDINARY_EXCLUSIONS) if phase == 'ordinary' and sdk == 35 else []
         if (report.get('success') is not True or type(report.get('device_sdk')) is not int
                 or report['device_sdk'] != sdk or report.get('source_tests_sha256') != source_digest
                 or report.get('sdk_suppressed_tests') != [list(item) for item in sorted(suppressed)]
