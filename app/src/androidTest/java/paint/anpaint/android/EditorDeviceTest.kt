@@ -278,6 +278,110 @@ class EditorDeviceTest {
         }
     }
 
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun czechCanvasSelectionMovesResizesAndRotatesAndUndoRedoRestoreTheRenderedPixels() {
+        chooseAppLanguage("cs")
+        awaitReadyCzechEditor()
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        }).resources
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        }).resources
+
+        fun controlCaption(tag: String,id: Int) {
+            val expected=cs.getString(id)
+            assertNotEquals("The control must not fall back to English: $tag",en.getString(id),expected)
+            onMain {
+                val control=it.window.decorView.findViewWithTag<View>(tag)
+                assertTrue("Mounted editing control: $tag",control.isShown)
+                assertEquals(expected,control.contentDescription.toString())
+            }
+        }
+        // Use a small, predictable empty document. All marks and transforms below
+        // are driven through the installed editor, not document state setters.
+        onMain {
+            it.document.newImage(240,240)
+            it.document.foreground=Color.RED
+            it.paintCanvas.pencilSize=10f
+        }
+        click("tool_PENCIL")
+        onMain {it.paintCanvas.fit()}
+        drag(51.5f,68.5f,81.5f,68.5f)
+        onMain {assertEquals(Color.RED,it.document.bitmap.getPixel(65,68))}
+
+        click("tool_SELECT")
+        controlCaption("tool_SELECT",R.string.ui_rectangle_select)
+        onMain {it.paintCanvas.fit()}
+        drag(30.5f,49.5f,100.5f,89.5f)
+        var left=0f
+        var top=0f
+        var width=0f
+        onMain {
+            val s=checkNotNull(it.document.selection)
+            assertFalse("Selecting must not cut pixels yet",s.floating)
+            assertEquals(Color.RED,it.document.bitmap.getPixel(65,68))
+            left=s.rect.left;top=s.rect.top;width=s.rect.width()
+        }
+        drag(65.5f,69.5f,148.5f,143.5f)
+        var right=0f
+        var bottom=0f
+        onMain {
+            val s=checkNotNull(it.document.selection)
+            assertTrue("Moving must lift the selected pixels",s.floating)
+            assertEquals(left+83f,s.rect.left,0.1f)
+            assertEquals(top+74f,s.rect.top,0.1f)
+            assertEquals(Color.WHITE,it.document.bitmap.getPixel(65,68))
+            right=s.rect.right;bottom=s.rect.bottom
+        }
+        drag(right,bottom,right+35f,bottom+23f)
+        var cx=0f
+        var cy=0f
+        var gripY=0f
+        onMain {
+            val s=checkNotNull(it.document.selection)
+            assertTrue("Dragging the corner increases the width",s.rect.width()>width+20f)
+            assertEquals("The opposite corner stays fixed",left+83f,s.rect.left,0.1f)
+            assertEquals(top+74f,s.rect.top,0.1f)
+            cx=s.rect.centerX()
+            cy=s.rect.centerY()
+            gripY=s.rect.top-34f*it.resources.displayMetrics.density/it.paintCanvas.zoom
+        }
+        drag(cx,gripY,cx+cy-gripY,cy)
+        onMain {
+            val s=checkNotNull(it.document.selection)
+            // The final drag is released along the horizontal through the centre.
+            assertEquals("Clockwise turn from the visible rotation grip",90f,s.rotation,0.2f)
+        }
+        click("tool_PENCIL")
+        var rotated=IntArray(0)
+        onMain {
+            val doc=it.document
+            assertNull("Switching tools commits the floating pixels",doc.selection)
+            assertEquals(Color.WHITE,doc.bitmap.getPixel(65,68))
+            val x=cx.toInt()
+            val y=cy.toInt()
+            assertEquals(Color.RED,doc.bitmap.getPixel(x,y-10))
+            assertEquals(Color.RED,doc.bitmap.getPixel(x,y+10))
+            assertEquals("The red stroke is vertical after rotation",Color.WHITE,doc.bitmap.getPixel(x+10,y))
+            rotated=IntArray(240*240)
+            doc.bitmap.getPixels(rotated,0,240,0,0,240,240)
+        }
+        controlCaption("undo",R.string.ui_undo)
+        click("undo")
+        onMain {
+            assertEquals(Color.RED,it.document.bitmap.getPixel(65,68))
+            assertEquals(Color.WHITE,it.document.bitmap.getPixel(cx.toInt(),cy.toInt()))
+        }
+        controlCaption("redo",R.string.ui_redo)
+        click("redo")
+        onMain {
+            val redone=IntArray(240*240)
+            it.document.bitmap.getPixels(redone,0,240,0,0,240,240)
+            assertArrayEquals("Redo restores every transformed canvas pixel",rotated,redone)
+        }
+    }
+
     @Test fun saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser() {
         exerciseSaveAndSharePng()
         if (Build.VERSION.SDK_INT == 35) {
