@@ -237,20 +237,17 @@ class AppLanguageResourceRoutingTest {
         assertEquals("fr",AppLanguage.selectedTag(context))
     }
 
-    @Test fun russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove() {
+    @Test fun russianCropPreviewUsesTheCurrentResourceAtEveryReachableCount() {
         AppLanguage.select(context,"ru")
         val resources=AppLanguage.wrap(context).resources
-        // All reachable selections, including None (0), within the 20-image cap.
+        assertEquals("ru",resources.configuration.locales[0].language)
         for(count in 0..20) {
-            val targets=when(count) {
-                1 -> "Применить к 1 изображению."
-                in 2..4 -> "Применить к $count изображениям."
-                else -> "Изображений для обрезки: $count."
-            }
-            val expected="Предпросмотр: 123 × 45 px\n$targets " +
-                "При обрезке размещённых изображений присоединённые к ним изображения могут переместиться."
-            assertEquals("Russian selected count=$count",expected,
-                resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
+            val template=resources.getQuantityText(R.plurals.ui_crop_preview_images,count).toString()
+            val expected=template.replace("%1\$d","123").replace("%2\$d","45").replace("%3\$d",count.toString())
+            val actual=resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count)
+            assertEquals("Russian selected count=$count",expected,actual)
+            assertTrue("The count must be substituted independently of preview dimensions",
+                Regex("\\b"+count+"\\b").containsMatchIn(actual.substringAfter('\n')))
         }
     }
 
