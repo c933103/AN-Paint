@@ -2032,6 +2032,140 @@ class EditorDeviceTest {
     }
 
     @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun czechAssemblyBatchCropUsesSelectedCountsAndAppliesDecimalMarginsOnlyToChosenImages() {
+        val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("cs"))
+        }).resources
+        val en=context.createConfigurationContext(android.content.res.Configuration().apply {
+            setLocales(LocaleList.forLanguageTags("en-US"))
+        }).resources
+        chooseAppLanguage("cs")
+        awaitReadyCzechEditor()
+        fun owner()=ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)
+            .filterIsInstance<org.catrobat.paintroid.classic.AssemblyActivity>().singleOrNull()
+        fun dialog()=WindowInspector.getGlobalWindowViews().asReversed().firstOrNull {
+            it.findViewWithTag<TextView>("crop_status")?.isShown==true
+        }
+        fun tap(find: () -> View?) {
+            val hit=Rect()
+            onMain {
+                val target=checkNotNull(find())
+                assertTrue(target.isEnabled)
+                target.requestRectangleOnScreen(Rect(0,0,target.width,target.height),true)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val target=checkNotNull(find())
+                assertTrue(target.isShown && target.getGlobalVisibleRect(hit) && !hit.isEmpty)
+                offsetToScreen(target,hit)
+            }
+            assertTrue(device.click(hit.centerX(),hit.centerY()))
+            instrumentation.waitForIdleSync()
+        }
+        val width=40
+        val height=16
+        val inputs=(1..3).map { i ->
+            fixture("czech-batch-crop-$i.png").also { file ->
+                val bitmap=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888)
+                try {
+                    bitmap.eraseColor(Color.RED)
+                    file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it)) }
+                } finally { bitmap.recycle() }
+            }
+        }
+        val names=inputs.map { it.name }.toSet()
+        menu("File",cs.getString(R.string.ui_image_assembly))
+        val initialIds=mutableSetOf<String>()
+        awaitState("Czech Assembly ready") {
+            owner()?.let { assembly ->
+                !assembly.busy && assembly.window.decorView.hasWindowFocus() &&
+                    assembly.resources.configuration.locales[0].toLanguageTag()=="cs"
+            } == true
+        }
+        onMain { checkNotNull(owner()).assembly.images.mapTo(initialIds) { it.id } }
+        try {
+            // Earlier Assembly tests cover PDF/TIFF. Here the picker returns three
+            // actual PNGs. Keep the production import and batch crop callbacks.
+            monitor.nextResult.set(Intent().apply {
+                clipData=ClipData.newUri(context.contentResolver,inputs.first().name,uriFor(inputs.first())).also { clip ->
+                    inputs.drop(1).forEach { clip.addItem(ClipData.Item(uriFor(it))) }
+                }
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            })
+            tap { owner()?.window?.decorView?.findViewWithTag<View>("assembly_add") }
+            awaitState("imported three PNGs in Czech Assembly") {
+                owner()?.let { assembly ->
+                    !assembly.busy && assembly.assembly.images.count { it.name in names }==3
+                } == true
+            }
+            val imported=mutableListOf<String>()
+            onMain {
+                val images=checkNotNull(owner()).assembly.images
+                assertEquals("No unrelated images in the fixture",3,images.size)
+                images.mapTo(imported) { it.id }
+            }
+            fun openCrop() {
+                tap { owner()?.window?.decorView?.findViewWithTag<View>("assembly_batch_crop") }
+                awaitState("mounted Czech Batch Crop dialog") { dialog()!=null }
+            }
+            fun status(count: Int, columns: Int) = onMain {
+                val view=checkNotNull(dialog()?.findViewWithTag<TextView>("crop_status"))
+                val expected=cs.getQuantityString(R.plurals.ui_crop_preview_images,count,columns,height,count)
+                assertNotEquals(en.getQuantityString(R.plurals.ui_crop_preview_images,count,columns,height,count),expected)
+                assertEquals("Czech selected count $count at width $columns",expected,view.text.toString())
+                val node=view.createAccessibilityNodeInfo()
+                try { assertEquals(expected,node.text.toString()) } finally { node.recycle() }
+            }
+            fun checkCrops(firstLeft: Int) = onMain {
+                val model=checkNotNull(owner()).assembly
+                imported.forEachIndexed { index,id ->
+                    val expected=Rect(if(index==0) firstLeft else 0,0,width,height)
+                    assertEquals(expected,model.images.single { it.id==id }.crop)
+                }
+                val reloaded=org.catrobat.paintroid.classic.ImageAssembly(model.directory)
+                assertEquals(model.images.associate { it.id to it.crop },reloaded.images.associate { it.id to it.crop })
+            }
+            fun leaveButton(id: Int) {
+                tap { dialog()?.findViewById<View>(id) }
+                awaitState("batch clip dialog dismissed") { dialog()==null && owner()?.window?.decorView?.hasWindowFocus()==true }
+            }
+            openCrop()
+            status(3,width)
+            tap { dialog()?.findViewWithTag<View>("crop_none") }
+            status(0,width)
+            tap { dialog()?.findViewWithTag<View>("crop_include_${imported[0]}") }
+            status(1,width)
+            tap { dialog()?.findViewWithTag<View>("crop_include_${imported[1]}") }
+            status(2,width)
+            leaveButton(android.R.id.button2)
+            checkCrops(0)
+
+            openCrop()
+            tap { dialog()?.findViewWithTag<View>("crop_none") }
+            tap { dialog()?.findViewWithTag<View>("crop_include_${imported[0]}") }
+            tap { dialog()?.findViewWithTag<View>("crop_percent") }
+            onMain {
+                val field=checkNotNull(dialog()?.findViewWithTag<EditText>("crop_left"))
+                field.setText("12,5")
+                assertEquals("12,5",field.text.toString())
+            }
+            // A 12.5% left crop on a 40-pixel image trims five pixels.
+            status(1,35)
+            leaveButton(android.R.id.button1)
+            checkCrops(5)
+        } finally {
+            onMain {
+                dialog()?.findViewById<View>(android.R.id.button2)?.performClick()
+                owner()?.let { assembly ->
+                    assembly.assembly.images.map { it.id }.filterNot(initialIds::contains).forEach(assembly.assembly::remove)
+                    assembly.finish()
+                }
+            }
+            awaitReadyCzechEditor()
+        }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
     fun czechEditorAndAssemblyHelpReachTheirCompleteInstalledText() {
         val cs=context.createConfigurationContext(android.content.res.Configuration().apply {
             setLocales(LocaleList.forLanguageTags("cs"))
