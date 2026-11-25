@@ -127,15 +127,17 @@ class SwedishExtendedWordingTest {
                 val dialog = ImageCropDialog(activity, images, { null }, { applied++ }).show()
                 val status = dialog.window!!.decorView.findViewWithTag<TextView>("crop_status")
                 fun full(count: Int): String {
-                    val noun = if (count == 1) "bild" else "bilder"
                     val value = PaintApplication.currentResources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count)
-                    assertTrue(value.contains("$count $noun."))
+                    assertTrue(value.substringAfter('\n').startsWith("Valda bilder för beskärning: $count."))
+                    assertTrue(value.contains("kan bilder som är fästa vid dem flyttas."))
                     return value
                 }
                 assertEquals(full(2), status.text.toString())
                 val second = dialog.window!!.decorView.findViewWithTag<CheckBox>("crop_include_sv-2")
                 second.isChecked = false; idle()
                 assertEquals(full(1), status.text.toString())
+                dialog.window!!.decorView.findViewWithTag<CheckBox>("crop_include_sv-1").isChecked = false; idle()
+                assertEquals(full(0), status.text.toString())
                 assertEquals("Beskärning från Överkant i bildpunkter",
                     dialog.window!!.decorView.findViewWithTag<EditText>("crop_top").contentDescription.toString())
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
