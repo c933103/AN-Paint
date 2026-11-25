@@ -461,13 +461,14 @@ main() {
   editor_failed=0
   if (( TEST_API >= 26 )); then
     # API35 moves existing gallery-credit and export-picker methods into their
-    # bounded gallery and dialog invocations; API30 keeps its own inventory.
+    # bounded gallery, dialog and position invocations; API30 keeps its own inventory.
     local -a ordinary_extra=()
     if test "$TEST_API" = 35; then
       ordinary_extra+=(--exclude-class paint.anpaint.android.PageCountWordingDeviceTest
         --exclude-class paint.anpaint.android.GalleryViewportDeviceTest \
         --exclude-test "paint.anpaint.android.EditorDeviceTest#insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish" \
-        --exclude-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker")
+        --exclude-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker" \
+        --exclude-test "paint.anpaint.android.EditorDeviceTest#czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder")
     fi
     phase='Editor instrumentation'
     progress "$phase"

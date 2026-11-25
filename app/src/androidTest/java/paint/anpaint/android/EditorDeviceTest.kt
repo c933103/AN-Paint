@@ -46,6 +46,11 @@ import androidx.test.uiautomator.Until
 import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.AssemblyActivity
+import org.catrobat.paintroid.classic.Attachment
+import org.catrobat.paintroid.classic.ImageAssembly
+import org.catrobat.paintroid.classic.ImagePosition
+import org.catrobat.paintroid.classic.SnapEdge
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.ImageFormat
 import org.catrobat.paintroid.classic.ImageDimensions
@@ -66,6 +71,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
+import kotlin.math.roundToInt
 
 /**
  * Runs the installed application, real tab panels, bitmap renderer and FileProvider.
@@ -2306,6 +2312,148 @@ class EditorDeviceTest {
                 }
             }
             awaitReadyCzechEditor()
+        }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder() {
+        val cs=resourcesFor("cs")
+        chooseAppLanguage("cs")
+        awaitReadyCzechEditor()
+        fun owner()=ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED)
+            .filterIsInstance<AssemblyActivity>().singleOrNull()
+        fun root()=owner()?.window?.decorView
+        fun dialog()=WindowInspector.getGlobalWindowViews().asReversed().firstOrNull {
+            it.findViewWithTag<EditText>("assembly_position_x")?.isShown==true
+        }
+        fun tap(find: () -> View?) {
+            val hit=Rect()
+            onMain {
+                val view=checkNotNull(find()); assertTrue(view.isEnabled && view.isShown)
+                view.requestRectangleOnScreen(Rect(0,0,view.width,view.height),true)
+            }
+            instrumentation.waitForIdleSync()
+            onMain {
+                val view=checkNotNull(find())
+                assertTrue(view.getGlobalVisibleRect(hit) && !hit.isEmpty)
+                offsetToScreen(view,hit)
+            }
+            assertTrue(device.click(hit.centerX(),hit.centerY()))
+            instrumentation.waitForIdleSync()
+        }
+        fun control(tag: String)=tap { root()?.findViewWithTag<View>(tag) }
+        fun boardTap(x: Int,y: Int) {
+            val point=IntArray(2)
+            onMain {
+                val board=checkNotNull(owner()).board
+                val local=board.toScreen(x.toFloat(),y.toFloat())
+                assertTrue(local.x>=0 && local.x<board.width && local.y>=0 && local.y<board.height)
+                board.getLocationOnScreen(point)
+                point[0]+=local.x.roundToInt(); point[1]+=local.y.roundToInt()
+            }
+            assertTrue(device.click(point[0],point[1]))
+            instrumentation.waitForIdleSync()
+        }
+        val inputs=listOf("placement-Z.png" to Color.RED,"placement-A.png" to Color.BLUE).map { (name,color) ->
+            fixture(name).also { file ->
+                val bitmap=Bitmap.createBitmap(40,20,Bitmap.Config.ARGB_8888).apply { eraseColor(color) }
+                try { file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it)) } }
+                finally { bitmap.recycle() }
+            }
+        }
+        menu("File",cs.getString(R.string.ui_image_assembly))
+        awaitState("Czech assembly and board ready") {
+            owner()?.let { !it.busy && it.board.width>0 && it.window.decorView.hasWindowFocus() &&
+                it.resources.configuration.locales[0].toLanguageTag()=="cs" }==true
+        }
+        val initial=mutableSetOf<String>()
+        onMain { checkNotNull(owner()).assembly.images.mapTo(initial) { it.id } }
+        assertTrue("No prior assembly images",initial.isEmpty())
+        try {
+            monitor.nextResult.set(Intent().apply {
+                clipData=ClipData.newUri(context.contentResolver,inputs[0].name,uriFor(inputs[0])).also {
+                    it.addItem(ClipData.Item(uriFor(inputs[1])))
+                }
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            })
+            control("assembly_add")
+            awaitState("both Czech assembly inputs imported") {
+                owner()?.let { !it.busy && it.assembly.images.size==2 }==true
+            }
+            val ids=mutableListOf<String>()
+            onMain {
+                val loaded=checkNotNull(owner())
+                assertEquals(inputs.map { it.name },loaded.assembly.images.map { it.name })
+                loaded.assembly.images.mapTo(ids) { it.id }
+                val tray=loaded.window.decorView.findViewWithTag<ViewGroup>("assembly_thumbnails")
+                assertEquals("Assembly tray sorts by name, not import order","assembly_item_${ids[1]}",tray.getChildAt(0).tag)
+            }
+            val red=ids[0]; val blue=ids[1]
+            fun model()=checkNotNull(owner()).assembly
+            val link=Attachment(red,SnapEdge.RIGHT)
+            control("assembly_item_$red")
+            boardTap(0,0)
+            control("assembly_item_$blue")
+            boardTap(40,0)
+            onMain {
+                assertEquals(link,model().images.single { it.id==blue }.attachment)
+                assertEquals(Rect(40,0,80,20),model().layout()[blue])
+            }
+            control("assembly_item_$red")
+            fun move(button: Int) {
+                control("assembly_position")
+                awaitState("Czech exact placement editor open") { dialog()!=null }
+                onMain {
+                    val field=checkNotNull(dialog()?.findViewWithTag<EditText>("assembly_position_x"))
+                    assertEquals(cs.getString(R.string.ui_assembly_target_x),field.contentDescription.toString())
+                    field.setText("30")
+                }
+                tap { dialog()?.findViewById<View>(button) }
+                awaitState("exact placement editor dismissed") { dialog()==null && root()?.hasWindowFocus()==true }
+            }
+            move(android.R.id.button2)
+            onMain {
+                assertEquals(link,model().images.single { it.id==blue }.attachment)
+                assertEquals(Rect(0,0,40,20),model().layout()[red])
+            }
+            move(android.R.id.button1)
+            fun checkMoved()=onMain {
+                assertEquals(Rect(30,0,70,20),model().layout()[red])
+                assertEquals(Rect(40,0,80,20),model().layout()[blue])
+                assertNull(model().images.single { it.id==blue }.attachment)
+                val saved=ImageAssembly(model().directory)
+                assertEquals(model().layout(),saved.layout())
+                assertEquals(ImagePosition(40,0),saved.images.single { it.id==blue }.position)
+            }
+            checkMoved()
+            control("assembly_undo")
+            onMain { assertEquals(link,model().images.single { it.id==blue }.attachment) }
+            control("assembly_redo")
+            checkMoved()
+            boardTap(60,10)
+            onMain { assertEquals("Blue wins the overlap hit test",blue,checkNotNull(owner()).board.selectedId) }
+            val destination=fixture("placement-output.png")
+            val prior=monitor.requests.size
+            monitor.nextResult.set(resultFor(destination))
+            control("assembly_save")
+            awaitState("Czech Assembly saved PNG") {
+                owner()?.let { !it.busy && destination.length()>0 }==true
+            }
+            assertEquals("image/png",monitor.requests.drop(prior).single { it.action==Intent.ACTION_CREATE_DOCUMENT }.type)
+            val bitmap=checkNotNull(BitmapFactory.decodeFile(destination.path))
+            try {
+                assertEquals(80,bitmap.width); assertEquals(20,bitmap.height)
+                assertEquals(Color.RED,bitmap.getPixel(35,10))
+                assertEquals(Color.BLUE,bitmap.getPixel(60,10))
+            } finally { bitmap.recycle() }
+        } finally {
+            onMain {
+                dialog()?.findViewById<View>(android.R.id.button2)?.performClick()
+                owner()?.let { work ->
+                    work.assembly.images.map { it.id }.filterNot(initial::contains).forEach(work.assembly::remove)
+                    work.finish()
+                }
+            }
         }
     }
 
