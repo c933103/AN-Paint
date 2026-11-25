@@ -9,8 +9,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
-import java.math.RoundingMode
-import java.text.NumberFormat
 import kotlin.math.roundToLong
 
 /** Shared output dimension; each source retains its own crop and aspect ratio. */
@@ -28,18 +26,13 @@ class NormalizeImagesDialog(private val activity: Activity,private val assembly:
         val info = TextView(activity).apply { tag="normalize_info"; setPadding(0,dp(8),0,dp(8)) }
         var percent = false
         val numberLocale = AppLanguage.locale(activity)
-        val percentageFormat = NumberFormat.getNumberInstance(numberLocale).apply {
-            isGroupingUsed = false
-            maximumFractionDigits = 4
-            roundingMode = RoundingMode.HALF_UP
-        }
         fun value(): Int? {
             val number=uiNumber(input.text.toString(), numberLocale)?.takeIf { it.isFinite() && it>0 && (percent || it==kotlin.math.floor(it)) } ?: return null
             val target=if (percent) number*largest/100 else number
             return target.roundToLong().takeIf { it in 1..Int.MAX_VALUE.toLong() }?.toInt()
         }
         fun display(pixels: Int) {
-            input.setText(if (percent) percentageFormat.format(pixels * 100.0 / largest) else pixels.toString())
+            input.setText(if (percent) LocaleText.editablePercentNumber(pixels * 100.0 / largest, numberLocale) else pixels.toString())
         }
         val dialog=EditorDialogBuilder(activity).setTitle(ui(if (axis == NormalizeAxis.WIDTH) R.string.ui_same_width else R.string.ui_same_height))
             .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_to_all),null).create()

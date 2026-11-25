@@ -1,6 +1,8 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.classic
 
+import java.math.RoundingMode
+import java.text.NumberFormat
 import java.util.IllegalFormatException
 import java.util.Locale
 
@@ -13,6 +15,14 @@ internal object LocaleText {
     private const val MAX_TOKENS = 128
     private const val MAX_WIDTH = 1_024
     private const val MAX_PRECISION = 128
+
+    /** A numeric field value, with no translated template, grouping or percent sign. */
+    fun editablePercentNumber(value: Double, locale: Locale): String =
+        NumberFormat.getNumberInstance(locale).apply {
+            isGroupingUsed = false
+            maximumFractionDigits = 4
+            roundingMode = RoundingMode.HALF_UP
+        }.format(value)
 
     private data class Token(val start: Int, val end: Int, val index: Int?,
         val flags: String, val width: Int?, val precision: Int?, val conversion: String) {
