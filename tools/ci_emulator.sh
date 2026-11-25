@@ -242,6 +242,7 @@ run_dialog_regression() {
     --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable" \
     --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
     --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle" \
+    --include-test "paint.anpaint.android.EditorDeviceTest#hakkaTaggedDibWarningKeepsTheEditingCanvasAndAllowsOpeningSrgbPng" \
     --include-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker" \
     --include-test "paint.anpaint.android.CzechSaveAsViewportDeviceTest#czechSaveAsRetainsDraftAtDoubleTextAcrossRotation"
 }
@@ -467,6 +468,7 @@ main() {
       ordinary_extra+=(--exclude-class paint.anpaint.android.PageCountWordingDeviceTest
         --exclude-class paint.anpaint.android.GalleryViewportDeviceTest \
         --exclude-test "paint.anpaint.android.EditorDeviceTest#insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish" \
+        --exclude-test "paint.anpaint.android.EditorDeviceTest#hakkaTaggedDibWarningKeepsTheEditingCanvasAndAllowsOpeningSrgbPng" \
         --exclude-test "paint.anpaint.android.EditorDeviceTest#jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker" \
         --exclude-test "paint.anpaint.android.EditorDeviceTest#czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder")
     fi

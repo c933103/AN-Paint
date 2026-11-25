@@ -286,6 +286,111 @@ class EditorDeviceTest {
     }
 
     @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun hakkaTaggedDibWarningKeepsTheEditingCanvasAndAllowsOpeningSrgbPng() {
+        // Same embedded-profile V5 DIB structure as the shared-import host test.
+        val dib=fixture("tagged-colour.dib").apply {
+            writeBytes(java.nio.ByteBuffer.allocate(132).order(java.nio.ByteOrder.LITTLE_ENDIAN).apply {
+                putInt(0,124); putInt(4,1); putInt(8,1)
+                putShort(12,1); putShort(14,24); putInt(56,0x4d424544)
+            }.array())
+        }
+        fun png(name: String,width: Int,marker: Int)=fixture(name).also { file ->
+            val image=Bitmap.createBitmap(width,20,Bitmap.Config.ARGB_8888).apply {
+                eraseColor(Color.WHITE);setPixel(2,3,marker)
+            }
+            try {file.outputStream().use {assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,it))}}
+            finally {image.recycle()}
+        }
+        val first=png("hakka-seed.png",24,Color.MAGENTA)
+        val repaired=png("hakka-replacement-srgb.png",28,Color.CYAN)
+        val tags=listOf("hak-Hant-TW","hak-Latn-TW")
+        val localized=(tags+listOf("en-GB")).associateWith {tag->
+            context.createConfigurationContext(android.content.res.Configuration().apply {
+                setLocales(LocaleList.forLanguageTags(tag))
+            })
+        }
+        val samples=localized.values.map {it.getString(R.string.save20_unsupported_image_colour)}
+        assertEquals("Both Hakka resources differ from one another and English",3,samples.toSet().size)
+        fun focusedMessage()=WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {root->
+            root.findViewById<TextView>(android.R.id.message)?.takeIf {it.isShown && it.hasWindowFocus() && it.layout!=null}
+        }
+        fun tapButton(root: View, id: Int, expected: String) {
+            val button=requireNotNull(root.findViewById<android.widget.Button>(id))
+            assertEquals(expected,button.text.toString())
+            assertTrue(button.hasWindowFocus() && button.isShown && button.isEnabled)
+        }
+        fun open(file: File, discard: Boolean, resource: android.content.Context) {
+            awaitState("ready to open ${file.name}") {!it.busy && it.window.decorView.hasWindowFocus()}
+            val before=monitor.requests.count {it.action==Intent.ACTION_OPEN_DOCUMENT}
+            monitor.nextResult.set(resultFor(file))
+            menu("File",activityText(R.string.ui_load_image))
+            if(discard) {
+                awaitState("unsaved document confirmation for ${file.name}") {focusedMessage()!=null}
+                val rect=Rect()
+                onMain {
+                    val root=requireNotNull(focusedMessage()).rootView
+                    tapButton(root,android.R.id.button3,resource.getString(R.string.ui_discard_changes23))
+                    val button=root.findViewById<View>(android.R.id.button3)
+                    assertTrue(button.getGlobalVisibleRect(rect));offsetToScreen(button,rect)
+                }
+                assertTrue(device.click(rect.centerX(),rect.centerY()))
+            }
+            awaitState("picker consumed ${file.name}") {
+                monitor.nextResult.get()==null &&
+                    monitor.requests.count {it.action==Intent.ACTION_OPEN_DOCUMENT}==before+1
+            }
+        }
+        fun assertOpened(width: Int,marker: Int) {
+            awaitState("replacement PNG opened") {
+                !it.busy && it.lastIoError==null && !it.document.dirty &&
+                    it.document.bitmap.width==width && it.document.bitmap.height==20 &&
+                    it.document.bitmap.getPixel(2,3)==marker
+            }
+        }
+        fun pixels(bitmap: Bitmap)=IntArray(bitmap.width*bitmap.height).also {
+            bitmap.getPixels(it,0,bitmap.width,0,0,bitmap.width,bitmap.height)
+        }
+        for(tag in tags) {
+            val language=requireNotNull(localized[tag])
+            chooseAppLanguage(tag)
+            awaitState("editor uses $tag") {
+                it.startupReady && !it.busy && it.window.decorView.hasWindowFocus() &&
+                    it.resources.configuration.locales[0].toLanguageTag()==tag
+            }
+            open(first,false,language);assertOpened(24,Color.MAGENTA)
+            click("menu_Draw")
+            click("tool_PENCIL")
+            drag(8f,10f,18f,10f)
+            lateinit var beforePixels: IntArray
+            onMain {assertTrue(it.document.dirty);beforePixels=pixels(it.document.bitmap)}
+            open(dib,true,language)
+            val guidance=language.getString(R.string.save20_unsupported_image_colour)
+            assertTrue("Conversion action is still present for $tag",guidance.contains("sRGB PNG"))
+            val expected=language.getString(R.string.ui_could_not_open_image)+". "+guidance
+            awaitState("displayed tagged DIB warning in $tag") {focusedMessage()?.text?.toString()==expected}
+            val dismiss=Rect()
+            onMain {
+                val message=requireNotNull(focusedMessage())
+                val layout=requireNotNull(message.layout)
+                assertEquals(expected.length,layout.getLineEnd(layout.lineCount-1))
+                assertTrue((0 until layout.lineCount).all {layout.getEllipsisCount(it)==0})
+                tapButton(message.rootView,android.R.id.button1,language.getString(R.string.ui_ok))
+                val button=message.rootView.findViewById<View>(android.R.id.button1)
+                assertTrue(button.getGlobalVisibleRect(dismiss));offsetToScreen(button,dismiss)
+            }
+            assertTrue(device.click(dismiss.centerX(),dismiss.centerY()))
+            awaitState("canvas editable after warning") {focusedMessage()==null && !it.busy && it.window.decorView.hasWindowFocus()}
+            onMain {
+                val bitmap=it.document.bitmap
+                assertEquals(24,bitmap.width);assertEquals(20,bitmap.height)
+                assertTrue("No unsaved edit was discarded on a rejected import",it.document.dirty)
+                assertArrayEquals(beforePixels,pixels(bitmap))
+            }
+            open(repaired,true,language);assertOpened(28,Color.CYAN)
+        }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
     fun czechCanvasSelectionMovesResizesAndRotatesAndUndoRedoRestoreTheRenderedPixels() {
         chooseAppLanguage("cs")
         awaitReadyCzechEditor()

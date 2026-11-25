@@ -17,7 +17,7 @@ import zipfile
 from dialog_evidence_transport import (REPORT_IDENTITIES, METHOD_SCREENS, METHOD_CLASSES, DIALOG_SCREENS, COLOUR_SCREENS, COLOUR_CLASS, NOTICE_METHODS, KOREAN_METHODS, korean_captions, OWNER, TEST_CLASS, PNG,
     extract, inspect_archive, source_binding, verify_receipt, verify_colour_profile, verify_png)
 
-from app_instrumentation_matrix import CZECH_SAVE_AS, EXPORT_PICKER_EDITOR, PAGE_COUNT, PAGE_COUNT_METHODS
+from app_instrumentation_matrix import CZECH_SAVE_AS, EXPORT_PICKER_EDITOR, HAKKA_IMPORT, PAGE_COUNT, PAGE_COUNT_METHODS
 from synthetic_colour_receipts import geometry, synthetic_colour_receipt, synthetic_colour_endpoint
 
 DIGEST = 'a' * 64
@@ -415,9 +415,9 @@ class DialogEvidenceTransportTest(unittest.TestCase):
         data=summary()
         self.assertEqual(source_binding(data),DIGEST)
         self.assertEqual(REPORT_IDENTITIES, {(owner, method) for method, owner in METHOD_CLASSES.items()} |
-                         {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
+                         {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, HAKKA_IMPORT})
         self.assertEqual(len(METHOD_CLASSES),14)
-        for owner, name in (EXPORT_PICKER_EDITOR, CZECH_SAVE_AS):
+        for owner, name in (EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, HAKKA_IMPORT):
             self.assertIn((owner,name),REPORT_IDENTITIES)
             for status in ('failed','skipped','running'):
                 broken=copy.deepcopy(data)
