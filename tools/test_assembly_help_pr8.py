@@ -86,7 +86,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         # PR8 used a raw platform builder. PR12 intentionally routes through its
         # wrapper, retaining native horizontal dialogs and a vertical shell.
         activity = (CLASSIC / "AssemblyActivity.kt").read_text()
-        interface = kotlin_block(activity, "private fun buildInterface() {")
+        interface = kotlin_block(activity, "private fun buildInterface(workspaceSelection: String?) {")
         self.assertCode(interface, 'button(ui(R.string.ui_how_to_use), "assembly_help") { showHelp() }')
         self.assertCode(activity, "private fun showHelp() = message(ui(R.string." + KEY + "))")
         message = kotlin_block(activity, "private fun message(value: String) {")
