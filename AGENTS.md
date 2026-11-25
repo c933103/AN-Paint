@@ -9,6 +9,11 @@ See [current direct language-resource coverage](TRANSLATING.md#current-catalogue
 - Read `CI.md` before changing or running the Android workflow.
 - Long GitHub tests must not block unrelated implementation, source publication,
   or delivery of an accurately labelled development build.
+- A request to implement a change in `c933103/AN-Paint` includes publishing the
+  task-specific diff to a feature branch in that repository and opening or
+  updating its pull request, unless the requester asks for local-only work.
+  Review the actual diff and destination. Prior authorization for this workflow
+  covers the branch push and PR; merges and releases follow their own criteria.
 - Finish relevant local checks, publish the concrete change, link the asynchronous
   run and report its actual pending/passed/failed status. Do not repeatedly poll
   a long emulator run as the only work or hold the conversation open for it.
