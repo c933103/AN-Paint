@@ -8,6 +8,8 @@ import android.os.Process
 import android.widget.EditText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
 import org.junit.Assert.*
 import org.junit.Test
@@ -48,15 +50,26 @@ class AcceptedCreditRestartVerifyTest {
             f.context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
         val scenario=f.launchEditor()
         try {
+            f.onMain {f.assertPendingDrawing(f.editor,source)}
             f.assertMountedCzechFileAndSave()
-            f.onMain {f.assertOriginalDrawing(f.editor,source)}
+            // Undo of the restored floating edit first commits its current visible
+            // state into Redo, then restores the original location from history.
+            f.tap("undo")
+            f.onMain {f.assertCommittedPatch(f.editor,source,undone=true)}
+            f.tap("redo")
+            f.onMain {f.assertCommittedPatch(f.editor,source)}
             f.openArchive(source,expected)
             f.tap("legacy_credit_done")
             f.await("original editor resumed") {f.editor.hasWindowFocus() && !f.editor.busy}
-            f.onMain {f.assertOriginalDrawing(f.editor,source)}
-            // New is a production menu action. The saved original is not dirty,
-            // so no discard shortcut or direct document mutation is needed.
+            f.onMain {f.assertCommittedPatch(f.editor,source)}
+            // The committed edit leaves the document dirty. Use the actual
+            // localized discard action before creating the uncredited document.
             f.menu("File",R.string.ui_new)
+            var discard=""
+            f.onMain {discard=f.editor.getString(R.string.ui_discard_changes23)}
+            val button=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).findObject(UiSelector().text(discard))
+            assertTrue("Localized Discard action",button.waitForExists(5000))
+            assertTrue(button.click())
             f.onMain {
                 (f.view("size_width") as EditText).setText("19")
                 (f.view("size_height") as EditText).setText("13")
