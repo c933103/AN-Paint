@@ -31,7 +31,8 @@ GALLERY_METHODS = {
 }
 POSITION = 'paint.anpaint.android.AssemblyPositionDeviceTest'
 CZECH_ASSEMBLY_PLACEMENT = (EDITOR, 'czechAssemblyKeepsTraySortSeparateFromCanvasAndExportOrder')
-API35_ORDINARY_EXCLUSIONS = {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_ASSEMBLY_PLACEMENT}
+HAKKA_IMPORT = (EDITOR, 'hakkaTaggedDibWarningKeepsTheEditingCanvasAndAllowsOpeningSrgbPng')
+API35_ORDINARY_EXCLUSIONS = {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_ASSEMBLY_PLACEMENT, HAKKA_IMPORT}
 POSITION_SHARDS = {
     'position-ainu-manchu': {(POSITION, method) for method in (
         'ainuKanaPositionTextAndNativeEditing', 'ainuLatinPositionTextAndNativeEditing',
@@ -67,7 +68,7 @@ DIALOG_METHODS = {
 }
 API35_DIALOG_IDENTITIES = ({(DIALOG, method) for method in DIALOG_METHODS} |
                            {(COLOUR, method) for method in COLOUR_METHODS} |
-                           {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
+                           {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, HAKKA_IMPORT})
 PHASE_TIMEOUTS = {'ordinary': 210, 'gallery-draft': 90, 'gallery-viewport': 45, 'dialog': 300, 'page-chooser': 60,
                   **{phase: 180 for phase in (*VERTICAL_SHARDS, *POSITION_SHARDS)}, 'seed': 60, 'verify': 60}
 SELECTED_PHASES = {'gallery-draft', 'gallery-viewport', 'dialog', 'page-chooser', *VERTICAL_SHARDS, *POSITION_SHARDS}
@@ -97,7 +98,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
     vertical = {item for item in expected if item[0] == VERTICAL}
     dialog = {item for item in expected if item[0] in (DIALOG, COLOUR)}
     if sdk == 35:
-        dialog.update(expected & {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS})
+        dialog.update(expected & {EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, HAKKA_IMPORT})
     page_chooser = {item for item in expected if sdk == 35 and item[0] == PAGE_COUNT}
     position = {item for item in expected if item[0] == POSITION}
     position_shards = {phase: set(tests) for phase, tests in POSITION_SHARDS.items()}

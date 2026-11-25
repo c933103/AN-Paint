@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import unittest
 
-from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, API35_ORDINARY_EXCLUSIONS, CZECH_ASSEMBLY_PLACEMENT, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
+from app_instrumentation_matrix import (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, HAKKA_IMPORT, API35_ORDINARY_EXCLUSIONS, CZECH_ASSEMBLY_PLACEMENT, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, POSITION, POSITION_SHARDS,
     app_partition, report_paths, verify_app_reports, verify_reports, coverage_paths, SELECTED_PHASES)
 from vertical_locale_matrix import VERTICAL_SHARDS
 from run_android_instrumentation import (RESTART_SEED, RESTART_VERIFY, declared_tests,
@@ -39,7 +39,7 @@ def receipts(source, sdk):
 class AppPartitionTest(unittest.TestCase):
     def test_exact_current_source_inventory_for_both_apis_and_korean_remains_required(self):
         for sdk, counts in ((30, {'ordinary':16, 'gallery-draft':3, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v) for p,v in POSITION_SHARDS.items()}}),
-                            (35, {'dialog':16, 'page-chooser':1, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v)+(p=='position-ainu-manchu') for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
+                            (35, {'dialog':17, 'page-chooser':1, 'gallery-draft':4, 'gallery-viewport':1, **{p:2 for p in VERTICAL_SHARDS}, **{p:len(v)+(p=='position-ainu-manchu') for p,v in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})):
             expected, reports, digest, suppressed = receipts(SOURCE, sdk)
             result = verify_app_reports(expected, sdk, reports, digest, suppressed)
             crop = ('paint.anpaint.android.CropSelectionCountDeviceTest',
@@ -68,10 +68,12 @@ class AppPartitionTest(unittest.TestCase):
                 self.assertIn(GALLERY_CREDIT_EDITOR, app_partition(expected, sdk)['gallery-draft'])
                 self.assertIn(EXPORT_PICKER_EDITOR, app_partition(expected, sdk)['dialog'])
                 self.assertIn(CZECH_SAVE_AS, app_partition(expected, sdk)['dialog'])
+                self.assertIn(HAKKA_IMPORT, app_partition(expected, sdk)['dialog'])
             else:
                 self.assertIn(czech_fit, suppressed)
                 self.assertIn(czech_ascii, suppressed)
                 self.assertIn(CZECH_SAVE_AS, suppressed)
+                self.assertIn(HAKKA_IMPORT, suppressed)
             self.assertIn(('paint.anpaint.android.EditorDeviceTest',
                 'mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation'), app_partition(expected,sdk)['ordinary'])
             self.assertIn(('paint.anpaint.android.PageCountWordingDeviceTest',
@@ -229,6 +231,7 @@ class AppPartitionTest(unittest.TestCase):
         self.assertIn('--include-test "' + '#'.join(GALLERY_CREDIT_EDITOR) + '"',body)
         self.assertIn('--include-test "' + '#'.join(EXPORT_PICKER_EDITOR) + '"',dialog)
         self.assertIn('--include-test "' + '#'.join(CZECH_SAVE_AS) + '"',dialog)
+        self.assertIn('--include-test "' + '#'.join(HAKKA_IMPORT) + '"',dialog)
         self.assertIn('--suite app-dialog --timeout-seconds 300',dialog)
         self.assertEqual(dialog.count('tools/run_android_instrumentation.py'),1)
         self.assertIn('if test "$TEST_API" = 35; then\n    run_gallery_viewport_regression || editor_failed=1\n    run_dialog_regression || editor_failed=1',main)
@@ -383,7 +386,7 @@ class SelectedInvocationTest(unittest.TestCase):
 
     def test_dialog_wrapper_runs_one_exact_selection_without_retries(self):
         self.check_wrapper({DIALOG:DIALOG_METHODS,COLOUR:COLOUR_METHODS,
-                            EXPORT_PICKER_EDITOR[0]:{EXPORT_PICKER_EDITOR[1]}, CZECH_SAVE_AS[0]:{CZECH_SAVE_AS[1]}}, 'dialog', 'app-dialog', 300)
+                            EXPORT_PICKER_EDITOR[0]:{EXPORT_PICKER_EDITOR[1], HAKKA_IMPORT[1]}, CZECH_SAVE_AS[0]:{CZECH_SAVE_AS[1]}}, 'dialog', 'app-dialog', 300)
 
     def test_page_chooser_has_its_own_exact_report_and_deadline(self):
         self.check_wrapper({PAGE_COUNT: PAGE_COUNT_METHODS}, 'page_chooser', 'app-page-chooser', 60)
