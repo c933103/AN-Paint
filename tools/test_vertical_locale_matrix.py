@@ -17,7 +17,7 @@ from test_vertical_control_reachability import fixture as reachability_fixture
 from vertical_locale_matrix import (VERTICAL, VERTICAL_METHODS, VERTICAL_SHARDS, EXPECTED_SCREENSHOTS,
                                    app_partition, verify_app_reports, verify_screenshots, report_paths, read_app_reports)
 
-from app_instrumentation_matrix import GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, SELECTED_PHASES, POSITION_SHARDS
+from app_instrumentation_matrix import GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, GALLERY_DRAFT, GALLERY_METHODS, GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD, DIALOG, DIALOG_METHODS, COLOUR, COLOUR_METHODS, PAGE_COUNT, PAGE_COUNT_METHODS, PHASE_TIMEOUTS, SELECTED_PHASES, POSITION_SHARDS, CZECH_ASSEMBLY_PLACEMENT, API35_ORDINARY_EXCLUSIONS
 
 ROOT = Path(__file__).resolve().parents[1]
 EDITOR = 'paint.anpaint.android.EditorDeviceTest'
@@ -33,7 +33,7 @@ def expected(sdk=35):
     result.add((GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD))
     result |= {(PAGE_COUNT, name) for name in PAGE_COUNT_METHODS}
     if sdk == 35:
-        result |= {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS}
+        result |= {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR, CZECH_SAVE_AS, CZECH_ASSEMBLY_PLACEMENT}
         result |= {(DIALOG, name) for name in DIALOG_METHODS} | {(COLOUR, name) for name in COLOUR_METHODS}
     return result
 
@@ -45,7 +45,7 @@ def report_for(phase, part, sdk=35, digest=SOURCE_DIGEST, suppressed=()):
                 sdk_suppressed_tests=[list(item) for item in sorted(suppressed)],
                 timeout_seconds=PHASE_TIMEOUTS[phase],
                 included_tests=sorted(f'{owner}#{name}' for owner, name in part) if phase in SELECTED_PHASES else [],
-                excluded_tests=sorted('#'.join(item) for item in (GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR)) if sdk == 35 and phase == 'ordinary' else [],
+                excluded_tests=sorted('#'.join(item) for item in API35_ORDINARY_EXCLUSIONS) if sdk == 35 and phase == 'ordinary' else [],
                 expected_tests=len(part), completed_tests=len(part),
                 cases=[dict(classname=owner, name=name, status='passed') for owner, name in sorted(part)])
 
@@ -60,7 +60,7 @@ def source_fixture(root):
     for owner in {owner for owner, _ in expected()}:
         name = owner.rsplit('.', 1)[1]
         annotation = '@SdkSuppress(minSdkVersion=35) ' if owner in (DIALOG,COLOUR,CZECH_SAVE_AS[0]) else '@SdkSuppress(minSdkVersion=30) ' if owner == PAGE_COUNT else ''
-        methods = ''.join('@Test ' + ('@SdkSuppress(minSdkVersion=35) ' if (item_owner, method) in {GALLERY_CREDIT_EDITOR, EXPORT_PICKER_EDITOR} else '') + f'fun {method}() {{}}\n' for item_owner, method in sorted(expected()) if owner == item_owner)
+        methods = ''.join('@Test ' + ('@SdkSuppress(minSdkVersion=35) ' if (item_owner, method) in API35_ORDINARY_EXCLUSIONS else '') + f'fun {method}() {{}}\n' for item_owner, method in sorted(expected()) if owner == item_owner)
         (source/f'{name}.kt').write_text(f'package paint.anpaint.android\n{annotation}class {name} {{\n{methods}}}\n')
     return source
 
@@ -79,7 +79,7 @@ class MatrixInventoryTest(unittest.TestCase):
     def test_complete_current_and_future_methods_form_disjoint_sdk_partitions(self):
         for sdk in (30, 35):
             result = verify_app_reports(expected(sdk), sdk, reports(sdk), SOURCE_DIGEST)
-            self.assertEqual(result['completed_tests'], 18 if sdk == 30 else 37)
+            self.assertEqual(result['completed_tests'], 18 if sdk == 30 else 38)
             parts = app_partition(expected(sdk), sdk)
             self.assertIn((FUTURE, 'future'), parts['ordinary'])
             viewport = (GALLERY_VIEWPORT, GALLERY_VIEWPORT_METHOD)
@@ -208,8 +208,8 @@ class MatrixInventoryTest(unittest.TestCase):
                     self.assertEqual(result.returncode, 0, result.stdout+result.stderr)
                     receipt = json.loads((root/'report/app/coverage.json').read_text())
                     self.assertEqual(receipt['device_sdk'], sdk)
-                    self.assertEqual(receipt['declared_tests'], 37)
-                    self.assertEqual(receipt['completed_tests'], (37 if sdk == 35 else 18) - (not eligible))
+                    self.assertEqual(receipt['declared_tests'], 38)
+                    self.assertEqual(receipt['completed_tests'], (38 if sdk == 35 else 18) - (not eligible))
                     self.assertEqual([FUTURE, 'future'] in receipt['completed'], eligible)
                     self.assertEqual(receipt['phases']['ordinary'], (4 if sdk == 30 else 2) - (not eligible))
                     self.assertEqual({phase: receipt['phases'][phase] for phase in VERTICAL_SHARDS},
