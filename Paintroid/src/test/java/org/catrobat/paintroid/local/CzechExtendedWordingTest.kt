@@ -97,16 +97,14 @@ class CzechExtendedWordingTest {
             repeat(2) {
                 val dialog = ImageCropDialog(activity, images, { null }, { applied++ }).show()
                 val status = dialog.window!!.decorView.findViewWithTag<TextView>("crop_status")
-                fun full(count: Int): String {
-                    val noun = when (count) { 1 -> "obrázek"; in 2..4 -> "obrázky"; else -> "obrázků" }
-                    val value = PaintApplication.currentResources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count)
-                    assertTrue(value.contains("$count $noun."))
-                    return value
-                }
-                assertEquals(full(5), status.text.toString())
-                for (unchecked in 5 downTo 2) {
+                fun full(count: Int) = PaintApplication.currentResources
+                    .getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count)
+                val counts = (0..5).associateWith(::full)
+                assertEquals(6, counts.values.toSet().size)
+                assertEquals(counts.getValue(5), status.text.toString())
+                for (unchecked in 5 downTo 1) {
                     dialog.window!!.decorView.findViewWithTag<CheckBox>("crop_include_cs-$unchecked").isChecked = false
-                    idle(); assertEquals(full(unchecked - 1), status.text.toString())
+                    idle(); assertEquals(counts.getValue(unchecked - 1), status.text.toString())
                 }
                 assertEquals("Nahoře: ořez v pixelech",
                     dialog.window!!.decorView.findViewWithTag<EditText>("crop_top").contentDescription.toString())

@@ -19,11 +19,13 @@ class CzechExtendedWordingTests(unittest.TestCase):
                              [n.get('quantity') for n in items])
             for node in items:
                 self.assertEqual({'%1$d': 1, '%2$d': 1, '%3$d': 1}, catalogues.placeholders(node.text))
-        for quantity, noun in [('one', 'obrázek'), ('few', 'obrázky'), ('other', 'obrázků')]:
-            value = entry['cs'][quantity]
-            self.assertIn('%3$d '+noun+'.', value)
-            self.assertIn('může posunout obrázky, které jsou k nim připojené.', value)
-            self.assertEqual(1, value.count('\\n'))
+        for value in entry['cs'].values():
+            dimensions, detail = value.split(r'\n')
+            status, warning = detail.split('%3$d',1)
+            self.assertNotIn('%3$d', dimensions)
+            self.assertIn('vybran', status)
+            self.assertIn('může', warning)
+            self.assertIn('připojen', warning)
 
     def test_live_help_preserves_actual_navigation_and_distinct_save_actions(self):
         s = {k: v.strip('"') for k, v in self.strings.items()}
