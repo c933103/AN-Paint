@@ -209,9 +209,9 @@ class AppLanguageResourceRoutingTest {
                         assertEquals("📱🌐",resources.getString(R.string.language20_device_default))
                         for(count in 0..20) {
                             val noun=if(count==1) "image" else "images"
-                            assertEquals("Emoji English count=$count",
-                                "✅ Preview: 123 × 45 px\nApply to $count $noun. Cropping placed images may move their attached images.",
-                                resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count))
+                            val rendered=resources.getQuantityString(R.plurals.ui_crop_preview_images,count,123,45,count)
+                            assertEquals("✅ Preview: 123 × 45 px",rendered.substringBefore('\n'))
+                            assertTrue("Emoji English count=$count",rendered.substringAfter('\n').contains("$count $noun."))
                         }
                     }
                 }

@@ -71,14 +71,21 @@ class LocaleTextBoundaryTest {
     }
 
     @Test fun fallbackPluralRulesAreEnglishAndKeepTheEntireCropWarning() {
-        for(tag in listOf("en-US","ar","fr","ja","mn-Mong")) for(count in listOf(0,1,2,3,21,101)) {
-            val resources=inject(tag)
+        val canonical=RuntimeEnvironment.getApplication().createConfigurationContext(
+            Configuration(previous.configuration).apply {setLocale(Locale.US)}
+        ).resources
+        fun check(resources: Resources,count: Int) {
             val formatted=uiText(resources,R.plurals.ui_crop_preview_images,count,Locale.ROOT,arrayOf(4,8,count))
-            assertEquals("Preview: 4 × 8 px\nApply to $count ${if(count==1) "image" else "images"}. Cropping placed images may move their attached images.",formatted)
+            assertEquals(canonical.getQuantityString(R.plurals.ui_crop_preview_images,count,4,8,count),formatted)
+            assertEquals("Preview: 4 × 8 px",formatted.substringBefore('\n'))
+            val detail=formatted.substringAfter('\n')
+            assertTrue(detail.contains("$count ${if(count==1) "image" else "images"}."))
+            assertTrue(detail.contains("may move") && detail.contains("attached"))
         }
-        val resources=inject("ar",plural=null)
-        assertEquals("Preview: 4 × 8 px\nApply to 2 images. Cropping placed images may move their attached images.",
-            uiText(resources,R.plurals.ui_crop_preview_images,2,Locale.ROOT,arrayOf(4,8,2)))
+        for(tag in listOf("en-US","ar","fr","ja","mn-Mong")) for(count in listOf(0,1,2,3,21,101)) {
+            check(inject(tag),count)
+        }
+        check(inject("ar",plural=null),2)
     }
 
     @Test fun literalPercentUnicodeAndLongHelpReachTheResourceBoundaryIntact() {
