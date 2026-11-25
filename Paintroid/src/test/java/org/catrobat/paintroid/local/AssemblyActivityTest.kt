@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.*
 import android.content.pm.ProviderInfo
+import android.content.res.Configuration
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.graphics.*
@@ -14,6 +15,7 @@ import android.os.ParcelFileDescriptor
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import android.view.DragEvent
+import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.Spinner
@@ -102,6 +104,43 @@ class AssemblyActivityTest {
         load(); placeThree(); render(activity.window.decorView,"assembly-landscape.png")
         assertTrue(activity.window.decorView.findViewWithTag<View>("assembly_crop").isShown)
         assertTrue(activity.window.decorView.findViewWithTag<View>("assembly_tray").isShown); assertTrue(activity.board.height > 100)
+    }
+    @Test fun rotatingAndRecreatingRetainTheWorkspaceTargetUntilItIsUsed() {
+        load(2)
+        val anchor=image("b.png").id
+        val child=image("a.png").id
+        drag(anchor,0f,0f)
+        click("assembly_item_$child")
+        val oldBoard=activity.board
+        val landscape=Configuration(activity.resources.configuration).apply {
+            orientation=Configuration.ORIENTATION_LANDSCAPE
+            screenWidthDp=900
+            screenHeightDp=412
+        }
+        controller.configurationChange(landscape)
+        activity=controller.get(); waitForWork()
+        assertNotSame(oldBoard,activity.board)
+        assertEquals(child,activity.board.selectedId)
+        assertNull(image("a.png").attachment)
+
+        controller.recreate()
+        activity=controller.get(); waitForWork()
+        val board=activity.board
+        assertEquals(child,board.selectedId)
+        val target=board.toScreen(24f,0f)
+        val down=android.os.SystemClock.uptimeMillis()
+        for (action in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP)) {
+            val event=MotionEvent.obtain(down,down,action,target.x,target.y,0)
+            try { assertTrue(board.dispatchTouchEvent(event)) } finally { event.recycle() }
+        }
+        idle()
+        assertEquals(Attachment(anchor,SnapEdge.RIGHT),image("a.png").attachment)
+        assertEquals(Rect(24,0,36,20),activity.assembly.layout()[child])
+        assertNull(board.selectedId)
+        controller.recreate()
+        activity=controller.get(); waitForWork()
+        assertEquals(Attachment(anchor,SnapEdge.RIGHT),image("a.png").attachment)
+        assertNull(activity.board.selectedId)
     }
     @Test fun individualAndBatchCropUsePercentAndAreUndoableBeforePlacement() {
         load(); click("assembly_item_${image("b.png").id}"); click("assembly_crop")
