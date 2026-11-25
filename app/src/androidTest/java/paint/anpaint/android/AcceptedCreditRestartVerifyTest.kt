@@ -3,11 +3,16 @@ package paint.anpaint.android
 
 import android.app.LocaleManager
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Build
 import android.os.Process
 import android.widget.EditText
+import android.widget.Button
+import android.view.inspector.WindowInspector
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.UiSelector
 import org.catrobat.paintroid.R
 import org.junit.Assert.*
 import org.junit.Test
@@ -48,15 +53,39 @@ class AcceptedCreditRestartVerifyTest {
             f.context.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
         val scenario=f.launchEditor()
         try {
+            f.onMain {f.assertPendingDrawing(f.editor,source)}
             f.assertMountedCzechFileAndSave()
-            f.onMain {f.assertOriginalDrawing(f.editor,source)}
+            // Undo of the restored floating edit first commits its current visible
+            // state into Redo, then restores the original location from history.
+            f.tap("undo")
+            f.onMain {f.assertCommittedPatch(f.editor,source,undone=true)}
+            f.tap("redo")
+            f.onMain {f.assertCommittedPatch(f.editor,source)}
             f.openArchive(source,expected)
             f.tap("legacy_credit_done")
             f.await("original editor resumed") {f.editor.hasWindowFocus() && !f.editor.busy}
-            f.onMain {f.assertOriginalDrawing(f.editor,source)}
-            // New is a production menu action. The saved original is not dirty,
-            // so no discard shortcut or direct document mutation is needed.
+            f.onMain {f.assertCommittedPatch(f.editor,source)}
+            // The committed edit leaves the document dirty. Use the actual
+            // localized discard action before creating the uncredited document.
+            f.await("focused, dirty editor ready to handle New") {
+                f.editor.hasWindowFocus() && f.editor.document.dirty && !f.autosaveObservation().autosaving
+            }
             f.menu("File",R.string.ui_new)
+            val device=UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+            val discard=device.findObject(UiSelector().resourceId("android:id/button3"))
+            assertTrue("Native neutral Discard action",discard.waitForExists(5000))
+            f.onMain {
+                val neutral=WindowInspector.getGlobalWindowViews().asReversed()
+                    .firstNotNullOfOrNull {it.findViewById<Button>(android.R.id.button3)?.takeIf {v->v.isShown}}
+                    ?: error("No visible neutral button in the unsaved-changes dialog")
+                assertEquals("The neutral action is localized",
+                    f.editor.getString(R.string.ui_discard_changes23),neutral.text.toString())
+                assertTrue("Discard is enabled and visible",neutral.isEnabled && neutral.getGlobalVisibleRect(Rect()))
+            }
+            val discardBounds=discard.visibleBounds
+            assertFalse(discardBounds.isEmpty)
+            assertTrue(device.click(discardBounds.centerX(),discardBounds.centerY()))
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
             f.onMain {
                 (f.view("size_width") as EditText).setText("19")
                 (f.view("size_height") as EditText).setText("13")

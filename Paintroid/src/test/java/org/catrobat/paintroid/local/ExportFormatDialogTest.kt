@@ -167,6 +167,26 @@ class ExportFormatDialogTest {
         assertFalse(activity.busy)
     }
 
+    @Test fun filenameWarningAllowsEditingOrAcceptingTheDisplayedSuggestion() {
+        menu("Save as…")
+        val options = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        val field = options.window!!.decorView.findViewWithTag<EditText>("export_filename")
+        val entered = "旅行:day?1"
+        field.setText(entered)
+        options.confirm()
+        val warning = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertTrue(checkNotNull(warning.findViewById<TextView>(android.R.id.message)).text.contains("旅行_day_1.png"))
+        assertNull(shadowOf(activity).nextStartedActivityForResult)
+        warning.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+        idle()
+        assertEquals(entered, field.text.toString())
+        field.setText("旅行*2")
+        options.confirm()
+        (ShadowAlertDialog.getLatestAlertDialog() as AlertDialog).confirm()
+        val launch = shadowOf(activity).nextStartedActivityForResult
+        assertEquals("旅行_2.png", launch.intent.getStringExtra(Intent.EXTRA_TITLE))
+    }
+
     @Test fun cancellingDestinationKeepsFloatingSelectionAndPlainSaveUsesLastChosenFormat() {
         val image=Bitmap.createBitmap(7,5,Bitmap.Config.ARGB_8888).apply {eraseColor(Color.RED)}
         try {activity.document.paste(image)} finally {image.recycle()}

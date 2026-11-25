@@ -15,6 +15,7 @@ import android.os.Process
 import android.os.SystemClock
 import android.util.AtomicFile
 import android.view.View
+import android.view.MotionEvent
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
 import android.widget.Button
@@ -33,6 +34,7 @@ import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.LegacyImageCreditsActivity
 import org.catrobat.paintroid.classic.MediaGalleryActivity
+import org.catrobat.paintroid.classic.PaintTool
 import org.catrobat.paintroid.classic.ToolCategoryButton
 import org.json.JSONObject
 import org.junit.Assert.*
@@ -76,6 +78,10 @@ class AcceptedCreditRestartSeedTest {
             editor.document.editImageCredit(source,f.ORIGINAL_TEXT)
             editor.document.markSaved()
             f.assertOriginalDrawing(editor,source)
+            // A small non-credit patch is lifted from the already-credited canvas.
+            // Opening Gallery pauses gestures but must not commit this selection.
+            f.prepareFloatingPatch(editor)
+            f.assertPendingDrawing(editor,source)
         }
         f.openGallery()
         val gallery=f.resumed(MediaGalleryActivity::class.java)
@@ -87,7 +93,7 @@ class AcceptedCreditRestartSeedTest {
             token=gallery.intent.getStringExtra("image_credit_session") ?: error("Production Gallery session missing")
             assertTrue(token.matches(Regex("credit-edit-[0-9a-f-]{36}\\.json")))
             assertFalse("Launch must not inline the parent credit ledger",gallery.intent.hasExtra("document_image_credits"))
-            f.assertOriginalDrawing(editor,source)
+            f.assertPendingDrawing(editor,source)
         }
         f.tap("gallery_edit_credits")
         f.onMain {
@@ -115,7 +121,7 @@ class AcceptedCreditRestartSeedTest {
                 assertFalse(gallery.isFinishing)
                 assertTrue("Save leaves the actual editor dialog open",f.view("gallery_credit_save").isShown)
                 assertEquals(expected,(f.view("gallery_credit_text") as EditText).text.toString())
-                f.assertOriginalDrawing(editor,source)
+                f.assertPendingDrawing(editor,source)
             }
             f.assertOriginalArchive(source)
             val afterBytes=File(f.context.filesDir,"classic-autosave.zip").readBytes()
@@ -423,15 +429,71 @@ internal object AcceptedCreditRestartFixture {
         assertEquals("Only insertion is substituted; subsequent Gallery is real",1,calls)
         assertFalse(file.exists())
     }
-    fun assertOriginalDrawing(activity: ClassicPaintActivity,source: String) {
+    fun prepareFloatingPatch(activity: ClassicPaintActivity) {
+        // Expanding a different tool category selects its default tool and
+        // commits any pending selection. Expose Gallery before creating it.
+        val insert=activity.window.decorView.findViewWithTag<ToolCategoryButton>("category_INSERT")
+        if(!insert.expanded)assertTrue(insert.performClick())
+        assertTrue("Gallery insertion controls are expanded before lifting",insert.expanded)
+        val doc=activity.document
+        for((x,y) in originalPatch)doc.bitmap.setPixel(x,y,Color.RED)
+        val canvas=activity.paintCanvas
+        canvas.setCursorMode(false)
+        canvas.selectTool(PaintTool.SELECT)
+        canvas.fit()
+        fun drag(fromX: Float,fromY: Float,toX: Float,toY: Float) {
+            val start=SystemClock.uptimeMillis()
+            for((i,action) in listOf(MotionEvent.ACTION_DOWN,MotionEvent.ACTION_MOVE,MotionEvent.ACTION_UP).withIndex()) {
+                val fraction=i/2f
+                val point=canvas.toScreen(fromX+(toX-fromX)*fraction,fromY+(toY-fromY)*fraction)
+                val event=MotionEvent.obtain(start,start+i*16,action,point.x,point.y,0)
+                try {assertTrue(canvas.dispatchTouchEvent(event))} finally {event.recycle()}
+            }
+        }
+        drag(10.5f,6.5f,15.5f,11.5f)
+        drag(13f,9f,26f,18f)
+        val moved=checkNotNull(doc.selection).rect
+        val gripY=moved.top-34f*activity.resources.displayMetrics.density/canvas.zoom
+        drag(moved.centerX(),gripY,moved.centerX()+moved.centerY()-gripY,moved.centerY())
+    }
+
+    private val originalPatch=setOf(12 to 8,13 to 8,12 to 9)
+    private val rotatedPatch=setOf(26 to 17,26 to 18,25 to 17)
+    private fun assertFloatingPixels(bitmap: Bitmap) {
+        assertPixels(bitmap,6,6) {x,y -> if((x+10 to y+6) in originalPatch) Color.RED else Color.WHITE}
+    }
+    fun assertPendingDrawing(activity: ClassicPaintActivity,source: String) {
+        assertCredit(activity,source)
+        val selection=checkNotNull(activity.document.selection)
+        assertTrue("Cannot silently flatten the reopened selection",selection.floating)
+        for((actual,expected) in listOf(selection.rect.left to 23f,selection.rect.top to 15f,
+            selection.rect.right to 29f,selection.rect.bottom to 21f,selection.rotation to 90f))
+            assertEquals(expected,actual,.01f)
+        assertFloatingPixels(selection.image)
+        assertEquals(listOf(source),selection.credits.map {it.source})
+        assertEquals(listOf(ORIGINAL_TEXT),selection.credits.map {it.text})
+        assertTrue("The move survives in draft history",activity.document.canUndo)
+        assertCanvasPatch(activity,emptySet())
+    }
+    private fun assertCredit(activity: ClassicPaintActivity,source: String) {
         assertEquals(listOf(source),activity.document.imageCredits.map {it.source})
         assertEquals(listOf(ORIGINAL_TEXT),activity.document.imageCredits.map {it.text})
-        assertNull(activity.document.selection)
+    }
+    private fun assertCanvasPatch(activity: ClassicPaintActivity,patch: Set<Pair<Int,Int>>) {
         assertPixels(activity.document.bitmap,37,29) {x,y ->when {
+            (x to y) in patch ->Color.RED
             x<3 && y<2 ->Color.MAGENTA
             x==5 && y==7 ->Color.BLUE
             else ->Color.WHITE
         }}
+    }
+    fun assertOriginalDrawing(activity: ClassicPaintActivity,source: String) {
+        assertCredit(activity,source);assertNull(activity.document.selection)
+        assertCanvasPatch(activity,emptySet())
+    }
+    fun assertCommittedPatch(activity: ClassicPaintActivity,source: String,undone: Boolean=false) {
+        assertCredit(activity,source);assertNull(activity.document.selection)
+        assertCanvasPatch(activity,if(undone) originalPatch else rotatedPatch)
     }
     fun assertPixels(bitmap: Bitmap,width: Int,height: Int,pixel: (Int,Int)->Int) {
         assertEquals(width,bitmap.width);assertEquals(height,bitmap.height)
@@ -441,7 +503,16 @@ internal object AcceptedCreditRestartFixture {
         ZipFile(File(context.filesDir,"classic-autosave.zip")).use {zip ->
             val metadata=zip.getInputStream(zip.getEntry("draft.json")).bufferedReader(Charsets.UTF_8).use {JSONObject(it.readText())}
             val credits=metadata.getJSONObject("image_credits")
-            assertEquals(0,credits.getJSONArray("floating").length())
+            val floating=credits.getJSONArray("floating")
+            assertEquals(1,floating.length());assertEquals(source,floating.getJSONObject(0).getString("source"))
+            assertEquals(ORIGINAL_TEXT,floating.getJSONObject(0).getString("text"))
+            val rect=metadata.getJSONArray("floating_rect")
+            assertEquals(4,rect.length())
+            for((index,value) in listOf(23.0,15.0,29.0,21.0).withIndex())
+                assertEquals(value,rect.getDouble(index),.01)
+            assertEquals(90.0,metadata.getDouble("floating_rotation"),.01)
+            val patch=zip.getInputStream(zip.getEntry("floating.png")).use {BitmapFactory.decodeStream(it)}!!
+            try {assertFloatingPixels(patch)} finally {patch.recycle()}
             val committed=credits.getJSONArray("committed")
             assertEquals(1,committed.length());assertEquals(source,committed.getJSONObject(0).getString("source"))
             assertEquals(ORIGINAL_TEXT,committed.getJSONObject(0).getString("text"))
