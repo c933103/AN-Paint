@@ -922,8 +922,34 @@ class EditorDeviceTest {
         } finally {onMain {it.requestedOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT}}
     }
 
+    private fun resourcesFor(tag: String)=context.createConfigurationContext(
+        android.content.res.Configuration().apply {setLocales(LocaleList.forLanguageTags(tag))}
+    ).resources
+
     @Test fun cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing() {
-        menu("View",text(R.string.ui_cursor_drawing32))
+        // Exercise the existing native gesture and bitmap contract under the
+        // real Czech picker on Android 15, without duplicating that journey.
+        val cs = if(Build.VERSION.SDK_INT>=35) {
+            chooseAppLanguage("cs")
+            awaitReadyCzechEditor()
+            resourcesFor("cs")
+        } else null
+        fun label(id: Int)=cs?.getString(id) ?: text(id)
+        fun boundCaption(tag: String,id: Int) {
+            if(cs==null) return
+            val expected=label(id)
+            val english=resourcesFor("en-US").getString(id)
+            onMain { editor ->
+                val view=checkNotNull(editor.window.decorView.findViewWithTag<TextView>(tag))
+                assertNotEquals(english,expected)
+                assertEquals(expected,view.text.toString())
+                val node=view.createAccessibilityNodeInfo()
+                try {assertEquals(expected,(node.contentDescription ?: node.text).toString())}
+                finally {node.recycle()}
+            }
+        }
+        menu("View",label(R.string.ui_cursor_drawing32))
+        boundCaption("cursor_mode_enabled",R.string.ui_enable_cursor_drawing)
         onMain {
             val toggle=it.window.decorView.findViewWithTag<View>("cursor_mode_enabled")
             assertTrue(toggle is android.widget.Button);assertFalse(toggle is android.widget.CompoundButton)
@@ -937,7 +963,9 @@ class EditorDeviceTest {
             val control=it.window.decorView.findViewWithTag<View>("cursor_draw_toggle")
             assertEquals((64*it.resources.displayMetrics.density+.5f).toInt(),control.height)
         }
-        onMain {assertEquals(text(R.string.ui_disable_cursor_drawing33),it.window.decorView.findViewWithTag<android.widget.Button>("cursor_mode_enabled").text.toString())}
+        onMain {assertEquals(label(R.string.ui_disable_cursor_drawing33),it.window.decorView.findViewWithTag<android.widget.Button>("cursor_mode_enabled").text.toString())}
+        boundCaption("cursor_mode_enabled",R.string.ui_disable_cursor_drawing33)
+        boundCaption("cursor_draw_toggle",R.string.ui_cursor_start31)
         onMain {assertTrue(it.paintCanvas.cursorMode);assertFalse(it.paintCanvas.cursorDrawing);it.document.foreground=Color.RED;it.document.strokeWidth=4f}
         // Inject through Android's input dispatcher instead of calling the
         // canvas handler directly; verify a line, not merely an undo entry/dot.
@@ -951,7 +979,8 @@ class EditorDeviceTest {
         assertTrue(device.swipe(coordinates[0],coordinates[1],coordinates[2],coordinates[3],20))
         instrumentation.waitForIdleSync()
         onMain {assertFalse(it.document.canUndo);for(y in 0 until 100) for(x in 0 until 100) assertEquals(Color.WHITE,it.document.bitmap.getPixel(x,y))}
-        clickText(text(R.string.ui_cursor_start31))
+        clickText(label(R.string.ui_cursor_start31))
+        boundCaption("cursor_draw_toggle",R.string.ui_cursor_stop31)
         onMain {assertTrue("Start keeps settings open",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)}
         assertTrue(device.swipe(coordinates[2],coordinates[3],coordinates[0],coordinates[1],20))
         instrumentation.waitForIdleSync()
@@ -963,7 +992,8 @@ class EditorDeviceTest {
             assertTrue("Cursor must produce a visible line",ink.isNotEmpty())
             assertTrue("Movement must paint beyond the initial dot",ink.maxOf {index ->index%100}-ink.minOf {index ->index%100}>10)
         }
-        clickText(text(R.string.ui_cursor_stop31))
+        clickText(label(R.string.ui_cursor_stop31))
+        boundCaption("cursor_draw_toggle",R.string.ui_cursor_start31)
         onMain {assertTrue("Stop keeps settings open",it.window.decorView.findViewWithTag<View>("cursor_options").isShown)}
         drag(20f,20f,30f,20f);drag(20f,20f,20f,20f)
         onMain {
@@ -983,14 +1013,138 @@ class EditorDeviceTest {
             root.findViewWithTag<android.widget.Spinner>("cursor_shape").setSelection(1)
             assertEquals(tip,it.document.brushTip)
         }
+        boundCaption("cursor_magnifier_enabled",R.string.ui_show_magnified_drawing_preview)
         click("cursor_magnifier_enabled")
-        onMain {assertFalse(it.paintCanvas.cursorMagnifier);it.paintCanvas.zoomAt(5f)}
+        onMain {assertFalse(it.paintCanvas.cursorMagnifier)}
+        if(cs!=null) {
+            click("cursor_help")
+            val expected=listOf(R.string.ui_cursor_help31,R.string.ui_cursor_tap_hint37,
+                R.string.ui_cursor_marker_help31).joinToString("\n\n") {label(it)}
+            fun message()=WindowInspector.getGlobalWindowViews().asReversed().firstNotNullOfOrNull {
+                it.findViewById<TextView>(android.R.id.message)?.takeIf {v -> v.isShown && v.layout!=null}
+            }
+            awaitState("Czech cursor guidance displayed") {message()!=null}
+            onMain {
+                val view=checkNotNull(message())
+                assertEquals(expected,view.text.toString())
+                val layout=checkNotNull(view.layout)
+                assertEquals(expected.length,layout.getLineEnd(layout.lineCount-1))
+                assertTrue((0 until layout.lineCount).all {line ->layout.getEllipsisCount(line)==0})
+            }
+            positive()
+            awaitState("editor focused after cursor help") {message()==null && it.window.decorView.hasWindowFocus()}
+        }
+        onMain {it.paintCanvas.zoomAt(5f)}
         click("zoom_fit_view")
         onMain {
             val centre=it.paintCanvas.toScreen(50f,50f)
             val inset=20*it.resources.displayMetrics.density
             assertEquals((it.paintCanvas.width-inset)/2,centre.x,1f)
             assertEquals((it.paintCanvas.height-inset)/2,centre.y,1f)
+        }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun czechAdvancedColourRejectsInvalidDraftAndAppliesCommaHueAfterRotationAtDoubleText() {
+        assertTrue("Only change global font scale on a disposable emulator",
+            Build.FINGERPRINT.contains("generic") || Build.MODEL.contains("sdk",ignoreCase=true) ||
+                Build.MODEL.contains("Emulator"))
+        val previousScale=android.provider.Settings.System.getFloat(
+            context.contentResolver,android.provider.Settings.System.FONT_SCALE,1f)
+        val font=GalleryViewportDeviceTest()
+        val cs=resourcesFor("cs")
+        val en=resourcesFor("en-US")
+        var originalOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        onMain { originalOrientation=it.requestedOrientation }
+        fun root()=WindowInspector.getGlobalWindowViews().asReversed().firstOrNull {
+            it.findViewWithTag<View>("colour_dialog_holder")?.isShown==true
+        }
+        fun pressColourFooter(id: Int, labelId: Int) {
+            val bounds=Rect()
+            awaitState("fully visible Czech colour footer") {
+                val window=root() ?: return@awaitState false
+                val button=window.findViewById<TextView>(id) ?: return@awaitState false
+                if(!window.hasWindowFocus() || !button.isShown || !button.isEnabled ||
+                    !button.getGlobalVisibleRect(bounds) ||
+                    bounds.width()!=button.width || bounds.height()!=button.height) return@awaitState false
+                val text=cs.getString(labelId)
+                assertNotEquals(en.getString(labelId),text)
+                assertEquals(text,button.text.toString())
+                val layout=checkNotNull(button.layout)
+                assertTrue((0 until layout.lineCount).all {line ->layout.getEllipsisCount(line)==0})
+                offsetToScreen(button,bounds)
+                true
+            }
+            assertTrue(device.click(bounds.centerX(),bounds.centerY()))
+            instrumentation.waitForIdleSync()
+        }
+        fun orient(orientation: Int, native: Int) {
+            onMain {it.requestedOrientation=orientation}
+            awaitState("Czech orientation and font applied") {
+                it.startupReady && !it.busy && it.resources.configuration.orientation==native &&
+                    it.resources.configuration.fontScale==2f &&
+                    it.resources.configuration.locales[0].toLanguageTag()=="cs"
+            }
+        }
+        val portrait=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        val landscape=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        try {
+            chooseAppLanguage("cs")
+            awaitReadyCzechEditor()
+            font.transitionFontScale(2f)
+            orient(portrait,android.content.res.Configuration.ORIENTATION_PORTRAIT)
+            onMain {it.document.foreground=Color.RED}
+            fun open() {
+                click("menu_Color")
+                click("advanced_colour")
+                awaitState("mounted Czech Advanced Colour") {root()?.hasWindowFocus()==true}
+            }
+            fun hue()=checkNotNull(root()?.findViewWithTag<EditText>("colour_h"))
+            val chosen=Color.HSVToColor(floatArrayOf(120.5f,1f,1f))
+            open()
+            // Seed field contents via EditText to exercise the real watcher.
+            // This does not claim IME transcription or field touch reachability.
+            onMain {editor ->
+                val field=hue()
+                field.setText("120,5")
+                assertEquals("120,5",field.text.toString())
+                assertNull(field.error)
+                assertEquals(chosen,editor.document.foreground)
+                field.setText("361")
+                assertEquals(cs.getString(R.string.ui_colour_component_range,360),field.error.toString())
+                assertEquals(chosen,editor.document.foreground)
+            }
+            pressColourFooter(android.R.id.button1,R.string.ui_use_colour)
+            onMain {
+                assertNotNull("Invalid hue must not dismiss or commit",root())
+                assertNotNull(hue().error)
+                hue().setText("120,5")
+                assertNull(hue().error)
+            }
+            orient(landscape,android.content.res.Configuration.ORIENTATION_LANDSCAPE)
+            onMain {editor ->
+                assertEquals("120,5",hue().text.toString())
+                assertEquals(chosen,editor.document.foreground)
+            }
+            pressColourFooter(android.R.id.button2,R.string.ui_cancel)
+            awaitState("Cancel restores the saved colour") {
+                root()==null && it.window.decorView.hasWindowFocus() && it.document.foreground==Color.RED
+            }
+
+            open()
+            onMain {assertEquals(0.0,hue().text.toString().replace(',','.').toDouble(),0.001)}
+            onMain {hue().setText("120,5");assertNull(hue().error)}
+            pressColourFooter(android.R.id.button1,R.string.ui_use_colour)
+            awaitState("Apply keeps the new colour") {
+                root()==null && it.window.decorView.hasWindowFocus() && it.document.foreground==chosen
+            }
+        } finally {
+            onMain {
+                root()?.findViewById<View>(android.R.id.button2)?.performClick()
+                it.requestedOrientation=originalOrientation
+            }
+            font.transitionFontScale(previousScale)
+            awaitReadyCzechEditor()
         }
     }
 
