@@ -242,11 +242,7 @@ class AppLanguageResourceRoutingTest {
         val resources=AppLanguage.wrap(context).resources
         // All reachable selections, including None (0), within the 20-image cap.
         for(count in 0..20) {
-            val targets=when(count) {
-                1 -> "Применить к 1 изображению."
-                in 2..4 -> "Применить к $count изображениям."
-                else -> "Изображений для обрезки: $count."
-            }
+            val targets="Выбрано изображений для обрезки: $count."
             val expected="Предпросмотр: 123 × 45 px\n$targets " +
                 "При обрезке размещённых изображений присоединённые к ним изображения могут переместиться."
             assertEquals("Russian selected count=$count",expected,

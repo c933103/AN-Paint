@@ -12,8 +12,8 @@ from translation_catalogues import android_string_errors, placeholders
 
 RES = Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
 KEY = "ui_crop_preview_images"
-COUNT_FORMS = {'one': '%3$d изображению', 'few': '%3$d изображениям',
-               'many': 'Изображений для обрезки: %3$d', 'other': '%3$d изображениям'}
+COUNT_FORMS = dict.fromkeys(('one', 'few', 'many', 'other'),
+                            'Выбрано изображений для обрезки: %3$d')
 
 def items(folder):
     resource = ET.parse(RES / folder / "strings.xml").find(f"plurals[@name='{KEY}']")
