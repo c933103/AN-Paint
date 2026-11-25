@@ -26,6 +26,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inspector.WindowInspector
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.ScrollView
@@ -2256,6 +2257,45 @@ class EditorDeviceTest {
             // A 12.5% left crop on a 40-pixel image trims five pixels.
             status(1,35)
             leaveButton(android.R.id.button1)
+            checkCrops(5)
+
+            // Reuse the three actual imports: cropping made the first image
+            // 35 px wide, while the others are still 40 px. The Smallest
+            // percentage preset must display 87,5 and apply 35 px to all.
+            fun resizeDialog()=WindowInspector.getGlobalWindowViews().asReversed().firstOrNull {
+                it.findViewWithTag<EditText>("normalize_value")?.isShown==true
+            }
+            fun openSameWidth() {
+                tap { owner()?.window?.decorView?.findViewWithTag<View>("assembly_same_width") }
+                awaitState("mounted Czech Same Width dialog") { resizeDialog()!=null }
+                tap { resizeDialog()?.findViewWithTag<View>("normalize_percent") }
+                tap { resizeDialog()?.findViewWithTag<View>("normalize_smallest") }
+                onMain {
+                    val root=checkNotNull(resizeDialog())
+                    val field=root.findViewWithTag<EditText>("normalize_value")
+                    assertEquals("Czech percent preset uses a decimal comma","87,5",field.text.toString())
+                    assertEquals(cs.getString(R.string.ui_normalize_width_input_percent,40),field.contentDescription.toString())
+                    val apply=root.findViewById<Button>(android.R.id.button1)
+                    assertTrue(apply.isEnabled)
+                    assertEquals(cs.getString(R.string.ui_apply_to_all),apply.text.toString())
+                }
+            }
+            openSameWidth()
+            tap { resizeDialog()?.findViewById<View>(android.R.id.button2) }
+            awaitState("normalization cancelled") { resizeDialog()==null && owner()?.window?.decorView?.hasWindowFocus()==true }
+            onMain { assertTrue(checkNotNull(owner()).assembly.images.all { it.normalization==null }) }
+            openSameWidth()
+            tap { resizeDialog()?.findViewById<View>(android.R.id.button1) }
+            awaitState("normalization applied") { resizeDialog()==null && owner()?.window?.decorView?.hasWindowFocus()==true }
+            onMain {
+                val model=checkNotNull(owner()).assembly
+                val saved=org.catrobat.paintroid.classic.ImageAssembly(model.directory)
+                imported.forEachIndexed { index,id ->
+                    val expected=ImageDimensions(35,if(index==0) 16 else 14)
+                    assertEquals(expected,model.images.single { it.id==id }.placedSize)
+                    assertEquals(expected,saved.images.single { it.id==id }.placedSize)
+                }
+            }
             checkCrops(5)
         } finally {
             onMain {

@@ -67,11 +67,11 @@ internal fun uiText(resources: Resources, id: Int, quantity: Int? = null,
     return LocaleText.resolve(translated, source, formatted, locale, values)
 }
 
-/** Accept the device's decimal separator as well as ordinary decimal-dot input. */
-internal fun uiNumber(text: String): Double? {
+/** Accept the chosen locale's decimal separator as well as ordinary decimal-dot input. */
+internal fun uiNumber(text: String, locale: Locale = Locale.getDefault()): Double? {
     val value = text.trim()
     value.toDoubleOrNull()?.let { return it.takeIf { n -> n.isFinite() } }
     val position = ParsePosition(0)
-    val number = NumberFormat.getNumberInstance(Locale.getDefault()).parse(value, position)
+    val number = NumberFormat.getNumberInstance(locale).parse(value, position)
     return number?.toDouble()?.takeIf { position.index == value.length && it.isFinite() }
 }

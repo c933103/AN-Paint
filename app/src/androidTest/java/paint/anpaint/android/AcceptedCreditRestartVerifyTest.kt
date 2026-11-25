@@ -90,8 +90,49 @@ class AcceptedCreditRestartVerifyTest {
                 (f.view("size_width") as EditText).setText("19")
                 (f.view("size_height") as EditText).setText("13")
             }
-            f.positive()
-            f.await("new blank drawing") {!f.editor.busy && f.editor.document.bitmap.width==19 && f.editor.document.bitmap.height==13}
+            // Redo schedules a delayed autosave. Checking only that no write is
+            // running before opening File does not exclude a pending write
+            // starting while the size dialog is open. Wait after entering the
+            // dimensions, and resolve Apply from the focused size dialog.
+            f.await("size dialog focused and previous draft saved") {
+                val state=f.autosaveObservation()
+                f.view("size_width").hasWindowFocus() && !state.busy && !state.autosaving &&
+                    !state.callbackPending && state.pendingWrites==0 &&
+                    state.generation==state.savedGeneration && state.error==null
+            }
+            val applyBounds=Rect()
+            f.onMain {
+                val width=f.view("size_width") as EditText
+                val height=f.view("size_height") as EditText
+                assertEquals("19",width.text.toString())
+                assertEquals("13",height.text.toString())
+                val apply=width.rootView.findViewById<Button>(android.R.id.button1)
+                assertEquals(f.editor.getString(R.string.ui_apply),apply.text.toString())
+                assertTrue("Size dialog Apply has focus and is enabled",
+                    apply.hasWindowFocus() && apply.isShown && apply.isEnabled)
+                assertTrue("Size dialog Apply is visible",apply.getGlobalVisibleRect(applyBounds))
+                val origin=IntArray(2);apply.rootView.getLocationOnScreen(origin)
+                applyBounds.offset(origin[0],origin[1])
+            }
+            assertTrue(device.click(applyBounds.centerX(),applyBounds.centerY()))
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            try {
+                f.await("new blank drawing") {
+                    !f.editor.busy && f.editor.document.bitmap.width==19 && f.editor.document.bitmap.height==13
+                }
+            } catch (failure: AssertionError) {
+                var observed=""
+                f.onMain {
+                    val size=f.editor.document.bitmap
+                    val field=runCatching {f.view("size_width") as EditText}.getOrNull()
+                    val dialogButton=WindowInspector.getGlobalWindowViews().asReversed()
+                        .firstNotNullOfOrNull {it.findViewById<Button>(android.R.id.button1)?.takeIf {v->v.hasWindowFocus() && v.isShown}}
+                    observed="canvas=${size.width}x${size.height}, sizeDialogOpen=${field!=null}, " +
+                        "inputError=${field?.error!=null}, focusedButton=${dialogButton?.text}, " +
+                        "draft=${f.autosaveObservation().json()}"
+                }
+                throw AssertionError("New image confirmation did not produce 19x13: $observed",failure)
+            }
             f.onMain {
                 assertTrue("New must not inherit archived credits",f.editor.document.imageCredits.isEmpty())
                 f.assertPixels(f.editor.document.bitmap,19,13) {_,_->Color.WHITE}
