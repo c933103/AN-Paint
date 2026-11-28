@@ -1,0 +1,152 @@
+{
+  "source_revision": "244c37c4558a90b1e210885a3c7312dd754d7345",
+  "previous_source_revision": "6568e3b48d501169958518ef0f3fe931a434eaa9",
+  "preceding_tracker_revision": "9dc90ac6eab4c82bc02d3e4d1802bec5cada23af",
+  "source_tree": "d9a934b729c27708ef6098f0e6afcfa327453f38",
+  "review_evidence": "https://github.com/c933103/AN-Paint/pull/96#issuecomment-6188585935",
+  "merge_evidence": "https://github.com/c933103/AN-Paint/pull/96#issuecomment-6192260350",
+  "complete_french_pairs": [
+    {
+      "tag": "fr",
+      "key": "string/ui_add_up_to_20_images_with_android_s",
+      "english": "Add up to 20 images with Android\\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\\n\\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\\n\\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\\n\\nSame width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\\n\\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\\n\\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\\n\\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+      "localized": "Ajoutez jusqu’à 20 images avec le sélecteur de fichiers d’Android. Le bac inférieur affiche les miniatures, les noms de fichiers, les dimensions des images après recadrage et après tout ajustement avec Même largeur ou Même hauteur et les dates de modification lorsqu’elles sont fournies par le fournisseur de fichiers. Triez par nom de fichier ou date de modification ; le tri ne réorganise pas les images placées.\\n\\nAppuyez sur une miniature pour la sélectionner. Recadrer l’image recadre cette image ; Recadrage par lot applique des marges en pixels ou en pourcentage aux images sélectionnées. Faites glisser les poignées de recadrage ou saisissez les valeurs. Réinitialiser le recadrage restaure les bords d’origine. Le recadrage est non destructif et peut être annulé.\\n\\nMaintenez une miniature appuyée, ou faites glisser une image déjà placée dans l’espace de travail, puis déposez-la sur un bord surligné. L’aperçu translucide montre le résultat exact de l’alignement. Une fixation à droite aligne les bords supérieurs ; une fixation en bas aligne les bords gauches. Vous pouvez aussi appuyer sur une miniature puis sur une cible +. La première image commence à l’origine. Les images rattachées peuvent se déplacer lorsque leur image parente est recadrée. Les chevauchements sont refusés.\\n\\nMême largeur et Même hauteur donnent à toutes les entrées une dimension commune tout en conservant le rapport hauteur/largeur propre à chaque image. Choisissez Pixels, Pourcentage, Plus petite ou Plus grande. Restaurer les tailles d’origine supprime la normalisation et conserve les recadrages.\\n\\nRetirer du placement renvoie uniquement l’image sélectionnée dans le bac. Les images suivantes comblent l’espace ; elles restent placées. Supprimer efface uniquement cette entrée. Annuler/Rétablir restaure ces modifications. Faites glisser une image placée pour la réorganiser ; faire glisser un espace vide déplace la vue. Pincez pour zoomer. Tout afficher ajuste le zoom pour montrer tout l’assemblage ; les dimensions de sortie ne changent jamais.\\n\\nEnregistrer PNG enregistre directement l’image assemblée. Modifier dans Paint la transfère dans l’éditeur principal comme remplacement annulable. Si la sortie dépasse la limite mémoire, choisissez une copie de sortie plus petite si cette option est proposée. Si même une sortie minuscule dépasse cette limite, l’application affiche un avertissement de mémoire au lieu d’un sélecteur de taille. Les fichiers source d’origine restent inchangés. L’assemblage actuel est enregistré localement et se rouvre à votre retour.\\n\\nCe mode utilise les mêmes crédits Catrobat/AGPL et de ressources que le panneau «Fichier > À propos, licences et remerciements» de l’éditeur principal.",
+      "english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+      "localized_sha256": "0231171916d561412f4941e72a450547def289501cb6f0b4ef9ff7568d986605"
+    },
+    {
+      "tag": "fr",
+      "key": "string/ui_drop_at_a_highlighted_edge_right_top_aligned",
+      "english": "Drop at a highlighted edge: right/top aligned or below/left aligned.",
+      "localized": "Déposez sur un bord surligné : à droite avec les bords supérieurs alignés, ou en dessous avec les bords gauches alignés.",
+      "english_sha256": "4a9cb5de8466d89a7794ffcafc75dd2bbc0667217e8ffc077a31bf29965cbed4",
+      "localized_sha256": "9bfea27ec026af00def2437e81ce8da2be492b41ce1de06952f0b029a1c54a2a"
+    },
+    {
+      "tag": "fr",
+      "key": "plurals/ui_crop_preview_images",
+      "english": {
+        "one": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images.",
+        "other": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+      },
+      "localized": {
+        "one": "Aperçu : %1$d × %2$d px\\nAppliquer à %3$d image. Le recadrage des images placées peut déplacer les images qui leur sont rattachées.",
+        "other": "Aperçu : %1$d × %2$d px\\nAppliquer à %3$d images. Le recadrage des images placées peut déplacer les images qui leur sont rattachées."
+      },
+      "english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "localized_sha256": "4968f311f76430dad337b22b0491f22d051f43f7ae21d6558e46921303377f7f"
+    }
+  ],
+  "stale_other_pairs": [
+    {
+      "tag": "lt",
+      "key": "plurals/ui_crop_preview_images",
+      "prior_cohort": "crop-pr4",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "localized_sha256": "e9355dff735ec57b56448ed3e3e6b5eb95491c08fecd205e4a9a08fa62080a86",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    },
+    {
+      "tag": "ar",
+      "key": "plurals/ui_crop_preview_images",
+      "prior_cohort": "crop-pr5",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "localized_sha256": "ca960a7ac040c6d70777e8a827b1168072ceaffe2204536da6dd04c0fa83b2ef",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    },
+    {
+      "tag": "ru",
+      "key": "plurals/ui_crop_preview_images",
+      "prior_cohort": "ru-crop-corrected-20261013",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "localized_sha256": "8137b5814e788a0ec5a00762417b7c900f3c12e57d6855a8ae9f905b2cb0421a",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    },
+    {
+      "tag": "ja",
+      "key": "string/ui_add_up_to_20_images_with_android_s",
+      "prior_cohort": "JA-THREE-MERGED-20261015",
+      "reviewed_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+      "current_english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+      "localized_sha256": "ad9c02d1ee5311f19c8d5979f65988807ddbcfdbeb17b755a045b462fe933997",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    },
+    {
+      "tag": "ja",
+      "key": "plurals/ui_crop_preview_images",
+      "prior_cohort": "FULL-CATALOGUE-JA05-20261015",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "localized_sha256": "0b5df7f55d1f6dcfd3fe90956877bfd6c5f74df75dcf2fd363ba1bb146d7eec9",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    },
+    {
+      "tag": "zh-HK",
+      "key": "string/ui_add_up_to_20_images_with_android_s",
+      "prior_cohort": "HK-ASSEMBLY-MERGED-20261015",
+      "reviewed_english_sha256": "aa59829c36f1cea5895477c228f5fad088fdd318e3837fb7e361c866b4698be5",
+      "current_english_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+      "localized_sha256": "8881b9b8a8ad618c3fa751f43fe5ccafc5c9cb1541516bada2e48ce9a6a57a2f",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    },
+    {
+      "tag": "zh-HK",
+      "key": "plurals/ui_crop_preview_images",
+      "prior_cohort": "HK-ASSEMBLY-MERGED-20261015",
+      "reviewed_english_sha256": "5673bf950dd1d8101cefbb0ea24a38c0cbd53e5581d177ede7d0976968fda9be",
+      "current_english_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+      "localized_sha256": "c9f6bfe05e215cc3a8a86be7f2b1984aba5d63b647cdd0243600e36ead9fefa6",
+      "localized_unchanged": true,
+      "state": "needs_rereview"
+    }
+  ],
+  "changed_resource_files": [
+    "Paintroid/src/main/res/values-b+en+001/strings.xml",
+    "Paintroid/src/main/res/values-b+en+XV/strings.xml",
+    "Paintroid/src/main/res/values-b+qaa+Zsye+XV/strings.xml",
+    "Paintroid/src/main/res/values-en-rAU/strings.xml",
+    "Paintroid/src/main/res/values-en-rCA/strings.xml",
+    "Paintroid/src/main/res/values-en-rGB/strings.xml",
+    "Paintroid/src/main/res/values-en-rIN/strings.xml",
+    "Paintroid/src/main/res/values-en-rSG/strings.xml",
+    "Paintroid/src/main/res/values-en-rUS/strings.xml",
+    "Paintroid/src/main/res/values-fr/strings.xml",
+    "Paintroid/src/main/res/values/strings.xml"
+  ],
+  "unchanged_active_pairs": 2992,
+  "preserved_superseded_records": 42,
+  "new_superseded_records": 10,
+  "preserved_partial_records": 56,
+  "excluded_unmerged_prs": [
+    99,
+    67
+  ],
+  "paused_processing_pairs": [
+    {
+      "tag": "ms",
+      "key": "string/ui_rendering_images"
+    },
+    {
+      "tag": "id",
+      "key": "string/ui_rendering_images"
+    },
+    {
+      "tag": "ja",
+      "key": "string/ui_rendering_images"
+    },
+    {
+      "tag": "zh-HK",
+      "key": "string/ui_rendering_images"
+    }
+  ],
+  "scope": "Preserve all 171 language partitions. No unmerged credit and no automatic reacceptance of changed source pairs."
+}
