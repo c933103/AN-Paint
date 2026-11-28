@@ -657,8 +657,12 @@ class EditorDeviceTest {
         fun warningRoot(): View?=WindowInspector.getGlobalWindowViews().lastOrNull { root ->
             root.hasWindowFocus() && root.findViewById<TextView>(android.R.id.message)?.isShown==true
         }
-        fun tapWarningAction(id: String,key: Int) {
-            awaitState("focused Czech filename warning") {warningRoot()!=null}
+        fun tapWarningAction(id: Int) {
+            val bounds=Rect()
+            awaitState("focused Czech filename-warning action is visible and enabled") {
+                val action=warningRoot()?.findViewById<View>(id)
+                action?.isEnabled==true && action.isShown && action.getGlobalVisibleRect(Rect())
+            }
             onMain {
                 val root=requireNotNull(warningRoot())
                 val message=root.findViewById<TextView>(android.R.id.message).text.toString()
@@ -671,17 +675,18 @@ class EditorDeviceTest {
                     assertTrue(button.text.toString().equals(cs.getString(label),ignoreCase=true))
                     assertFalse(button.text.toString().equals(en.getString(label),ignoreCase=true))
                 }
+                val action=root.findViewById<View>(id)
+                assertTrue(action.getGlobalVisibleRect(bounds) && !bounds.isEmpty)
+                offsetToScreen(action,bounds)
             }
-            val action=device.findObject(UiSelector().resourceId(id).textMatches(
-                "(?iu)"+java.util.regex.Pattern.quote(cs.getString(key))))
-            assertTrue("Localized filename warning action",action.waitForExists(5000))
-            assertTrue(action.click())
+            assertTrue("Native tap on the focused Czech warning action $id at $bounds",
+                device.click(bounds.centerX(),bounds.centerY()))
             instrumentation.waitForIdleSync()
         }
         saveAs(badName)
         awaitState("invalid filename warning precedes the destination picker") {warningRoot()!=null}
         assertEquals(start+1,pickerRequests().size)
-        tapWarningAction("android:id/button2",R.string.save_edit_filename)
+        tapWarningAction(android.R.id.button2)
         awaitState("Edit name brings back the original Save As form") {
             val root=creditDialogRoot()
             root?.hasWindowFocus()==true &&
@@ -690,7 +695,7 @@ class EditorDeviceTest {
         }
         assertEquals("Edit name must not open a destination picker",start+1,pickerRequests().size)
         positive()
-        tapWarningAction("android:id/button1",R.string.save_use_filename)
+        tapWarningAction(android.R.id.button1)
         awaitState("cancelled picker returns to the editor") {
             pickerRequests().size==start+2 && !it.busy && creditDialogRoot()==null && it.window.decorView.hasWindowFocus()
         }
