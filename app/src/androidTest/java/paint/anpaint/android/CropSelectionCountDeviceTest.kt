@@ -44,7 +44,16 @@ class CropSelectionCountDeviceTest {
     @Test fun indiaPunjabiCropSelectionCountIsExposedAtZeroOneAndTwo() =
         verifyCropCount("pa-IN", "ਕਰੋਪ ਕਰਨ ਲਈ ਚੁਣੇ ਚਿੱਤਰਾਂ ਦੀ ਗਿਣਤੀ: ")
 
-    private fun verifyCropCount(tag: String, selectionLabel: String) {
+    @Test fun taiwaneseHokkienLatinCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("nan-Latn-TW", "Chhâi-chhiat: kéng tio̍h ", sharesZeroAndOne = false)
+
+    @Test fun soraniCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("ckb", "ژمارەی وێنە هەڵبژێردراوەکان بۆ بڕین: ", sharesZeroAndOne = false)
+
+    @Test fun traditionalMongolianCropSelectionCountIsExposedAtZeroOneAndTwo() =
+        verifyCropCount("mn-Mong", "ᠣᠭᠲᠣᠯᠬᠤ ᠪᠠᠷ ᠰᠣᠩᠭᠣᠭᠰᠠᠨ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠣᠭ᠎ᠠ: ", sharesZeroAndOne = false)
+
+    private fun verifyCropCount(tag: String, selectionLabel: String, sharesZeroAndOne: Boolean = true) {
         val instrumentation=InstrumentationRegistry.getInstrumentation()
         val context=instrumentation.targetContext
         val prefs=context.getSharedPreferences("app-language",0)
@@ -69,13 +78,14 @@ class CropSelectionCountDeviceTest {
                 var applications=0
                 scenario.onActivity { activity ->
                     assertEquals(tag,activity.resources.configuration.locales[0].toLanguageTag())
-                    assertEquals("one",PluralRules.forLocale(locale).select(0.0))
-                    assertEquals("one",PluralRules.forLocale(locale).select(1.0))
-                    assertEquals("other",PluralRules.forLocale(locale).select(2.0))
-                    // The shared zero/one quantity must use a count label, not a
-                    // singular command at zero. Do not freeze the localized prose.
-                    assertEquals(activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,2),
-                        activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,0))
+                    if (sharesZeroAndOne) {
+                        assertEquals("one",PluralRules.forLocale(locale).select(0.0))
+                        assertEquals("one",PluralRules.forLocale(locale).select(1.0))
+                        assertEquals("other",PluralRules.forLocale(locale).select(2.0))
+                        // The shared zero/one quantity needs a count label, not a singular command.
+                        assertEquals(activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,2),
+                            activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,0))
+                    }
                     inputs=(1..2).map { index ->
                         AssemblyImage("crop-$index",File(context.cacheDir,"unopened-crop-$index.png"),
                             "Fixture $index.png",null,ImageDimensions(24,16))
