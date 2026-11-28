@@ -652,13 +652,56 @@ class EditorDeviceTest {
             assertTrue(it.document.dirty)
         }
         assertNull("The next external picker must return RESULT_CANCELED",monitor.nextResult.get())
-        saveAs("czech-discarded-target")
+        val badName="draft:day?1"
+        val suggestion="draft_day_1.png"
+        fun warningRoot(): View?=WindowInspector.getGlobalWindowViews().lastOrNull { root ->
+            root.hasWindowFocus() && root.findViewById<TextView>(android.R.id.message)?.isShown==true
+        }
+        fun tapWarningAction(id: Int) {
+            val bounds=Rect()
+            awaitState("focused Czech filename-warning action is visible and enabled") {
+                val action=warningRoot()?.findViewById<View>(id)
+                action?.isEnabled==true && action.isShown && action.getGlobalVisibleRect(Rect())
+            }
+            onMain {
+                val root=requireNotNull(warningRoot())
+                val message=root.findViewById<TextView>(android.R.id.message).text.toString()
+                assertEquals(cs.getString(R.string.save_filename_replacement,suggestion),message)
+                assertNotEquals(en.getString(R.string.save_filename_replacement,suggestion),message)
+                for ((buttonId,label) in listOf(android.R.id.button1 to R.string.save_use_filename,
+                    android.R.id.button2 to R.string.save_edit_filename)) {
+                    val button=root.findViewById<android.widget.Button>(buttonId)
+                    assertTrue(button.isShown)
+                    assertTrue(button.text.toString().equals(cs.getString(label),ignoreCase=true))
+                    assertFalse(button.text.toString().equals(en.getString(label),ignoreCase=true))
+                }
+                val action=root.findViewById<View>(id)
+                assertTrue(action.getGlobalVisibleRect(bounds) && !bounds.isEmpty)
+                offsetToScreen(action,bounds)
+            }
+            assertTrue("Native tap on the focused Czech warning action $id at $bounds",
+                device.click(bounds.centerX(),bounds.centerY()))
+            instrumentation.waitForIdleSync()
+        }
+        saveAs(badName)
+        awaitState("invalid filename warning precedes the destination picker") {warningRoot()!=null}
+        assertEquals(start+1,pickerRequests().size)
+        tapWarningAction(android.R.id.button2)
+        awaitState("Edit name brings back the original Save As form") {
+            val root=creditDialogRoot()
+            root?.hasWindowFocus()==true &&
+                root.findViewWithTag<EditText>("export_filename")?.text?.toString()==badName &&
+                root.findViewWithTag<android.widget.Spinner>("export_format")?.selectedItem?.toString()=="PNG"
+        }
+        assertEquals("Edit name must not open a destination picker",start+1,pickerRequests().size)
+        positive()
+        tapWarningAction(android.R.id.button1)
         awaitState("cancelled picker returns to the editor") {
             pickerRequests().size==start+2 && !it.busy && creditDialogRoot()==null && it.window.decorView.hasWindowFocus()
         }
         val cancelled=pickerRequests().last()
         assertEquals("image/png",cancelled.type)
-        assertEquals("czech-discarded-target.png",cancelled.getStringExtra(Intent.EXTRA_TITLE))
+        assertEquals(suggestion,cancelled.getStringExtra(Intent.EXTRA_TITLE))
         assertArrayEquals("Cancel must not write over the prior file",original,destination.readBytes())
         onMain {
             assertTrue("Cancel keeps the edited drawing dirty",it.document.dirty)
